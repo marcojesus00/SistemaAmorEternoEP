@@ -1,0 +1,205 @@
+﻿* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 60px 5px 0;
+}
+
+.header {
+    background-color: #0769e9;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: 992px;
+    margin: 0 auto;
+}
+
+.nav-link {
+    color: darkgrey;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 40px;
+    line-height: 50px;
+}
+
+
+.nav-menu {
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+}
+
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px;
+    text-transform: uppercase;
+    width: max-content;
+}
+
+.nav-menu-link {
+    padding: 8px 12px;
+    border-radius: 3px;
+}
+
+    .nav-menu-link:hover,
+    .nav-menu-link_active {
+        background-color: #034574;
+        transition: 0.5s;
+    }
+
+/* TOGGLE */
+.nav-toggle {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 30px;
+    padding: 0 20px;
+    line-height: 60px;
+    cursor: pointer;
+    display: none;
+}
+
+/*Toggle 2*/
+button[class="nav-icono"] {
+    color: red;
+    background: none;
+    border: none;
+    font-size: 30px;
+     padding: 0 20px;
+        line-height: 60px;
+    cursor: pointer;
+    display: none;
+}
+/*.PanelPagosRes {
+ 
+    position: absolute;
+    left: 0;
+    top: 0;
+}*/
+.PanelPagosRes {
+    left: 0%;
+    top: 0%;
+}
+.pagosmenuestilo {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 40px;
+}
+
+.div_pagosmenu2 {
+    padding-top: 0px;
+    background-color: white;
+    padding-top: 15px;
+}
+.div_btncerrar {
+    position: absolute;
+    right: 15%;
+    top: 38px;
+    font-size: x-large;
+}
+/* MOBILE */
+@media (max-width: 768px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .header {
+        height: 50px;
+    }
+
+    .logo {
+        font-size: 20px;
+        padding: 0 15px;
+        line-height: 30px;
+    }
+
+    .nav-link {
+        color: darkgrey;
+        text-decoration: none;
+    }
+
+    .verPanelFactura_visible{
+        display:none;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        background-color: #2c3e50;
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        padding: 20px 0;
+        height: calc(100% - 60px);
+        overflow-y: auto;
+        left: 100%;
+        transition: left 0.3s;
+    }
+
+    .nav-menu-item {
+        line-height: 70px;
+    }
+
+    .nav-menu-link:hover,
+    .nav-menu-link_active {
+        background: none;
+        color: #83c5f7;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu_visible {
+        left: 0;
+    }
+
+    .nav-toggle:focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    .PanelPagosRes {
+        width: 100%;
+        position: absolute;
+        left: 15%;
+        top: 15%;
+        bottom: 0;
+    }
+    .pagosmenuestilo {
+        padding-left: 0%;
+        padding-right: 0%;
+        padding-top: 40px;
+    }
+
+    .div_pagosmenu2 {
+        padding-top: 0px;
+        background-color: white;
+        padding-top: 0px;
+    }
+
+    .div_btncerrar {
+        position: absolute;
+        right: 0%;
+        top: 10px;
+        font-size: x-large;
+    }
+}

@@ -1,0 +1,26 @@
+﻿
+.image1 {width: 90px;position: fixed;left: 170px;top: 630px;animation-name:Ima1;animation-duration:10s;animation-iteration-count:1;}
+.image2 {width: 90px;position: fixed;left: 275px;top: 630px;animation-name:Ima2;animation-duration:3s;animation-iteration-count:1;}
+.image3 {width: 90px;position: fixed;left: 380px;top: 630px;animation-name:Ima3;animation-duration:3s;animation-iteration-count:1;}
+.image4 {width: 90px;position: fixed;left: 485px;top: 630px;animation-name:Ima4;animation-duration:3s;animation-iteration-count:1;}
+.image5 {width: 90px;position: fixed;left: 587px;top: 630px;animation-name:Ima5;animation-duration:3s;animation-iteration-count:1;}
+.image6 {width: 90px;position: fixed;left: 687px;top: 630px;animation-name:Ima6;animation-duration:3s;animation-iteration-count:1;}
+.image7 {width: 90px;position: fixed;left: 792px;top: 630px;animation-name:Ima7;animation-duration:3s;animation-iteration-count:1;}
+.image8 {width: 90px;position: fixed;left: 895px;top: 630px;animation-name:Ima8;animation-duration:3s;animation-iteration-count:1;}
+.image9 {width: 90px;position: fixed;left: 1000px;top: 630px;animation-name:Ima9;animation-duration:3s;animation-iteration-count:1;}
+.image10 {width: 90px;position: fixed;left: 1100px;top: 630px;animation-name:Ima10;animation-duration:3s;animation-iteration-count:1;}
+.image11 {width: 90px;position: fixed;left: 1200px;top: 630px;animation-name:Ima11;animation-duration:3s;animation-iteration-count:1;}
+.image12 {width: 90px;position: fixed;left: 1300px;top: 630px;animation-name:Ima12;animation-duration:3s;animation-iteration-count:1;}
+
+@keyframes Ima1 {0% {transform:translateX(-1500px);} 15%{transform:translateX(0px);} 16%{transform:rotateZ(-360deg)} 100%{transform:rotateZ(0deg)}}
+@keyframes Ima2 {0% {transform:translateY(-1500px);} 100%{transform:translateY(0px);}}
+@keyframes Ima3 {0% {transform:translateX(1500px);} 100%{transform:translateX(0px);}}
+@keyframes Ima4 {0% {transform:translateY(1500px);} 100%{transform:translateY(0px);}}
+@keyframes Ima5 {0% {transform:translateX(-1500px);} 100%{transform:translateX(0px);}}
+@keyframes Ima6 {0% {transform:translateY(-1500px);} 100%{transform:translateY(0px);}}
+@keyframes Ima7 {0% {transform:translateX(1500px);} 100%{transform:translateX(0px);}}
+@keyframes Ima8 {0% {transform:translateY(1500px);} 100%{transform:translateY(0px);}}
+@keyframes Ima9 {0% {transform:translateX(-1500px);} 100%{transform:translateX(0px);}}
+@keyframes Ima10 {0% {transform:translateY(-1500px);} 100%{transform:translateY(0px);}}
+@keyframes Ima11 {0% {transform:translateX(1500px);} 100%{transform:translateX(0px);}}
+@keyframes Ima12 {0% {transform:translateY(1500px);} 100%{transform:translateY(0px);}}

@@ -1,0 +1,1089 @@
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Console.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\stdole.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csc.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\csi.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Console.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\vbc.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.dll.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.pdb
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Sistema.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\stdole.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Debug\Sistema.pdb
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.Cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\David\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.vbprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\Administrator\Documents\Visual Studio 2017\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.vbprojResolveAssemblyReference.cache
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.Cache
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\David\Desktop\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\David\Desktop\Sistema EP\Sistema\bin\WebCAM.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMaps.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\mario fernando\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\IT\Documents\Visual Studio 2017\Projects\Sistema EP2\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\mario fernando\Desktop\AE\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\Mario Mejia\Desktop\Amor Eterno\Nuevo\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csc.rsp
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\csi.rsp
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportSource.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Shared.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.Web.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\itextsharp.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\stdole.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\itextsharp.xml
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.xml
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll.config
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.dll
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.pdb
+C:\Users\mmejia\Documents\Visual Studio 2017\Projects\Sistema EP\Sistema\bin\Sistema.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.exe
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.exe.config
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.rsp
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.exe
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.exe.config
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.rsp
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.AppContext.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Console.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.exe
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.exe.config
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.rsp
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Sistema.dll.config
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Sistema.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Sistema.pdb
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Sistema.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\AjaxMin.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Gmap.net.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Gmap.net.pdb
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.pdb
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbprojAssemblyReference.cache
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\stdole.dll
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\GMap.NET.Core.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\itextsharp.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\log4net.xml
+C:\Users\Mmejia\Documents\GitHub\SistemaAEEP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.exe
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.exe.config
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csc.rsp
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.exe
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.exe.config
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\csi.rsp
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.AppContext.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Console.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.Compression.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.IO.Pipes.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.AccessControl.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Claims.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Threading.Thread.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.ValueTuple.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XmlDocument.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XPath.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.exe
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.exe.config
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\vbc.rsp
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\VBCSCompiler.exe
+C:\GitHub\SistemaAEEP\Sistema\bin\roslyn\VBCSCompiler.exe.config
+C:\GitHub\SistemaAEEP\Sistema\bin\Sistema.dll.config
+C:\GitHub\SistemaAEEP\Sistema\bin\Sistema.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\Sistema.pdb
+C:\GitHub\SistemaAEEP\Sistema\bin\Sistema.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\AjaxMin.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\Gmap.net.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\stdole.dll
+C:\GitHub\SistemaAEEP\Sistema\bin\Gmap.net.pdb
+C:\GitHub\SistemaAEEP\Sistema\bin\GMap.NET.Core.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\GMap.NET.WindowsForms.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\itextsharp.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\log4net.xml
+C:\GitHub\SistemaAEEP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.AssemblyReference.cache
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.Resources.resources
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.GenerateResource.cache
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.CoreCompileInputs.cache
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.vbproj.CopyComplete
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.dll
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.xml
+C:\GitHub\SistemaAEEP\Sistema\obj\Debug\Sistema.pdb
