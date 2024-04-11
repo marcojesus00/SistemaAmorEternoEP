@@ -1,0 +1,33 @@
+ body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+        .Grid td
+        {
+            /*background-color: #A1DCF2;
+            color: black;
+            font-size: 10pt;*/
+            line-height:200%
+        }
+        .Grid th
+        {
+            /*background-color: #3AC0F2;
+            color: White;
+            font-size: 10pt;*/
+            line-height:200%
+        }
+        .ChildGrid td
+        {
+            /*background-color: #eee !important;
+            color: black;*/
+            font-size: 10pt;
+            line-height:200%
+        }
+        .ChildGrid th
+        {
+            background-color: #6C6C6C !important;
+            color: White;
+            font-size: 10pt;
+            line-height:200%;            
+        }
