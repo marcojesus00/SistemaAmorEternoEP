@@ -1,0 +1,2900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AEVentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.ClientePago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ClientePago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre1" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre2" Type="varchar" MaxLength="100" />
+    <Property Name="Apellido1" Type="varchar" MaxLength="100" />
+    <Property Name="Apellido2" Type="varchar" MaxLength="100" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="hora" Type="varchar" MaxLength="12" />
+    <Property Name="Cliente" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="500" />
+    <Property Name="Identidad" Type="varchar" MaxLength="13" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="tarjeta" Type="varchar" MaxLength="100" />
+    <Property Name="Mes" Type="varchar" MaxLength="2" />
+    <Property Name="ano" Type="varchar" MaxLength="4" />
+    <Property Name="Token1" Type="varchar(max)" />
+    <Property Name="Token2" Type="varchar(max)" />
+    <Property Name="valido" Type="bit" />
+    <Property Name="Referencia1" Type="varchar" MaxLength="100" />
+    <Property Name="Tipo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CLIENTESN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CLIENTESN">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+    </Key>
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_clie" Type="char" MaxLength="55" />
+    <Property Name="identidad" Type="char" MaxLength="15" />
+    <Property Name="tributario" Type="char" MaxLength="15" />
+    <Property Name="cl_fecha" Type="datetime" />
+    <Property Name="CL_STATUS" Type="char" MaxLength="1" />
+    <Property Name="CL_COMPANIA" Type="char" MaxLength="1" />
+    <Property Name="Dir_cliente" Type="char" MaxLength="80" />
+    <Property Name="Dir2_client" Type="char" MaxLength="80" />
+    <Property Name="Dir3_client" Type="char" MaxLength="80" />
+    <Property Name="Dir4_client" Type="char" MaxLength="80" />
+    <Property Name="Dir5_client" Type="char" MaxLength="80" />
+    <Property Name="Telef_clien" Type="char" MaxLength="20" />
+    <Property Name="CL_CELULAR" Type="char" MaxLength="20" />
+    <Property Name="CL_EMAIL" Type="char" MaxLength="80" />
+    <Property Name="cl_conyunom" Type="char" MaxLength="40" />
+    <Property Name="cl_conyutel" Type="char" MaxLength="20" />
+    <Property Name="cl_conyudir" Type="char" MaxLength="80" />
+    <Property Name="CL_PARENt" Type="char" MaxLength="20" />
+    <Property Name="Cod_zona" Type="char" MaxLength="3" />
+    <Property Name="CL_VENDEDOR" Type="char" MaxLength="8" />
+    <Property Name="cl_usuario" Type="char" MaxLength="10" />
+    <Property Name="cl_terminal" Type="char" MaxLength="8" />
+    <Property Name="longitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="latitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="secuencia" Type="int" />
+    <Property Name="diavisita" Type="smallint" />
+    <Property Name="semana" Type="smallint" />
+    <Property Name="cierre" Type="char" MaxLength="15" />
+    <Property Name="tempo" Type="char" MaxLength="1" />
+    <Property Name="departa" Type="char" MaxLength="30" />
+    <Property Name="municipio" Type="char" MaxLength="30" />
+    <Property Name="circuito" Type="char" MaxLength="10" />
+    <Property Name="liquida" Type="nchar" MaxLength="15" />
+    <Property Name="hora" Type="nchar" MaxLength="8" />
+    <Property Name="FechaDoc" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CLIENTESND' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CLIENTESND">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+    </Key>
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_clie" Type="char" MaxLength="55" />
+    <Property Name="identidad" Type="char" MaxLength="15" />
+    <Property Name="tributario" Type="char" MaxLength="15" />
+    <Property Name="cl_fecha" Type="datetime" />
+    <Property Name="CL_STATUS" Type="char" MaxLength="1" />
+    <Property Name="CL_COMPANIA" Type="char" MaxLength="1" />
+    <Property Name="Dir_cliente" Type="char" MaxLength="80" />
+    <Property Name="Dir2_client" Type="char" MaxLength="80" />
+    <Property Name="Dir3_client" Type="char" MaxLength="80" />
+    <Property Name="Dir4_client" Type="char" MaxLength="80" />
+    <Property Name="Dir5_client" Type="char" MaxLength="80" />
+    <Property Name="Telef_clien" Type="char" MaxLength="20" />
+    <Property Name="CL_CELULAR" Type="char" MaxLength="20" />
+    <Property Name="CL_EMAIL" Type="char" MaxLength="80" />
+    <Property Name="cl_conyunom" Type="char" MaxLength="40" />
+    <Property Name="cl_conyutel" Type="char" MaxLength="20" />
+    <Property Name="cl_conyudir" Type="char" MaxLength="80" />
+    <Property Name="CL_PARENt" Type="char" MaxLength="20" />
+    <Property Name="Cod_zona" Type="char" MaxLength="3" />
+    <Property Name="CL_VENDEDOR" Type="char" MaxLength="8" />
+    <Property Name="cl_usuario" Type="char" MaxLength="10" />
+    <Property Name="cl_terminal" Type="char" MaxLength="8" />
+    <Property Name="longitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="latitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="secuencia" Type="int" />
+    <Property Name="diavisita" Type="smallint" />
+    <Property Name="semana" Type="smallint" />
+    <Property Name="cierre" Type="char" MaxLength="15" />
+    <Property Name="tempo" Type="char" MaxLength="1" />
+    <Property Name="departa" Type="char" MaxLength="30" />
+    <Property Name="municipio" Type="char" MaxLength="30" />
+    <Property Name="circuito" Type="char" MaxLength="10" />
+    <Property Name="liquida" Type="nchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CONTRATON' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CONTRATON">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="datetime" />
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+    <Property Name="CONT_VALOR" Type="money" />
+    <Property Name="CONT_CREDIT" Type="char" MaxLength="1" />
+    <Property Name="CONT_PRIMA" Type="money" />
+    <Property Name="CONT_NUMCUO" Type="smallint" />
+    <Property Name="CONT_VALCUO" Type="money" />
+    <Property Name="cont_vended" Type="char" MaxLength="8" />
+    <Property Name="CONT_SERVI" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANTI" Type="smallint" />
+    <Property Name="CONT_COMPA" Type="char" MaxLength="3" />
+    <Property Name="CONT_CANT2" Type="smallint" />
+    <Property Name="CONT_SERV2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT3" Type="smallint" />
+    <Property Name="CONT_SERV3" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT4" Type="smallint" />
+    <Property Name="CONT_SERV4" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL1" Type="money" />
+    <Property Name="CONT_SVAL2" Type="money" />
+    <Property Name="CONT_SVAL3" Type="money" />
+    <Property Name="CONT_SVAL4" Type="money" />
+    <Property Name="VENTA" Type="char" MaxLength="1" />
+    <Property Name="TEMPO" Type="char" MaxLength="1" />
+    <Property Name="CEDULA" Type="nchar" MaxLength="15" />
+    <Property Name="SERVI1DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI2DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI3DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI4DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVIEMPRE" Type="nchar" MaxLength="10" />
+    <Property Name="NOMCLIE" Type="nchar" MaxLength="80" />
+    <Property Name="CIERRE" Type="char" MaxLength="15" />
+    <Property Name="LIQUIDA" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA" Type="image" />
+    <Property Name="FIRMA2" Type="varbinary(max)" />
+    <Property Name="Hora" Type="varchar" MaxLength="8" />
+    <Property Name="FechaDoc" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CONTRATOND' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CONTRATOND">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="datetime" />
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+    <Property Name="CONT_VALOR" Type="money" />
+    <Property Name="CONT_CREDIT" Type="char" MaxLength="1" />
+    <Property Name="CONT_PRIMA" Type="money" />
+    <Property Name="CONT_NUMCUO" Type="smallint" />
+    <Property Name="CONT_VALCUO" Type="money" />
+    <Property Name="cont_vended" Type="char" MaxLength="8" />
+    <Property Name="CONT_SERVI" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANTI" Type="smallint" />
+    <Property Name="CONT_COMPA" Type="char" MaxLength="3" />
+    <Property Name="CONT_CANT2" Type="smallint" />
+    <Property Name="CONT_SERV2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT3" Type="smallint" />
+    <Property Name="CONT_SERV3" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT4" Type="smallint" />
+    <Property Name="CONT_SERV4" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL1" Type="money" />
+    <Property Name="CONT_SVAL2" Type="money" />
+    <Property Name="CONT_SVAL3" Type="money" />
+    <Property Name="CONT_SVAL4" Type="money" />
+    <Property Name="VENTA" Type="char" MaxLength="1" />
+    <Property Name="TEMPO" Type="char" MaxLength="1" />
+    <Property Name="CEDULA" Type="nchar" MaxLength="15" />
+    <Property Name="SERVI1DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI2DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI3DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI4DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVIEMPRE" Type="nchar" MaxLength="10" />
+    <Property Name="NOMCLIE" Type="nchar" MaxLength="80" />
+    <Property Name="CIERRE" Type="char" MaxLength="15" />
+    <Property Name="LIQUIDA" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA" Type="image" />
+    <Property Name="FIRMA2" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CORRELA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CORRELA">
+    <Key>
+      <PropertyRef Name="cveage" />
+      <PropertyRef Name="cod_zona" />
+    </Key>
+    <Property Name="cveage" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="cod_zona" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="correla" Type="numeric" Precision="7" Scale="0" />
+    <Property Name="CIERRE" Type="nchar" MaxLength="20" />
+    <Property Name="liquida" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CZONA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CZONA">
+    <Key>
+      <PropertyRef Name="Cod_zona" />
+    </Key>
+    <Property Name="Cod_zona" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Nombre_zona" Type="char" MaxLength="40" />
+    <Property Name="E_ZONAS" Type="char" MaxLength="10" />
+    <Property Name="E_VENTAS" Type="char" MaxLength="10" />
+    <Property Name="E_DEVOLUC" Type="char" MaxLength="10" />
+    <Property Name="E_VENTAS2" Type="char" MaxLength="10" />
+    <Property Name="ZON_NC" Type="int" />
+    <Property Name="ZON_ND" Type="int" />
+    <Property Name="descri_zona" Type="char" MaxLength="40" />
+    <Property Name="E_CAJA" Type="char" MaxLength="10" />
+    <Property Name="E_APARTA" Type="char" MaxLength="10" />
+    <Property Name="E_LETRAS" Type="char" MaxLength="10" />
+    <Property Name="E_PRIMA" Type="char" MaxLength="10" />
+    <Property Name="E_PAQUETE" Type="char" MaxLength="10" />
+    <Property Name="E_CXC" Type="char" MaxLength="10" />
+    <Property Name="E_CONTADO" Type="char" MaxLength="10" />
+    <Property Name="E_RTN" Type="nchar" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.DEPTOZONA' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DEPTOZONA">
+          <Property Name="coddepto" Type="nchar" MaxLength="5" />
+          <Property Name="desdepto" Type="nchar" MaxLength="200" />
+          <Property Name="codmuni" Type="nchar" MaxLength="10" />
+          <Property Name="desmuni" Type="nchar" MaxLength="200" />
+          <Property Name="codzona" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.DLogGPS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DLogGPS">
+          <Property Name="usuario" Type="nchar" MaxLength="40" />
+          <Property Name="fecha" Type="nchar" MaxLength="10" />
+          <Property Name="hora" Type="nchar" MaxLength="10" />
+          <Property Name="latitud" Type="nchar" MaxLength="40" />
+          <Property Name="longitud" Type="nchar" MaxLength="40" />
+          <Property Name="mac" Type="nchar" MaxLength="30" />
+        </EntityType>-->
+  <EntityType Name="GrupoArtEnc">
+    <Key>
+      <PropertyRef Name="IdGrupCod" />
+    </Key>
+    <Property Name="IdGrupCod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prefijo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="30" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.LOG_NULOS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="LOG_NULOS">
+          <Property Name="NUM_DOC" Type="varchar" MaxLength="16" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="20" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="HORA" Type="time" Precision="7" />
+          <Property Name="ACCION" Type="varchar" MaxLength="20" />
+          <Property Name="MOTIVO" Type="varchar" MaxLength="500" />
+          <Property Name="Codigo_clie" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.LogGPS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="LogGPS">
+          <Property Name="usuario" Type="nchar" MaxLength="40" />
+          <Property Name="fecha" Type="nchar" MaxLength="10" />
+          <Property Name="hora" Type="nchar" MaxLength="10" />
+          <Property Name="latitud" Type="nchar" MaxLength="40" />
+          <Property Name="longitud" Type="nchar" MaxLength="40" />
+          <Property Name="mac" Type="nchar" MaxLength="30" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.LogProcesados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LogProcesados">
+    <Key>
+      <PropertyRef Name="IdLine" />
+    </Key>
+    <Property Name="IdLine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Hora" Type="varchar" MaxLength="8" />
+    <Property Name="CodGestor" Type="varchar" MaxLength="5" />
+    <Property Name="Liquida" Type="varchar" MaxLength="12" />
+    <Property Name="TotalProcesado" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.MVSAGEN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MVSAGEN">
+    <Key>
+      <PropertyRef Name="cveage" />
+    </Key>
+    <Property Name="cveage" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nomage" Type="nvarchar" MaxLength="155" />
+    <Property Name="abrage" Type="char" MaxLength="15" />
+    <Property Name="agecls" Type="char" MaxLength="10" />
+    <Property Name="cvealm" Type="char" MaxLength="10" />
+    <Property Name="usuari" Type="char" MaxLength="15" />
+    <Property Name="usupwd" Type="char" MaxLength="15" />
+    <Property Name="nvlpre" Type="char" MaxLength="15" />
+    <Property Name="limcre" Type="char" MaxLength="15" />
+    <Property Name="limcro" Type="char" MaxLength="15" />
+    <Property Name="limcrv" Type="char" MaxLength="15" />
+    <Property Name="limcrd" Type="char" MaxLength="15" />
+    <Property Name="limcrn" Type="char" MaxLength="15" />
+    <Property Name="stsmov" Type="char" MaxLength="15" />
+    <Property Name="cvemov" Type="char" MaxLength="15" />
+    <Property Name="tipmov" Type="char" MaxLength="15" />
+    <Property Name="desmov" Type="char" MaxLength="30" />
+    <Property Name="sermov" Type="char" MaxLength="30" />
+    <Property Name="numser" Type="char" MaxLength="30" />
+    <Property Name="numped" Type="char" MaxLength="15" />
+    <Property Name="re1mov" Type="char" MaxLength="15" />
+    <Property Name="numpedsap" Type="char" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.MVSNVTA' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="MVSNVTA">
+          <Property Name="cvemot" Type="char" MaxLength="10" />
+          <Property Name="desmot" Type="char" MaxLength="80" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.NOVENTA' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="NOVENTA">
+          <Property Name="VENDEDOR" Type="char" MaxLength="10" />
+          <Property Name="NOMBRE" Type="char" MaxLength="50" />
+          <Property Name="FECHA" Type="char" MaxLength="10" />
+          <Property Name="HORA" Type="char" MaxLength="10" />
+          <Property Name="OBSERVACION" Type="char" MaxLength="300" />
+          <Property Name="LATITUD" Type="char" MaxLength="20" />
+          <Property Name="LONGITUD" Type="char" MaxLength="20" />
+          <Property Name="CIERRE" Type="char" MaxLength="15" />
+          <Property Name="liquida" Type="char" MaxLength="15" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.RECIBOS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RECIBOS">
+          <Property Name="Num_doc" Type="char" MaxLength="16" />
+          <Property Name="Tdoc" Type="char" MaxLength="1" />
+          <Property Name="rtipodoc" Type="char" MaxLength="1" />
+          <Property Name="Fecha_recib" Type="datetime" />
+          <Property Name="RFECHA" Type="datetime" />
+          <Property Name="RCONCEPTO" Type="char" MaxLength="85" />
+          <Property Name="RCONCEP2" Type="char" MaxLength="85" />
+          <Property Name="RCAMBIO" Type="decimal" Precision="11" Scale="8" />
+          <Property Name="Por_lempira" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="rlugar" Type="char" MaxLength="1" />
+          <Property Name="rhora" Type="char" MaxLength="8" />
+          <Property Name="COBRADO_EN" Type="char" MaxLength="2" />
+          <Property Name="rtermino" Type="char" MaxLength="1" />
+          <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+          <Property Name="rcodigocli" Type="char" MaxLength="10" />
+          <Property Name="CXC_CTIPO" Type="char" MaxLength="1" />
+          <Property Name="CXC_PARTIDA" Type="char" MaxLength="9" />
+          <Property Name="rusuario" Type="char" MaxLength="10" />
+          <Property Name="rterminal" Type="char" MaxLength="8" />
+          <Property Name="RECIBMODIFI" Type="char" MaxLength="10" />
+          <Property Name="RECIBFMODIF" Type="datetime" />
+          <Property Name="rduradeb" Type="smallint" />
+          <Property Name="RTIPODEBI" Type="char" MaxLength="2" />
+          <Property Name="rsucursal" Type="char" MaxLength="2" />
+          <Property Name="codigo_cobr" Type="char" MaxLength="5" />
+          <Property Name="RNOMBRECLI" Type="char" MaxLength="40" />
+          <Property Name="rprima" Type="money" />
+          <Property Name="rno_letras" Type="smallint" />
+          <Property Name="VEFECTI" Type="money" />
+          <Property Name="VCHEQUE" Type="money" />
+          <Property Name="PAGOCK" Type="char" MaxLength="10" />
+          <Property Name="PAGOBANCO" Type="char" MaxLength="25" />
+          <Property Name="RECIBCUENTA" Type="char" MaxLength="10" />
+          <Property Name="rconciliado" Type="char" MaxLength="1" />
+          <Property Name="rnumefa" Type="char" MaxLength="10" />
+          <Property Name="RCUOTA" Type="money" />
+          <Property Name="SUBIVIEJO" Type="char" MaxLength="1" />
+          <Property Name="RCODVEND" Type="char" MaxLength="8" />
+          <Property Name="rnumemp" Type="int" />
+          <Property Name="LONGITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="LATITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="CIERRE" Type="nchar" MaxLength="20" />
+          <Property Name="IMPRESO" Type="nchar" MaxLength="10" />
+          <Property Name="MARCA" Type="nchar" MaxLength="10" />
+          <Property Name="SALDOANT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="liquida" Type="nchar" MaxLength="20" />
+          <Property Name="fecha" Type="nchar" MaxLength="10" />
+          <Property Name="liquida2" Type="nchar" MaxLength="20" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.RECIBOSD' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RECIBOSD">
+          <Property Name="Num_doc" Type="char" MaxLength="16" />
+          <Property Name="Tdoc" Type="char" MaxLength="1" />
+          <Property Name="rtipodoc" Type="char" MaxLength="1" />
+          <Property Name="Fecha_recib" Type="datetime" />
+          <Property Name="RFECHA" Type="datetime" />
+          <Property Name="RCONCEPTO" Type="char" MaxLength="85" />
+          <Property Name="RCONCEP2" Type="char" MaxLength="85" />
+          <Property Name="RCAMBIO" Type="decimal" Precision="11" Scale="8" />
+          <Property Name="Por_lempira" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="rlugar" Type="char" MaxLength="1" />
+          <Property Name="rhora" Type="char" MaxLength="8" />
+          <Property Name="COBRADO_EN" Type="char" MaxLength="2" />
+          <Property Name="rtermino" Type="char" MaxLength="1" />
+          <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+          <Property Name="rcodigocli" Type="char" MaxLength="10" />
+          <Property Name="CXC_CTIPO" Type="char" MaxLength="1" />
+          <Property Name="CXC_PARTIDA" Type="char" MaxLength="9" />
+          <Property Name="rusuario" Type="char" MaxLength="10" />
+          <Property Name="rterminal" Type="char" MaxLength="8" />
+          <Property Name="RECIBMODIFI" Type="char" MaxLength="10" />
+          <Property Name="RECIBFMODIF" Type="datetime" />
+          <Property Name="rduradeb" Type="smallint" />
+          <Property Name="RTIPODEBI" Type="char" MaxLength="2" />
+          <Property Name="rsucursal" Type="char" MaxLength="2" />
+          <Property Name="codigo_cobr" Type="char" MaxLength="5" />
+          <Property Name="RNOMBRECLI" Type="char" MaxLength="40" />
+          <Property Name="rprima" Type="money" />
+          <Property Name="rno_letras" Type="smallint" />
+          <Property Name="VEFECTI" Type="money" />
+          <Property Name="VCHEQUE" Type="money" />
+          <Property Name="PAGOCK" Type="char" MaxLength="10" />
+          <Property Name="PAGOBANCO" Type="char" MaxLength="25" />
+          <Property Name="RECIBCUENTA" Type="char" MaxLength="10" />
+          <Property Name="rconciliado" Type="char" MaxLength="1" />
+          <Property Name="rnumefa" Type="char" MaxLength="10" />
+          <Property Name="RCUOTA" Type="money" />
+          <Property Name="SUBIVIEJO" Type="char" MaxLength="1" />
+          <Property Name="RCODVEND" Type="char" MaxLength="8" />
+          <Property Name="rnumemp" Type="int" />
+          <Property Name="LONGITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="LATITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="CIERRE" Type="nchar" MaxLength="20" />
+          <Property Name="IMPRESO" Type="nchar" MaxLength="10" />
+          <Property Name="MARCA" Type="nchar" MaxLength="10" />
+          <Property Name="SALDOANT" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="liquida" Type="nchar" MaxLength="20" />
+          <Property Name="fecha" Type="nchar" MaxLength="10" />
+          <Property Name="liquida2" Type="nchar" MaxLength="20" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.SERVIDORES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SERVIDORES">
+          <Property Name="CODIGO" Type="char" MaxLength="2" />
+          <Property Name="DESCRI" Type="char" MaxLength="40" />
+          <Property Name="PROVEE" Type="char" MaxLength="40" />
+          <Property Name="IP" Type="char" MaxLength="20" />
+          <Property Name="PUERTO" Type="char" MaxLength="10" />
+          <Property Name="WURL" Type="char" MaxLength="50" />
+          <Property Name="WURLINTER" Type="char" MaxLength="15" />
+          <Property Name="STATUS" Type="char" MaxLength="1" />
+          <Property Name="DEFA" Type="char" MaxLength="1" />
+          <Property Name="UBICA" Type="nchar" MaxLength="20" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CLIENTES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="CL_OFICINA" />
+      <PropertyRef Name="cl_reactivo" />
+      <PropertyRef Name="cl_munici" />
+      <PropertyRef Name="circ_codigo" />
+    </Key>
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_clie" Type="char" MaxLength="55" />
+    <Property Name="CTIPOCLI" Type="char" MaxLength="1" />
+    <Property Name="clientenp" Type="char" MaxLength="10" />
+    <Property Name="cod_listpre" Type="char" MaxLength="6" />
+    <Property Name="cod_compani" Type="char" MaxLength="1" />
+    <Property Name="clisucursal" Type="char" MaxLength="2" />
+    <Property Name="mayorista" Type="char" MaxLength="1" />
+    <Property Name="CL_NIVEL" Type="char" MaxLength="1" />
+    <Property Name="cl_descto" Type="smallint" />
+    <Property Name="cl_fecha" Type="datetime" />
+    <Property Name="CL_STATUS" Type="char" MaxLength="1" />
+    <Property Name="CL_COMPANIA" Type="char" MaxLength="1" />
+    <Property Name="Dir_cliente" Type="char" MaxLength="80" />
+    <Property Name="Dir2_client" Type="char" MaxLength="80" />
+    <Property Name="Dir3_client" Type="char" MaxLength="80" />
+    <Property Name="Dir4_client" Type="char" MaxLength="80" />
+    <Property Name="Limite_cred" Type="money" />
+    <Property Name="Saldo_actua" Type="money" />
+    <Property Name="ESALDO_ACTU" Type="money" />
+    <Property Name="CSALDO_ACTU" Type="money" />
+    <Property Name="ISALDO" Type="money" />
+    <Property Name="catalogo" Type="char" MaxLength="2" />
+    <Property Name="Telef_clien" Type="char" MaxLength="20" />
+    <Property Name="Cod_zona" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="representan" Type="char" MaxLength="40" />
+    <Property Name="identidad" Type="char" MaxLength="15" />
+    <Property Name="tributario" Type="char" MaxLength="15" />
+    <Property Name="cl_usuario" Type="char" MaxLength="10" />
+    <Property Name="cl_terminal" Type="char" MaxLength="8" />
+    <Property Name="tipo_client" Type="char" MaxLength="1" />
+    <Property Name="CUECLIEN" Type="char" MaxLength="10" />
+    <Property Name="CL_DESCFAC" Type="char" MaxLength="1" />
+    <Property Name="CL_MORA" Type="char" MaxLength="1" />
+    <Property Name="CL_CAPITALI" Type="char" MaxLength="1" />
+    <Property Name="CL_FAX" Type="char" MaxLength="20" />
+    <Property Name="CL_VENDEDOR" Type="char" MaxLength="8" />
+    <Property Name="CL_CELULAR" Type="char" MaxLength="20" />
+    <Property Name="CL_EXENTO" Type="char" MaxLength="1" />
+    <Property Name="cl_conyunom" Type="char" MaxLength="40" />
+    <Property Name="cl_conyutel" Type="char" MaxLength="20" />
+    <Property Name="cl_conyudir" Type="char" MaxLength="80" />
+    <Property Name="cl_cobrador" Type="char" MaxLength="5" />
+    <Property Name="CL_FECINAC" Type="datetime" />
+    <Property Name="cl_fecobra" Type="datetime" />
+    <Property Name="cl_stat2" Type="char" MaxLength="1" />
+    <Property Name="CL_PARENt" Type="char" MaxLength="20" />
+    <Property Name="Dir5_client" Type="char" MaxLength="80" />
+    <Property Name="CL_2conynom" Type="char" MaxLength="40" />
+    <Property Name="cl_2conytel" Type="char" MaxLength="20" />
+    <Property Name="cl_2condire" Type="char" MaxLength="80" />
+    <Property Name="cl_2parent" Type="char" MaxLength="20" />
+    <Property Name="CL_OFICINA" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="cl_reactivo" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="longitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="latitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="secuencia" Type="int" />
+    <Property Name="diavisita" Type="smallint" />
+    <Property Name="semana" Type="smallint" />
+    <Property Name="cl_munici" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="circ_codigo" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="CL_EMAIL" Type="char" MaxLength="80" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CONTRAT1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CONTRAT1">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="CONT_DNUMER" />
+      <PropertyRef Name="CONT_DCREDI" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_DNUMER" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="CONT_DVALOR" Type="money" />
+    <Property Name="CONT_DCOBR" Type="char" MaxLength="5" />
+    <Property Name="CONT_DCODIG" Type="char" MaxLength="4" />
+    <Property Name="CONT_DFECHA" Type="datetime" />
+    <Property Name="CONT_JARDIN" Type="char" MaxLength="15" />
+    <Property Name="CONT_LETRA" Type="char" MaxLength="2" />
+    <Property Name="CONT_NNUM" Type="char" MaxLength="4" />
+    <Property Name="CONT_DNOMBR" Type="char" MaxLength="40" />
+    <Property Name="CONT_DDESCR" Type="char" MaxLength="40" />
+    <Property Name="CONT_DENTRE" Type="char" MaxLength="40" />
+    <Property Name="CONT_DCLIEN" Type="char" MaxLength="10" />
+    <Property Name="CONT_BODEGA" Type="char" MaxLength="5" />
+    <Property Name="CONT_DCREDI" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="CONT_DCANT" Type="smallint" />
+    <Property Name="CONT_DOCTO" Type="char" MaxLength="10" />
+    <Property Name="CONT_DZONA" Type="char" MaxLength="4" />
+    <Property Name="CONT_LUGENT" Type="char" MaxLength="60" />
+    <Property Name="CONT_DFECNA" Type="datetime" />
+    <Property Name="CONT_DIDENT" Type="char" MaxLength="15" />
+    <Property Name="CONT_DFECDE" Type="datetime" />
+    <Property Name="CONT_DLUGNA" Type="char" MaxLength="30" />
+    <Property Name="CONT_DPAIS" Type="char" MaxLength="20" />
+    <Property Name="CONT_DPADRE" Type="char" MaxLength="40" />
+    <Property Name="CONT_DMADRE" Type="char" MaxLength="40" />
+    <Property Name="CONT_DDIREC" Type="char" MaxLength="70" />
+    <Property Name="CONT_DLUGDE" Type="char" MaxLength="40" />
+    <Property Name="CONT_DHORA" Type="char" MaxLength="10" />
+    <Property Name="CONT_DPAREN" Type="char" MaxLength="20" />
+    <Property Name="CONT_DCNOMB" Type="char" MaxLength="30" />
+    <Property Name="CONT_DSELEC" Type="char" MaxLength="1" />
+    <Property Name="CONT_DUSUAR" Type="char" MaxLength="10" />
+    <Property Name="FECHA1" Type="nchar" MaxLength="8" />
+    <Property Name="HORA1" Type="char" MaxLength="4" />
+    <Property Name="LAT1" Type="nchar" MaxLength="20" />
+    <Property Name="LON1" Type="nchar" MaxLength="20" />
+    <Property Name="OBSERVA1" Type="nchar" MaxLength="250" />
+    <Property Name="USUARIO1" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA1" Type="image" />
+    <Property Name="FECHA2" Type="nchar" MaxLength="8" />
+    <Property Name="HORA2" Type="nchar" MaxLength="4" />
+    <Property Name="LAT2" Type="nchar" MaxLength="20" />
+    <Property Name="LON2" Type="nchar" MaxLength="20" />
+    <Property Name="OBSERVA2" Type="nchar" MaxLength="255" />
+    <Property Name="USUARIO2" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA2" Type="image" />
+    <Property Name="FECHA3" Type="nchar" MaxLength="8" />
+    <Property Name="HORA3" Type="nchar" MaxLength="4" />
+    <Property Name="LAT3" Type="nchar" MaxLength="20" />
+    <Property Name="LON3" Type="nchar" MaxLength="20" />
+    <Property Name="OBSERVA3" Type="nchar" MaxLength="250" />
+    <Property Name="USUARIO3" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA3" Type="image" />
+    <Property Name="PASO" Type="nchar" MaxLength="4" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CONTRATO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CONTRATO">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="CONTSUBIFI" />
+      <PropertyRef Name="SUBIVIEJO" />
+      <PropertyRef Name="FECHACM" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="datetime" />
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+    <Property Name="CONT_DESCRI" Type="char" MaxLength="80" />
+    <Property Name="CONT_DESC2" Type="char" MaxLength="80" />
+    <Property Name="CONT_DESC3" Type="char" MaxLength="80" />
+    <Property Name="CONT_VALOR" Type="money" />
+    <Property Name="CONT_CREDIT" Type="char" MaxLength="1" />
+    <Property Name="CONT_PRIMA" Type="money" />
+    <Property Name="CONT_NUMCUO" Type="smallint" />
+    <Property Name="CONT_VALCUO" Type="money" />
+    <Property Name="CONT_BENEFI" Type="char" MaxLength="40" />
+    <Property Name="CONT_BENFEC" Type="datetime" />
+    <Property Name="CONT_BENPAR" Type="char" MaxLength="20" />
+    <Property Name="CONT_CLIENT" Type="char" MaxLength="10" />
+    <Property Name="CONT_SUPERV" Type="char" MaxLength="1" />
+    <Property Name="CONT_FSUPER" Type="datetime" />
+    <Property Name="cont_vended" Type="char" MaxLength="8" />
+    <Property Name="cont_cobrad" Type="char" MaxLength="5" />
+    <Property Name="CONT_SALDO" Type="money" />
+    <Property Name="CONT_FECAM" Type="datetime" />
+    <Property Name="CONT_CJARD" Type="char" MaxLength="15" />
+    <Property Name="CONT_CLETRA" Type="char" MaxLength="2" />
+    <Property Name="CONT_CNUM" Type="char" MaxLength="4" />
+    <Property Name="CONT_SERVI" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANTI" Type="smallint" />
+    <Property Name="CONT_COMPA" Type="char" MaxLength="3" />
+    <Property Name="CONT_CANT2" Type="smallint" />
+    <Property Name="CONT_SERV2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT3" Type="smallint" />
+    <Property Name="CONT_SERV3" Type="char" MaxLength="4" />
+    <Property Name="CONT_CJAR2" Type="char" MaxLength="15" />
+    <Property Name="CONT_CJAR3" Type="char" MaxLength="15" />
+    <Property Name="CONT_CLET2" Type="char" MaxLength="2" />
+    <Property Name="CONT_CLET3" Type="char" MaxLength="2" />
+    <Property Name="CONT_CNU2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CNU3" Type="char" MaxLength="4" />
+    <Property Name="CONT_CSUPER" Type="char" MaxLength="2" />
+    <Property Name="CONT_FECPRO" Type="datetime" />
+    <Property Name="CONT_SVAL1" Type="money" />
+    <Property Name="CONT_SVAL2" Type="money" />
+    <Property Name="CONT_SVAL3" Type="money" />
+    <Property Name="CONT_RFECHA" Type="datetime" />
+    <Property Name="CONT_RHORA" Type="char" MaxLength="8" />
+    <Property Name="CONT_FECTER" Type="datetime" />
+    <Property Name="CONT_HORTER" Type="char" MaxLength="8" />
+    <Property Name="CONT_NOTAS" Type="char" MaxLength="180" />
+    <Property Name="CONTSUBIFI" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="SUBIVIEJO" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="CONT_LIDER" Type="char" MaxLength="8" />
+    <Property Name="CONT_CANT4" Type="smallint" />
+    <Property Name="CONT_SERV4" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL4" Type="money" />
+    <Property Name="FECHACM" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.CZONA2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CZONA2">
+    <Key>
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="cod_correla" />
+    </Key>
+    <Property Name="Cod_zona" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Nombre_zona" Type="char" MaxLength="40" />
+    <Property Name="E_ZONAS" Type="char" MaxLength="10" />
+    <Property Name="E_VENTAS" Type="char" MaxLength="10" />
+    <Property Name="E_DEVOLUC" Type="char" MaxLength="10" />
+    <Property Name="E_VENTAS2" Type="char" MaxLength="10" />
+    <Property Name="ZON_NC" Type="int" />
+    <Property Name="ZON_ND" Type="int" />
+    <Property Name="descri_zona" Type="char" MaxLength="40" />
+    <Property Name="E_CAJA" Type="char" MaxLength="10" />
+    <Property Name="E_APARTA" Type="char" MaxLength="10" />
+    <Property Name="E_LETRAS" Type="char" MaxLength="10" />
+    <Property Name="E_CXC" Type="char" MaxLength="10" />
+    <Property Name="E_PAQUETE" Type="char" MaxLength="10" />
+    <Property Name="E_PRIMA" Type="char" MaxLength="10" />
+    <Property Name="E_CONTADO" Type="char" MaxLength="10" />
+    <Property Name="CZ_RTN" Type="char" MaxLength="16" />
+    <Property Name="cod_correla" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.EXIBOD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EXIBOD">
+    <Key>
+      <PropertyRef Name="Cod_product" />
+      <PropertyRef Name="CODIGO_BODE" />
+      <PropertyRef Name="TIPO_BODEGA" />
+      <PropertyRef Name="Icod_tipo" />
+    </Key>
+    <Property Name="Cod_product" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="CODIGO_BODE" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="TIPO_BODEGA" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Icod_tipo" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="enuevocodi" Type="char" MaxLength="13" />
+    <Property Name="EXI_DATE" Type="datetime" />
+    <Property Name="EXI_BOD" Type="money" />
+    <Property Name="exi_fina" Type="money" />
+    <Property Name="reserva" Type="money" />
+    <Property Name="exist_cierr" Type="money" />
+    <Property Name="exisf_cierr" Type="money" />
+    <Property Name="fecha_cierr" Type="datetime" />
+    <Property Name="EXI_CAPTURA" Type="money" />
+    <Property Name="EXI_CONGELA" Type="money" />
+    <Property Name="EXI_FECHA" Type="datetime" />
+    <Property Name="exi_fecong" Type="datetime" />
+    <Property Name="exi_horcap" Type="char" MaxLength="8" />
+    <Property Name="EXI_DIGITO" Type="char" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.PRODUCTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="Cod_product" />
+    </Key>
+    <Property Name="Cod_product" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="Descripcion" Type="char" MaxLength="80" />
+    <Property Name="SINCOMISION" Type="char" MaxLength="1" />
+    <Property Name="Codigo_area" Type="char" MaxLength="3" />
+    <Property Name="cod_subgru" Type="char" MaxLength="4" />
+    <Property Name="pnomsubgru" Type="char" MaxLength="40" />
+    <Property Name="REFERENCIA" Type="char" MaxLength="20" />
+    <Property Name="cod_barra" Type="char" MaxLength="13" />
+    <Property Name="especifi" Type="char" MaxLength="60" />
+    <Property Name="UNI_PRESEN" Type="char" MaxLength="8" />
+    <Property Name="PROD_IMP" Type="char" MaxLength="1" />
+    <Property Name="prod_impues" Type="smallmoney" />
+    <Property Name="pprovee" Type="char" MaxLength="10" />
+    <Property Name="Precio_deta" Type="money" />
+    <Property Name="PrecioA" Type="money" />
+    <Property Name="Costo_clave" Type="char" MaxLength="12" />
+    <Property Name="Costo_unita" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="FCOSTO_UNIT" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="Punto_minim" Type="int" />
+    <Property Name="Punto_reord" Type="int" />
+    <Property Name="Punto_maxim" Type="int" />
+    <Property Name="Existencia" Type="money" />
+    <Property Name="PROD_STATUS" Type="char" MaxLength="1" />
+    <Property Name="FEXISTENCIA" Type="money" />
+    <Property Name="Aumento" Type="smallmoney" />
+    <Property Name="Exifis" Type="money" />
+    <Property Name="Exifis2" Type="money" />
+    <Property Name="EXISUC" Type="money" />
+    <Property Name="BOD1" Type="money" />
+    <Property Name="BOD2" Type="money" />
+    <Property Name="bodenf1" Type="char" MaxLength="5" />
+    <Property Name="bodenf2" Type="char" MaxLength="5" />
+    <Property Name="COSTO" Type="decimal" Precision="11" Scale="4" />
+    <Property Name="DOLARCOSTO" Type="decimal" Precision="11" Scale="6" />
+    <Property Name="ucosto" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="OPERAR" Type="char" MaxLength="1" />
+    <Property Name="PRODESC1" Type="smallint" />
+    <Property Name="PRODESC2" Type="smallint" />
+    <Property Name="PRODESC3" Type="smallint" />
+    <Property Name="BODENT" Type="char" MaxLength="5" />
+    <Property Name="pcatalo" Type="char" MaxLength="1" />
+    <Property Name="prod_usuari" Type="char" MaxLength="10" />
+    <Property Name="prod_termin" Type="char" MaxLength="8" />
+    <Property Name="exisgf_cier" Type="money" />
+    <Property Name="existg_cier" Type="money" />
+    <Property Name="costog_cier" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="costgf_cier" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="precioC" Type="money" />
+    <Property Name="precio_back" Type="money" />
+    <Property Name="precioD" Type="money" />
+    <Property Name="prod_f_cal" Type="datetime" />
+    <Property Name="prod_n_cal" Type="char" MaxLength="10" />
+    <Property Name="nuevocodi" Type="char" MaxLength="13" />
+    <Property Name="BOD3" Type="money" />
+    <Property Name="CAPTURO3" Type="char" MaxLength="1" />
+    <Property Name="EXIFIS3" Type="money" />
+    <Property Name="BODENF3" Type="char" MaxLength="5" />
+    <Property Name="PROD_PROVE" Type="char" MaxLength="10" />
+    <Property Name="PROD_FECHU" Type="datetime" />
+    <Property Name="costo_INICI" Type="decimal" Precision="11" Scale="5" />
+    <Property Name="produb_codi" Type="char" MaxLength="5" />
+    <Property Name="precioB" Type="money" />
+    <Property Name="PROD_PARTAR" Type="char" MaxLength="15" />
+    <Property Name="costo_desar" Type="money" />
+    <Property Name="PROD_UBICAC" Type="char" MaxLength="5" />
+    <Property Name="PROD_INCA" Type="smallmoney" />
+    <Property Name="PROD_INCB" Type="smallmoney" />
+    <Property Name="PROD_INCC" Type="smallmoney" />
+    <Property Name="utilidad" Type="smallmoney" />
+    <Property Name="Precio_mayo" Type="money" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.SERVICIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SERVICIO">
+    <Key>
+      <PropertyRef Name="serv_tipo" />
+      <PropertyRef Name="serv_codigo" />
+      <PropertyRef Name="serv_valor" />
+      <PropertyRef Name="serv_valoje" />
+    </Key>
+    <Property Name="serv_tipo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="serv_codigo" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="serv_descri" Type="char" MaxLength="30" />
+    <Property Name="serv_cant" Type="smallint" />
+    <Property Name="serv_valor" Type="money" Nullable="false" />
+    <Property Name="serv_codinv" Type="char" MaxLength="13" />
+    <Property Name="serv_valoje" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="serv_precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="serv_empre" Type="nchar" MaxLength="10" />
+    <Property Name="SERV_PMAX" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SERV_PMINI" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_CONTRATO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_CONTRATO">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="FECHACM" />
+    </Key>
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_clie" Type="char" MaxLength="55" />
+    <Property Name="identidad" Type="char" MaxLength="15" />
+    <Property Name="Dir_cliente" Type="char" MaxLength="80" />
+    <Property Name="Saldo_actua" Type="money" />
+    <Property Name="Cod_zona" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="semana" Type="smallint" />
+    <Property Name="diavisita" Type="smallint" />
+    <Property Name="secuencia" Type="int" />
+    <Property Name="latitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="longitud" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="datetime" />
+    <Property Name="CONT_DESCRI" Type="char" MaxLength="80" />
+    <Property Name="CONT_VALOR" Type="money" />
+    <Property Name="CONT_CREDIT" Type="char" MaxLength="1" />
+    <Property Name="CONT_PRIMA" Type="money" />
+    <Property Name="CONT_NUMCUO" Type="smallint" />
+    <Property Name="CONT_VALCUO" Type="money" />
+    <Property Name="CONT_CLIENT" Type="char" MaxLength="10" />
+    <Property Name="cont_vended" Type="char" MaxLength="8" />
+    <Property Name="cont_cobrad" Type="char" MaxLength="5" />
+    <Property Name="CONT_SERVI" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANTI" Type="smallint" />
+    <Property Name="CONT_COMPA" Type="char" MaxLength="3" />
+    <Property Name="CONT_CANT2" Type="smallint" />
+    <Property Name="CONT_SERV2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT3" Type="smallint" />
+    <Property Name="CONT_SERV3" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL1" Type="money" />
+    <Property Name="CONT_SVAL2" Type="money" />
+    <Property Name="CONT_SVAL3" Type="money" />
+    <Property Name="CONT_LIDER" Type="char" MaxLength="8" />
+    <Property Name="CONT_CANT4" Type="smallint" />
+    <Property Name="CONT_SERV4" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL4" Type="money" />
+    <Property Name="FECHACM" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_CORRELA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_CORRELA">
+    <Key>
+      <PropertyRef Name="cveage" />
+      <PropertyRef Name="cod_zona" />
+    </Key>
+    <Property Name="cveage" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nomage" Type="nvarchar" MaxLength="155" />
+    <Property Name="cod_zona" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_zona" Type="char" MaxLength="40" />
+    <Property Name="E_RTN" Type="nchar" MaxLength="150" />
+    <Property Name="numser" Type="char" MaxLength="30" />
+    <Property Name="correla" Type="numeric" Precision="7" Scale="0" />
+    <Property Name="CIERRE" Type="nchar" MaxLength="20" />
+    <Property Name="liquida" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_CZONA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_CZONA">
+    <Key>
+      <PropertyRef Name="Cod_zona" />
+    </Key>
+    <Property Name="Cod_zona" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Nombre_zona" Type="char" MaxLength="40" />
+    <Property Name="descri_zona" Type="char" MaxLength="40" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_EXIBOD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_EXIBOD">
+    <Key>
+      <PropertyRef Name="serv_tipo" />
+      <PropertyRef Name="serv_codigo" />
+    </Key>
+    <Property Name="Cod_product" Type="char" MaxLength="13" />
+    <Property Name="serv_descri" Type="char" MaxLength="30" />
+    <Property Name="CODIGO_BODE" Type="char" MaxLength="5" />
+    <Property Name="TIPO_BODEGA" Type="char" MaxLength="1" />
+    <Property Name="Icod_tipo" Type="char" MaxLength="6" />
+    <Property Name="enuevocodi" Type="char" MaxLength="13" />
+    <Property Name="EXI_DATE" Type="datetime" />
+    <Property Name="EXI_BOD" Type="money" />
+    <Property Name="exi_fina" Type="money" />
+    <Property Name="reserva" Type="money" />
+    <Property Name="exist_cierr" Type="money" />
+    <Property Name="exisf_cierr" Type="money" />
+    <Property Name="fecha_cierr" Type="datetime" />
+    <Property Name="EXI_CAPTURA" Type="money" />
+    <Property Name="EXI_CONGELA" Type="money" />
+    <Property Name="EXI_FECHA" Type="datetime" />
+    <Property Name="exi_fecong" Type="datetime" />
+    <Property Name="exi_horcap" Type="char" MaxLength="8" />
+    <Property Name="EXI_DIGITO" Type="char" MaxLength="1" />
+    <Property Name="serv_tipo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="serv_codigo" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="serv_precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="serv_empre" Type="nchar" MaxLength="10" />
+    <Property Name="SERV_PMAX" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SERV_PMINI" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_PRODUCTOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_PRODUCTOS">
+    <Key>
+      <PropertyRef Name="serv_tipo" />
+      <PropertyRef Name="serv_codigo" />
+    </Key>
+    <Property Name="serv_tipo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="serv_codigo" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="Cod_product" Type="char" MaxLength="13" />
+    <Property Name="serv_descri" Type="char" MaxLength="30" />
+    <Property Name="serv_precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="serv_empre" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'AEVentas.dbo.View_TiempoEstado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="View_TiempoEstado">
+          <Property Name="usuario" Type="nchar" MaxLength="40" />
+          <Property Name="nomage" Type="nvarchar" MaxLength="155" />
+          <Property Name="start_time" Type="nvarchar" MaxLength="19" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="elapsed_sec" Type="int" />
+          <Property Name="Estado" Type="char" MaxLength="30" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AEVentas.dbo.View_Vtas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Vtas">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="Codigo_clie" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre_clie" Type="char" MaxLength="55" />
+    <Property Name="identidad" Type="char" MaxLength="15" />
+    <Property Name="tributario" Type="char" MaxLength="15" />
+    <Property Name="cl_fecha" Type="datetime" />
+    <Property Name="CL_STATUS" Type="char" MaxLength="1" />
+    <Property Name="CL_COMPANIA" Type="char" MaxLength="1" />
+    <Property Name="Dir_cliente" Type="char" MaxLength="80" />
+    <Property Name="Dir2_client" Type="char" MaxLength="80" />
+    <Property Name="Dir3_client" Type="char" MaxLength="80" />
+    <Property Name="Dir4_client" Type="char" MaxLength="80" />
+    <Property Name="Dir5_client" Type="char" MaxLength="80" />
+    <Property Name="Telef_clien" Type="char" MaxLength="20" />
+    <Property Name="CL_CELULAR" Type="char" MaxLength="20" />
+    <Property Name="CL_EMAIL" Type="char" MaxLength="80" />
+    <Property Name="cl_conyunom" Type="char" MaxLength="40" />
+    <Property Name="cl_conyutel" Type="char" MaxLength="20" />
+    <Property Name="cl_conyudir" Type="char" MaxLength="80" />
+    <Property Name="CL_PARENt" Type="char" MaxLength="20" />
+    <Property Name="Cod_zona" Type="char" MaxLength="3" />
+    <Property Name="CL_VENDEDOR" Type="char" MaxLength="8" />
+    <Property Name="cl_usuario" Type="char" MaxLength="10" />
+    <Property Name="cl_terminal" Type="char" MaxLength="8" />
+    <Property Name="Expr2" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="Expr3" Type="decimal" Precision="17" Scale="15" />
+    <Property Name="secuencia" Type="int" />
+    <Property Name="diavisita" Type="smallint" />
+    <Property Name="semana" Type="smallint" />
+    <Property Name="Expr4" Type="char" MaxLength="15" />
+    <Property Name="Expr5" Type="char" MaxLength="1" />
+    <Property Name="departa" Type="char" MaxLength="30" />
+    <Property Name="municipio" Type="char" MaxLength="30" />
+    <Property Name="circuito" Type="char" MaxLength="10" />
+    <Property Name="Expr6" Type="nchar" MaxLength="15" />
+    <Property Name="Expr7" Type="nchar" MaxLength="8" />
+    <Property Name="Expr8" Type="varchar" MaxLength="12" />
+    <Property Name="Expr9" Type="char" MaxLength="16" />
+    <Property Name="Expr10" Type="char" MaxLength="1" />
+    <Property Name="Expr11" Type="char" MaxLength="1" />
+    <Property Name="Expr12" Type="datetime" />
+    <Property Name="Expr13" Type="datetime" />
+    <Property Name="Expr14" Type="char" MaxLength="85" />
+    <Property Name="Expr15" Type="char" MaxLength="85" />
+    <Property Name="Expr16" Type="decimal" Precision="11" Scale="8" />
+    <Property Name="Expr17" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Expr18" Type="char" MaxLength="1" />
+    <Property Name="Expr19" Type="char" MaxLength="8" />
+    <Property Name="Expr20" Type="char" MaxLength="2" />
+    <Property Name="Expr21" Type="char" MaxLength="1" />
+    <Property Name="Expr22" Type="char" MaxLength="10" />
+    <Property Name="Expr23" Type="char" MaxLength="1" />
+    <Property Name="Expr24" Type="char" MaxLength="9" />
+    <Property Name="Expr25" Type="char" MaxLength="10" />
+    <Property Name="Expr26" Type="char" MaxLength="8" />
+    <Property Name="Expr27" Type="char" MaxLength="10" />
+    <Property Name="Expr28" Type="datetime" />
+    <Property Name="Expr29" Type="smallint" />
+    <Property Name="Expr30" Type="char" MaxLength="2" />
+    <Property Name="Expr31" Type="char" MaxLength="2" />
+    <Property Name="Expr32" Type="char" MaxLength="5" />
+    <Property Name="Expr33" Type="char" MaxLength="40" />
+    <Property Name="Expr34" Type="money" />
+    <Property Name="Expr35" Type="smallint" />
+    <Property Name="Expr36" Type="money" />
+    <Property Name="Expr37" Type="money" />
+    <Property Name="Expr38" Type="char" MaxLength="10" />
+    <Property Name="Expr39" Type="char" MaxLength="25" />
+    <Property Name="Expr40" Type="char" MaxLength="10" />
+    <Property Name="Expr41" Type="char" MaxLength="1" />
+    <Property Name="Expr42" Type="char" MaxLength="10" />
+    <Property Name="Expr43" Type="money" />
+    <Property Name="Expr44" Type="char" MaxLength="1" />
+    <Property Name="Expr45" Type="char" MaxLength="8" />
+    <Property Name="Expr46" Type="int" />
+    <Property Name="Expr47" Type="numeric" Precision="18" Scale="15" />
+    <Property Name="Expr48" Type="numeric" Precision="18" Scale="15" />
+    <Property Name="Expr49" Type="nchar" MaxLength="20" />
+    <Property Name="Expr50" Type="nchar" MaxLength="10" />
+    <Property Name="Expr51" Type="nchar" MaxLength="10" />
+    <Property Name="Expr52" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Expr53" Type="nchar" MaxLength="20" />
+    <Property Name="Expr54" Type="nchar" MaxLength="10" />
+    <Property Name="Expr55" Type="nchar" MaxLength="20" />
+    <Property Name="CONT_NUMERO" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="datetime" />
+    <Property Name="CONT_VALOR" Type="money" />
+    <Property Name="CONT_CREDIT" Type="char" MaxLength="1" />
+    <Property Name="CONT_PRIMA" Type="money" />
+    <Property Name="CONT_NUMCUO" Type="smallint" />
+    <Property Name="CONT_VALCUO" Type="money" />
+    <Property Name="cont_vended" Type="char" MaxLength="8" />
+    <Property Name="CONT_SERVI" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANTI" Type="smallint" />
+    <Property Name="CONT_COMPA" Type="char" MaxLength="3" />
+    <Property Name="CONT_CANT2" Type="smallint" />
+    <Property Name="CONT_SERV2" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT3" Type="smallint" />
+    <Property Name="CONT_SERV3" Type="char" MaxLength="4" />
+    <Property Name="CONT_CANT4" Type="smallint" />
+    <Property Name="CONT_SERV4" Type="char" MaxLength="4" />
+    <Property Name="CONT_SVAL1" Type="money" />
+    <Property Name="CONT_SVAL2" Type="money" />
+    <Property Name="CONT_SVAL3" Type="money" />
+    <Property Name="CONT_SVAL4" Type="money" />
+    <Property Name="VENTA" Type="char" MaxLength="1" />
+    <Property Name="TEMPO" Type="char" MaxLength="1" />
+    <Property Name="CEDULA" Type="nchar" MaxLength="15" />
+    <Property Name="SERVI1DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI2DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI3DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVI4DES" Type="nchar" MaxLength="30" />
+    <Property Name="SERVIEMPRE" Type="nchar" MaxLength="10" />
+    <Property Name="NOMCLIE" Type="nchar" MaxLength="80" />
+    <Property Name="CIERRE" Type="char" MaxLength="15" />
+    <Property Name="LIQUIDA" Type="nchar" MaxLength="15" />
+    <Property Name="FIRMA" Type="image" />
+    <Property Name="FIRMA2" Type="varbinary(max)" />
+    <Property Name="Hora" Type="varchar" MaxLength="8" />
+    <Property Name="FechaDoc" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <Function Name="ANULAR_RECIBOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NUM_DOC" Type="varchar" Mode="In" />
+    <Parameter Name="CODIGO_CLIE" Type="varchar" Mode="In" />
+    <Parameter Name="USARIO" Type="varchar" Mode="In" />
+    <Parameter Name="MOTIVO" Type="varchar" Mode="In" />
+    <Parameter Name="Hora" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ANULAR_RECIBOS_LIQUIDADOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NUM_DOC" Type="varchar" Mode="In" />
+    <Parameter Name="CODIGO_CLIE" Type="varchar" Mode="In" />
+    <Parameter Name="USARIO" Type="varchar" Mode="In" />
+    <Parameter Name="COMENTARIO" Type="varchar" Mode="In" />
+    <Parameter Name="Hora" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CR_COB_REND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="F1" Type="date" Mode="In" />
+    <Parameter Name="F2" Type="date" Mode="In" />
+    <Parameter Name="LIDER" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CR_LIDER_REND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="F1" Type="date" Mode="In" />
+    <Parameter Name="F2" Type="date" Mode="In" />
+  </Function>
+  <Function Name="CR_LIDER2_REND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="F1" Type="date" Mode="In" />
+    <Parameter Name="F2" Type="date" Mode="In" />
+  </Function>
+  <Function Name="CR_PROCESAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RCODVEND" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CR_REIMPRIMIR_PROCESAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RCODVEND" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Liquida2" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ENVIARECIBOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RCODVEND" Type="char" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ExportImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Vendedor" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FN_VS_MonitorVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Codigo" Type="varchar" MaxLength="16" />
+          <Property Name="Cobrado" Type="varchar" MaxLength="50" />
+          <Property Name="Hora" Type="varchar" MaxLength="92" />
+          <Property Name="Codigo Cliente" Type="varchar" MaxLength="10" />
+          <Property Name="CONCEPTO" Type="varchar" MaxLength="55" />
+          <Property Name="RCODVEND" Type="char" MaxLength="10" />
+          <Property Name="Nombre_clie" Type="varchar" MaxLength="30" />
+          <Property Name="Fecha" Type="varchar" MaxLength="30" />
+          <Property Name="liquida" Type="nchar" MaxLength="20" />
+          <Property Name="liquida2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Dir_cliente" Type="varchar" MaxLength="40" />
+          <Property Name="Motivo" Type="varchar" MaxLength="544" />
+          <Property Name="CONT_NUMCUO" Type="int" />
+          <Property Name="CONT_VALCUO" Type="varchar" MaxLength="50" />
+          <Property Name="CONT_VALOR" Type="varchar" MaxLength="50" />
+          <Property Name="SERVI1DES" Type="nvarchar" MaxLength="114" />
+          <Property Name="SERVI2DES" Type="nvarchar" MaxLength="114" />
+          <Property Name="SERVI3DES" Type="nvarchar" MaxLength="114" />
+          <Property Name="SERVI4DES" Type="nvarchar" MaxLength="114" />
+          <Property Name="identidad" Type="char" MaxLength="15" />
+          <Property Name="Telefono" Type="varchar" MaxLength="41" />
+          <Property Name="Lider" Type="char" MaxLength="8" />
+          <Property Name="LONGITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="LATITUD" Type="numeric" Precision="18" Scale="15" />
+          <Property Name="ClienteSistema" Type="varchar" MaxLength="58" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="FunctionName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="date" Mode="In" />
+    <Parameter Name="fecha2" Type="date" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="USUARIO" Type="varchar" MaxLength="20" />
+          <Property Name="Fecha_recib" Type="datetime" />
+          <Property Name="HORA" Type="time" Precision="7" />
+          <Property Name="ACCION" Type="varchar" MaxLength="20" />
+          <Property Name="MOTIVO" Type="varchar" MaxLength="500" />
+          <Property Name="Codigo_clie" Type="char" MaxLength="10" />
+          <Property Name="RNOMBRECLI" Type="char" MaxLength="40" />
+          <Property Name="RCODVEND" Type="char" MaxLength="8" />
+          <Property Name="nomage" Type="nvarchar" MaxLength="155" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="LIQUIDA_RECIBOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RCODVEND" Type="varchar" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_CR_FIRMACLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cliente" Type="varchar" Mode="In" />
+    <Parameter Name="Vendedor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_CR_VS_EditarVentaCliCon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="varchar" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="varchar" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="Vendor" Type="varchar" Mode="In" />
+    <Parameter Name="Estatus" Type="varchar" Mode="In" />
+    <Parameter Name="Empresa" Type="varchar" Mode="In" />
+    <Parameter Name="Identidad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="Num_Doc" Type="varchar" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+    <Parameter Name="Prima" Type="float" Mode="In" />
+    <Parameter Name="NumCuotas" Type="float" Mode="In" />
+    <Parameter Name="ValorContrato" Type="float" Mode="In" />
+    <Parameter Name="Cantidad1" Type="int" Mode="In" />
+    <Parameter Name="IdServicio" Type="varchar" Mode="In" />
+    <Parameter Name="Servicio" Type="varchar" Mode="In" />
+    <Parameter Name="ValorCuota" Type="float" Mode="In" />
+    <Parameter Name="Tel1" Type="int" Mode="In" />
+    <Parameter Name="Tel2" Type="int" Mode="In" />
+    <Parameter Name="EmpresaSession" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_l" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_SIN_LIQUID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FECHA" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_SIN_LIQUID_SISTEMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_SinProcesar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_X_LIQUID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MONITOR_VENTAS_X_LIQUID_Sistema" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_MonitorVentasXDiaEnc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha1" Type="date" Mode="In" />
+    <Parameter Name="Fecha2" Type="date" Mode="In" />
+    <Parameter Name="Lider" Type="varchar" Mode="In" />
+    <Parameter Name="Gestor" Type="varchar" Mode="In" />
+    <Parameter Name="Zona" Type="int" Mode="In" />
+    <Parameter Name="NomClie1" Type="varchar" Mode="In" />
+    <Parameter Name="NomClie2" Type="varchar" Mode="In" />
+    <Parameter Name="IdCliente" Type="varchar" Mode="In" />
+    <Parameter Name="CodigoClie" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_MonitorVentasXLiquidEnc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_Ventas_anuladas_por_fecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="date" Mode="In" />
+    <Parameter Name="fecha2" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_VS_VendDiasLab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="F1" Type="date" Mode="In" />
+    <Parameter Name="F2" Type="date" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="cl_fecha" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN_A" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="cl_fecha" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN_A2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="cl_fecha" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN_A3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="cl_fecha" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECLIENTESN3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="Nombre_clie" Type="char" Mode="In" />
+    <Parameter Name="identidad" Type="char" Mode="In" />
+    <Parameter Name="tributario" Type="char" Mode="In" />
+    <Parameter Name="CL_STATUS" Type="char" Mode="In" />
+    <Parameter Name="CL_COMPANIA" Type="char" Mode="In" />
+    <Parameter Name="Dir_cliente" Type="char" Mode="In" />
+    <Parameter Name="Dir2_client" Type="char" Mode="In" />
+    <Parameter Name="Dir3_client" Type="char" Mode="In" />
+    <Parameter Name="Dir4_client" Type="char" Mode="In" />
+    <Parameter Name="Dir5_client" Type="char" Mode="In" />
+    <Parameter Name="Telef_clien" Type="char" Mode="In" />
+    <Parameter Name="CL_CELULAR" Type="char" Mode="In" />
+    <Parameter Name="CL_EMAIL" Type="char" Mode="In" />
+    <Parameter Name="cl_conyunom" Type="char" Mode="In" />
+    <Parameter Name="cl_conyutel" Type="char" Mode="In" />
+    <Parameter Name="cl_conyudir" Type="char" Mode="In" />
+    <Parameter Name="CL_PARENt" Type="char" Mode="In" />
+    <Parameter Name="Cod_zona" Type="char" Mode="In" />
+    <Parameter Name="CL_VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="cl_usuario" Type="char" Mode="In" />
+    <Parameter Name="cl_terminal" Type="char" Mode="In" />
+    <Parameter Name="longitud" Type="char" Mode="In" />
+    <Parameter Name="latitud" Type="char" Mode="In" />
+    <Parameter Name="secuencia" Type="char" Mode="In" />
+    <Parameter Name="diavisita" Type="char" Mode="In" />
+    <Parameter Name="semana" Type="char" Mode="In" />
+    <Parameter Name="cierre" Type="char" Mode="In" />
+    <Parameter Name="tempo" Type="char" Mode="In" />
+    <Parameter Name="departa" Type="char" Mode="In" />
+    <Parameter Name="municipio" Type="char" Mode="In" />
+    <Parameter Name="circuito" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRAT1_AF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FECHA1" Type="char" Mode="In" />
+    <Parameter Name="HORA1" Type="char" Mode="In" />
+    <Parameter Name="LAT1" Type="char" Mode="In" />
+    <Parameter Name="LON1" Type="char" Mode="In" />
+    <Parameter Name="OBSERVA1" Type="char" Mode="In" />
+    <Parameter Name="USUARIO1" Type="char" Mode="In" />
+    <Parameter Name="FIRMA1" Type="image" Mode="In" />
+    <Parameter Name="FECHA2" Type="char" Mode="In" />
+    <Parameter Name="HORA2" Type="char" Mode="In" />
+    <Parameter Name="LAT2" Type="char" Mode="In" />
+    <Parameter Name="LON2" Type="char" Mode="In" />
+    <Parameter Name="OBSERVA2" Type="char" Mode="In" />
+    <Parameter Name="USUARIO2" Type="char" Mode="In" />
+    <Parameter Name="FIRMA2" Type="image" Mode="In" />
+    <Parameter Name="FECHA3" Type="char" Mode="In" />
+    <Parameter Name="HORA3" Type="char" Mode="In" />
+    <Parameter Name="LAT3" Type="char" Mode="In" />
+    <Parameter Name="LON3" Type="char" Mode="In" />
+    <Parameter Name="OBSERVA3" Type="char" Mode="In" />
+    <Parameter Name="USUARIO3" Type="char" Mode="In" />
+    <Parameter Name="FIRMA3" Type="image" Mode="In" />
+    <Parameter Name="CONT_DCLIEN" Type="char" Mode="In" />
+    <Parameter Name="CONT_DCODIG" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON_A" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON_AF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON_AF02" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON_AF03" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON_AF2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATON2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATONF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATONF02" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATONF03" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECONTRATONF2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CONT_NUMERO" Type="char" Mode="In" />
+    <Parameter Name="CONT_FECHA" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALOR" Type="char" Mode="In" />
+    <Parameter Name="CONT_CREDIT" Type="char" Mode="In" />
+    <Parameter Name="CONT_PRIMA" Type="char" Mode="In" />
+    <Parameter Name="CONT_NUMCUO" Type="char" Mode="In" />
+    <Parameter Name="CONT_VALCUO" Type="char" Mode="In" />
+    <Parameter Name="cont_vended" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERVI" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANTI" Type="char" Mode="In" />
+    <Parameter Name="CONT_COMPA" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV2" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV3" Type="char" Mode="In" />
+    <Parameter Name="CONT_CANT4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SERV4" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL1" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL2" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL3" Type="char" Mode="In" />
+    <Parameter Name="CONT_SVAL4" Type="char" Mode="In" />
+    <Parameter Name="VENTA" Type="char" Mode="In" />
+    <Parameter Name="TEMPO" Type="char" Mode="In" />
+    <Parameter Name="CEDULA" Type="char" Mode="In" />
+    <Parameter Name="SERVI1DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI2DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI3DES" Type="char" Mode="In" />
+    <Parameter Name="SERVI4DES" Type="char" Mode="In" />
+    <Parameter Name="SERVIEMPRE" Type="char" Mode="In" />
+    <Parameter Name="NOMCLIE" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="LIQUIDA" Type="char" Mode="In" />
+    <Parameter Name="FIRMA" Type="image" Mode="In" />
+  </Function>
+  <Function Name="VIENECORRELA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cveage" Type="char" Mode="In" />
+    <Parameter Name="cod_zona" Type="char" Mode="In" />
+    <Parameter Name="correla" Type="numeric" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENELOGGPS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USUARIO" Type="char" Mode="In" />
+    <Parameter Name="FECHA" Type="char" Mode="In" />
+    <Parameter Name="HORA" Type="char" Mode="In" />
+    <Parameter Name="LATITUD" Type="char" Mode="In" />
+    <Parameter Name="LONGITUD" Type="char" Mode="In" />
+    <Parameter Name="MAC" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENENOVENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VENDEDOR" Type="char" Mode="In" />
+    <Parameter Name="NOMBRE" Type="char" Mode="In" />
+    <Parameter Name="FECHA" Type="char" Mode="In" />
+    <Parameter Name="HORA" Type="char" Mode="In" />
+    <Parameter Name="OBSERVACION" Type="char" Mode="In" />
+    <Parameter Name="LATITUD" Type="char" Mode="In" />
+    <Parameter Name="LONGITUD" Type="char" Mode="In" />
+    <Parameter Name="CIERRE" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="char" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Tdoc" Type="char" Mode="In" />
+    <Parameter Name="rtipodoc" Type="char" Mode="In" />
+    <Parameter Name="Fecha_recib" Type="datetime" Mode="In" />
+    <Parameter Name="RFECHA" Type="datetime" Mode="In" />
+    <Parameter Name="RCONCEPTO" Type="char" Mode="In" />
+    <Parameter Name="RCONCEP2" Type="char" Mode="In" />
+    <Parameter Name="RCAMBIO" Type="decimal" Mode="In" />
+    <Parameter Name="Por_lempira" Type="money" Mode="In" />
+    <Parameter Name="rlugar" Type="char" Mode="In" />
+    <Parameter Name="rhora" Type="char" Mode="In" />
+    <Parameter Name="COBRADO_EN" Type="char" Mode="In" />
+    <Parameter Name="rtermino" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="rcodigocli" Type="char" Mode="In" />
+    <Parameter Name="CXC_CTIPO" Type="char" Mode="In" />
+    <Parameter Name="CXC_PARTIDA" Type="char" Mode="In" />
+    <Parameter Name="rusuario" Type="char" Mode="In" />
+    <Parameter Name="rterminal" Type="char" Mode="In" />
+    <Parameter Name="RECIBMODIFI" Type="char" Mode="In" />
+    <Parameter Name="RECIBFMODIF" Type="datetime" Mode="In" />
+    <Parameter Name="rduradeb" Type="smallint" Mode="In" />
+    <Parameter Name="RTIPODEBI" Type="char" Mode="In" />
+    <Parameter Name="rsucursal" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="RNOMBRECLI" Type="char" Mode="In" />
+    <Parameter Name="rprima" Type="money" Mode="In" />
+    <Parameter Name="rno_letras" Type="smallint" Mode="In" />
+    <Parameter Name="VEFECTI" Type="money" Mode="In" />
+    <Parameter Name="VCHEQUE" Type="money" Mode="In" />
+    <Parameter Name="PAGOCK" Type="char" Mode="In" />
+    <Parameter Name="PAGOBANCO" Type="char" Mode="In" />
+    <Parameter Name="RECIBCUENTA" Type="char" Mode="In" />
+    <Parameter Name="rconciliado" Type="char" Mode="In" />
+    <Parameter Name="rnumefa" Type="char" Mode="In" />
+    <Parameter Name="RCUOTA" Type="money" Mode="In" />
+    <Parameter Name="SUBIVIEJO" Type="char" Mode="In" />
+    <Parameter Name="RCODVEND" Type="char" Mode="In" />
+    <Parameter Name="rnumemp" Type="int" Mode="In" />
+    <Parameter Name="LONGITUD" Type="numeric" Mode="In" />
+    <Parameter Name="LATITUD" Type="numeric" Mode="In" />
+    <Parameter Name="CIERRE" Type="nchar" Mode="In" />
+    <Parameter Name="IMPRESO" Type="nchar" Mode="In" />
+    <Parameter Name="MARCA" Type="nchar" Mode="In" />
+    <Parameter Name="SALDOANT" Type="numeric" Mode="In" />
+    <Parameter Name="fecha" Type="nchar" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS_A" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Tdoc" Type="char" Mode="In" />
+    <Parameter Name="rtipodoc" Type="char" Mode="In" />
+    <Parameter Name="Fecha_recib" Type="datetime" Mode="In" />
+    <Parameter Name="RFECHA" Type="datetime" Mode="In" />
+    <Parameter Name="RCONCEPTO" Type="char" Mode="In" />
+    <Parameter Name="RCONCEP2" Type="char" Mode="In" />
+    <Parameter Name="RCAMBIO" Type="decimal" Mode="In" />
+    <Parameter Name="Por_lempira" Type="money" Mode="In" />
+    <Parameter Name="rlugar" Type="char" Mode="In" />
+    <Parameter Name="rhora" Type="char" Mode="In" />
+    <Parameter Name="COBRADO_EN" Type="char" Mode="In" />
+    <Parameter Name="rtermino" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="rcodigocli" Type="char" Mode="In" />
+    <Parameter Name="CXC_CTIPO" Type="char" Mode="In" />
+    <Parameter Name="CXC_PARTIDA" Type="char" Mode="In" />
+    <Parameter Name="rusuario" Type="char" Mode="In" />
+    <Parameter Name="rterminal" Type="char" Mode="In" />
+    <Parameter Name="RECIBMODIFI" Type="char" Mode="In" />
+    <Parameter Name="RECIBFMODIF" Type="datetime" Mode="In" />
+    <Parameter Name="rduradeb" Type="smallint" Mode="In" />
+    <Parameter Name="RTIPODEBI" Type="char" Mode="In" />
+    <Parameter Name="rsucursal" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="RNOMBRECLI" Type="char" Mode="In" />
+    <Parameter Name="rprima" Type="money" Mode="In" />
+    <Parameter Name="rno_letras" Type="smallint" Mode="In" />
+    <Parameter Name="VEFECTI" Type="money" Mode="In" />
+    <Parameter Name="VCHEQUE" Type="money" Mode="In" />
+    <Parameter Name="PAGOCK" Type="char" Mode="In" />
+    <Parameter Name="PAGOBANCO" Type="char" Mode="In" />
+    <Parameter Name="RECIBCUENTA" Type="char" Mode="In" />
+    <Parameter Name="rconciliado" Type="char" Mode="In" />
+    <Parameter Name="rnumefa" Type="char" Mode="In" />
+    <Parameter Name="RCUOTA" Type="money" Mode="In" />
+    <Parameter Name="SUBIVIEJO" Type="char" Mode="In" />
+    <Parameter Name="RCODVEND" Type="char" Mode="In" />
+    <Parameter Name="rnumemp" Type="int" Mode="In" />
+    <Parameter Name="LONGITUD" Type="numeric" Mode="In" />
+    <Parameter Name="LATITUD" Type="numeric" Mode="In" />
+    <Parameter Name="CIERRE" Type="nchar" Mode="In" />
+    <Parameter Name="IMPRESO" Type="nchar" Mode="In" />
+    <Parameter Name="MARCA" Type="nchar" Mode="In" />
+    <Parameter Name="SALDOANT" Type="numeric" Mode="In" />
+    <Parameter Name="fecha" Type="nchar" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS_A2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS_A22" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Tdoc" Type="char" Mode="In" />
+    <Parameter Name="rtipodoc" Type="char" Mode="In" />
+    <Parameter Name="Fecha_recib" Type="char" Mode="In" />
+    <Parameter Name="RFECHA" Type="char" Mode="In" />
+    <Parameter Name="RCONCEPTO" Type="char" Mode="In" />
+    <Parameter Name="RCONCEP2" Type="char" Mode="In" />
+    <Parameter Name="RCAMBIO" Type="decimal" Mode="In" />
+    <Parameter Name="Por_lempira" Type="money" Mode="In" />
+    <Parameter Name="rlugar" Type="char" Mode="In" />
+    <Parameter Name="rhora" Type="char" Mode="In" />
+    <Parameter Name="COBRADO_EN" Type="char" Mode="In" />
+    <Parameter Name="rtermino" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="rcodigocli" Type="char" Mode="In" />
+    <Parameter Name="CXC_CTIPO" Type="char" Mode="In" />
+    <Parameter Name="CXC_PARTIDA" Type="char" Mode="In" />
+    <Parameter Name="rusuario" Type="char" Mode="In" />
+    <Parameter Name="rterminal" Type="char" Mode="In" />
+    <Parameter Name="RECIBMODIFI" Type="char" Mode="In" />
+    <Parameter Name="RECIBFMODIF" Type="datetime" Mode="In" />
+    <Parameter Name="rduradeb" Type="smallint" Mode="In" />
+    <Parameter Name="RTIPODEBI" Type="char" Mode="In" />
+    <Parameter Name="rsucursal" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="RNOMBRECLI" Type="char" Mode="In" />
+    <Parameter Name="rprima" Type="money" Mode="In" />
+    <Parameter Name="rno_letras" Type="smallint" Mode="In" />
+    <Parameter Name="VEFECTI" Type="money" Mode="In" />
+    <Parameter Name="VCHEQUE" Type="money" Mode="In" />
+    <Parameter Name="PAGOCK" Type="char" Mode="In" />
+    <Parameter Name="PAGOBANCO" Type="char" Mode="In" />
+    <Parameter Name="RECIBCUENTA" Type="char" Mode="In" />
+    <Parameter Name="rconciliado" Type="char" Mode="In" />
+    <Parameter Name="rnumefa" Type="char" Mode="In" />
+    <Parameter Name="RCUOTA" Type="money" Mode="In" />
+    <Parameter Name="SUBIVIEJO" Type="char" Mode="In" />
+    <Parameter Name="RCODVEND" Type="char" Mode="In" />
+    <Parameter Name="rnumemp" Type="int" Mode="In" />
+    <Parameter Name="LONGITUD" Type="numeric" Mode="In" />
+    <Parameter Name="LATITUD" Type="numeric" Mode="In" />
+    <Parameter Name="CIERRE" Type="nchar" Mode="In" />
+    <Parameter Name="IMPRESO" Type="nchar" Mode="In" />
+    <Parameter Name="MARCA" Type="nchar" Mode="In" />
+    <Parameter Name="SALDOANT" Type="numeric" Mode="In" />
+    <Parameter Name="fecha" Type="nchar" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="VIENERECIBOS22" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Num_doc" Type="char" Mode="In" />
+    <Parameter Name="Tdoc" Type="char" Mode="In" />
+    <Parameter Name="rtipodoc" Type="char" Mode="In" />
+    <Parameter Name="Fecha_recib" Type="char" Mode="In" />
+    <Parameter Name="RFECHA" Type="char" Mode="In" />
+    <Parameter Name="RCONCEPTO" Type="char" Mode="In" />
+    <Parameter Name="RCONCEP2" Type="char" Mode="In" />
+    <Parameter Name="RCAMBIO" Type="decimal" Mode="In" />
+    <Parameter Name="Por_lempira" Type="money" Mode="In" />
+    <Parameter Name="rlugar" Type="char" Mode="In" />
+    <Parameter Name="rhora" Type="char" Mode="In" />
+    <Parameter Name="COBRADO_EN" Type="char" Mode="In" />
+    <Parameter Name="rtermino" Type="char" Mode="In" />
+    <Parameter Name="Codigo_clie" Type="char" Mode="In" />
+    <Parameter Name="rcodigocli" Type="char" Mode="In" />
+    <Parameter Name="CXC_CTIPO" Type="char" Mode="In" />
+    <Parameter Name="CXC_PARTIDA" Type="char" Mode="In" />
+    <Parameter Name="rusuario" Type="char" Mode="In" />
+    <Parameter Name="rterminal" Type="char" Mode="In" />
+    <Parameter Name="RECIBMODIFI" Type="char" Mode="In" />
+    <Parameter Name="RECIBFMODIF" Type="char" Mode="In" />
+    <Parameter Name="rduradeb" Type="smallint" Mode="In" />
+    <Parameter Name="RTIPODEBI" Type="char" Mode="In" />
+    <Parameter Name="rsucursal" Type="char" Mode="In" />
+    <Parameter Name="codigo_cobr" Type="char" Mode="In" />
+    <Parameter Name="RNOMBRECLI" Type="char" Mode="In" />
+    <Parameter Name="rprima" Type="money" Mode="In" />
+    <Parameter Name="rno_letras" Type="smallint" Mode="In" />
+    <Parameter Name="VEFECTI" Type="money" Mode="In" />
+    <Parameter Name="VCHEQUE" Type="money" Mode="In" />
+    <Parameter Name="PAGOCK" Type="char" Mode="In" />
+    <Parameter Name="PAGOBANCO" Type="char" Mode="In" />
+    <Parameter Name="RECIBCUENTA" Type="char" Mode="In" />
+    <Parameter Name="rconciliado" Type="char" Mode="In" />
+    <Parameter Name="rnumefa" Type="char" Mode="In" />
+    <Parameter Name="RCUOTA" Type="money" Mode="In" />
+    <Parameter Name="SUBIVIEJO" Type="char" Mode="In" />
+    <Parameter Name="RCODVEND" Type="char" Mode="In" />
+    <Parameter Name="rnumemp" Type="int" Mode="In" />
+    <Parameter Name="LONGITUD" Type="varchar" Mode="In" />
+    <Parameter Name="LATITUD" Type="varchar" Mode="In" />
+    <Parameter Name="CIERRE" Type="nchar" Mode="In" />
+    <Parameter Name="IMPRESO" Type="nchar" Mode="In" />
+    <Parameter Name="MARCA" Type="nchar" Mode="In" />
+    <Parameter Name="SALDOANT" Type="numeric" Mode="In" />
+    <Parameter Name="fecha" Type="nchar" Mode="In" />
+    <Parameter Name="liquida" Type="nchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="AEVentasModelStoreContainer">
+    <EntitySet Name="GrupoArtEnc" EntityType="Self.GrupoArtEnc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClientePago" EntityType="Self.ClientePago" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ClientePago].[id] AS [id], 
+    [ClientePago].[Nombre1] AS [Nombre1], 
+    [ClientePago].[Nombre2] AS [Nombre2], 
+    [ClientePago].[Apellido1] AS [Apellido1], 
+    [ClientePago].[Apellido2] AS [Apellido2], 
+    [ClientePago].[Fecha] AS [Fecha], 
+    [ClientePago].[hora] AS [hora], 
+    [ClientePago].[Cliente] AS [Cliente], 
+    [ClientePago].[Direccion] AS [Direccion], 
+    [ClientePago].[Identidad] AS [Identidad], 
+    [ClientePago].[Telefono] AS [Telefono], 
+    [ClientePago].[tarjeta] AS [tarjeta], 
+    [ClientePago].[Mes] AS [Mes], 
+    [ClientePago].[ano] AS [ano], 
+    [ClientePago].[Token1] AS [Token1], 
+    [ClientePago].[Token2] AS [Token2], 
+    [ClientePago].[valido] AS [valido], 
+    [ClientePago].[Referencia1] AS [Referencia1], 
+    [ClientePago].[Tipo] AS [Tipo]
+    FROM [dbo].[ClientePago] AS [ClientePago]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CLIENTESN" EntityType="Self.CLIENTESN" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CLIENTESN].[Codigo_clie] AS [Codigo_clie], 
+    [CLIENTESN].[Nombre_clie] AS [Nombre_clie], 
+    [CLIENTESN].[identidad] AS [identidad], 
+    [CLIENTESN].[tributario] AS [tributario], 
+    [CLIENTESN].[cl_fecha] AS [cl_fecha], 
+    [CLIENTESN].[CL_STATUS] AS [CL_STATUS], 
+    [CLIENTESN].[CL_COMPANIA] AS [CL_COMPANIA], 
+    [CLIENTESN].[Dir_cliente] AS [Dir_cliente], 
+    [CLIENTESN].[Dir2_client] AS [Dir2_client], 
+    [CLIENTESN].[Dir3_client] AS [Dir3_client], 
+    [CLIENTESN].[Dir4_client] AS [Dir4_client], 
+    [CLIENTESN].[Dir5_client] AS [Dir5_client], 
+    [CLIENTESN].[Telef_clien] AS [Telef_clien], 
+    [CLIENTESN].[CL_CELULAR] AS [CL_CELULAR], 
+    [CLIENTESN].[CL_EMAIL] AS [CL_EMAIL], 
+    [CLIENTESN].[cl_conyunom] AS [cl_conyunom], 
+    [CLIENTESN].[cl_conyutel] AS [cl_conyutel], 
+    [CLIENTESN].[cl_conyudir] AS [cl_conyudir], 
+    [CLIENTESN].[CL_PARENt] AS [CL_PARENt], 
+    [CLIENTESN].[Cod_zona] AS [Cod_zona], 
+    [CLIENTESN].[CL_VENDEDOR] AS [CL_VENDEDOR], 
+    [CLIENTESN].[cl_usuario] AS [cl_usuario], 
+    [CLIENTESN].[cl_terminal] AS [cl_terminal], 
+    [CLIENTESN].[longitud] AS [longitud], 
+    [CLIENTESN].[latitud] AS [latitud], 
+    [CLIENTESN].[secuencia] AS [secuencia], 
+    [CLIENTESN].[diavisita] AS [diavisita], 
+    [CLIENTESN].[semana] AS [semana], 
+    [CLIENTESN].[cierre] AS [cierre], 
+    [CLIENTESN].[tempo] AS [tempo], 
+    [CLIENTESN].[departa] AS [departa], 
+    [CLIENTESN].[municipio] AS [municipio], 
+    [CLIENTESN].[circuito] AS [circuito], 
+    [CLIENTESN].[liquida] AS [liquida], 
+    [CLIENTESN].[hora] AS [hora], 
+    [CLIENTESN].[FechaDoc] AS [FechaDoc]
+    FROM [dbo].[CLIENTESN] AS [CLIENTESN]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CLIENTESND" EntityType="Self.CLIENTESND" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CLIENTESND].[Codigo_clie] AS [Codigo_clie], 
+    [CLIENTESND].[Nombre_clie] AS [Nombre_clie], 
+    [CLIENTESND].[identidad] AS [identidad], 
+    [CLIENTESND].[tributario] AS [tributario], 
+    [CLIENTESND].[cl_fecha] AS [cl_fecha], 
+    [CLIENTESND].[CL_STATUS] AS [CL_STATUS], 
+    [CLIENTESND].[CL_COMPANIA] AS [CL_COMPANIA], 
+    [CLIENTESND].[Dir_cliente] AS [Dir_cliente], 
+    [CLIENTESND].[Dir2_client] AS [Dir2_client], 
+    [CLIENTESND].[Dir3_client] AS [Dir3_client], 
+    [CLIENTESND].[Dir4_client] AS [Dir4_client], 
+    [CLIENTESND].[Dir5_client] AS [Dir5_client], 
+    [CLIENTESND].[Telef_clien] AS [Telef_clien], 
+    [CLIENTESND].[CL_CELULAR] AS [CL_CELULAR], 
+    [CLIENTESND].[CL_EMAIL] AS [CL_EMAIL], 
+    [CLIENTESND].[cl_conyunom] AS [cl_conyunom], 
+    [CLIENTESND].[cl_conyutel] AS [cl_conyutel], 
+    [CLIENTESND].[cl_conyudir] AS [cl_conyudir], 
+    [CLIENTESND].[CL_PARENt] AS [CL_PARENt], 
+    [CLIENTESND].[Cod_zona] AS [Cod_zona], 
+    [CLIENTESND].[CL_VENDEDOR] AS [CL_VENDEDOR], 
+    [CLIENTESND].[cl_usuario] AS [cl_usuario], 
+    [CLIENTESND].[cl_terminal] AS [cl_terminal], 
+    [CLIENTESND].[longitud] AS [longitud], 
+    [CLIENTESND].[latitud] AS [latitud], 
+    [CLIENTESND].[secuencia] AS [secuencia], 
+    [CLIENTESND].[diavisita] AS [diavisita], 
+    [CLIENTESND].[semana] AS [semana], 
+    [CLIENTESND].[cierre] AS [cierre], 
+    [CLIENTESND].[tempo] AS [tempo], 
+    [CLIENTESND].[departa] AS [departa], 
+    [CLIENTESND].[municipio] AS [municipio], 
+    [CLIENTESND].[circuito] AS [circuito], 
+    [CLIENTESND].[liquida] AS [liquida]
+    FROM [dbo].[CLIENTESND] AS [CLIENTESND]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CONTRATON" EntityType="Self.CONTRATON" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CONTRATON].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [CONTRATON].[CONT_FECHA] AS [CONT_FECHA], 
+    [CONTRATON].[Codigo_clie] AS [Codigo_clie], 
+    [CONTRATON].[CONT_VALOR] AS [CONT_VALOR], 
+    [CONTRATON].[CONT_CREDIT] AS [CONT_CREDIT], 
+    [CONTRATON].[CONT_PRIMA] AS [CONT_PRIMA], 
+    [CONTRATON].[CONT_NUMCUO] AS [CONT_NUMCUO], 
+    [CONTRATON].[CONT_VALCUO] AS [CONT_VALCUO], 
+    [CONTRATON].[cont_vended] AS [cont_vended], 
+    [CONTRATON].[CONT_SERVI] AS [CONT_SERVI], 
+    [CONTRATON].[CONT_CANTI] AS [CONT_CANTI], 
+    [CONTRATON].[CONT_COMPA] AS [CONT_COMPA], 
+    [CONTRATON].[CONT_CANT2] AS [CONT_CANT2], 
+    [CONTRATON].[CONT_SERV2] AS [CONT_SERV2], 
+    [CONTRATON].[CONT_CANT3] AS [CONT_CANT3], 
+    [CONTRATON].[CONT_SERV3] AS [CONT_SERV3], 
+    [CONTRATON].[CONT_CANT4] AS [CONT_CANT4], 
+    [CONTRATON].[CONT_SERV4] AS [CONT_SERV4], 
+    [CONTRATON].[CONT_SVAL1] AS [CONT_SVAL1], 
+    [CONTRATON].[CONT_SVAL2] AS [CONT_SVAL2], 
+    [CONTRATON].[CONT_SVAL3] AS [CONT_SVAL3], 
+    [CONTRATON].[CONT_SVAL4] AS [CONT_SVAL4], 
+    [CONTRATON].[VENTA] AS [VENTA], 
+    [CONTRATON].[TEMPO] AS [TEMPO], 
+    [CONTRATON].[CEDULA] AS [CEDULA], 
+    [CONTRATON].[SERVI1DES] AS [SERVI1DES], 
+    [CONTRATON].[SERVI2DES] AS [SERVI2DES], 
+    [CONTRATON].[SERVI3DES] AS [SERVI3DES], 
+    [CONTRATON].[SERVI4DES] AS [SERVI4DES], 
+    [CONTRATON].[SERVIEMPRE] AS [SERVIEMPRE], 
+    [CONTRATON].[NOMCLIE] AS [NOMCLIE], 
+    [CONTRATON].[CIERRE] AS [CIERRE], 
+    [CONTRATON].[LIQUIDA] AS [LIQUIDA], 
+    [CONTRATON].[FIRMA] AS [FIRMA], 
+    [CONTRATON].[FIRMA2] AS [FIRMA2], 
+    [CONTRATON].[Hora] AS [Hora], 
+    [CONTRATON].[FechaDoc] AS [FechaDoc]
+    FROM [dbo].[CONTRATON] AS [CONTRATON]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CONTRATOND" EntityType="Self.CONTRATOND" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CONTRATOND].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [CONTRATOND].[CONT_FECHA] AS [CONT_FECHA], 
+    [CONTRATOND].[Codigo_clie] AS [Codigo_clie], 
+    [CONTRATOND].[CONT_VALOR] AS [CONT_VALOR], 
+    [CONTRATOND].[CONT_CREDIT] AS [CONT_CREDIT], 
+    [CONTRATOND].[CONT_PRIMA] AS [CONT_PRIMA], 
+    [CONTRATOND].[CONT_NUMCUO] AS [CONT_NUMCUO], 
+    [CONTRATOND].[CONT_VALCUO] AS [CONT_VALCUO], 
+    [CONTRATOND].[cont_vended] AS [cont_vended], 
+    [CONTRATOND].[CONT_SERVI] AS [CONT_SERVI], 
+    [CONTRATOND].[CONT_CANTI] AS [CONT_CANTI], 
+    [CONTRATOND].[CONT_COMPA] AS [CONT_COMPA], 
+    [CONTRATOND].[CONT_CANT2] AS [CONT_CANT2], 
+    [CONTRATOND].[CONT_SERV2] AS [CONT_SERV2], 
+    [CONTRATOND].[CONT_CANT3] AS [CONT_CANT3], 
+    [CONTRATOND].[CONT_SERV3] AS [CONT_SERV3], 
+    [CONTRATOND].[CONT_CANT4] AS [CONT_CANT4], 
+    [CONTRATOND].[CONT_SERV4] AS [CONT_SERV4], 
+    [CONTRATOND].[CONT_SVAL1] AS [CONT_SVAL1], 
+    [CONTRATOND].[CONT_SVAL2] AS [CONT_SVAL2], 
+    [CONTRATOND].[CONT_SVAL3] AS [CONT_SVAL3], 
+    [CONTRATOND].[CONT_SVAL4] AS [CONT_SVAL4], 
+    [CONTRATOND].[VENTA] AS [VENTA], 
+    [CONTRATOND].[TEMPO] AS [TEMPO], 
+    [CONTRATOND].[CEDULA] AS [CEDULA], 
+    [CONTRATOND].[SERVI1DES] AS [SERVI1DES], 
+    [CONTRATOND].[SERVI2DES] AS [SERVI2DES], 
+    [CONTRATOND].[SERVI3DES] AS [SERVI3DES], 
+    [CONTRATOND].[SERVI4DES] AS [SERVI4DES], 
+    [CONTRATOND].[SERVIEMPRE] AS [SERVIEMPRE], 
+    [CONTRATOND].[NOMCLIE] AS [NOMCLIE], 
+    [CONTRATOND].[CIERRE] AS [CIERRE], 
+    [CONTRATOND].[LIQUIDA] AS [LIQUIDA], 
+    [CONTRATOND].[FIRMA] AS [FIRMA], 
+    [CONTRATOND].[FIRMA2] AS [FIRMA2]
+    FROM [dbo].[CONTRATOND] AS [CONTRATOND]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CORRELA" EntityType="Self.CORRELA" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CORRELA].[cveage] AS [cveage], 
+    [CORRELA].[cod_zona] AS [cod_zona], 
+    [CORRELA].[correla] AS [correla], 
+    [CORRELA].[CIERRE] AS [CIERRE], 
+    [CORRELA].[liquida] AS [liquida]
+    FROM [dbo].[CORRELA] AS [CORRELA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CZONA" EntityType="Self.CZONA" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CZONA].[Cod_zona] AS [Cod_zona], 
+    [CZONA].[Nombre_zona] AS [Nombre_zona], 
+    [CZONA].[E_ZONAS] AS [E_ZONAS], 
+    [CZONA].[E_VENTAS] AS [E_VENTAS], 
+    [CZONA].[E_DEVOLUC] AS [E_DEVOLUC], 
+    [CZONA].[E_VENTAS2] AS [E_VENTAS2], 
+    [CZONA].[ZON_NC] AS [ZON_NC], 
+    [CZONA].[ZON_ND] AS [ZON_ND], 
+    [CZONA].[descri_zona] AS [descri_zona], 
+    [CZONA].[E_CAJA] AS [E_CAJA], 
+    [CZONA].[E_APARTA] AS [E_APARTA], 
+    [CZONA].[E_LETRAS] AS [E_LETRAS], 
+    [CZONA].[E_PRIMA] AS [E_PRIMA], 
+    [CZONA].[E_PAQUETE] AS [E_PAQUETE], 
+    [CZONA].[E_CXC] AS [E_CXC], 
+    [CZONA].[E_CONTADO] AS [E_CONTADO], 
+    [CZONA].[E_RTN] AS [E_RTN]
+    FROM [dbo].[CZONA] AS [CZONA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LogProcesados" EntityType="Self.LogProcesados" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LogProcesados].[IdLine] AS [IdLine], 
+    [LogProcesados].[Usuario] AS [Usuario], 
+    [LogProcesados].[Fecha] AS [Fecha], 
+    [LogProcesados].[Hora] AS [Hora], 
+    [LogProcesados].[CodGestor] AS [CodGestor], 
+    [LogProcesados].[Liquida] AS [Liquida], 
+    [LogProcesados].[TotalProcesado] AS [TotalProcesado]
+    FROM [dbo].[LogProcesados] AS [LogProcesados]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MVSAGEN" EntityType="Self.MVSAGEN" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MVSAGEN].[cveage] AS [cveage], 
+    [MVSAGEN].[nomage] AS [nomage], 
+    [MVSAGEN].[abrage] AS [abrage], 
+    [MVSAGEN].[agecls] AS [agecls], 
+    [MVSAGEN].[cvealm] AS [cvealm], 
+    [MVSAGEN].[usuari] AS [usuari], 
+    [MVSAGEN].[usupwd] AS [usupwd], 
+    [MVSAGEN].[nvlpre] AS [nvlpre], 
+    [MVSAGEN].[limcre] AS [limcre], 
+    [MVSAGEN].[limcro] AS [limcro], 
+    [MVSAGEN].[limcrv] AS [limcrv], 
+    [MVSAGEN].[limcrd] AS [limcrd], 
+    [MVSAGEN].[limcrn] AS [limcrn], 
+    [MVSAGEN].[stsmov] AS [stsmov], 
+    [MVSAGEN].[cvemov] AS [cvemov], 
+    [MVSAGEN].[tipmov] AS [tipmov], 
+    [MVSAGEN].[desmov] AS [desmov], 
+    [MVSAGEN].[sermov] AS [sermov], 
+    [MVSAGEN].[numser] AS [numser], 
+    [MVSAGEN].[numped] AS [numped], 
+    [MVSAGEN].[re1mov] AS [re1mov], 
+    [MVSAGEN].[numpedsap] AS [numpedsap]
+    FROM [dbo].[MVSAGEN] AS [MVSAGEN]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CLIENTES].[Codigo_clie] AS [Codigo_clie], 
+    [CLIENTES].[Nombre_clie] AS [Nombre_clie], 
+    [CLIENTES].[CTIPOCLI] AS [CTIPOCLI], 
+    [CLIENTES].[clientenp] AS [clientenp], 
+    [CLIENTES].[cod_listpre] AS [cod_listpre], 
+    [CLIENTES].[cod_compani] AS [cod_compani], 
+    [CLIENTES].[clisucursal] AS [clisucursal], 
+    [CLIENTES].[mayorista] AS [mayorista], 
+    [CLIENTES].[CL_NIVEL] AS [CL_NIVEL], 
+    [CLIENTES].[cl_descto] AS [cl_descto], 
+    [CLIENTES].[cl_fecha] AS [cl_fecha], 
+    [CLIENTES].[CL_STATUS] AS [CL_STATUS], 
+    [CLIENTES].[CL_COMPANIA] AS [CL_COMPANIA], 
+    [CLIENTES].[Dir_cliente] AS [Dir_cliente], 
+    [CLIENTES].[Dir2_client] AS [Dir2_client], 
+    [CLIENTES].[Dir3_client] AS [Dir3_client], 
+    [CLIENTES].[Dir4_client] AS [Dir4_client], 
+    [CLIENTES].[Limite_cred] AS [Limite_cred], 
+    [CLIENTES].[Saldo_actua] AS [Saldo_actua], 
+    [CLIENTES].[ESALDO_ACTU] AS [ESALDO_ACTU], 
+    [CLIENTES].[CSALDO_ACTU] AS [CSALDO_ACTU], 
+    [CLIENTES].[ISALDO] AS [ISALDO], 
+    [CLIENTES].[catalogo] AS [catalogo], 
+    [CLIENTES].[Telef_clien] AS [Telef_clien], 
+    [CLIENTES].[Cod_zona] AS [Cod_zona], 
+    [CLIENTES].[representan] AS [representan], 
+    [CLIENTES].[identidad] AS [identidad], 
+    [CLIENTES].[tributario] AS [tributario], 
+    [CLIENTES].[cl_usuario] AS [cl_usuario], 
+    [CLIENTES].[cl_terminal] AS [cl_terminal], 
+    [CLIENTES].[tipo_client] AS [tipo_client], 
+    [CLIENTES].[CUECLIEN] AS [CUECLIEN], 
+    [CLIENTES].[CL_DESCFAC] AS [CL_DESCFAC], 
+    [CLIENTES].[CL_MORA] AS [CL_MORA], 
+    [CLIENTES].[CL_CAPITALI] AS [CL_CAPITALI], 
+    [CLIENTES].[CL_FAX] AS [CL_FAX], 
+    [CLIENTES].[CL_VENDEDOR] AS [CL_VENDEDOR], 
+    [CLIENTES].[CL_CELULAR] AS [CL_CELULAR], 
+    [CLIENTES].[CL_EXENTO] AS [CL_EXENTO], 
+    [CLIENTES].[cl_conyunom] AS [cl_conyunom], 
+    [CLIENTES].[cl_conyutel] AS [cl_conyutel], 
+    [CLIENTES].[cl_conyudir] AS [cl_conyudir], 
+    [CLIENTES].[cl_cobrador] AS [cl_cobrador], 
+    [CLIENTES].[CL_FECINAC] AS [CL_FECINAC], 
+    [CLIENTES].[cl_fecobra] AS [cl_fecobra], 
+    [CLIENTES].[cl_stat2] AS [cl_stat2], 
+    [CLIENTES].[CL_PARENt] AS [CL_PARENt], 
+    [CLIENTES].[Dir5_client] AS [Dir5_client], 
+    [CLIENTES].[CL_2conynom] AS [CL_2conynom], 
+    [CLIENTES].[cl_2conytel] AS [cl_2conytel], 
+    [CLIENTES].[cl_2condire] AS [cl_2condire], 
+    [CLIENTES].[cl_2parent] AS [cl_2parent], 
+    [CLIENTES].[CL_OFICINA] AS [CL_OFICINA], 
+    [CLIENTES].[cl_reactivo] AS [cl_reactivo], 
+    [CLIENTES].[longitud] AS [longitud], 
+    [CLIENTES].[latitud] AS [latitud], 
+    [CLIENTES].[secuencia] AS [secuencia], 
+    [CLIENTES].[diavisita] AS [diavisita], 
+    [CLIENTES].[semana] AS [semana], 
+    [CLIENTES].[cl_munici] AS [cl_munici], 
+    [CLIENTES].[circ_codigo] AS [circ_codigo], 
+    [CLIENTES].[CL_EMAIL] AS [CL_EMAIL]
+    FROM [dbo].[CLIENTES] AS [CLIENTES]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CONTRAT1" EntityType="Self.CONTRAT1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CONTRAT1].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [CONTRAT1].[CONT_DNUMER] AS [CONT_DNUMER], 
+    [CONTRAT1].[CONT_DVALOR] AS [CONT_DVALOR], 
+    [CONTRAT1].[CONT_DCOBR] AS [CONT_DCOBR], 
+    [CONTRAT1].[CONT_DCODIG] AS [CONT_DCODIG], 
+    [CONTRAT1].[CONT_DFECHA] AS [CONT_DFECHA], 
+    [CONTRAT1].[CONT_JARDIN] AS [CONT_JARDIN], 
+    [CONTRAT1].[CONT_LETRA] AS [CONT_LETRA], 
+    [CONTRAT1].[CONT_NNUM] AS [CONT_NNUM], 
+    [CONTRAT1].[CONT_DNOMBR] AS [CONT_DNOMBR], 
+    [CONTRAT1].[CONT_DDESCR] AS [CONT_DDESCR], 
+    [CONTRAT1].[CONT_DENTRE] AS [CONT_DENTRE], 
+    [CONTRAT1].[CONT_DCLIEN] AS [CONT_DCLIEN], 
+    [CONTRAT1].[CONT_BODEGA] AS [CONT_BODEGA], 
+    [CONTRAT1].[CONT_DCREDI] AS [CONT_DCREDI], 
+    [CONTRAT1].[CONT_DCANT] AS [CONT_DCANT], 
+    [CONTRAT1].[CONT_DOCTO] AS [CONT_DOCTO], 
+    [CONTRAT1].[CONT_DZONA] AS [CONT_DZONA], 
+    [CONTRAT1].[CONT_LUGENT] AS [CONT_LUGENT], 
+    [CONTRAT1].[CONT_DFECNA] AS [CONT_DFECNA], 
+    [CONTRAT1].[CONT_DIDENT] AS [CONT_DIDENT], 
+    [CONTRAT1].[CONT_DFECDE] AS [CONT_DFECDE], 
+    [CONTRAT1].[CONT_DLUGNA] AS [CONT_DLUGNA], 
+    [CONTRAT1].[CONT_DPAIS] AS [CONT_DPAIS], 
+    [CONTRAT1].[CONT_DPADRE] AS [CONT_DPADRE], 
+    [CONTRAT1].[CONT_DMADRE] AS [CONT_DMADRE], 
+    [CONTRAT1].[CONT_DDIREC] AS [CONT_DDIREC], 
+    [CONTRAT1].[CONT_DLUGDE] AS [CONT_DLUGDE], 
+    [CONTRAT1].[CONT_DHORA] AS [CONT_DHORA], 
+    [CONTRAT1].[CONT_DPAREN] AS [CONT_DPAREN], 
+    [CONTRAT1].[CONT_DCNOMB] AS [CONT_DCNOMB], 
+    [CONTRAT1].[CONT_DSELEC] AS [CONT_DSELEC], 
+    [CONTRAT1].[CONT_DUSUAR] AS [CONT_DUSUAR], 
+    [CONTRAT1].[FECHA1] AS [FECHA1], 
+    [CONTRAT1].[HORA1] AS [HORA1], 
+    [CONTRAT1].[LAT1] AS [LAT1], 
+    [CONTRAT1].[LON1] AS [LON1], 
+    [CONTRAT1].[OBSERVA1] AS [OBSERVA1], 
+    [CONTRAT1].[USUARIO1] AS [USUARIO1], 
+    [CONTRAT1].[FIRMA1] AS [FIRMA1], 
+    [CONTRAT1].[FECHA2] AS [FECHA2], 
+    [CONTRAT1].[HORA2] AS [HORA2], 
+    [CONTRAT1].[LAT2] AS [LAT2], 
+    [CONTRAT1].[LON2] AS [LON2], 
+    [CONTRAT1].[OBSERVA2] AS [OBSERVA2], 
+    [CONTRAT1].[USUARIO2] AS [USUARIO2], 
+    [CONTRAT1].[FIRMA2] AS [FIRMA2], 
+    [CONTRAT1].[FECHA3] AS [FECHA3], 
+    [CONTRAT1].[HORA3] AS [HORA3], 
+    [CONTRAT1].[LAT3] AS [LAT3], 
+    [CONTRAT1].[LON3] AS [LON3], 
+    [CONTRAT1].[OBSERVA3] AS [OBSERVA3], 
+    [CONTRAT1].[USUARIO3] AS [USUARIO3], 
+    [CONTRAT1].[FIRMA3] AS [FIRMA3], 
+    [CONTRAT1].[PASO] AS [PASO]
+    FROM [dbo].[CONTRAT1] AS [CONTRAT1]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CONTRATO" EntityType="Self.CONTRATO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CONTRATO].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [CONTRATO].[CONT_FECHA] AS [CONT_FECHA], 
+    [CONTRATO].[Codigo_clie] AS [Codigo_clie], 
+    [CONTRATO].[CONT_DESCRI] AS [CONT_DESCRI], 
+    [CONTRATO].[CONT_DESC2] AS [CONT_DESC2], 
+    [CONTRATO].[CONT_DESC3] AS [CONT_DESC3], 
+    [CONTRATO].[CONT_VALOR] AS [CONT_VALOR], 
+    [CONTRATO].[CONT_CREDIT] AS [CONT_CREDIT], 
+    [CONTRATO].[CONT_PRIMA] AS [CONT_PRIMA], 
+    [CONTRATO].[CONT_NUMCUO] AS [CONT_NUMCUO], 
+    [CONTRATO].[CONT_VALCUO] AS [CONT_VALCUO], 
+    [CONTRATO].[CONT_BENEFI] AS [CONT_BENEFI], 
+    [CONTRATO].[CONT_BENFEC] AS [CONT_BENFEC], 
+    [CONTRATO].[CONT_BENPAR] AS [CONT_BENPAR], 
+    [CONTRATO].[CONT_CLIENT] AS [CONT_CLIENT], 
+    [CONTRATO].[CONT_SUPERV] AS [CONT_SUPERV], 
+    [CONTRATO].[CONT_FSUPER] AS [CONT_FSUPER], 
+    [CONTRATO].[cont_vended] AS [cont_vended], 
+    [CONTRATO].[cont_cobrad] AS [cont_cobrad], 
+    [CONTRATO].[CONT_SALDO] AS [CONT_SALDO], 
+    [CONTRATO].[CONT_FECAM] AS [CONT_FECAM], 
+    [CONTRATO].[CONT_CJARD] AS [CONT_CJARD], 
+    [CONTRATO].[CONT_CLETRA] AS [CONT_CLETRA], 
+    [CONTRATO].[CONT_CNUM] AS [CONT_CNUM], 
+    [CONTRATO].[CONT_SERVI] AS [CONT_SERVI], 
+    [CONTRATO].[CONT_CANTI] AS [CONT_CANTI], 
+    [CONTRATO].[CONT_COMPA] AS [CONT_COMPA], 
+    [CONTRATO].[CONT_CANT2] AS [CONT_CANT2], 
+    [CONTRATO].[CONT_SERV2] AS [CONT_SERV2], 
+    [CONTRATO].[CONT_CANT3] AS [CONT_CANT3], 
+    [CONTRATO].[CONT_SERV3] AS [CONT_SERV3], 
+    [CONTRATO].[CONT_CJAR2] AS [CONT_CJAR2], 
+    [CONTRATO].[CONT_CJAR3] AS [CONT_CJAR3], 
+    [CONTRATO].[CONT_CLET2] AS [CONT_CLET2], 
+    [CONTRATO].[CONT_CLET3] AS [CONT_CLET3], 
+    [CONTRATO].[CONT_CNU2] AS [CONT_CNU2], 
+    [CONTRATO].[CONT_CNU3] AS [CONT_CNU3], 
+    [CONTRATO].[CONT_CSUPER] AS [CONT_CSUPER], 
+    [CONTRATO].[CONT_FECPRO] AS [CONT_FECPRO], 
+    [CONTRATO].[CONT_SVAL1] AS [CONT_SVAL1], 
+    [CONTRATO].[CONT_SVAL2] AS [CONT_SVAL2], 
+    [CONTRATO].[CONT_SVAL3] AS [CONT_SVAL3], 
+    [CONTRATO].[CONT_RFECHA] AS [CONT_RFECHA], 
+    [CONTRATO].[CONT_RHORA] AS [CONT_RHORA], 
+    [CONTRATO].[CONT_FECTER] AS [CONT_FECTER], 
+    [CONTRATO].[CONT_HORTER] AS [CONT_HORTER], 
+    [CONTRATO].[CONT_NOTAS] AS [CONT_NOTAS], 
+    [CONTRATO].[CONTSUBIFI] AS [CONTSUBIFI], 
+    [CONTRATO].[SUBIVIEJO] AS [SUBIVIEJO], 
+    [CONTRATO].[CONT_LIDER] AS [CONT_LIDER], 
+    [CONTRATO].[CONT_CANT4] AS [CONT_CANT4], 
+    [CONTRATO].[CONT_SERV4] AS [CONT_SERV4], 
+    [CONTRATO].[CONT_SVAL4] AS [CONT_SVAL4], 
+    [CONTRATO].[FECHACM] AS [FECHACM]
+    FROM [dbo].[CONTRATO] AS [CONTRATO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CZONA2" EntityType="Self.CZONA2" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CZONA2].[Cod_zona] AS [Cod_zona], 
+    [CZONA2].[Nombre_zona] AS [Nombre_zona], 
+    [CZONA2].[E_ZONAS] AS [E_ZONAS], 
+    [CZONA2].[E_VENTAS] AS [E_VENTAS], 
+    [CZONA2].[E_DEVOLUC] AS [E_DEVOLUC], 
+    [CZONA2].[E_VENTAS2] AS [E_VENTAS2], 
+    [CZONA2].[ZON_NC] AS [ZON_NC], 
+    [CZONA2].[ZON_ND] AS [ZON_ND], 
+    [CZONA2].[descri_zona] AS [descri_zona], 
+    [CZONA2].[E_CAJA] AS [E_CAJA], 
+    [CZONA2].[E_APARTA] AS [E_APARTA], 
+    [CZONA2].[E_LETRAS] AS [E_LETRAS], 
+    [CZONA2].[E_CXC] AS [E_CXC], 
+    [CZONA2].[E_PAQUETE] AS [E_PAQUETE], 
+    [CZONA2].[E_PRIMA] AS [E_PRIMA], 
+    [CZONA2].[E_CONTADO] AS [E_CONTADO], 
+    [CZONA2].[CZ_RTN] AS [CZ_RTN], 
+    [CZONA2].[cod_correla] AS [cod_correla]
+    FROM [dbo].[CZONA2] AS [CZONA2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EXIBOD" EntityType="Self.EXIBOD" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EXIBOD].[Cod_product] AS [Cod_product], 
+    [EXIBOD].[CODIGO_BODE] AS [CODIGO_BODE], 
+    [EXIBOD].[TIPO_BODEGA] AS [TIPO_BODEGA], 
+    [EXIBOD].[Icod_tipo] AS [Icod_tipo], 
+    [EXIBOD].[enuevocodi] AS [enuevocodi], 
+    [EXIBOD].[EXI_DATE] AS [EXI_DATE], 
+    [EXIBOD].[EXI_BOD] AS [EXI_BOD], 
+    [EXIBOD].[exi_fina] AS [exi_fina], 
+    [EXIBOD].[reserva] AS [reserva], 
+    [EXIBOD].[exist_cierr] AS [exist_cierr], 
+    [EXIBOD].[exisf_cierr] AS [exisf_cierr], 
+    [EXIBOD].[fecha_cierr] AS [fecha_cierr], 
+    [EXIBOD].[EXI_CAPTURA] AS [EXI_CAPTURA], 
+    [EXIBOD].[EXI_CONGELA] AS [EXI_CONGELA], 
+    [EXIBOD].[EXI_FECHA] AS [EXI_FECHA], 
+    [EXIBOD].[exi_fecong] AS [exi_fecong], 
+    [EXIBOD].[exi_horcap] AS [exi_horcap], 
+    [EXIBOD].[EXI_DIGITO] AS [EXI_DIGITO]
+    FROM [dbo].[EXIBOD] AS [EXIBOD]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PRODUCTO].[Cod_product] AS [Cod_product], 
+    [PRODUCTO].[Descripcion] AS [Descripcion], 
+    [PRODUCTO].[SINCOMISION] AS [SINCOMISION], 
+    [PRODUCTO].[Codigo_area] AS [Codigo_area], 
+    [PRODUCTO].[cod_subgru] AS [cod_subgru], 
+    [PRODUCTO].[pnomsubgru] AS [pnomsubgru], 
+    [PRODUCTO].[REFERENCIA] AS [REFERENCIA], 
+    [PRODUCTO].[cod_barra] AS [cod_barra], 
+    [PRODUCTO].[especifi] AS [especifi], 
+    [PRODUCTO].[UNI_PRESEN] AS [UNI_PRESEN], 
+    [PRODUCTO].[PROD_IMP] AS [PROD_IMP], 
+    [PRODUCTO].[prod_impues] AS [prod_impues], 
+    [PRODUCTO].[pprovee] AS [pprovee], 
+    [PRODUCTO].[Precio_deta] AS [Precio_deta], 
+    [PRODUCTO].[PrecioA] AS [PrecioA], 
+    [PRODUCTO].[Costo_clave] AS [Costo_clave], 
+    [PRODUCTO].[Costo_unita] AS [Costo_unita], 
+    [PRODUCTO].[FCOSTO_UNIT] AS [FCOSTO_UNIT], 
+    [PRODUCTO].[Punto_minim] AS [Punto_minim], 
+    [PRODUCTO].[Punto_reord] AS [Punto_reord], 
+    [PRODUCTO].[Punto_maxim] AS [Punto_maxim], 
+    [PRODUCTO].[Existencia] AS [Existencia], 
+    [PRODUCTO].[PROD_STATUS] AS [PROD_STATUS], 
+    [PRODUCTO].[FEXISTENCIA] AS [FEXISTENCIA], 
+    [PRODUCTO].[Aumento] AS [Aumento], 
+    [PRODUCTO].[Exifis] AS [Exifis], 
+    [PRODUCTO].[Exifis2] AS [Exifis2], 
+    [PRODUCTO].[EXISUC] AS [EXISUC], 
+    [PRODUCTO].[BOD1] AS [BOD1], 
+    [PRODUCTO].[BOD2] AS [BOD2], 
+    [PRODUCTO].[bodenf1] AS [bodenf1], 
+    [PRODUCTO].[bodenf2] AS [bodenf2], 
+    [PRODUCTO].[COSTO] AS [COSTO], 
+    [PRODUCTO].[DOLARCOSTO] AS [DOLARCOSTO], 
+    [PRODUCTO].[ucosto] AS [ucosto], 
+    [PRODUCTO].[OPERAR] AS [OPERAR], 
+    [PRODUCTO].[PRODESC1] AS [PRODESC1], 
+    [PRODUCTO].[PRODESC2] AS [PRODESC2], 
+    [PRODUCTO].[PRODESC3] AS [PRODESC3], 
+    [PRODUCTO].[BODENT] AS [BODENT], 
+    [PRODUCTO].[pcatalo] AS [pcatalo], 
+    [PRODUCTO].[prod_usuari] AS [prod_usuari], 
+    [PRODUCTO].[prod_termin] AS [prod_termin], 
+    [PRODUCTO].[exisgf_cier] AS [exisgf_cier], 
+    [PRODUCTO].[existg_cier] AS [existg_cier], 
+    [PRODUCTO].[costog_cier] AS [costog_cier], 
+    [PRODUCTO].[costgf_cier] AS [costgf_cier], 
+    [PRODUCTO].[precioC] AS [precioC], 
+    [PRODUCTO].[precio_back] AS [precio_back], 
+    [PRODUCTO].[precioD] AS [precioD], 
+    [PRODUCTO].[prod_f_cal] AS [prod_f_cal], 
+    [PRODUCTO].[prod_n_cal] AS [prod_n_cal], 
+    [PRODUCTO].[nuevocodi] AS [nuevocodi], 
+    [PRODUCTO].[BOD3] AS [BOD3], 
+    [PRODUCTO].[CAPTURO3] AS [CAPTURO3], 
+    [PRODUCTO].[EXIFIS3] AS [EXIFIS3], 
+    [PRODUCTO].[BODENF3] AS [BODENF3], 
+    [PRODUCTO].[PROD_PROVE] AS [PROD_PROVE], 
+    [PRODUCTO].[PROD_FECHU] AS [PROD_FECHU], 
+    [PRODUCTO].[costo_INICI] AS [costo_INICI], 
+    [PRODUCTO].[produb_codi] AS [produb_codi], 
+    [PRODUCTO].[precioB] AS [precioB], 
+    [PRODUCTO].[PROD_PARTAR] AS [PROD_PARTAR], 
+    [PRODUCTO].[costo_desar] AS [costo_desar], 
+    [PRODUCTO].[PROD_UBICAC] AS [PROD_UBICAC], 
+    [PRODUCTO].[PROD_INCA] AS [PROD_INCA], 
+    [PRODUCTO].[PROD_INCB] AS [PROD_INCB], 
+    [PRODUCTO].[PROD_INCC] AS [PROD_INCC], 
+    [PRODUCTO].[utilidad] AS [utilidad], 
+    [PRODUCTO].[Precio_mayo] AS [Precio_mayo]
+    FROM [dbo].[PRODUCTO] AS [PRODUCTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SERVICIO" EntityType="Self.SERVICIO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SERVICIO].[serv_tipo] AS [serv_tipo], 
+    [SERVICIO].[serv_codigo] AS [serv_codigo], 
+    [SERVICIO].[serv_descri] AS [serv_descri], 
+    [SERVICIO].[serv_cant] AS [serv_cant], 
+    [SERVICIO].[serv_valor] AS [serv_valor], 
+    [SERVICIO].[serv_codinv] AS [serv_codinv], 
+    [SERVICIO].[serv_valoje] AS [serv_valoje], 
+    [SERVICIO].[serv_precio] AS [serv_precio], 
+    [SERVICIO].[serv_empre] AS [serv_empre], 
+    [SERVICIO].[SERV_PMAX] AS [SERV_PMAX], 
+    [SERVICIO].[SERV_PMINI] AS [SERV_PMINI]
+    FROM [dbo].[SERVICIO] AS [SERVICIO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_CONTRATO" EntityType="Self.View_CONTRATO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_CONTRATO].[Codigo_clie] AS [Codigo_clie], 
+    [View_CONTRATO].[Nombre_clie] AS [Nombre_clie], 
+    [View_CONTRATO].[identidad] AS [identidad], 
+    [View_CONTRATO].[Dir_cliente] AS [Dir_cliente], 
+    [View_CONTRATO].[Saldo_actua] AS [Saldo_actua], 
+    [View_CONTRATO].[Cod_zona] AS [Cod_zona], 
+    [View_CONTRATO].[semana] AS [semana], 
+    [View_CONTRATO].[diavisita] AS [diavisita], 
+    [View_CONTRATO].[secuencia] AS [secuencia], 
+    [View_CONTRATO].[latitud] AS [latitud], 
+    [View_CONTRATO].[longitud] AS [longitud], 
+    [View_CONTRATO].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [View_CONTRATO].[CONT_FECHA] AS [CONT_FECHA], 
+    [View_CONTRATO].[CONT_DESCRI] AS [CONT_DESCRI], 
+    [View_CONTRATO].[CONT_VALOR] AS [CONT_VALOR], 
+    [View_CONTRATO].[CONT_CREDIT] AS [CONT_CREDIT], 
+    [View_CONTRATO].[CONT_PRIMA] AS [CONT_PRIMA], 
+    [View_CONTRATO].[CONT_NUMCUO] AS [CONT_NUMCUO], 
+    [View_CONTRATO].[CONT_VALCUO] AS [CONT_VALCUO], 
+    [View_CONTRATO].[CONT_CLIENT] AS [CONT_CLIENT], 
+    [View_CONTRATO].[cont_vended] AS [cont_vended], 
+    [View_CONTRATO].[cont_cobrad] AS [cont_cobrad], 
+    [View_CONTRATO].[CONT_SERVI] AS [CONT_SERVI], 
+    [View_CONTRATO].[CONT_CANTI] AS [CONT_CANTI], 
+    [View_CONTRATO].[CONT_COMPA] AS [CONT_COMPA], 
+    [View_CONTRATO].[CONT_CANT2] AS [CONT_CANT2], 
+    [View_CONTRATO].[CONT_SERV2] AS [CONT_SERV2], 
+    [View_CONTRATO].[CONT_CANT3] AS [CONT_CANT3], 
+    [View_CONTRATO].[CONT_SERV3] AS [CONT_SERV3], 
+    [View_CONTRATO].[CONT_SVAL1] AS [CONT_SVAL1], 
+    [View_CONTRATO].[CONT_SVAL2] AS [CONT_SVAL2], 
+    [View_CONTRATO].[CONT_SVAL3] AS [CONT_SVAL3], 
+    [View_CONTRATO].[CONT_LIDER] AS [CONT_LIDER], 
+    [View_CONTRATO].[CONT_CANT4] AS [CONT_CANT4], 
+    [View_CONTRATO].[CONT_SERV4] AS [CONT_SERV4], 
+    [View_CONTRATO].[CONT_SVAL4] AS [CONT_SVAL4], 
+    [View_CONTRATO].[FECHACM] AS [FECHACM]
+    FROM [dbo].[View_CONTRATO] AS [View_CONTRATO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_CORRELA" EntityType="Self.View_CORRELA" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_CORRELA].[cveage] AS [cveage], 
+    [View_CORRELA].[nomage] AS [nomage], 
+    [View_CORRELA].[cod_zona] AS [cod_zona], 
+    [View_CORRELA].[Nombre_zona] AS [Nombre_zona], 
+    [View_CORRELA].[E_RTN] AS [E_RTN], 
+    [View_CORRELA].[numser] AS [numser], 
+    [View_CORRELA].[correla] AS [correla], 
+    [View_CORRELA].[CIERRE] AS [CIERRE], 
+    [View_CORRELA].[liquida] AS [liquida]
+    FROM [dbo].[View_CORRELA] AS [View_CORRELA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_CZONA" EntityType="Self.View_CZONA" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_CZONA].[Cod_zona] AS [Cod_zona], 
+    [View_CZONA].[Nombre_zona] AS [Nombre_zona], 
+    [View_CZONA].[descri_zona] AS [descri_zona]
+    FROM [dbo].[View_CZONA] AS [View_CZONA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_EXIBOD" EntityType="Self.View_EXIBOD" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_EXIBOD].[Cod_product] AS [Cod_product], 
+    [View_EXIBOD].[serv_descri] AS [serv_descri], 
+    [View_EXIBOD].[CODIGO_BODE] AS [CODIGO_BODE], 
+    [View_EXIBOD].[TIPO_BODEGA] AS [TIPO_BODEGA], 
+    [View_EXIBOD].[Icod_tipo] AS [Icod_tipo], 
+    [View_EXIBOD].[enuevocodi] AS [enuevocodi], 
+    [View_EXIBOD].[EXI_DATE] AS [EXI_DATE], 
+    [View_EXIBOD].[EXI_BOD] AS [EXI_BOD], 
+    [View_EXIBOD].[exi_fina] AS [exi_fina], 
+    [View_EXIBOD].[reserva] AS [reserva], 
+    [View_EXIBOD].[exist_cierr] AS [exist_cierr], 
+    [View_EXIBOD].[exisf_cierr] AS [exisf_cierr], 
+    [View_EXIBOD].[fecha_cierr] AS [fecha_cierr], 
+    [View_EXIBOD].[EXI_CAPTURA] AS [EXI_CAPTURA], 
+    [View_EXIBOD].[EXI_CONGELA] AS [EXI_CONGELA], 
+    [View_EXIBOD].[EXI_FECHA] AS [EXI_FECHA], 
+    [View_EXIBOD].[exi_fecong] AS [exi_fecong], 
+    [View_EXIBOD].[exi_horcap] AS [exi_horcap], 
+    [View_EXIBOD].[EXI_DIGITO] AS [EXI_DIGITO], 
+    [View_EXIBOD].[serv_tipo] AS [serv_tipo], 
+    [View_EXIBOD].[serv_codigo] AS [serv_codigo], 
+    [View_EXIBOD].[serv_precio] AS [serv_precio], 
+    [View_EXIBOD].[serv_empre] AS [serv_empre], 
+    [View_EXIBOD].[SERV_PMAX] AS [SERV_PMAX], 
+    [View_EXIBOD].[SERV_PMINI] AS [SERV_PMINI]
+    FROM [dbo].[View_EXIBOD] AS [View_EXIBOD]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_PRODUCTOS" EntityType="Self.View_PRODUCTOS" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_PRODUCTOS].[serv_tipo] AS [serv_tipo], 
+    [View_PRODUCTOS].[serv_codigo] AS [serv_codigo], 
+    [View_PRODUCTOS].[Cod_product] AS [Cod_product], 
+    [View_PRODUCTOS].[serv_descri] AS [serv_descri], 
+    [View_PRODUCTOS].[serv_precio] AS [serv_precio], 
+    [View_PRODUCTOS].[serv_empre] AS [serv_empre]
+    FROM [dbo].[View_PRODUCTOS] AS [View_PRODUCTOS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Vtas" EntityType="Self.View_Vtas" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Vtas].[Codigo_clie] AS [Codigo_clie], 
+    [View_Vtas].[Nombre_clie] AS [Nombre_clie], 
+    [View_Vtas].[identidad] AS [identidad], 
+    [View_Vtas].[tributario] AS [tributario], 
+    [View_Vtas].[cl_fecha] AS [cl_fecha], 
+    [View_Vtas].[CL_STATUS] AS [CL_STATUS], 
+    [View_Vtas].[CL_COMPANIA] AS [CL_COMPANIA], 
+    [View_Vtas].[Dir_cliente] AS [Dir_cliente], 
+    [View_Vtas].[Dir2_client] AS [Dir2_client], 
+    [View_Vtas].[Dir3_client] AS [Dir3_client], 
+    [View_Vtas].[Dir4_client] AS [Dir4_client], 
+    [View_Vtas].[Dir5_client] AS [Dir5_client], 
+    [View_Vtas].[Telef_clien] AS [Telef_clien], 
+    [View_Vtas].[CL_CELULAR] AS [CL_CELULAR], 
+    [View_Vtas].[CL_EMAIL] AS [CL_EMAIL], 
+    [View_Vtas].[cl_conyunom] AS [cl_conyunom], 
+    [View_Vtas].[cl_conyutel] AS [cl_conyutel], 
+    [View_Vtas].[cl_conyudir] AS [cl_conyudir], 
+    [View_Vtas].[CL_PARENt] AS [CL_PARENt], 
+    [View_Vtas].[Cod_zona] AS [Cod_zona], 
+    [View_Vtas].[CL_VENDEDOR] AS [CL_VENDEDOR], 
+    [View_Vtas].[cl_usuario] AS [cl_usuario], 
+    [View_Vtas].[cl_terminal] AS [cl_terminal], 
+    [View_Vtas].[Expr2] AS [Expr2], 
+    [View_Vtas].[Expr3] AS [Expr3], 
+    [View_Vtas].[secuencia] AS [secuencia], 
+    [View_Vtas].[diavisita] AS [diavisita], 
+    [View_Vtas].[semana] AS [semana], 
+    [View_Vtas].[Expr4] AS [Expr4], 
+    [View_Vtas].[Expr5] AS [Expr5], 
+    [View_Vtas].[departa] AS [departa], 
+    [View_Vtas].[municipio] AS [municipio], 
+    [View_Vtas].[circuito] AS [circuito], 
+    [View_Vtas].[Expr6] AS [Expr6], 
+    [View_Vtas].[Expr7] AS [Expr7], 
+    [View_Vtas].[Expr8] AS [Expr8], 
+    [View_Vtas].[Expr9] AS [Expr9], 
+    [View_Vtas].[Expr10] AS [Expr10], 
+    [View_Vtas].[Expr11] AS [Expr11], 
+    [View_Vtas].[Expr12] AS [Expr12], 
+    [View_Vtas].[Expr13] AS [Expr13], 
+    [View_Vtas].[Expr14] AS [Expr14], 
+    [View_Vtas].[Expr15] AS [Expr15], 
+    [View_Vtas].[Expr16] AS [Expr16], 
+    [View_Vtas].[Expr17] AS [Expr17], 
+    [View_Vtas].[Expr18] AS [Expr18], 
+    [View_Vtas].[Expr19] AS [Expr19], 
+    [View_Vtas].[Expr20] AS [Expr20], 
+    [View_Vtas].[Expr21] AS [Expr21], 
+    [View_Vtas].[Expr22] AS [Expr22], 
+    [View_Vtas].[Expr23] AS [Expr23], 
+    [View_Vtas].[Expr24] AS [Expr24], 
+    [View_Vtas].[Expr25] AS [Expr25], 
+    [View_Vtas].[Expr26] AS [Expr26], 
+    [View_Vtas].[Expr27] AS [Expr27], 
+    [View_Vtas].[Expr28] AS [Expr28], 
+    [View_Vtas].[Expr29] AS [Expr29], 
+    [View_Vtas].[Expr30] AS [Expr30], 
+    [View_Vtas].[Expr31] AS [Expr31], 
+    [View_Vtas].[Expr32] AS [Expr32], 
+    [View_Vtas].[Expr33] AS [Expr33], 
+    [View_Vtas].[Expr34] AS [Expr34], 
+    [View_Vtas].[Expr35] AS [Expr35], 
+    [View_Vtas].[Expr36] AS [Expr36], 
+    [View_Vtas].[Expr37] AS [Expr37], 
+    [View_Vtas].[Expr38] AS [Expr38], 
+    [View_Vtas].[Expr39] AS [Expr39], 
+    [View_Vtas].[Expr40] AS [Expr40], 
+    [View_Vtas].[Expr41] AS [Expr41], 
+    [View_Vtas].[Expr42] AS [Expr42], 
+    [View_Vtas].[Expr43] AS [Expr43], 
+    [View_Vtas].[Expr44] AS [Expr44], 
+    [View_Vtas].[Expr45] AS [Expr45], 
+    [View_Vtas].[Expr46] AS [Expr46], 
+    [View_Vtas].[Expr47] AS [Expr47], 
+    [View_Vtas].[Expr48] AS [Expr48], 
+    [View_Vtas].[Expr49] AS [Expr49], 
+    [View_Vtas].[Expr50] AS [Expr50], 
+    [View_Vtas].[Expr51] AS [Expr51], 
+    [View_Vtas].[Expr52] AS [Expr52], 
+    [View_Vtas].[Expr53] AS [Expr53], 
+    [View_Vtas].[Expr54] AS [Expr54], 
+    [View_Vtas].[Expr55] AS [Expr55], 
+    [View_Vtas].[CONT_NUMERO] AS [CONT_NUMERO], 
+    [View_Vtas].[CONT_FECHA] AS [CONT_FECHA], 
+    [View_Vtas].[CONT_VALOR] AS [CONT_VALOR], 
+    [View_Vtas].[CONT_CREDIT] AS [CONT_CREDIT], 
+    [View_Vtas].[CONT_PRIMA] AS [CONT_PRIMA], 
+    [View_Vtas].[CONT_NUMCUO] AS [CONT_NUMCUO], 
+    [View_Vtas].[CONT_VALCUO] AS [CONT_VALCUO], 
+    [View_Vtas].[cont_vended] AS [cont_vended], 
+    [View_Vtas].[CONT_SERVI] AS [CONT_SERVI], 
+    [View_Vtas].[CONT_CANTI] AS [CONT_CANTI], 
+    [View_Vtas].[CONT_COMPA] AS [CONT_COMPA], 
+    [View_Vtas].[CONT_CANT2] AS [CONT_CANT2], 
+    [View_Vtas].[CONT_SERV2] AS [CONT_SERV2], 
+    [View_Vtas].[CONT_CANT3] AS [CONT_CANT3], 
+    [View_Vtas].[CONT_SERV3] AS [CONT_SERV3], 
+    [View_Vtas].[CONT_CANT4] AS [CONT_CANT4], 
+    [View_Vtas].[CONT_SERV4] AS [CONT_SERV4], 
+    [View_Vtas].[CONT_SVAL1] AS [CONT_SVAL1], 
+    [View_Vtas].[CONT_SVAL2] AS [CONT_SVAL2], 
+    [View_Vtas].[CONT_SVAL3] AS [CONT_SVAL3], 
+    [View_Vtas].[CONT_SVAL4] AS [CONT_SVAL4], 
+    [View_Vtas].[VENTA] AS [VENTA], 
+    [View_Vtas].[TEMPO] AS [TEMPO], 
+    [View_Vtas].[CEDULA] AS [CEDULA], 
+    [View_Vtas].[SERVI1DES] AS [SERVI1DES], 
+    [View_Vtas].[SERVI2DES] AS [SERVI2DES], 
+    [View_Vtas].[SERVI3DES] AS [SERVI3DES], 
+    [View_Vtas].[SERVI4DES] AS [SERVI4DES], 
+    [View_Vtas].[SERVIEMPRE] AS [SERVIEMPRE], 
+    [View_Vtas].[NOMCLIE] AS [NOMCLIE], 
+    [View_Vtas].[CIERRE] AS [CIERRE], 
+    [View_Vtas].[LIQUIDA] AS [LIQUIDA], 
+    [View_Vtas].[FIRMA] AS [FIRMA], 
+    [View_Vtas].[FIRMA2] AS [FIRMA2], 
+    [View_Vtas].[Hora] AS [Hora], 
+    [View_Vtas].[FechaDoc] AS [FechaDoc]
+    FROM [dbo].[View_Vtas] AS [View_Vtas]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

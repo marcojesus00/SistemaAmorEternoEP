@@ -37,6 +37,22 @@ Sistema
  Devuelve el objeto de registro Asp.
  </summary>
 </member>
+<member name="T:Sistema.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Sistema.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Sistema.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
 <member name="F:Sistema.CajaRecibos._form1">
 <summary>
 Control form1.
@@ -6853,6 +6869,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.principal._TrasladoP">
 <summary>
 TrasladoP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._MenuProduccion">
+<summary>
+MenuProduccion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButton8">
+<summary>
+LinkButton8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButton9">
+<summary>
+LinkButton9 control.
 </summary>
 <remarks>
 Auto-generated field.

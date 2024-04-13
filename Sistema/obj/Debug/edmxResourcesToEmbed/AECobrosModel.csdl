@@ -1,0 +1,1510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AECobrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="Saldo_Result">
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="Saldo" Type="Decimal" Precision="19" Scale="4" />
+  </ComplexType>
+  <EntityType Name="CLIENTESOLD">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="CTIPOCLI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clientenp" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_listpre" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="cod_compani" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clisucursal" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="mayorista" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_NIVEL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cl_descto" Type="Int16" />
+    <Property Name="cl_fecha" Type="DateTime" Precision="3" />
+    <Property Name="CL_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_COMPANIA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Dir_cliente" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir2_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir3_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir4_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Limite_cred" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Saldo_actua" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ESALDO_ACTU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CSALDO_ACTU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ISALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="catalogo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Telef_clien" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="representan" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="identidad" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="tributario" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="cl_usuario" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cl_terminal" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_client" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CUECLIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CL_DESCFAC" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_MORA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_CAPITALI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_FAX" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CL_VENDEDOR" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CL_CELULAR" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CL_EXENTO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyunom" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyutel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyudir" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="CL_FECINAC" Type="DateTime" Precision="3" />
+    <Property Name="cl_fecobra" Type="DateTime" Precision="3" />
+    <Property Name="cl_stat2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_PARENt" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Dir5_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CL_2conynom" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2conytel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2condire" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2parent" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="SUBIVIEJO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_OFICINA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="cl_reactivo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="semana" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="diavisita" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="secuencia" Type="Decimal" Precision="8" Scale="0" />
+    <Property Name="latitud" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="longitud" Type="Decimal" Precision="18" Scale="15" />
+  </EntityType>
+  <EntityType Name="CONTRATO1">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="DateTime" Precision="3" />
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESCRI" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC2" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC3" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_VALOR" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_CREDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_PRIMA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_NUMCUO" Type="Int16" />
+    <Property Name="CONT_VALCUO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_BENEFI" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_BENFEC" Type="DateTime" Precision="3" />
+    <Property Name="CONT_BENPAR" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLIENT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SUPERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FSUPER" Type="DateTime" Precision="3" />
+    <Property Name="cont_vended" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="cont_cobrad" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_FECAM" Type="DateTime" Precision="3" />
+    <Property Name="CONT_CJARD" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLETRA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNUM" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SERVI" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANTI" Type="Int16" />
+    <Property Name="CONT_FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_COMPA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANT2" Type="Int16" />
+    <Property Name="CONT_SERV2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANT3" Type="Int16" />
+    <Property Name="CONT_SERV3" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FOT2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT4" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT5" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT6" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_CJAR2" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CJAR3" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLET2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLET3" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNU2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNU3" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CSUPER" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FECPRO" Type="DateTime" Precision="3" />
+    <Property Name="CONT_SVAL1" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SVAL2" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SVAL3" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_RFECHA" Type="DateTime" Precision="3" />
+    <Property Name="CONT_RHORA" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FECTER" Type="DateTime" Precision="3" />
+    <Property Name="CONT_HORTER" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NOTAS" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+    <Property Name="SUBIVIEJO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONTSUBIFI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_LIDER" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Serie">
+    <Key>
+      <PropertyRef Name="Serie1" />
+    </Key>
+    <Property Name="DocEntry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodigoArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Serie1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AE_CZONA">
+    <Key>
+      <PropertyRef Name="Cod_zona" />
+    </Key>
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_zona" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="E_ZONAS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_VENTAS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_DEVOLUC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_VENTAS2" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ZON_NC" Type="Int32" />
+    <Property Name="ZON_ND" Type="Int32" />
+    <Property Name="descri_zona" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="E_CAJA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_APARTA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_LETRAS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_PRIMA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_PAQUETE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_CXC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_CONTADO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="E_RTN" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Almacen">
+    <Key>
+      <PropertyRef Name="DocEntry" />
+    </Key>
+    <Property Name="DocEntry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Articulo">
+    <Key>
+      <PropertyRef Name="DocEntry" />
+    </Key>
+    <Property Name="DocEntry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EstadisticaVisitasDetalle">
+    <Key>
+      <PropertyRef Name="Codigo_Cliente" />
+      <PropertyRef Name="Cobrado" />
+      <PropertyRef Name="Primer_Visita" />
+      <PropertyRef Name="Ultima_Visita" />
+      <PropertyRef Name="Ultimo_Cobro" />
+      <PropertyRef Name="Recibos" />
+      <PropertyRef Name="Visitados" />
+      <PropertyRef Name="Cobrador" />
+    </Key>
+    <Property Name="Codigo_Cliente" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_Cliente" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="Saldo_Actual" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Cobrado" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Primer_Visita" Type="String" MaxLength="41" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ultima_Visita" Type="String" MaxLength="41" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ultimo_Cobro" Type="String" MaxLength="39" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Recibos" Type="Int32" Nullable="false" />
+    <Property Name="Visitados" Type="Int32" Nullable="false" />
+    <Property Name="Cobrador" Type="String" MaxLength="46" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Lider" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="Zona" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LogProcesado">
+    <Key>
+      <PropertyRef Name="IdLine" />
+    </Key>
+    <Property Name="IdLine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Hora" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="CodGestor" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Liquida" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="TotalProcesado" Type="Double" />
+  </EntityType>
+  <EntityType Name="MovArticulo">
+    <Key>
+      <PropertyRef Name="DocEntry" />
+      <PropertyRef Name="Fecha" />
+      <PropertyRef Name="CodigoAlmacen" />
+      <PropertyRef Name="CodigoArticulo" />
+      <PropertyRef Name="Codigo_Cobr" />
+    </Key>
+    <Property Name="DocEntry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CodigoAlmacen" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoArticulo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Codigo_Cobr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Comentario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Alphabetical_list_of_product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Discontinued" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SupplierID" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="QuantityPerUnit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="UnitsInStock" Type="Int16" />
+    <Property Name="UnitsOnOrder" Type="Int16" />
+    <Property Name="ReorderLevel" Type="Int16" />
+    <Property Name="Discontinued" Type="Boolean" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category_Sales_for_1997">
+    <Key>
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CategorySales" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="ClienteContra">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="semana" />
+      <PropertyRef Name="diavisita" />
+      <PropertyRef Name="secuencia" />
+      <PropertyRef Name="latitud" />
+      <PropertyRef Name="longitud" />
+      <PropertyRef Name="CONT_SUPERV" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="identidad" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="DateTime" Precision="3" />
+    <Property Name="CONT_DESCRI" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC2" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC3" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_VALOR" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_CREDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_PRIMA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_NUMCUO" Type="Int16" />
+    <Property Name="CONT_VALCUO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cont_vended" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="Saldo_actua" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Dir_cliente" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir2_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir3_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir4_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir5_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Telef_clien" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CL_VENDEDOR" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="semana" Type="Int16" Nullable="false" />
+    <Property Name="diavisita" Type="Int16" Nullable="false" />
+    <Property Name="secuencia" Type="Int32" Nullable="false" />
+    <Property Name="latitud" Type="Decimal" Precision="17" Scale="15" Nullable="false" />
+    <Property Name="longitud" Type="Decimal" Precision="17" Scale="15" Nullable="false" />
+    <Property Name="CONT_SUPERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FSUPER" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ClienteContra2">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="semana" />
+      <PropertyRef Name="diavisita" />
+      <PropertyRef Name="secuencia" />
+      <PropertyRef Name="latitud" />
+      <PropertyRef Name="longitud" />
+      <PropertyRef Name="CONT_SUPERV" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="identidad" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="DateTime" Precision="3" />
+    <Property Name="CONT_DESCRI" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC2" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC3" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_VALOR" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_CREDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_PRIMA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_NUMCUO" Type="Int16" />
+    <Property Name="CONT_VALCUO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cont_vended" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="Saldo_actua" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Dir_cliente" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir2_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir3_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir4_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir5_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Telef_clien" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CL_VENDEDOR" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="semana" Type="Int16" Nullable="false" />
+    <Property Name="diavisita" Type="Int16" Nullable="false" />
+    <Property Name="secuencia" Type="Int32" Nullable="false" />
+    <Property Name="latitud" Type="Decimal" Precision="17" Scale="15" Nullable="false" />
+    <Property Name="longitud" Type="Decimal" Precision="17" Scale="15" Nullable="false" />
+    <Property Name="CONT_SUPERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FSUPER" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="Cod_zona" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="CTIPOCLI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clientenp" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_listpre" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="cod_compani" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clisucursal" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="mayorista" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_NIVEL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cl_descto" Type="Int16" />
+    <Property Name="cl_fecha" Type="DateTime" Precision="3" />
+    <Property Name="CL_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_COMPANIA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Dir_cliente" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir2_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir3_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir4_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Limite_cred" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Saldo_actua" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ESALDO_ACTU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CSALDO_ACTU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ISALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="catalogo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Telef_clien" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="representan" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="identidad" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="tributario" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="cl_usuario" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cl_terminal" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tipo_client" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CUECLIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CL_DESCFAC" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_MORA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_CAPITALI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_FAX" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CL_VENDEDOR" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CL_CELULAR" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CL_EXENTO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyunom" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyutel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="cl_conyudir" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="CL_FECINAC" Type="DateTime" Precision="3" />
+    <Property Name="cl_fecobra" Type="DateTime" Precision="3" />
+    <Property Name="cl_stat2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CL_PARENt" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Dir5_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CL_2conynom" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2conytel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2condire" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="cl_2parent" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="SUBIVIEJO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CLIENTEREDU" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="CL_EMAIL" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="VZCODIGO" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CL_COMENT" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="cl_usumodi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="longitud" Type="Decimal" Precision="17" Scale="15" />
+    <Property Name="latitud" Type="Decimal" Precision="17" Scale="15" />
+    <Property Name="secuencia" Type="Int32" />
+    <Property Name="diavisita" Type="Int16" />
+    <Property Name="semana" Type="Int16" />
+  </EntityType>
+  <EntityType Name="COBRADOR">
+    <Key>
+      <PropertyRef Name="codigo_cobr" />
+    </Key>
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="COBR_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CONTRATO">
+    <Key>
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="SUBIVIEJO" />
+      <PropertyRef Name="CONT_SUBIFI" />
+    </Key>
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="DateTime" Precision="3" />
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESCRI" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC2" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC3" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_VALOR" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_CREDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_PRIMA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_NUMCUO" Type="Int16" />
+    <Property Name="CONT_VALCUO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_BENEFI" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_BENFEC" Type="DateTime" Precision="3" />
+    <Property Name="CONT_BENPAR" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLIENT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SUPERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FSUPER" Type="DateTime" Precision="3" />
+    <Property Name="cont_vended" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="cont_cobrad" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_FECAM" Type="DateTime" Precision="3" />
+    <Property Name="CONT_CJARD" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLETRA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNUM" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_SERVI" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANTI" Type="Int16" />
+    <Property Name="CONT_FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_COMPA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANT2" Type="Int16" />
+    <Property Name="CONT_SERV2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CANT3" Type="Int16" />
+    <Property Name="CONT_SERV3" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FOT2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT4" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT5" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_FOT6" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CONT_CJAR2" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CJAR3" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLET2" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CLET3" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNU2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CNU3" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_CSUPER" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FECPRO" Type="DateTime" Precision="3" />
+    <Property Name="CONT_SVAL1" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SVAL2" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SVAL3" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_RFECHA" Type="DateTime" Precision="3" />
+    <Property Name="CONT_RHORA" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_FECTER" Type="DateTime" Precision="3" />
+    <Property Name="CONT_HORTER" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NOTAS" Type="String" MaxLength="180" FixedLength="true" Unicode="false" />
+    <Property Name="SUBIVIEJO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_SUBIFI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_LIDER" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Current_Product_List">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer_and_Suppliers_by_City">
+    <Key>
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="Relationship" />
+    </Key>
+    <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Relationship" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CZONA">
+    <Key>
+      <PropertyRef Name="cod_zona" />
+    </Key>
+    <Property Name="cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="descri_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="e_rtn" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="CustomerName" />
+      <PropertyRef Name="Salesperson" />
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="ShipperName" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="UnitPrice" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="Discount" />
+    </Key>
+    <Property Name="ShipName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ShipAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="ShipCity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ShipRegion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ShipPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ShipCountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Salesperson" Type="String" MaxLength="31" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="RequiredDate" Type="DateTime" Precision="3" />
+    <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+    <Property Name="ShipperName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="Discount" Type="Single" Nullable="false" />
+    <Property Name="ExtendedPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Freight" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Order_Details_Extended">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="UnitPrice" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="Discount" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="Discount" Type="Single" Nullable="false" />
+    <Property Name="ExtendedPrice" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Order_Subtotal">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="Subtotal" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Orders_Qry">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="RequiredDate" Type="DateTime" Precision="3" />
+    <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+    <Property Name="ShipVia" Type="Int32" />
+    <Property Name="Freight" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ShipName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ShipAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="ShipCity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ShipRegion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ShipPostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ShipCountry" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Product_Sales_for_1997">
+    <Key>
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductSales" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Products_Above_Average_Price">
+    <Key>
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Products_by_Category">
+    <Key>
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Discontinued" />
+    </Key>
+    <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuantityPerUnit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UnitsInStock" Type="Int16" />
+    <Property Name="Discontinued" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RECIBOSDIA">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="Num_doc" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Name="Tdoc" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Fecha_recib" Type="DateTime" Precision="3" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="85" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="COBRADO_EN" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MARCA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LATITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="LONGITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="rterminal" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Sales_by_Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductSales" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Sales_Totals_by_Amount">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="SaleAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Summary_of_Sales_by_Quarter">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="Subtotal" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Summary_of_Sales_by_Year">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="ShippedDate" Type="DateTime" Precision="3" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="Subtotal" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="View_ACTUACORRELA">
+    <Key>
+      <PropertyRef Name="A" />
+      <PropertyRef Name="B" />
+    </Key>
+    <Property Name="EMPRESA" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="NUMERO" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="A" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="B" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_CLIENTENS">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+      <PropertyRef Name="Cod_zona" />
+      <PropertyRef Name="semana" />
+      <PropertyRef Name="diavisita" />
+      <PropertyRef Name="secuencia" />
+      <PropertyRef Name="latitud" />
+      <PropertyRef Name="longitud" />
+      <PropertyRef Name="CONT_SUPERV" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="identidad" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FECHA" Type="DateTime" Precision="3" />
+    <Property Name="CONT_DESCRI" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC2" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_DESC3" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_VALOR" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_CREDIT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONT_PRIMA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_NUMCUO" Type="Int16" />
+    <Property Name="CONT_VALCUO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CONT_SALDO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cont_vended" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="cl_cobrador" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="Saldo_actua" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Dir_cliente" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir2_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir3_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir4_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Dir5_client" Type="String" MaxLength="80" FixedLength="true" Unicode="false" />
+    <Property Name="Telef_clien" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CL_VENDEDOR" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="semana" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="diavisita" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="secuencia" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="latitud" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
+    <Property Name="longitud" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
+    <Property Name="CONT_SUPERV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CONT_FSUPER" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="View_Cobradores">
+    <Key>
+      <PropertyRef Name="codigo_cobr" />
+    </Key>
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="COBR_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_CORRELA">
+    <Key>
+      <PropertyRef Name="cod_correla" />
+    </Key>
+    <Property Name="cveage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="nomage" Type="String" MaxLength="155" FixedLength="false" Unicode="true" />
+    <Property Name="cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="nombre_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cod_correla" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numser" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="correla" Type="Decimal" Precision="7" Scale="0" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_CZONA">
+    <Key>
+      <PropertyRef Name="cod_zona" />
+      <PropertyRef Name="cod_correla" />
+    </Key>
+    <Property Name="cod_zona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="descri_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cod_correla" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="e_rtn" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_GRID1">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Name="Fecha_recib" Type="DateTime" Precision="3" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="85" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="descri_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MARCA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LATITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="LONGITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="rterminal" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_GRID11">
+    <Key>
+      <PropertyRef Name="Codigo_clie" />
+      <PropertyRef Name="CONT_NUMERO" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="55" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Name="Fecha_recib" Type="DateTime" Precision="3" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="85" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="descri_zona" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MARCA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LATITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="LONGITUD" Type="Decimal" Precision="18" Scale="15" />
+    <Property Name="rterminal" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="numser" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID2">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID21">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="numser" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID3">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID31">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="numser" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID4">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="RCONCEPTO" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_GRID41">
+    <Key>
+      <PropertyRef Name="Num_doc" />
+      <PropertyRef Name="RCONCEPTO" />
+      <PropertyRef Name="Por_lempira" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="rterminal" />
+    </Key>
+    <Property Name="Codigo_clie" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre_clie" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="Num_doc" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_recib" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RCONCEPTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Por_lempira" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONT_NUMERO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="codigo_cobr" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RNOMBRECLI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CIERRE" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="liquida" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="FECHA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MARCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LATITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="LONGITUD" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="rterminal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_cobr" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="liquida2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="rhora" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="numser" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="AECobrosEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CLIENTESOLDs" EntityType="Self.CLIENTESOLD" />
+    <EntitySet Name="CONTRATO1" EntityType="Self.CONTRATO1" />
+    <EntitySet Name="Series" EntityType="Self.Serie" />
+    <EntitySet Name="AE_CZONA" EntityType="Self.AE_CZONA" />
+    <EntitySet Name="Almacens" EntityType="Self.Almacen" />
+    <EntitySet Name="Articuloes" EntityType="Self.Articulo" />
+    <EntitySet Name="EstadisticaVisitasDetalles" EntityType="Self.EstadisticaVisitasDetalle" />
+    <EntitySet Name="LogProcesados" EntityType="Self.LogProcesado" />
+    <EntitySet Name="MovArticuloes" EntityType="Self.MovArticulo" />
+    <EntitySet Name="Alphabetical_list_of_products" EntityType="Self.Alphabetical_list_of_product" />
+    <EntitySet Name="Category_Sales_for_1997" EntityType="Self.Category_Sales_for_1997" />
+    <EntitySet Name="ClienteContras" EntityType="Self.ClienteContra" />
+    <EntitySet Name="ClienteContra2" EntityType="Self.ClienteContra2" />
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTE" />
+    <EntitySet Name="COBRADORs" EntityType="Self.COBRADOR" />
+    <EntitySet Name="CONTRATOes" EntityType="Self.CONTRATO" />
+    <EntitySet Name="Current_Product_Lists" EntityType="Self.Current_Product_List" />
+    <EntitySet Name="Customer_and_Suppliers_by_Cities" EntityType="Self.Customer_and_Suppliers_by_City" />
+    <EntitySet Name="CZONAs" EntityType="Self.CZONA" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="Order_Details_Extendeds" EntityType="Self.Order_Details_Extended" />
+    <EntitySet Name="Order_Subtotals" EntityType="Self.Order_Subtotal" />
+    <EntitySet Name="Orders_Qries" EntityType="Self.Orders_Qry" />
+    <EntitySet Name="Product_Sales_for_1997" EntityType="Self.Product_Sales_for_1997" />
+    <EntitySet Name="Products_Above_Average_Prices" EntityType="Self.Products_Above_Average_Price" />
+    <EntitySet Name="Products_by_Categories" EntityType="Self.Products_by_Category" />
+    <EntitySet Name="RECIBOSDIAs" EntityType="Self.RECIBOSDIA" />
+    <EntitySet Name="Sales_by_Categories" EntityType="Self.Sales_by_Category" />
+    <EntitySet Name="Sales_Totals_by_Amounts" EntityType="Self.Sales_Totals_by_Amount" />
+    <EntitySet Name="Summary_of_Sales_by_Quarters" EntityType="Self.Summary_of_Sales_by_Quarter" />
+    <EntitySet Name="Summary_of_Sales_by_Years" EntityType="Self.Summary_of_Sales_by_Year" />
+    <EntitySet Name="View_ACTUACORRELA" EntityType="Self.View_ACTUACORRELA" />
+    <EntitySet Name="View_CLIENTENS" EntityType="Self.View_CLIENTENS" />
+    <EntitySet Name="View_Cobradores" EntityType="Self.View_Cobradores" />
+    <EntitySet Name="View_CORRELA" EntityType="Self.View_CORRELA" />
+    <EntitySet Name="View_CZONA" EntityType="Self.View_CZONA" />
+    <EntitySet Name="View_GRID1" EntityType="Self.View_GRID1" />
+    <EntitySet Name="View_GRID11" EntityType="Self.View_GRID11" />
+    <EntitySet Name="View_GRID2" EntityType="Self.View_GRID2" />
+    <EntitySet Name="View_GRID21" EntityType="Self.View_GRID21" />
+    <EntitySet Name="View_GRID3" EntityType="Self.View_GRID3" />
+    <EntitySet Name="View_GRID31" EntityType="Self.View_GRID31" />
+    <EntitySet Name="View_GRID4" EntityType="Self.View_GRID4" />
+    <EntitySet Name="View_GRID41" EntityType="Self.View_GRID41" />
+    <FunctionImport Name="Saldo" IsComposable="true" ReturnType="Collection(AECobrosModel.Saldo_Result)">
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ActuaClientes">
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActuaClientes2">
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActuaContrato">
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ACTUALIZA_SUPERVISIONES">
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ANULAR_RECIBOS">
+      <Parameter Name="NUM_DOC" Mode="In" Type="String" />
+      <Parameter Name="CODIGO_CLIE" Mode="In" Type="String" />
+      <Parameter Name="USARIO" Mode="In" Type="String" />
+      <Parameter Name="MOTIVO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ANULAR_RECIBOS_LIQUIDADOS">
+      <Parameter Name="NUM_DOC" Mode="In" Type="String" />
+      <Parameter Name="CODIGO_CLIE" Mode="In" Type="String" />
+      <Parameter Name="USARIO" Mode="In" Type="String" />
+      <Parameter Name="COMENTARIO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CLIENTES_NO_ESTABA">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CONTRATOS_OFICIAL" />
+    <FunctionImport Name="CORREO_COBRADORES_SIN_LIQUIDAR" />
+    <FunctionImport Name="CORREO_RECIBOS_OFICINA" />
+    <FunctionImport Name="CORREO_SERVICIOS_ENTREGADOS" />
+    <FunctionImport Name="CORREO_SUPERVISIONES" ReturnType="Collection(DateTime)" />
+    <FunctionImport Name="CorrigeUbicacionCero" />
+    <FunctionImport Name="CR_CLIENTESNOCOBRO_CANTVISITAS" ReturnType="Collection(AECobrosModel.CR_CLIENTESNOCOBRO_CANTVISITAS_Result)">
+      <Parameter Name="f1" Mode="In" Type="DateTime" />
+      <Parameter Name="f2" Mode="In" Type="DateTime" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CR_COBROS" />
+    <FunctionImport Name="CR_ESTADISTICA_COBROS">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="CR_ESTADISTICA_COBROS_AGRUPADO">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="CR_PROCESAR" ReturnType="Collection(AECobrosModel.CR_PROCESAR_Result)">
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CR_REIMPRIMIR_PROCESAR" ReturnType="Collection(AECobrosModel.CR_REIMPRIMIR_PROCESAR_Result)">
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Liquida2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CustOrderHist">
+      <Parameter Name="CustomerID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CustOrdersDetail">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CustOrdersOrders">
+      <Parameter Name="CustomerID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DISTANCIA_VISITAS">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Employee_Sales_by_Country">
+      <Parameter Name="Beginning_Date" Mode="In" Type="DateTime" />
+      <Parameter Name="Ending_Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="ENVIARECIBOS" ReturnType="Collection(Int32)">
+      <Parameter Name="codigo_cobr" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ESTADISTICA_COBROS">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Clientes" ReturnType="Collection(AECobrosModel.Get_Clientes_Result)">
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Motivos" ReturnType="Collection(AECobrosModel.Get_Motivos_Result)" />
+    <FunctionImport Name="Get_Series" ReturnType="Collection(AECobrosModel.Get_Series_Result)">
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Usuarios" ReturnType="Collection(AECobrosModel.Get_Usuarios_Result)">
+      <Parameter Name="MAC" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LIQUIDA_RECIBOS">
+      <Parameter Name="Codigo_Cobr" Mode="In" Type="String" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LlenaClientes" />
+    <FunctionImport Name="QUITAR_DUPLICADO">
+      <Parameter Name="NUM" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sales_by_Year">
+      <Parameter Name="Beginning_Date" Mode="In" Type="DateTime" />
+      <Parameter Name="Ending_Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SalesByCategory">
+      <Parameter Name="CategoryName" Mode="In" Type="String" />
+      <Parameter Name="OrdYear" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CR_CobDiasLaborados" ReturnType="Collection(AECobrosModel.SP_CR_CobDiasLaborados_Result)">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CR_CobDiasLaboradosXLider" ReturnType="Collection(AECobrosModel.SP_CR_CobDiasLaboradosXLider_Result)">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+      <Parameter Name="Lider" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CR_CobDiasLaboradosXLiderResumido" ReturnType="Collection(AECobrosModel.SP_CR_CobDiasLaboradosXLiderResumido_Result)">
+      <Parameter Name="F1" Mode="In" Type="DateTime" />
+      <Parameter Name="F2" Mode="In" Type="DateTime" />
+      <Parameter Name="Lider" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CR_VS_MOV_CLIENTESVISITAS" ReturnType="Collection(AECobrosModel.SP_CR_VS_MOV_CLIENTESVISITAS_Result)">
+      <Parameter Name="CLIENTE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_MON_VISITAS" ReturnType="Collection(AECobrosModel.SP_MON_VISITAS_Result)">
+      <Parameter Name="Fecha1" Mode="In" Type="DateTime" />
+      <Parameter Name="Fecha2" Mode="In" Type="DateTime" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_MON_Visitas_Detalle" ReturnType="Collection(AECobrosModel.SP_MON_Visitas_Detalle_Result)">
+      <Parameter Name="Fecha1" Mode="In" Type="DateTime" />
+      <Parameter Name="Fecha2" Mode="In" Type="DateTime" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_VS_AgendaVisita">
+      <Parameter Name="Cliente" Mode="In" Type="String" />
+      <Parameter Name="Cobrador" Mode="In" Type="String" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="Gestion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Ten_Most_Expensive_Products" />
+    <FunctionImport Name="VACACIONES_EMPLEADOS" />
+    <FunctionImport Name="VIENEAGENDA">
+      <Parameter Name="Codigo_clie" Mode="In" Type="String" />
+      <Parameter Name="Nombre_clie" Mode="In" Type="String" />
+      <Parameter Name="CONT_NUMERO" Mode="In" Type="String" />
+      <Parameter Name="CONT_NUMCUO" Mode="In" Type="String" />
+      <Parameter Name="CONT_VALCUO" Mode="In" Type="Decimal" />
+      <Parameter Name="CONT_SALDO" Mode="In" Type="Decimal" />
+      <Parameter Name="FECHA" Mode="In" Type="String" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="VISITADO" Mode="In" Type="String" />
+      <Parameter Name="NOTA" Mode="In" Type="String" />
+      <Parameter Name="CVEAGE" Mode="In" Type="String" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENECORRELA">
+      <Parameter Name="cveage" Mode="In" Type="String" />
+      <Parameter Name="cod_zona" Mode="In" Type="String" />
+      <Parameter Name="correla" Mode="In" Type="Decimal" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENELOGGPS">
+      <Parameter Name="USUARIO" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="String" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="LATITUD" Mode="In" Type="String" />
+      <Parameter Name="LONGITUD" Mode="In" Type="String" />
+      <Parameter Name="MAC" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENENOCOBRO">
+      <Parameter Name="Codigo_clie" Mode="In" Type="String" />
+      <Parameter Name="Nombre_clie" Mode="In" Type="String" />
+      <Parameter Name="CONT_NUMERO" Mode="In" Type="String" />
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="String" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="CODMOTIVO" Mode="In" Type="String" />
+      <Parameter Name="MOTIVO" Mode="In" Type="String" />
+      <Parameter Name="LATITUD" Mode="In" Type="String" />
+      <Parameter Name="LONGITUD" Mode="In" Type="String" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENENOSUPER">
+      <Parameter Name="Codigo_clie" Mode="In" Type="String" />
+      <Parameter Name="Nombre_clie" Mode="In" Type="String" />
+      <Parameter Name="CONT_NUMERO" Mode="In" Type="String" />
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="String" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="CODMOTIVO" Mode="In" Type="String" />
+      <Parameter Name="MOTIVO" Mode="In" Type="String" />
+      <Parameter Name="LATITUD" Mode="In" Type="String" />
+      <Parameter Name="LONGITUD" Mode="In" Type="String" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENERECIBOS">
+      <Parameter Name="Num_doc" Mode="In" Type="String" />
+      <Parameter Name="Tdoc" Mode="In" Type="String" />
+      <Parameter Name="rtipodoc" Mode="In" Type="String" />
+      <Parameter Name="Fecha_recib" Mode="In" Type="DateTime" />
+      <Parameter Name="RFECHA" Mode="In" Type="DateTime" />
+      <Parameter Name="RCONCEPTO" Mode="In" Type="String" />
+      <Parameter Name="RCONCEP2" Mode="In" Type="String" />
+      <Parameter Name="RCAMBIO" Mode="In" Type="Decimal" />
+      <Parameter Name="Por_lempira" Mode="In" Type="Decimal" />
+      <Parameter Name="rlugar" Mode="In" Type="String" />
+      <Parameter Name="rhora" Mode="In" Type="String" />
+      <Parameter Name="COBRADO_EN" Mode="In" Type="String" />
+      <Parameter Name="rtermino" Mode="In" Type="String" />
+      <Parameter Name="Codigo_clie" Mode="In" Type="String" />
+      <Parameter Name="rcodigocli" Mode="In" Type="String" />
+      <Parameter Name="CXC_CTIPO" Mode="In" Type="String" />
+      <Parameter Name="CXC_PARTIDA" Mode="In" Type="String" />
+      <Parameter Name="rusuario" Mode="In" Type="String" />
+      <Parameter Name="rterminal" Mode="In" Type="String" />
+      <Parameter Name="RECIBMODIFI" Mode="In" Type="String" />
+      <Parameter Name="RECIBFMODIF" Mode="In" Type="DateTime" />
+      <Parameter Name="rduradeb" Mode="In" Type="Int16" />
+      <Parameter Name="RTIPODEBI" Mode="In" Type="String" />
+      <Parameter Name="rsucursal" Mode="In" Type="String" />
+      <Parameter Name="codigo_cobr" Mode="In" Type="String" />
+      <Parameter Name="RNOMBRECLI" Mode="In" Type="String" />
+      <Parameter Name="rprima" Mode="In" Type="Decimal" />
+      <Parameter Name="rno_letras" Mode="In" Type="Int16" />
+      <Parameter Name="VEFECTI" Mode="In" Type="Decimal" />
+      <Parameter Name="VCHEQUE" Mode="In" Type="Decimal" />
+      <Parameter Name="PAGOCK" Mode="In" Type="String" />
+      <Parameter Name="PAGOBANCO" Mode="In" Type="String" />
+      <Parameter Name="RECIBCUENTA" Mode="In" Type="String" />
+      <Parameter Name="rconciliado" Mode="In" Type="String" />
+      <Parameter Name="rnumefa" Mode="In" Type="String" />
+      <Parameter Name="RCUOTA" Mode="In" Type="Decimal" />
+      <Parameter Name="SUBIVIEJO" Mode="In" Type="String" />
+      <Parameter Name="RCODVEND" Mode="In" Type="String" />
+      <Parameter Name="rnumemp" Mode="In" Type="Int32" />
+      <Parameter Name="LONGITUD" Mode="In" Type="String" />
+      <Parameter Name="LATITUD" Mode="In" Type="String" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="IMPRESO" Mode="In" Type="String" />
+      <Parameter Name="MARCA" Mode="In" Type="String" />
+      <Parameter Name="SALDOANT" Mode="In" Type="Decimal" />
+      <Parameter Name="fecha" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VIENERECIBOS_GD" />
+    <FunctionImport Name="VIENESUPERV">
+      <Parameter Name="Codigo_clie" Mode="In" Type="String" />
+      <Parameter Name="Nombre_clie" Mode="In" Type="String" />
+      <Parameter Name="CONT_NUMERO" Mode="In" Type="String" />
+      <Parameter Name="COBRADOR" Mode="In" Type="String" />
+      <Parameter Name="FECHA" Mode="In" Type="String" />
+      <Parameter Name="HORA" Mode="In" Type="String" />
+      <Parameter Name="CEDULA" Mode="In" Type="String" />
+      <Parameter Name="BENEF1" Mode="In" Type="String" />
+      <Parameter Name="BENEF2" Mode="In" Type="String" />
+      <Parameter Name="BENEF3" Mode="In" Type="String" />
+      <Parameter Name="RTN" Mode="In" Type="String" />
+      <Parameter Name="DIRECCION" Mode="In" Type="String" />
+      <Parameter Name="LATITUD" Mode="In" Type="String" />
+      <Parameter Name="LONGITUD" Mode="In" Type="String" />
+      <Parameter Name="CIERRE" Mode="In" Type="String" />
+      <Parameter Name="liquida" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="CR_CLIENTESNOCOBRO_CANTVISITAS_Result">
+    <Property Type="Int32" Name="Numero_de_Visitas" Nullable="true" />
+    <Property Type="String" Name="Codigo_Cliente" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contrato" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Ultima_Visita" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="Saldo_Actual" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Cobrador" Nullable="true" MaxLength="48" />
+    <Property Type="String" Name="Lider" Nullable="true" MaxLength="5" />
+  </ComplexType>
+  <ComplexType Name="CR_PROCESAR_Result">
+    <Property Type="String" Name="NUM_DOC" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="CODIGO_CLIE" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="FECHA_RECIB" Nullable="true" Precision="23" />
+    <Property Type="String" Name="rhora" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="RCONCEPTO" Nullable="true" MaxLength="85" />
+    <Property Type="Decimal" Name="POR_LEMPIRA" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="CODIGO_COBR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LATITUD" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="LONGITUD" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="RTERMINAL" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="LIQUIDA2" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MARCA" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="55" />
+    <Property Type="String" Name="nombre_cobr" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="descri_zona" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Empresa" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="CR_REIMPRIMIR_PROCESAR_Result">
+    <Property Type="String" Name="NUM_DOC" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="CODIGO_CLIE" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="FECHA_RECIB" Nullable="true" Precision="23" />
+    <Property Type="String" Name="rhora" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="RCONCEPTO" Nullable="true" MaxLength="85" />
+    <Property Type="Decimal" Name="POR_LEMPIRA" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="CODIGO_COBR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LATITUD" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="LONGITUD" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="RTERMINAL" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="LIQUIDA2" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MARCA" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="55" />
+    <Property Type="String" Name="nombre_cobr" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="descri_zona" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Empresa" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Get_Clientes_Result">
+    <Property Type="String" Name="Codigo_clie" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="55" />
+    <Property Type="String" Name="identidad" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="CONT_NUMERO" Nullable="false" MaxLength="15" />
+    <Property Type="DateTime" Name="CONT_FECHA" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CONT_DESCRI" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="CONT_DESC2" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="CONT_DESC3" Nullable="true" MaxLength="80" />
+    <Property Type="Decimal" Name="CONT_VALOR" Nullable="true" Precision="19" />
+    <Property Type="String" Name="cont_credit" Nullable="true" MaxLength="1" />
+    <Property Type="Decimal" Name="CONT_PRIMA" Nullable="true" Precision="19" />
+    <Property Type="Int16" Name="CONT_NUMCUO" Nullable="true" />
+    <Property Type="Decimal" Name="CONT_VALCUO" Nullable="true" Precision="19" />
+    <Property Type="String" Name="CONT_VENDED" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="CONT_COBRAD" Nullable="true" MaxLength="5" />
+    <Property Type="Decimal" Name="Saldo_actua" Nullable="true" Precision="19" />
+    <Property Type="String" Name="Dir_cliente" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Dir2_client" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Dir3_client" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Dir4_client" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="Dir5_client" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="CL_CELULAR" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Cod_zona" Nullable="true" MaxLength="3" />
+    <Property Type="Decimal" Name="latitud" Nullable="false" Precision="17" Scale="15" />
+    <Property Type="Decimal" Name="longitud" Nullable="false" Precision="17" Scale="15" />
+    <Property Type="String" Name="CONT_SUPERV" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="CONT_FSUPER" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_Motivos_Result">
+    <Property Type="String" Name="cvemot" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="desmot" Nullable="true" MaxLength="80" />
+  </ComplexType>
+  <ComplexType Name="Get_Series_Result">
+    <Property Type="String" Name="CVEAGE" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="COD_ZONA" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="CORRELA" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Nombre_zona" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="descri_zona" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="E_RTN" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="Get_Usuarios_Result">
+    <Property Type="String" Name="cveage" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="nomage" Nullable="true" MaxLength="155" />
+    <Property Type="String" Name="usuari" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="usupwd" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="sermov" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SP_CR_CobDiasLaborados_Result">
+    <Property Type="String" Name="Codigo" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Cobrador" Nullable="true" MaxLength="40" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="PrimerVisita" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="UltimaVisita" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Recibos" Nullable="true" />
+    <Property Type="Int32" Name="Visitados" Nullable="true" />
+    <Property Type="String" Name="Lider" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha1" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha2" Nullable="true" />
+    <Property Type="String" Name="Leyenda" Nullable="false" MaxLength="31" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SP_CR_CobDiasLaboradosXLider_Result">
+    <Property Type="String" Name="Codigo" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Cobrador" Nullable="true" MaxLength="40" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="String" Name="PrimerVisita" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="UltimaVisita" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Recibos" Nullable="true" />
+    <Property Type="Int32" Name="Visitados" Nullable="true" />
+    <Property Type="String" Name="Lider" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha1" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha2" Nullable="true" />
+    <Property Type="String" Name="Leyenda" Nullable="false" MaxLength="31" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SP_CR_CobDiasLaboradosXLiderResumido_Result">
+    <Property Type="Int64" Name="F" Nullable="true" />
+    <Property Type="String" Name="codigo" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="cobrador" Nullable="true" MaxLength="40" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="Recibos" Nullable="true" />
+    <Property Type="Int32" Name="Visitados" Nullable="true" />
+    <Property Type="String" Name="Lider" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="Zona" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaPrimera" Nullable="true" />
+    <Property Type="DateTime" Name="FechaUltima" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha1" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha2" Nullable="true" />
+    <Property Type="String" Name="Leyenda" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Dias" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_CR_VS_MOV_CLIENTESVISITAS_Result">
+    <Property Type="String" Name="Codigo" Nullable="true" MaxLength="16" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="true" Precision="20" Scale="4" />
+    <Property Type="String" Name="Hora" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Codigo_Cliente" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="codigo_cobr" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="nombre_cobr" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Lider" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Fecha" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SP_MON_VISITAS_Result">
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="55" />
+    <Property Type="DateTime" Name="UltimaFechaAsignado" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="String" Name="HoraPrimerVisita" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaPrimerVisita" Nullable="true" />
+    <Property Type="String" Name="HoraUltimaVisita" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="UltimaFechaVisita" Nullable="true" />
+    <Property Type="Int32" Name="Recibos" Nullable="false" />
+    <Property Type="Int32" Name="NVisitas" Nullable="false" />
+    <Property Type="String" Name="Cobrador" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Zona" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="CobradorAsignadoAct" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Vendedor" Nullable="true" MaxLength="8" />
+    <Property Type="Decimal" Name="Saldo_actua" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="SP_MON_Visitas_Detalle_Result">
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre_clie" Nullable="true" MaxLength="55" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Hora" Nullable="false" MaxLength="10" />
+    <Property Type="Decimal" Name="Cobrado" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Zona" Nullable="false" MaxLength="30" />
+  </ComplexType>
+</Schema>

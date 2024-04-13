@@ -1,0 +1,1242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AECobrosModelStoreContainer" CdmEntityContainer="AECobrosEntities2">
+    <EntitySetMapping Name="CLIENTESOLDs">
+      <EntityTypeMapping TypeName="AECobrosModel.CLIENTESOLD">
+        <MappingFragment StoreEntitySet="CLIENTESOLD">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="CTIPOCLI" ColumnName="CTIPOCLI" />
+          <ScalarProperty Name="clientenp" ColumnName="clientenp" />
+          <ScalarProperty Name="cod_listpre" ColumnName="cod_listpre" />
+          <ScalarProperty Name="cod_compani" ColumnName="cod_compani" />
+          <ScalarProperty Name="clisucursal" ColumnName="clisucursal" />
+          <ScalarProperty Name="mayorista" ColumnName="mayorista" />
+          <ScalarProperty Name="CL_NIVEL" ColumnName="CL_NIVEL" />
+          <ScalarProperty Name="cl_descto" ColumnName="cl_descto" />
+          <ScalarProperty Name="cl_fecha" ColumnName="cl_fecha" />
+          <ScalarProperty Name="CL_STATUS" ColumnName="CL_STATUS" />
+          <ScalarProperty Name="CL_COMPANIA" ColumnName="CL_COMPANIA" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Limite_cred" ColumnName="Limite_cred" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="ESALDO_ACTU" ColumnName="ESALDO_ACTU" />
+          <ScalarProperty Name="CSALDO_ACTU" ColumnName="CSALDO_ACTU" />
+          <ScalarProperty Name="ISALDO" ColumnName="ISALDO" />
+          <ScalarProperty Name="catalogo" ColumnName="catalogo" />
+          <ScalarProperty Name="Telef_clien" ColumnName="Telef_clien" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="representan" ColumnName="representan" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="tributario" ColumnName="tributario" />
+          <ScalarProperty Name="cl_usuario" ColumnName="cl_usuario" />
+          <ScalarProperty Name="cl_terminal" ColumnName="cl_terminal" />
+          <ScalarProperty Name="tipo_client" ColumnName="tipo_client" />
+          <ScalarProperty Name="CUECLIEN" ColumnName="CUECLIEN" />
+          <ScalarProperty Name="CL_DESCFAC" ColumnName="CL_DESCFAC" />
+          <ScalarProperty Name="CL_MORA" ColumnName="CL_MORA" />
+          <ScalarProperty Name="CL_CAPITALI" ColumnName="CL_CAPITALI" />
+          <ScalarProperty Name="CL_FAX" ColumnName="CL_FAX" />
+          <ScalarProperty Name="CL_VENDEDOR" ColumnName="CL_VENDEDOR" />
+          <ScalarProperty Name="CL_CELULAR" ColumnName="CL_CELULAR" />
+          <ScalarProperty Name="CL_EXENTO" ColumnName="CL_EXENTO" />
+          <ScalarProperty Name="cl_conyunom" ColumnName="cl_conyunom" />
+          <ScalarProperty Name="cl_conyutel" ColumnName="cl_conyutel" />
+          <ScalarProperty Name="cl_conyudir" ColumnName="cl_conyudir" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="CL_FECINAC" ColumnName="CL_FECINAC" />
+          <ScalarProperty Name="cl_fecobra" ColumnName="cl_fecobra" />
+          <ScalarProperty Name="cl_stat2" ColumnName="cl_stat2" />
+          <ScalarProperty Name="CL_PARENt" ColumnName="CL_PARENt" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="CL_2conynom" ColumnName="CL_2conynom" />
+          <ScalarProperty Name="cl_2conytel" ColumnName="cl_2conytel" />
+          <ScalarProperty Name="cl_2condire" ColumnName="cl_2condire" />
+          <ScalarProperty Name="cl_2parent" ColumnName="cl_2parent" />
+          <ScalarProperty Name="SUBIVIEJO" ColumnName="SUBIVIEJO" />
+          <ScalarProperty Name="CL_OFICINA" ColumnName="CL_OFICINA" />
+          <ScalarProperty Name="cl_reactivo" ColumnName="cl_reactivo" />
+          <ScalarProperty Name="semana" ColumnName="semana" />
+          <ScalarProperty Name="diavisita" ColumnName="diavisita" />
+          <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRATO1">
+      <EntityTypeMapping TypeName="AECobrosModel.CONTRATO1">
+        <MappingFragment StoreEntitySet="CONTRATO1">
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="CONT_CREDIT" ColumnName="CONT_CREDIT" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_BENEFI" ColumnName="CONT_BENEFI" />
+          <ScalarProperty Name="CONT_BENFEC" ColumnName="CONT_BENFEC" />
+          <ScalarProperty Name="CONT_BENPAR" ColumnName="CONT_BENPAR" />
+          <ScalarProperty Name="CONT_CLIENT" ColumnName="CONT_CLIENT" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+          <ScalarProperty Name="cont_vended" ColumnName="cont_vended" />
+          <ScalarProperty Name="cont_cobrad" ColumnName="cont_cobrad" />
+          <ScalarProperty Name="CONT_SALDO" ColumnName="CONT_SALDO" />
+          <ScalarProperty Name="CONT_FECAM" ColumnName="CONT_FECAM" />
+          <ScalarProperty Name="CONT_CJARD" ColumnName="CONT_CJARD" />
+          <ScalarProperty Name="CONT_CLETRA" ColumnName="CONT_CLETRA" />
+          <ScalarProperty Name="CONT_CNUM" ColumnName="CONT_CNUM" />
+          <ScalarProperty Name="CONT_SERVI" ColumnName="CONT_SERVI" />
+          <ScalarProperty Name="CONT_CANTI" ColumnName="CONT_CANTI" />
+          <ScalarProperty Name="CONT_FOTO" ColumnName="CONT_FOTO" />
+          <ScalarProperty Name="CONT_COMPA" ColumnName="CONT_COMPA" />
+          <ScalarProperty Name="CONT_CANT2" ColumnName="CONT_CANT2" />
+          <ScalarProperty Name="CONT_SERV2" ColumnName="CONT_SERV2" />
+          <ScalarProperty Name="CONT_CANT3" ColumnName="CONT_CANT3" />
+          <ScalarProperty Name="CONT_SERV3" ColumnName="CONT_SERV3" />
+          <ScalarProperty Name="CONT_FOT2" ColumnName="CONT_FOT2" />
+          <ScalarProperty Name="CONT_FOT3" ColumnName="CONT_FOT3" />
+          <ScalarProperty Name="CONT_FOT4" ColumnName="CONT_FOT4" />
+          <ScalarProperty Name="CONT_FOT5" ColumnName="CONT_FOT5" />
+          <ScalarProperty Name="CONT_FOT6" ColumnName="CONT_FOT6" />
+          <ScalarProperty Name="CONT_CJAR2" ColumnName="CONT_CJAR2" />
+          <ScalarProperty Name="CONT_CJAR3" ColumnName="CONT_CJAR3" />
+          <ScalarProperty Name="CONT_CLET2" ColumnName="CONT_CLET2" />
+          <ScalarProperty Name="CONT_CLET3" ColumnName="CONT_CLET3" />
+          <ScalarProperty Name="CONT_CNU2" ColumnName="CONT_CNU2" />
+          <ScalarProperty Name="CONT_CNU3" ColumnName="CONT_CNU3" />
+          <ScalarProperty Name="CONT_CSUPER" ColumnName="CONT_CSUPER" />
+          <ScalarProperty Name="CONT_FECPRO" ColumnName="CONT_FECPRO" />
+          <ScalarProperty Name="CONT_SVAL1" ColumnName="CONT_SVAL1" />
+          <ScalarProperty Name="CONT_SVAL2" ColumnName="CONT_SVAL2" />
+          <ScalarProperty Name="CONT_SVAL3" ColumnName="CONT_SVAL3" />
+          <ScalarProperty Name="CONT_RFECHA" ColumnName="CONT_RFECHA" />
+          <ScalarProperty Name="CONT_RHORA" ColumnName="CONT_RHORA" />
+          <ScalarProperty Name="CONT_FECTER" ColumnName="CONT_FECTER" />
+          <ScalarProperty Name="CONT_HORTER" ColumnName="CONT_HORTER" />
+          <ScalarProperty Name="CONT_NOTAS" ColumnName="CONT_NOTAS" />
+          <ScalarProperty Name="SUBIVIEJO" ColumnName="SUBIVIEJO" />
+          <ScalarProperty Name="CONTSUBIFI" ColumnName="CONTSUBIFI" />
+          <ScalarProperty Name="CONT_LIDER" ColumnName="CONT_LIDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Series">
+      <EntityTypeMapping TypeName="AECobrosModel.Serie">
+        <MappingFragment StoreEntitySet="Serie">
+          <ScalarProperty Name="DocEntry" ColumnName="DocEntry" />
+          <ScalarProperty Name="CodigoArticulo" ColumnName="CodigoArticulo" />
+          <ScalarProperty Name="Serie1" ColumnName="Serie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AE_CZONA">
+      <EntityTypeMapping TypeName="AECobrosModel.AE_CZONA">
+        <MappingFragment StoreEntitySet="AE_CZONA">
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="Nombre_zona" ColumnName="Nombre_zona" />
+          <ScalarProperty Name="E_ZONAS" ColumnName="E_ZONAS" />
+          <ScalarProperty Name="E_VENTAS" ColumnName="E_VENTAS" />
+          <ScalarProperty Name="E_DEVOLUC" ColumnName="E_DEVOLUC" />
+          <ScalarProperty Name="E_VENTAS2" ColumnName="E_VENTAS2" />
+          <ScalarProperty Name="ZON_NC" ColumnName="ZON_NC" />
+          <ScalarProperty Name="ZON_ND" ColumnName="ZON_ND" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="E_CAJA" ColumnName="E_CAJA" />
+          <ScalarProperty Name="E_APARTA" ColumnName="E_APARTA" />
+          <ScalarProperty Name="E_LETRAS" ColumnName="E_LETRAS" />
+          <ScalarProperty Name="E_PRIMA" ColumnName="E_PRIMA" />
+          <ScalarProperty Name="E_PAQUETE" ColumnName="E_PAQUETE" />
+          <ScalarProperty Name="E_CXC" ColumnName="E_CXC" />
+          <ScalarProperty Name="E_CONTADO" ColumnName="E_CONTADO" />
+          <ScalarProperty Name="E_RTN" ColumnName="E_RTN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Almacens">
+      <EntityTypeMapping TypeName="AECobrosModel.Almacen">
+        <MappingFragment StoreEntitySet="Almacen">
+          <ScalarProperty Name="DocEntry" ColumnName="DocEntry" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articuloes">
+      <EntityTypeMapping TypeName="AECobrosModel.Articulo">
+        <MappingFragment StoreEntitySet="Articulo">
+          <ScalarProperty Name="DocEntry" ColumnName="DocEntry" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadisticaVisitasDetalles">
+      <EntityTypeMapping TypeName="AECobrosModel.EstadisticaVisitasDetalle">
+        <MappingFragment StoreEntitySet="EstadisticaVisitasDetalle">
+          <ScalarProperty Name="Codigo_Cliente" ColumnName="Codigo Cliente" />
+          <ScalarProperty Name="Nombre_Cliente" ColumnName="Nombre Cliente" />
+          <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo Actual" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="Primer_Visita" ColumnName="Primer Visita" />
+          <ScalarProperty Name="Ultima_Visita" ColumnName="Ultima Visita" />
+          <ScalarProperty Name="Ultimo_Cobro" ColumnName="Ultimo Cobro" />
+          <ScalarProperty Name="Recibos" ColumnName="Recibos" />
+          <ScalarProperty Name="Visitados" ColumnName="Visitados" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogProcesados">
+      <EntityTypeMapping TypeName="AECobrosModel.LogProcesado">
+        <MappingFragment StoreEntitySet="LogProcesados">
+          <ScalarProperty Name="IdLine" ColumnName="IdLine" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="CodGestor" ColumnName="CodGestor" />
+          <ScalarProperty Name="Liquida" ColumnName="Liquida" />
+          <ScalarProperty Name="TotalProcesado" ColumnName="TotalProcesado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovArticuloes">
+      <EntityTypeMapping TypeName="AECobrosModel.MovArticulo">
+        <MappingFragment StoreEntitySet="MovArticulo">
+          <ScalarProperty Name="DocEntry" ColumnName="DocEntry" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="CodigoAlmacen" ColumnName="CodigoAlmacen" />
+          <ScalarProperty Name="CodigoArticulo" ColumnName="CodigoArticulo" />
+          <ScalarProperty Name="Codigo_Cobr" ColumnName="Codigo_Cobr" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Alphabetical_list_of_products">
+      <EntityTypeMapping TypeName="AECobrosModel.Alphabetical_list_of_product">
+        <MappingFragment StoreEntitySet="Alphabetical list of products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+          <ScalarProperty Name="UnitsOnOrder" ColumnName="UnitsOnOrder" />
+          <ScalarProperty Name="ReorderLevel" ColumnName="ReorderLevel" />
+          <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category_Sales_for_1997">
+      <EntityTypeMapping TypeName="AECobrosModel.Category_Sales_for_1997">
+        <MappingFragment StoreEntitySet="Category Sales for 1997">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategorySales" ColumnName="CategorySales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClienteContras">
+      <EntityTypeMapping TypeName="AECobrosModel.ClienteContra">
+        <MappingFragment StoreEntitySet="ClienteContra">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="CONT_CREDIT" ColumnName="CONT_CREDIT" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_SALDO" ColumnName="CONT_SALDO" />
+          <ScalarProperty Name="cont_vended" ColumnName="cont_vended" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="Telef_clien" ColumnName="Telef_clien" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="CL_VENDEDOR" ColumnName="CL_VENDEDOR" />
+          <ScalarProperty Name="semana" ColumnName="semana" />
+          <ScalarProperty Name="diavisita" ColumnName="diavisita" />
+          <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClienteContra2">
+      <EntityTypeMapping TypeName="AECobrosModel.ClienteContra2">
+        <MappingFragment StoreEntitySet="ClienteContra2">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="CONT_CREDIT" ColumnName="CONT_CREDIT" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_SALDO" ColumnName="CONT_SALDO" />
+          <ScalarProperty Name="cont_vended" ColumnName="cont_vended" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="Telef_clien" ColumnName="Telef_clien" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="CL_VENDEDOR" ColumnName="CL_VENDEDOR" />
+          <ScalarProperty Name="semana" ColumnName="semana" />
+          <ScalarProperty Name="diavisita" ColumnName="diavisita" />
+          <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTES">
+      <EntityTypeMapping TypeName="AECobrosModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTES">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="CTIPOCLI" ColumnName="CTIPOCLI" />
+          <ScalarProperty Name="clientenp" ColumnName="clientenp" />
+          <ScalarProperty Name="cod_listpre" ColumnName="cod_listpre" />
+          <ScalarProperty Name="cod_compani" ColumnName="cod_compani" />
+          <ScalarProperty Name="clisucursal" ColumnName="clisucursal" />
+          <ScalarProperty Name="mayorista" ColumnName="mayorista" />
+          <ScalarProperty Name="CL_NIVEL" ColumnName="CL_NIVEL" />
+          <ScalarProperty Name="cl_descto" ColumnName="cl_descto" />
+          <ScalarProperty Name="cl_fecha" ColumnName="cl_fecha" />
+          <ScalarProperty Name="CL_STATUS" ColumnName="CL_STATUS" />
+          <ScalarProperty Name="CL_COMPANIA" ColumnName="CL_COMPANIA" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Limite_cred" ColumnName="Limite_cred" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="ESALDO_ACTU" ColumnName="ESALDO_ACTU" />
+          <ScalarProperty Name="CSALDO_ACTU" ColumnName="CSALDO_ACTU" />
+          <ScalarProperty Name="ISALDO" ColumnName="ISALDO" />
+          <ScalarProperty Name="catalogo" ColumnName="catalogo" />
+          <ScalarProperty Name="Telef_clien" ColumnName="Telef_clien" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="representan" ColumnName="representan" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="tributario" ColumnName="tributario" />
+          <ScalarProperty Name="cl_usuario" ColumnName="cl_usuario" />
+          <ScalarProperty Name="cl_terminal" ColumnName="cl_terminal" />
+          <ScalarProperty Name="tipo_client" ColumnName="tipo_client" />
+          <ScalarProperty Name="CUECLIEN" ColumnName="CUECLIEN" />
+          <ScalarProperty Name="CL_DESCFAC" ColumnName="CL_DESCFAC" />
+          <ScalarProperty Name="CL_MORA" ColumnName="CL_MORA" />
+          <ScalarProperty Name="CL_CAPITALI" ColumnName="CL_CAPITALI" />
+          <ScalarProperty Name="CL_FAX" ColumnName="CL_FAX" />
+          <ScalarProperty Name="CL_VENDEDOR" ColumnName="CL_VENDEDOR" />
+          <ScalarProperty Name="CL_CELULAR" ColumnName="CL_CELULAR" />
+          <ScalarProperty Name="CL_EXENTO" ColumnName="CL_EXENTO" />
+          <ScalarProperty Name="cl_conyunom" ColumnName="cl_conyunom" />
+          <ScalarProperty Name="cl_conyutel" ColumnName="cl_conyutel" />
+          <ScalarProperty Name="cl_conyudir" ColumnName="cl_conyudir" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="CL_FECINAC" ColumnName="CL_FECINAC" />
+          <ScalarProperty Name="cl_fecobra" ColumnName="cl_fecobra" />
+          <ScalarProperty Name="cl_stat2" ColumnName="cl_stat2" />
+          <ScalarProperty Name="CL_PARENt" ColumnName="CL_PARENt" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="CL_2conynom" ColumnName="CL_2conynom" />
+          <ScalarProperty Name="cl_2conytel" ColumnName="cl_2conytel" />
+          <ScalarProperty Name="cl_2condire" ColumnName="cl_2condire" />
+          <ScalarProperty Name="cl_2parent" ColumnName="cl_2parent" />
+          <ScalarProperty Name="SUBIVIEJO" ColumnName="SUBIVIEJO" />
+          <ScalarProperty Name="CLIENTEREDU" ColumnName="CLIENTEREDU" />
+          <ScalarProperty Name="CL_EMAIL" ColumnName="CL_EMAIL" />
+          <ScalarProperty Name="VZCODIGO" ColumnName="VZCODIGO" />
+          <ScalarProperty Name="CL_COMENT" ColumnName="CL_COMENT" />
+          <ScalarProperty Name="cl_usumodi" ColumnName="cl_usumodi" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+          <ScalarProperty Name="diavisita" ColumnName="diavisita" />
+          <ScalarProperty Name="semana" ColumnName="semana" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COBRADORs">
+      <EntityTypeMapping TypeName="AECobrosModel.COBRADOR">
+        <MappingFragment StoreEntitySet="COBRADOR">
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="COBR_STATUS" ColumnName="COBR_STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRATOes">
+      <EntityTypeMapping TypeName="AECobrosModel.CONTRATO">
+        <MappingFragment StoreEntitySet="CONTRATO">
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="CONT_CREDIT" ColumnName="CONT_CREDIT" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_BENEFI" ColumnName="CONT_BENEFI" />
+          <ScalarProperty Name="CONT_BENFEC" ColumnName="CONT_BENFEC" />
+          <ScalarProperty Name="CONT_BENPAR" ColumnName="CONT_BENPAR" />
+          <ScalarProperty Name="CONT_CLIENT" ColumnName="CONT_CLIENT" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+          <ScalarProperty Name="cont_vended" ColumnName="cont_vended" />
+          <ScalarProperty Name="cont_cobrad" ColumnName="cont_cobrad" />
+          <ScalarProperty Name="CONT_SALDO" ColumnName="CONT_SALDO" />
+          <ScalarProperty Name="CONT_FECAM" ColumnName="CONT_FECAM" />
+          <ScalarProperty Name="CONT_CJARD" ColumnName="CONT_CJARD" />
+          <ScalarProperty Name="CONT_CLETRA" ColumnName="CONT_CLETRA" />
+          <ScalarProperty Name="CONT_CNUM" ColumnName="CONT_CNUM" />
+          <ScalarProperty Name="CONT_SERVI" ColumnName="CONT_SERVI" />
+          <ScalarProperty Name="CONT_CANTI" ColumnName="CONT_CANTI" />
+          <ScalarProperty Name="CONT_FOTO" ColumnName="CONT_FOTO" />
+          <ScalarProperty Name="CONT_COMPA" ColumnName="CONT_COMPA" />
+          <ScalarProperty Name="CONT_CANT2" ColumnName="CONT_CANT2" />
+          <ScalarProperty Name="CONT_SERV2" ColumnName="CONT_SERV2" />
+          <ScalarProperty Name="CONT_CANT3" ColumnName="CONT_CANT3" />
+          <ScalarProperty Name="CONT_SERV3" ColumnName="CONT_SERV3" />
+          <ScalarProperty Name="CONT_FOT2" ColumnName="CONT_FOT2" />
+          <ScalarProperty Name="CONT_FOT3" ColumnName="CONT_FOT3" />
+          <ScalarProperty Name="CONT_FOT4" ColumnName="CONT_FOT4" />
+          <ScalarProperty Name="CONT_FOT5" ColumnName="CONT_FOT5" />
+          <ScalarProperty Name="CONT_FOT6" ColumnName="CONT_FOT6" />
+          <ScalarProperty Name="CONT_CJAR2" ColumnName="CONT_CJAR2" />
+          <ScalarProperty Name="CONT_CJAR3" ColumnName="CONT_CJAR3" />
+          <ScalarProperty Name="CONT_CLET2" ColumnName="CONT_CLET2" />
+          <ScalarProperty Name="CONT_CLET3" ColumnName="CONT_CLET3" />
+          <ScalarProperty Name="CONT_CNU2" ColumnName="CONT_CNU2" />
+          <ScalarProperty Name="CONT_CNU3" ColumnName="CONT_CNU3" />
+          <ScalarProperty Name="CONT_CSUPER" ColumnName="CONT_CSUPER" />
+          <ScalarProperty Name="CONT_FECPRO" ColumnName="CONT_FECPRO" />
+          <ScalarProperty Name="CONT_SVAL1" ColumnName="CONT_SVAL1" />
+          <ScalarProperty Name="CONT_SVAL2" ColumnName="CONT_SVAL2" />
+          <ScalarProperty Name="CONT_SVAL3" ColumnName="CONT_SVAL3" />
+          <ScalarProperty Name="CONT_RFECHA" ColumnName="CONT_RFECHA" />
+          <ScalarProperty Name="CONT_RHORA" ColumnName="CONT_RHORA" />
+          <ScalarProperty Name="CONT_FECTER" ColumnName="CONT_FECTER" />
+          <ScalarProperty Name="CONT_HORTER" ColumnName="CONT_HORTER" />
+          <ScalarProperty Name="CONT_NOTAS" ColumnName="CONT_NOTAS" />
+          <ScalarProperty Name="SUBIVIEJO" ColumnName="SUBIVIEJO" />
+          <ScalarProperty Name="CONT_SUBIFI" ColumnName="CONT_SUBIFI" />
+          <ScalarProperty Name="CONT_LIDER" ColumnName="CONT_LIDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Current_Product_Lists">
+      <EntityTypeMapping TypeName="AECobrosModel.Current_Product_List">
+        <MappingFragment StoreEntitySet="Current Product List">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer_and_Suppliers_by_Cities">
+      <EntityTypeMapping TypeName="AECobrosModel.Customer_and_Suppliers_by_City">
+        <MappingFragment StoreEntitySet="Customer and Suppliers by City">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CZONAs">
+      <EntityTypeMapping TypeName="AECobrosModel.CZONA">
+        <MappingFragment StoreEntitySet="CZONA">
+          <ScalarProperty Name="cod_zona" ColumnName="cod_zona" />
+          <ScalarProperty Name="Nombre_zona" ColumnName="Nombre_zona" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="e_rtn" ColumnName="e_rtn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="AECobrosModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+          <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
+          <ScalarProperty Name="ShipCity" ColumnName="ShipCity" />
+          <ScalarProperty Name="ShipRegion" ColumnName="ShipRegion" />
+          <ScalarProperty Name="ShipPostalCode" ColumnName="ShipPostalCode" />
+          <ScalarProperty Name="ShipCountry" ColumnName="ShipCountry" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="RequiredDate" ColumnName="RequiredDate" />
+          <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+          <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ExtendedPrice" ColumnName="ExtendedPrice" />
+          <ScalarProperty Name="Freight" ColumnName="Freight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Details_Extendeds">
+      <EntityTypeMapping TypeName="AECobrosModel.Order_Details_Extended">
+        <MappingFragment StoreEntitySet="Order Details Extended">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ExtendedPrice" ColumnName="ExtendedPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Subtotals">
+      <EntityTypeMapping TypeName="AECobrosModel.Order_Subtotal">
+        <MappingFragment StoreEntitySet="Order Subtotals">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders_Qries">
+      <EntityTypeMapping TypeName="AECobrosModel.Orders_Qry">
+        <MappingFragment StoreEntitySet="Orders Qry">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="RequiredDate" ColumnName="RequiredDate" />
+          <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+          <ScalarProperty Name="ShipVia" ColumnName="ShipVia" />
+          <ScalarProperty Name="Freight" ColumnName="Freight" />
+          <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+          <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
+          <ScalarProperty Name="ShipCity" ColumnName="ShipCity" />
+          <ScalarProperty Name="ShipRegion" ColumnName="ShipRegion" />
+          <ScalarProperty Name="ShipPostalCode" ColumnName="ShipPostalCode" />
+          <ScalarProperty Name="ShipCountry" ColumnName="ShipCountry" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Sales_for_1997">
+      <EntityTypeMapping TypeName="AECobrosModel.Product_Sales_for_1997">
+        <MappingFragment StoreEntitySet="Product Sales for 1997">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductSales" ColumnName="ProductSales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products_Above_Average_Prices">
+      <EntityTypeMapping TypeName="AECobrosModel.Products_Above_Average_Price">
+        <MappingFragment StoreEntitySet="Products Above Average Price">
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products_by_Categories">
+      <EntityTypeMapping TypeName="AECobrosModel.Products_by_Category">
+        <MappingFragment StoreEntitySet="Products by Category">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+          <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+          <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECIBOSDIAs">
+      <EntityTypeMapping TypeName="AECobrosModel.RECIBOSDIA">
+        <MappingFragment StoreEntitySet="RECIBOSDIA">
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="COBRADO_EN" ColumnName="COBRADO_EN" />
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales_by_Categories">
+      <EntityTypeMapping TypeName="AECobrosModel.Sales_by_Category">
+        <MappingFragment StoreEntitySet="Sales by Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductSales" ColumnName="ProductSales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales_Totals_by_Amounts">
+      <EntityTypeMapping TypeName="AECobrosModel.Sales_Totals_by_Amount">
+        <MappingFragment StoreEntitySet="Sales Totals by Amount">
+          <ScalarProperty Name="SaleAmount" ColumnName="SaleAmount" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Summary_of_Sales_by_Quarters">
+      <EntityTypeMapping TypeName="AECobrosModel.Summary_of_Sales_by_Quarter">
+        <MappingFragment StoreEntitySet="Summary of Sales by Quarter">
+          <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Summary_of_Sales_by_Years">
+      <EntityTypeMapping TypeName="AECobrosModel.Summary_of_Sales_by_Year">
+        <MappingFragment StoreEntitySet="Summary of Sales by Year">
+          <ScalarProperty Name="ShippedDate" ColumnName="ShippedDate" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_ACTUACORRELA">
+      <EntityTypeMapping TypeName="AECobrosModel.View_ACTUACORRELA">
+        <MappingFragment StoreEntitySet="View_ACTUACORRELA">
+          <ScalarProperty Name="EMPRESA" ColumnName="EMPRESA" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+          <ScalarProperty Name="A" ColumnName="A" />
+          <ScalarProperty Name="B" ColumnName="B" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_CLIENTENS">
+      <EntityTypeMapping TypeName="AECobrosModel.View_CLIENTENS">
+        <MappingFragment StoreEntitySet="View_CLIENTENS">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="CONT_CREDIT" ColumnName="CONT_CREDIT" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_SALDO" ColumnName="CONT_SALDO" />
+          <ScalarProperty Name="cont_vended" ColumnName="cont_vended" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="Telef_clien" ColumnName="Telef_clien" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="CL_VENDEDOR" ColumnName="CL_VENDEDOR" />
+          <ScalarProperty Name="semana" ColumnName="semana" />
+          <ScalarProperty Name="diavisita" ColumnName="diavisita" />
+          <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Cobradores">
+      <EntityTypeMapping TypeName="AECobrosModel.View_Cobradores">
+        <MappingFragment StoreEntitySet="View_Cobradores">
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="COBR_STATUS" ColumnName="COBR_STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_CORRELA">
+      <EntityTypeMapping TypeName="AECobrosModel.View_CORRELA">
+        <MappingFragment StoreEntitySet="View_CORRELA">
+          <ScalarProperty Name="cveage" ColumnName="cveage" />
+          <ScalarProperty Name="nomage" ColumnName="nomage" />
+          <ScalarProperty Name="cod_zona" ColumnName="cod_zona" />
+          <ScalarProperty Name="nombre_zona" ColumnName="nombre_zona" />
+          <ScalarProperty Name="cod_correla" ColumnName="cod_correla" />
+          <ScalarProperty Name="numser" ColumnName="numser" />
+          <ScalarProperty Name="correla" ColumnName="correla" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_CZONA">
+      <EntityTypeMapping TypeName="AECobrosModel.View_CZONA">
+        <MappingFragment StoreEntitySet="View_CZONA">
+          <ScalarProperty Name="cod_zona" ColumnName="cod_zona" />
+          <ScalarProperty Name="Nombre_zona" ColumnName="Nombre_zona" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="cod_correla" ColumnName="cod_correla" />
+          <ScalarProperty Name="e_rtn" ColumnName="e_rtn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID1">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID1">
+        <MappingFragment StoreEntitySet="View_GRID1">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID11">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID11">
+        <MappingFragment StoreEntitySet="View_GRID11">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="numser" ColumnName="numser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID2">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID2">
+        <MappingFragment StoreEntitySet="View_GRID2">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID21">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID21">
+        <MappingFragment StoreEntitySet="View_GRID21">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="numser" ColumnName="numser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID3">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID3">
+        <MappingFragment StoreEntitySet="View_GRID3">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID31">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID31">
+        <MappingFragment StoreEntitySet="View_GRID31">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="numser" ColumnName="numser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID4">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID4">
+        <MappingFragment StoreEntitySet="View_GRID4">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GRID41">
+      <EntityTypeMapping TypeName="AECobrosModel.View_GRID41">
+        <MappingFragment StoreEntitySet="View_GRID41">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Num_doc" ColumnName="Num_doc" />
+          <ScalarProperty Name="Fecha_recib" ColumnName="Fecha_recib" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="Por_lempira" ColumnName="Por_lempira" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="RNOMBRECLI" ColumnName="RNOMBRECLI" />
+          <ScalarProperty Name="CIERRE" ColumnName="CIERRE" />
+          <ScalarProperty Name="liquida" ColumnName="liquida" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="rterminal" ColumnName="rterminal" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="liquida2" ColumnName="liquida2" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="numser" ColumnName="numser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="AECobrosModel.Store.Saldo" FunctionImportName="Saldo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.Saldo_Result">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="cl_cobrador" ColumnName="cl_cobrador" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ActuaClientes" FunctionName="AECobrosModel.Store.ActuaClientes" />
+    <FunctionImportMapping FunctionImportName="ActuaClientes2" FunctionName="AECobrosModel.Store.ActuaClientes2" />
+    <FunctionImportMapping FunctionImportName="ActuaContrato" FunctionName="AECobrosModel.Store.ActuaContrato" />
+    <FunctionImportMapping FunctionImportName="ACTUALIZA_SUPERVISIONES" FunctionName="AECobrosModel.Store.ACTUALIZA_SUPERVISIONES" />
+    <FunctionImportMapping FunctionImportName="ANULAR_RECIBOS" FunctionName="AECobrosModel.Store.ANULAR_RECIBOS" />
+    <FunctionImportMapping FunctionImportName="ANULAR_RECIBOS_LIQUIDADOS" FunctionName="AECobrosModel.Store.ANULAR_RECIBOS_LIQUIDADOS" />
+    <FunctionImportMapping FunctionImportName="CLIENTES_NO_ESTABA" FunctionName="AECobrosModel.Store.CLIENTES_NO_ESTABA" />
+    <FunctionImportMapping FunctionImportName="CONTRATOS_OFICIAL" FunctionName="AECobrosModel.Store.CONTRATOS_OFICIAL" />
+    <FunctionImportMapping FunctionImportName="CORREO_COBRADORES_SIN_LIQUIDAR" FunctionName="AECobrosModel.Store.CORREO_COBRADORES_SIN_LIQUIDAR" />
+    <FunctionImportMapping FunctionImportName="CORREO_RECIBOS_OFICINA" FunctionName="AECobrosModel.Store.CORREO_RECIBOS_OFICINA" />
+    <FunctionImportMapping FunctionImportName="CORREO_SERVICIOS_ENTREGADOS" FunctionName="AECobrosModel.Store.CORREO_SERVICIOS_ENTREGADOS" />
+    <FunctionImportMapping FunctionImportName="CORREO_SUPERVISIONES" FunctionName="AECobrosModel.Store.CORREO_SUPERVISIONES" />
+    <FunctionImportMapping FunctionImportName="CorrigeUbicacionCero" FunctionName="AECobrosModel.Store.CorrigeUbicacionCero" />
+    <FunctionImportMapping FunctionImportName="CR_CLIENTESNOCOBRO_CANTVISITAS" FunctionName="AECobrosModel.Store.CR_CLIENTESNOCOBRO_CANTVISITAS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.CR_CLIENTESNOCOBRO_CANTVISITAS_Result">
+          <ScalarProperty Name="Numero_de_Visitas" ColumnName="Numero de Visitas" />
+          <ScalarProperty Name="Codigo_Cliente" ColumnName="Codigo Cliente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+          <ScalarProperty Name="Ultima_Visita" ColumnName="Ultima Visita" />
+          <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo Actual" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CR_COBROS" FunctionName="AECobrosModel.Store.CR_COBROS" />
+    <FunctionImportMapping FunctionImportName="CR_ESTADISTICA_COBROS" FunctionName="AECobrosModel.Store.CR_ESTADISTICA_COBROS" />
+    <FunctionImportMapping FunctionImportName="CR_ESTADISTICA_COBROS_AGRUPADO" FunctionName="AECobrosModel.Store.CR_ESTADISTICA_COBROS_AGRUPADO" />
+    <FunctionImportMapping FunctionImportName="CR_PROCESAR" FunctionName="AECobrosModel.Store.CR_PROCESAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.CR_PROCESAR_Result">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="CODIGO_CLIE" ColumnName="CODIGO_CLIE" />
+          <ScalarProperty Name="FECHA_RECIB" ColumnName="FECHA_RECIB" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="POR_LEMPIRA" ColumnName="POR_LEMPIRA" />
+          <ScalarProperty Name="CODIGO_COBR" ColumnName="CODIGO_COBR" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="RTERMINAL" ColumnName="RTERMINAL" />
+          <ScalarProperty Name="LIQUIDA2" ColumnName="LIQUIDA2" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CR_REIMPRIMIR_PROCESAR" FunctionName="AECobrosModel.Store.CR_REIMPRIMIR_PROCESAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.CR_REIMPRIMIR_PROCESAR_Result">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="CODIGO_CLIE" ColumnName="CODIGO_CLIE" />
+          <ScalarProperty Name="FECHA_RECIB" ColumnName="FECHA_RECIB" />
+          <ScalarProperty Name="rhora" ColumnName="rhora" />
+          <ScalarProperty Name="RCONCEPTO" ColumnName="RCONCEPTO" />
+          <ScalarProperty Name="POR_LEMPIRA" ColumnName="POR_LEMPIRA" />
+          <ScalarProperty Name="CODIGO_COBR" ColumnName="CODIGO_COBR" />
+          <ScalarProperty Name="LATITUD" ColumnName="LATITUD" />
+          <ScalarProperty Name="LONGITUD" ColumnName="LONGITUD" />
+          <ScalarProperty Name="RTERMINAL" ColumnName="RTERMINAL" />
+          <ScalarProperty Name="LIQUIDA2" ColumnName="LIQUIDA2" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CustOrderHist" FunctionName="AECobrosModel.Store.CustOrderHist" />
+    <FunctionImportMapping FunctionImportName="CustOrdersDetail" FunctionName="AECobrosModel.Store.CustOrdersDetail" />
+    <FunctionImportMapping FunctionImportName="CustOrdersOrders" FunctionName="AECobrosModel.Store.CustOrdersOrders" />
+    <FunctionImportMapping FunctionImportName="DISTANCIA_VISITAS" FunctionName="AECobrosModel.Store.DISTANCIA_VISITAS" />
+    <FunctionImportMapping FunctionImportName="Employee_Sales_by_Country" FunctionName="AECobrosModel.Store.Employee_Sales_by_Country" />
+    <FunctionImportMapping FunctionImportName="ENVIARECIBOS" FunctionName="AECobrosModel.Store.ENVIARECIBOS" />
+    <FunctionImportMapping FunctionImportName="ESTADISTICA_COBROS" FunctionName="AECobrosModel.Store.ESTADISTICA_COBROS" />
+    <FunctionImportMapping FunctionImportName="Get_Clientes" FunctionName="AECobrosModel.Store.Get_Clientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.Get_Clientes_Result">
+          <ScalarProperty Name="Codigo_clie" ColumnName="Codigo_clie" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="identidad" ColumnName="identidad" />
+          <ScalarProperty Name="CONT_NUMERO" ColumnName="CONT_NUMERO" />
+          <ScalarProperty Name="CONT_FECHA" ColumnName="CONT_FECHA" />
+          <ScalarProperty Name="CONT_DESCRI" ColumnName="CONT_DESCRI" />
+          <ScalarProperty Name="CONT_DESC2" ColumnName="CONT_DESC2" />
+          <ScalarProperty Name="CONT_DESC3" ColumnName="CONT_DESC3" />
+          <ScalarProperty Name="CONT_VALOR" ColumnName="CONT_VALOR" />
+          <ScalarProperty Name="cont_credit" ColumnName="cont_credit" />
+          <ScalarProperty Name="CONT_PRIMA" ColumnName="CONT_PRIMA" />
+          <ScalarProperty Name="CONT_NUMCUO" ColumnName="CONT_NUMCUO" />
+          <ScalarProperty Name="CONT_VALCUO" ColumnName="CONT_VALCUO" />
+          <ScalarProperty Name="CONT_VENDED" ColumnName="CONT_VENDED" />
+          <ScalarProperty Name="CONT_COBRAD" ColumnName="CONT_COBRAD" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+          <ScalarProperty Name="Dir_cliente" ColumnName="Dir_cliente" />
+          <ScalarProperty Name="Dir2_client" ColumnName="Dir2_client" />
+          <ScalarProperty Name="Dir3_client" ColumnName="Dir3_client" />
+          <ScalarProperty Name="Dir4_client" ColumnName="Dir4_client" />
+          <ScalarProperty Name="Dir5_client" ColumnName="Dir5_client" />
+          <ScalarProperty Name="CL_CELULAR" ColumnName="CL_CELULAR" />
+          <ScalarProperty Name="Cod_zona" ColumnName="Cod_zona" />
+          <ScalarProperty Name="latitud" ColumnName="latitud" />
+          <ScalarProperty Name="longitud" ColumnName="longitud" />
+          <ScalarProperty Name="CONT_SUPERV" ColumnName="CONT_SUPERV" />
+          <ScalarProperty Name="CONT_FSUPER" ColumnName="CONT_FSUPER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Motivos" FunctionName="AECobrosModel.Store.Get_Motivos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.Get_Motivos_Result">
+          <ScalarProperty Name="cvemot" ColumnName="cvemot" />
+          <ScalarProperty Name="desmot" ColumnName="desmot" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Series" FunctionName="AECobrosModel.Store.Get_Series">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.Get_Series_Result">
+          <ScalarProperty Name="CVEAGE" ColumnName="CVEAGE" />
+          <ScalarProperty Name="COD_ZONA" ColumnName="COD_ZONA" />
+          <ScalarProperty Name="CORRELA" ColumnName="CORRELA" />
+          <ScalarProperty Name="Nombre_zona" ColumnName="Nombre_zona" />
+          <ScalarProperty Name="descri_zona" ColumnName="descri_zona" />
+          <ScalarProperty Name="E_RTN" ColumnName="E_RTN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Usuarios" FunctionName="AECobrosModel.Store.Get_Usuarios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.Get_Usuarios_Result">
+          <ScalarProperty Name="cveage" ColumnName="cveage" />
+          <ScalarProperty Name="nomage" ColumnName="nomage" />
+          <ScalarProperty Name="usuari" ColumnName="usuari" />
+          <ScalarProperty Name="usupwd" ColumnName="usupwd" />
+          <ScalarProperty Name="sermov" ColumnName="sermov" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LIQUIDA_RECIBOS" FunctionName="AECobrosModel.Store.LIQUIDA_RECIBOS" />
+    <FunctionImportMapping FunctionImportName="LlenaClientes" FunctionName="AECobrosModel.Store.LlenaClientes" />
+    <FunctionImportMapping FunctionImportName="QUITAR_DUPLICADO" FunctionName="AECobrosModel.Store.QUITAR_DUPLICADO" />
+    <FunctionImportMapping FunctionImportName="Sales_by_Year" FunctionName="AECobrosModel.Store.Sales_by_Year" />
+    <FunctionImportMapping FunctionImportName="SalesByCategory" FunctionName="AECobrosModel.Store.SalesByCategory" />
+    <FunctionImportMapping FunctionImportName="SP_CR_CobDiasLaborados" FunctionName="AECobrosModel.Store.SP_CR_CobDiasLaborados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_CR_CobDiasLaborados_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="PrimerVisita" ColumnName="PrimerVisita" />
+          <ScalarProperty Name="UltimaVisita" ColumnName="UltimaVisita" />
+          <ScalarProperty Name="Recibos" ColumnName="Recibos" />
+          <ScalarProperty Name="Visitados" ColumnName="Visitados" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+          <ScalarProperty Name="Fecha1" ColumnName="Fecha1" />
+          <ScalarProperty Name="Fecha2" ColumnName="Fecha2" />
+          <ScalarProperty Name="Leyenda" ColumnName="Leyenda" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CR_CobDiasLaboradosXLider" FunctionName="AECobrosModel.Store.SP_CR_CobDiasLaboradosXLider">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_CR_CobDiasLaboradosXLider_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="PrimerVisita" ColumnName="PrimerVisita" />
+          <ScalarProperty Name="UltimaVisita" ColumnName="UltimaVisita" />
+          <ScalarProperty Name="Recibos" ColumnName="Recibos" />
+          <ScalarProperty Name="Visitados" ColumnName="Visitados" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+          <ScalarProperty Name="Fecha1" ColumnName="Fecha1" />
+          <ScalarProperty Name="Fecha2" ColumnName="Fecha2" />
+          <ScalarProperty Name="Leyenda" ColumnName="Leyenda" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CR_CobDiasLaboradosXLiderResumido" FunctionName="AECobrosModel.Store.SP_CR_CobDiasLaboradosXLiderResumido">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_CR_CobDiasLaboradosXLiderResumido_Result">
+          <ScalarProperty Name="F" ColumnName="F" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="cobrador" ColumnName="cobrador" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="Recibos" ColumnName="Recibos" />
+          <ScalarProperty Name="Visitados" ColumnName="Visitados" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+          <ScalarProperty Name="FechaPrimera" ColumnName="FechaPrimera" />
+          <ScalarProperty Name="FechaUltima" ColumnName="FechaUltima" />
+          <ScalarProperty Name="Fecha1" ColumnName="Fecha1" />
+          <ScalarProperty Name="Fecha2" ColumnName="Fecha2" />
+          <ScalarProperty Name="Leyenda" ColumnName="Leyenda" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Dias" ColumnName="Dias" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CR_VS_MOV_CLIENTESVISITAS" FunctionName="AECobrosModel.Store.SP_CR_VS_MOV_CLIENTESVISITAS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_CR_VS_MOV_CLIENTESVISITAS_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Codigo_Cliente" ColumnName="Codigo Cliente" />
+          <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+          <ScalarProperty Name="codigo_cobr" ColumnName="codigo_cobr" />
+          <ScalarProperty Name="nombre_cobr" ColumnName="nombre_cobr" />
+          <ScalarProperty Name="Lider" ColumnName="Lider" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_MON_VISITAS" FunctionName="AECobrosModel.Store.SP_MON_VISITAS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_MON_VISITAS_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="UltimaFechaAsignado" ColumnName="UltimaFechaAsignado" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="HoraPrimerVisita" ColumnName="HoraPrimerVisita" />
+          <ScalarProperty Name="FechaPrimerVisita" ColumnName="FechaPrimerVisita" />
+          <ScalarProperty Name="HoraUltimaVisita" ColumnName="HoraUltimaVisita" />
+          <ScalarProperty Name="UltimaFechaVisita" ColumnName="UltimaFechaVisita" />
+          <ScalarProperty Name="Recibos" ColumnName="Recibos" />
+          <ScalarProperty Name="NVisitas" ColumnName="NVisitas" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="CobradorAsignadoAct" ColumnName="CobradorAsignadoAct" />
+          <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+          <ScalarProperty Name="Saldo_actua" ColumnName="Saldo_actua" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_MON_Visitas_Detalle" FunctionName="AECobrosModel.Store.SP_MON_Visitas_Detalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AECobrosModel.SP_MON_Visitas_Detalle_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre_clie" ColumnName="Nombre_clie" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Cobrado" ColumnName="Cobrado" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Zona" ColumnName="Zona" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_VS_AgendaVisita" FunctionName="AECobrosModel.Store.SP_VS_AgendaVisita" />
+    <FunctionImportMapping FunctionImportName="Ten_Most_Expensive_Products" FunctionName="AECobrosModel.Store.Ten_Most_Expensive_Products" />
+    <FunctionImportMapping FunctionImportName="VACACIONES_EMPLEADOS" FunctionName="AECobrosModel.Store.VACACIONES_EMPLEADOS" />
+    <FunctionImportMapping FunctionImportName="VIENEAGENDA" FunctionName="AECobrosModel.Store.VIENEAGENDA" />
+    <FunctionImportMapping FunctionImportName="VIENECORRELA" FunctionName="AECobrosModel.Store.VIENECORRELA" />
+    <FunctionImportMapping FunctionImportName="VIENELOGGPS" FunctionName="AECobrosModel.Store.VIENELOGGPS" />
+    <FunctionImportMapping FunctionImportName="VIENENOCOBRO" FunctionName="AECobrosModel.Store.VIENENOCOBRO" />
+    <FunctionImportMapping FunctionImportName="VIENENOSUPER" FunctionName="AECobrosModel.Store.VIENENOSUPER" />
+    <FunctionImportMapping FunctionImportName="VIENERECIBOS" FunctionName="AECobrosModel.Store.VIENERECIBOS" />
+    <FunctionImportMapping FunctionImportName="VIENERECIBOS_GD" FunctionName="AECobrosModel.Store.VIENERECIBOS_GD" />
+    <FunctionImportMapping FunctionImportName="VIENESUPERV" FunctionName="AECobrosModel.Store.VIENESUPERV" />
+  </EntityContainerMapping>
+</Mapping>

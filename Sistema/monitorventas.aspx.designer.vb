@@ -32,13 +32,22 @@ Partial Public Class monitorventas
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''txtFecha control.
+    '''txtFechaInicio control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFecha As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtFechaInicio As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtFechaFinal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtFechaFinal As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''dlMostrar control.

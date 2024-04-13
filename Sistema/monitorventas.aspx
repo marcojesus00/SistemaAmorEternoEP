@@ -54,16 +54,28 @@ h4:hover {
                       <div class="col-sm-4 col-d-3 col-lg-2">
                        <div class="input-group input-group-sm">
                            <div class="input-group-prepend">
-                               <label for="txtFechalb" class="input-group-text" style="width: 75px">Fecha</label>
+                               <label for="txtFechalb" class="input-group-text" style="width: 75px">Fecha de inicio</label>
                            </div>
-                           <asp:TextBox TextMode="Date" class="form-control form-control-sm" id="txtFecha" runat="server"></asp:TextBox>
+                           <asp:TextBox TextMode="Date" class="form-control form-control-sm" id="txtFechaInicio" runat="server"></asp:TextBox>
                        </div>
                    </div>
                   </div>
+                                    <div class="row">
+                      <div class="col-sm-4 col-d-3 col-lg-2">
+                       <div class="input-group input-group-sm">
+                           <div class="input-group-prepend">
+                               <label for="txtFechaFinallb" class="input-group-text" style="width: 75px">Fecha final</label>
+                           </div>
+                           <asp:TextBox TextMode="Date" class="form-control form-control-sm" id="txtFechaFinal" runat="server"></asp:TextBox>
+                       </div>
+                   </div>
+                  </div>
+
                 <div class="row">
                  <div class="col-sm-4 col-d-3 col-lg-2">
                        <div class="input-group input-group-sm">
-                           <div class="input-group-prepend">
+                           <div class="input-group-pre
+                               pend">
                                <label for="dlAlmacen" class="input-group-text" style="width: 75px">Mostrar</label>
                            </div>
                            <asp:DropDownList ID="dlMostrar" runat="server" CssClass="form-control form-control-sm"></asp:DropDownList>
@@ -122,8 +134,13 @@ h4:hover {
                                 <img alt = "" src="imagenes/plus.png" />
                                 <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
                                     <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="false"  CssClass="ChildGrid"><AlternatingRowStyle BackColor="#eeeeee" />
-                                        <Columns>                                       
+                                        <Columns>  
+                                            <asp:BoundField DataField="DocEntry" HeaderText="DocEntry" ItemStyle-Width="120px" />
                                             <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
+                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" ItemStyle-Width="120px" />
+                                            <asp:BoundField DataField="Estado" HeaderText="Estado" ItemStyle-Width="120px" />
+
+<%--                                            <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
                                             <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" ItemStyle-Width="80px" />
                                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-Width="80px" />
                                             <asp:BoundField DataField="Hora" HeaderText="Hora" ItemStyle-Width="60px" />
@@ -136,8 +153,8 @@ h4:hover {
                                             <asp:BoundField DataField="CONCEPTO" HeaderText="Motivo" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" />
                                             <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Telefono" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
-                                            <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>--%>
-                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
+                                            <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>
+<%--                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />--%>
                                         </Columns>
                                     </asp:GridView>
                                 </asp:Panel>
@@ -181,7 +198,7 @@ h4:hover {
                     <asp:BoundField DataField="CONT_VALCUO" HeaderText="Cuota" ItemStyle-Width="80px" ><ItemStyle Width="80px" /></asp:BoundField>
                     <asp:BoundField DataField="CONT_NUMCUO" HeaderText="N. Cuotas" ItemStyle-Width="80px" ><ItemStyle Width="80px" /></asp:BoundField>
                     <asp:BoundField DataField="SERVI1DES" HeaderText="Producto" ItemStyle-Width="280px" ><ItemStyle Width="280px" /></asp:BoundField>
-                    <asp:BoundField DataField="CONCEPTO" HeaderText="Motivo" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" ><ControlStyle Font-Size="Small" /><ItemStyle Width="100px" /></asp:BoundField>
+                    <asp:BoundField DataField="CONCEPTO" HeaderText="Motivon" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" ><ControlStyle Font-Size="Small" /><ItemStyle Width="100px" /></asp:BoundField>
                     <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" ><ControlStyle Font-Size="Small" /><ItemStyle Width="360px" /></asp:BoundField>
                     <asp:BoundField DataField="ClientesSistema" HeaderText="ClientesSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" ><ControlStyle Font-Size="Small" /><ItemStyle Width="185px" /> </asp:BoundField>
                                                                                                                                                                                                                                                                </Columns>
