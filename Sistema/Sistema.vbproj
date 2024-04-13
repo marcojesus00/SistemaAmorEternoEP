@@ -146,22 +146,22 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AECobrosModel.Context.tt">
+    <Content Include="Domain\AECobros\AECobrosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AECobrosModel.edmx</DependentUpon>
       <LastGenOutput>AECobrosModel.Context.vb</LastGenOutput>
     </Content>
-    <Content Include="AECobrosModel.tt">
+    <Content Include="Domain\AECobros\AECobrosModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AECobrosModel.edmx</DependentUpon>
       <LastGenOutput>AECobrosModel.vb</LastGenOutput>
     </Content>
-    <Content Include="AEVentasModel.Context.tt">
+    <Content Include="Domain\AEVentas\AEVentasModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AEVentasModel.edmx</DependentUpon>
       <LastGenOutput>AEVentasModel.Context.vb</LastGenOutput>
     </Content>
-    <Content Include="AEVentasModel.tt">
+    <Content Include="Domain\AEVentas\AEVentasModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AEVentasModel.edmx</DependentUpon>
       <LastGenOutput>AEVentasModel.vb</LastGenOutput>
@@ -282,12 +282,12 @@
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
-    <Content Include="FUNAMORModel.Context.tt">
+    <Content Include="Domain\FunAmor\FUNAMORModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FUNAMORModel.edmx</DependentUpon>
       <LastGenOutput>FUNAMORModel.Context.vb</LastGenOutput>
     </Content>
-    <Content Include="FUNAMORModel.tt">
+    <Content Include="Domain\FunAmor\FUNAMORModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FUNAMORModel.edmx</DependentUpon>
       <LastGenOutput>FUNAMORModel.vb</LastGenOutput>
@@ -385,25 +385,25 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <EntityDeploy Include="AECobrosModel.edmx">
+    <EntityDeploy Include="Domain\AECobros\AECobrosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AECobrosModel.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <Content Include="AECobrosModel.edmx.diagram">
+    <Content Include="Domain\AECobros\AECobrosModel.edmx.diagram">
       <DependentUpon>AECobrosModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="FUNAMORModel.edmx">
+    <EntityDeploy Include="Domain\FunAmor\FUNAMORModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FUNAMORModel.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <Content Include="FUNAMORModel.edmx.diagram">
+    <Content Include="Domain\FunAmor\FUNAMORModel.edmx.diagram">
       <DependentUpon>FUNAMORModel.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="AEVentasModel.edmx">
+    <EntityDeploy Include="Domain\AEVentas\AEVentasModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AEVentasModel.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <Content Include="AEVentasModel.edmx.diagram">
+    <Content Include="Domain\AEVentas\AEVentasModel.edmx.diagram">
       <DependentUpon>AEVentasModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -2256,130 +2256,130 @@
     <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADIBA2.vb">
+    <Compile Include="Domain\FunAmor\ADIBA2.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AECobrosModel.Context.vb">
+    <Compile Include="Domain\AECobros\AECobrosModel.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AECobrosModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AECobrosModel.Designer.vb">
+    <Compile Include="Domain\AECobros\AECobrosModel.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AECobrosModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="AECobrosModel.vb">
+    <Compile Include="Domain\AECobros\AECobrosModel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AEVentasModel.Context.vb">
+    <Compile Include="Domain\AEVentas\AEVentasModel.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AEVentasModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AEVentasModel.Designer.vb">
+    <Compile Include="Domain\AEVentas\AEVentasModel.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AEVentasModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="AEVentasModel.vb">
+    <Compile Include="Domain\AEVentas\AEVentasModel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AE_CZONA.vb">
+    <Compile Include="Domain\AECobros\AE_CZONA.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Almacen.vb">
+    <Compile Include="Domain\AECobros\Almacen.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Alphabetical_list_of_product.vb">
+    <Compile Include="Domain\AECobros\Alphabetical_list_of_product.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AREA.vb">
+    <Compile Include="Domain\FunAmor\AREA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARMAPRO1.vb">
+    <Compile Include="Domain\FunAmor\ARMAPRO1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARMAPROD.vb">
+    <Compile Include="Domain\FunAmor\ARMAPROD.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Articulo.vb">
+    <Compile Include="Domain\AECobros\Articulo.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AUXPRE.vb">
+    <Compile Include="Domain\FunAmor\AUXPRE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="A_DEPA.vb">
+    <Compile Include="Domain\FunAmor\A_DEPA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="A_MAESTR.vb">
+    <Compile Include="Domain\FunAmor\A_MAESTR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="A_ZONA.vb">
+    <Compile Include="Domain\FunAmor\A_ZONA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BBANCO.vb">
+    <Compile Include="Domain\FunAmor\BBANCO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCHADIBA.vb">
+    <Compile Include="Domain\FunAmor\BCHADIBA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCHNOPER.vb">
+    <Compile Include="Domain\FunAmor\BCHNOPER.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCHSALDO.vb">
+    <Compile Include="Domain\FunAmor\BCHSALDO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCOBPAG.vb">
+    <Compile Include="Domain\FunAmor\BCOBPAG.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCONTRAT.vb">
+    <Compile Include="Domain\FunAmor\BCONTRAT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BCUENTA.vb">
+    <Compile Include="Domain\FunAmor\BCUENTA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BODEGA.vb">
+    <Compile Include="Domain\FunAmor\BODEGA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABBOR.vb">
+    <Compile Include="Domain\FunAmor\CABBOR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABCAL.vb">
+    <Compile Include="Domain\FunAmor\CABCAL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABCOM.vb">
+    <Compile Include="Domain\FunAmor\CABCOM.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABCON.vb">
+    <Compile Include="Domain\FunAmor\CABCON.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABEXI.vb">
+    <Compile Include="Domain\FunAmor\CABEXI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABEXT.vb">
+    <Compile Include="Domain\FunAmor\CABEXT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABFAC.vb">
+    <Compile Include="Domain\FunAmor\CABFAC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABLI.vb">
+    <Compile Include="Domain\FunAmor\CABLI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABMOVI.vb">
+    <Compile Include="Domain\FunAmor\CABMOVI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABMTI.vb">
+    <Compile Include="Domain\FunAmor\CABMTI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABPROY.vb">
+    <Compile Include="Domain\FunAmor\CABPROY.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CABSEG.vb">
+    <Compile Include="Domain\FunAmor\CABSEG.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CajaRecibos.aspx.designer.vb">
@@ -2389,16 +2389,16 @@
       <DependentUpon>CajaRecibos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CAJRECI.vb">
+    <Compile Include="Domain\FunAmor\CAJRECI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CAJRECIL.vb">
+    <Compile Include="Domain\FunAmor\CAJRECIL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CALENDAR.vb">
+    <Compile Include="Domain\FunAmor\CALENDAR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CAMBFE.vb">
+    <Compile Include="Domain\FunAmor\CAMBFE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cambioclave.aspx.designer.vb">
@@ -2408,43 +2408,46 @@
       <DependentUpon>cambioclave.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="CAMBUBI.vb">
+    <Compile Include="Domain\FunAmor\CAMBUBI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CAPART.vb">
+    <Compile Include="Domain\FunAmor\CAPART.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Category_Sales_for_1997.vb">
+    <Compile Include="Domain\AECobros\Category_Sales_for_1997.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CCONFIG.vb">
+    <Compile Include="Domain\FunAmor\CCONFIG.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CCUENT.vb">
+    <Compile Include="Domain\FunAmor\CCUENT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLCANCE.vb">
+    <Compile Include="Domain\FunAmor\CLCANCE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLCIUDA.vb">
+    <Compile Include="Domain\FunAmor\CLCIUDA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLICOB.vb">
+    <Compile Include="Domain\FunAmor\CLICOB.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLICOMEL.vb">
+    <Compile Include="Domain\FunAmor\CLICOMEL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTE.vb">
+    <Compile Include="Domain\AEVentas\CLIENTE.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClienteContra.vb">
+    <Compile Include="Domain\AECobros\CLIENTE.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClienteContra2.vb">
+    <Compile Include="Domain\AECobros\ClienteContra.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClientePago.vb">
+    <Compile Include="Domain\AECobros\ClienteContra2.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AEVentas\ClientePago.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientePagos.aspx.designer.vb">
@@ -2454,10 +2457,13 @@
       <DependentUpon>ClientePagos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="ClientesH1.vb">
+    <Compile Include="Domain\FunAmor\CLIENTE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClientesH3.vb">
+    <Compile Include="Domain\FunAmor\ClientesH1.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\ClientesH3.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientesM1.aspx.designer.vb">
@@ -2467,49 +2473,55 @@
       <DependentUpon>ClientesM1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="CLIENTESN.vb">
+    <Compile Include="Domain\AEVentas\CLIENTESN.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTESND.vb">
+    <Compile Include="Domain\AEVentas\CLIENTESND.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENTESOLD.vb">
+    <Compile Include="Domain\AECobros\CLIENTESOLD.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIVISIT.vb">
+    <Compile Include="Domain\FunAmor\CLIVISIT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CMOVIM.vb">
+    <Compile Include="Domain\FunAmor\CMOVIM.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COBCOB.vb">
+    <Compile Include="Domain\FunAmor\COBCOB.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COBRADOR.vb">
+    <Compile Include="Domain\FunAmor\COBRADOR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COBVISIT.vb">
+    <Compile Include="Domain\FunAmor\COBVISIT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COCONCE.vb">
+    <Compile Include="Domain\FunAmor\COCONCE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COMIVEN.vb">
+    <Compile Include="Domain\FunAmor\COMIVEN.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONTRAT1.vb">
+    <Compile Include="Domain\AEVentas\CONTRAT1.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONTRATO.vb">
+    <Compile Include="Domain\AEVentas\CONTRATO.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONTRATO1.vb">
+    <Compile Include="Domain\AECobros\COBRADOR.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONTRATON.vb">
+    <Compile Include="Domain\AECobros\CONTRATO.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\CONTRATO1.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AEVentas\CONTRATON.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONTRATOND.vb">
+    <Compile Include="Domain\AEVentas\CONTRATOND.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Contratos.aspx.designer.vb">
@@ -2519,70 +2531,82 @@
       <DependentUpon>Contratos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CORRELA.vb">
+    <Compile Include="Domain\AEVentas\CORRELA.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CORRELAT.vb">
+    <Compile Include="Domain\FunAmor\CONTRAT1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COTIZA.vb">
+    <Compile Include="Domain\FunAmor\CONTRATO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COTVENT.vb">
+    <Compile Include="Domain\FunAmor\CORRELAT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="COTVENT1.vb">
+    <Compile Include="Domain\FunAmor\COTIZA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CPARTIDA.vb">
+    <Compile Include="Domain\FunAmor\COTVENT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_CLIENTESNOCOBRO_CANTVISITAS_Result.vb">
+    <Compile Include="Domain\FunAmor\COTVENT1.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\CPARTIDA.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\CR_CLIENTESNOCOBRO_CANTVISITAS_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_COB_REND_Result.vb">
+    <Compile Include="Domain\AEVentas\CR_COB_REND_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_ESTADO_DE_CUENTA_Result.vb">
+    <Compile Include="Domain\FunAmor\CR_ESTADO_DE_CUENTA_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_LIDER2_REND_Result.vb">
+    <Compile Include="Domain\AEVentas\CR_LIDER2_REND_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_LIDER_REND_Result.vb">
+    <Compile Include="Domain\AEVentas\CR_LIDER_REND_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_PROCESAR_Result.vb">
+    <Compile Include="Domain\AEVentas\CR_PROCESAR_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_REIMPRIMIR_PROCESAR_Result.vb">
+    <Compile Include="Domain\AEVentas\CR_REIMPRIMIR_PROCESAR_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CR_SP_EntregasXFecha_Result.vb">
+    <Compile Include="Domain\FunAmor\CR_SP_EntregasXFecha_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CSALDO.vb">
+    <Compile Include="Domain\FunAmor\CSALDO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CUADRE.vb">
+    <Compile Include="Domain\FunAmor\CUADRE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CUADRELE.vb">
+    <Compile Include="Domain\FunAmor\CUADRELE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CUENCOMP.vb">
+    <Compile Include="Domain\FunAmor\CUENCOMP.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Current_Product_List.vb">
+    <Compile Include="Domain\AECobros\CR_PROCESAR_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Customer_and_Suppliers_by_City.vb">
+    <Compile Include="Domain\AECobros\CR_REIMPRIMIR_PROCESAR_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CZONA.vb">
+    <Compile Include="Domain\AECobros\Current_Product_List.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\Customer_and_Suppliers_by_City.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AEVentas\CZONA.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CZONA2.vb">
+    <Compile Include="Domain\AEVentas\CZONA2.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
@@ -2592,46 +2616,49 @@
       <DependentUpon>DetalleMovimientoClientes.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="DETBOR.vb">
+    <Compile Include="Domain\FunAmor\CZONA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETCAL.vb">
+    <Compile Include="Domain\FunAmor\DETBOR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETCHK.vb">
+    <Compile Include="Domain\FunAmor\DETCAL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETCON.vb">
+    <Compile Include="Domain\FunAmor\DETCHK.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETEXT.vb">
+    <Compile Include="Domain\FunAmor\DETCON.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETFAC.vb">
+    <Compile Include="Domain\FunAmor\DETEXT.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETMAE.vb">
+    <Compile Include="Domain\FunAmor\DETFAC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETMOV.vb">
+    <Compile Include="Domain\FunAmor\DETMAE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETMTI.vb">
+    <Compile Include="Domain\FunAmor\DETMOV.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETPAGAR.vb">
+    <Compile Include="Domain\FunAmor\DETMTI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETPRO.vb">
+    <Compile Include="Domain\FunAmor\DETPAGAR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETRECIB.vb">
+    <Compile Include="Domain\FunAmor\DETPRO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DETSEG.vb">
+    <Compile Include="Domain\FunAmor\DETRECIB.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DOCXCU.vb">
+    <Compile Include="Domain\FunAmor\DETSEG.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\DOCXCU.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Empleados.aspx.designer.vb">
@@ -2641,19 +2668,22 @@
       <DependentUpon>Empleados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ENTREHI.vb">
+    <Compile Include="Domain\FunAmor\ENTREHI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EstadisticaVisitasDetalle.vb">
+    <Compile Include="Domain\AECobros\CZONA.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Evento.vb">
+    <Compile Include="Domain\AECobros\EstadisticaVisitasDetalle.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\Evento.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventoDet.vb">
+    <Compile Include="Domain\FunAmor\EventoDet.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EventoOld.vb">
+    <Compile Include="Domain\FunAmor\EventoOld.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EventoSala.aspx.designer.vb">
@@ -2663,64 +2693,67 @@
       <DependentUpon>EventoSala.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="EXIBOD.vb">
+    <Compile Include="Domain\AEVentas\EXIBOD.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FERIADO.vb">
+    <Compile Include="Domain\FunAmor\EXIBOD.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FN_VS_MonitorVentas_Result.vb">
+    <Compile Include="Domain\FunAmor\FERIADO.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AEVentas\FN_VS_MonitorVentas_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FUNAMORModel.Context.vb">
+    <Compile Include="Domain\FunAmor\FUNAMORModel.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FUNAMORModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="FUNAMORModel.Designer.vb">
+    <Compile Include="Domain\FunAmor\FUNAMORModel.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FUNAMORModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="FUNAMORModel.vb">
+    <Compile Include="Domain\FunAmor\FUNAMORModel.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FunctionName_Result.vb">
+    <Compile Include="Domain\AEVentas\FunctionName_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GestionCobro.vb">
+    <Compile Include="Domain\FunAmor\GestionCobro.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Get_Clientes_Result.vb">
+    <Compile Include="Domain\AECobros\Get_Clientes_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Get_Motivos_Result.vb">
+    <Compile Include="Domain\AECobros\Get_Motivos_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Get_Series_Result.vb">
+    <Compile Include="Domain\AECobros\Get_Series_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Get_Usuarios_Result.vb">
+    <Compile Include="Domain\AECobros\Get_Usuarios_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GrupoArtEnc.vb">
+    <Compile Include="Domain\AEVentas\GrupoArtEnc.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GXA0004.vb">
+    <Compile Include="Domain\FunAmor\GXA0004.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GXA0168.vb">
+    <Compile Include="Domain\FunAmor\GXA0168.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HISTCLI.vb">
+    <Compile Include="Domain\FunAmor\HISTCLI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HISTVALE.vb">
+    <Compile Include="Domain\FunAmor\HISTVALE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HORASSEP.vb">
+    <Compile Include="Domain\FunAmor\HORASSEP.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Inhumados.aspx.designer.vb">
@@ -2737,28 +2770,28 @@
       <DependentUpon>inicioOld1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Invoice.vb">
+    <Compile Include="Domain\AECobros\Invoice.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JARDINE.vb">
+    <Compile Include="Domain\FunAmor\JARDINE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LISTP21.vb">
+    <Compile Include="Domain\FunAmor\LISTP21.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogAccesoApp.vb">
+    <Compile Include="Domain\FunAmor\LogAccesoApp.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogContrat1Web.vb">
+    <Compile Include="Domain\FunAmor\LogContrat1Web.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogContratoWeb.vb">
+    <Compile Include="Domain\FunAmor\LogContratoWeb.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogProcesado.vb">
+    <Compile Include="Domain\AEVentas\LogProcesado.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MAEPAR.vb">
+    <Compile Include="Domain\FunAmor\MAEPAR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="mapa.aspx.designer.vb">
@@ -2768,13 +2801,28 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MATIBA.vb">
+    <Compile Include="Domain\FunAmor\MATIBA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MATICO.vb">
+    <Compile Include="Domain\FunAmor\MATICO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MATIIN.vb">
+    <Compile Include="Domain\FunAmor\MATIIN.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\LogProcesado.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\View_CORRELA.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AECobros\View_CZONA.vb">
+      <DependentUpon>AECobrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\PRODUCTO.vb">
+      <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FunAmor\SERVICIO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MonitorGestion.aspx.designer.vb">
@@ -2805,52 +2853,52 @@
       <DependentUpon>MonitorServicios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="MovArticulo.vb">
+    <Compile Include="Domain\AECobros\MovArticulo.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MOVCXC.vb">
+    <Compile Include="Domain\FunAmor\MOVCXC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MOVCXCLE.vb">
+    <Compile Include="Domain\FunAmor\MOVCXCLE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MULTICL1.vb">
+    <Compile Include="Domain\FunAmor\MULTICL1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MULTICLI.vb">
+    <Compile Include="Domain\FunAmor\MULTICLI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVSAGEN.vb">
+    <Compile Include="Domain\AEVentas\MVSAGEN.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NATURA.vb">
+    <Compile Include="Domain\FunAmor\NATURA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NRECIBO.vb">
+    <Compile Include="Domain\FunAmor\NRECIBO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="OJARDLEV.vb">
+    <Compile Include="Domain\FunAmor\OJARDLEV.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORDEN.vb">
+    <Compile Include="Domain\FunAmor\ORDEN.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Orders_Qry.vb">
+    <Compile Include="Domain\AECobros\Orders_Qry.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order_Details_Extended.vb">
+    <Compile Include="Domain\AECobros\Order_Details_Extended.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order_Subtotal.vb">
+    <Compile Include="Domain\AECobros\Order_Subtotal.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORIGEN.vb">
+    <Compile Include="Domain\FunAmor\ORIGEN.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PAGARE.vb">
+    <Compile Include="Domain\FunAmor\PAGARE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PAGCOMP.vb">
+    <Compile Include="Domain\FunAmor\PAGCOMP.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PantallaServicios.aspx.designer.vb">
@@ -2860,127 +2908,127 @@
       <DependentUpon>PantallaServicios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="PAPEVENL.vb">
+    <Compile Include="Domain\FunAmor\PAPEVENL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PERMI.vb">
+    <Compile Include="Domain\FunAmor\PERMI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLACAB.vb">
+    <Compile Include="Domain\FunAmor\PLACAB.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLACAL.vb">
+    <Compile Include="Domain\FunAmor\PLACAL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLACHI.vb">
+    <Compile Include="Domain\FunAmor\PLACHI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLACON.vb">
+    <Compile Include="Domain\FunAmor\PLACON.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLACTA.vb">
+    <Compile Include="Domain\FunAmor\PLACTA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLADEP.vb">
+    <Compile Include="Domain\FunAmor\PLADEP.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLADET.vb">
+    <Compile Include="Domain\FunAmor\PLADET.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLADHI.vb">
+    <Compile Include="Domain\FunAmor\PLADHI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLADMA.vb">
+    <Compile Include="Domain\FunAmor\PLADMA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLADTA.vb">
+    <Compile Include="Domain\FunAmor\PLADTA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLAEMP.vb">
+    <Compile Include="Domain\FunAmor\PLAEMP.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLAHOR.vb">
+    <Compile Include="Domain\FunAmor\PLAHOR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLAINCA.vb">
+    <Compile Include="Domain\FunAmor\PLAINCA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLAPUE.vb">
+    <Compile Include="Domain\FunAmor\PLAPUE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLASUC.vb">
+    <Compile Include="Domain\FunAmor\PLASUC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLAVAC.vb">
+    <Compile Include="Domain\FunAmor\PLAVAC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLDOCDED.vb">
+    <Compile Include="Domain\FunAmor\PLDOCDED.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PLOPAUTL.vb">
+    <Compile Include="Domain\FunAmor\PLOPAUTL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PMINIMO.vb">
+    <Compile Include="Domain\FunAmor\PMINIMO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="POPERA.vb">
+    <Compile Include="Domain\FunAmor\POPERA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="POSICIONES_VENTAS_1_Result.vb">
+    <Compile Include="Domain\FunAmor\POSICIONES_VENTAS_1_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="POSICIONES_VENTAS_LIDER_1_Result.vb">
+    <Compile Include="Domain\FunAmor\POSICIONES_VENTAS_LIDER_1_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="POSICIONES_VENTAS_LIDER_Result.vb">
+    <Compile Include="Domain\FunAmor\POSICIONES_VENTAS_LIDER_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="POSICIONES_VENTAS_Result.vb">
+    <Compile Include="Domain\FunAmor\POSICIONES_VENTAS_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PPOPER.vb">
+    <Compile Include="Domain\FunAmor\PPOPER.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRESTAM1.vb">
+    <Compile Include="Domain\FunAmor\PRESTAM1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRESTAMO.vb">
+    <Compile Include="Domain\FunAmor\PRESTAMO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRODUBIC.vb">
+    <Compile Include="Domain\FunAmor\PRODUBIC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRODUCTO.vb">
+    <Compile Include="Domain\AEVentas\PRODUCTO.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Products_Above_Average_Price.vb">
+    <Compile Include="Domain\AECobros\Products_Above_Average_Price.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Products_by_Category.vb">
+    <Compile Include="Domain\AECobros\Products_by_Category.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Product_Sales_for_1997.vb">
+    <Compile Include="Domain\AECobros\Product_Sales_for_1997.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PROEXI.vb">
+    <Compile Include="Domain\FunAmor\PROEXI.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PROVEEDO.vb">
+    <Compile Include="Domain\FunAmor\PROVEEDO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PVALESLE.vb">
+    <Compile Include="Domain\FunAmor\PVALESLE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PZONA.vb">
+    <Compile Include="Domain\FunAmor\PZONA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="P_CIUDAD.vb">
+    <Compile Include="Domain\FunAmor\P_CIUDAD.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RECIBO.vb">
+    <Compile Include="Domain\FunAmor\RECIBO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RECIBOSDIA.vb">
+    <Compile Include="Domain\AECobros\RECIBOSDIA.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RepExi.aspx.designer.vb">
@@ -3107,166 +3155,166 @@
       <DependentUpon>SalasHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Saldo_Result.vb">
+    <Compile Include="Domain\AECobros\Saldo_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sales_by_Category.vb">
+    <Compile Include="Domain\AECobros\Sales_by_Category.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sales_Totals_by_Amount.vb">
+    <Compile Include="Domain\AECobros\Sales_Totals_by_Amount.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SEGARC.vb">
+    <Compile Include="Domain\FunAmor\SEGARC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SEPELIO.vb">
+    <Compile Include="Domain\FunAmor\SEPELIO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Serie.vb">
+    <Compile Include="Domain\AECobros\Serie.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVCOSL.vb">
+    <Compile Include="Domain\FunAmor\SERVCOSL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICI1.vb">
+    <Compile Include="Domain\FunAmor\SERVICI1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICIO.vb">
+    <Compile Include="Domain\AEVentas\SERVICIO.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVINC1.vb">
+    <Compile Include="Domain\FunAmor\SERVINC1.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVINCL.vb">
+    <Compile Include="Domain\FunAmor\SERVINCL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_CobDiasLaboradosXLiderResumido_Result.vb">
+    <Compile Include="Domain\AECobros\SP_CR_CobDiasLaboradosXLiderResumido_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_CobDiasLaboradosXLider_Result.vb">
+    <Compile Include="Domain\AECobros\SP_CR_CobDiasLaboradosXLider_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_CobDiasLaborados_Result.vb">
+    <Compile Include="Domain\AECobros\SP_CR_CobDiasLaborados_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_FIRMACLIENTES_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_CR_FIRMACLIENTES_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_MoraClientes_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_MoraClientes_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_ReciboAppCobro_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_ReciboAppCobro_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VentasPorFechaDetallado_lider_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_VentasPorFechaDetallado_lider_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VentasPorFechaDetallado_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_VentasPorFechaDetallado_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VentasPorFechaDetallado_Vendedor_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_VentasPorFechaDetallado_Vendedor_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VENTAS_P_REACTIV_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_VENTAS_P_REACTIV_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VS_MovimientoClineteSubRPT_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_CR_VS_MovimientoClineteSubRPT_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_CR_VS_MOV_CLIENTESVISITAS_Result.vb">
+    <Compile Include="Domain\AECobros\SP_CR_VS_MOV_CLIENTESVISITAS_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.vb">
+    <Compile Include="Domain\FunAmor\sp_helpdiagramdefinition_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagrams_Result.vb">
+    <Compile Include="Domain\FunAmor\sp_helpdiagrams_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MonitorVentasXDiaEnc_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MonitorVentasXDiaEnc_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MonitorVentasXLiquidEnc_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MonitorVentasXLiquidEnc_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_l_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_l_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_SinProcesar_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_SinProcesar_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_SIN_LIQUID_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_SIN_LIQUID_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_SIN_LIQUID_SISTEMA_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_SIN_LIQUID_SISTEMA_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_X_LIQUID_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_X_LIQUID_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MONITOR_VENTAS_X_LIQUID_Sistema_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_MONITOR_VENTAS_X_LIQUID_Sistema_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MON_Visitas_Detalle_Result.vb">
+    <Compile Include="Domain\AECobros\SP_MON_Visitas_Detalle_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_MON_VISITAS_Result.vb">
+    <Compile Include="Domain\AECobros\SP_MON_VISITAS_Result.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_PBI_CarteraCobrador_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_PBI_CarteraCobrador_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_PWI_EntregaServiciosCliente_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_PWI_EntregaServiciosCliente_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_Ventas_anuladas_por_fecha_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_Ventas_anuladas_por_fecha_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_VS_BuscarCorrelativoArchivoCliente_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_VS_BuscarCorrelativoArchivoCliente_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_VS_CrearNotaDuelo_New_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_VS_CrearNotaDuelo_New_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_VS_CrearNotaDuelo_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_VS_CrearNotaDuelo_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_VS_PantallaServicios_Result.vb">
+    <Compile Include="Domain\FunAmor\SP_VS_PantallaServicios_Result.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_VS_VendDiasLab_Result.vb">
+    <Compile Include="Domain\AEVentas\SP_VS_VendDiasLab_Result.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SUBGRU.vb">
+    <Compile Include="Domain\FunAmor\SUBGRU.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SUCFEC.vb">
+    <Compile Include="Domain\FunAmor\SUCFEC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SUCFECLE.vb">
+    <Compile Include="Domain\FunAmor\SUCFECLE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SUCURSAL.vb">
+    <Compile Include="Domain\FunAmor\SUCURSAL.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Summary_of_Sales_by_Quarter.vb">
+    <Compile Include="Domain\AECobros\Summary_of_Sales_by_Quarter.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Summary_of_Sales_by_Year.vb">
+    <Compile Include="Domain\AECobros\Summary_of_Sales_by_Year.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SYSCON.vb">
+    <Compile Include="Domain\FunAmor\SYSCON.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.vb">
+    <Compile Include="Domain\FunAmor\sysdiagram.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TECNICO.vb">
+    <Compile Include="Domain\FunAmor\TECNICO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UBICAC.vb">
+    <Compile Include="Domain\FunAmor\UBICAC.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UbicacionLotes.aspx.designer.vb">
@@ -3276,13 +3324,13 @@
       <DependentUpon>UbicacionLotes.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="UBIJARD.vb">
+    <Compile Include="Domain\FunAmor\UBIJARD.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UrlCliente.vb">
+    <Compile Include="Domain\FunAmor\UrlCliente.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VALE.vb">
+    <Compile Include="Domain\FunAmor\VALE.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vales.aspx.designer.vb">
@@ -3292,13 +3340,13 @@
       <DependentUpon>Vales.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="VALESLEV.vb">
+    <Compile Include="Domain\FunAmor\VALESLEV.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VALTIPOS.vb">
+    <Compile Include="Domain\FunAmor\VALTIPOS.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VENDEDOR.vb">
+    <Compile Include="Domain\FunAmor\VENDEDOR.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vendedores.aspx.designer.vb">
@@ -3483,61 +3531,61 @@
       <DependentUpon>ventas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VENDNULO.vb">
+    <Compile Include="Domain\FunAmor\VENDNULO.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_ACTUACORRELA.vb">
+    <Compile Include="Domain\AECobros\View_ACTUACORRELA.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_CLIENTENS.vb">
+    <Compile Include="Domain\AECobros\View_CLIENTENS.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_Cobradores.vb">
+    <Compile Include="Domain\AECobros\View_Cobradores.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_CONTRATO.vb">
+    <Compile Include="Domain\AEVentas\View_CONTRATO.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_CORRELA.vb">
+    <Compile Include="Domain\AEVentas\View_CORRELA.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_CZONA.vb">
+    <Compile Include="Domain\AEVentas\View_CZONA.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_EXIBOD.vb">
+    <Compile Include="Domain\AEVentas\View_EXIBOD.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID1.vb">
+    <Compile Include="Domain\AECobros\View_GRID1.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID11.vb">
+    <Compile Include="Domain\AECobros\View_GRID11.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID2.vb">
+    <Compile Include="Domain\AECobros\View_GRID2.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID21.vb">
+    <Compile Include="Domain\AECobros\View_GRID21.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID3.vb">
+    <Compile Include="Domain\AECobros\View_GRID3.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID31.vb">
+    <Compile Include="Domain\AECobros\View_GRID31.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID4.vb">
+    <Compile Include="Domain\AECobros\View_GRID4.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_GRID41.vb">
+    <Compile Include="Domain\AECobros\View_GRID41.vb">
       <DependentUpon>AECobrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_PRODUCTOS.vb">
+    <Compile Include="Domain\AEVentas\View_PRODUCTOS.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View_Vtas.vb">
+    <Compile Include="Domain\AEVentas\View_Vtas.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VZONA.vb">
+    <Compile Include="Domain\FunAmor\VZONA.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

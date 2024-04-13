@@ -209,9 +209,9 @@ Public Class monitorventas
 
         GuardarImagen()
 
-        Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador").ToString.TrimEnd + "','" + Usuario_Aut + "'"
-        conf.EjecutaSql(Sql)
-
+        ' Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador").ToString.TrimEnd + "','" + Usuario_Aut + "'"
+        'conf.EjecutaSql(Sql)
+        Dim EnviarRecibos = aeCobrosContext.ENVIARECIBOS(Session("Cobrador").ToString.TrimEnd, Usuario_Aut).ToList()
         btnBuscar_Click(sender, e)
         PanelImpresion.Visible = False
         Panel1.Visible = True
@@ -221,6 +221,7 @@ Public Class monitorventas
     Protected Sub txtBuscarVendedorV_TextChanged(sender As Object, e As EventArgs)
         Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
         Dim Sql As String
+
 
         Sql = "Select cod_vendedo Vendedor, Nombre_vend Nombre from FUNAMOR..VENDEDOR WHERE COD_VENDEDO + nombre_vend like '%" + txtBuscarVended.Text.TrimEnd + "%'"
         Datos = conf.EjecutaSql(Sql)
