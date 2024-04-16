@@ -26,7 +26,7 @@ Partial Public Class AECobrosEntities2
 
     Public Overridable Property CLIENTESOLDs() As DbSet(Of CLIENTESOLD)
     Public Overridable Property CONTRATO1() As DbSet(Of CONTRATO1)
-    Public Overridable Property Series() As DbSet(Of Serie)
+    'Public Overridable Property Series() As DbSet(Of Serie)
     Public Overridable Property AE_CZONA() As DbSet(Of AE_CZONA)
     Public Overridable Property Almacens() As DbSet(Of Almacen)
     Public Overridable Property Articuloes() As DbSet(Of Articulo)
@@ -37,7 +37,7 @@ Partial Public Class AECobrosEntities2
     Public Overridable Property Category_Sales_for_1997() As DbSet(Of Category_Sales_for_1997)
     Public Overridable Property ClienteContras() As DbSet(Of ClienteContra)
     Public Overridable Property ClienteContra2() As DbSet(Of ClienteContra2)
-    Public Overridable Property CLIENTES() As DbSet(Of CLIENTE)
+    'Public Overridable Property CLIENTES() As DbSet(Of CLIENTE)
     Public Overridable Property COBRADORs() As DbSet(Of COBRADOR)
     Public Overridable Property CONTRATOes() As DbSet(Of CONTRATO)
     Public Overridable Property Current_Product_Lists() As DbSet(Of Current_Product_List)

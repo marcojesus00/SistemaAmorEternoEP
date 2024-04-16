@@ -2339,18 +2339,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.monitorventas._txtFechaInicio">
+<member name="F:Sistema.monitorventas._txtFecha">
 <summary>
-txtFechaInicio control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas._txtFechaFinal">
-<summary>
-txtFechaFinal control.
+txtFecha control.
 </summary>
 <remarks>
 Auto-generated field.
