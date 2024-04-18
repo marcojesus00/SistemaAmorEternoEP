@@ -1,6 +1,5 @@
-﻿Imports CrystalDecisions.Shared
+﻿Imports System.Drawing
 Imports System.IO
-Imports System.Drawing
 Public Class monitorventas
     Inherits System.Web.UI.Page
     Public Usuario, Clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
@@ -74,10 +73,10 @@ Public Class monitorventas
             SQL = " SELECT B.NOMBRE_VEND FROM FUNAMOR..VENDEDOR A INNER JOIN FUNAMOR..VENDEDOR B ON A.VEND_LIDER = B.Cod_vendedo WHERE A.VEND_STATUS = 'A' GROUP BY B.NOMBRE_VEND "
             Datos2 = conf.EjecutaSql(SQL)
 
-            dlLider.Items.Add("")
-            dlLider.Items.Add("TODOS")
+            dllider.Items.Add("")
+            dllider.Items.Add("TODOS")
             For I As Integer = 0 To Datos2.Tables(0).Rows.Count - 1
-                dlLider.Items.Add(Datos2.Tables(0).Rows(I).Item("NOMBRE_VEND"))
+                dllider.Items.Add(Datos2.Tables(0).Rows(I).Item("NOMBRE_VEND"))
             Next
 
             Dim conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -85,9 +84,9 @@ Public Class monitorventas
             SQL1 = " Select B.vzon_nombre From FUNAMOR..VENDEDOR A Left Join FUNAMOR..VZONA B ON A.vzon_codigo = B.vzon_codigo WHERE A.VEND_STATUS = 'A' Group BY B.vzon_nombre "
             Datos = conf1.EjecutaSql(SQL1)
 
-            dlZona.Items.Add("")
+            dlzona.Items.Add("")
             For I As Integer = 0 To Datos.Tables(0).Rows.Count - 1
-                dlZona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
+                dlzona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
             Next
 
             Dim conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -97,7 +96,7 @@ Public Class monitorventas
 
             If Datos1.Tables(0).Rows.Count > 0 Then
                 If Datos1.Tables(0).Rows(0).Item("Nombre_vend").ToString.Length > 0 Then
-                    dlLider.SelectedItem.Text = Datos1.Tables(0).Rows(0).Item("Nombre_vend")
+                    dllider.SelectedItem.Text = Datos1.Tables(0).Rows(0).Item("Nombre_vend")
                     dllider.Enabled = False
                     dlRun.Items.Add("False")
                     dlRun.Enabled = False
@@ -349,7 +348,7 @@ Public Class monitorventas
             Session.Add("F1", DateTime.Now.ToString("yyyy-MM-dd"))
         End If
 
-        If dlMostrar.SelectedIndex = 0 And dlLider.SelectedValue = "TODOS" Then
+        If dlMostrar.SelectedIndex = 0 And dllider.SelectedValue = "TODOS" Then
             gvMonitor.Columns(1).Visible = False
             gvMonitor.Columns(2).Visible = False
             lblVerdes.Visible = True
@@ -429,7 +428,7 @@ Public Class monitorventas
                 Sql1 = " DECLARE @FECHA DATE "
                 Sql1 += " SET @FECHA = '" + Session("F1") + "' "
                 Sql1 += " SELECT DISTINCT A.Num_doc [Codigo], CONVERT(VARCHAR(50), CAST(A.Por_lempira AS MONEY ),1) [Cobrado], A.rhora [Hora], A.Codigo_clie [Codigo Cliente], CASE WHEN A.Num_doc = 'PROSPECTO' THEN '' ELSE A.CONCEPTO END CONCEPTO, A.RCODVEND, SUBSTRING(CASE WHEN C.Nombre_clie IS NULL THEN A.CONCEPTO ELSE C.Nombre_clie END ,1,30) Nombre_clie, CONVERT(VARCHAR,A.Fecha) Fecha, A.liquida, A.liquida2, UPPER(SUBSTRING(C.Dir_cliente + ' '+ ISNULL(C.Dir2_client,'') COLLATE Modern_Spanish_CI_AS,1,40)) Dir_cliente, (SELECT TOP 1 'ANULADO POR: ' + Z.USUARIO + '
-                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClienteSistema   "
+                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClientesSistema   "
                 Sql1 += " FROM( "
                 Sql1 += " SELECT A.Num_doc, A.Por_lempira, A.rhora, A.Codigo_clie, A.RCODVEND, CASE WHEN A.MARCA = 'X' THEN 'ANULADO' ELSE '' END CONCEPTO, CONVERT(DATE,A.Fecha_recib) Fecha, A.liquida, A.liquida2, B.CONT_NUMCUO, B.CONT_VALCUO, B.CONT_VALOR, B.SERVI1DES, B.CONT_CANTI, B.CONT_SVAL1, B.SERVI2DES, B.CONT_CANT2, B.CONT_SVAL2, B.SERVI3DES, B.CONT_CANT3, B.CONT_SVAL3, B.SERVI4DES, B.CONT_CANT4, B.CONT_SVAL4, A.LONGITUD, A.LATITUD FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_clie = B.Codigo_clie AND A.RCODVEND = B.cont_vended WHERE CONVERT(DATE,A.Fecha_recib) = @FECHA "
                 Sql1 += " UNION ALL "
@@ -469,7 +468,7 @@ Public Class monitorventas
             Sql += " ) A LEFT JOIN FUNAMOR..VENDEDOR B ON A.RCODVEND = B.Cod_vendedo COLLATE Modern_Spanish_CI_AS "
             Sql += " LEFT JOIN FUNAMOR..VENDEDOR C ON B.VEND_LIDER = C.Cod_vendedo "
             Sql += " LEFT JOIN FUNAMOR..VZONA D ON B.vzon_codigo = D.vzon_codigo "
-            Sql += " WHERE C.Nombre_vend  LIKE '%" + dlLider.SelectedValue + "%' "
+            Sql += " WHERE C.Nombre_vend  LIKE '%" + dllider.SelectedValue + "%' "
             Sql += " AND A.RCODVEND + B.Nombre_vend COLLATE Modern_Spanish_CI_AS LIKE '%" + txtCobrador.Value + "%' "
             Sql += " AND A.liquida != 'N' "
             Sql += " AND D.vzon_nombre LIKE '%" + dlzona.SelectedValue + "%' "
@@ -506,17 +505,17 @@ Public Class monitorventas
 
 
             Sql = " DECLARE @FECHA DATE "
-                Sql += " SET @FECHA = '" + Session("F1") + "'"
-                Sql += " SELECT A.RCODVEND [Codigo], B.Nombre_vend [Vendedor], SUM(A.Por_lempira) [Cobrado], MIN(A.rhora) [Primer Visita], MAX(A.rhora) [Ultima Visita], SUM(A.Recibos) Recibos, SUM(A.Visitados) Visitados, SUM(A.Ventas) Ventas, SUBSTRING(C.Nombre_vend,1,16) [Lider], A.Liquida, A.Liquida2 Procesado, D.vzon_nombre [Zona], B.Tel_vendedo Telefono "
-                Sql += " FROM ( "
-                Sql += " Select DISTINCT A.RCODVEND, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Ventas, A.liquida, A.liquida2 FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.RCODVEND = B.CONT_VENDED WHERE A.MARCA = 'N' AND A.liquida = 'N' AND CONVERT(DATE,A.Fecha_recib) <= @FECHA "
-                Sql += " ) A LEFT JOIN FUNAMOR..VENDEDOR B ON A.RCODVEND = B.Cod_vendedo COLLATE Modern_Spanish_CI_AS "
-                Sql += " LEFT JOIN FUNAMOR..VENDEDOR C ON B.VEND_LIDER = C.Cod_vendedo "
-                Sql += " LEFT JOIN FUNAMOR..VZONA D ON B.vzon_codigo = D.vzon_codigo "
-                Sql += " WHERE C.Nombre_vend  LIKE '%" + dllider.SelectedValue + "%' "
-                Sql += " AND A.RCODVEND + B.Nombre_vend COLLATE Modern_Spanish_CI_AS LIKE '%" + txtCobrador.Value + "%' "
-                Sql += " AND D.vzon_nombre LIKE '%" + dlzona.SelectedValue + "%' "
-                Sql += " Group BY A.RCODVEND, B.Nombre_vend, C.Nombre_vend, A.Liquida, A.liquida2, D.vzon_nombre, B.Tel_vendedo "
+            Sql += " SET @FECHA = '" + Session("F1") + "'"
+            Sql += " SELECT A.RCODVEND [Codigo], B.Nombre_vend [Vendedor], SUM(A.Por_lempira) [Cobrado], MIN(A.rhora) [Primer Visita], MAX(A.rhora) [Ultima Visita], SUM(A.Recibos) Recibos, SUM(A.Visitados) Visitados, SUM(A.Ventas) Ventas, SUBSTRING(C.Nombre_vend,1,16) [Lider], A.Liquida, A.Liquida2 Procesado, D.vzon_nombre [Zona], B.Tel_vendedo Telefono "
+            Sql += " FROM ( "
+            Sql += " Select DISTINCT A.RCODVEND, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Ventas, A.liquida, A.liquida2 FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.RCODVEND = B.CONT_VENDED WHERE A.MARCA = 'N' AND A.liquida = 'N' AND CONVERT(DATE,A.Fecha_recib) <= @FECHA "
+            Sql += " ) A LEFT JOIN FUNAMOR..VENDEDOR B ON A.RCODVEND = B.Cod_vendedo COLLATE Modern_Spanish_CI_AS "
+            Sql += " LEFT JOIN FUNAMOR..VENDEDOR C ON B.VEND_LIDER = C.Cod_vendedo "
+            Sql += " LEFT JOIN FUNAMOR..VZONA D ON B.vzon_codigo = D.vzon_codigo "
+            Sql += " WHERE C.Nombre_vend  LIKE '%" + dllider.SelectedValue + "%' "
+            Sql += " AND A.RCODVEND + B.Nombre_vend COLLATE Modern_Spanish_CI_AS LIKE '%" + txtCobrador.Value + "%' "
+            Sql += " AND D.vzon_nombre LIKE '%" + dlzona.SelectedValue + "%' "
+            Sql += " Group BY A.RCODVEND, B.Nombre_vend, C.Nombre_vend, A.Liquida, A.liquida2, D.vzon_nombre, B.Tel_vendedo "
 
 
             If dlRun.SelectedIndex = 0 Then
