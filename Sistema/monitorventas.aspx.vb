@@ -372,14 +372,18 @@ Public Class monitorventas
             gvMonitor.Columns(2).Visible = False
             lblVerdes.Visible = True
             Sql = " DECLARE @FECHA DATE "
+            Sql = " DECLARE @FECHAFINAL DATE "
+
             Sql += " SET @FECHA = '" + Session("InitialDate") + "'"
+            Sql += " SET @FECHAFINAL = '" + Session("FinalDate") + "'"
+
             Sql += " Select  B.VEND_LIDER [Codigo], c.Nombre_vend [Lider], SUM(A.Por_lempira) [Cobrado], MIN(A.rhora) [Primer Visita], MAX(A.rhora) [Ultima Visita], SUM(A.Recibos) Recibos, SUM(A.Visitados) Visitados, SUM(A.Ventas) Ventas, SUM(A.Verdes) Verdes, D.vzon_nombre [Zona], C.Tel_vendedo Telefono "
             Sql += " FROM ( "
-            Sql += " Select DISTINCT A.RCODVEND, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Ventas, 0 Verdes FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.RCODVEND = B.CONT_VENDED WHERE CONVERT(DATE,A.Fecha_recib) = @FECHA AND A.MARCA = 'N' "
+            Sql += " Select DISTINCT A.RCODVEND, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Ventas, 0 Verdes FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.RCODVEND = B.CONT_VENDED WHERE CONVERT(DATE,A.Fecha_recib) >= @FECHA AND CONVERT(DATE,A.Fecha_recib) <= @FECHAFINAL AND A.MARCA = 'N' "
             Sql += " UNION ALL "
-            Sql += " Select A.VENDEDOR, 0, SUBSTRING(A.HORA,1,2) +':'+ SUBSTRING(A.HORA,3,2) +':00', 0 Recibos, 1 Visitados, 0 Ventas, 0 Verdes FROM NOVENTA A WHERE CONVERT(DATE,A.FECHA) = @FECHA "
+            Sql += " Select A.VENDEDOR, 0, SUBSTRING(A.HORA,1,2) +':'+ SUBSTRING(A.HORA,3,2) +':00', 0 Recibos, 1 Visitados, 0 Ventas, 0 Verdes FROM NOVENTA A WHERE CONVERT(DATE,A.FECHA) >= @FECHA AND CONVERT(DATE,A.FECHA) <= @FECHAFINAL "
             Sql += " UNION ALL "
-            Sql += " Select A.CL_VENDEDOR, 0, CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha)) END + ':' + CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha)) END +':'+ CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha)) END, 0 Recibos, 1 Visitados, 0 Ventas, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Verdes FROM CLIENTESN A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.CL_VENDEDOR = B.CONT_VENDED WHERE CONVERT(DATE,A.cl_fecha) = @FECHA AND A.tempo = 'N'"
+            Sql += " Select A.CL_VENDEDOR, 0, CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(HOUR,A.cl_fecha)) END + ':' + CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(MINUTE,A.cl_fecha)) END +':'+ CASE WHEN LEN(CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha))) = 1 THEN '0' + CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha)) ELSE CONVERT(VARCHAR,DATEPART(SECOND,A.cl_fecha)) END, 0 Recibos, 1 Visitados, 0 Ventas, (B.CONT_CANTI + B.CONT_CANT2 + B.CONT_CANT3 + B.CONT_CANT4) Verdes FROM CLIENTESN A LEFT JOIN CONTRATON B ON A.Codigo_Clie = B.Codigo_Clie AND A.CL_VENDEDOR = B.CONT_VENDED WHERE CONVERT(DATE,A.cl_fecha) >= @FECHA AND CONVERT(DATE,A.cl_fecha) <= @FECHAFINAL AND A.tempo = 'N'"
             Sql += " ) A LEFT JOIN FUNAMOR..VENDEDOR B ON A.RCODVEND = B.Cod_vendedo COLLATE Modern_Spanish_CI_AS "
             Sql += " LEFT JOIN FUNAMOR..VENDEDOR C ON B.VEND_LIDER = C.Cod_vendedo "
             Sql += " LEFT JOIN FUNAMOR..VZONA D ON C.vzon_codigo = D.vzon_codigo "
@@ -836,11 +840,11 @@ Public Class monitorventas
             Session.Add("GVDetalle", Datos1.Tables(0))
 
 
-            'Datos = conf.EjecutaSql(Sql)
-            'Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-            Dim data = aeCobrosContext.Almacens
-            'Session.Add("GV", Datos.Tables(0))
-            Session.Add("GV", data.ToList())
+            Datos = conf.EjecutaSql(Sql)
+            Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+            'Dim data = aeCobrosContext.Almacens
+            Session.Add("GV", Datos.Tables(0))
+            'Session.Add("GV", data.ToList())
             gvMonitor.DataSource = Session("GV")
             gvMonitor.DataBind()
             gvMonitor2.Visible = False

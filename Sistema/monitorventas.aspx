@@ -135,12 +135,12 @@ h4:hover {
                                 <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
                                     <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="false"  CssClass="ChildGrid"><AlternatingRowStyle BackColor="#eeeeee" />
                                         <Columns>  
-                                            <asp:BoundField DataField="DocEntry" HeaderText="DocEntry" ItemStyle-Width="120px" />
+                                          <%--  <asp:BoundField DataField="DocEntry" HeaderText="DocEntry" ItemStyle-Width="120px" />
                                             <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
                                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" ItemStyle-Width="120px" />
-                                            <asp:BoundField DataField="Estado" HeaderText="Estado" ItemStyle-Width="120px" />
+                                            <asp:BoundField DataField="Estado" HeaderText="Estado" ItemStyle-Width="120px" />--%>
 
-<%--                                            <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
+                                            <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
                                             <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" ItemStyle-Width="80px" />
                                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-Width="80px" />
                                             <asp:BoundField DataField="Hora" HeaderText="Hora" ItemStyle-Width="60px" />
@@ -154,7 +154,7 @@ h4:hover {
                                             <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Telefono" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
                                             <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>
-<%--                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />--%>
+<%--                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
                                         </Columns>
                                     </asp:GridView>
                                 </asp:Panel>

@@ -122,6 +122,24 @@ Partial Public Class monitorventas
     Protected WithEvents gvMonitor As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''pnlOrders control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlOrders As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''gvDetalle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvDetalle As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''gvMonitor2 control.
     '''</summary>
     '''<remarks>
