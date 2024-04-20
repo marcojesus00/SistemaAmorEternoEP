@@ -1,11 +1,11 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" MasterPageFile="~/AE.Master" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<html xmlns="http://www.w3.org/1999/xhtml">--%>
+<%--<head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
     <title>Monitor de Ventas</title>
@@ -15,7 +15,7 @@
     <link href="css/inicio.css" rel="stylesheet" type="text/css"/>    
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">/
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet"/>
   <link rel="stylesheet" href="css4/all.min.css"/>
@@ -43,12 +43,15 @@ h4:hover {
 
 
 </style>
-</head>
-<body>  
-    <form id="form1" runat="server">
+</head>--%>
+<%--<body>  --%>
+    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+<%--    <form id="form1" runat="server">--%>
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="left">
-            <div><h4 style="width:100%; text-align:center">Monitor de Ventas</h4></div>
-           
+<%--            <div><h4 style="width:100%; text-align:center">Monitor de Ventas</h4></div>--%>
+           <h1 class="pl-3 display-6 text-black-50">Monitor de Ventas</h1>
+
             <div class="container-fluid" style="padding-top:5px;"> 
                     <div class="row">
                       <div class="col-sm-4 col-d-3 col-lg-2">
@@ -119,10 +122,13 @@ h4:hover {
                        <input type="text" class="form-control form-control-sm" placeholder="Codigo Vendedor" id="txtCobrador" runat="server" />
                          
                     </div>
-                       <asp:Button ID="btnBuscar" runat="server" Text="   Buscar   " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
-                       
-                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   ArreglarVenta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
-                   </div>
+                      <i class="bi bi-search pr-1"></i>
+                       <asp:Button ID="btnBuscar" runat="server" Text="   Buscar ventas  " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
+
+                        <i class="bi bi-wrench  pr-1"></i>
+                        <asp:Button  ID="btnArreglarVenta" runat="server" Text="  Arreglar una venta  " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary bi bi-wrench" aria-label="Fix Sale Button" />
+
+                     </div>
                
               
           </div>
@@ -153,8 +159,7 @@ h4:hover {
                                             <asp:BoundField DataField="CONCEPTO" HeaderText="Motivo" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" />
                                             <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
                                             <asp:BoundField DataField="Telefono" HeaderText="Telefono" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
-                                            <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>
-<%--                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
+                                            <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/><%-- --%>                                           <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
                                         </Columns>
                                     </asp:GridView>
                                 </asp:Panel>
@@ -164,7 +169,7 @@ h4:hover {
                         <asp:ButtonField CommandName="Liquidar" Text="Liquidar" Visible="False"/>
                         <asp:ButtonField Text="Imprimir" CommandName ="Imprimir" Visible="false"/>
                         <asp:ButtonField Text="Mapa" CommandName ="Mapa" Visible="true"/>
-                        <%--<asp:ButtonField CommandName="ver" Text="Ver" Visible="true"/>--%>
+<%--                        <asp:ButtonField CommandName="ver" Text="Ver" Visible="true"/>--%>
                     
                     </Columns>
                     <FooterStyle BackColor="#CCCCCC" ForeColor="Black" /><HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
@@ -177,7 +182,7 @@ h4:hover {
                     BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AllowSorting="True"><AlternatingRowStyle BackColor="White" />
                     
                     <Columns>   
-                    <%-- <asp:ButtonField Text="Ver" CommandName ="Ver" Visible="true"/>   --%>
+                     <asp:ButtonField Text="Ver" CommandName ="Ver" Visible="true"/>   
                     </Columns>
                     <FooterStyle BackColor="#CCCC99" /><HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /><RowStyle BackColor="#F7F7DE" />
@@ -296,7 +301,7 @@ h4:hover {
                 </div>
 
 
-                <div class="row" style="background-color: white">
+                <div class="row  pb-1 pt-3" style="background-color: azure">
                     <div class="col-6" id="divClientes" style="background-color: azure">
                         <div>
                             <div class="input-group-prepend">
@@ -451,8 +456,8 @@ h4:hover {
                </div>
                <asp:LinkButton ID="btnCerrarCliapp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div><%-- Panel Contrato --%><div class="container-fluid" style="background-color: white; position:absolute; left: 0; top: 0; bottom: 0" id="PanelProductosApp" runat="server" visible="false">
                <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">                           
+                   <div class="row pb-1" style="background-color: white; padding-top: 15px;">                   
+                       <div class="col pb-1">                           
                            <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine"   />
                        </div>                    
                    </div>
@@ -543,5 +548,7 @@ h4:hover {
 
         </script>        
     </form>
-</body>
-</html>
+     </asp:Content>
+
+<%--</body>
+</html>--%>

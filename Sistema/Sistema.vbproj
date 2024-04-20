@@ -245,6 +245,7 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
+    <Content Include="Contents\UserControls\Sidebar.ascx" />
     <Content Include="Contratos.aspx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
@@ -406,6 +407,7 @@
     <Content Include="AEVentasModel.edmx.diagram">
       <DependentUpon>AEVentasModel.edmx</DependentUpon>
     </Content>
+    <Content Include="AE.Master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2209,20 +2211,6 @@
     <Content Include="principal.aspx" />
     <Content Include="Noquierecontinuar.aspx" />
     <Content Include="reportes.aspx" />
-    <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
-    <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
-    <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
-    <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css" />
-    <Content Include="vendor\bootstrap\css\bootstrap.css" />
-    <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
-    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
-    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
-    <Content Include="vendor\bootstrap\js\bootstrap.js" />
-    <Content Include="vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="vendor\jquery\jquery.js" />
-    <Content Include="vendor\jquery\jquery.min.js" />
-    <Content Include="vendor\jquery\jquery.slim.js" />
-    <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2258,6 +2246,13 @@
   <ItemGroup>
     <Compile Include="ADIBA2.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AE.Master.designer.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AE.Master.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AECobrosModel.Context.vb">
       <AutoGen>True</AutoGen>
@@ -2497,6 +2492,11 @@
     <Compile Include="COMIVEN.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contents\UserControls\Sidebar.ascx.vb">
+      <DependentUpon>Sidebar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\UserControls\Sidebar.designer.vb" />
     <Compile Include="CONTRAT1.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
@@ -3639,18 +3639,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <Content Include="vendor\bootstrap\css\bootstrap-grid.css.map" />
-    <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css.map" />
-    <Content Include="vendor\bootstrap\css\bootstrap-reboot.css.map" />
-    <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
-    <Content Include="vendor\bootstrap\css\bootstrap.css.map" />
-    <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
-    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
-    <Content Include="vendor\bootstrap\js\bootstrap.js.map" />
-    <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="vendor\jquery\jquery.min.map" />
-    <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />

@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class monitorventas
 
     '''<summary>
-    '''form1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
     '''Panel1 control.
     '''</summary>
     '''<remarks>
@@ -120,24 +111,6 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvMonitor As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''pnlOrders control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnlOrders As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''gvDetalle control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gvDetalle As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''gvMonitor2 control.
