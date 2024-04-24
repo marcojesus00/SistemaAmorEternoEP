@@ -1,6 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Imports System.Data.SqlClient
-Imports System.Data
+﻿Imports System.Data.SqlClient
 Public Class Configuracion
     Private _Usuario As String
     Private _Password As String
@@ -77,6 +75,54 @@ Public Class Configuracion
                     _MSG = ex.Errors(i).Message
                 End If
             Next
+        End Try
+
+        Return Datos
+    End Function
+    Public Function RunQuery(ByVal SQL As String, Optional ByVal parameters As Dictionary(Of String, Object) = Nothing)
+        Dim rs As New Data.DataSet
+        Dim connectionString As String = "Server=" + server + "; Database=" + Db + "; UID=" + Usuario + "; PWD=" + Password
+
+        If (Conector.State <> ConnectionState.Open) Then
+            Conector = New SqlConnection(connectionString)
+            Try
+                Conector.Open()
+            Catch ex As Exception
+                _MSG = ex.Message
+                Return Nothing
+            End Try
+        End If
+
+        Dim cmd As New SqlCommand(SQL, Conector)
+
+        If parameters IsNot Nothing Then
+            For Each param In parameters
+                cmd.Parameters.AddWithValue(param.Key, param.Value)
+            Next
+        End If
+
+
+        Adaptador = New SqlDataAdapter(cmd)
+        Datos.Clear()
+        Try
+            Adaptador.Fill(rs)
+            Datos = rs
+
+        Catch ex As SqlException
+
+            For i As Integer = 0 To ex.Errors.Count - 1
+                If ex.Errors(i).Number = 2627 Then
+                    Dim msg As String = "No se puede insertar un registro duplicado, " + " Codigo de Error: " + ex.Errors(i).Number.ToString + " " + ex.Errors(i).Message
+                    _MSG = msg
+                End If
+
+            Next
+            _MSG = ex.Message
+            Return Nothing
+        Finally
+            If (Conector.State = ConnectionState.Open) Then
+                Conector.Close()
+            End If
         End Try
 
         Return Datos
