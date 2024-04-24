@@ -71,27 +71,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.AE._Linkbutton1">
+<member name="F:Sistema.AE._theNavBar">
 <summary>
-Linkbutton1 control.
+theNavBar control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.AE._LinkButton2">
+<member name="F:Sistema.AE._theSideBar">
 <summary>
-LinkButton2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.AE._mySidebar">
-<summary>
-mySidebar control.
+theSideBar control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -101,6 +92,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.AE._MainContent">
 <summary>
 MainContent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.AE._TheFooter">
+<summary>
+TheFooter control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1001,6 +1001,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.ClientesM1._rptPDFList">
 <summary>
 rptPDFList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.NavBar._Linkbutton1">
+<summary>
+Linkbutton1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.NavBar._LinkButton2">
+<summary>
+LinkButton2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3023,285 +3041,6 @@ Campo generado automáticamente.
 Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 </remarks>
 </member>
-<member name="F:Sistema.monitorventas1._form1">
-<summary>
-form1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblTitulo">
-<summary>
-lblTitulo control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._DropMode">
-<summary>
-DropMode control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._RowFecha1">
-<summary>
-RowFecha1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._txtFecha">
-<summary>
-txtFecha control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._RowFecha2">
-<summary>
-RowFecha2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._Fecha2">
-<summary>
-Fecha2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._dlMostrar">
-<summary>
-dlMostrar control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._dllider">
-<summary>
-dllider control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._dlzona">
-<summary>
-dlzona control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._dlRun">
-<summary>
-dlRun control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._rowclienteIdend">
-<summary>
-rowclienteIdend control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._txtCodClienteApp">
-<summary>
-txtCodClienteApp control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._txtidentidadClienteApp">
-<summary>
-txtidentidadClienteApp control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._rowClienteNombre">
-<summary>
-rowClienteNombre control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._TxtCliente1">
-<summary>
-TxtCliente1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._TxtCliente2">
-<summary>
-TxtCliente2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._txtCobrador">
-<summary>
-txtCobrador control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._btnBuscarv">
-<summary>
-btnBuscarv control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._RowGrafico">
-<summary>
-RowGrafico control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._GraTopVen">
-<summary>
-GraTopVen control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._GvPrincipal">
-<summary>
-GvPrincipal control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._gvExcel">
-<summary>
-gvExcel control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblMsg">
-<summary>
-lblMsg control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblTotal">
-<summary>
-lblTotal control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblRecibos">
-<summary>
-lblRecibos control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblVisitados">
-<summary>
-lblVisitados control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblVentas">
-<summary>
-lblVentas control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblVerdes">
-<summary>
-lblVerdes control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblCobradores">
-<summary>
-lblCobradores control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas1._lblHora">
-<summary>
-lblHora control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.monitorventas._Panel1">
 <summary>
 Panel1 control.
@@ -3413,15 +3152,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorventas._gvDetalle2">
 <summary>
 gvDetalle2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas._btnSalir">
-<summary>
-btnSalir control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4007,6 +3737,285 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorventas._BtnCerrarStatus">
 <summary>
 BtnCerrarStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblTitulo">
+<summary>
+lblTitulo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._DropMode">
+<summary>
+DropMode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._RowFecha1">
+<summary>
+RowFecha1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._txtFecha">
+<summary>
+txtFecha control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._RowFecha2">
+<summary>
+RowFecha2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._Fecha2">
+<summary>
+Fecha2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._dlMostrar">
+<summary>
+dlMostrar control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._dllider">
+<summary>
+dllider control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._dlzona">
+<summary>
+dlzona control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._dlRun">
+<summary>
+dlRun control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._rowclienteIdend">
+<summary>
+rowclienteIdend control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._txtCodClienteApp">
+<summary>
+txtCodClienteApp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._txtidentidadClienteApp">
+<summary>
+txtidentidadClienteApp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._rowClienteNombre">
+<summary>
+rowClienteNombre control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._TxtCliente1">
+<summary>
+TxtCliente1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._TxtCliente2">
+<summary>
+TxtCliente2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._txtCobrador">
+<summary>
+txtCobrador control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._btnBuscarv">
+<summary>
+btnBuscarv control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._RowGrafico">
+<summary>
+RowGrafico control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._GraTopVen">
+<summary>
+GraTopVen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._GvPrincipal">
+<summary>
+GvPrincipal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._gvExcel">
+<summary>
+gvExcel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblMsg">
+<summary>
+lblMsg control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblTotal">
+<summary>
+lblTotal control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblRecibos">
+<summary>
+lblRecibos control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblVisitados">
+<summary>
+lblVisitados control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblVentas">
+<summary>
+lblVentas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblVerdes">
+<summary>
+lblVerdes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblCobradores">
+<summary>
+lblCobradores control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas1._lblHora">
+<summary>
+lblHora control.
 </summary>
 <remarks>
 Auto-generated field.

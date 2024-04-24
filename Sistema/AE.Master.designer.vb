@@ -32,31 +32,22 @@ Partial Public Class AE
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Linkbutton1 control.
+    '''theNavBar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Linkbutton1 As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents theNavBar As Global.Sistema.NavBar
 
     '''<summary>
-    '''LinkButton2 control.
+    '''theSideBar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents LinkButton2 As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''mySidebar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents mySidebar As Global.Sistema.Sidebar
+    Protected WithEvents theSideBar As Global.Sistema.Sidebar
 
     '''<summary>
     '''MainContent control.
@@ -66,4 +57,13 @@ Partial Public Class AE
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
+    '''TheFooter control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TheFooter As Global.Sistema.Footer
 End Class

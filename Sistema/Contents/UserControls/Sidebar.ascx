@@ -1,16 +1,16 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="true" CodeBehind="Sidebar.ascx.vb" Inherits="Sistema.Sidebar" %>
   
-<div class="sidebar-container pl-3">
+<div class="sidebar-container pl-3  text-light h-100">
 
-    <div class="col-sm-12 col-md-4  col-lg-12 row container-fluid" style="padding-top:10px;">
+    <div class="container-fluid d-flex flex-column h-100" style="padding-top:10px;">
     <div class="">
         <div id="accordion" class="shadow-sm">                    
             <div class="card">
-                <div class="card-header">
+                <div class="card-header  text-light">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseTwo"><i class="fas fa-tags" style="font-size: 22px;"></i>&nbsp&nbsp Caja</a>
                 </div>
                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
+                    <div class="card-body  text-light">
                         <div class="row table">
                             <div class="col">
                                 <asp:LinkButton ID="Caja_Cobros" runat="server" Enabled="false"><i class="fas fa-arrow-right"></i>&nbsp Cobros</asp:LinkButton>                                                
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseThree"><i class="fas fa-shopping-basket" style="font-size: 22px;"></i>&nbsp&nbsp Monitor</a>
                 </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapsefour"><i class="fas fa-pallet" style="font-size: 22px;"></i>&nbsp&nbsp Reporte Cobros</a>
                 </div>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapsefive"><i class="fas fa-align-left" style="font-size: 22px;"></i>&nbsp&nbsp Reporte de Ventas</a>
                 </div>
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapsesix"><i class="fas fa-chart-pie" style="font-size: 22px;"></i>&nbsp&nbsp Informes</a>
                 </div>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-                <div class="card">
+                <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseClientes"><i class="fas fa-user-tag" style="font-size: 22px;"></i>&nbsp&nbsp Clientes</a>
                 </div>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card" id="MenuProduccion" runat="server" visible="false">
+            <div class="card  text-light" id="MenuProduccion" runat="server" visible="false">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseProduccion"><i class="fas fa-user-tag" style="font-size: 22px;"></i>&nbsp&nbsp Clientes</a>
                 </div>
@@ -238,7 +238,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseInventario"><i class="fas fa-warehouse" style="font-size: 22px;"></i>&nbsp&nbsp Inventario</a>
                 </div>
@@ -272,7 +272,7 @@
                         </div>
                     </div>
            </div>
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseMant"><i class="fas fa-cogs" style="font-size: 22px;"></i>&nbsp&nbsp Mantenimiento</a>
                 </div>
@@ -296,7 +296,7 @@
                         </div>
                     </div>
            </div>
-              <div class="card">
+              <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseGestion"><i class="fas fa-boxes" style="font-size: 22px;"></i>&nbsp&nbsp Gestion </a>
                 </div>
@@ -326,7 +326,7 @@
                     </div>
                    </div>
 
-            <div class="card">
+            <div class="card  text-light">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseEleven"><i class="fas fa-user-cog" style="font-size: 22px;"></i>&nbsp&nbsp<asp:Label ID="lblUsuario" runat="server" Text="Usuario"/></a>
                 </div>
@@ -346,7 +346,12 @@
                     </div>
            </div>
        
-
+              <div class="row flex-grow-1">
+                <div class="col-sm-2 sidebar">
+                 </div>
+                <div class="col-sm-10 main-content">
+                 </div>
+            </div>
        <%--     <div class="card">
                 <div class="card-header">
                     <a class="collapsed card-link btn-block" data-toggle="collapse" href="#collapseDiez"><i class="fas fa-cogs" style="font-size: 22px;"></i>&nbsp&nbsp Ajustes</a>
@@ -364,16 +369,11 @@
                     </div>
                 </div>
             </div>--%>
-             <div class="card">
-                <div class="card-header">
 
-                    </div>
-                 </div>
-             <div class="card">
-                <div class="card-header">
-                    </div>
-                 </div>
         </div>
            </div>
+
+
     </div>
-    </div>
+
+</div>

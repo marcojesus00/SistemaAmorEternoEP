@@ -245,6 +245,8 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
+    <Content Include="Contents\UserControls\Footer.ascx" />
+    <Content Include="Contents\UserControls\NavBar.ascx" />
     <Content Include="Contents\UserControls\Sidebar.ascx" />
     <Content Include="Contratos.aspx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
@@ -2492,6 +2494,20 @@
     <Compile Include="COMIVEN.vb">
       <DependentUpon>FUNAMORModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contents\UserControls\Footer.ascx.designer.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\UserControls\Footer.ascx.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contents\UserControls\NavBar.ascx.designer.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Contents\UserControls\NavBar.ascx.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Contents\UserControls\Sidebar.ascx.vb">
       <DependentUpon>Sidebar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2585,6 +2601,8 @@
     <Compile Include="CZONA2.vb">
       <DependentUpon>AEVentasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data Access\ConnectionManager.vb" />
+    <Compile Include="Data Access\DataAccess.vb" />
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
       <DependentUpon>DetalleMovimientoClientes.aspx</DependentUpon>
     </Compile>
@@ -2782,6 +2800,15 @@
     </Compile>
     <Compile Include="MonitorGestion.aspx.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="monitorventas.buscar.aspx - Copy.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="monitorventas.buscar.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="monitorventas.EditarVenta.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="monitorventas1.aspx.designer.vb">

@@ -131,15 +131,6 @@ Partial Public Class monitorventas
     Protected WithEvents gvDetalle2 As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''btnSalir control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSalir As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
     '''lblMsg control.
     '''</summary>
     '''<remarks>

@@ -2,54 +2,10 @@
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
-<%--<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">--%>
-<%--<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
-    <title>Monitor de Ventas</title>
-    <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
-    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    
-    <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>    
-    <link href="css/inicio.css" rel="stylesheet" type="text/css"/>    
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">/
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="css4/all.min.css"/>
-
-     <!-- Bootstrap core CSS -->  
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
-
-
-
-  <script src="https://kit.fontawesome.com/9189b1e7bc.js" ></script>
-    
-    <style>
-h4:hover {
-    background-color: aliceblue;
-    color: blue;
-}
-
- /*#gvMonitor tr.rowHover:hover
-        {
-            background-color: #FFEB9C;
-            border-top: solid;
-            color:#9C6500;
-        }*/
-
-
-</style>
-</head>--%>
-<%--<body>  --%>
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<%--    <form id="form1" runat="server">--%>
         <asp:Panel ID="Panel1" runat="server" HorizontalAlign="left">
-<%--            <div><h4 style="width:100%; text-align:center">Monitor de Ventas</h4></div>--%>
            <h1 class="pl-3 display-6 text-black-50">Monitor de Ventas</h1>
 
             <div class="container-fluid" style="padding-top:5px;"> 
@@ -122,11 +78,14 @@ h4:hover {
                        <input type="text" class="form-control form-control-sm" placeholder="Codigo Vendedor" id="txtCobrador" runat="server" />
                          
                     </div>
-                      <i class="bi bi-search pr-1"></i>
-                       <asp:Button ID="btnBuscar" runat="server" Text="   Buscar ventas  " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
+
+                      <div class="d-grid gap-4 d-md-block p-2">
+                        <i class="bi bi-search pr-1"></i>
+                       <asp:Button ID="btnBuscar" runat="server" Text="   Buscar ventas  " class="btn btn-sm btn-primary" />&nbsp&nbsp
 
                         <i class="bi bi-wrench  pr-1"></i>
-                        <asp:Button  ID="btnArreglarVenta" runat="server" Text="  Arreglar una venta  " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary bi bi-wrench" aria-label="Fix Sale Button" />
+                        <asp:Button  ID="btnArreglarVenta" runat="server" Text="  Arreglar una venta  " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" class="btn btn-sm btn-primary bi bi-wrench" aria-label="Fix Sale Button" />
+                      </div>
 
                      </div>
                
@@ -213,7 +172,8 @@ h4:hover {
                     <SortedDescendingHeaderStyle BackColor="#002876" /></asp:GridView> 
                 <br /><br />
                 
-            <asp:ImageButton ID="btnSalir" ToolTip="Regresar" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" style="position:fixed; right:10px; top:10px;"/>
+                
+<%--            <asp:ImageButton ID="btnSalir" ToolTip="Regresar" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" style="position:fixed; right:10px; top:10px;"/>--%>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
             <div style="width:100%; height:30px;  position:fixed; bottom:0px; background-color:#202020; left: 0px; color: #fff">
@@ -249,6 +209,14 @@ h4:hover {
             </div>
             
         </asp:Panel>     
+
+
+
+
+
+
+
+
      <%-- Panel Para Editar Venta --%>
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelEditarVenta" runat="server" visible="false">
             <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
@@ -269,7 +237,7 @@ h4:hover {
                         <div class="input-group input-group-sm">
                           <div class="input-group-prepend">
                               <label class="input-group-text" style="width: 125px">Cambiar Estatus</label> </div>
-                            <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="DlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
                     </div>
 
@@ -525,8 +493,6 @@ h4:hover {
        
 
         <script src="js/JQuery.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script><script src="js/Jquery1.8.3.js"></script>
         <script type="text/javascript">
             $("[src*=plus]").live("click", function () {
                 $(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
@@ -547,8 +513,5 @@ h4:hover {
 
 
         </script>        
-    </form>
      </asp:Content>
 
-<%--</body>
-</html>--%>
