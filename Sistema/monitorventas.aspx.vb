@@ -428,7 +428,7 @@ Public Class monitorventas
                 Sql1 = " DECLARE @FECHA DATE "
                 Sql1 += " SET @FECHA = '" + Session("F1") + "' "
                 Sql1 += " SELECT DISTINCT A.Num_doc [Codigo], CONVERT(VARCHAR(50), CAST(A.Por_lempira AS MONEY ),1) [Cobrado], A.rhora [Hora], A.Codigo_clie [Codigo Cliente], CASE WHEN A.Num_doc = 'PROSPECTO' THEN '' ELSE A.CONCEPTO END CONCEPTO, A.RCODVEND, SUBSTRING(CASE WHEN C.Nombre_clie IS NULL THEN A.CONCEPTO ELSE C.Nombre_clie END ,1,30) Nombre_clie, CONVERT(VARCHAR,A.Fecha) Fecha, A.liquida, A.liquida2, UPPER(SUBSTRING(C.Dir_cliente + ' '+ ISNULL(C.Dir2_client,'') COLLATE Modern_Spanish_CI_AS,1,40)) Dir_cliente, (SELECT TOP 1 'ANULADO POR: ' + Z.USUARIO + '
-                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClientesSistema   "
+                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClienteSistema   "
                 Sql1 += " FROM( "
                 Sql1 += " SELECT A.Num_doc, A.Por_lempira, A.rhora, A.Codigo_clie, A.RCODVEND, CASE WHEN A.MARCA = 'X' THEN 'ANULADO' ELSE '' END CONCEPTO, CONVERT(DATE,A.Fecha_recib) Fecha, A.liquida, A.liquida2, B.CONT_NUMCUO, B.CONT_VALCUO, B.CONT_VALOR, B.SERVI1DES, B.CONT_CANTI, B.CONT_SVAL1, B.SERVI2DES, B.CONT_CANT2, B.CONT_SVAL2, B.SERVI3DES, B.CONT_CANT3, B.CONT_SVAL3, B.SERVI4DES, B.CONT_CANT4, B.CONT_SVAL4, A.LONGITUD, A.LATITUD FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_clie = B.Codigo_clie AND A.RCODVEND = B.cont_vended WHERE CONVERT(DATE,A.Fecha_recib) = @FECHA "
                 Sql1 += " UNION ALL "
@@ -991,7 +991,7 @@ Public Class monitorventas
 
             If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
                 Session("GVDetalle").DefaultView.RowFilter = "Liquida='" + Liquida.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND Liquida2='" + Liquida2.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND RCODVEND='" + Codigo + "'"
-            ElseIf dlMostrar.SelectedIndex = 0 And dlLider.SelectedValue = "TODOS" Then
+            ElseIf dlMostrar.SelectedIndex = 0 And dllider.SelectedValue = "TODOS" Then
                 Session("GVDetalle").DefaultView.RowFilter = "Lider='" + Codigo + "'"
             Else
                 Session("GVDetalle").DefaultView.RowFilter = "RCODVEND='" + Codigo + "'"
@@ -1184,6 +1184,29 @@ Public Class monitorventas
     End Sub
 
 
+    Private Sub gvDetalleProductosContrato_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvDetalleProductosContrato.RowCommand
+        Dim Fila As Integer = Convert.ToInt32(e.CommandArgument)
+        Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
+        'Dim Letras As Integer
+        'Dim Sql As String
+
+        txtprod1.Text = gvDetalleProductosContrato.Rows(Fila).Cells(2).Text
+        txtvalorcontApp.Text = gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
+        txtcuotaApp.Text = gvDetalleProductosContrato.Rows(Fila).Cells(5).Text
+
+        Session.Add("Producto", gvDetalleProductosContrato.Rows(Fila).Cells(2).Text)
+        Session.Add("IdServicio", gvDetalleProductosContrato.Rows(Fila).Cells(1).Text)
+        Session.Add("ValorContratoApp", gvDetalleProductosContrato.Rows(Fila).Cells(3).Text)
+        Session.Add("ValorMaximo", gvDetalleProductosContrato.Rows(Fila).Cells(6).Text)
+        Session.Add("ValorMinimo", gvDetalleProductosContrato.Rows(Fila).Cells(7).Text)
+
+        '  Letras = (gvDetalleProductosContrato.Rows(Fila).Cells(3).Text - Session("Prima")) '/ gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
+
+        'txtLetraApp.Text = Letras
+        PanelProductosApp.Visible = False
+
+    End Sub
+
     Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles btnBuscarProducto.Click
         PanelProductosApp.Visible = True
         txtprod1_TextChanged(sender, e)
@@ -1316,17 +1339,17 @@ Public Class monitorventas
             Exit Sub
         End If
 
-        If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
-            lblMsjError.Text = "Error: Valor debe ser menor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMaximo"), "#,##0.00") + "'"
-            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            Exit Sub
-        End If
+        'If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
+        '    lblMsjError.Text = "Error: Valor debe ser menor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMaximo"), "#,##0.00") + "'"
+        '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+        '    Exit Sub
+        'End If
 
-        If txtvalorcontApp.Text.TrimEnd < Datos.Tables(0).Rows(0).Item("PrecioMinimo") Then
-            lblMsjError.Text = "Error: Valor debe ser Mayor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMinimo"), "#,##0.00") + "'"
-            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            Exit Sub
-        End If
+        'If txtvalorcontApp.Text.TrimEnd < Datos.Tables(0).Rows(0).Item("PrecioMinimo") Then
+        '    lblMsjError.Text = "Error: Valor debe ser Mayor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMinimo"), "#,##0.00") + "'"
+        '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+        '    Exit Sub
+        'End If
 
         'If txtCodClienteapp.Text.Length = 0 Then
         '    lblMsjError.Text = "Error: Debe Seleccionar un Cliente"

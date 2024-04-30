@@ -6859,6 +6859,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.principal._MenuProduccion">
+<summary>
+MenuProduccion control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButton8">
+<summary>
+LinkButton8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButton9">
+<summary>
+LinkButton9 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.principal._btnConsultaInv">
 <summary>
 btnConsultaInv control.

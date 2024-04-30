@@ -395,7 +395,7 @@ h4:hover {
                     <div class="col">
                     <asp:Label ID="lblMsjError" runat="server"></asp:Label></div></div><%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">               
                 <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">
-                  <asp:Button ID="btnGuardarCamb" runat="server" Enabled="false" Text="   Salvar   " CssClass="btn btn-sm btn-success"  />&nbsp&nbsp <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger"/>&nbsp&nbsp </div></div><asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton></div><%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
+                  <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success"  />&nbsp&nbsp <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger"/>&nbsp&nbsp </div></div><asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton></div><%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
                <asp:Label ID="lblMsjError" runat="server">Prueba del Mensaje</asp:Label>
            </div>--%></div><%-- Panel de Vendedores --%><div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0" id="PanelVendedoresEditar" runat="server" visible="false">
                <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
