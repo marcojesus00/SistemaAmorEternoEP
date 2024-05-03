@@ -12,7 +12,6 @@ Public Class Empleados
     Private Conector As SqlConnection
     Private Adaptador As SqlDataAdapter
     Private SqlCMD As SqlCommand
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
@@ -61,6 +60,20 @@ Public Class Empleados
             TxtMotivo.Text = ""
             imgFoto.Attributes.Add("src", "")
             imgFoto.Visible = False
+        End If
+        If (Session("Codigo_Empleado") Is Nothing) Then
+            VerDocumentos1.Visible = False
+            SubirDocumentos1.Visible = False
+
+        ElseIf (Session("Codigo_Empleado").ToString().Length < 1) Then
+            VerDocumentos1.Visible = False
+            SubirDocumentos1.Visible = False
+
+        Else
+            VerDocumentos1.Visible = True
+            SubirDocumentos1.Visible = True
+
+
         End If
 
     End Sub
