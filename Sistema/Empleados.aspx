@@ -9,14 +9,62 @@
     <title>Vendedor</title>
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico"/>    
-    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
+<%--    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
     <link href="css/3.3/BootStrap.min.css" rel="stylesheet" type="text/css"/>  
-    <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+    <link href="css/estilos.css" rel="stylesheet" type="text/css"/>--%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
 </head>
 <body>    
-    <form id="form1" runat="server">
+
+<form id="form1" runat="server">
+
+
+    <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Información general
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <div class="container">
+    <div class="row justify-content-center ">
+        <div class="col text-center">
+                  <div class="card" style="width: 18rem;">
+  <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">Empleado</h5>
+    <p class="card-text">Nombre completo.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Identidad</li>
+    <li class="list-group-item">Correo</li>
+    <li class="list-group-item">Numero de telefono</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Mandar un correo</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+        </div>
+    </div>
+</div>
+
+
+              </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Datos de empleado
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <div class="container-fluid" style="padding-top:5px;">
             <section class="text-left;">
                 <div>
@@ -40,7 +88,7 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan ="2">
-                        <button id="btnCamara" runat="server" type="button" class="btn btn-primary center-block" style="width:130px; padding:5px;" data-toggle="modal" data-target="#modalCamara" onclick="init();">Tomar foto</button>
+                        <button id="btnCamara" runat="server" type="button" class="btn btn-primary center-block" style="width:130px; padding:5px;" data-toggle="modal" data-target="#modalCamara" onclick="init();" visible="false">Adjuntar foto</button>
                     </asp:TableCell>
                     </asp:TableRow>
                 <asp:TableRow runat="server">                    
@@ -87,7 +135,6 @@
                 </asp:TableRow>
             </asp:Table>  
 
-             <uc:FileManager ID="FileManager1" runat="server" />.
 
             <br />
 
@@ -113,9 +160,11 @@
                 </div>
                 <div class="row">
                     <button class="center-block col-sm-4 btn btn-default" id="btnPausa" onclick="pausar();">Capturar</button></div><div class="row" style="padding-top: 5px;">
-                    <button class="col-sm-offset-1 col-sm-4 btn btn-danger" " id="btnResumir" onclick="resumir();">Descartar</button><!--<asp:Button runat="server" style="padding-left:10px;" Cssclass="col-sm-offset-2 col-sm-4 btn btn-success " id="btnGuardar" Text="Guardar" on ="guardar();"/>--><button style="padding-left:10px;" class="col-sm-offset-2 col-sm-4 btn btn-success " id="btnGuardar" onclick ="guardar();">Guardar</button></div></div><div class="modal-footer">
+                    <button class="col-sm-offset-1 col-sm-4 btn btn-danger" " id="btnResumir" onclick="resumir();">Descartar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="apagar();">Cancelar</button></div>
             </div>
+                            </div>
+
           </div>
         </div>
         
@@ -123,37 +172,33 @@
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
-        function validarExt()
-        {
-            var archivoInput = document.getElementById('archivoInput');
-            var archivoRuta = archivoInput.value;
-            var extPermitidas = /(.jpg|.png|.jpeg)$/i;
+            function validarExt() {
+                var archivoInput = document.getElementById('archivoInput');
+                var archivoRuta = archivoInput.value;
+                var extPermitidas = /(.jpg|.png|.jpeg)$/i;
 
-            if(!extPermitidas.exec(archivoRuta)){
-                alert('Asegurese de haber seleccionado una Imagen');
-                archivoInput.value = '';
-                return false;
-            }
-            else
-            {
-                //Mostrar Imagen
-                if (archivoInput.files && archivoInput.files[0]) 
-                {
-                    var visor = new FileReader();
-                    visor.onload = function(e) 
-                    {
-                        document.getElementById("imgFoto").visible = "False";                           
-                        document.getElementById('visorArchivo').innerHTML = '<embed src="'+e.target.result+'" height="160"/>';
-                    };
-                    visor.readAsDataURL(archivoInput.files[0]);     
+                if (!extPermitidas.exec(archivoRuta)) {
+                    alert('Asegurese de haber seleccionado una Imagen');
+                    archivoInput.value = '';
+                    return false;
+                }
+                else {
+                    //Mostrar Imagen
+                    if (archivoInput.files && archivoInput.files[0]) {
+                        var visor = new FileReader();
+                        visor.onload = function (e) {
+                            document.getElementById("imgFoto").visible = "False";
+                            document.getElementById('visorArchivo').innerHTML = '<embed src="' + e.target.result + '" height="160"/>';
+                        };
+                        visor.readAsDataURL(archivoInput.files[0]);
+                    }
                 }
             }
-        }   
             'use strict';
             var video2 = document.getElementById('video');
             var btnPausar = document.getElementById('btnPausar');
             var btnResumir = document.getElementById('btnResumir');
-            var btnGuardar = document.getElementById('btnGuardar');                                                                                                                                                                                                                                                                           
+            var btnGuardar = document.getElementById('btnGuardar');
             var dataURL;
             var aspRatio;
             var width;
@@ -166,14 +211,14 @@
                 }
             };
 
-            
+
 
             async function iniciar() {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia(constraints);
                     handlerExito(stream);
                 }
-                catch(e){
+                catch (e) {
                     alert("error")
                 }
             }
@@ -254,9 +299,9 @@
                     else {
                         alert("No se reconoce la resolucion de esta camara");
                     }
-                    
+
                     context.setTransform(scale, 0, 0, scale, 0, 0); //aplicar la escala
-                    
+
                 }, false);
             }
 
@@ -283,8 +328,7 @@
                 });
             }
 
-            function guardar()
-            {
+            function guardar() {
                 var codigoEmpleado = $("#txtCodigo").val();
                 if (codigoEmpleado == "") //si el numero de empleado esta vacio...
                 {
@@ -310,7 +354,7 @@
                 ctxRecorte.drawImage(canvas, 0, 0); //dibujar en el canvas
 
                 //crear un 3er canvas que contendra la foto final
-                
+
                 var canvasFinal = document.createElement("canvas");
                 var ctxFinal;
                 canvasFinal.width = wr;
@@ -357,4 +401,30 @@
         </script>
         <p><asp:Label ID="lblMsg" runat="server" Text=""></asp:Label></p>
 
-    </form></body></html>
+      </div>
+
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Documentos
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+                                     <uc:FileManager ID="FileManager1" runat="server" />.
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </form>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body></html>

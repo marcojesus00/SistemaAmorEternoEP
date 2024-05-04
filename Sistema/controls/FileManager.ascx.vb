@@ -205,7 +205,7 @@ Public Class FileManager
             Dim fileExtension As String = Path.GetExtension(fileName)
 
             Dim iconCell As TableCell = e.Row.Cells(3)
-
+            Dim imageClass = "bi bi-image"
             Select Case fileExtension
                 Case ".docx"
                     iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-filetype-docx text-primary""></i>"))
@@ -222,7 +222,7 @@ Public Class FileManager
                 Case ".jpeg"
                     iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-image""></i>"))
                 Case ".png"
-                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-pdf-fill""></i>"))
+                    iconCell.Controls.Add(New LiteralControl($"<i class=""bi bi-image""></i>"))
                 Case Else
                     iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-card-image""></i>"))
             End Select

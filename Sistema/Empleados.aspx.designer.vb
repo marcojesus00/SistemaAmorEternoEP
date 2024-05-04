@@ -257,15 +257,6 @@ Partial Public Class Empleados
     Protected WithEvents btnimprimir As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''FileManager1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FileManager1 As Global.Sistema.FileManager
-
-    '''<summary>
     '''btnSalir control.
     '''</summary>
     '''<remarks>
@@ -284,15 +275,6 @@ Partial Public Class Empleados
     Protected WithEvents canvas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''btnGuardar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnGuardar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''lblMsg control.
     '''</summary>
     '''<remarks>
@@ -300,4 +282,13 @@ Partial Public Class Empleados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMsg As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''FileManager1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FileManager1 As Global.Sistema.FileManager
 End Class
