@@ -1,4 +1,4 @@
-﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="VerDocumentos.ascx.vb" Inherits="Sistema.VerDocumentos" %>
+﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="VerDocumentos.ascx.vb" Inherits="Sistema.FileManager" %>
 <form id="form2" method="post" enctype="multipart/form-data">
     <div class="container p-5">
         <div class="row justify-content-center">
@@ -34,7 +34,7 @@
     <div class="container p-5 table-responsive">
         <h4>Documentos de este empleado</h4>
 
-        <asp:GridView ID="MyGridView" runat="server" CssClass="table table-striped" AutoGenerateColumns="False" OnRowCommand="MyGridView_RowCommand" OnRowDeleting="MyGridView_RowDeleting" DataKeyNames="Id" EnableViewState="true">
+        <asp:GridView ID="MyGridView" runat="server" CssClass="table table-striped" AutoGenerateColumns="False" OnRowCommand="MyGridView_RowCommand" OnRowDeleting="MyGridView_RowDeleting" DataKeyNames="Id" EnableViewState="true" AllowSorting="true">
             <Columns>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>

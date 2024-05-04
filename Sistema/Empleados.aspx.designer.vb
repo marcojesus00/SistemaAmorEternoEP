@@ -257,13 +257,13 @@ Partial Public Class Empleados
     Protected WithEvents btnimprimir As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''VerDocumentos1 control.
+    '''FileManager1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents VerDocumentos1 As Global.Sistema.VerDocumentos
+    Protected WithEvents FileManager1 As Global.Sistema.FileManager
 
     '''<summary>
     '''btnSalir control.

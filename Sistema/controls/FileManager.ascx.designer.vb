@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class VerDocumentos
+Partial Public Class FileManager
 
     '''<summary>
     '''File1 control.

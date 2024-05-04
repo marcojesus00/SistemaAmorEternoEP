@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class VerDocumentos
+Public Class FileManager
     Inherits System.Web.UI.UserControl
 
     Dim queryDelete As String
@@ -36,11 +36,9 @@ Public Class VerDocumentos
         End If
     End Sub
     Protected Sub MyGridView_RowDeleting(ByVal sender As Object, ByVal e As GridViewDeleteEventArgs) Handles MyGridView.RowDeleting
-        ''Dim id As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Values("Id"))
         Dim rowIndex As Integer = e.RowIndex
-        Dim id As String = MyGridView.DataKeys(rowIndex).Value.ToString() ' Assuming you have set DataKeyNames in GridView
+        Dim id As String = MyGridView.DataKeys(rowIndex).Value.ToString()
         Dim dataSource As DataTable = DirectCast(MyGridView.DataSource, DataTable)
-        'Dim id As Integer = Convert.ToInt32(dataSource.Rows(rowIndex).Item("Id"))
 
         Dim filePath As String = dataSource.Rows(rowIndex).Item("Ruta").ToString()
 
@@ -173,7 +171,6 @@ Public Class VerDocumentos
                     lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
 
                 End If
-                ' Get file details
 
             Else
                 lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
@@ -185,5 +182,16 @@ Public Class VerDocumentos
         End Try
     End Sub
 
+    Protected Sub FileExtensionManager()
+        Dim fileName As String = "mydocument.docx"
+        Dim fileExtension As String = Path.GetExtension(fileName)
+
+        If fileExtension = ".docx" Then
+            Console.WriteLine("The file is a Microsoft Word document.")
+        ElseIf fileExtension = ".txt" Then
+            Console.WriteLine("The file is a plain text file.")
+            ' Add more conditions for other extensions
+        End If
+    End Sub
 
 End Class
