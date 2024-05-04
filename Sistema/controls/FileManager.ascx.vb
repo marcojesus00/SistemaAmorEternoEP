@@ -182,16 +182,53 @@ Public Class FileManager
         End Try
     End Sub
 
-    Protected Sub FileExtensionManager()
-        Dim fileName As String = "mydocument.docx"
-        Dim fileExtension As String = Path.GetExtension(fileName)
+    'Protected Function FileExtensionManager(fileName As String)
+    '    Dim fileExtension As String = Path.GetExtension(fileName)
 
-        If fileExtension = ".docx" Then
-            Console.WriteLine("The file is a Microsoft Word document.")
-        ElseIf fileExtension = ".txt" Then
-            Console.WriteLine("The file is a plain text file.")
-            ' Add more conditions for other extensions
+    '    If fileExtension = ".docx" Then
+    '        Return "bi bi-filetype-docx"
+    '    ElseIf fileExtension = ".jpg" Then
+    '        Return "bi bi-filetype-jpg"
+    '    ElseIf fileExtension = ".pdf" Then
+    '        Return "bi bi-file-earmark-pdf-fill"
+    '    Else
+    '        Return "bi bi-card-image"
+
+    '    End If
+    '    Return ""
+
+    'End Function
+    Protected Sub MyGridView_RowDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs) Handles MyGridView.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim sizeColumnIndex As Integer = 2
+            Dim fileName As String = e.Row.Cells(sizeColumnIndex).Text
+            Dim fileExtension As String = Path.GetExtension(fileName)
+
+            Dim iconCell As TableCell = e.Row.Cells(3)
+
+            Select Case fileExtension
+                Case ".docx"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-filetype-docx text-primary""></i>"))
+                Case ".xls"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-excel-fill text-success""></i>"))
+                Case ".xlsx"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-excel-fill text-success""></i>"))
+                Case ".pdf"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-pdf-fill text-danger""></i>"))
+                Case ".jpg"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-image""></i>"))
+                Case ".jpg"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-image""></i>"))
+                Case ".jpeg"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-image""></i>"))
+                Case ".png"
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-pdf-fill""></i>"))
+                Case Else
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-card-image""></i>"))
+            End Select
         End If
     End Sub
+
+
 
 End Class

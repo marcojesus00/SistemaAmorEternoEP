@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Empleados.aspx.vb" Inherits="Sistema.Empleados" EnableEventValidation="false" %>
-<%--<%@ Register TagPrefix="uc" TagName="SubirDocumentos" Src="~/controls/SubirDocumentos.ascx" %>--%>
-<%@ Register TagPrefix="uc" TagName="VerDocumentos" Src="~/controls/VerDocumentos.ascx" %>
+<%@ Register TagPrefix="uc" TagName="FileManager" Src="~/controls/FileManager.ascx" %>
 
 <!DOCTYPE html>
 
@@ -13,6 +12,8 @@
     <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
     <link href="css/3.3/BootStrap.min.css" rel="stylesheet" type="text/css"/>  
     <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/> 
+
 </head>
 <body>    
     <form id="form1" runat="server">
@@ -85,9 +86,8 @@
                     <asp:TableCell runat="server" HorizontalAlign="Right"><asp:ImageButton ID="btnimprimir" ToolTip="Imprimir Ficha" runat="server" Height="28px" ImageUrl="~/imagenes/Printer.png" Width="28px" OnClientClick="window.open('reportes.aspx')"/> </asp:TableCell> 
                 </asp:TableRow>
             </asp:Table>  
-<%--                        <uc:SubirDocumentos ID="SubirDocumentos1" runat="server" />--%>
 
-             <uc:VerDocumentos ID="VerDocumentos1" runat="server" />.
+             <uc:FileManager ID="FileManager1" runat="server" />.
 
             <br />
 

@@ -62,16 +62,13 @@ Public Class Empleados
             imgFoto.Visible = False
         End If
         If (Session("Codigo_Empleado") Is Nothing) Then
-            VerDocumentos1.Visible = False
-            'SubirDocumentos1.Visible = False
+            FileManager1.Visible = False
 
         ElseIf (Session("Codigo_Empleado").ToString().Length < 1) Then
-            VerDocumentos1.Visible = False
-            'SubirDocumentos1.Visible = False
+            FileManager1.Visible = False
 
         Else
-            VerDocumentos1.Visible = True
-            'SubirDocumentos1.Visible = True
+            FileManager1.Visible = True
 
 
         End If
