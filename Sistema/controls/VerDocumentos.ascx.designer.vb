@@ -14,6 +14,33 @@ Option Explicit On
 Partial Public Class VerDocumentos
 
     '''<summary>
+    '''File1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents File1 As Global.System.Web.UI.WebControls.FileUpload
+
+    '''<summary>
+    '''UploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UploadFile As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''lblUploadMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUploadMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''MyGridView control.
     '''</summary>
     '''<remarks>

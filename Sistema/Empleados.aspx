@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Empleados.aspx.vb" Inherits="Sistema.Empleados" EnableEventValidation="false" %>
-<%@ Register TagPrefix="uc" TagName="SubirDocumentos" Src="~/controls/SubirDocumentos.ascx" %>
+<%--<%@ Register TagPrefix="uc" TagName="SubirDocumentos" Src="~/controls/SubirDocumentos.ascx" %>--%>
 <%@ Register TagPrefix="uc" TagName="VerDocumentos" Src="~/controls/VerDocumentos.ascx" %>
 
 <!DOCTYPE html>
@@ -85,7 +85,7 @@
                     <asp:TableCell runat="server" HorizontalAlign="Right"><asp:ImageButton ID="btnimprimir" ToolTip="Imprimir Ficha" runat="server" Height="28px" ImageUrl="~/imagenes/Printer.png" Width="28px" OnClientClick="window.open('reportes.aspx')"/> </asp:TableCell> 
                 </asp:TableRow>
             </asp:Table>  
-                        <uc:SubirDocumentos ID="SubirDocumentos1" runat="server" />
+<%--                        <uc:SubirDocumentos ID="SubirDocumentos1" runat="server" />--%>
 
              <uc:VerDocumentos ID="VerDocumentos1" runat="server" />.
 

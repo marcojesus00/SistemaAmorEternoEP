@@ -10,10 +10,14 @@ Public Class VerDocumentos
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             BindGridView()
-            lblMessage.Text = "Cantidad de archivos para este usuario: " & $"{MyGridView.Rows.Count}"
+            lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
         Catch ex As Exception
             lblMessage.Text = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
         End Try
+
+        If Not IsPostBack Then
+
+        End If
 
     End Sub
 
@@ -112,6 +116,74 @@ Public Class VerDocumentos
 
     End Sub
 
+    Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
+        Try
+            If Not File1.PostedFile Is Nothing Then
+                If File1.PostedFile.ContentLength > 0 Then
+                    Dim Usuario = Session("Usuario")
+                    Dim Clave = Session("Clave")
+                    Dim Servidor = Session("Servidor")
+                    Dim Bd = Session("Bd")
+                    Dim fileName As String = File1.PostedFile.FileName
+                    Dim fileSize As Long = File1.PostedFile.ContentLength
+                    Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+                    Dim queryDocumentos As String
+                    Dim numeroDeEmpleado As String
+                    Dim relativePath As String = "Uploads/"
+                    Dim path As String = Server.MapPath(relativePath)
+                    Dim savePath As String = path & fileName
+                    Dim completeRelativePath As String = relativePath & fileName
+                    Dim descripcion As String
+                    If Not Directory.Exists(path) Then
+                        Directory.CreateDirectory(path)
+                    End If
+                    If fileSize > 21485760 Then ' 
+                        lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 20MB."
+                        Exit Sub
+                    End If
+                    If Session("Codigo_Empleado") IsNot Nothing Then
+                        Try
+
+                            numeroDeEmpleado = Session("Codigo_Empleado")
+                            File1.PostedFile.SaveAs(savePath)
+                            descripcion = "Contrato"
+                            queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
+                    (
+                        [NumeroDeEmpleado],
+                        [NombreDelArchivo],
+                        [Ruta],
+                        [Descripcion]
+                    )
+                VALUES
+                    ('" + numeroDeEmpleado + "',
+                    '" + fileName + "',
+                    '" + completeRelativePath + "',
+                    '" + descripcion + "')"
+                            Dim Datos = conf.EjecutaSql(queryDocumentos)
+                            lblUploadMessage.Text = "¡Carga exitosa!"
+                            BindGridView()
+
+                        Catch ex As Exception
+                            lblUploadMessage.Text = "Error al cargar archivos: " & ex.Message
+                        End Try
+                    Else
+                        lblUploadMessage.Text = "Error: No se pudo identificar el empleado para subir archivos." ' Inform user about missing session variable
+                    End If
+                Else
+                    lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+
+                End If
+                ' Get file details
+
+            Else
+                lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+            End If
+
+        Catch ex As Exception
+            lblUploadMessage.Text = "Error" & ex.Message
+
+        End Try
+    End Sub
 
 
 End Class
