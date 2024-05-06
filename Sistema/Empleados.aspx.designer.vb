@@ -59,33 +59,6 @@ Partial Public Class Empleados
     Protected WithEvents Table1 As Global.System.Web.UI.WebControls.Table
 
     '''<summary>
-    '''visorArchivo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents visorArchivo As Global.System.Web.UI.WebControls.TableCell
-
-    '''<summary>
-    '''imgFoto control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgFoto As Global.System.Web.UI.HtmlControls.HtmlEmbed
-
-    '''<summary>
-    '''btnCamara control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCamara As Global.System.Web.UI.HtmlControls.HtmlButton
-
-    '''<summary>
     '''txtCodigo control.
     '''</summary>
     '''<remarks>
@@ -273,15 +246,6 @@ Partial Public Class Empleados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSalir As Global.System.Web.UI.WebControls.ImageButton
-
-    '''<summary>
-    '''canvas control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents canvas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lblMsg control.

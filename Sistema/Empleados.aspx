@@ -45,7 +45,7 @@
                                             <li class="list-group-item">Numero de teléfono</li>
                                         </ul>
                                         <div class="card-body">
-                                            <a href="#" class="card-link">Mandar un correo</a>
+                                            <a href="#" class="card-link">Cambiar foto</a>
                                             <a href="#" class="card-link">Another link</a>
                                         </div>
                                     </div>
@@ -83,17 +83,17 @@
             <br />
             <asp:Table CellPadding="3" ID ="Table1" runat="server">   
         
-                <asp:TableRow runat="server">  
+<%--                <asp:TableRow runat="server">  
                     <asp:TableCell ColumnSpan="2" runat="server" ID="visorArchivo">
                         <embed class="center-block" style="padding:10px;" id="imgFoto" runat="server" height="160" />
                     </asp:TableCell>                    
                     <asp:TableCell runat="server"></asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
+                </asp:TableRow>--%>
+<%--                <asp:TableRow>
                     <asp:TableCell ColumnSpan ="2">
                         <button id="btnCamara" runat="server" type="button" class="btn btn-primary center-block" style="width:130px; padding:5px;" data-toggle="modal" data-target="#modalCamara" onclick="init();" visible="false">Adjuntar foto</button>
                     </asp:TableCell>
-                    </asp:TableRow>
+                    </asp:TableRow>--%>
                 <asp:TableRow runat="server">                    
                     <asp:TableCell runat="server">Codigo:</asp:TableCell>
                     <asp:TableCell runat="server"><asp:TextBox ID="txtCodigo" CssClass="form-control form-control-sm" runat="server" TextMode="SingleLine" Height="24" Width="150" Enabled="false" /></asp:TableCell></asp:TableRow><asp:TableRow runat="server">                    
@@ -148,7 +148,7 @@
           <div class="modal-dialog">
 
             <!-- Contenido -->
-            <div class="modal-content">
+<%--            <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title" id="tituloModal">Camara:</h4><button type="button" class="close" data-dismiss="modal" onclick="apagar();">&times;</button></div><div class="modal-body">
                 <div class="video-wrap">
@@ -166,14 +166,13 @@
                     <button class="col-sm-offset-1 col-sm-4 btn btn-danger" " id="btnResumir" onclick="resumir();">Descartar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="apagar();">Cancelar</button></div>
             </div>
-                            </div>
+                            </div>--%>
 
           </div>
         </div>
         
         <script src="js/JQuery.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+
         <script type="text/javascript">
             function validarExt() {
                 var archivoInput = document.getElementById('archivoInput');
