@@ -23,6 +23,15 @@ Partial Public Class Empleados
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
+    '''EmployeeCard control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents EmployeeCard As Global.System.Web.UI.WebControls.PlaceHolder
+
+    '''<summary>
     '''archivoInput control.
     '''</summary>
     '''<remarks>
@@ -282,6 +291,15 @@ Partial Public Class Empleados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMsg As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Documents control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Documents As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
     '''FileManager1 control.

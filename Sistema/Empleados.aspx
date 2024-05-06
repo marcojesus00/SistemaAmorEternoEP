@@ -22,48 +22,51 @@
 
 
     <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Información general
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                  <div class="container">
-    <div class="row justify-content-center ">
-        <div class="col text-center">
-                  <div class="card" style="width: 18rem;">
-  <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..."/>
-  <div class="card-body">
-    <h5 class="card-title">Empleado</h5>
-    <p class="card-text">Nombre completo.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Identidad</li>
-    <li class="list-group-item">Correo</li>
-    <li class="list-group-item">Numero de telefono</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Mandar un correo</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
-        </div>
-    </div>
-</div>
+        <asp:PlaceHolder ID="EmployeeCard" runat="server">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Información general
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="row justify-content-center ">
+                                <div class="col text-center">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..." />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Empleado</h5>
+                                            <p class="card-text"><%=nombreDeEmpleado%></p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Puesto</li>
+                                            <li class="list-group-item">Numero de teléfono</li>
+                                        </ul>
+                                        <div class="card-body">
+                                            <a href="#" class="card-link">Mandar un correo</a>
+                                            <a href="#" class="card-link">Another link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
-              </div>
-    </div>
-  </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </asp:PlaceHolder>
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         Datos de empleado
       </button>
     </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+    <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="container-fluid" style="padding-top:5px;">
             <section class="text-left;">
@@ -405,20 +408,25 @@
 
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Documentos
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-                                     <uc:FileManager ID="FileManager1" runat="server" />.
+        <asp:PlaceHolder ID="Documents" runat="server">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Documentos
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <uc:FileManager ID="FileManager1" runat="server" />
+                        .
 
 
-      </div>
-    </div>
-  </div>
+                    </div>
+                </div>
+            </div>
+        </asp:PlaceHolder>
+
+  
 </div>
 
 

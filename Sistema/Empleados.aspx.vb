@@ -12,6 +12,9 @@ Public Class Empleados
     Private Conector As SqlConnection
     Private Adaptador As SqlDataAdapter
     Private SqlCMD As SqlCommand
+    Public nombreDeEmpleado As String = ""
+    Dim numeroDeEmpleado As String
+    Dim anEmployeeIsSelected As Boolean = False
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
@@ -62,14 +65,15 @@ Public Class Empleados
             imgFoto.Visible = False
         End If
         If (Session("Codigo_Empleado") Is Nothing) Then
-            FileManager1.Visible = False
+            EmployeeCard.Visible = False
+            Documents.Visible = False
 
         ElseIf (Session("Codigo_Empleado").ToString().Length < 1) Then
-            FileManager1.Visible = False
-
+            EmployeeCard.Visible = False
+            Documents.Visible = False
         Else
-            FileManager1.Visible = True
-
+            EmployeeCard.Visible = True
+            Documents.Visible = True
 
         End If
 
@@ -104,7 +108,8 @@ Public Class Empleados
 
         End If
 
-        txtNombre.Text = Datos.Tables(0).Rows(0).Item("P_nomb_empl").ToString
+        nombreDeEmpleado = Datos.Tables(0).Rows(0).Item("P_nomb_empl").ToString
+        txtNombre.Text = nombreDeEmpleado
         txtIdentidad.Text = Datos.Tables(0).Rows(0).Item("P_identidad").ToString
         txtDireccion.Text = Datos.Tables(0).Rows(0).Item("P_dir_emple").ToString
         txtFechaN.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_nac").ToString), "", Format(Datos.Tables(0).Rows(0).Item("P_fecha_nac"), "yyyy-MM-dd").ToString)
