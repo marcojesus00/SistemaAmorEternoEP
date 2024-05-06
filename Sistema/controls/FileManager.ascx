@@ -32,7 +32,7 @@
         </div>
 
 </form>--%>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
+    <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
         Agregar archivo
     </button>
 
@@ -63,7 +63,7 @@
     </div>
 
 
-    <div class="w-100 table-responsive">
+    <div class="w-100 table-responsive pt-2">
 
         <asp:GridView ID="MyGridView" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False" OnRowCommand="MyGridView_RowCommand" OnRowDeleting="MyGridView_RowDeleting"  OnRowDataBound="MyGridView_RowDataBound" DataKeyNames="Id" EnableViewState="true" AllowSorting="true">
             <Columns>
