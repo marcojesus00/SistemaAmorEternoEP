@@ -23,6 +23,15 @@ Partial Public Class FileManager
     Protected WithEvents File1 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
+    '''TextBoxDescription control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxDescription As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''UploadFile control.
     '''</summary>
     '''<remarks>

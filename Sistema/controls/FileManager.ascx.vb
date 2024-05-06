@@ -8,6 +8,8 @@ Public Class FileManager
     Dim numeroDeEmpleado As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        lblUploadMessage.ForeColor = Drawing.Color.Red
+
         Try
             BindGridView()
             lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
@@ -129,22 +131,23 @@ Public Class FileManager
                     Dim numeroDeEmpleado As String
                     Dim relativePath As String = "Uploads/"
                     Dim path As String = Server.MapPath(relativePath)
-                    Dim savePath As String = path & fileName
-                    Dim completeRelativePath As String = relativePath & fileName
-                    Dim descripcion As String
+
                     If Not Directory.Exists(path) Then
                         Directory.CreateDirectory(path)
                     End If
-                    If fileSize > 21485760 Then ' 
-                        lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 20MB."
+                    If fileSize > 10485760 Then ' 
+                        lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 10MB."
                         Exit Sub
                     End If
                     If Session("Codigo_Empleado") IsNot Nothing Then
                         Try
-
                             numeroDeEmpleado = Session("Codigo_Empleado")
+                            fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
+                            Dim savePath As String = path & fileName
+                            Dim completeRelativePath As String = relativePath & fileName
+                            Dim descripcion As String
                             File1.PostedFile.SaveAs(savePath)
-                            descripcion = "Contrato"
+                            descripcion = TextBoxDescription.Text
                             queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
                     (
                         [NumeroDeEmpleado],
@@ -157,7 +160,13 @@ Public Class FileManager
                     '" + fileName + "',
                     '" + completeRelativePath + "',
                     '" + descripcion + "')"
+                            If descripcion.Length > 100 Then ' 
+                                lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
+                                Exit Sub
+                            End If
                             Dim Datos = conf.EjecutaSql(queryDocumentos)
+                            lblUploadMessage.ForeColor = Drawing.Color.Black
+
                             lblUploadMessage.Text = "¡Carga exitosa!"
                             BindGridView()
 
@@ -182,22 +191,6 @@ Public Class FileManager
         End Try
     End Sub
 
-    'Protected Function FileExtensionManager(fileName As String)
-    '    Dim fileExtension As String = Path.GetExtension(fileName)
-
-    '    If fileExtension = ".docx" Then
-    '        Return "bi bi-filetype-docx"
-    '    ElseIf fileExtension = ".jpg" Then
-    '        Return "bi bi-filetype-jpg"
-    '    ElseIf fileExtension = ".pdf" Then
-    '        Return "bi bi-file-earmark-pdf-fill"
-    '    Else
-    '        Return "bi bi-card-image"
-
-    '    End If
-    '    Return ""
-
-    'End Function
     Protected Sub MyGridView_RowDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs) Handles MyGridView.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim sizeColumnIndex As Integer = 2
@@ -208,7 +201,7 @@ Public Class FileManager
             Dim imageClass = "bi bi-image"
             Select Case fileExtension
                 Case ".docx"
-                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-filetype-docx text-primary""></i>"))
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-word-fill text-primary""></i>"))
                 Case ".xls"
                     iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-excel-fill text-success""></i>"))
                 Case ".xlsx"
@@ -224,11 +217,21 @@ Public Class FileManager
                 Case ".png"
                     iconCell.Controls.Add(New LiteralControl($"<i class=""bi bi-image""></i>"))
                 Case Else
-                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-card-image""></i>"))
+                    iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-text-fill""></i>"))
             End Select
         End If
     End Sub
 
+    Protected Sub TextBoxDescription_TextChanged(sender As Object, e As EventArgs)
 
-
+        If TextBoxDescription.Text.Length > 100 Then
+            TextBoxDescription.ForeColor = Drawing.Color.Red
+            lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
+            lblUploadMessage.ForeColor = Drawing.Color.Red
+        Else
+            TextBoxDescription.ForeColor = Drawing.Color.Black
+            lblUploadMessage.Text = ""
+            lblUploadMessage.ForeColor = Drawing.Color.Black
+        End If
+    End Sub
 End Class

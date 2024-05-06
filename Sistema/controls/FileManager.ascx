@@ -8,10 +8,16 @@
                             Agregar archivo
                         </div>
 
-                        <div class="form-group">
-                            <asp:FileUpload ID="File1" CssClass="form-control-file" runat="server" />
-                        </div>
+                        <div class="form-group text-center">
+                            <asp:FileUpload ID="File1" CssClass="form-control-file text center"  runat="server" />
+
+                            </div>
                         <div class="text-center">
+                            <br />
+
+                            <asp:TextBox ID="TextBoxDescription" AutoPostBack="True" Placeholder="Descripción" OnTextChanged="TextBoxDescription_TextChanged" runat="server"></asp:TextBox>
+                            <br />
+                            <br />
                             <asp:LinkButton ID="UploadFile" CssClass="btn btn-primary pb-2" runat="server" Text="Subir"></asp:LinkButton>
 
                         </div>
@@ -39,7 +45,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnDownload" CssClass="btn btn-success pb-2" runat="server" CommandName="DownloadFile" Text="Descargar" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                        <asp:LinkButton ID="btnDownload" CssClass="btn btn-info pb-2" runat="server" CommandName="DownloadFile" Text="Descargar" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
 
                     </ItemTemplate>
 
