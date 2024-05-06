@@ -14,7 +14,7 @@ Public Class Empleados
     Private SqlCMD As SqlCommand
     Public nombreDeEmpleado As String = ""
     Dim numeroDeEmpleado As String
-    Dim anEmployeeIsSelected As Boolean = False
+    Public anEmployeeIsSelected As Boolean = False
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
@@ -42,8 +42,6 @@ Public Class Empleados
             llenar_Campos()
         Else
             txtCodigo.Enabled = True
-            'btnCamara.Disabled = True
-            btnActualizar.Text = "Crear"
             'Limpiar campos
             txtNombre.Text = ""
             txtIdentidad.Text = ""
@@ -61,20 +59,28 @@ Public Class Empleados
             txtActivo.Text = ""
             txtFechaI.Text = ""
             TxtMotivo.Text = ""
-            'imgFoto.Attributes.Add("src", "")
-            'imgFoto.Visible = False
         End If
         If (Session("Codigo_Empleado") Is Nothing) Then
             EmployeeCard.Visible = False
             Documents.Visible = False
+            anEmployeeIsSelected = False
 
         ElseIf (Session("Codigo_Empleado").ToString().Length < 1) Then
             EmployeeCard.Visible = False
             Documents.Visible = False
+            anEmployeeIsSelected = False
+
         Else
             EmployeeCard.Visible = True
             Documents.Visible = True
+            anEmployeeIsSelected = True
 
+
+        End If
+        If anEmployeeIsSelected Then
+            btnActualizar.Text = "Actualizar"
+        Else
+            btnActualizar.Text = "Crear"
         End If
 
     End Sub
@@ -274,54 +280,6 @@ Public Class Empleados
         Response.Write(msg)
     End Sub
 
-    'Sub GuardaImagen(ByVal rutaImg As String)
-    '    Conector = New SqlConnection("Server=" + Servidor + "; Database=" + "FUNAMOR" + "; UID=" + Usuario + "; PWD=" + Clave)
-    '    Try
-    '        Conector.Open()
-    '        Dim cmd As New SqlCommand("UPDATE PLAEMP SET P_carnet_fo = @Foto WHERE P_num_emple ='" + txtCodigo.Text + "'", Conector)
-    '        cmd.Parameters.Add(New SqlParameter("@Foto", SqlDbType.Char)).Value = rutaImg
-    '        cmd.ExecuteNonQuery()
-    '        Conector.Close()
-    '    Catch ex As Exception
-    '        If (Conector.State = ConnectionState.Open) Then
-    '            Conector.Close()
-    '        End If
-    '        Msg(ex.Message)
-    '    End Try
-    'End Sub
-
-    '<WebMethod()>
-    'Public Shared Sub SubirFoto(ByVal datosImg As String, ByVal str As String)
-    '    Try
-    '        Dim nombreFoto As String = str + ".jpg"
-    '        Dim rutaArchivo As String = HttpContext.Current.Server.MapPath("~\fotosCarnet\") + str + ".jpg"
-    '        Using fs As New FileStream(rutaArchivo, FileMode.Create)
-    '            Using bw As New BinaryWriter(fs)
-    '                Dim datos As Byte() = Convert.FromBase64String(datosImg)
-    '                bw.Write(datos)
-    '                bw.Close()
-
-    '                Dim Conector As New SqlConnection("Server=" + HttpContext.Current.Session("Servidor") + "; Database=" + "FUNAMOR" + "; UID=" + HttpContext.Current.Session("Usuario") + "; PWD=" + HttpContext.Current.Session("Clave"))
-    '                Try
-    '                    Conector.Open()
-    '                    Dim cmd As New SqlCommand("UPDATE PLAEMP SET P_carnet_fo = @Foto WHERE P_num_emple ='" + str + "'", Conector)
-    '                    cmd.Parameters.Add(New SqlParameter("@Foto", SqlDbType.Char)).Value = nombreFoto
-    '                    cmd.ExecuteNonQuery()
-    '                    Conector.Close()
-    '                Catch ex As Exception
-    '                    If (Conector.State = ConnectionState.Open) Then
-    '                        Conector.Close()
-    '                    End If
-    '                    MsgBox("error", Nothing, "error guardando")
-    '                End Try
-    '            End Using
-    '        End Using
-
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message)
-    '    End Try
-    'End Sub
 
 End Class
 

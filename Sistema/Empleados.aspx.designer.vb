@@ -32,15 +32,6 @@ Partial Public Class Empleados
     Protected WithEvents EmployeeCard As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
-    '''archivoInput control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents archivoInput As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
     '''sm control.
     '''</summary>
     '''<remarks>
