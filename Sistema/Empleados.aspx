@@ -32,22 +32,21 @@
                         <div class="accordion-body">
                             <div class="container">
                                 <div class="row justify-content-center ">
-                                    <div class="col text-center">
-                                        <div class="card" style="width: 18rem;">
-                                            <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..." />
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..." />
+                                        <div class="text-center">
                                             <div class="card-body">
                                                 <h5 class="card-title">Empleado</h5>
                                                 <p class="card-text"><%=nombreDeEmpleado%></p>
                                             </div>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">Puesto</li>
-                                                <li class="list-group-item">Numero de teléfono</li>
                                             </ul>
                                             <div class="card-body">
                                                 <a href="#" class="card-link">Cambiar foto</a>
-                                                <a href="#" class="card-link">Another link</a>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -72,11 +71,7 @@
                     <div class="accordion-body">
                         <div class="container-fluid" style="padding-top: 5px;">
                             <section class="text-left;">
-                                <div>
-                                    <table style="width: 72%;">
-                                    </table>
-                                    <asp:FileUpload ID="archivoInput" CssClass="col-md-6" Style="padding: 10px;" runat="server" Visible="false" onchange="return validarExt()" />
-                                </div>
+
                                 <asp:ScriptManager ID="sm" runat="server" EnablePageMethods="true" />
                             </section>
                             <asp:Table CellPadding="3" ID="Table1" runat="server">
@@ -223,10 +218,13 @@
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <uc:FileManager ID="FileManager1" runat="server" />
-                            .
-
-
+                            <div class="container-fluid w-100">
+                                <div class="row">
+                                    <div class="col">
+                                        <uc:FileManager class="w-100 " ID="FileManager1" runat="server" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
