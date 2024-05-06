@@ -7,7 +7,9 @@ Imports System.Web.Script.Services
 
 Public Class Empleados
     Inherits System.Web.UI.Page
+
     Public Usuario, Clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
+
     Private Datos, Datos1, Datos2 As DataSet
     Private Conector As SqlConnection
     Private Adaptador As SqlDataAdapter
@@ -82,6 +84,7 @@ Public Class Empleados
         Else
             btnActualizar.Text = "Crear"
         End If
+        AddHandler FileManager1.AlertGenerated, AddressOf HandleAlertGenerated
 
     End Sub
 
@@ -280,6 +283,15 @@ Public Class Empleados
         Response.Write(msg)
     End Sub
 
+    Protected Sub HandleAlertGenerated(ByVal sender As Object, ByVal e As AlertEventArgs)
+        ' Handle the alert in the parent page
+        Dim message As String = e.Message
+        Dim alertType As String = e.AlertType
+
+        ' Now you can manipulate alertPlaceholder or do any other actions needed
+        ' For example:
+        AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
+    End Sub
 
 End Class
 

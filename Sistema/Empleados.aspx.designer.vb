@@ -264,4 +264,13 @@ Partial Public Class Empleados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FileManager1 As Global.Sistema.FileManager
+
+    '''<summary>
+    '''alertPlaceholder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

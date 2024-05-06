@@ -102,7 +102,7 @@ Public Class FileManager
                 Else
                     lblMessage.Text = ""
                 End If
-                Else
+            Else
             End If
 
 
@@ -118,72 +118,80 @@ Public Class FileManager
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
         Try
-            If Not File1.PostedFile Is Nothing Then
-                If File1.PostedFile.ContentLength > 0 Then
-                    Dim Usuario = Session("Usuario")
-                    Dim Clave = Session("Clave")
-                    Dim Servidor = Session("Servidor")
-                    Dim Bd = Session("Bd")
-                    Dim fileName As String = File1.PostedFile.FileName
-                    Dim fileSize As Long = File1.PostedFile.ContentLength
-                    Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-                    Dim queryDocumentos As String
-                    Dim numeroDeEmpleado As String
-                    Dim relativePath As String = "Uploads/"
-                    Dim path As String = Server.MapPath(relativePath)
+            Dim Usuario = Session("Usuario")
+            Dim Clave = Session("Clave")
+            Dim Servidor = Session("Servidor")
+            Dim Bd = Session("Bd")
+            If usuario IsNot Nothing AndAlso clave IsNot Nothing AndAlso servidor IsNot Nothing AndAlso bd IsNot Nothing Then
+                If Not File1.PostedFile Is Nothing Then
+                    If File1.PostedFile.ContentLength > 0 Then
+                        Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+                        Dim fileName As String = File1.PostedFile.FileName
+                        Dim fileSize As Long = File1.PostedFile.ContentLength
+                        Dim queryDocumentos As String
+                        Dim numeroDeEmpleado As String
+                        Dim relativePath As String = "Uploads/"
+                        Dim path As String = Server.MapPath(relativePath)
 
-                    If Not Directory.Exists(path) Then
-                        Directory.CreateDirectory(path)
-                    End If
-                    If fileSize > 10485760 Then ' 
-                        lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 10MB."
-                        Exit Sub
-                    End If
-                    If Session("Codigo_Empleado") IsNot Nothing Then
-                        Try
-                            numeroDeEmpleado = Session("Codigo_Empleado")
-                            fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
-                            Dim savePath As String = path & fileName
-                            Dim completeRelativePath As String = relativePath & fileName
-                            Dim descripcion As String
-                            File1.PostedFile.SaveAs(savePath)
-                            descripcion = TextBoxDescription.Text
-                            queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
-                    (
-                        [NumeroDeEmpleado],
-                        [NombreDelArchivo],
-                        [Ruta],
-                        [Descripcion]
-                    )
-                VALUES
-                    ('" + numeroDeEmpleado + "',
-                    '" + fileName + "',
-                    '" + completeRelativePath + "',
-                    '" + descripcion + "')"
-                            If descripcion.Length > 100 Then ' 
-                                lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
-                                Exit Sub
-                            End If
-                            Dim Datos = conf.EjecutaSql(queryDocumentos)
-                            lblUploadMessage.ForeColor = Drawing.Color.Black
+                        If Not Directory.Exists(path) Then
+                            Directory.CreateDirectory(path)
+                        End If
+                        If Not FileUploadHelper.LessThanFileSizeLimit(fileSize, 10485760) Then ' 
+                            lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 10MB."
+                            Exit Sub
+                        End If
+                        If Session("Codigo_Empleado") IsNot Nothing Then
+                            Try
+                                numeroDeEmpleado = Session("Codigo_Empleado")
+                                fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
+                                Dim savePath As String = path & fileName
+                                Dim completeRelativePath As String = relativePath & fileName
+                                Dim descripcion As String
+                                descripcion = TextBoxDescription.Text
 
-                            lblUploadMessage.Text = "¡Carga exitosa!"
-                            BindGridView()
+                                If Not textInputHelper.ValidateTextLength(descripcion, 100) Then ' 
+                                    lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
+                                    Exit Sub
+                                End If
+                                File1.PostedFile.SaveAs(savePath)
 
-                        Catch ex As Exception
-                            lblUploadMessage.Text = "Error al cargar archivos: " & ex.Message
-                        End Try
+                                queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
+                                                    (
+                                                        [NumeroDeEmpleado], [NombreDelArchivo],
+                                                        [Ruta], [Descripcion]
+                                                    )
+                                                    VALUES
+                                                    (
+                                                        '" + numeroDeEmpleado + "', '" + fileName + "',
+                                                        '" + completeRelativePath + "', '" + descripcion + "'
+                                                    )"
+
+
+                                Dim Datos = conf.EjecutaSql(queryDocumentos)
+                                lblUploadMessage.ForeColor = Drawing.Color.Black
+                                lblUploadMessage.Text = "¡Carga exitosa!"
+                                Dim msg As String = "Carga exitosa"
+                                Dim alertType As String = "success"
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
+                                BindGridView()
+
+                            Catch ex As Exception
+                                lblUploadMessage.Text = "Error al cargar archivos: " & ex.Message
+                            End Try
+                        Else
+                            lblUploadMessage.Text = "Error: No se pudo identificar el empleado para subir archivos." ' Inform user about missing session variable
+                        End If
                     Else
-                        lblUploadMessage.Text = "Error: No se pudo identificar el empleado para subir archivos." ' Inform user about missing session variable
+                        lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+
                     End If
+
                 Else
                     lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
-
                 End If
-
-            Else
-                lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
             End If
+
 
         Catch ex As Exception
             lblUploadMessage.Text = "Error" & ex.Message
@@ -227,11 +235,21 @@ Public Class FileManager
         If TextBoxDescription.Text.Length > 100 Then
             TextBoxDescription.ForeColor = Drawing.Color.Red
             lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
-            lblUploadMessage.ForeColor = Drawing.Color.Red
         Else
             TextBoxDescription.ForeColor = Drawing.Color.Black
-            lblUploadMessage.Text = ""
-            lblUploadMessage.ForeColor = Drawing.Color.Black
         End If
     End Sub
+    Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
+
+End Class
+Public Class AlertEventArgs
+    Inherits EventArgs
+
+    Public Sub New(ByVal message As String, ByVal alertType As String)
+        Me.Message = message
+        Me.AlertType = alertType
+    End Sub
+
+    Public Property Message As String
+    Public Property AlertType As String
 End Class
