@@ -41,13 +41,20 @@ Public Class FileManager
         Dim rowIndex As Integer = e.RowIndex
         Dim id As String = MyGridView.DataKeys(rowIndex).Value.ToString()
         Dim dataSource As DataTable = DirectCast(MyGridView.DataSource, DataTable)
+        Dim relativePath As String = dataSource.Rows(rowIndex).Item("Ruta").ToString()
+        Dim filePath As String = Server.MapPath(relativePath)
 
-        Dim filePath As String = dataSource.Rows(rowIndex).Item("Ruta").ToString()
 
         Try
-            DeleteRecordFromDatabase(id)
-            DeleteFile(filePath)
-            BindGridView()
+            If FileHelper.DeleteFile(filePath) Then
+                DeleteRecordFromDatabase(id)
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
+                BindGridView()
+
+            Else
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
+            End If
+
         Catch ex As Exception
 
         End Try
@@ -70,18 +77,7 @@ Public Class FileManager
 
 
     End Sub
-    Private Sub DeleteFile(filePath As String)
-        Try
-            If File.Exists(filePath) Then
-                File.Delete(filePath)
-            End If
 
-        Catch ex As Exception
-            lblMessage.Text = "Error al eliminar archivo, por favor vuelva a intentarlo : " & ex.Message
-
-        End Try
-
-    End Sub
 
 
     Private Sub BindGridView()
@@ -122,7 +118,7 @@ Public Class FileManager
             Dim Clave = Session("Clave")
             Dim Servidor = Session("Servidor")
             Dim Bd = Session("Bd")
-            If usuario IsNot Nothing AndAlso clave IsNot Nothing AndAlso servidor IsNot Nothing AndAlso bd IsNot Nothing Then
+            If Usuario IsNot Nothing AndAlso Clave IsNot Nothing AndAlso Servidor IsNot Nothing AndAlso Bd IsNot Nothing Then
                 If Not File1.PostedFile Is Nothing Then
                     If File1.PostedFile.ContentLength > 0 Then
                         Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
@@ -136,7 +132,7 @@ Public Class FileManager
                         If Not Directory.Exists(path) Then
                             Directory.CreateDirectory(path)
                         End If
-                        If Not FileUploadHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+                        If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
                             Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
                             Dim alertType As String = "danger"
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
@@ -152,7 +148,7 @@ Public Class FileManager
                                 descripcion = TextBoxDescription.Text
 
 
-                                If FileUploadHelper.CheckFileExists(savePath) Then
+                                If FileHelper.CheckFileExists(savePath) Then
                                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
                                     Exit Sub
                                 Else

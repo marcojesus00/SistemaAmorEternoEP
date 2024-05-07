@@ -2,7 +2,7 @@
 Imports System.IO
 Imports System.Data.SqlClient
 
-Public Class FileUploadHelper
+Public Class FileHelper
 
     Public Shared Function LessThanFileSizeLimit(fileSize As Long, sizeAllowed As Long) As Boolean
         If fileSize > sizeAllowed Then
@@ -38,5 +38,13 @@ Public Class FileUploadHelper
             End Using
         End Using
     End Sub
+    Public Shared Function DeleteFile(filePath As String)
 
+        If File.Exists(filePath) Then
+            File.Delete(filePath)
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class
