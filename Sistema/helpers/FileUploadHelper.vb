@@ -22,7 +22,9 @@ Public Class FileUploadHelper
 
         Return False
     End Function
-
+    Public Shared Function CheckFileExists(filePath As String) As Boolean
+        CheckFileExists = System.IO.File.Exists(filePath)
+    End Function
 
     Public Shared Sub ExecuteQuery(query As String, numeroDeEmpleado As String, fileName As String, completeRelativePath As String, descripcion As String, connectionString As String)
         Using connection As New SqlConnection(connectionString)

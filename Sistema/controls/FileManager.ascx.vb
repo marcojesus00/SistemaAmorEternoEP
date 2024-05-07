@@ -136,8 +136,10 @@ Public Class FileManager
                         If Not Directory.Exists(path) Then
                             Directory.CreateDirectory(path)
                         End If
-                        If Not FileUploadHelper.LessThanFileSizeLimit(fileSize, 10485760) Then ' 
-                            lblUploadMessage.Text = "Error: El archivo no puede tener un tamaño mayor a 10MB."
+                        If Not FileUploadHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+                            Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
+                            Dim alertType As String = "danger"
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             Exit Sub
                         End If
                         If Session("Codigo_Empleado") IsNot Nothing Then
@@ -149,13 +151,14 @@ Public Class FileManager
                                 Dim descripcion As String
                                 descripcion = TextBoxDescription.Text
 
-                                If Not textInputHelper.ValidateTextLength(descripcion, 100) Then ' 
-                                    lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
-                                    Exit Sub
-                                End If
-                                File1.PostedFile.SaveAs(savePath)
 
-                                queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
+                                If FileUploadHelper.CheckFileExists(savePath) Then
+                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
+                                    Exit Sub
+                                Else
+                                    File1.PostedFile.SaveAs(savePath)
+
+                                    queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
                                                     (
                                                         [NumeroDeEmpleado], [NombreDelArchivo],
                                                         [Ruta], [Descripcion]
@@ -167,23 +170,29 @@ Public Class FileManager
                                                     )"
 
 
-                                Dim Datos = conf.EjecutaSql(queryDocumentos)
-                                lblUploadMessage.ForeColor = Drawing.Color.Black
-                                lblUploadMessage.Text = "¡Carga exitosa!"
-                                Dim msg As String = "Carga exitosa"
-                                Dim alertType As String = "success"
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                                    Dim Datos = conf.EjecutaSql(queryDocumentos)
+                                    Dim msg As String = "Carga exitosa"
+                                    Dim alertType As String = "success"
+                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-                                BindGridView()
+                                    BindGridView()
+                                End If
+
+
 
                             Catch ex As Exception
-                                lblUploadMessage.Text = "Error al cargar archivos: " & ex.Message
+                                Dim msg = "Error al cargar archivos: " & ex.Message
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
                             End Try
                         Else
-                            lblUploadMessage.Text = "Error: No se pudo identificar el empleado para subir archivos." ' Inform user about missing session variable
+                            Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
                         End If
                     Else
                         lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+
 
                     End If
 
@@ -194,7 +203,8 @@ Public Class FileManager
 
 
         Catch ex As Exception
-            lblUploadMessage.Text = "Error" & ex.Message
+            Dim msg = "Error" & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
         End Try
     End Sub
