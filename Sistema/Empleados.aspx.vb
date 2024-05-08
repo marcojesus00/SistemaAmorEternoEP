@@ -85,6 +85,7 @@ Public Class Empleados
             btnActualizar.Text = "Crear"
         End If
         AddHandler FileManager1.AlertGenerated, AddressOf HandleAlertGenerated
+        AddHandler ProfilePicture1.AlertGenerated, AddressOf HandleAlertGenerated
 
     End Sub
 
