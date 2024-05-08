@@ -29,19 +29,24 @@
 
 <div class="container">
     <div class="row justify-content-center ">
-        <div class="card" style="width: 18rem;">
-            <asp:Image ID="imgProfile" cssClass="text-center" runat="server" Width="250" Height="250" />
+        <div class="card text-bg-light  border-dark" style="width: 18rem;">
+              <div class="card-header">
+    Empleado <%=Session("Codigo_Empleado").ToString()%>
+  </div>
+        <div class="card-img-top text-center">
+            <asp:Image ID="imgProfile" runat="server" Width="200" Height="250" />
+        </div>
             <div class="text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Empleado</h5>
+                    <h5 class="card-subtitle  text-body-secondary"><%=Session("nombreDeEmpleado").ToString()%></h5>
 <%--                    <p class="card-text">~/<%=ruta%></p>--%>
                 </div>
-                <ul class="list-group list-group-flush">
-<%--                    <li class="list-group-item">Puesto</li>--%>
-                </ul>
+<%--                <ul class="list-group list-group-flush">
+             <li class="list-group-item">Puesto</li>
+                </ul>--%>
                 <div class="card-body">
 <%--                    <a href="#" class="card-link">Cambiar foto</a>--%>
-                    <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
                         Cambiar foto
                     </button>
                 </div>

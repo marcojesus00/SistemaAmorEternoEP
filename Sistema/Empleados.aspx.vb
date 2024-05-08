@@ -119,6 +119,7 @@ Public Class Empleados
 
         nombreDeEmpleado = Datos.Tables(0).Rows(0).Item("P_nomb_empl").ToString
         txtNombre.Text = nombreDeEmpleado
+        Session("nombreDeEmpleado") = nombreDeEmpleado
         txtIdentidad.Text = Datos.Tables(0).Rows(0).Item("P_identidad").ToString
         txtDireccion.Text = Datos.Tables(0).Rows(0).Item("P_dir_emple").ToString
         txtFechaN.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_nac").ToString), "", Format(Datos.Tables(0).Rows(0).Item("P_fecha_nac"), "yyyy-MM-dd").ToString)

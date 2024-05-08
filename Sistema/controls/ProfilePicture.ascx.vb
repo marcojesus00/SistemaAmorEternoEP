@@ -7,7 +7,6 @@ Public Class ProfilePicture
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
-    Public ruta As String = ""
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
