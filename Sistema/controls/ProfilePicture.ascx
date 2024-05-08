@@ -2,7 +2,7 @@
 
 
 
-<div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
+<div class="modal fade" id="ChangeProfilePictureModal" tabindex="-1" aria-labelledby="ChangeProfilePictureModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -46,7 +46,7 @@
                 </ul>--%>
                 <div class="card-body">
 <%--                    <a href="#" class="card-link">Cambiar foto</a>--%>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeProfilePictureModal">
                         Cambiar foto
                     </button>
                 </div>
