@@ -9,7 +9,6 @@ Public Class FileManager
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
-
         Try
             BindGridView()
             lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
@@ -71,7 +70,7 @@ Public Class FileManager
             queryDelete = " DELETE FROM [dbo].[DocumentosDeEmpleado] WHERE Id = " & id
             conf.EjecutaSql(queryDelete)
         Catch ex As Exception
-            lblMessage.Text = "Error al eliminar registro de la base de datos, por favor vuelva a intentarlo : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar registro de la base de datos, por favor vuelva a intentarlo : " & ex.Message, "danger"))
 
         End Try
 
@@ -119,48 +118,59 @@ Public Class FileManager
             Dim Servidor = Session("Servidor")
             Dim Bd = Session("Bd")
             If Usuario IsNot Nothing AndAlso Clave IsNot Nothing AndAlso Servidor IsNot Nothing AndAlso Bd IsNot Nothing Then
-                If Not File1.PostedFile Is Nothing Then
-                    If File1.PostedFile.ContentLength > 0 Then
-                        Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-                        Dim fileName As String = File1.PostedFile.FileName
-                        Dim fileSize As Long = File1.PostedFile.ContentLength
-                        Dim queryDocumentos As String
-                        Dim numeroDeEmpleado As String
-                        Dim relativePath As String = "Uploads/"
-                        Dim path As String = Server.MapPath(relativePath)
+                If Not File1.PostedFile Is Nothing And Page.IsValid Then
+                    Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+                    Dim fileName As String = File1.PostedFile.FileName
+                    Dim fileSize As Long = File1.PostedFile.ContentLength
+                    Dim queryDocumentos As String
+                    Dim numeroDeEmpleado As String
+                    Dim relativePath As String = "Uploads/"
+                    Dim path As String = Server.MapPath(relativePath)
 
-                        If Not Directory.Exists(path) Then
-                            Directory.CreateDirectory(path)
-                        End If
-                        If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
-                            Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
-                            Dim alertType As String = "danger"
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                            Exit Sub
-                        End If
-                        If Not FileHelper.ValidateFileExtension(fileName, {".doc", ".docx", ".pdf", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".odt", ".zip", ".rar", ".7z", ".mp4"}) Then
-                            Dim msg As String = "Solo se admiten documentos, archivos comprimidos, fotos o videos cortos"
-                            Dim alertType As String = "danger"
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                            Exit Sub
-                        End If
-                        If Session("Codigo_Empleado") IsNot Nothing Then
-                            Try
-                                numeroDeEmpleado = Session("Codigo_Empleado")
-                                fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
-                                Dim savePath As String = path & fileName
-                                Dim completeRelativePath As String = relativePath & fileName
-                                Dim descripcion As String
-                                descripcion = TextBoxDescription.Text
+                    If Not Directory.Exists(path) Then
+                        Directory.CreateDirectory(path)
+                    End If
+                    If File1.PostedFile.ContentLength < 1 Then
+                        lblUploadMessage.Text = "Seleccione un archivo por favor."
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Seleccione un archivo por favor.", "danger"))
+
+                        Exit Sub
+                    End If
+                    If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+                        Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
+                        Dim alertType As String = "danger"
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                        Exit Sub
+                    End If
+                    If Not FileHelper.ValidateFileExtension(fileName, {".doc", ".docx", ".pdf", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".odt", ".zip", ".rar", ".7z", ".mp4"}) Then
+                        Dim msg As String = "Solo se admiten documentos, archivos comprimidos, fotos o videos cortos"
+                        Dim alertType As String = "danger"
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                        Exit Sub
+                    End If
+                    If TextBoxDescription.Text.Length < 1 Then
+
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("La descripción es obligatoria.", "danger"))
+
+                        Exit Sub
+                    End If
+                    If Session("Codigo_Empleado") IsNot Nothing Then
+                        Try
+                            numeroDeEmpleado = Session("Codigo_Empleado")
+                            fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
+                            Dim savePath As String = path & fileName
+                            Dim completeRelativePath As String = relativePath & fileName
+                            Dim descripcion As String
+                            descripcion = TextBoxDescription.Text
 
 
-                                If FileHelper.CheckFileExists(savePath) Then
-                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
-                                    Exit Sub
-                                Else
-                                    File1.PostedFile.SaveAs(savePath)
+                            If FileHelper.CheckFileExists(savePath) Then
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
+                                Exit Sub
+                            Else
+                                File1.PostedFile.SaveAs(savePath)
 
-                                    queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
+                                queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
                                                     (
                                                         [NumeroDeEmpleado], [NombreDelArchivo],
                                                         [Ruta], [Descripcion]
@@ -172,34 +182,29 @@ Public Class FileManager
                                                     )"
 
 
-                                    Dim Datos = conf.EjecutaSql(queryDocumentos)
-                                    Dim msg As String = "Carga exitosa"
-                                    Dim alertType As String = "success"
-                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                                Dim Datos = conf.EjecutaSql(queryDocumentos)
+                                Dim msg As String = "Carga exitosa"
+                                Dim alertType As String = "success"
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-                                    BindGridView()
-                                End If
+                                BindGridView()
+                            End If
 
 
 
-                            Catch ex As Exception
-                                Dim msg = "Error al cargar archivos: " & ex.Message
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-
-                            End Try
-                        Else
-                            Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                        Catch ex As Exception
+                            Dim msg = "Error al cargar archivos: " & ex.Message
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
-                        End If
+                        End Try
                     Else
-                        lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
-
+                        Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
                     End If
 
                 Else
-                    lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
                 End If
             End If
 
@@ -242,15 +247,7 @@ Public Class FileManager
         End If
     End Sub
 
-    Protected Sub TextBoxDescription_TextChanged(sender As Object, e As EventArgs)
 
-        If TextBoxDescription.Text.Length > 100 Then
-            TextBoxDescription.ForeColor = Drawing.Color.Red
-            lblUploadMessage.Text = "Error: La descripción no puede ser mayor a 100 caracteres."
-        Else
-            TextBoxDescription.ForeColor = Drawing.Color.Black
-        End If
-    End Sub
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
 End Class
