@@ -146,6 +146,12 @@ Public Class ProfilePicture
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             Exit Sub
                         End If
+                        If Not FileHelper.ValidateFileExtension(fileName, {".png", ".jpg", ".jpeg"}) Then
+                            Dim msg As String = "Solo se admiten imagenes con formato png, jpeg o jpg"
+                            Dim alertType As String = "danger"
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                            Exit Sub
+                        End If
                         If Session("Codigo_Empleado") IsNot Nothing Then
                             Try
                                 numeroDeEmpleado = Session("Codigo_Empleado")
