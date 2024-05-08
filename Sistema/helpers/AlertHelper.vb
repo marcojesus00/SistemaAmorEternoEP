@@ -17,7 +17,10 @@
         End Select
 
         Dim alertHtml As String = String.Format(
-            "<div class=""alert alert-{0}"" role=""alert""><strong>{1}!</strong> {2}</div>",
+            "<div class=""alert alert-{0}  fixed-bottom  alert-dismissible fade show"" role=""alert"">
+                <strong>{1}!</strong> {2}
+              <button type=""button"" class=""btn-close"" data-bs-dismiss=""alert"" aria-label=""Close""></button>
+            </div>",
             alertType, tipoDeAlerta.ToUpperInvariant(), alertMessage)
         alertPlaceholder.Controls.Add(New LiteralControl(alertHtml))
     End Sub

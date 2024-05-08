@@ -107,11 +107,10 @@ Public Class ProfilePicture
             Dim fileDeleted As Boolean = FileHelper.DeleteFile(priorFilePath)
             If fileDeleted Then
                 DeleteRecordFromDatabase(employeeId)
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
                 BindCard()
 
             Else
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la imagen", "danger"))
             End If
 
         Catch ex As Exception
