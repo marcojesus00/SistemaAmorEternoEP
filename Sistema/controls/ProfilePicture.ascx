@@ -33,8 +33,12 @@
               <div class="card-header">
     Empleado <%=Session("Codigo_Empleado").ToString()%>
   </div>
-        <div class="card-img-top text-center">
-            <asp:Image ID="imgProfile" runat="server" Width="200" Height="250" />
+        <div class="card-img-top text-center d-flex align-items-center">
+
+            <div  style="max-width: 200px; max-height: 250px; overflow: hidden; margin: 0 auto;">
+  <asp:Image  ID="imgProfile" runat="server" style="width: 100%; height: auto;" />
+</div>
+
         </div>
             <div class="text-center">
                 <div class="card-body">
