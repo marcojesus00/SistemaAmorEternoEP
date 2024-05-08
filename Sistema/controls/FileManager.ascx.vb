@@ -138,6 +138,12 @@ Public Class FileManager
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             Exit Sub
                         End If
+                        If Not FileHelper.ValidateFileExtension(fileName, {".doc", ".docx", ".pdf", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".odt", ".zip", ".rar", ".7z", ".mp4"}) Then
+                            Dim msg As String = "Solo se admiten documentos, archivos comprimidos, fotos o videos cortos"
+                            Dim alertType As String = "danger"
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                            Exit Sub
+                        End If
                         If Session("Codigo_Empleado") IsNot Nothing Then
                             Try
                                 numeroDeEmpleado = Session("Codigo_Empleado")
