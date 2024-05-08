@@ -13,12 +13,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="form-group text-center">
-                    <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
-                </div>
+<div class="text-center d-flex justify-content-center">
+    <div class="form-group ">
+        <asp:FileUpload ID="File1" CssClass="form-control-file" runat="server" />
+    </div>
+</div>
+
                 <div class="text-center">
                     <br />
-                    <label for="TextBoxDescription" class="form-label">Descripción</label>
+                    <%--                    <label for="TextBoxDescription" class="form-label">Descripción</label>--%>
 
                     <asp:TextBox ID="TextBoxDescription" MaxLength="35" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
                     <div class="invalid-feedback">
