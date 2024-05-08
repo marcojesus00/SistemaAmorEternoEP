@@ -32,6 +32,15 @@ Partial Public Class Empleados
     Protected WithEvents EmployeeCard As Global.System.Web.UI.WebControls.PlaceHolder
 
     '''<summary>
+    '''ProfilePicture1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ProfilePicture1 As Global.Sistema.ProfilePicture
+
+    '''<summary>
     '''sm control.
     '''</summary>
     '''<remarks>

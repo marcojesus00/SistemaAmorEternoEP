@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Empleados.aspx.vb" Inherits="Sistema.Empleados" EnableEventValidation="false" %>
 
 <%@ Register TagPrefix="uc" TagName="FileManager" Src="~/controls/FileManager.ascx" %>
+<%@ Register TagPrefix="uc" TagName="ProfilePicture" Src="~/controls/ProfilePicture.ascx" %>
+
 
 <!DOCTYPE html>
 
@@ -30,27 +32,8 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <div class="container">
-                                <div class="row justify-content-center ">
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="https://i.pinimg.com/736x/4c/30/b9/4c30b9de7fe46ffb20d4ee4229509541.jpg" class="card-img-top" alt="..." />
-                                        <div class="text-center">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Empleado</h5>
-                                                <p class="card-text"><%=nombreDeEmpleado%></p>
-                                            </div>
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">Puesto</li>
-                                            </ul>
-                                            <div class="card-body">
-                                                <a href="#" class="card-link">Cambiar foto</a>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-
+                       <uc:ProfilePicture class="w-100 " ID="ProfilePicture1" runat="server" />
 
                         </div>
                     </div>
