@@ -109,7 +109,7 @@ h4:hover {
                     </div>
                        <asp:Button ID="btnBuscar" runat="server" Text="   Buscar   " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
                        
-                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   ArreglarVenta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
+                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   Arreglar una venta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
                    </div>
                
               
