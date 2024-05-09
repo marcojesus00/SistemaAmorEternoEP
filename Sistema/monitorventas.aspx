@@ -456,7 +456,7 @@ h4:hover {
                        <div class="col-8">
                            <div class="input-group-prepend align-content-center" style="text-align: left"">
                                
-                           <label class="alert-primary align-content-center">Está seguro Que desea Grabar Este Documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
+                           <label class="alert-primary align-content-center">Está seguro qué desea grabar este documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
                        <div class="col-8">
                            <div class="col" style="text-align: right">
                                <asp:Button ID="BtnSiSalvarCamb" runat="server" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp<asp:Button ID="BtnNoSalvar" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-secondary" />
