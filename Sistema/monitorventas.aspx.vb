@@ -1239,26 +1239,33 @@ Public Class monitorventas
     End Sub
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra, Cuota As Integer
+        Try
+            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
 
-        If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 Then
+                If TxtPrimaApp.Text = txtvalorcontApp.Text Then
+                    Cuota = 0
+                    Letra = 0
+                Else
+                    If txtvalorcontApp.Text > 0 And TxtPrimaApp.Text > 0 And txtcuotaApp.Text > 0 Then
+                        Letra = (txtvalorcontApp.Text - TxtPrimaApp.Text) / txtcuotaApp.Text
+                        Cuota = txtcuotaApp.Text
+                    End If
 
-            If TxtPrimaApp.Text = txtvalorcontApp.Text Then
-                Cuota = 0
-                Letra = 0
-            Else
-                If txtvalorcontApp.Text > 0 And TxtPrimaApp.Text > 0 And txtcuotaApp.Text > 0 Then
-                    Letra = (txtvalorcontApp.Text - TxtPrimaApp.Text) / txtcuotaApp.Text
-                    Cuota = txtcuotaApp.Text
                 End If
+                txtLetraApp.Text = Letra
+                txtcuotaApp.Text = Cuota
+
+
+                btnGuardarCamb.Enabled = True
 
             End If
 
-        End If
-        txtLetraApp.Text = Letra
-        txtcuotaApp.Text = Cuota
+        Catch ex As Exception
+            lblMsjError.Text = "Error: " & ex.Message
+            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
 
+        End Try
 
-        btnGuardarCamb.Enabled = True
 
     End Sub
 
@@ -1304,37 +1311,37 @@ Public Class monitorventas
 
 
         If txtprod1.Text.Trim.Length = 0 Then
-            lblMsjError.Text = "Error: Debe Agregar un Producto"
+            lblMsjError.Text = "Error: Debe agregar un producto"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
 
         If txtcuotaApp.Text.TrimEnd = 0 And Prima < txtvalorcontApp.Text Then
-            lblMsjError.Text = "Error: Cuotas No debe ser Cero"
+            lblMsjError.Text = "Error: Cuotas no debe ser cero"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
 
         If txtcuotaApp.Text.TrimEnd > 0 And Prima = txtvalorcontApp.Text Then
-            lblMsjError.Text = "Error: Cuotas debe ser Cero"
+            lblMsjError.Text = "Error: Cuotas no debe ser Cero"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
 
         If txtLetraApp.Text = 0 And Prima < txtvalorcontApp.Text Then
-            lblMsjError.Text = "Error: Debe Ingresar Numero de Letras"
+            lblMsjError.Text = "Error: Debe Ingresar numero de letras"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
 
         If (txtLetraApp.Text * txtcuotaApp.Text) > txtvalorcontApp.Text Then
-            lblMsjError.Text = "Error: Corregir el Valor o numero de Cuota"
+            lblMsjError.Text = "Error: Corregir el Valor o numero de cuota"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
 
         If txtcanti1app.Text = 0 Then
-            lblMsjError.Text = "Error: Cantidad debe Ser mayor a Cero(0)"
+            lblMsjError.Text = "Error: Cantidad debe ser mayor a cero(0)"
             lblMsjError.ControlStyle.CssClass = "alert alert-danger"
             Exit Sub
         End If
