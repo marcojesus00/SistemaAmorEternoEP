@@ -939,110 +939,200 @@ To modify move field declaration from designer file to code-behind file.
 </member>
 <member name="F:Sistema.Contratos._form1">
 <summary>
-Control form1.
+form1 control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._Table1">
 <summary>
-Control Table1.
+Table1 control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._txtCobrador">
 <summary>
-Control txtCobrador.
+txtCobrador control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._dlDistribuidora">
 <summary>
-Control dlDistribuidora.
+dlDistribuidora control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._DlActivo">
 <summary>
-Control DlActivo.
+DlActivo control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._DLContrato">
 <summary>
-Control DLContrato.
+DLContrato control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._btnBuscar">
 <summary>
-Control btnBuscar.
+btnBuscar control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._gvCobradores">
 <summary>
-Control gvCobradores.
+gvCobradores control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._btnSalir">
 <summary>
-Control btnSalir.
+btnSalir control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._PanelEmpleado">
 <summary>
-Control PanelEmpleado.
+PanelEmpleado control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._ifEmpleado">
 <summary>
-Control ifEmpleado.
+ifEmpleado control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.Contratos._lblbarra">
 <summary>
-Control lblbarra.
+lblbarra control.
 </summary>
 <remarks>
-Campo generado automáticamente.
-Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._File1">
+<summary>
+File1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._TextBoxDescription">
+<summary>
+TextBoxDescription control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._UploadFile">
+<summary>
+UploadFile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._lblUploadMessage">
+<summary>
+lblUploadMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._MyGridView">
+<summary>
+MyGridView control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.FileManager._lblMessage">
+<summary>
+lblMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ProfilePicture._File1">
+<summary>
+File1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ProfilePicture._UploadFile">
+<summary>
+UploadFile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ProfilePicture._lblUploadMessage">
+<summary>
+lblUploadMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ProfilePicture._imgProfile">
+<summary>
+imgProfile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.DetalleMovimientoClientes._form1">
@@ -1072,9 +1162,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.Empleados._archivoInput">
+<member name="F:Sistema.Empleados._EmployeeCard">
 <summary>
-archivoInput control.
+EmployeeCard control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Empleados._ProfilePicture1">
+<summary>
+ProfilePicture1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1093,33 +1192,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.Empleados._Table1">
 <summary>
 Table1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.Empleados._visorArchivo">
-<summary>
-visorArchivo control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.Empleados._imgFoto">
-<summary>
-imgFoto control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.Empleados._btnCamara">
-<summary>
-btnCamara control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1315,27 +1387,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.Empleados._canvas">
-<summary>
-canvas control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.Empleados._btnGuardar">
-<summary>
-btnGuardar control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.Empleados._lblMsg">
 <summary>
 lblMsg control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Empleados._Documents">
+<summary>
+Documents control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Empleados._FileManager1">
+<summary>
+FileManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Empleados._alertPlaceholder">
+<summary>
+alertPlaceholder control.
 </summary>
 <remarks>
 Auto-generated field.
