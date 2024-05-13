@@ -217,8 +217,8 @@
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
     <Content Include="Contratos.aspx" />
-    <Content Include="controls\FileManager.ascx" />
-    <Content Include="controls\ProfilePicture.ascx" />
+    <Content Include="controls\empleado\FileManager.ascx" />
+    <Content Include="controls\empleado\ProfilePicture.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -2234,17 +2234,17 @@
       <DependentUpon>Contratos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="controls\FileManager.ascx.designer.vb">
+    <Compile Include="controls\empleado\FileManager.ascx.designer.vb">
       <DependentUpon>FileManager.ascx</DependentUpon>
     </Compile>
-    <Compile Include="controls\FileManager.ascx.vb">
+    <Compile Include="controls\empleado\FileManager.ascx.vb">
       <DependentUpon>FileManager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="controls\ProfilePicture.ascx.designer.vb">
+    <Compile Include="controls\empleado\ProfilePicture.ascx.designer.vb">
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
     </Compile>
-    <Compile Include="controls\ProfilePicture.ascx.vb">
+    <Compile Include="controls\empleado\ProfilePicture.ascx.vb">
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

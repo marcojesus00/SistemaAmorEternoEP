@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Empleados.aspx.vb" Inherits="Sistema.Empleados" EnableEventValidation="false" %>
 
-<%@ Register TagPrefix="uc" TagName="FileManager" Src="~/controls/FileManager.ascx" %>
-<%@ Register TagPrefix="uc" TagName="ProfilePicture" Src="~/controls/ProfilePicture.ascx" %>
+<%@ Register TagPrefix="uc" TagName="FileManager" Src="~/controls/empleado/FileManager.ascx" %>
+<%@ Register TagPrefix="uc" TagName="ProfilePicture" Src="~/controls/empleado/ProfilePicture.ascx" %>
 
 
 <!DOCTYPE html>
