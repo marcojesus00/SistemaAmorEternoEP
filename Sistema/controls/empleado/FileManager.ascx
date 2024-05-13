@@ -1,5 +1,39 @@
 ﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="FileManager.ascx.vb" Inherits="Sistema.FileManager" %>
 
+
+<script src="helpers/js/fileUploadValidation.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+    function handleValidation() {
+        var textBoxValue = document.getElementById('<%= TextBoxDescription.ClientID %>').value;
+        var linkButton = document.getElementById('<%= UploadFile.ClientID %>');
+        var fileInput = document.getElementById('<%= File1.ClientID %>');
+        var lbl = document.getElementById('<%= lblUploadMessage.ClientID %>');
+
+        if (textBoxValue.trim() === '' || fileInput.files.length === 0) {
+            linkButton.disabled = true;
+            linkButton.classList.add('btn', 'btn-secondary');
+            lbl.style.color = "red"
+
+        } else {
+            linkButton.disabled = false;
+            linkButton.classList.remove('btn', 'btn-secondary');
+            lbl.style.color= "white"
+
+            linkButton.classList.add('btn', 'btn-primary');
+
+        }
+    }
+    function handleInputChange() {
+        handleValidation()
+    }
+
+    function handleFileChange(input) {
+        handleValidation(); 
+        validateFileSize(input, 10); 
+    }
+</script>
 <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
     <i class="bi bi-plus-lg"></i>
 
@@ -8,7 +42,7 @@
 
 <div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content min">
             <div class="modal-header">
                 <h5 class="modal-title" id="fileUploadModalLabel">Subir archivo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,20 +50,18 @@
             <div class="modal-body">
                 <div class="text-center d-flex justify-content-center">
                     <div class="form-group ">
-                        <asp:FileUpload ID="File1" CssClass="form-control-file" runat="server" />
+                        <asp:FileUpload ID="File1" CssClass="form-control-file" onchange="handleFileChange(this);" runat="server" />
                     </div>
                 </div>
 
                 <div class="text-center">
                     <br />
 
-                    <asp:TextBox ID="TextBoxDescription" MaxLength="35" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
-                    <div class="invalid-feedback">
-                        La descripción es requerida.
-                    </div>
+                    <asp:TextBox ID="TextBoxDescription" onkeyup="handleInputChange()" MaxLength="35" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
+
                     <br />
                     <br />
-                    <asp:LinkButton ID="UploadFile" CssClass="btn btn-primary" runat="server" Text="Subir"></asp:LinkButton>
+                    <asp:LinkButton ID="UploadFile" CssClass="btn btn-secondary" runat="server" Text="Subir" ></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>

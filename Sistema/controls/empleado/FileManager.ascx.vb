@@ -9,6 +9,8 @@ Public Class FileManager
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
+        lblUploadMessage.Text = "Archivo y descripción son obligatorios"
+
         Try
             BindGridView()
             lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
@@ -131,7 +133,6 @@ Public Class FileManager
                         Directory.CreateDirectory(path)
                     End If
                     If File1.PostedFile.ContentLength < 1 Then
-                        lblUploadMessage.Text = "Seleccione un archivo por favor."
                         RaiseEvent AlertGenerated(Me, New AlertEventArgs("Seleccione un archivo por favor.", "danger"))
 
                         Exit Sub
