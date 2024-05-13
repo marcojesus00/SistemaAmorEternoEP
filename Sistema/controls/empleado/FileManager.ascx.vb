@@ -223,6 +223,7 @@ Public Class FileManager
             Dim fileExtension As String = Path.GetExtension(fileName)
 
             Dim iconCell As TableCell = e.Row.Cells(3)
+            Dim nameCell As TableCell = e.Row.Cells(2)
             Dim imageClass = "bi bi-image"
             Select Case fileExtension
                 Case ".docx"
@@ -244,7 +245,14 @@ Public Class FileManager
                 Case Else
                     iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-earmark-text-fill""></i>"))
             End Select
+
+            If fileName.Length > 32 Then
+                fileName = fileName.Substring(Math.Max(fileName.Length - 32, 0))
+            End If
+            nameCell.Text = "..." & fileName
         End If
+
+
     End Sub
 
 
