@@ -1,8 +1,9 @@
 ﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="FileManager.ascx.vb" Inherits="Sistema.FileManager" %>
 
 <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
+    <i class="bi bi-plus-lg"></i>
+
     Agregar archivo
-   
 </button>
 
 <div class="modal fade" id="fileUploadModal" tabindex="-1" aria-labelledby="fileUploadModalLabel" aria-hidden="true">
@@ -13,15 +14,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-<div class="text-center d-flex justify-content-center">
-    <div class="form-group ">
-        <asp:FileUpload ID="File1" CssClass="form-control-file" runat="server" />
-    </div>
-</div>
+                <div class="text-center d-flex justify-content-center">
+                    <div class="form-group ">
+                        <asp:FileUpload ID="File1" CssClass="form-control-file" runat="server" />
+                    </div>
+                </div>
 
                 <div class="text-center">
                     <br />
-                    <%--                    <label for="TextBoxDescription" class="form-label">Descripción</label>--%>
 
                     <asp:TextBox ID="TextBoxDescription" MaxLength="35" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
                     <div class="invalid-feedback">
@@ -46,13 +46,18 @@
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkDelete" CssClass="btn btn-danger pb-2" runat="server" CommandName="Delete" Text="Borrar" OnClientClick="return confirm('¿Está seguro que desea eliminar este documento?');"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkDelete" ToolTip="Eliminar documento" CssClass="btn btn-outline-danger pb-2" runat="server" CommandName="Delete" Text="Borrar" OnClientClick="return confirm('¿Está seguro que desea eliminar este documento?');">
+<i class="bi bi-trash3-fill"></i>
+                    </asp:LinkButton>
 
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton ID="btnDownload" CssClass="btn btn-info pb-2" runat="server" CommandName="DownloadFile" Text="Descargar" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton>
+                    <asp:LinkButton ID="btnDownload" ToolTip="Descagar documento" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="DownloadFile" CommandArgument='<%# Container.DataItemIndex %>'>
+<i class="bi bi-arrow-down"></i>
+
+                    </asp:LinkButton>
 
                 </ItemTemplate>
 
