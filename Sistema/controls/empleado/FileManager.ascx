@@ -74,7 +74,7 @@
 
 <div class="w-100 table-responsive pt-2">
 
-    <asp:GridView ID="MyGridView" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False" OnRowCommand="MyGridView_RowCommand" OnRowDeleting="MyGridView_RowDeleting" OnRowDataBound="MyGridView_RowDataBound" DataKeyNames="Id" EnableViewState="true" AllowSorting="true">
+    <asp:GridView ID="MyGridView" runat="server" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="False" OnRowCommand="MyGridView_RowCommand" OnRowDeleting="MyGridView_RowDeleting" OnRowDataBound="MyGridView_RowDataBound" DataKeyNames="Id" EnableViewState="true" AllowSorting="true">
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
