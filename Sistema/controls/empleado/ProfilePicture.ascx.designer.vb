@@ -23,13 +23,13 @@ Partial Public Class ProfilePicture
     Protected WithEvents File1 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''UploadFile control.
+    '''PreviewButton control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UploadFile As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents PreviewButton As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''lblUploadMessage control.
@@ -48,4 +48,22 @@ Partial Public Class ProfilePicture
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgProfile As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''UploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UploadFile As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''CancelUpload control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CancelUpload As Global.System.Web.UI.WebControls.LinkButton
 End Class

@@ -11,11 +11,11 @@
             </div>
             <div class="modal-body">
                 <div class="form-group text-center">
-                    <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
+                    <asp:FileUpload  onchange="SetImagePreview(this)" ID="File1" CssClass="form-control-file text-center" runat="server" />
                 </div>
                 <div class="text-center">
 
-                    <asp:LinkButton ID="UploadFile" CssClass="btn btn-primary pb-2" runat="server" Text="Subir"></asp:LinkButton>
+                    <asp:LinkButton ID="PreviewButton" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa"></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>
@@ -46,9 +46,19 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeProfilePictureModal">
+                    <button type="button" id="changePhotoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeProfilePictureModal">
                         Cambiar foto
                     </button>
+                    <div class="text-center">
+                        <div class="row gx-5">
+                            <asp:LinkButton ID="UploadFile"  CssClass="btn btn-success p-2" runat="server" Text="Subir" Visible="false"></asp:LinkButton>
+
+                            <asp:LinkButton ID="CancelUpload" CssClass="btn btn-danger p-2" runat="server" Text="Cancelar" Visible="false"></asp:LinkButton>
+
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
 

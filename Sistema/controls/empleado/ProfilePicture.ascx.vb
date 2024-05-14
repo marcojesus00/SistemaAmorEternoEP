@@ -7,6 +7,7 @@ Public Class ProfilePicture
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
+    Dim fileTypesAllowed As String() = {".png", ".jpg", ".jpeg"}
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
@@ -125,6 +126,78 @@ Public Class ProfilePicture
 
 
     End Function
+    Protected Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton.Click
+        Dim msg As String
+        Dim alertType As String
+        Dim fileName As String = File1.PostedFile.FileName
+        Dim tempPath = FileHelper.GetTempFilePath(fileName)
+        Dim fileSize As Long = File1.PostedFile.ContentLength
+
+        Try
+            If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+                msg = "El archivo no puede tener un tamaño mayor a 10MB"
+                alertType = "danger"
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                Exit Sub
+            End If
+            If Not FileHelper.ValidateFileExtension(fileName, fileTypesAllowed) Then
+                msg = "Solo se admiten archivos con formato png, jpeg o jpg"
+                alertType = "danger"
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                Exit Sub
+            End If
+            'File1.SaveAs(tempPath)
+            'Dim imageByteArray As Byte() = System.IO.File.ReadAllBytes(tempPath)
+            'Dim base64String As String = Convert.ToBase64String(imageByteArray)
+            'Dim mimeType As String = GetMimeType(tempPath)
+
+            'imgProfile.ImageUrl = String.Format("data:{0};base64,{1}", mimeType, base64String
+            '            ' Get the uploaded file
+            Dim postedFile As HttpPostedFile = File1.PostedFile
+
+            ' Check for allowed file types (optional)
+            ' Read the file content
+            Dim reader As New BinaryReader(postedFile.InputStream)
+            Dim fileContent As Byte() = reader.ReadBytes(CInt(postedFile.ContentLength))
+
+            ' Create data URL
+            Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
+
+            ' Set the image URL
+            imgProfile.ImageUrl = dataUrl
+            UploadFile.Visible = True
+            CancelUpload.Visible = True
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(ex.Message, "danger"))
+
+        End Try
+
+
+    End Sub
+    'Protected Sub SetImagePreview(sender As Object, e As EventArgs) Handles File1.ValueChanged
+    '    If File1.HasFile Then
+    '        ' Get the uploaded file
+    '        Dim postedFile As HttpPostedFile = File1.PostedFile
+
+    '        ' Check for allowed file types (optional)
+    '        If IsValidImageType(postedFile.ContentType) Then
+    '            ' Read the file content
+    '            Dim reader As New BinaryReader(postedFile.InputStream)
+    '            Dim fileContent As Byte() = reader.ReadBytes(CInt(postedFile.ContentLength))
+
+    '            ' Create data URL
+    '            Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
+
+    '            ' Set the image URL
+    '            imgProfile.ImageUrl = dataUrl
+    '        Else
+    '            ' Display error message for invalid file type
+    '        End If
+    '    End If
+    'End Sub
+
+    ' Function to check allowed image types (optional)
+
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
         Try
             Dim usuario = Session("Usuario")
@@ -147,25 +220,15 @@ Public Class ProfilePicture
                         If Not Directory.Exists(path) Then
                             Directory.CreateDirectory(path)
                         End If
-                        If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
-                            msg = "El archivo no puede tener un tamaño mayor a 10MB"
-                            alertType = "danger"
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                            Exit Sub
-                        End If
-                        If Not FileHelper.ValidateFileExtension(fileName, {".png", ".jpg", ".jpeg"}) Then
-                            msg = "Solo se admiten imagenes con formato png, jpeg o jpg"
-                            alertType = "danger"
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                            Exit Sub
-                        End If
+
                         If Session("Codigo_Empleado") IsNot Nothing Then
                             Try
                                 numeroDeEmpleado = Session("Codigo_Empleado")
                                 fileName = numeroDeEmpleado & "_" & fileName
                                 Dim savePath As String = path & fileName
                                 Dim completeRelativePath As String = relativePath & fileName
-
+                                UploadFile.Visible = False
+                                CancelUpload.Visible = False
                                 If Delete(numeroDeEmpleado) Then
                                     File1.PostedFile.SaveAs(savePath)
 

@@ -1,8 +1,22 @@
 ﻿Imports System
 Imports System.IO
 Imports System.Data.SqlClient
+Imports System.IO.Path
 
 Public Class FileHelper
+
+
+    Public Shared Function GetTempFilePath(fileName As String) As String
+        Dim tempDirectory As String = Path.GetTempPath()
+        Dim filePath As String = Path.Combine(tempDirectory, fileName)
+        Return filePath
+    End Function
+    Public Function SaveToTemporaryFile(fileData As Byte(), fileExtension As String) As String
+        Dim filePath As String = GetTempFilePath(Guid.NewGuid().ToString() & fileExtension)
+        File.WriteAllBytes(filePath, fileData)
+        Return filePath
+    End Function
+
 
     Public Shared Function LessThanFileSizeLimit(fileSize As Long, sizeAllowed As Long) As Boolean
         If fileSize > sizeAllowed Then
