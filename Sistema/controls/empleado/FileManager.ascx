@@ -19,7 +19,7 @@
         } else {
             linkButton.disabled = false;
             linkButton.classList.remove('btn', 'btn-secondary');
-            lbl.style.color= "white"
+            lbl.style.color = "white"
 
             linkButton.classList.add('btn', 'btn-primary');
 
@@ -30,8 +30,8 @@
     }
 
     function handleFileChange(input) {
-        handleValidation(); 
-        validateFileSize(input, 10); 
+        handleValidation();
+        validateFileSize(input, 10);
     }
 </script>
 <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
@@ -57,11 +57,11 @@
                 <div class="text-center">
                     <br />
 
-                    <asp:TextBox ID="TextBoxDescription" onkeyup="handleInputChange()" MaxLength="35" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxDescription" onkeyup="handleInputChange()" MaxLength="28" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
 
                     <br />
                     <br />
-                    <asp:LinkButton ID="UploadFile" CssClass="btn btn-secondary" runat="server" Text="Subir" ></asp:LinkButton>
+                    <asp:LinkButton ID="UploadFile" CssClass="btn btn-secondary" runat="server" Text="Subir"></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>

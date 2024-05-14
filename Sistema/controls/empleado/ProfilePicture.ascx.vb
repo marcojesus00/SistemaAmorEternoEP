@@ -33,6 +33,7 @@ Public Class ProfilePicture
             queryDelete = " DELETE FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
             conf.EjecutaSql(queryDelete)
         Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto de perfil: " & ex.Message, "danger"))
 
         End Try
 
@@ -80,7 +81,8 @@ Public Class ProfilePicture
 
             If employeeIsSelected Then
                 dbPath = RetrievePathFromDatabase()
-                If dbPath.Length > 0 Then
+                Dim fileExists As Boolean = FileHelper.CheckFileExists(Server.MapPath(dbPath))
+                If dbPath.Length > 0 And fileExists Then
                     imgProfile.ImageUrl = "~/" & dbPath
                 Else
                     imgProfile.ImageUrl = "~/FotosDePerfil/no.png"
@@ -90,7 +92,7 @@ Public Class ProfilePicture
             End If
 
         Catch ex As Exception
-            Dim msg = "Error al cargar archivo: " & ex.Message
+            Dim msg = "Error al leer archivo: " & ex.Message
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
         End Try
@@ -114,6 +116,7 @@ Public Class ProfilePicture
             End If
 
         Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto: " & ex.Message, "danger"))
 
         End Try
 
@@ -135,19 +138,21 @@ Public Class ProfilePicture
                         Dim numeroDeEmpleado As String
                         Dim relativePath As String = "FotosDePerfil/"
                         Dim path As String = Server.MapPath(relativePath)
+                        Dim msg As String
+                        Dim alertType As String
 
                         If Not Directory.Exists(path) Then
                             Directory.CreateDirectory(path)
                         End If
                         If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
-                            Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
-                            Dim alertType As String = "danger"
+                            msg = "El archivo no puede tener un tamaño mayor a 10MB"
+                            alertType = "danger"
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             Exit Sub
                         End If
                         If Not FileHelper.ValidateFileExtension(fileName, {".png", ".jpg", ".jpeg"}) Then
-                            Dim msg As String = "Solo se admiten imagenes con formato png, jpeg o jpg"
-                            Dim alertType As String = "danger"
+                            msg = "Solo se admiten imagenes con formato png, jpeg o jpg"
+                            alertType = "danger"
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             Exit Sub
                         End If
@@ -174,21 +179,30 @@ Public Class ProfilePicture
 
 
                                 Dim Datos = conf.EjecutaSql(queryDocumentos)
-                                Dim msg As String = "Carga exitosa"
-                                Dim alertType As String = "success"
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-                                BindCard()
+
+                                If FileHelper.CheckFileExists(Server.MapPath(completeRelativePath)) Then
+                                    msg = "Carga exitosa"
+                                    alertType = "success"
+
+                                    BindCard()
+                                Else
+                                    msg = "Error al cambiar la foto"
+                                    alertType = "danger"
+
+
+                                End If
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
 
 
                             Catch ex As Exception
-                                Dim msg = "Error al cargar archivos: " & ex.Message
+                                msg = "Error al cargar archivos: " & ex.Message
                                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
                             End Try
                         Else
-                            Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                            msg = "Error: No se pudo identificar el empleado para subir archivos."
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
                         End If
