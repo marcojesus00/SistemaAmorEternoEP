@@ -7,15 +7,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="fileUploadModalLabel">Subir archivo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
             </div>
             <div class="modal-body">
-                <div class="form-group text-center">
-                    <asp:FileUpload  onchange="SetImagePreview(this)" ID="File1" CssClass="form-control-file text-center" runat="server" />
+                                <div class="form-group text-center">
+                    <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
                 </div>
                 <div class="text-center">
 
-                    <asp:LinkButton ID="PreviewButton" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa"></asp:LinkButton>
+                                        <asp:LinkButton  ID="PreviewButton0" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa" ></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>
@@ -46,12 +46,15 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="button" id="changePhotoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeProfilePictureModal">
-                        Cambiar foto
-                    </button>
+                   <asp:Button ID="changePhotoButton" OnClientClick="showModal(); return false;"  CssClass="btn btn-primary p-2" runat="server" Text="Cambio de foto"></asp:Button>
+
+
+                    <div class="form-group text-center">
+                    </div>
+
                     <div class="text-center">
                         <div class="row gx-5">
-                            <asp:LinkButton ID="UploadFile"  CssClass="btn btn-success p-2" runat="server" Text="Subir" Visible="false"></asp:LinkButton>
+                            <asp:LinkButton ID="UploadFile" CssClass="btn btn-success p-2" runat="server" Text="Subir" Visible="false"></asp:LinkButton>
 
                             <asp:LinkButton ID="CancelUpload" CssClass="btn btn-danger p-2" runat="server" Text="Cancelar" Visible="false"></asp:LinkButton>
 
@@ -65,3 +68,55 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var button = document.getElementById('<%=changePhotoButton.ClientID %>');
+
+        if (button) {
+            console.log('htmlid: ', button);
+            button.addEventListener('click', function () {
+                var myModal = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
+                myModal.show();
+            });
+        }
+    });
+
+    function showModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
+        myModal.show();
+    }
+    myModal.addEventListener('hidden.bs.modal', function () {
+        document.querySelector('.modal-backdrop').remove();
+    });
+</script>
+
+
+
+<%--                document.getElementById('<%=PreviewButton.ClientID %>').click()--%>
+        
+
+<%--<script type="text/javascript">
+    function hideBootstrapButton() {
+        var button = document.getElementById('changePhotoButton')
+        if (button) {
+            button.style.display = '!important none';
+            console.log('yasssssssss')
+
+        }
+        else {
+            console.log('naaaaaa')
+        }
+    }
+</script>--%>
+<%--<script type="text/javascript">
+    function hideBootstrapButton() {
+        var button = document.getElementById('<%=File1.ClientID %>')
+        var f = '<%=File1.ClientID %>'
+        var button2 = document.getElementById('changePhotoButton')
+
+        if (button) {
+            console.log('htmlid: ', button)
+            document.getElementById('<%=File1.ClientID %>').click()
+        }
+    }
+</script>--%>

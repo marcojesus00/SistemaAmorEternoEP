@@ -126,11 +126,10 @@ Public Class ProfilePicture
 
 
     End Function
-    Protected Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton.Click
+    Protected Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton0.Click
         Dim msg As String
         Dim alertType As String
         Dim fileName As String = File1.PostedFile.FileName
-        Dim tempPath = FileHelper.GetTempFilePath(fileName)
         Dim fileSize As Long = File1.PostedFile.ContentLength
 
         Try
@@ -146,16 +145,9 @@ Public Class ProfilePicture
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                 Exit Sub
             End If
-            'File1.SaveAs(tempPath)
-            'Dim imageByteArray As Byte() = System.IO.File.ReadAllBytes(tempPath)
-            'Dim base64String As String = Convert.ToBase64String(imageByteArray)
-            'Dim mimeType As String = GetMimeType(tempPath)
 
-            'imgProfile.ImageUrl = String.Format("data:{0};base64,{1}", mimeType, base64String
-            '            ' Get the uploaded file
             Dim postedFile As HttpPostedFile = File1.PostedFile
 
-            ' Check for allowed file types (optional)
             ' Read the file content
             Dim reader As New BinaryReader(postedFile.InputStream)
             Dim fileContent As Byte() = reader.ReadBytes(CInt(postedFile.ContentLength))
@@ -163,10 +155,11 @@ Public Class ProfilePicture
             ' Create data URL
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
 
-            ' Set the image URL
             imgProfile.ImageUrl = dataUrl
+            changePhotoButton.Visible = False
             UploadFile.Visible = True
             CancelUpload.Visible = True
+
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(ex.Message, "danger"))
 
@@ -174,29 +167,6 @@ Public Class ProfilePicture
 
 
     End Sub
-    'Protected Sub SetImagePreview(sender As Object, e As EventArgs) Handles File1.ValueChanged
-    '    If File1.HasFile Then
-    '        ' Get the uploaded file
-    '        Dim postedFile As HttpPostedFile = File1.PostedFile
-
-    '        ' Check for allowed file types (optional)
-    '        If IsValidImageType(postedFile.ContentType) Then
-    '            ' Read the file content
-    '            Dim reader As New BinaryReader(postedFile.InputStream)
-    '            Dim fileContent As Byte() = reader.ReadBytes(CInt(postedFile.ContentLength))
-
-    '            ' Create data URL
-    '            Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
-
-    '            ' Set the image URL
-    '            imgProfile.ImageUrl = dataUrl
-    '        Else
-    '            ' Display error message for invalid file type
-    '        End If
-    '    End If
-    'End Sub
-
-    ' Function to check allowed image types (optional)
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
         Try
