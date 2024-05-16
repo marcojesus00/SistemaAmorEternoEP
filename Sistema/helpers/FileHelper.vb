@@ -6,6 +6,7 @@ Imports System.IO.Path
 Public Class FileHelper
 
 
+
     Public Shared Function GetTempFilePath(fileName As String) As String
         Dim tempDirectory As String = Path.GetTempPath()
         Dim filePath As String = Path.Combine(tempDirectory, fileName)

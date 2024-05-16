@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.IO.Path
 
 Public Class ProfilePicture
     Inherits System.Web.UI.UserControl
@@ -7,8 +8,8 @@ Public Class ProfilePicture
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
-    Dim fileTypesAllowed As String() = {".png", ".jpg", ".jpeg"}
-
+    Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
+    Dim thePostedImage
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
         If Session("Codigo_Empleado") Then
@@ -86,6 +87,7 @@ Public Class ProfilePicture
                 Dim fileExists As Boolean = FileHelper.CheckFileExists(Server.MapPath(dbPath))
                 If dbPath.Length > 0 And fileExists Then
                     imgProfile.ImageUrl = "~/" & dbPath
+                    Session("currentDBPath") = dbPath
                 Else
                     imgProfile.ImageUrl = "~/FotosDePerfil/no.png"
                 End If
@@ -104,11 +106,11 @@ Public Class ProfilePicture
     End Sub
 
     Protected Function Delete(employeeId As String) As Boolean
-        Dim priorFilePath As String = RetrievePathFromDatabase()
+        Dim priorDbFilePath As String = RetrievePathFromDatabase()
 
-        priorFilePath = Server.MapPath(priorFilePath)
+        Dim filePath = Server.MapPath(priorDbFilePath)
         Try
-            Dim fileDeleted As Boolean = FileHelper.DeleteFile(priorFilePath)
+            Dim fileDeleted As Boolean = True 'FileHelper.DeleteFile(filePath)
             If fileDeleted Then
                 If DeleteRecordFromDatabase(employeeId) Then
                     Return True
@@ -131,7 +133,19 @@ Public Class ProfilePicture
         Dim alertType As String
         Dim fileName As String = File1.PostedFile.FileName
         Dim fileSize As Long = File1.PostedFile.ContentLength
+        Dim savePath As String
+        Dim relativePath As String = "FotosDePerfil/"
+        Dim abolutePath As String = Server.MapPath(relativePath)
+        Dim fileExtension As String = Path.GetExtension(fileName)
+        numeroDeEmpleado = Session("Codigo_Empleado")
+        fileName = numeroDeEmpleado & fileExtension
+        Dim completeRelativePath = relativePath & fileName
+        Dim combinedString As String = Strings.Join(fileTypesAllowed, " *")
 
+        savePath = abolutePath & fileName
+        Session("savePath") = savePath
+
+        Session("relativePath") = completeRelativePath
         Try
             If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
                 msg = "El archivo no puede tener un tamaño mayor a 10MB"
@@ -140,7 +154,7 @@ Public Class ProfilePicture
                 Exit Sub
             End If
             If Not FileHelper.ValidateFileExtension(fileName, fileTypesAllowed) Then
-                msg = "Solo se admiten archivos con formato png, jpeg o jpg"
+                msg = "Solo se admiten archivos con los formatos: " & combinedString
                 alertType = "danger"
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                 Exit Sub
@@ -154,6 +168,10 @@ Public Class ProfilePicture
 
             ' Create data URL
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
+            'Session("UploadedFileName") = File1.PostedFile.FileName
+            'Session("UploadedFileData") = File1.PostedFile.InputStream
+            'Session("UploadedFileContentLength") = File1.PostedFile.ContentLength
+            File1.PostedFile.SaveAs(savePath)
 
             imgProfile.ImageUrl = dataUrl
             changePhotoButton.Visible = False
@@ -174,33 +192,55 @@ Public Class ProfilePicture
             Dim clave = Session("Clave")
             Dim servidor = Session("Servidor")
             Dim bd = Session("Bd")
+            changePhotoButton.Visible = True
+            UploadFile.Visible = False
+            CancelUpload.Visible = False
             If usuario IsNot Nothing AndAlso clave IsNot Nothing AndAlso servidor IsNot Nothing AndAlso bd IsNot Nothing Then
-                If Not File1.PostedFile Is Nothing Then
-                    If File1.PostedFile.ContentLength > 0 Then
+                If Session("UploadedFileContentLength") IsNot Nothing Then
+                    If Session("UploadedFileContentLength").ToString().Length > 0 Then
                         Dim conf As New Configuracion(usuario, clave, "FUNAMOR", servidor)
-                        Dim fileName As String = File1.PostedFile.FileName
-                        Dim fileSize As Long = File1.PostedFile.ContentLength
+                        Dim fileName As String = Session("UploadedFileName")
+                        Dim fileData As Stream = Session("UploadedFileData")
                         Dim insertRecord As String
-                        Dim numeroDeEmpleado As String
                         Dim relativePath As String = "FotosDePerfil/"
+                        Dim completeRelativePath As String = Session("relativePath")
                         Dim path As String = Server.MapPath(relativePath)
                         Dim msg As String
                         Dim alertType As String
-
+                        Dim currentDbPath As String
                         If Not Directory.Exists(path) Then
                             Directory.CreateDirectory(path)
                         End If
 
                         If Session("Codigo_Empleado") IsNot Nothing Then
                             Try
-                                numeroDeEmpleado = Session("Codigo_Empleado")
-                                fileName = numeroDeEmpleado & "_" & fileName
-                                Dim savePath As String = path & fileName
-                                Dim completeRelativePath As String = relativePath & fileName
-                                UploadFile.Visible = False
-                                CancelUpload.Visible = False
-                                If Delete(numeroDeEmpleado) Then
-                                    File1.PostedFile.SaveAs(savePath)
+                                'numeroDeEmpleado = Session("Codigo_Empleado")
+                                'fileName = numeroDeEmpleado & ".jpeg"
+                                'savePath = path & fileName
+
+                                'If Delete(numeroDeEmpleado) Then
+                                If True Then
+
+                                    'Using fs As New FileStream(savePath, FileMode.Create)
+                                    'Dim buffer As Byte() = New Byte(4096)
+                                    'Dim bytesRead As Integer = fileData.Read(buffer, 0, buffer.Length)
+
+                                    'While bytesRead > 0
+                                    '    fs.Write(buffer, 0, bytesRead)
+                                    '    bytesRead = fileData.Read(buffer, 0, buffer.Length)
+                                    'End While
+                                    'End Using
+                                    'File1.PostedFile.SaveAs(savePath)
+                                    DeleteRecordFromDatabase(Session("Codigo_Empleado").ToString())
+                                    If Session("currentDBPath") IsNot Nothing Then
+                                        currentDbPath = Session("currentDBPath")
+                                        If currentDbPath.Length > 0 Then
+                                            Dim filePath = Server.MapPath(currentDbPath)
+
+                                            FileHelper.DeleteFile(filePath)
+
+                                        End If
+                                    End If
 
                                     insertRecord = " INSERT INTO [dbo].[FotoDeEmpleado]
                                                     (
@@ -209,7 +249,7 @@ Public Class ProfilePicture
                                                     )
                                                     VALUES
                                                     (
-                                                        '" + numeroDeEmpleado + "', 
+                                                        '" + Session("Codigo_Empleado").ToString() + "', 
                                                         '" + completeRelativePath + "'
                                                     )"
 
@@ -245,13 +285,14 @@ Public Class ProfilePicture
 
                         End If
                     Else
-                        lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
 
 
                     End If
 
                 Else
-                    lblUploadMessage.Text = "Por favor seleccione un archivo para subir."
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
                 End If
             End If
 
@@ -263,6 +304,19 @@ Public Class ProfilePicture
         End Try
     End Sub
 
+    Protected Sub CancelUploadButton_Click(sender As Object, e As EventArgs) Handles CancelUpload.Click
+        Try
+            changePhotoButton.Visible = True
+            UploadFile.Visible = False
+            CancelUpload.Visible = False
+            FileHelper.DeleteFile(Session("savePath").ToString)
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("" & ex.Message, "danger"))
+
+        End Try
+
+    End Sub
 
 End Class
 
