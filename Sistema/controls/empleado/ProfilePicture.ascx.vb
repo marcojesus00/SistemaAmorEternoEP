@@ -2,13 +2,17 @@
 
 Public Class ProfilePicture
     Inherits System.Web.UI.UserControl
-
     Dim queryDelete As String
     Dim queryRetrieve As String
     Dim employeeId As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
+    Private _dbContext As MyDbContext
+
+    Public Sub New(dbContext As MyDbContext)
+        Me._dbContext = dbContext
+    End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
         If Session("Codigo_Empleado") Then

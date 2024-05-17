@@ -3,7 +3,7 @@
 Public Class MyDbContext
     Inherits DbContext
 
-    'Public Property Usuarios As DbSet(Of Usuario)
+    Public Property FotosDeEmpleados As DbSet(Of FotoDeEmpleado)
     'Public Property Roles As DbSet(Of Rol)
     Private _connectionString As String ' Private field to store connection string
 
