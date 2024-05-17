@@ -255,6 +255,7 @@
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
+    <Content Include="FotosDePerfil\no.png" />
     <Content Include="helpers\js\fileUploadValidation.js" />
     <Content Include="imagenes\atras1.png" />
     <Content Include="imagenes\Cancelar.png" />
