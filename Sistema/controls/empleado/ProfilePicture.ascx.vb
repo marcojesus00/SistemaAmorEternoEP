@@ -170,7 +170,7 @@ Public Class ProfilePicture
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
             'Session("UploadedFileName") = File1.PostedFile.FileName
             'Session("UploadedFileData") = File1.PostedFile.InputStream
-            'Session("UploadedFileContentLength") = File1.PostedFile.ContentLength
+            Session("UploadedFileContentLength") = File1.PostedFile.ContentLength
             File1.PostedFile.SaveAs(savePath)
 
             imgProfile.ImageUrl = dataUrl
