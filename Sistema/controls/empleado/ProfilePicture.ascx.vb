@@ -154,8 +154,18 @@ Public Class ProfilePicture
             UploadFile.Visible = True
             CancelUpload.Visible = True
 
-        Catch ex As Exception
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(ex.Message, "danger"))
+        Catch ex As HttpException ' Handle HTTP exceptions for file upload
+            msg = "Error al cargar el archivo: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+        Catch ex As IOException ' Handle file system errors
+            msg = "Error al procesar el archivo: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+        Catch ex As Exception ' Catch any unexpected exceptions
+            msg = "Error inesperado: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
         End Try
 
