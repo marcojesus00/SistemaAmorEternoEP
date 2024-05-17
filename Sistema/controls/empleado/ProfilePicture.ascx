@@ -6,14 +6,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="fileUploadModalLabel">Subir archivo</h5>
+                <h5 class="modal-title" id="fileUploadModalLabel">Foto de perfil</h5>
 <%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
             </div>
             <div class="modal-body">
                                 <div class="form-group text-center">
                     <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
                 </div>
-                <div class="text-center">
+                <div class="text-center pt-4">
 
                                         <asp:LinkButton  ID="PreviewButton0" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa" ></asp:LinkButton>
                 </div>
