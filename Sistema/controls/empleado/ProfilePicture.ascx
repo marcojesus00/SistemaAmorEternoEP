@@ -7,15 +7,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="fileUploadModalLabel">Foto de perfil</h5>
-<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
             </div>
             <div class="modal-body">
-                                <div class="form-group text-center">
+                <div class="form-group text-center">
                     <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
                 </div>
                 <div class="text-center pt-4">
 
-                                        <asp:LinkButton  ID="PreviewButton0" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa" ></asp:LinkButton>
+                    <asp:LinkButton ID="PreviewButton0" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa"></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>
@@ -46,7 +45,7 @@
                 </div>
 
                 <div class="card-body">
-                   <asp:Button ID="changePhotoButton" OnClientClick="showModal(); return false;"  CssClass="btn btn-primary p-2" runat="server" Text="Cambio de foto"></asp:Button>
+                    <asp:Button ID="changePhotoButton" OnClientClick="showModal(); return false;" CssClass="btn btn-primary p-2" runat="server" Text="Cambio de foto"></asp:Button>
 
 
                     <div class="form-group text-center">
@@ -89,34 +88,3 @@
         document.querySelector('.modal-backdrop').remove();
     });
 </script>
-
-
-
-<%--                document.getElementById('<%=PreviewButton.ClientID %>').click()--%>
-        
-
-<%--<script type="text/javascript">
-    function hideBootstrapButton() {
-        var button = document.getElementById('changePhotoButton')
-        if (button) {
-            button.style.display = '!important none';
-            console.log('yasssssssss')
-
-        }
-        else {
-            console.log('naaaaaa')
-        }
-    }
-</script>--%>
-<%--<script type="text/javascript">
-    function hideBootstrapButton() {
-        var button = document.getElementById('<%=File1.ClientID %>')
-        var f = '<%=File1.ClientID %>'
-        var button2 = document.getElementById('changePhotoButton')
-
-        if (button) {
-            console.log('htmlid: ', button)
-            document.getElementById('<%=File1.ClientID %>').click()
-        }
-    }
-</script>--%>

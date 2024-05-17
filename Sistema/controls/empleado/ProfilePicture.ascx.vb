@@ -1,19 +1,18 @@
 ﻿Imports System.IO
-Imports System.IO.Path
 
 Public Class ProfilePicture
     Inherits System.Web.UI.UserControl
 
     Dim queryDelete As String
     Dim queryRetrieve As String
-    Dim numeroDeEmpleado As String
+    Dim employeeId As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
         If Session("Codigo_Empleado") Then
-
+            employeeId = Session("Codigo_Empleado")
             BindCard()
 
         End If
@@ -26,11 +25,11 @@ Public Class ProfilePicture
     End Sub
 
     Private Function DeleteRecordFromDatabase(employeeId As String)
-        Dim usuario = Session("Usuario")
-        Dim clave = Session("Clave")
-        Dim servidor = Session("Servidor")
+        Dim currentUser = Session("Usuario")
+        Dim password = Session("Clave")
+        Dim server = Session("Servidor")
         Dim bd = Session("Bd")
-        Dim conf As New Configuracion(usuario, clave, "FUNAMOR", servidor)
+        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
         Try
             queryDelete = " DELETE FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
             conf.EjecutaSql(queryDelete)
@@ -44,14 +43,14 @@ Public Class ProfilePicture
     End Function
 
     Private Function RetrievePathFromDatabase()
-        Dim usuario = Session("Usuario")
-        Dim clave = Session("Clave")
-        Dim servidor = Session("Servidor")
+        Dim currentUser = Session("Usuario")
+        Dim password = Session("Clave")
+        Dim server = Session("Servidor")
         Dim bd = Session("Bd")
-        Dim conf As New Configuracion(usuario, clave, "FUNAMOR", servidor)
+        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
         Try
-            numeroDeEmpleado = Session("Codigo_Empleado")
-            queryRetrieve = " SELECT top 1 * FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & numeroDeEmpleado
+            employeeId = Session("Codigo_Empleado")
+            queryRetrieve = " SELECT top 1 * FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
             Dim Datos = conf.EjecutaSql(queryRetrieve)
             Dim dTable = Datos.Tables(0)
             If dTable Is Nothing Then
@@ -105,29 +104,8 @@ Public Class ProfilePicture
 
     End Sub
 
-    Protected Function Delete(employeeId As String) As Boolean
-        Dim priorDbFilePath As String = RetrievePathFromDatabase()
-
-        Dim filePath = Server.MapPath(priorDbFilePath)
-        Try
-            Dim fileDeleted As Boolean = True 'FileHelper.DeleteFile(filePath)
-            If fileDeleted Then
-                If DeleteRecordFromDatabase(employeeId) Then
-                    Return True
-
-                End If
-            Else
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la imagen", "danger"))
-            End If
-
-        Catch ex As Exception
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto: " & ex.Message, "danger"))
-
-        End Try
-        Return False
 
 
-    End Function
     Protected Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton0.Click
         Dim msg As String
         Dim alertType As String
@@ -137,8 +115,8 @@ Public Class ProfilePicture
         Dim relativePath As String = "FotosDePerfil/"
         Dim abolutePath As String = Server.MapPath(relativePath)
         Dim fileExtension As String = Path.GetExtension(fileName)
-        numeroDeEmpleado = Session("Codigo_Empleado")
-        fileName = numeroDeEmpleado & fileExtension
+        employeeId = Session("Codigo_Empleado")
+        fileName = employeeId & fileExtension
         Dim completeRelativePath = relativePath & fileName
         Dim combinedString As String = Strings.Join(fileTypesAllowed, " *")
 
@@ -168,8 +146,6 @@ Public Class ProfilePicture
 
             ' Create data URL
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
-            'Session("UploadedFileName") = File1.PostedFile.FileName
-            'Session("UploadedFileData") = File1.PostedFile.InputStream
             Session("UploadedFileContentLength") = File1.PostedFile.ContentLength
             File1.PostedFile.SaveAs(savePath)
 
@@ -188,23 +164,23 @@ Public Class ProfilePicture
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
         Try
-            Dim usuario = Session("Usuario")
-            Dim clave = Session("Clave")
-            Dim servidor = Session("Servidor")
+            Dim currentUser = Session("Usuario")
+            Dim password = Session("Clave")
+            Dim server = Session("Servidor")
             Dim bd = Session("Bd")
             changePhotoButton.Visible = True
             UploadFile.Visible = False
             CancelUpload.Visible = False
-            If usuario IsNot Nothing AndAlso clave IsNot Nothing AndAlso servidor IsNot Nothing AndAlso bd IsNot Nothing Then
+            If currentUser IsNot Nothing AndAlso password IsNot Nothing AndAlso server IsNot Nothing AndAlso bd IsNot Nothing Then
                 If Session("UploadedFileContentLength") IsNot Nothing Then
                     If Session("UploadedFileContentLength").ToString().Length > 0 Then
-                        Dim conf As New Configuracion(usuario, clave, "FUNAMOR", servidor)
+                        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
                         Dim fileName As String = Session("UploadedFileName")
                         Dim fileData As Stream = Session("UploadedFileData")
                         Dim insertRecord As String
                         Dim relativePath As String = "FotosDePerfil/"
                         Dim completeRelativePath As String = Session("relativePath")
-                        Dim path As String = Server.MapPath(relativePath)
+                        Dim path As String = MyBase.Server.MapPath(relativePath)
                         Dim msg As String
                         Dim alertType As String
                         Dim currentDbPath As String
@@ -214,28 +190,15 @@ Public Class ProfilePicture
 
                         If Session("Codigo_Empleado") IsNot Nothing Then
                             Try
-                                'numeroDeEmpleado = Session("Codigo_Empleado")
-                                'fileName = numeroDeEmpleado & ".jpeg"
-                                'savePath = path & fileName
 
-                                'If Delete(numeroDeEmpleado) Then
                                 If True Then
 
-                                    'Using fs As New FileStream(savePath, FileMode.Create)
-                                    'Dim buffer As Byte() = New Byte(4096)
-                                    'Dim bytesRead As Integer = fileData.Read(buffer, 0, buffer.Length)
 
-                                    'While bytesRead > 0
-                                    '    fs.Write(buffer, 0, bytesRead)
-                                    '    bytesRead = fileData.Read(buffer, 0, buffer.Length)
-                                    'End While
-                                    'End Using
-                                    'File1.PostedFile.SaveAs(savePath)
                                     DeleteRecordFromDatabase(Session("Codigo_Empleado").ToString())
                                     If Session("currentDBPath") IsNot Nothing Then
                                         currentDbPath = Session("currentDBPath")
                                         If currentDbPath.Length > 0 Then
-                                            Dim filePath = Server.MapPath(currentDbPath)
+                                            Dim filePath = MyBase.Server.MapPath(currentDbPath)
 
                                             FileHelper.DeleteFile(filePath)
 
@@ -257,7 +220,7 @@ Public Class ProfilePicture
                                     Dim Datos = conf.EjecutaSql(insertRecord)
 
 
-                                    If FileHelper.CheckFileExists(Server.MapPath(completeRelativePath)) Then
+                                    If FileHelper.CheckFileExists(MyBase.Server.MapPath(completeRelativePath)) Then
                                         msg = "Carga exitosa"
                                         alertType = "success"
 
