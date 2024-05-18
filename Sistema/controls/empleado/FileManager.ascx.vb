@@ -10,15 +10,18 @@ Public Class FileManager
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
         lblUploadMessage.Text = "Archivo y descripción son obligatorios"
+        If Session("Codigo_Empleado") Then
 
-        Try
-            BindGridView()
-            lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
-        Catch ex As Exception
-            lblMessage.Text = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
-        End Try
+            Try
+                BindGridView()
+                lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
+            Catch ex As Exception
+                lblMessage.Text = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
+            End Try
 
-        If Not IsPostBack Then
+            If Not IsPostBack Then
+
+            End If
 
         End If
 
