@@ -136,12 +136,27 @@ Public Class ProfilePicture
         Dim fileExtension As String = Path.GetExtension(fileName)
         fileName = employeeId & fileExtension
         Dim completeRelativePath = relativePath & fileName
-        Dim combinedString As String = Strings.Join(fileTypesAllowed, " *")
+        Dim combinedString As String = Strings.Join(fileTypesAllowed, " ")
         savePath = abolutePath & fileName
         Session("savePath") = savePath
         Session("relativePath") = completeRelativePath
 
         Try
+
+            msg = "Por favor seleccione un documento."
+            alertType = "danger"
+
+            If File1.PostedFile Is Nothing Then
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                Exit Sub
+            End If
+
+            Dim postedFile As HttpPostedFile = File1.PostedFile
+
+            If postedFile.ContentLength < 1 Then
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                Exit Sub
+            End If
 
             If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
                 msg = "El archivo no puede tener un tamaño mayor a 10MB"
@@ -157,7 +172,6 @@ Public Class ProfilePicture
                 Exit Sub
             End If
 
-            Dim postedFile As HttpPostedFile = File1.PostedFile
 
             ' Read the file content
             Dim reader As New BinaryReader(postedFile.InputStream)
@@ -165,7 +179,7 @@ Public Class ProfilePicture
 
             ' Create data URL
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
-            Session("UploadedFileContentLength") = File1.PostedFile.ContentLength
+            Session("UploadedFileContentLength") = postedFile.ContentLength
             File1.PostedFile.SaveAs(savePath)
 
             imgProfile.ImageUrl = dataUrl
