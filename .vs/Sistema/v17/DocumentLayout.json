@@ -3,32 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\controls\\empleado\\profilepicture.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\profilepicture.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\empleado\\filemanager.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\filemanager.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\models\\empladomodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\empladomodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\models\\mydbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\mydbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\controls\\empleado\\filemanager.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\filemanager.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\helpers\\alerthelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\helpers\\alerthelper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,22 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 388,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmpladoModels.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\EmpladoModels.vb",
-              "RelativeDocumentMoniker": "Sistema\\models\\EmpladoModels.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\EmpladoModels.vb",
-              "RelativeToolTip": "Sistema\\models\\EmpladoModels.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-17T23:17:06.1Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -72,80 +34,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AlertHelper.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\helpers\\AlertHelper.vb",
-              "RelativeDocumentMoniker": "Sistema\\helpers\\AlertHelper.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\helpers\\AlertHelper.vb",
-              "RelativeToolTip": "Sistema\\helpers\\AlertHelper.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-18T15:54:13.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FileManager.ascx.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-18T15:35:01.929Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\Web.config",
-              "RelativeDocumentMoniker": "Sistema\\Web.config",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\Web.config",
-              "RelativeToolTip": "Sistema\\Web.config",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAAA4AAABqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-05-17T23:01:34.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FileManager.ascx",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx",
-              "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\FileManager.ascx",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2024-05-17T17:08:19.192Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MyDbContext.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\MyDbContext.vb",
-              "RelativeDocumentMoniker": "Sistema\\models\\MyDbContext.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\MyDbContext.vb",
-              "RelativeToolTip": "Sistema\\models\\MyDbContext.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-17T16:51:33.201Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProfilePicture.ascx.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
-              "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\ProfilePicture.ascx.vb*",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\ProfilePicture.ascx.vb*",
-              "ViewState": "AQIAAEgAAAAAAAAAAABEwOwAAAA3AAAA",
+              "Title": "EmpladoModels.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\EmpladoModels.vb",
+              "RelativeDocumentMoniker": "Sistema\\models\\EmpladoModels.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\EmpladoModels.vb",
+              "RelativeToolTip": "Sistema\\models\\EmpladoModels.vb",
+              "ViewState": "AQIAABIAAAAAAAAAAAAmwBEAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-17T16:02:39.757Z",
+              "WhenOpened": "2024-05-18T18:20:16.327Z",
               "EditorCaption": ""
             }
           ]

@@ -286,12 +286,8 @@ Public Class Empleados
     End Sub
 
     Protected Sub HandleAlertGenerated(ByVal sender As Object, ByVal e As AlertEventArgs)
-        ' Handle the alert in the parent page
         Dim message As String = e.Message
         Dim alertType As String = e.AlertType
-
-        ' Now you can manipulate alertPlaceholder or do any other actions needed
-        ' For example:
         AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
     End Sub
 

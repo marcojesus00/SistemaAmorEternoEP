@@ -25,3 +25,14 @@
         alertPlaceholder.Controls.Add(New LiteralControl(alertHtml))
     End Sub
 End Class
+Public Class AlertEventArgs
+    Inherits EventArgs
+
+    Public Sub New(ByVal message As String, ByVal alertType As String)
+        Me.Message = message
+        Me.AlertType = alertType
+    End Sub
+
+    Public Property Message As String
+    Public Property AlertType As String
+End Class

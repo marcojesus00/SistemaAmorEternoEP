@@ -14,6 +14,7 @@ Public Class FotoDeEmpleado
     Public Overridable Property Empleado As DatosDeEmpleado
 
 End Class
+
 <Table("DocumentosDeEmpleado")>
 Public Class DocumentoDeEmpleado
     <Key>
