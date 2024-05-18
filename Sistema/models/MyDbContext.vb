@@ -3,12 +3,12 @@
 Public Class MyDbContext
     Inherits DbContext
 
-    Public Property FotosDeEmpleados As DbSet(Of FotoDeEmpleado)
-    'Public Property Roles As DbSet(Of Rol)
-    Private _connectionString As String ' Private field to store connection string
+    Public Sub New()
+        MyBase.New("name=MyDbContext")
+        Database.SetInitializer(Of MyDbContext)(Nothing)
 
-
-    Public Sub New(connectionString As String)
-        Me._connectionString = connectionString
     End Sub
+
+    Public Property FotosDeEmpleados As DbSet(Of FotoDeEmpleado)
+
 End Class

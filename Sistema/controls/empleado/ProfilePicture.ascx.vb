@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Data.SqlClient
+Imports System.IO
 
 Public Class ProfilePicture
     Inherits System.Web.UI.UserControl
@@ -8,11 +9,17 @@ Public Class ProfilePicture
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
-    Private _dbContext As MyDbContext
+    'Private _dbContext As MyDbContext
 
-    Public Sub New(dbContext As MyDbContext)
-        Me._dbContext = dbContext
-    End Sub
+    'Public Sub New(dbContext As MyDbContext)
+    '    Me._dbContext = dbContext
+    'End Sub
+    Dim temporaaryConectionString = "Server=192.168.20.225; Database=FUNAMOR; UID=sistema.web; PWD=$$Eterno4321."
+    '"Server=192.168.20.225;Database=FUNAMOR;User Id=wilbert.castillo;Password=Wilbert.2021"
+
+
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
         If Session("Codigo_Empleado") Then
@@ -47,28 +54,33 @@ Public Class ProfilePicture
     End Function
 
     Private Function RetrievePathFromDatabase()
-        Dim currentUser = Session("Usuario")
-        Dim password = Session("Clave")
-        Dim server = Session("Servidor")
-        Dim bd = Session("Bd")
-        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
+        'Dim currentUser = Session("Usuario")
+        'Dim password = Session("Clave")
+        'Dim server = Session("Servidor")
+        'Dim bd = Session("Bd")
+        'Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
+        Dim connectionString As String = temporaaryConectionString ' Replace with your details
+
         Try
             employeeId = Session("Codigo_Empleado")
-            queryRetrieve = " SELECT top 1 * FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
-            Dim Datos = conf.EjecutaSql(queryRetrieve)
-            Dim dTable = Datos.Tables(0)
-            If dTable Is Nothing Then
-                Return ""
-            Else
-                If dTable.Rows.Count = 0 Then
+            'queryRetrieve = " SELECT top 1 * FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
+            'Dim Datos = conf.EjecutaSql(queryRetrieve)
+            'Dim dTable = Datos.Tables(0)
+            Using dbContext As MyDbContext = New MyDbContext()
+                Dim anyRecords = dbContext.FotosDeEmpleados.Any()
+
+                Dim record As FotoDeEmpleado = dbContext.FotosDeEmpleados.Where(Function(f) f.NumeroDeEmpleado = employeeId).FirstOrDefault()
+
+                If record Is Nothing Then
                     Return ""
                 Else
-                    Return dTable.Rows(0).Item("Ruta").ToString
-
+                    Return record.Ruta
                 End If
+            End Using
+        Catch ex As SqlException
+            Dim msg As String = "Error al cargar archivo: Database error occurred." & vbCrLf & ex.Message
 
-
-            End If
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
         Catch ex As Exception
             Dim msg = "Error al cargar archivo: " & ex.Message
