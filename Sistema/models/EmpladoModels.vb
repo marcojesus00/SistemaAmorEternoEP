@@ -14,6 +14,20 @@ Public Class FotoDeEmpleado
     Public Overridable Property Empleado As DatosDeEmpleado
 
 End Class
+<Table("DocumentosDeEmpleado")>
+Public Class DocumentoDeEmpleado
+    <Key>
+    <DatabaseGenerated(DatabaseGeneratedOption.Identity)>
+    Public Property Id As Integer
+
+    <ForeignKey("Empleado")>
+    Public Property NumeroDeEmpleado As Integer
+    Public Property NombreDelArchivo As String
+    Public Property Ruta As String
+    Public Property Descripcion As String
+    Public Overridable Property Empleado As DatosDeEmpleado
+
+End Class
 
 
 <Table("PLAEMP")>
