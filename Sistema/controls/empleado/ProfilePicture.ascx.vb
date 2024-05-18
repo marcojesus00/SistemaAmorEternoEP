@@ -9,16 +9,6 @@ Public Class ProfilePicture
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
-    'Private _dbContext As MyDbContext
-
-    'Public Sub New(dbContext As MyDbContext)
-    '    Me._dbContext = dbContext
-    'End Sub
-    Dim temporaaryConectionString = "Server=192.168.20.225; Database=FUNAMOR; UID=sistema.web; PWD=$$Eterno4321."
-    '"Server=192.168.20.225;Database=FUNAMOR;User Id=wilbert.castillo;Password=Wilbert.2021"
-
-
-
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
@@ -36,15 +26,18 @@ Public Class ProfilePicture
     End Sub
 
     Private Function DeleteRecordFromDatabase(employeeId As String)
-        Dim currentUser = Session("Usuario")
-        Dim password = Session("Clave")
-        Dim server = Session("Servidor")
-        Dim bd = Session("Bd")
-        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
         Try
-            queryDelete = " DELETE FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
-            conf.EjecutaSql(queryDelete)
-            Return True
+            Using dbContext As New MyDbContext()
+
+                Dim recordsToDelete = dbContext.FotosDeEmpleados.Where(Function(f) f.NumeroDeEmpleado = employeeId)
+                dbContext.FotosDeEmpleados.RemoveRange(recordsToDelete)
+                dbContext.SaveChanges()
+            End Using
+        Catch ex As SqlException
+            Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
+
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto de perfil: " & ex.Message, "danger"))
 
@@ -52,23 +45,35 @@ Public Class ProfilePicture
 
         Return False
     End Function
+    Private Function InsertRecordIntoDatabase(employeeId As Integer, completeRelativePath As String)
+        Try
+            Using dbContext As New MyDbContext()
 
+                Dim newProfilePicture As New FotoDeEmpleado
+                newProfilePicture.NumeroDeEmpleado = employeeId
+                newProfilePicture.Ruta = completeRelativePath
+                dbContext.FotosDeEmpleados.Add(newProfilePicture)
+                dbContext.SaveChanges()
+            End Using
+        Catch ex As SqlException
+            Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
+
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto de perfil: " & ex.Message, "danger"))
+
+        End Try
+
+        Return False
+    End Function
     Private Function RetrievePathFromDatabase()
-        'Dim currentUser = Session("Usuario")
-        'Dim password = Session("Clave")
-        'Dim server = Session("Servidor")
-        'Dim bd = Session("Bd")
-        'Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
-        Dim connectionString As String = temporaaryConectionString ' Replace with your details
+
 
         Try
             employeeId = Session("Codigo_Empleado")
-            'queryRetrieve = " SELECT top 1 * FROM [dbo].[FotoDeEmpleado] WHERE NumeroDeEmpleado = " & employeeId
-            'Dim Datos = conf.EjecutaSql(queryRetrieve)
-            'Dim dTable = Datos.Tables(0)
-            Using dbContext As MyDbContext = New MyDbContext()
-                Dim anyRecords = dbContext.FotosDeEmpleados.Any()
 
+            Using dbContext As New MyDbContext()
                 Dim record As FotoDeEmpleado = dbContext.FotosDeEmpleados.Where(Function(f) f.NumeroDeEmpleado = employeeId).FirstOrDefault()
 
                 If record Is Nothing Then
@@ -174,11 +179,11 @@ Public Class ProfilePicture
             msg = "Error al cargar el archivo: " & ex.Message
             alertType = "danger"
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-        Catch ex As IOException ' Handle file system errors
+        Catch ex As IOException
             msg = "Error al procesar el archivo: " & ex.Message
             alertType = "danger"
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-        Catch ex As Exception ' Catch any unexpected exceptions
+        Catch ex As Exception
             msg = "Error inesperado: " & ex.Message
             alertType = "danger"
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
@@ -190,100 +195,79 @@ Public Class ProfilePicture
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
         Try
-            Dim currentUser = Session("Usuario")
-            Dim password = Session("Clave")
-            Dim server = Session("Servidor")
-            Dim bd = Session("Bd")
+
             changePhotoButton.Visible = True
             UploadFile.Visible = False
             CancelUpload.Visible = False
-            If currentUser IsNot Nothing AndAlso password IsNot Nothing AndAlso server IsNot Nothing AndAlso bd IsNot Nothing Then
-                If Session("UploadedFileContentLength") IsNot Nothing Then
-                    If Session("UploadedFileContentLength").ToString().Length > 0 Then
-                        Dim conf As New Configuracion(currentUser, password, "FUNAMOR", server)
-                        Dim fileName As String = Session("UploadedFileName")
-                        Dim fileData As Stream = Session("UploadedFileData")
-                        Dim insertRecord As String
-                        Dim relativePath As String = "FotosDePerfil/"
-                        Dim completeRelativePath As String = Session("relativePath")
-                        Dim path As String = MyBase.Server.MapPath(relativePath)
-                        Dim msg As String
-                        Dim alertType As String
-                        Dim currentDbPath As String
-                        If Not Directory.Exists(path) Then
-                            Directory.CreateDirectory(path)
-                        End If
+            If Session("UploadedFileContentLength") IsNot Nothing Then
+                If Session("UploadedFileContentLength").ToString().Length > 0 Then
+                    Dim fileName As String = Session("UploadedFileName")
+                    Dim fileData As Stream = Session("UploadedFileData")
+                    Dim relativePath As String = "FotosDePerfil/"
+                    Dim completeRelativePath As String = Session("relativePath")
+                    Dim path As String = MyBase.Server.MapPath(relativePath)
+                    Dim msg As String
+                    Dim alertType As String
+                    Dim currentDbPath As String
+                    If Not Directory.Exists(path) Then
+                        Directory.CreateDirectory(path)
+                    End If
 
-                        If Session("Codigo_Empleado") IsNot Nothing Then
-                            Try
+                    If Session("Codigo_Empleado") IsNot Nothing Then
+                        Try
 
-                                If True Then
+                            If True Then
 
 
-                                    DeleteRecordFromDatabase(Session("Codigo_Empleado").ToString())
-                                    If Session("currentDBPath") IsNot Nothing Then
-                                        currentDbPath = Session("currentDBPath")
-                                        If currentDbPath.Length > 0 Then
-                                            Dim filePath = MyBase.Server.MapPath(currentDbPath)
+                                DeleteRecordFromDatabase(Session("Codigo_Empleado").ToString())
+                                If Session("currentDBPath") IsNot Nothing Then
+                                    currentDbPath = Session("currentDBPath")
+                                    If currentDbPath.Length > 0 Then
+                                        Dim filePath = MyBase.Server.MapPath(currentDbPath)
 
-                                            FileHelper.DeleteFile(filePath)
-
-                                        End If
-                                    End If
-
-                                    insertRecord = " INSERT INTO [dbo].[FotoDeEmpleado]
-                                                    (
-                                                        [NumeroDeEmpleado], 
-                                                        [Ruta]
-                                                    )
-                                                    VALUES
-                                                    (
-                                                        '" + Session("Codigo_Empleado").ToString() + "', 
-                                                        '" + completeRelativePath + "'
-                                                    )"
-
-
-                                    Dim Datos = conf.EjecutaSql(insertRecord)
-
-
-                                    If FileHelper.CheckFileExists(MyBase.Server.MapPath(completeRelativePath)) Then
-                                        msg = "Carga exitosa"
-                                        alertType = "success"
-
-                                        BindCard()
-                                    Else
-                                        msg = "Error al cambiar la foto"
-                                        alertType = "danger"
-
+                                        FileHelper.DeleteFile(filePath)
 
                                     End If
-                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                                End If
+                                InsertRecordIntoDatabase(Session("Codigo_Empleado"), completeRelativePath)
 
+                                If FileHelper.CheckFileExists(MyBase.Server.MapPath(completeRelativePath)) Then
+                                    msg = "Carga exitosa"
+                                    alertType = "success"
+
+                                    BindCard()
+                                Else
+                                    msg = "Error al cambiar la foto"
+                                    alertType = "danger"
 
 
                                 End If
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-                            Catch ex As Exception
-                                msg = "Error al cargar archivos: " & ex.Message
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
-                            End Try
-                        Else
-                            msg = "Error: No se pudo identificar el empleado para subir archivos."
+
+                            End If
+
+                        Catch ex As Exception
+                            msg = "Error al cargar archivos: " & ex.Message
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
-                        End If
+                        End Try
                     Else
-
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
-
+                        msg = "Error: No se pudo identificar el empleado para subir archivos."
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
                     End If
-
                 Else
+
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
+
+
                 End If
-            End If
+
+            Else
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
+                End If
 
 
         Catch ex As Exception
