@@ -15,7 +15,7 @@ Public Class ProfilePicture
 
             Try
                 employeeId = CInt(Session("Codigo_Empleado"))
-                BindCard()
+                BindCard(employeeId)
             Catch ex As InvalidCastException
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error de conversión: " & ex.Message, "danger"))
             Catch ex As Exception
@@ -97,7 +97,7 @@ Public Class ProfilePicture
 
     End Function
 
-    Private Sub BindCard()
+    Private Sub BindCard(employeeId As Integer)
         Dim employeeIsSelected = Session("Codigo_Empleado").ToString.Length > 0
         Dim dbPath As String
 
@@ -234,9 +234,9 @@ Public Class ProfilePicture
                                 If FileHelper.CheckFileExists(MyBase.Server.MapPath(completeRelativePath)) Then
                                     msg = "Carga exitosa"
                                     alertType = "success"
-                                    BindCard()
+                                    BindCard(employeeId)
                                 Else
-                                    msg = "Error al cambiar la foto"
+                                    msg = "Error al cambiar la foto: Archivo no subido correctamente"
                                     alertType = "danger"
                                 End If
 
