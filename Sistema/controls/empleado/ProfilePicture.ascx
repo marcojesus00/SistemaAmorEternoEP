@@ -1,6 +1,36 @@
 ﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="ProfilePicture.ascx.vb" Inherits="Sistema.ProfilePicture" %>
 
+<script src="helpers/js/fileUploadValidation.js" type="text/javascript"></script>
+<script type="text/javascript">
 
+
+    function handleValidation() {
+        var linkButton = document.getElementById('<%= PreviewButton0.ClientID %>');
+        var fileInput = document.getElementById('<%= File1.ClientID %>');
+        var lbl = document.getElementById('<%= lblUploadMessage.ClientID %>');
+
+        if (fileInput.files.length === 0) {
+            linkButton.disabled = true;
+            linkButton.classList.add('btn', 'btn-secondary');
+            lbl.style.color = "red"
+            console.log(" length === 0")
+
+        } else {
+            linkButton.disabled = false;
+            linkButton.classList.remove('btn', 'btn-secondary');
+            lbl.style.color = "white"
+
+            linkButton.classList.add('btn', 'btn-primary');
+            console.log(" length > 0")
+
+        }
+    }
+
+    function handleFileChange(input) {
+        handleValidation();
+        validateFileSize(input, 10);
+    }
+</script>
 
 <div class="modal fade" id="ChangeProfilePictureModal" tabindex="-1" aria-labelledby="ChangeProfilePictureModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -14,7 +44,7 @@
                 </div>
                 <div class="text-center pt-4">
 
-                    <asp:LinkButton ID="PreviewButton0" CssClass="btn btn-primary p-2" runat="server" Text="Vista previa"></asp:LinkButton>
+                    <asp:LinkButton ID="PreviewButton0" CssClass="btn btn-secondary" runat="server" Text="Vista previa"></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">
                     <asp:Label ID="lblUploadMessage" runat="server" Text=""></asp:Label>

@@ -128,18 +128,17 @@ Public Class ProfilePicture
     Protected Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton0.Click
         Dim msg As String
         Dim alertType As String
-        Dim fileName As String = File1.PostedFile.FileName
         Dim fileSize As Long = File1.PostedFile.ContentLength
-        Dim savePath As String
-        Dim relativePath As String = "FotosDePerfil/"
-        Dim abolutePath As String = Server.MapPath(relativePath)
-        Dim fileExtension As String = Path.GetExtension(fileName)
-        fileName = employeeId & fileExtension
-        Dim completeRelativePath = relativePath & fileName
-        Dim combinedString As String = Strings.Join(fileTypesAllowed, " ")
-        savePath = abolutePath & fileName
-        Session("savePath") = savePath
-        Session("relativePath") = completeRelativePath
+        Dim directoryTempRelativePath As String = "Temp/"
+        Dim directoryTempAbsolutePath As String = Server.MapPath(directoryTempRelativePath)
+        Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
+        Dim newFileName = employeeId & fileExtension
+        Dim fileTempRelativePath = directoryTempRelativePath & newFileName
+        Dim fileTempAbsolutePath = directoryTempAbsolutePath & newFileName
+        Dim combinedFileTypesString As String = Strings.Join(fileTypesAllowed, " ")
+
+        Session("fileTempAbsolutePath") = fileTempAbsolutePath
+        Session("fileTempRelativePath") = fileTempRelativePath
 
         Try
 
@@ -165,8 +164,8 @@ Public Class ProfilePicture
                 Exit Sub
             End If
 
-            If Not FileHelper.ValidateFileExtension(fileName, fileTypesAllowed) Then
-                msg = "Solo se admiten archivos con los formatos: " & combinedString
+            If Not FileHelper.ValidateFileExtension(newFileName, fileTypesAllowed) Then
+                msg = "Solo se admiten archivos con los formatos: " & combinedFileTypesString
                 alertType = "danger"
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                 Exit Sub
@@ -175,13 +174,13 @@ Public Class ProfilePicture
 
             ' Read the file content
             Dim reader As New BinaryReader(postedFile.InputStream)
-            Dim fileContent As Byte() = reader.ReadBytes(CInt(postedFile.ContentLength))
+            Dim fileContent As Byte() = reader.ReadBytes(CInt(fileSize))
 
             ' Create data URL
             Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
-            Session("UploadedFileContentLength") = postedFile.ContentLength
-            File1.PostedFile.SaveAs(savePath)
-
+            Session("UploadedFileContentLength") = fileSize
+            FileHelper.createFolderIfNotExists(directoryTempAbsolutePath)
+            File1.PostedFile.SaveAs(fileTempAbsolutePath)
             imgProfile.ImageUrl = dataUrl
             changePhotoButton.Visible = False
             UploadFile.Visible = True
@@ -213,39 +212,24 @@ Public Class ProfilePicture
             If Session("UploadedFileContentLength") IsNot Nothing Then
 
                 If Session("UploadedFileContentLength").ToString().Length > 0 Then
-                    Dim fileName As String = Session("UploadedFileName")
-                    Dim fileData As Stream = Session("UploadedFileData")
-                    Dim relativePath As String = "FotosDePerfil/"
-                    Dim completeRelativePath As String = Session("relativePath")
-                    Dim path As String = MyBase.Server.MapPath(relativePath)
+                    Dim relativeDirectoryPath As String = "FotosDePerfil/"
+                    Dim directoryAbsolutePath As String = MyBase.Server.MapPath(relativeDirectoryPath)
+                    Dim fileTempAbsolutePath = Session("fileTempAbsolutePath")
+                    Dim fileRelativePath As String = relativeDirectoryPath & Path.GetFileName(fileTempAbsolutePath)
                     Dim msg As String
                     Dim alertType As String
-                    Dim currentDbPath As String
-
-                    If Not Directory.Exists(path) Then
-                        Directory.CreateDirectory(path)
-                    End If
 
                     If Session("Codigo_Empleado") IsNot Nothing Then
 
                         Try
 
                             If True Then
-                                DeleteRecordFromDatabase(employeeId)
-
-                                If Session("currentDBPath") IsNot Nothing Then
-                                    currentDbPath = Session("currentDBPath")
-
-                                    If currentDbPath.Length > 0 Then
-                                        Dim filePath = MyBase.Server.MapPath(currentDbPath)
-                                        FileHelper.DeleteFile(filePath)
-                                    End If
-
+                                If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
+                                    DeleteRecordFromDatabase(employeeId)
+                                    InsertRecordIntoDatabase(employeeId, fileRelativePath)
                                 End If
 
-                                InsertRecordIntoDatabase(employeeId, completeRelativePath)
-
-                                If FileHelper.CheckFileExists(MyBase.Server.MapPath(completeRelativePath)) Then
+                                If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
                                     msg = "Carga exitosa"
                                     alertType = "success"
                                     BindCard(employeeId)
@@ -253,12 +237,10 @@ Public Class ProfilePicture
                                     msg = "Error al cambiar la foto: Archivo no subido correctamente"
                                     alertType = "danger"
                                 End If
-
                                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-
-
                             End If
+
 
                         Catch ex As Exception
                             msg = "Error al cargar archivos: " & ex.Message
@@ -292,7 +274,7 @@ Public Class ProfilePicture
             changePhotoButton.Visible = True
             UploadFile.Visible = False
             CancelUpload.Visible = False
-            FileHelper.DeleteFile(Session("savePath").ToString)
+            FileHelper.DeleteFile(Session("fileTempAbsolutePath").ToString)
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("" & ex.Message, "danger"))
         End Try

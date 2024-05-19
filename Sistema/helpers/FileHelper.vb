@@ -1,9 +1,31 @@
-﻿Imports System
+﻿Imports System.Data.SqlClient
 Imports System.IO
-Imports System.Data.SqlClient
-Imports System.IO.Path
 
 Public Class FileHelper
+
+
+    Public Shared Function MoveFile(sourceFileAbsolutePath As String, destinationDirectoryAbsolutePath As String) As Boolean
+        Try
+            If Not CheckFileExists(sourceFileAbsolutePath) Then
+                Throw New FileNotFoundException("File not found: " & sourceFileAbsolutePath)
+            End If
+
+            Dim filename As String = Path.GetFileName(sourceFileAbsolutePath)
+            Dim newDestinationPath As String = Path.Combine(destinationDirectoryAbsolutePath, filename)
+
+            createFolderIfNotExists(destinationDirectoryAbsolutePath)
+            DeleteFile(newDestinationPath)
+            File.Move(sourceFileAbsolutePath, newDestinationPath)
+            If CheckFileExists(newDestinationPath) Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+
+            Throw ex
+        End Try
+    End Function
 
 
 
@@ -40,6 +62,11 @@ Public Class FileHelper
     Public Shared Function CheckFileExists(filePath As String) As Boolean
         CheckFileExists = System.IO.File.Exists(filePath)
     End Function
+    Public Shared Sub createFolderIfNotExists(path)
+        If Not Directory.Exists(path) Then
+            Directory.CreateDirectory(path)
+        End If
+    End Sub
 
     Public Shared Sub ExecuteQuery(query As String, numeroDeEmpleado As String, fileName As String, completeRelativePath As String, descripcion As String, connectionString As String)
         Using connection As New SqlConnection(connectionString)
@@ -57,9 +84,13 @@ Public Class FileHelper
 
         If File.Exists(filePath) Then
             File.Delete(filePath)
-            Return True
-        Else
-            Return False
+            If File.Exists(filePath) Then
+                Return True
+            Else
+                Return False
+
+            End If
         End If
+        Return True
     End Function
 End Class
