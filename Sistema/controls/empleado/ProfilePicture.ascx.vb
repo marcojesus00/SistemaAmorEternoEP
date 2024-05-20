@@ -226,7 +226,7 @@ Public Class ProfilePicture
                             If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
                                 DeleteRecordFromDatabase(employeeId)
                                 InsertRecordIntoDatabase(employeeId, fileRelativePath)
-                                If Session("currentDBPath").ToString() IsNot Nothing Then
+                                If Session("currentDBPath") IsNot Nothing Then
                                     priorFileRelativePath = Session("currentDBPath").ToString()
                                     If Path.GetFileName(priorFileRelativePath) <> newFileName Then
                                         FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
