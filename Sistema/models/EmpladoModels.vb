@@ -24,9 +24,12 @@ Public Class DocumentoDeEmpleado
     <ForeignKey("Empleado")>
     Public Property NumeroDeEmpleado As Integer
     Public Property NombreDelArchivo As String
+    Public Property FechaDeCreacion As DateTime
     Public Property Ruta As String
     Public Property Descripcion As String
+    Public Property Archivado As Boolean
     Public Overridable Property Empleado As DatosDeEmpleado
+
 
 End Class
 

@@ -63,24 +63,48 @@ Public Class FileManager
             Dim myList As List(Of DocumentoDeEmpleado) = CType(MyGridView.DataSource, List(Of DocumentoDeEmpleado))
             Dim dataItem = myList(rowIndex)
             Dim relativePath As String = dataItem.Ruta
-
+            Dim utcTime As DateTime = DateTime.UtcNow
+            Dim targetTimeZoneOffset As Integer = -6
+            Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
+            Dim creationDate As DateTime = dataItem.FechaDeCreacion
+            Dim time24HoursLater As DateTime = creationDate.AddHours(24)
             Dim filePath As String = Server.MapPath(relativePath)
-            Dim fileIsDeleted = FileHelper.DeleteFile(filePath)
-            If fileIsDeleted Then
-                If DeleteRecordFromDatabase(id) Then
-                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
-                    BindGridView()
+            If utcTime > time24HoursLater Then
+                Try
+                    Using dbContext As New MyDbContext
+                        Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(id)
+                        recordToUpdate.Archivado = True
+                        dbContext.SaveChanges()
+
+                    End Using
+
+                Catch ex As Exception
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al archivar: " & ex.Message, "danger"))
+
+                End Try
+
+            Else
+                Dim fileIsDeleted = FileHelper.DeleteFile(filePath)
+
+                If fileIsDeleted Then
+                    If DeleteRecordFromDatabase(id) Then
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
+                        BindGridView()
+                    Else
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
+                    End If
+
+
                 Else
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
                 End If
 
-
-            Else
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
             End If
 
+
+
         Catch ex As Exception
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error de borrado: " & ex.Message, "danger"))
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error de borrado o archivado: " & ex.Message, "danger"))
         End Try
 
 
@@ -111,8 +135,8 @@ Public Class FileManager
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
                 Using dbContext As New MyDbContext
-                    Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = numeroDeEmpleado)
-                    MyGridView.DataSource = data.ToList() ' Datos.Tables(0)
+                    Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = numeroDeEmpleado And d.Archivado = False)
+                    MyGridView.DataSource = data.ToList()
                     MyGridView.DataBind()
 
                     If MyGridView.Rows.Count = 0 Then
@@ -143,7 +167,6 @@ Public Class FileManager
             If Not File1.PostedFile Is Nothing And Page.IsValid Then
                 Dim fileName As String = File1.PostedFile.FileName
                 Dim fileSize As Long = File1.PostedFile.ContentLength
-                Dim queryDocumentos As String
                 Dim numeroDeEmpleado As String
                 Dim relativePath As String = "archivosSubidos/empleados/documentos"
                 Dim path As String = Server.MapPath(relativePath)
