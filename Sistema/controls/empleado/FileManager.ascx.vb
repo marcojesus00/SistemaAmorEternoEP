@@ -145,7 +145,7 @@ Public Class FileManager
                 Dim fileSize As Long = File1.PostedFile.ContentLength
                 Dim queryDocumentos As String
                 Dim numeroDeEmpleado As String
-                Dim relativePath As String = "Uploads/"
+                Dim relativePath As String = "archivosSubidos/empleados/documentos"
                 Dim path As String = Server.MapPath(relativePath)
 
                 If Not Directory.Exists(path) Then

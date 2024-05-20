@@ -6,6 +6,8 @@
 # dotenv files
 .env
 
+Sistema/archivosSubidos/
+
 # User-specific files
 *.rsuser
 *.suo

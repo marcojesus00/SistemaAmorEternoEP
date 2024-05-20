@@ -7,7 +7,7 @@ Public Class ProfilePicture
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
-
+    Dim noProfilePictureRelativePath = "imagenes/no_profile_picture.png"
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
 
@@ -111,11 +111,11 @@ Public Class ProfilePicture
                     imgProfile.ImageUrl = "~/" & dbPath
                     Session("currentDBPath") = dbPath
                 Else
-                    imgProfile.ImageUrl = "~/FotosDePerfil/no.png"
+                    imgProfile.ImageUrl = Path.Combine("~/", noProfilePictureRelativePath)
                 End If
 
             Else
-                imgProfile.ImageUrl = "~/FotosDePerfil/no.png"
+                imgProfile.ImageUrl = Path.Combine("~/", noProfilePictureRelativePath)
             End If
 
         Catch ex As Exception
@@ -129,7 +129,7 @@ Public Class ProfilePicture
         Dim msg As String
         Dim alertType As String
         Dim fileSize As Long = File1.PostedFile.ContentLength
-        Dim directoryTempRelativePath As String = "Temp/"
+        Dim directoryTempRelativePath As String = "archivosSubidos/empleados/Temp/"
         Dim directoryTempAbsolutePath As String = Server.MapPath(directoryTempRelativePath)
         Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
         Dim newFileName = employeeId & fileExtension
@@ -212,7 +212,7 @@ Public Class ProfilePicture
             If Session("UploadedFileContentLength") IsNot Nothing Then
 
                 If Session("UploadedFileContentLength").ToString().Length > 0 Then
-                    Dim relativeDirectoryPath As String = "FotosDePerfil/"
+                    Dim relativeDirectoryPath As String = "archivosSubidos/empleados/FotosDePerfil/"
                     Dim directoryAbsolutePath As String = MyBase.Server.MapPath(relativeDirectoryPath)
                     Dim fileTempAbsolutePath = Session("fileTempAbsolutePath")
                     Dim newFileName = Path.GetFileName(fileTempAbsolutePath)
