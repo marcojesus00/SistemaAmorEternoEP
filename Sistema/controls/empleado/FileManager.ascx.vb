@@ -168,11 +168,11 @@ Public Class FileManager
                 Dim fileName As String = File1.PostedFile.FileName
                 Dim fileSize As Long = File1.PostedFile.ContentLength
                 Dim numeroDeEmpleado As String
-                Dim relativePath As String = "archivosSubidos/empleados/documentos"
-                Dim path As String = Server.MapPath(relativePath)
+                Dim directoryRelativePath As String = "Subidos/Empleados/Documentos/"
+                Dim directoryAbsolutePath As String = Server.MapPath(directoryRelativePath)
 
-                If Not Directory.Exists(path) Then
-                    Directory.CreateDirectory(path)
+                If Not Directory.Exists(directoryAbsolutePath) Then
+                    Directory.CreateDirectory(directoryAbsolutePath)
                 End If
 
                 If File1.PostedFile.ContentLength < 1 Then
@@ -204,23 +204,27 @@ Public Class FileManager
                     Try
                         numeroDeEmpleado = Session("Codigo_Empleado")
                         fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
-                        Dim savePath As String = path & fileName
-                        Dim completeRelativePath As String = relativePath & fileName
+                        Dim fileAbsolutePath As String = directoryAbsolutePath & fileName
+                        Dim fileRelativePath As String = directoryRelativePath & fileName
                         Dim description As String
                         description = TextBoxDescription.Text
-
-                        If FileHelper.CheckFileExists(savePath) Then
+                        Dim utcTime As DateTime = DateTime.UtcNow
+                        Dim targetTimeZoneOffset As Integer = -6
+                        Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
+                        If FileHelper.CheckFileExists(fileAbsolutePath) Then
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
                             Exit Sub
                         Else
-                            File1.PostedFile.SaveAs(savePath)
+                            File1.PostedFile.SaveAs(fileAbsolutePath)
                             Using dbContext As New MyDbContext
                                 Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
                                     .NombreDelArchivo = fileName,
-                                    .Ruta = completeRelativePath,
-                                    .Descripcion = description}
+                                    .Ruta = fileRelativePath,
+                                    .Descripcion = description,
+                                    .FechaDeCreacion = localTime,
+                                    .Archivado = False}
                                 dbContext.DocumentosDeEmpleados.Add(newDoc)
                                 dbContext.SaveChanges()
                             End Using
@@ -299,6 +303,12 @@ Public Class FileManager
 
     End Sub
 
+    Protected Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
+        ' Set the new page index
+        MyGridView.PageIndex = e.NewPageIndex
+
+        ' Rebind the data to the GridView (assuming you have a data source)
+    End Sub
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
 End Class
