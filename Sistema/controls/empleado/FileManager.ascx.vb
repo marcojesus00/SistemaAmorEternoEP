@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Data.SqlClient
+Imports System.IO
 
 Public Class FileManager
     Inherits System.Web.UI.UserControl
@@ -36,11 +37,15 @@ Public Class FileManager
             Try
                 Dim args As String() = e.CommandArgument.ToString().Split("|"c)
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                Dim dataSource As DataTable = DirectCast(MyGridView.DataSource, DataTable)
-                Dim documentPath As String = dataSource.Rows(rowIndex).Item("Ruta").ToString()
-                Dim documentName As String = dataSource.Rows(rowIndex).Item("NombreDelArchivo").ToString()
+                Dim myList As List(Of DocumentoDeEmpleado) = CType(MyGridView.DataSource, List(Of DocumentoDeEmpleado))
+                Dim dataItem = myList(rowIndex)
+                Dim documentPath As String = dataItem.Ruta
+                Dim documentName As String = dataItem.NombreDelArchivo
                 Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
                 Response.Redirect(handlerUrl)
+            Catch ex As IOException
+                Dim msg = "Error al procesar  archivo: " & ex.Message
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             Catch ex As Exception
                 Dim msg = "Error de descarga: " & ex.Message
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
@@ -52,16 +57,24 @@ Public Class FileManager
     Protected Sub MyGridView_RowDeleting(ByVal sender As Object, ByVal e As GridViewDeleteEventArgs) Handles MyGridView.RowDeleting
 
         Try
+
             Dim rowIndex As Integer = e.RowIndex
             Dim id As String = MyGridView.DataKeys(rowIndex).Value.ToString()
-            Dim dataSource As DataTable = DirectCast(MyGridView.DataSource, DataTable)
-            Dim relativePath As String = dataSource.Rows(rowIndex).Item("Ruta").ToString()
-            Dim filePath As String = Server.MapPath(relativePath)
+            Dim myList As List(Of DocumentoDeEmpleado) = CType(MyGridView.DataSource, List(Of DocumentoDeEmpleado))
+            Dim dataItem = myList(rowIndex)
+            Dim relativePath As String = dataItem.Ruta
 
-            If FileHelper.DeleteFile(filePath) Then
-                DeleteRecordFromDatabase(ID)
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
-                BindGridView()
+            Dim filePath As String = Server.MapPath(relativePath)
+            Dim fileIsDeleted = FileHelper.DeleteFile(filePath)
+            If fileIsDeleted Then
+                If DeleteRecordFromDatabase(id) Then
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
+                    BindGridView()
+                Else
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
+                End If
+
+
             Else
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
             End If
@@ -72,45 +85,43 @@ Public Class FileManager
 
 
     End Sub
-    Private Sub DeleteRecordFromDatabase(id As String)
-        Dim Usuario = Session("Usuario")
-        Dim Clave = Session("Clave")
-        Dim Servidor = Session("Servidor")
-        Dim Bd = Session("Bd")
-        Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-
+    Private Function DeleteRecordFromDatabase(documentId As String)
         Try
-            queryDelete = " DELETE FROM [dbo].[DocumentosDeEmpleado] WHERE Id = " & id
-            conf.EjecutaSql(queryDelete)
+            Using dbContext As New MyDbContext()
+                Dim recordsToDelete = dbContext.DocumentosDeEmpleados.Where(Function(f) f.Id = documentId)
+                dbContext.DocumentosDeEmpleados.RemoveRange(recordsToDelete)
+                dbContext.SaveChanges()
+                Return True
+            End Using
+        Catch ex As SqlException
+            Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar registro de la base de datos, por favor vuelva a intentarlo : " & ex.Message, "danger"))
         End Try
-
-    End Sub
-
+        Return False
+    End Function
 
 
     Private Sub BindGridView()
-        Dim Usuario = Session("Usuario")
-        Dim Clave = Session("Clave")
-        Dim Servidor = Session("Servidor")
-        Dim Bd = Session("Bd")
-        Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+
 
         Try
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                queryRetrieve = " SELECT * FROM [dbo].[DocumentosDeEmpleado] WHERE NumeroDeEmpleado = " & numeroDeEmpleado
-                Dim Datos = conf.EjecutaSql(queryRetrieve)
-                MyGridView.DataSource = Datos.Tables(0)
-                MyGridView.DataBind()
+                Using dbContext As New MyDbContext
+                    Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = numeroDeEmpleado)
+                    MyGridView.DataSource = data.ToList() ' Datos.Tables(0)
+                    MyGridView.DataBind()
 
-                If MyGridView.Rows.Count = 0 Then
-                    lblMessage.Text = "No se encontraron documentos"
-                Else
-                    lblMessage.Text = ""
-                End If
+                    If MyGridView.Rows.Count = 0 Then
+                        lblMessage.Text = "No se encontraron documentos"
+                    Else
+                        lblMessage.Text = ""
+                    End If
+
+                End Using
 
             Else
 
@@ -128,96 +139,86 @@ Public Class FileManager
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
 
         Try
-            Dim Usuario = Session("Usuario")
-            Dim Clave = Session("Clave")
-            Dim Servidor = Session("Servidor")
-            Dim Bd = Session("Bd")
 
-            If Usuario IsNot Nothing AndAlso Clave IsNot Nothing AndAlso Servidor IsNot Nothing AndAlso Bd IsNot Nothing Then
+            If Not File1.PostedFile Is Nothing And Page.IsValid Then
+                Dim fileName As String = File1.PostedFile.FileName
+                Dim fileSize As Long = File1.PostedFile.ContentLength
+                Dim queryDocumentos As String
+                Dim numeroDeEmpleado As String
+                Dim relativePath As String = "Uploads/"
+                Dim path As String = Server.MapPath(relativePath)
 
-                If Not File1.PostedFile Is Nothing And Page.IsValid Then
-                    Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-                    Dim fileName As String = File1.PostedFile.FileName
-                    Dim fileSize As Long = File1.PostedFile.ContentLength
-                    Dim queryDocumentos As String
-                    Dim numeroDeEmpleado As String
-                    Dim relativePath As String = "Uploads/"
-                    Dim path As String = Server.MapPath(relativePath)
+                If Not Directory.Exists(path) Then
+                    Directory.CreateDirectory(path)
+                End If
 
-                    If Not Directory.Exists(path) Then
-                        Directory.CreateDirectory(path)
-                    End If
+                If File1.PostedFile.ContentLength < 1 Then
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Seleccione un archivo por favor.", "danger"))
+                    Exit Sub
+                End If
 
-                    If File1.PostedFile.ContentLength < 1 Then
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Seleccione un archivo por favor.", "danger"))
-                        Exit Sub
-                    End If
+                If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+                    Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
+                    Dim alertType As String = "danger"
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                    Exit Sub
+                End If
 
-                    If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
-                        Dim msg As String = "El archivo no puede tener un tamaño mayor a 10MB"
-                        Dim alertType As String = "danger"
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                        Exit Sub
-                    End If
+                If Not FileHelper.ValidateFileExtension(fileName, {".doc", ".docx", ".pdf", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".odt", ".zip", ".rar", ".7z", ".mp4"}) Then
+                    Dim msg As String = "Solo se admiten documentos, archivos comprimidos, fotos o videos cortos"
+                    Dim alertType As String = "danger"
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                    Exit Sub
+                End If
 
-                    If Not FileHelper.ValidateFileExtension(fileName, {".doc", ".docx", ".pdf", ".xls", ".xlsx", ".png", ".jpg", ".jpeg", ".odt", ".zip", ".rar", ".7z", ".mp4"}) Then
-                        Dim msg As String = "Solo se admiten documentos, archivos comprimidos, fotos o videos cortos"
-                        Dim alertType As String = "danger"
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                        Exit Sub
-                    End If
+                If TextBoxDescription.Text.Length < 1 Then
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("La descripción es obligatoria.", "danger"))
+                    Exit Sub
+                End If
 
-                    If TextBoxDescription.Text.Length < 1 Then
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("La descripción es obligatoria.", "danger"))
-                        Exit Sub
-                    End If
+                If Session("Codigo_Empleado") IsNot Nothing Then
 
-                    If Session("Codigo_Empleado") IsNot Nothing Then
+                    Try
+                        numeroDeEmpleado = Session("Codigo_Empleado")
+                        fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
+                        Dim savePath As String = path & fileName
+                        Dim completeRelativePath As String = relativePath & fileName
+                        Dim description As String
+                        description = TextBoxDescription.Text
 
-                        Try
-                            numeroDeEmpleado = Session("Codigo_Empleado")
-                            fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
-                            Dim savePath As String = path & fileName
-                            Dim completeRelativePath As String = relativePath & fileName
-                            Dim descripcion As String
-                            descripcion = TextBoxDescription.Text
+                        If FileHelper.CheckFileExists(savePath) Then
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
+                            Exit Sub
+                        Else
+                            File1.PostedFile.SaveAs(savePath)
+                            Using dbContext As New MyDbContext
+                                Dim newDoc As New DocumentoDeEmpleado With
+                                    {
+                                    .NumeroDeEmpleado = numeroDeEmpleado,
+                                    .NombreDelArchivo = fileName,
+                                    .Ruta = completeRelativePath,
+                                    .Descripcion = description}
+                                dbContext.DocumentosDeEmpleados.Add(newDoc)
+                                dbContext.SaveChanges()
+                            End Using
+                            Dim msg As String = "Carga exitosa"
+                            Dim alertType As String = "success"
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                            BindGridView()
+                        End If
 
-                            If FileHelper.CheckFileExists(savePath) Then
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
-                                Exit Sub
-                            Else
-                                File1.PostedFile.SaveAs(savePath)
-                                queryDocumentos = " INSERT INTO [dbo].[DocumentosDeEmpleado]
-                                                    (
-                                                        [NumeroDeEmpleado], [NombreDelArchivo],
-                                                        [Ruta], [Descripcion]
-                                                    )
-                                                    VALUES
-                                                    (
-                                                        '" + numeroDeEmpleado + "', '" + fileName + "',
-                                                        '" + completeRelativePath + "', '" + descripcion + "'
-                                                    )"
-
-                                Dim Datos = conf.EjecutaSql(queryDocumentos)
-                                Dim msg As String = "Carga exitosa"
-                                Dim alertType As String = "success"
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-                                BindGridView()
-                            End If
-
-                        Catch ex As Exception
-                            Dim msg = "Error al cargar archivos: " & ex.Message
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-                        End Try
-
-                    Else
-                        Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                    Catch ex As Exception
+                        Dim msg = "Error al cargar archivos: " & ex.Message
                         RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-                    End If
+                    End Try
 
                 Else
-                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
+                    Dim msg = "Error: No se pudo identificar el empleado para subir archivos."
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
                 End If
+
+            Else
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
             End If
 
 

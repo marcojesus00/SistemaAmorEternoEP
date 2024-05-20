@@ -10,5 +10,5 @@ Public Class MyDbContext
     End Sub
 
     Public Property FotosDeEmpleados As DbSet(Of FotoDeEmpleado)
-
+    Public Property DocumentosDeEmpleados As DbSet(Of DocumentoDeEmpleado)
 End Class
