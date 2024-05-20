@@ -85,12 +85,14 @@ Public Class FileHelper
         If File.Exists(filePath) Then
             File.Delete(filePath)
             If File.Exists(filePath) Then
-                Return True
-            Else
                 Return False
+            Else
+                Return True
 
             End If
+        Else
+            Return True
+
         End If
-        Return True
     End Function
 End Class
