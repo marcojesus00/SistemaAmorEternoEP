@@ -4,10 +4,11 @@
 <script type="text/javascript">
 
 
-    function handleValidation() {
+    function handleVal() {
         var linkButton = document.getElementById('<%= PreviewButton0.ClientID %>');
         var fileInput = document.getElementById('<%= File1.ClientID %>');
         var lbl = document.getElementById('<%= lblUploadMessage.ClientID %>');
+        console.log(" initi")
 
         if (fileInput.files.length === 0) {
             linkButton.disabled = true;
@@ -26,8 +27,10 @@
         }
     }
 
-    function handleFileChange(input) {
-        handleValidation();
+    function handleChange(input) {
+        console.log(" file chasnge")
+
+        handleVal();
         validateFileSize(input, 10);
     }
 </script>
@@ -40,7 +43,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group text-center">
-                    <asp:FileUpload ID="File1" CssClass="form-control-file text-center" runat="server" />
+                    <asp:FileUpload ID="File1" CssClass="form-control-file text-center"  onchange="handleChange(this)" runat="server" />
                 </div>
                 <div class="text-center pt-4">
 
@@ -98,23 +101,18 @@
     </div>
 </div>
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        var button = document.getElementById('<%=changePhotoButton.ClientID %>');
-
-        if (button) {
-            console.log('htmlid: ', button);
-            button.addEventListener('click', function () {
-                var myModal = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
-                myModal.show();
-            });
-        }
-    });
 
     function showModal() {
-        var myModal = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
-        myModal.show();
+        var myModal2 = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
+        if (myModal2) {
+            //console.log('modal 2: ', myModal2);
+            myModal2.show();
+
+        }
+        else {
+            //console.log('no modal 2');
+
+
+        }
     }
-    myModal.addEventListener('hidden.bs.modal', function () {
-        document.querySelector('.modal-backdrop').remove();
-    });
 </script>
