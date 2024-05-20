@@ -223,32 +223,27 @@ Public Class ProfilePicture
                     If Session("Codigo_Empleado") IsNot Nothing Then
 
                         Try
-
-                            If True Then
-                                If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
-                                    DeleteRecordFromDatabase(employeeId)
-                                    InsertRecordIntoDatabase(employeeId, fileRelativePath)
-                                    If Session("currentDBPath").ToString() IsNot Nothing Then
-                                        priorFileRelativePath = Session("currentDBPath").ToString()
-                                        If Path.GetFileName(priorFileRelativePath) <> newFileName Then
-                                            FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
-                                        End If
+                            If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
+                                DeleteRecordFromDatabase(employeeId)
+                                InsertRecordIntoDatabase(employeeId, fileRelativePath)
+                                If Session("currentDBPath").ToString() IsNot Nothing Then
+                                    priorFileRelativePath = Session("currentDBPath").ToString()
+                                    If Path.GetFileName(priorFileRelativePath) <> newFileName Then
+                                        FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
                                     End If
-
                                 End If
-
-                                If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
-                                    msg = "Carga exitosa"
-                                    alertType = "success"
-                                    BindCard(employeeId)
-                                Else
-                                    msg = "Error al cambiar la foto: Archivo no subido correctamente"
-                                    alertType = "danger"
-                                End If
-                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
                             End If
 
+                            If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
+                                msg = "Carga exitosa"
+                                alertType = "success"
+                                BindCard(employeeId)
+                            Else
+                                msg = "Error al cambiar la foto: Archivo no subido correctamente"
+                                alertType = "danger"
+                            End If
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
                         Catch ex As Exception
                             msg = "Error al cargar archivos: " & ex.Message
