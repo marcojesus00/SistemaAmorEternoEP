@@ -215,10 +215,11 @@ Public Class ProfilePicture
                     Dim relativeDirectoryPath As String = "FotosDePerfil/"
                     Dim directoryAbsolutePath As String = MyBase.Server.MapPath(relativeDirectoryPath)
                     Dim fileTempAbsolutePath = Session("fileTempAbsolutePath")
-                    Dim fileRelativePath As String = relativeDirectoryPath & Path.GetFileName(fileTempAbsolutePath)
+                    Dim newFileName = Path.GetFileName(fileTempAbsolutePath)
+                    Dim fileRelativePath As String = Path.Combine(relativeDirectoryPath, newFileName)
                     Dim msg As String
                     Dim alertType As String
-
+                    Dim priorFileRelativePath As String
                     If Session("Codigo_Empleado") IsNot Nothing Then
 
                         Try
@@ -227,6 +228,13 @@ Public Class ProfilePicture
                                 If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
                                     DeleteRecordFromDatabase(employeeId)
                                     InsertRecordIntoDatabase(employeeId, fileRelativePath)
+                                    If Session("currentDBPath").ToString() IsNot Nothing Then
+                                        priorFileRelativePath = Session("currentDBPath").ToString()
+                                        If Path.GetFileName(priorFileRelativePath) <> newFileName Then
+                                            FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
+                                        End If
+                                    End If
+
                                 End If
 
                                 If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
