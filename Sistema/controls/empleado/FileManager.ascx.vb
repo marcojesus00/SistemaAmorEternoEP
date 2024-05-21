@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+Imports System.Data.SqlClient
 Imports System.IO
 
 Public Class FileManager
@@ -40,14 +41,19 @@ Public Class FileManager
         If e.CommandName = "DownloadFile" Then
 
             Try
+
                 Dim args As String() = e.CommandArgument.ToString().Split("|"c)
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                Dim myList As List(Of DocumentoDeEmpleado) = CType(MyGridView.DataSource, List(Of DocumentoDeEmpleado))
-                Dim dataItem = myList(rowIndex)
-                Dim documentPath As String = dataItem.Ruta
-                Dim documentName As String = dataItem.NombreDelArchivo
-                Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
-                Response.Redirect(handlerUrl)
+                Dim row As GridViewRow = MyGridView.Rows(rowIndex)
+                Dim documentName As String = row.Cells(2).Text
+                Using dbContext As New MyDbContext
+                    Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
+                    Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
+                    Dim documentPath = record.Ruta
+                    Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
+                    Response.Redirect(handlerUrl)
+                End Using
+
             Catch ex As IOException
                 Dim msg = "Error al procesar  archivo: " & ex.Message
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
@@ -57,14 +63,16 @@ Public Class FileManager
             End Try
 
         End If
-        If e.CommandName = "RestoreFIle" Then
+        If e.CommandName = "RestoreFile" Then
             Try
                 Using dbContext As New MyDbContext
                     Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                    Dim DocId As String = MyGridView.DataKeys(rowIndex).Value.ToString()
+                    Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     recordToUpdate.Archivado = False
                     dbContext.SaveChanges()
+                    BindGridView(True)
+
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archvo restaurado", "success"))
 
                 End Using
@@ -85,48 +93,50 @@ Public Class FileManager
 
         Try
 
-            Dim rowIndex As Integer = e.RowIndex
-            Dim id As String = MyGridView.DataKeys(rowIndex).Value.ToString()
-            Dim myList As List(Of DocumentoDeEmpleado) = CType(MyGridView.DataSource, List(Of DocumentoDeEmpleado))
-            Dim dataItem = myList(rowIndex)
-            Dim relativePath As String = dataItem.Ruta
-            Dim utcTime As DateTime = DateTime.UtcNow
-            Dim targetTimeZoneOffset As Integer = -6
-            Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
-            Dim creationDate As DateTime = dataItem.FechaDeCreacion
-            Dim time24HoursLater As DateTime = creationDate.AddHours(24)
-            Dim filePath As String = Server.MapPath(relativePath)
-            If utcTime > time24HoursLater Then
-                Try
-                    Using dbContext As New MyDbContext
-                        Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(id)
-                        recordToUpdate.Archivado = True
-                        dbContext.SaveChanges()
+            Dim documentId As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Value)
+            Using dbcontext As New MyDbContext()
+                Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
+                Dim creationDate As DateTime = document.FechaDeCreacion
+                Dim relativePath As String = document.Ruta
 
-                    End Using
+                Dim utcTime As DateTime = DateTime.UtcNow
+                Dim targetTimeZoneOffset As Integer = -6
+                Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
+                Dim time24HoursLater As DateTime = creationDate.AddHours(24)
+                Dim filePath As String = Server.MapPath(relativePath)
+                If utcTime > time24HoursLater Then
+                    Try
+                        document.Archivado = True
+                        dbcontext.SaveChanges()
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Documento archivado correctamente", "success"))
 
-                Catch ex As Exception
-                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al archivar: " & ex.Message, "danger"))
-
-                End Try
-
-            Else
-                Dim fileIsDeleted = FileHelper.DeleteFile(filePath)
-
-                If fileIsDeleted Then
-                    If DeleteRecordFromDatabase(id) Then
-                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
                         BindGridView()
+
+                    Catch ex As Exception
+                        RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al archivar: " & ex.Message, "danger"))
+
+                    End Try
+
+                Else
+                    Dim fileIsDeleted = FileHelper.DeleteFile(filePath)
+
+                    If fileIsDeleted Then
+                        If DeleteRecordFromDatabase(document.Id) Then
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archivo eliminado correctamente", "success"))
+                            BindGridView()
+                        Else
+                            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
+                        End If
+
+
                     Else
                         RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
                     End If
 
-
-                Else
-                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al eliminar archivo", "danger"))
                 End If
 
-            End If
+            End Using
+
 
 
 
@@ -161,7 +171,7 @@ Public Class FileManager
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                Dim dataList = GetEmployeeDocs(areArchived, numeroDeEmpleado)
+                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(areArchived, numeroDeEmpleado)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -169,7 +179,7 @@ Public Class FileManager
                 If MyGridView.Rows.Count = 0 Then
                     lblMessage.Text = "No se encontraron documentos"
                 Else
-                    lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
+                    lblMessage.Text = "Archivos encontrados: " & $"{dataList.Count}"
                 End If
 
             Else
@@ -189,7 +199,7 @@ Public Class FileManager
 
 
     End Sub
-    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer)
+    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer) As List(Of DocumentoDeEmpleado)
         Using dbContext As New MyDbContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)

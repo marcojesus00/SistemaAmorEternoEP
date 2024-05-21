@@ -76,7 +76,7 @@
 
     <div class="container mt-5">
         <div class="mb-3 ">
-<%--            <label for="ddlExample" class="form-label">Example Dropdown</label>--%>
+            <%--            <label for="ddlExample" class="form-label">Example Dropdown</label>--%>
             <asp:DropDownList ID="ddlAreArchived" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDocsState_SelectedIndexChanged"></asp:DropDownList>
         </div>
     </div>
@@ -89,7 +89,7 @@
                     <asp:LinkButton ID="lnkDelete" ToolTip="Eliminar documento" CssClass="btn btn-outline-danger pb-2" runat="server" CommandName="Delete" Text="Borrar" OnClientClick="return confirm('¿Está seguro que desea eliminar este documento? \n-Si tiene más de 24 horas de antiguedad solamante se archivará');">
 <i class="bi bi-trash3-fill"></i>
                     </asp:LinkButton>
-                                        <asp:LinkButton ID="btnRestore" ToolTip="Restaurar documento" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RestoreFile" CommandArgument='<%# Container.DataItemIndex %>'>
+                    <asp:LinkButton ID="btnRestore" ToolTip="Restaurar documento" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RestoreFile" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-arrow-clockwise"></i>
                     </asp:LinkButton>
                 </ItemTemplate>
@@ -113,7 +113,6 @@
             </asp:TemplateField>
             <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
             <asp:BoundField DataField="Id" HeaderText="ID" Visible="false" />
-
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
