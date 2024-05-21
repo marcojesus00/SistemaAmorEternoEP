@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
@@ -67,6 +68,12 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Gmap.net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.Net.1.0.1\lib\Gmap.net.dll</HintPath>
     </Reference>
@@ -217,6 +224,8 @@
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
     <Content Include="Contratos.aspx" />
+    <Content Include="controls\empleado\FileManager.ascx" />
+    <Content Include="controls\empleado\ProfilePicture.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -253,6 +262,8 @@
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
+    <Content Include="FotosDePerfil\no.png" />
+    <Content Include="helpers\js\fileUploadValidation.js" />
     <Content Include="imagenes\atras1.png" />
     <Content Include="imagenes\Cancelar.png" />
     <Content Include="imagenes\Descargar.png" />
@@ -346,6 +357,7 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Handlers\DownloadHandler.ashx" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2231,6 +2243,20 @@
       <DependentUpon>Contratos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="controls\empleado\FileManager.ascx.designer.vb">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\empleado\FileManager.ascx.vb">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\empleado\ProfilePicture.ascx.designer.vb">
+      <DependentUpon>ProfilePicture.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\empleado\ProfilePicture.ascx.vb">
+      <DependentUpon>ProfilePicture.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
       <DependentUpon>DetalleMovimientoClientes.aspx</DependentUpon>
     </Compile>
@@ -2252,6 +2278,9 @@
       <DependentUpon>EventoSala.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="helpers\AlertHelper.vb" />
+    <Compile Include="helpers\FileHelper.vb" />
+    <Compile Include="helpers\textInputHelper.vb" />
     <Compile Include="Inhumados.aspx.designer.vb">
       <DependentUpon>Inhumados.aspx</DependentUpon>
     </Compile>
@@ -2273,6 +2302,8 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="models\EmpladoModels.vb" />
+    <Compile Include="models\MyDbContext.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
     </Compile>
@@ -2808,7 +2839,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
