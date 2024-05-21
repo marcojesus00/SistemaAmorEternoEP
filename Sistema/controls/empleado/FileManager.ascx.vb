@@ -15,6 +15,7 @@ Public Class FileManager
         If Session("Codigo_Empleado") Then
 
             Try
+
                 BindGridView()
                 lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
             Catch ex As Exception
@@ -134,18 +135,17 @@ Public Class FileManager
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                Using dbContext As New MyDbContext
-                    Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = numeroDeEmpleado And d.Archivado = False)
-                    MyGridView.DataSource = data.ToList()
-                    MyGridView.DataBind()
+                Dim docsSate As Boolean = False
+                Dim dataList = GetEmployeeDocs(docsSate, numeroDeEmpleado)
 
-                    If MyGridView.Rows.Count = 0 Then
-                        lblMessage.Text = "No se encontraron documentos"
-                    Else
-                        lblMessage.Text = ""
-                    End If
+                MyGridView.DataSource = dataList
+                MyGridView.DataBind()
 
-                End Using
+                If MyGridView.Rows.Count = 0 Then
+                    lblMessage.Text = "No se encontraron documentos"
+                Else
+                    lblMessage.Text = ""
+                End If
 
             Else
 
@@ -159,6 +159,13 @@ Public Class FileManager
 
 
     End Sub
+    Protected Function GetEmployeeDocs(docsState As Boolean, employeeId As Integer)
+        Using dbContext As New MyDbContext
+
+            Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = docsState)
+            Return data.ToList()
+        End Using
+    End Function
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
 
