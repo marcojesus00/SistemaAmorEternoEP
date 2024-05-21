@@ -50,22 +50,13 @@ Partial Public Class FileManager
     Protected WithEvents lblUploadMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''showActive control.
+    '''ddlAreArchived control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents showActive As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''shorArchived control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents shorArchived As Global.System.Web.UI.WebControls.RadioButton
+    Protected WithEvents ddlAreArchived As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''MyGridView control.

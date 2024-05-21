@@ -14,23 +14,27 @@ Public Class FileManager
 
         If Session("Codigo_Empleado") Then
 
-            Try
 
-                BindGridView()
-                lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
-            Catch ex As Exception
-                Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-            End Try
 
             If Not IsPostBack Then
+                PopulateDropdown()
+                Try
 
+                    BindGridView()
+                Catch ex As Exception
+                    Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                End Try
             End If
 
         End If
 
     End Sub
-
+    Private Sub PopulateDropdown()
+        ddlAreArchived.Items.Clear()
+        ddlAreArchived.Items.Add(New ListItem("Documentos", "False"))
+        ddlAreArchived.Items.Add(New ListItem("Documentos archivados", "True"))
+    End Sub
     Protected Sub MyGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
 
         If e.CommandName = "DownloadFile" Then
@@ -51,6 +55,28 @@ Public Class FileManager
                 Dim msg = "Error de descarga: " & ex.Message
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             End Try
+
+        End If
+        If e.CommandName = "RestoreFIle" Then
+            Try
+                Using dbContext As New MyDbContext
+                    Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+                    Dim DocId As String = MyGridView.DataKeys(rowIndex).Value.ToString()
+                    Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
+                    recordToUpdate.Archivado = False
+                    dbContext.SaveChanges()
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archvo restaurado", "success"))
+
+                End Using
+            Catch ex As SqlException
+                Dim msg As String = "Error de base de datos: " & vbCrLf & ex.Message
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
+            Catch ex As Exception
+                Dim msg As String = "Error inesperado: " & vbCrLf & ex.Message
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            End Try
+
 
         End If
 
@@ -128,15 +154,14 @@ Public Class FileManager
     End Function
 
 
-    Private Sub BindGridView()
+    Private Sub BindGridView(Optional areArchived As Boolean = False)
 
 
         Try
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                Dim docsSate As Boolean = False
-                Dim dataList = GetEmployeeDocs(docsSate, numeroDeEmpleado)
+                Dim dataList = GetEmployeeDocs(areArchived, numeroDeEmpleado)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -144,7 +169,7 @@ Public Class FileManager
                 If MyGridView.Rows.Count = 0 Then
                     lblMessage.Text = "No se encontraron documentos"
                 Else
-                    lblMessage.Text = ""
+                    lblMessage.Text = "Archivos encontrados: " & $"{MyGridView.Rows.Count}"
                 End If
 
             Else
@@ -159,10 +184,15 @@ Public Class FileManager
 
 
     End Sub
-    Protected Function GetEmployeeDocs(docsState As Boolean, employeeId As Integer)
+    Protected Sub UpdateButtonVisibility(eraArchived As Boolean)
+
+
+
+    End Sub
+    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer)
         Using dbContext As New MyDbContext
 
-            Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = docsState)
+            Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
             Return data.ToList()
         End Using
     End Function
@@ -274,7 +304,21 @@ Public Class FileManager
                 Dim iconCell As TableCell = e.Row.Cells(3)
                 Dim nameCell As TableCell = e.Row.Cells(2)
                 Dim imageClass = "bi bi-image"
+                Dim btnDownload As LinkButton = CType(e.Row.FindControl("btnDownload"), LinkButton)
+                Dim btnRestore As LinkButton = CType(e.Row.FindControl("btnRestore"), LinkButton)
+                Dim lnkDelete As LinkButton = CType(e.Row.FindControl("lnkDelete"), LinkButton)
 
+                If btnDownload IsNot Nothing AndAlso btnRestore IsNot Nothing AndAlso lnkDelete IsNot Nothing Then
+                    If ddlAreArchived.SelectedValue = "True" Then
+                        btnDownload.Visible = False
+                        btnRestore.Visible = True
+                        lnkDelete.Visible = False
+                    Else
+                        btnDownload.Visible = True
+                        btnRestore.Visible = False
+                        lnkDelete.Visible = True
+                    End If
+                End If
                 Select Case fileExtension
                     Case ".docx"
                         iconCell.Controls.Add(New LiteralControl("<i class=""bi bi-file-word-fill text-primary""></i>"))
@@ -309,12 +353,18 @@ Public Class FileManager
         End Try
 
     End Sub
+    Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
+        Dim selectedValue As String = ddlAreArchived.SelectedValue
+        Dim isArchived As Boolean = False
+        If ddlAreArchived.SelectedValue = "True" Then
+            isArchived = True
+        End If
+        BindGridView(isArchived)
+    End Sub
 
-    Protected Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
-        ' Set the new page index
+    Protected Sub MyGridView_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
         MyGridView.PageIndex = e.NewPageIndex
 
-        ' Rebind the data to the GridView (assuming you have a data source)
     End Sub
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
