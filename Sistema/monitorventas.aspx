@@ -249,6 +249,7 @@ h4:hover {
                               <label class="input-group-text" style="width: 125px">Cambiar Estatus</label> </div>
                             <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
+                        https://www.msn.com/en-us/money/markets/america-will-make-at-least-quarter-of-advanced-chips-in-2032-compared-to-china-s-2/ar-BB1m3ysx
                     </div>
 
                 </div>
@@ -313,7 +314,6 @@ h4:hover {
                             <div class="input-group-prepend">
                                 <label class="input-group-text" style="width: 80px">Telefono</label> </div><asp:TextBox ID="txttel1app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 1..." TextMode="SingleLine" />                   
                             <asp:TextBox ID="txttel2app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 2..." TextMode="SingleLine" />
-                        
                         </div>
                     </div>
                     <div class="col-2">
