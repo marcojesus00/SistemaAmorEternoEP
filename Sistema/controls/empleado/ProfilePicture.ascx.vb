@@ -13,18 +13,19 @@ Public Class ProfilePicture
 
         If Session("Codigo_Empleado") Then
 
-            Try
-                employeeId = CInt(Session("Codigo_Empleado"))
-                BindCard(employeeId)
-            Catch ex As InvalidCastException
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error de conversión: " & ex.Message, "danger"))
-            Catch ex As Exception
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error inesperado: " & ex.Message, "danger"))
-            End Try
+            employeeId = CInt(Session("Codigo_Empleado"))
 
-        End If
+            If Not IsPostBack Then
 
-        If Not IsPostBack Then
+                Try
+                    BindCard(employeeId)
+                Catch ex As InvalidCastException
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error de conversión: " & ex.Message, "danger"))
+                Catch ex As Exception
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error inesperado: " & ex.Message, "danger"))
+                End Try
+
+            End If
         End If
 
     End Sub
