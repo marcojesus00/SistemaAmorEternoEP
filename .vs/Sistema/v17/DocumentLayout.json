@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\empleado\\filemanager.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\controls\\empleado\\filemanager.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\filemanager.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\empleado\\filemanager.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\filemanager.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\empleado\\profilepicture.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\profilepicture.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\empleado\\filemanager.ascx.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\empleado\\filemanager.ascx.designer.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\models\\funamor\\empladomodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\funamor\\empladomodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\handlers\\downloadhandler.ashx||{DAB1E6DB-4119-49A3-ACE3-0FE8F3E0669F}",
-      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\handlers\\downloadhandler.ashx||{DAB1E6DB-4119-49A3-ACE3-0FE8F3E0669F}"
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\models\\funamor\\funamordbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\funamor\\funamordbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\models\\aaeventas\\aeventasdbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\aaeventas\\aeventasdbcontext.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\models\\aaeventas\\aeventasmodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\models\\aaeventas\\aeventasmodels.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|c:\\users\\chaxg\\documents\\github\\sistemaamoreternoep\\sistema\\controls\\monitordeventas\\correctsales.dataclient.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\monitordeventas\\correctsales.dataclient.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\sistema\\controls\\monitordeventas\\correctsales.dataclient.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{1F9EE607-A7E1-4AB5-86C2-D01208B6B9E6}|Sistema\\Sistema.vbproj|solutionrelative:sistema\\controls\\monitordeventas\\correctsales.dataclient.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,59 +41,72 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 573,
-          "SelectedChildIndex": 4,
+          "DockedWidth": 302,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DownloadHandler.ashx",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\Handlers\\DownloadHandler.ashx",
-              "RelativeDocumentMoniker": "Sistema\\Handlers\\DownloadHandler.ashx",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\Handlers\\DownloadHandler.ashx",
-              "RelativeToolTip": "Sistema\\Handlers\\DownloadHandler.ashx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
-              "WhenOpened": "2024-05-21T21:31:51.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ProfilePicture.ascx.vb",
               "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
               "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\ProfilePicture.ascx.vb",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA3wEMAAAAMAAAA",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\ProfilePicture.ascx.vb*",
+              "RelativeToolTip": "Sistema\\controls\\empleado\\ProfilePicture.ascx.vb*",
+              "ViewState": "AQIAAD8AAAAAAAAAAAArwE0AAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-21T17:40:55.854Z",
+              "WhenOpened": "2024-05-23T14:17:13.153Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FileManager.ascx.designer.vb",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.designer.vb",
-              "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\FileManager.ascx.designer.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.designer.vb",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx.designer.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAA3wE4AAAAAAAAA",
+              "Title": "FunamorDbContext.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\funamor\\FunamorDbContext.vb",
+              "RelativeDocumentMoniker": "Sistema\\models\\funamor\\FunamorDbContext.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\funamor\\FunamorDbContext.vb",
+              "RelativeToolTip": "Sistema\\models\\funamor\\FunamorDbContext.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-21T16:12:29.149Z",
+              "WhenOpened": "2024-05-23T15:26:30.543Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FileManager.ascx",
-              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx",
-              "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\FileManager.ascx",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
-              "WhenOpened": "2024-05-21T14:29:24.109Z",
+              "DocumentIndex": 2,
+              "Title": "EmpladoModels.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\funamor\\EmpladoModels.vb",
+              "RelativeDocumentMoniker": "Sistema\\models\\funamor\\EmpladoModels.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\funamor\\EmpladoModels.vb",
+              "RelativeToolTip": "Sistema\\models\\funamor\\EmpladoModels.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-05-23T15:26:27.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AeVentasDbContext.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\aaeVentas\\AeVentasDbContext.vb",
+              "RelativeDocumentMoniker": "Sistema\\models\\aaeVentas\\AeVentasDbContext.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\aaeVentas\\AeVentasDbContext.vb",
+              "RelativeToolTip": "Sistema\\models\\aaeVentas\\AeVentasDbContext.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-05-23T15:26:26.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AeventasModels.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\aaeVentas\\AeventasModels.vb",
+              "RelativeDocumentMoniker": "Sistema\\models\\aaeVentas\\AeventasModels.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\models\\aaeVentas\\AeventasModels.vb",
+              "RelativeToolTip": "Sistema\\models\\aaeVentas\\AeventasModels.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-05-23T15:26:18.529Z",
               "EditorCaption": ""
             },
             {
@@ -90,11 +115,37 @@
               "Title": "FileManager.ascx.vb",
               "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.vb",
               "RelativeDocumentMoniker": "Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx.vb",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFsAAABnAAAA",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\empleado\\FileManager.ascx.vb*",
+              "RelativeToolTip": "Sistema\\controls\\empleado\\FileManager.ascx.vb*",
+              "ViewState": "AQIAAIgAAAAAAAAAAAArwJYAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-05-20T16:17:12.633Z",
+              "WhenOpened": "2024-05-21T22:39:08.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CorrectSales.DataClient.ascx.vb",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx.vb",
+              "RelativeDocumentMoniker": "Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx.vb",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx.vb",
+              "RelativeToolTip": "Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx.vb",
+              "ViewState": "AQIAAAAAAAAAAAAAAAA7wBwAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-05-22T14:35:10.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CorrectSales.DataClient.ascx",
+              "DocumentMoniker": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx",
+              "RelativeDocumentMoniker": "Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx",
+              "ToolTip": "C:\\Users\\chaxg\\Documents\\GitHub\\SistemaAmorEternoEP\\Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx",
+              "RelativeToolTip": "Sistema\\controls\\monitorDeVentas\\CorrectSales.DataClient.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-05-22T14:16:03.473Z",
               "EditorCaption": ""
             }
           ]

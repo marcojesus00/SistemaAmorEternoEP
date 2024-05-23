@@ -1,6 +1,7 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false"  EnableEventValidation="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectSales.DataClient.ascx" %>
 
 <!DOCTYPE html>
 
@@ -10,10 +11,10 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
     <title>Monitor de Ventas</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
-    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    
+<%--    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    --%>
     <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>    
     <link href="css/inicio.css" rel="stylesheet" type="text/css"/>    
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<%--      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>--%>
     <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
 
   <!-- Custom styles for this template -->
@@ -21,28 +22,28 @@
   <link rel="stylesheet" href="css4/all.min.css"/>
 
      <!-- Bootstrap core CSS -->  
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<%--  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>--%>
   <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
 
 
   <script src="https://kit.fontawesome.com/9189b1e7bc.js" ></script>
     
     <style>
-h4:hover {
-    background-color: aliceblue;
-    color: blue;
-}
+        h4:hover {
+            background-color: aliceblue;
+            color: blue;
+        }
 
- /*#gvMonitor tr.rowHover:hover
+        /*#gvMonitor tr.rowHover:hover
         {
             background-color: #FFEB9C;
             border-top: solid;
             color:#9C6500;
         }*/
-
-
-</style>
+    </style>
 </head>
 <body>  
     <form id="form1" runat="server">
@@ -249,8 +250,8 @@ h4:hover {
                               <label class="input-group-text" style="width: 125px">Cambiar Estatus</label> </div>
                             <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
-                        https://www.msn.com/en-us/money/markets/america-will-make-at-least-quarter-of-advanced-chips-in-2032-compared-to-china-s-2/ar-BB1m3ysx
-                    </div>
+
+.                    </div>
 
                 </div>
 
@@ -278,7 +279,7 @@ h4:hover {
                         <asp:LinkButton ID="LinkButton1" runat="server" Style="position: absolute; right: 8%; font-size: x-large">  Pausar </asp:LinkButton>--%>
                     </div>
                 </div>
-
+                       <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
 
                 <div class="row" style="background-color: white">
                     <div class="col-6" id="divClientes" style="background-color: azure">
@@ -515,7 +516,7 @@ h4:hover {
                 $(this).closest("tr").next().remove();
             });
 
-                   
+
             //const btnArreglar = document.getElementById('btnArreglarVenta');
             //        grid = document.getElementById
 

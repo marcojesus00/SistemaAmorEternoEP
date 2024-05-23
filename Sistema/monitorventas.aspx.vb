@@ -116,8 +116,15 @@ Public Class monitorventas
 
 
         End If
+        Dim dataClientControl As DataClient = CType(FindControl("CorrectSalesDataClient1"), DataClient)
+
+        '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
+        AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
+
+
     End Sub
 
+    Public Event DataSendEvent As EventHandler(Of ClientDataReceivedEventArgs)
 
 
 
@@ -1152,8 +1159,10 @@ Public Class monitorventas
         txtnombreVendArr.InnerText = gvClientesVE.Rows(Fila).Cells(4).Text.TrimEnd
         dlstatusvend.Items.Add("" + gvClientesVE.Rows(Fila).Cells(5).Text + "")
         dlempresaArr.Items.Add("" + gvClientesVE.Rows(Fila).Cells(6).Text + "")
+        Dim initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
         TxtPrimaApp.Text = gvClientesVE.Rows(Fila).Cells(11).Text
         txtidentiCliapp.Text = gvClientesVE.Rows(Fila).Cells(7).Text
+        Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text
         txtdir1Cliapp.Text = gvClientesVE.Rows(Fila).Cells(8).Text
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
@@ -1163,7 +1172,10 @@ Public Class monitorventas
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
         txttel1app.Text = gvClientesVE.Rows(Fila).Cells(18).Text
+        Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text
         txttel2app.Text = gvClientesVE.Rows(Fila).Cells(19).Text
+        Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text
+
         'txtcuotaApp.Text =
         Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 
@@ -1176,6 +1188,7 @@ Public Class monitorventas
         dlempresaArr.DataTextField = "Empresa"
         dlempresaArr.DataValueField = "Empresa"
         dlempresaArr.DataBind()
+        RaiseEvent DataSendEvent(Me, New ClientDataReceivedEventArgs(identificationDocument, phoneNumberOne, phoneNumberTwo, initialPayment))
 
         PanelClientesVE.Visible = False
 

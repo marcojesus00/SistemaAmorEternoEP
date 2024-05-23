@@ -401,6 +401,15 @@ Partial Public Class monitorventas
     Protected WithEvents dlstatusvend As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''CorrectSalesDataClient1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CorrectSalesDataClient1 As Global.Sistema.DataClient
+
+    '''<summary>
     '''txtidentiCliapp control.
     '''</summary>
     '''<remarks>
