@@ -1,6 +1,7 @@
 ﻿Public Class DataClient
     Inherits System.Web.UI.UserControl
     Public Usuario, Clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
+    Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -33,9 +34,13 @@
         txttel1app.Text = e.PhoneNumberOne
         txttel2app.Text = e.PhoneNumberTwo
         TxtPrimaApp.Text = e.InitialPayment
-        'dlDeptoCliente
-        'dlCiudadCliente
-        'txtdir1Cliapp
+        Using dbcontext As New AeVentasDbContext
+            Dim client = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.salesPersonId) And c.Identidad.Contains(e.IdentificationDocument) And c.Codigo.Contains(e.ClientId)).FirstOrDefault()
+            dlDeptoCliente.Text = client.Departamento
+            dlCiudadCliente.Text = client.Municipio
+            txtdir1Cliapp.Text = client.Direccion
+        End Using
+
     End Sub
     Protected Sub dlCiudadCliente_TextChanged(sender As Object, e As EventArgs)
 
@@ -99,6 +104,8 @@ End Class
 Public Class ClientDataReceivedEventArgs
     Inherits EventArgs
 
+    Public Property ClientId As String
+    Public Property salesPersonId As String
     Public Property IdentificationDocument As String
     Public Property PhoneNumberOne As String
     Public Property PhoneNumberTwo As String
@@ -106,13 +113,17 @@ Public Class ClientDataReceivedEventArgs
     Public Property City As String
     Public Property Address As String
     Public Property InitialPayment As String
-    Public Sub New(identification As String, phone1 As String, phone2 As String, initialPayment As String)
+
+    Public Sub New(ClientId As String, salesPersonId As String, identification As String, phone1 As String, phone2 As String, initialPayment As String)
         Me.IdentificationDocument = identification
         Me.PhoneNumberOne = phone1
         Me.PhoneNumberTwo = phone2
         Me.InitialPayment = initialPayment
+        Me.ClientId = ClientId
+        Me.salesPersonId = salesPersonId
         'Me.Department = depto
         'Me.City = city
         'Me.Address = address
     End Sub
+
 End Class

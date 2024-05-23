@@ -732,4 +732,13 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BtnCerrarStatus As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''alertPlaceholder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

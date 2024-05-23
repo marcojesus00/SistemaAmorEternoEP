@@ -120,6 +120,7 @@ Public Class monitorventas
 
         '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
         AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
+        AddHandler CorrectSalesDataClient1.AlertGenerated, AddressOf HandleAlertGenerated
 
 
     End Sub
@@ -1154,7 +1155,8 @@ Public Class monitorventas
             txtCodClienteapp.Text = gvClientesVE.Rows(Fila).Cells(1).Text
             lblNameClientapp.InnerText = gvClientesVE.Rows(Fila).Cells(2).Text
         End If
-
+        Dim clientId = gvClientesVE.Rows(Fila).Cells(1).Text.TrimEnd
+        Dim salesPersonId = gvClientesVE.Rows(Fila).Cells(3).Text.TrimEnd
         txtCodVendEV.Text = gvClientesVE.Rows(Fila).Cells(3).Text.TrimEnd
         txtnombreVendArr.InnerText = gvClientesVE.Rows(Fila).Cells(4).Text.TrimEnd
         dlstatusvend.Items.Add("" + gvClientesVE.Rows(Fila).Cells(5).Text + "")
@@ -1162,7 +1164,7 @@ Public Class monitorventas
         Dim initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
         TxtPrimaApp.Text = gvClientesVE.Rows(Fila).Cells(11).Text
         txtidentiCliapp.Text = gvClientesVE.Rows(Fila).Cells(7).Text
-        Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text
+        Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text.TrimEnd
         txtdir1Cliapp.Text = gvClientesVE.Rows(Fila).Cells(8).Text
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
@@ -1172,9 +1174,9 @@ Public Class monitorventas
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
         txttel1app.Text = gvClientesVE.Rows(Fila).Cells(18).Text
-        Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text
+        Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text.TrimEnd
         txttel2app.Text = gvClientesVE.Rows(Fila).Cells(19).Text
-        Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text
+        Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text.TrimEnd
 
         'txtcuotaApp.Text =
         Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
@@ -1188,7 +1190,7 @@ Public Class monitorventas
         dlempresaArr.DataTextField = "Empresa"
         dlempresaArr.DataValueField = "Empresa"
         dlempresaArr.DataBind()
-        RaiseEvent DataSendEvent(Me, New ClientDataReceivedEventArgs(identificationDocument, phoneNumberOne, phoneNumberTwo, initialPayment))
+        RaiseEvent DataSendEvent(Me, New ClientDataReceivedEventArgs(clientId, salesPersonId, identificationDocument, phoneNumberOne, phoneNumberTwo, initialPayment))
 
         PanelClientesVE.Visible = False
 
@@ -1580,6 +1582,11 @@ Public Class monitorventas
 
     Private Sub btnCerrarPanelProductosApp_Click(sender As Object, e As EventArgs) Handles btnCerrarPanelProductosApp.Click
         PanelProductosApp.Visible = False
+    End Sub
+    Protected Sub HandleAlertGenerated(ByVal sender As Object, ByVal e As AlertEventArgs)
+        Dim message As String = e.Message
+        Dim alertType As String = e.AlertType
+        AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
     End Sub
 
 
