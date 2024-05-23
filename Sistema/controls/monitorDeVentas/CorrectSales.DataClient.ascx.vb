@@ -29,17 +29,25 @@
     End Sub
     'Public Event DataClientReceived As EventHandler(Of ClientDataReceivedEventArgs)
     Public Sub OnDataReceived(ByVal sender As Object, ByVal e As ClientDataReceivedEventArgs)
+        Try
 
-        txtidentiCliapp.Text = e.IdentificationDocument
-        txttel1app.Text = e.PhoneNumberOne
-        txttel2app.Text = e.PhoneNumberTwo
-        TxtPrimaApp.Text = e.InitialPayment
-        Using dbcontext As New AeVentasDbContext
-            Dim client = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.salesPersonId) And c.Identidad.Contains(e.IdentificationDocument) And c.Codigo.Contains(e.ClientId)).FirstOrDefault()
-            dlDeptoCliente.Text = client.Departamento
-            dlCiudadCliente.Text = client.Municipio
-            txtdir1Cliapp.Text = client.Direccion
-        End Using
+            Using dbcontext As New AeVentasDbContext
+                Dim client = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.salesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                Dim client2 = dbcontext.DatosDeClientes.Where(Function(c) c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                Dim client3 = dbcontext.DatosDeClientes.Where(Function(c) c.Codigo.Contains(e.ClientId)).FirstOrDefault()
+                txtidentiCliapp.Text = client.Identidad
+                TextBoxCelular.Text = client.Celular
+                TextBoxPhone.Text = client.Telefono
+                TxtPrimaApp.Text = e.InitialPayment
+                TextBoxDepartment.Text = client.Departamento
+                TextBoxCity.Text = client.Municipio
+                txtdir1Cliapp.Text = client.Direccion
+            End Using
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error" & ex.Message, "danger"))
+
+        End Try
+
 
     End Sub
     Protected Sub dlCiudadCliente_TextChanged(sender As Object, e As EventArgs)

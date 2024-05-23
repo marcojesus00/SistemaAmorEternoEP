@@ -28,17 +28,17 @@
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" style="width: 100px">Teléfono</label>
+                                        <label class="input-group-text" style="width: 100px">Celular</label>
                                     </div>
-                                    <asp:TextBox ID="txttel1app" runat="server" CssClass="form-control form-control-sm" placeholder="95256315" TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxCelular" runat="server" CssClass="form-control form-control-sm" placeholder="95256315" TextMode="SingleLine" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" style="width: 100px">Teléfono 2</label>
+                                        <label class="input-group-text" style="width: 100px">Teléfono</label>
                                     </div>
-                                    <asp:TextBox ID="txttel2app" runat="server" CssClass="form-control form-control-sm" placeholder="95256315" TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxPhone" runat="server" CssClass="form-control form-control-sm" placeholder="95256315" TextMode="SingleLine" />
                                 </div>
                             </div>
                             <div class="col-6">
@@ -60,6 +60,23 @@
                                 </div>
 
                             </div>
+                            <div class="col-6">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" style="width: 100px">Departamento</label>
+                                    </div>
+                                    <asp:TextBox ID="TextBoxDepartment" runat="server" CssClass="form-control form-control-sm" placeholder="Yoro" TextMode="SingleLine" />
+                                </div>
+                            </div>
+                                                        <div class="col-6">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" style="width: 100px">Municipio</label>
+                                    </div>
+                                    <asp:TextBox ID="TextBoxCity" runat="server" CssClass="form-control form-control-sm" placeholder="El Progreso" TextMode="SingleLine" />
+                                </div>
+                            </div>
+
                             <div class="col-6">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">

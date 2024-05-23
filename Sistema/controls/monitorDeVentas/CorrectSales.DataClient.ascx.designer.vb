@@ -23,22 +23,22 @@ Partial Public Class DataClient
     Protected WithEvents txtidentiCliapp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txttel1app control.
+    '''TextBoxCelular control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txttel1app As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents TextBoxCelular As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txttel2app control.
+    '''TextBoxPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txttel2app As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents TextBoxPhone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''TxtPrimaApp control.
@@ -57,6 +57,24 @@ Partial Public Class DataClient
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlDeptoCliente As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TextBoxDepartment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxDepartment As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextBoxCity control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxCity As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''dlCiudadCliente control.
