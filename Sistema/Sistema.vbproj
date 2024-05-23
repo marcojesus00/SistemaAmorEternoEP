@@ -227,7 +227,7 @@
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
-    <Content Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx" />
+    <Content Include="controls\monitorDeVentas\CorrectDataClient.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -2259,11 +2259,11 @@
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx.designer.vb">
-      <DependentUpon>CorrectSales.DataClient.ascx</DependentUpon>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.designer.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
     </Compile>
-    <Compile Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx.vb">
-      <DependentUpon>CorrectSales.DataClient.ascx</DependentUpon>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">

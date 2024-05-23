@@ -59,24 +59,6 @@ Partial Public Class DataClient
     Protected WithEvents dlDeptoCliente As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''TextBoxDepartment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TextBoxDepartment As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''TextBoxCity control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TextBoxCity As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''dlCiudadCliente control.
     '''</summary>
     '''<remarks>
@@ -93,4 +75,22 @@ Partial Public Class DataClient
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtdir1Cliapp As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextBoxAddress2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxAddress2 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextBoxAddress3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxAddress3 As Global.System.Web.UI.WebControls.TextBox
 End Class
