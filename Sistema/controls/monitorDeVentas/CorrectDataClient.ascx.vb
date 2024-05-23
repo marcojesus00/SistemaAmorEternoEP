@@ -198,7 +198,7 @@ Public Class DataClient
 
                 Dim newLogClientesNEdition As New LogEdicionCLIENTESN() With {
     .TiempoDeEdicion = DateTime.Now,
-    .EditadoPor = Session(""),
+    .EditadoPor = Session("Usuario"),
     .Codigo_clie = _clientData.Codigo,
     .CL_VENDEDOR = _clientData.CodigoVendedor,
     .Anterior_identidad = _clientData.Identidad,
