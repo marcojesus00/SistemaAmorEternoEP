@@ -146,3 +146,140 @@ Public Class DatosDeCliente
     Public Property FechaDoc As String
 
 End Class
+
+
+<Table("LogEdicionCLIENTESN")>
+Public Class LogEdicionCLIENTESN
+    <Key>
+    <DatabaseGenerated(DatabaseGeneratedOption.Identity)>
+    Public Property ID As Integer
+
+    <Required>
+    Public Property TiempoDeEdicion As DateTime
+
+    <Required>
+    <StringLength(128)>
+    Public Property EditadoPor As String
+
+    <Required>
+    <StringLength(10)>
+    <Column("Codigo_clie")>
+    Public Property Codigo_clie As String
+
+    <Required>
+    <StringLength(8)>
+    <Column("CL_VENDEDOR")>
+    Public Property CL_VENDEDOR As String
+
+    <StringLength(15)>
+    <Column("Anterior_identidad")>
+    Public Property Anterior_identidad As String
+
+    <StringLength(15)>
+    <Column("Nuevo_identidad")>
+    Public Property Nuevo_identidad As String
+
+    <StringLength(80)>
+    <Column("Anterior_Dir_cliente")>
+    Public Property Anterior_Dir_cliente As String
+
+    <StringLength(80)>
+    <Column("Nuevo_Dir_cliente")>
+    Public Property Nuevo_Dir_cliente As String
+
+    <StringLength(80)>
+    <Column("Anterior_Dir2_client")>
+    Public Property Anterior_Dir2_client As String
+
+    <StringLength(80)>
+    <Column("Nuevo_Dir2_client")>
+    Public Property Nuevo_Dir2_client As String
+
+    <StringLength(80)>
+    <Column("Anterior_Dir3_client")>
+    Public Property Anterior_Dir3_client As String
+
+    <StringLength(80)>
+    <Column("Nuevo_Dir3_client")>
+    Public Property Nuevo_Dir3_client As String
+
+    <StringLength(80)>
+    <Column("Anterior_Dir4_client")>
+    Public Property Anterior_Dir4_client As String
+
+    <StringLength(80)>
+    <Column("Nuevo_Dir4_client")>
+    Public Property Nuevo_Dir4_client As String
+
+    <StringLength(80)>
+    <Column("Anterior_Dir5_client")>
+    Public Property Anterior_Dir5_client As String
+
+    <StringLength(80)>
+    <Column("Nuevo_Dir5_client")>
+    Public Property Nuevo_Dir5_client As String
+
+    <StringLength(20)>
+    <Column("Anterior_Telef_clien")>
+    Public Property Anterior_Telef_clien As String
+
+    <StringLength(20)>
+    <Column("Nuevo_Telef_clien")>
+    Public Property Nuevo_Telef_clien As String
+
+    <StringLength(20)>
+    <Column("Anterior_CL_CELULAR")>
+    Public Property Anterior_CL_CELULAR As String
+
+    <StringLength(20)>
+    <Column("Nuevo_CL_CELULAR")>
+    Public Property Nuevo_CL_CELULAR As String
+
+    <StringLength(80)>
+    <Column("Anterior_CL_EMAIL")>
+    Public Property Anterior_CL_EMAIL As String
+
+    <StringLength(80)>
+    <Column("Nuevo_CL_EMAIL")>
+    Public Property Nuevo_CL_EMAIL As String
+
+    <StringLength(40)>
+    <Column("Anterior_cl_conyunom")>
+    Public Property Anterior_cl_conyunom As String
+
+    <StringLength(40)>
+    <Column("Nuevo_cl_conyunom")>
+    Public Property Nuevo_cl_conyunom As String
+
+    <StringLength(20)>
+    <Column("Anterior_cl_conyutel")>
+    Public Property Anterior_cl_conyutel As String
+
+    <StringLength(20)>
+    <Column("Nuevo_cl_conyutel")>
+    Public Property Nuevo_cl_conyutel As String
+
+    <StringLength(80)>
+    <Column("Anterior_cl_conyudir")>
+    Public Property Anterior_cl_conyudir As String
+
+    <StringLength(80)>
+    <Column("Nuevo_cl_conyudir")>
+    Public Property Nuevo_cl_conyudir As String
+
+    <StringLength(30)>
+    <Column("Anterior_departa")>
+    Public Property Anterior_departa As String
+
+    <StringLength(30)>
+    <Column("Nuevo_departa")>
+    Public Property Nuevo_departa As String
+
+    <StringLength(30)>
+    <Column("Anterior_municipio")>
+    Public Property Anterior_municipio As String
+
+    <StringLength(30)>
+    <Column("Nuevo_municipio")>
+    Public Property Nuevo_municipio As String
+End Class
