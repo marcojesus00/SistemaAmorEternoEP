@@ -283,3 +283,25 @@ Public Class LogEdicionCLIENTESN
     <Column("Nuevo_municipio")>
     Public Property Nuevo_municipio As String
 End Class
+
+
+
+<Table("DEPTOZONA")>
+Public Class MunicipioZonaDepartamento
+    <Column("coddepto"), MaxLength(5)>
+    Public Property DepartamentoId As String
+
+    <Column("desdepto"), MaxLength(200)>
+    Public Property NombreDepartamento As String
+
+    <Key>
+    <Column("codmuni"), MaxLength(10)>
+    Public Property MunicipioId As String
+
+    <Column("desmuni"), MaxLength(200)>
+    Public Property NombreMunicipio As String
+
+    <Column("codzona"), MaxLength(10)>
+    Public Property ZonaId As String
+End Class
+
