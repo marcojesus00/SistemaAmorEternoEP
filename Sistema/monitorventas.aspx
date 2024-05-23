@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false"  EnableEventValidation="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
-<%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectSales.DataClient.ascx" %>
+<%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectDataClient.ascx" %>
 
 <!DOCTYPE html>
 
