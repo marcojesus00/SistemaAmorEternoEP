@@ -33,7 +33,7 @@ Public Class ProfilePicture
     Private Function DeleteRecordFromDatabase(employeeId As Integer)
 
         Try
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorDbContext()
                 Dim recordsToDelete = dbContext.FotosDeEmpleados.Where(Function(f) f.NumeroDeEmpleado = employeeId)
                 dbContext.FotosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
@@ -52,7 +52,7 @@ Public Class ProfilePicture
 
         Try
 
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorDbContext()
                 Dim newProfilePicture As New FotoDeEmpleado With {
                     .NumeroDeEmpleado = employeeId,
                     .Ruta = completeRelativePath
@@ -75,7 +75,7 @@ Public Class ProfilePicture
 
         Try
 
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorDbContext()
                 Dim record As FotoDeEmpleado = dbContext.FotosDeEmpleados.Where(Function(f) f.NumeroDeEmpleado = employeeId).FirstOrDefault()
 
                 If record Is Nothing Then

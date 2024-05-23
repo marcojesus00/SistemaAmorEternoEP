@@ -119,6 +119,7 @@
   <ItemGroup>
     <Folder Include="archivos\" />
     <Folder Include="fotosCarnet\" />
+    <Folder Include="models\aeCobros\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -226,6 +227,7 @@
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
+    <Content Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -2257,6 +2259,13 @@
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx.designer.vb">
+      <DependentUpon>CorrectSales.DataClient.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\monitorDeVentas\CorrectSales.DataClient.ascx.vb">
+      <DependentUpon>CorrectSales.DataClient.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
       <DependentUpon>DetalleMovimientoClientes.aspx</DependentUpon>
     </Compile>
@@ -2302,8 +2311,10 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="models\EmpladoModels.vb" />
-    <Compile Include="models\MyDbContext.vb" />
+    <Compile Include="models\aaeVentas\AeventasModels.vb" />
+    <Compile Include="models\funamor\EmpladoModels.vb" />
+    <Compile Include="models\funamor\FunamorDbContext.vb" />
+    <Compile Include="models\aaeVentas\AeVentasDbContext.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
     </Compile>

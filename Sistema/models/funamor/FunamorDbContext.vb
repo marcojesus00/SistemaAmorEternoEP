@@ -1,11 +1,11 @@
 ﻿Imports System.Data.Entity
 
-Public Class MyDbContext
+Public Class FunamorDbContext
     Inherits DbContext
 
     Public Sub New()
         MyBase.New("name=MyDbContext")
-        Database.SetInitializer(Of MyDbContext)(Nothing)
+        Database.SetInitializer(Of FunamorDbContext)(Nothing)
 
     End Sub
 
