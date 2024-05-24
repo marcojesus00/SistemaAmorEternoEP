@@ -45,33 +45,15 @@ Public Class CorrectContract
 
 
     End Sub
+    Public Event ProductTextChanged As EventHandler(Of EventArgs)
+
     Protected Sub txtprod1_TextChanged(sender As Object, e As EventArgs)
-        Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
-        Dim Sql As String
 
-
-        Sql = "Select serv_codigo Codigo, serv_descri Descripcion
-		,serv_cant Equivale
-		,serv_precio Precio
-		,serv_valoje Cuotas
-		,SERV_PMAX  PrecioMaximo
-		,SERV_PMINI PrecioMinimo
-
-		from AEVentas..SERVICIO
-
-        WHERE serv_codigo not in ('','08') and serv_precio > 0"
-        'Datos = conf.EjecutaSql(Sql)
-
-
-        'gvDetalleProductosContrato.DataSource = Datos.Tables(0)
-        'gvDetalleProductosContrato.DataBind()
-
-        'btnGuardarCamb.Enabled = True
-
+        RaiseEvent ProductTextChanged(sender, e)
     End Sub
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra, Cuota As Integer
-        Dim initialPayment
+        Dim initialPayment = ""
         Try
             If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And initialPayment.Length > 0 Then
 

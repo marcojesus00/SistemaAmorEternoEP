@@ -120,6 +120,8 @@ Public Class monitorventas
         '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
         AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
         AddHandler CorrectSalesDataClient1.AlertGenerated, AddressOf HandleAlertGenerated
+        AddHandler CorrectSalesDataClient1.ProductTextChanged, AddressOf CorrectContract_ProductTextChanged
+        AddHandler CorrectSalesDataClient1.enableButton, AddressOf CorrectContract_ProductTextChanged
 
 
     End Sub
@@ -1529,6 +1531,34 @@ Public Class monitorventas
         Dim message As String = e.Message
         Dim alertType As String = e.AlertType
         AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
+    End Sub
+    Public Sub valorcontAppTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.enableButton
+        btnGuardarCamb.Enabled = True
+    End Sub
+    Public Sub CorrectContract_ProductTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.ProductTextChanged
+        ' Update the GridView
+        'UpdateGVDetalleProductosContrato()
+        Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
+        Dim Sql As String
+
+
+        Sql = "Select serv_codigo Codigo, serv_descri Descripcion
+		,serv_cant Equivale
+		,serv_precio Precio
+		,serv_valoje Cuotas
+		,SERV_PMAX  PrecioMaximo
+		,SERV_PMINI PrecioMinimo
+
+		from AEVentas..SERVICIO
+
+        WHERE serv_codigo not in ('','08') and serv_precio > 0"
+        Datos = conf.EjecutaSql(Sql)
+
+
+        gvDetalleProductosContrato.DataSource = Datos.Tables(0)
+        gvDetalleProductosContrato.DataBind()
+
+        btnGuardarCamb.Enabled = True
     End Sub
 
 

@@ -238,25 +238,55 @@ Public Class DataClient
         End Try
     End Sub
 
-    'Sub DeptoCiudadCliente()
-    '    Try
-    '        'Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
-    '        'Dim Sql As String
 
-    '        'Sql = "Select desdepto Depto, ltrim(rtrim(desmuni))  + '-' +codzona CiudadEmpresa, codmuni, coddepto from AEVentas..DEPTOZONA"
 
-    '        'Dim Datos = conf.EjecutaSql(Sql)
-    '        'dlCiudadCliente.DataSource = Datos.Tables(0)
-    '        'dlCiudadCliente.DataTextField = "CiudadEmpresa"
-    '        'dlCiudadCliente.DataValueField = "Codmuni"
-    '        'dlCiudadCliente.DataBind()
 
-    '    Catch ex As Exception
-    '        RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
 
-    '    End Try
+    'Editar contrato
+    Public Event ProductTextChanged As EventHandler(Of EventArgs)
+    Public Event enableButton As EventHandler(Of EventArgs)
+    Public Event ProductButtonClick As EventHandler(Of EventArgs)
 
-    'End Sub
+    Protected Sub txtprod1_TextChanged(sender As Object, e As EventArgs)
+
+        RaiseEvent ProductTextChanged(sender, e)
+    End Sub
+    Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
+        Dim Letra, Cuota As Integer
+        Try
+            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
+
+                If TxtPrimaApp.Text = txtvalorcontApp.Text Then
+                    Cuota = 0
+                    Letra = 0
+                Else
+                    If txtvalorcontApp.Text > 0 And TxtPrimaApp.Text > 0 And txtcuotaApp.Text > 0 Then
+                        Letra = (txtvalorcontApp.Text - TxtPrimaApp.Text) / txtcuotaApp.Text
+                        Cuota = txtcuotaApp.Text
+                    End If
+
+                End If
+                txtLetraApp.Text = Letra
+                txtcuotaApp.Text = Cuota
+
+                RaiseEvent enableButton(sender, e)
+                'btnGuardarCamb.Enabled = True
+
+            End If
+
+        Catch ex As Exception
+
+
+        End Try
+
+
+    End Sub
+    Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles btnBuscarProducto.Click
+        RaiseEvent ProductButtonClick(sender, e)
+        ''PanelProductosApp.Visible = True
+        RaiseEvent ProductTextChanged(sender, e)
+
+    End Sub
 
 End Class
 Public Class ClientDataReceivedEventArgs

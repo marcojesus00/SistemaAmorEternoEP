@@ -2,7 +2,6 @@
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectDataClient.ascx" %>
-<%@ Register TagPrefix="uc" TagName="CorrectContract" Src="~/controls/monitorDeVentas/CorrectContract.ascx" %>
 
 <!DOCTYPE html>
 
@@ -299,81 +298,18 @@
                     </div>
                 </div>
                 <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
-                <uc:CorrectContract ID="CorrectContract1" runat="server" />
 
-                <div class="row" style="background-color: white">
-
-                    <div class="col-6">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" style="width: 100%; background-color: #726e6e; color: aliceblue">Datos del Plan Adquirido</label>
-                        </div>
-                    </div>
-
-                </div>
                 <%-- Identidad --%>
 
-                <div class="row" style="background-color: white">
-
-                    <div class="col-4">
-                        <div class="input-group input-group-sm">
-
-                            <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm" placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true" />
-                            <%--  <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm"   placeholder="Codigo" ID="txtcodigoprod1" runat="server" />--%>
-                            <div class="input-group-append">
-                                <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
-                            </div>
-                        </div>
-                    </div>
-                    <%--         <div class="col">
-
-                                <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" />
-                       </div> --%>
-                </div>
-                <%-- Telefono --%>
 
 
 
 
 
-                <div class="col-3">
-                    <div class="input-group input-group-sm">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" style="width: 110px">Cuota</label>
-                        </div>
-                        <asp:TextBox ID="txtcuotaApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor Cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="input-group input-group-sm">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" style="width: 110px">N° Letras</label>
-                        </div>
-                        <asp:TextBox ID="txtLetraApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
-                    </div>
-                </div>
-            </div>
-            <%-- Direccion --%>
 
-            <div class="col-3">
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" style="width: 110px">Valor</label>
-                    </div>
-                    <asp:TextBox ID="txtvalorcontApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
-                </div>
+
 
             </div>
-            <div class="col-3">
-                <div class="input-group input-group-sm">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" style="width: 110px">Cantidad</label>
-                    </div>
-                    <asp:TextBox ID="txtcanti1app" runat="server" CssClass="form-control form-control-sm" placeholder="Cant.." TextMode="SingleLine" />
-                </div>
-
-            </div>
-
         </div>
 
 
