@@ -32,7 +32,6 @@ Public Class DataClient
 
 
             Catch ex As Exception
-                msg = "Error al leer de la base de datos, por favor recargue la página : "
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
 
             End Try
@@ -79,14 +78,6 @@ Public Class DataClient
         Try
 
             Using dbcontext As New AeVentasDbContext
-
-
-                '_clientData = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
-                'Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
-                '                      .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(_clientData.Municipio)).FirstOrDefault()
-                'Dim department = dbcontext.MunicipiosZonasDepartamentos _
-                '.Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(_clientData.Departamento)) _
-                '.FirstOrDefault()
                 txtprod1.Text = e.ServiceName
                 txtcuotaApp.Text = e.Payment
                 txtLetraApp.Text = e.BillNumber
@@ -273,8 +264,15 @@ Public Class DataClient
     Public Event ProductButtonClick As EventHandler(Of EventArgs)
 
     Protected Sub txtprod1_TextChanged(sender As Object, e As EventArgs)
+        Try
+            RaiseEvent ProductTextChanged(sender, e)
 
-        RaiseEvent ProductTextChanged(sender, e)
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
+
+        End Try
+
     End Sub
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra, Cuota As Integer
@@ -300,6 +298,7 @@ Public Class DataClient
             End If
 
         Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
 
 
         End Try
@@ -307,9 +306,15 @@ Public Class DataClient
 
     End Sub
     Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles btnBuscarProducto.Click
-        RaiseEvent ProductButtonClick(sender, e)
-        ''PanelProductosApp.Visible = True
-        RaiseEvent ProductTextChanged(sender, e)
+        Try
+            RaiseEvent ProductButtonClick(sender, e)
+            ''PanelProductosApp.Visible = True
+            RaiseEvent ProductTextChanged(sender, e)
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
+
+        End Try
 
     End Sub
 
