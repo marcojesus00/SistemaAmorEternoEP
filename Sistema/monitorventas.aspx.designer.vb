@@ -410,15 +410,6 @@ Partial Public Class monitorventas
     Protected WithEvents CorrectSalesDataClient1 As Global.Sistema.DataClient
 
     '''<summary>
-    '''txtidentiCliapp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtidentiCliapp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''txtprod1 control.
     '''</summary>
     '''<remarks>
@@ -435,33 +426,6 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnBuscarProducto As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''txttel1app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txttel1app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txttel2app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txttel2app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''TxtPrimaApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtPrimaApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtcuotaApp control.
@@ -482,24 +446,6 @@ Partial Public Class monitorventas
     Protected WithEvents txtLetraApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''dlDeptoCliente control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlDeptoCliente As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''dlCiudadCliente control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlCiudadCliente As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''txtvalorcontApp control.
     '''</summary>
     '''<remarks>
@@ -516,15 +462,6 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtcanti1app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtdir1Cliapp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtdir1Cliapp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lblMsjError control.

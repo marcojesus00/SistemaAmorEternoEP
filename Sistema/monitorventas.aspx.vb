@@ -11,6 +11,7 @@ Public Class monitorventas
     Private Recibos As Decimal = 0
     Private Cobradores As Decimal = 0
     Private Liquida, Liquida2 As String
+    Private initialPayment As String
     ' Private Tabla As DataTable
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -51,8 +52,6 @@ Public Class monitorventas
             dlRun.Items.Add("False")
             dlRun.Items.Add("True")
             dlRun.SelectedIndex = 0
-            'Llena el campo de Departamento y ciudad del cliente en la ventana de Editar venta
-            DeptoCliente()
 
             If Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "REINALDO" Or Usuario_Aut = "yasmin" Or Usuario_Aut = "manager" Or Usuario_Aut = "mderas" Or Usuario_Aut = "reinaldo" Then
                 btnArreglarVenta.Visible = True
@@ -227,41 +226,6 @@ Public Class monitorventas
     End Sub
 
 
-    Sub DeptoCliente()
-        Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
-        Dim Sql As String
-
-        Sql = "Select distinct desdepto Depto, coddepto from AEVentas..DEPTOZONA Select desdepto Depto, ltrim(rtrim(desmuni))  + '-' +codzona CiudadEmpresa, codmuni, coddepto from AEVentas..DEPTOZONA"
-
-        Datos = conf.EjecutaSql(Sql)
-        dlDeptoCliente.DataSource = Datos.Tables(0)
-        dlDeptoCliente.DataTextField = "Depto"
-        dlDeptoCliente.DataValueField = "CodDepto"
-        dlDeptoCliente.DataBind()
-
-
-        dlCiudadCliente.DataSource = Datos.Tables(1)
-        dlCiudadCliente.DataTextField = "CiudadEmpresa"
-        dlCiudadCliente.DataValueField = "Codmuni"
-        dlCiudadCliente.DataBind()
-
-    End Sub
-
-
-    Protected Sub dlDeptoCliente_TextChanged(sender As Object, e As EventArgs)
-        Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
-        Dim Sql As String
-
-        Sql = $"Select desdepto Depto, ltrim(rtrim(desmuni))  + '-' +codzona CiudadEmpresa, codmuni, coddepto from AEVentas..DEPTOZONA where coddepto = ltrim(rtrim('{dlDeptoCliente.SelectedValue} ')) "
-        Datos = conf.EjecutaSql(Sql)
-
-        'dlCiudadCliente.SelectedValue = Datos.Tables(0).Rows(0).Item("CodMuni")
-        dlCiudadCliente.DataSource = Datos.Tables(0)
-        dlCiudadCliente.DataTextField = "CiudadEmpresa"
-        dlCiudadCliente.DataValueField = "Codmuni"
-        dlCiudadCliente.DataBind()
-
-    End Sub
 
     Protected Sub dlCiudadCliente_TextChanged(sender As Object, e As EventArgs)
 
@@ -274,19 +238,6 @@ Public Class monitorventas
 
     End Sub
 
-    Sub DeptoCiudadCliente()
-        Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
-        Dim Sql As String
-
-        Sql = "Select desdepto Depto, ltrim(rtrim(desmuni))  + '-' +codzona CiudadEmpresa, codmuni, coddepto from AEVentas..DEPTOZONA"
-
-
-        dlCiudadCliente.DataSource = Datos.Tables(0)
-        dlCiudadCliente.DataTextField = "CiudadEmpresa"
-        dlCiudadCliente.DataValueField = "Codmuni"
-        dlCiudadCliente.DataBind()
-
-    End Sub
 
     'Sub Validar()
     '    If Session("Usuario") = "AMPARO" Then
@@ -1161,11 +1112,8 @@ Public Class monitorventas
         txtnombreVendArr.InnerText = gvClientesVE.Rows(Fila).Cells(4).Text.TrimEnd
         dlstatusvend.Items.Add("" + gvClientesVE.Rows(Fila).Cells(5).Text + "")
         dlempresaArr.Items.Add("" + gvClientesVE.Rows(Fila).Cells(6).Text + "")
-        Dim initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
-        TxtPrimaApp.Text = gvClientesVE.Rows(Fila).Cells(11).Text
-        txtidentiCliapp.Text = gvClientesVE.Rows(Fila).Cells(7).Text
+        initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
         Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text.TrimEnd
-        txtdir1Cliapp.Text = gvClientesVE.Rows(Fila).Cells(8).Text
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
         'txtcodigoprod1.Text = gvClientesVE.Rows(Fila).Cells(15).Text
@@ -1173,9 +1121,7 @@ Public Class monitorventas
         txtcuotaApp.Text = gvClientesVE.Rows(Fila).Cells(17).Text
         txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
         txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
-        txttel1app.Text = gvClientesVE.Rows(Fila).Cells(18).Text
         Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text.TrimEnd
-        txttel2app.Text = gvClientesVE.Rows(Fila).Cells(19).Text
         Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text.TrimEnd
 
         'txtcuotaApp.Text =
@@ -1255,14 +1201,14 @@ Public Class monitorventas
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra, Cuota As Integer
         Try
-            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
+            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And initialPayment.Length > 0 Then
 
-                If TxtPrimaApp.Text = txtvalorcontApp.Text Then
+                If initialPayment = txtvalorcontApp.Text Then
                     Cuota = 0
                     Letra = 0
                 Else
-                    If txtvalorcontApp.Text > 0 And TxtPrimaApp.Text > 0 And txtcuotaApp.Text > 0 Then
-                        Letra = (txtvalorcontApp.Text - TxtPrimaApp.Text) / txtcuotaApp.Text
+                    If txtvalorcontApp.Text > 0 And initialPayment > 0 And txtcuotaApp.Text > 0 Then
+                        Letra = (txtvalorcontApp.Text - initialPayment) / txtcuotaApp.Text
                         Cuota = txtcuotaApp.Text
                     End If
 
@@ -1506,7 +1452,7 @@ Public Class monitorventas
             '    Exit Sub
             'End If
 
-            'If TxtPrimaApp.Text < txtvalorcontApp.Text And (txtcuotaApp.Text = 0 Or txtLetraApp.Text = 0) Then
+            'If initialPayment < txtvalorcontApp.Text And (txtcuotaApp.Text = 0 Or txtLetraApp.Text = 0) Then
             '    lblMsg.Text = "Error: Debe Ingresar el Valor de la Cuota y N.Letras"
             '    lblMsg.ControlStyle.CssClass = "alert alert-danger"
             '    Exit Sub
@@ -1514,11 +1460,11 @@ Public Class monitorventas
 
             Sql = "Exec SP_CONTRATO_LOG '" + txtCodClienteapp.Text.TrimEnd + "'
             ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + txtvalorcontApp.Text.TrimEnd.TrimStart + "'
-            ,'" + Session("Cred") + "'," + Replace(TxtPrimaApp.Text, ",", "") + "
+            ,'" + Session("Cred") + "'," + Replace(initialPayment, ",", "") + "
             ,'" + txtLetraApp.Text + "','" + txtcuotaApp.Text + "','" + txtCodVendEV.Text + "'
             ,'" + IdProduct + "'
             ,'" + txtcanti1app.Text + "','','0','0','0','0','0','0'
-            ,'" + txtvalorcontApp.Text + "','0','0','0','S','F','" + txtidentiCliapp.Text.TrimStart.TrimEnd + "'
+            ,'" + txtvalorcontApp.Text + "','0','0','0','S','F','" + CorrectSalesDataClient1.IdentificationText.TrimStart.TrimEnd + "'
             ,'" + Producto + "','','','','W'
             ,'" + lblNameClientapp.InnerText.TrimEnd.TrimStart + "','202208201200','N',NULL,'" + Usuario_Aut + "'"
 
@@ -1530,7 +1476,7 @@ Public Class monitorventas
             txtCodClienteapp.Text = ""
             txtCodVendEV.Text = ""
             txtnombreVendArr.InnerText = ""
-            txtidentiCliapp.Text = ""
+
             Session("ValorContrato") = 0
             Session("PrimaM") = 0
             Session("Prima") = 0
@@ -1539,14 +1485,10 @@ Public Class monitorventas
             Session("IdServicio") = ""
             lblNameClientapp.InnerText = ""
             'txtCobrador.Text = ""
-            TxtPrimaApp.Text = 0
-            txttel1app.Text = ""
-            txttel2app.Text = ""
             txtLetraApp.Text = ""
             txtvalorcontApp.Text = ""
             txtcuotaApp.Text = ""
             txtcanti1app.Text = ""
-            txtdir1Cliapp.Text = ""
             txtFecha.Text = ""
             txtCodVendEV.Text = ""
             txtprod1.Text = ""

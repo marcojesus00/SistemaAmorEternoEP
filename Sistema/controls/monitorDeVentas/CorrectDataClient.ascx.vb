@@ -6,6 +6,14 @@ Public Class DataClient
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Dim msg = "Error inesperado: "
     Private _clientData As DatosDeCliente
+    Public Property IdentificationText As String
+        Get
+            Return txtidentiCliapp.Text
+        End Get
+        Set(value As String)
+            txtidentiCliapp.Text = value
+        End Set
+    End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
@@ -136,7 +144,7 @@ Public Class DataClient
 
 
     End Sub
-    Protected Sub SaveChanges()
+    Public Sub SaveChanges()
         Try
 
             Dim newDataClient As DatosDeCliente = _clientData
@@ -148,17 +156,6 @@ Public Class DataClient
             newDataClient.Direccion = txtdir1Cliapp.Text.Trim
             newDataClient.Dir2_client = TextBoxAddress2.Text.Trim
             newDataClient.Dir3_client = TextBoxAddress3.Text.Trim
-            'txtidentiCliapp.Text = _clientData.Identidad
-            'TextBoxCelular.Text = _clientData.Celular
-            'TextBoxPhone.Text = _clientData.Telefono
-            'TxtPrimaApp.Text = e.InitialPayment
-
-            'TextBoxDepartment.Text = _clientData.Departamento
-            'TextBoxCity.Text = _clientData.Municipio
-            'txtdir1Cliapp.Text = _clientData.Direccion
-            'dlDeptoCliente.DataTextField = _clientData.Departamento
-
-            'dlCiudadCliente.DataTextField = _clientData.Municipio
 
             Using Context As New AeVentasDbContext()
                 Context.ExecuteVIENECLIENTESN_A3(

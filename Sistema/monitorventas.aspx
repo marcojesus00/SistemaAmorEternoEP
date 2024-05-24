@@ -293,12 +293,6 @@
                 <%-- Identidad --%>
 
                 <div class="row" style="background-color: white">
-                    <div class="col-6">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 80px">Identidad</label> </div><asp:TextBox ID="txtidentiCliapp" runat="server" CssClass="form-control form-control-sm" placeholder="Identidad Cliente..." TextMode="SingleLine" />
-                        </div>
-                    </div>
 
                     <div class="col-4">
                         <div class="input-group input-group-sm" >
@@ -310,25 +304,12 @@
                                     <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><%--         <div class="col">
 
                                 <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" />
-                       </div> --%></div><%-- Telefono --%><div class="row" style="background-color: white
+                       </div> --%></div><%-- Telefono --%>
 
 
 
 
-                    <div class="col-4">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 80px">Telefono</label> </div><asp:TextBox ID="txttel1app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 1..." TextMode="SingleLine" />                   
-                            <asp:TextBox ID="txttel2app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 2..." TextMode="SingleLine" />
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        
-                         <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 55px">Prima</label> </div><asp:TextBox ID="TxtPrimaApp" runat="server" CssClass="form-control form-control-sm" TextMode="Number" Enabled="false"/>                   
-                        </div>
-                    </div>
+
                     <div class="col-3">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -343,24 +324,7 @@
                     </div>
                 </div>
                 <%-- Direccion --%>
-                <div class="row" style="background-color: white">
-                    
-                        <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Depto</label> </div>
-                          <asp:DropDownList ID="dlDeptoCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlDeptoCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
 
-                    </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Ciudad</label> </div>
-                           <asp:DropDownList ID="dlCiudadCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlCiudadCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
-
-                    </div>
                     <div class="col-3">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -377,24 +341,6 @@
                     </div>
 
                 </div>
-
-                    <div class="row" style="background-color: white">
-                    <div class="col-6">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <%--<label class="input-group-text" style="width: 110px">Direccion</label>--%>
-                            </div>
-                            <p class="list-group-item list-group-item-action bg-light"><i class="far fa-comment-alt" style="font-size:large; text-align:center">
-
-                         </i>&nbsp Direccion<asp:TextBox ID="txtdir1Cliapp" TextMode="MultiLine"  runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-
-                            </p>
-                            <%--<asp:TextBox ID="txtdir1Cliapp" runat="server" CssClass="form-control form-control-sm" placeholder="Direccion Completa..." TextMode="SingleLine" />--%>
-
-                        </div>
-
-                    </div>
-                        </div>
 
  
                 <div class="row" style="background-color: white; padding-top: 15px">
