@@ -52,19 +52,19 @@ Public Class DataClient
                 .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(_clientData.Departamento)) _
                 .FirstOrDefault()
 
-                txtidentiCliapp.Text = _clientData.Identidad
-                TextBoxCelular.Text = _clientData.Celular
-                TextBoxPhone.Text = _clientData.Telefono
-                TxtPrimaApp.Text = e.InitialPayment
-                txtdir1Cliapp.Text = _clientData.Direccion
-                TextBoxAddress2.Text = _clientData.Dir2_client
-                TextBoxAddress3.Text = _clientData.Dir3_client
-                dlDeptoCliente.DataTextField = _clientData.Departamento
+                txtidentiCliapp.Text = textInputHelper.FormatWithHyphens(_clientData.Identidad.Trim)
+                TextBoxCelular.Text = textInputHelper.FormatWithHyphens(_clientData.Celular.Trim)
+                TextBoxPhone.Text = textInputHelper.FormatWithHyphens(_clientData.Telefono.Trim)
+                TxtPrimaApp.Text = e.InitialPayment.Trim
+                txtdir1Cliapp.Text = _clientData.Direccion.Trim
+                TextBoxAddress2.Text = _clientData.Dir2_client.Trim
+                TextBoxAddress3.Text = _clientData.Dir3_client.Trim
+                dlDeptoCliente.DataTextField = _clientData.Departamento.Trim
                 dlDeptoCliente.SelectedValue = department.DepartamentoId
 
-                dlCiudadCliente.DataTextField = _clientData.Municipio
+                dlCiudadCliente.DataTextField = _clientData.Municipio.Trim.Trim
                 dlCiudadCliente.SelectedValue = deptoCiudadQuery.MunicipioId
-                txtdir1Cliapp.Text = _clientData.Direccion
+                txtdir1Cliapp.Text = _clientData.Direccion.Trim
 
             End Using
         Catch ex As Exception
@@ -78,7 +78,7 @@ Public Class DataClient
         Try
 
             Using dbcontext As New AeVentasDbContext
-                txtprod1.Text = e.ServiceName
+                txtprod1.Text = e.ServiceName.Trim
                 txtcuotaApp.Text = e.Payment
                 txtLetraApp.Text = e.BillNumber
                 txtvalorcontApp.Text = e.TotalAmount
