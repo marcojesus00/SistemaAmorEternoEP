@@ -305,3 +305,65 @@ Public Class MunicipioZonaDepartamento
     Public Property ZonaId As String
 End Class
 
+<Table("SERVICIO")>
+Public Class SERVICIO
+    <Key, Column(Order:=0), StringLength(1)>
+    Public Property serv_tipo As String
+
+    <Key, Column(Order:=1), StringLength(4)>
+    Public Property serv_codigo As String
+
+    <Column("serv_descri"), StringLength(30)>
+    Public Property serv_descri As String
+
+    <Column("serv_cant")>
+    Public Property serv_cant As Short?
+
+    <Column("serv_valor", TypeName:="money")>
+    Public Property serv_valor As Decimal?
+
+    <Column("serv_codinv"), StringLength(13)>
+    Public Property serv_codinv As String
+
+    <Column("serv_cuecon"), StringLength(10)>
+    Public Property serv_cuecon As String
+
+    <Column("serv_cuota", TypeName:="money")>
+    Public Property serv_cuota As Decimal?
+
+    <Column("serv_maximo", TypeName:="smallmoney")>
+    Public Property serv_maximo As Decimal?
+
+    <Column("serv_minimo", TypeName:="smallmoney")>
+    Public Property serv_minimo As Decimal?
+
+    <Column("serv_precio", TypeName:="decimal")>
+    Public Property serv_precio As Decimal?
+
+    <Column("servin_cod"), StringLength(3)>
+    Public Property servin_cod As String
+
+    <Column("serv_empre"), StringLength(10)>
+    Public Property serv_empre As String
+
+    <Column("SERV_PMAX", TypeName:="decimal")>
+    Public Property SERV_PMAX As Decimal?
+
+    <Column("SERV_PMINI", TypeName:="decimal")>
+    Public Property SERV_PMINI As Decimal?
+
+    <Column("servin_movc"), StringLength(2)>
+    Public Property servin_movc As String
+
+    <Column("serv_status"), StringLength(1)>
+    Public Property serv_status As String
+
+    <Column("serv_comnue", TypeName:="money")>
+    Public Property serv_comnue As Decimal?
+
+    <Column("serv_valnue", TypeName:="money")>
+    Public Property serv_valnue As Decimal?
+
+    <Column("serv_comn2", TypeName:="money")>
+    Public Property serv_comn2 As Decimal?
+End Class
