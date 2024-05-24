@@ -14,6 +14,10 @@ Public Class monitorventas
     Private initialPayment As String
     ' Private Tabla As DataTable
 
+    Public Event DataSendEvent As EventHandler(Of ClientDataReceivedEventArgs)
+    Public Event DataContractSendEvent As EventHandler(Of ContractDataReceivedEventArgs)
+    Public Event ProductSendEvent As EventHandler(Of ProductDataReceivedEventArgs)
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
@@ -120,17 +124,13 @@ Public Class monitorventas
         '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
         AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
         AddHandler DataContractSendEvent, AddressOf CorrectSalesDataClient1.OnContractDataReceived
-
+        AddHandler ProductSendEvent, AddressOf CorrectSalesDataClient1.OnProductDataReceived
         AddHandler CorrectSalesDataClient1.AlertGenerated, AddressOf HandleAlertGenerated
         AddHandler CorrectSalesDataClient1.ProductTextChanged, AddressOf CorrectContract_ProductTextChanged
         AddHandler CorrectSalesDataClient1.enableButton, AddressOf CorrectContract_ProductTextChanged
-
+        AddHandler CorrectSalesDataClient1.ProductButtonClick, AddressOf ProductButtonClick
 
     End Sub
-
-    Public Event DataSendEvent As EventHandler(Of ClientDataReceivedEventArgs)
-    Public Event DataContractSendEvent As EventHandler(Of ContractDataReceivedEventArgs)
-
 
 
     Protected Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
@@ -1155,7 +1155,7 @@ Public Class monitorventas
         Dim product = gvDetalleProductosContrato.Rows(Fila).Cells(2).Text
         Dim amount = gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
         Dim payment = gvDetalleProductosContrato.Rows(Fila).Cells(5).Text
-
+        Dim serviceId = gvDetalleProductosContrato.Rows(Fila).Cells(1).Text
         Session.Add("Producto", gvDetalleProductosContrato.Rows(Fila).Cells(2).Text)
         Session.Add("IdServicio", gvDetalleProductosContrato.Rows(Fila).Cells(1).Text)
         Session.Add("ValorContratoApp", gvDetalleProductosContrato.Rows(Fila).Cells(3).Text)
@@ -1165,6 +1165,8 @@ Public Class monitorventas
         '  Letras = (gvDetalleProductosContrato.Rows(Fila).Cells(3).Text - Session("Prima")) '/ gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
 
         'txtLetraApp.Text = Letras
+        RaiseEvent ProductSendEvent(Me, New ProductDataReceivedEventArgs(product, serviceId, payment, amount))
+
         PanelProductosApp.Visible = False
 
     End Sub
@@ -1526,9 +1528,7 @@ Public Class monitorventas
         Dim alertType As String = e.AlertType
         AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
     End Sub
-    Public Sub valorcontAppTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.enableButton
-        'btnGuardarCamb.Enabled = True
-    End Sub
+
     Public Sub CorrectContract_ProductTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.ProductTextChanged
         ' Update the GridView
         'UpdateGVDetalleProductosContrato()
@@ -1555,5 +1555,8 @@ Public Class monitorventas
         'btnGuardarCamb.Enabled = True
     End Sub
 
+    Public Sub ProductButtonClick()
+        PanelProductosApp.Visible = True
 
+    End Sub
 End Class

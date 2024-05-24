@@ -92,6 +92,22 @@ Public Class DataClient
 
 
     End Sub
+    Public Sub OnProductDataReceived(ByVal sender As Object, ByVal e As ProductDataReceivedEventArgs)
+        Try
+
+            Using dbcontext As New AeVentasDbContext
+                txtprod1.Text = e.ServiceName.Trim
+                txtcuotaApp.Text = e.Payment
+                txtvalorcontApp.Text = e.TotalAmount
+
+            End Using
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error" & ex.Message, "danger"))
+
+        End Try
+
+
+    End Sub
     Protected Sub dlCiudadCliente_TextChanged(sender As Object, e As EventArgs)
         Try
             'Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -293,7 +309,7 @@ Public Class DataClient
                 txtcuotaApp.Text = Cuota
 
                 RaiseEvent enableButton(sender, e)
-                'btnGuardarCamb.Enabled = True
+                btnGuardarCamb.Enabled = True
 
             End If
 
@@ -420,7 +436,9 @@ Public Class DataClient
     Protected Sub btnCanModalCl_click(sender As Object, e As EventArgs) Handles btnCanModalCl.Click
         'PanelEditarVenta.Visible = False
     End Sub
-
+    Public Sub valorcontAppTextChanged(sender As Object, e As EventArgs)
+        btnGuardarCamb.Enabled = True
+    End Sub
 
 
 End Class
@@ -465,6 +483,22 @@ Public Class ContractDataReceivedEventArgs
         Me.Payment = payment
         Me.TotalAmount = totalAmount
         Me.BillNumber = billNumber
+    End Sub
+
+End Class
+Public Class ProductDataReceivedEventArgs
+    Inherits EventArgs
+
+    Public Property ServiceId As String
+    Public Property ServiceName As String
+    Public Property Payment As String
+    Public Property TotalAmount As String
+
+    Public Sub New(serviceName, serviceId, payment, amount)
+        Me.ServiceId = serviceId
+        Me.ServiceName = serviceName
+        Me.Payment = payment
+        Me.TotalAmount = amount
     End Sub
 
 End Class
