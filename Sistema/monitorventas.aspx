@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectDataClient.ascx" %>
+<%@ Register TagPrefix="uc" TagName="CorrectContract" Src="~/controls/monitorDeVentas/CorrectContract.ascx" %>
 
 <!DOCTYPE html>
 
@@ -232,26 +233,36 @@
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelEditarVenta" runat="server" visible="false">
             <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
                 <div class="row" style="background-color: white">
-                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Venta</h2></div><%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
+                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Venta</h2>
+                </div>
+                <%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Vendedor</label> </div><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
+                                <label class="input-group-text" style="width: 110px">Vendedor</label>
+                            </div>
+                            <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
                             <div class="input-group-append">
                                 <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><div class="col">
+                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="input-group input-group-sm">
                             <label class="form-control form-control-sm" id="txtnombreVendArr" runat="server"></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group input-group-sm">
-                          <div class="input-group-prepend">
-                              <label class="input-group-text" style="width: 125px">Cambiar Estatus</label> </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" style="width: 125px">Cambiar Estatus</label>
+                            </div>
                             <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
 
-.                    </div>
+                        .                   
+                    </div>
 
                 </div>
 
@@ -259,10 +270,16 @@
                     <div class="col">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Codigo Cliente</label> </div><%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodClienteapp" runat="server" />
+                                <label class="input-group-text" style="width: 110px">Codigo Cliente</label>
+                            </div>
+                            <%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodClienteapp" runat="server" />
                             <div class="input-group-append">
                                 <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><div class="col">
+                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="input-group input-group-sm">
 
                             <label class="form-control form-control-sm" id="lblNameClientapp" runat="server"></label>
@@ -270,16 +287,19 @@
                     </div>
                     <div class="col">
                         <%--<label class="btn btn-group-sm btn-dark" style="grid-column-end">Liquidar</label>--%>
-                          <div class="input-group input-group-sm">
-                          <div class="input-group-prepend">
-                              <label class="input-group-text" style="width: 125px">Estatus</label> </div><asp:DropDownList ID="dlstatusvend" runat="server" CssClass="form-control form-control-sm" Style="width: 95px"></asp:DropDownList>
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" style="width: 125px">Estatus</label>
+                            </div>
+                            <asp:DropDownList ID="dlstatusvend" runat="server" CssClass="form-control form-control-sm" Style="width: 95px"></asp:DropDownList>
                         </div>
-                      <%--  <asp:LinkButton ID="LinkButton2" runat="server" Style="font-size: x-large">  Liquidar </asp:LinkButton>
+                        <%--  <asp:LinkButton ID="LinkButton2" runat="server" Style="font-size: x-large">  Liquidar </asp:LinkButton>
 
                         <asp:LinkButton ID="LinkButton1" runat="server" Style="position: absolute; right: 8%; font-size: x-large">  Pausar </asp:LinkButton>--%>
                     </div>
                 </div>
-                       <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
+                <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
+                <uc:CorrectContract ID="CorrectContract1" runat="server" />
 
                 <div class="row" style="background-color: white">
 
@@ -295,55 +315,69 @@
                 <div class="row" style="background-color: white">
 
                     <div class="col-4">
-                        <div class="input-group input-group-sm" >
+                        <div class="input-group input-group-sm">
 
-                              <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true"/>
-                          <%--  <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm"   placeholder="Codigo" ID="txtcodigoprod1" runat="server" />--%>
+                            <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm" placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true" />
+                            <%--  <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm"   placeholder="Codigo" ID="txtcodigoprod1" runat="server" />--%>
                             <div class="input-group-append">
                                 <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><%--         <div class="col">
+                                    <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                            </div>
+                        </div>
+                    </div>
+                    <%--         <div class="col">
 
                                 <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" />
-                       </div> --%></div><%-- Telefono --%>
+                       </div> --%>
+                </div>
+                <%-- Telefono --%>
 
 
 
 
 
-                    <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Cuota</label> </div><asp:TextBox ID="txtcuotaApp" runat="server"  CssClass="form-control form-control-sm" placeholder="Valor Cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
+                <div class="col-3">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" style="width: 110px">Cuota</label>
                         </div>
-                    </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                               <label class="input-group-text" style="width: 110px">N° Letras</label> </div><asp:TextBox ID="txtLetraApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true"/>
-                        </div>
+                        <asp:TextBox ID="txtcuotaApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor Cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
                     </div>
                 </div>
-                <%-- Direccion --%>
-
-                    <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Valor</label> </div><asp:TextBox ID="txtvalorcontApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true"/>
+                <div class="col-3">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" style="width: 110px">N° Letras</label>
                         </div>
-
+                        <asp:TextBox ID="txtLetraApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
                     </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Cantidad</label> </div><asp:TextBox ID="txtcanti1app" runat="server" CssClass="form-control form-control-sm" placeholder="Cant.." TextMode="SingleLine" />
-                        </div>
+                </div>
+            </div>
+            <%-- Direccion --%>
 
+            <div class="col-3">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" style="width: 110px">Valor</label>
                     </div>
-
+                    <asp:TextBox ID="txtvalorcontApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
                 </div>
 
- 
-                <div class="row" style="background-color: white; padding-top: 15px">
+            </div>
+            <div class="col-3">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" style="width: 110px">Cantidad</label>
+                    </div>
+                    <asp:TextBox ID="txtcanti1app" runat="server" CssClass="form-control form-control-sm" placeholder="Cant.." TextMode="SingleLine" />
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row" style="background-color: white; padding-top: 15px">
                     <div class="col">
                     <asp:Label ID="lblMsjError" runat="server"></asp:Label></div></div><%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">               
                 <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">

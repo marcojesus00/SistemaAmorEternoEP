@@ -410,6 +410,15 @@ Partial Public Class monitorventas
     Protected WithEvents CorrectSalesDataClient1 As Global.Sistema.DataClient
 
     '''<summary>
+    '''CorrectContract1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CorrectContract1 As Global.Sistema.CorrectContract
+
+    '''<summary>
     '''txtprod1 control.
     '''</summary>
     '''<remarks>
