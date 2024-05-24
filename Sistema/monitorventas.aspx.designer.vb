@@ -410,60 +410,6 @@ Partial Public Class monitorventas
     Protected WithEvents CorrectSalesDataClient1 As Global.Sistema.DataClient
 
     '''<summary>
-    '''txtprod1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtprod1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnBuscarProducto control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnBuscarProducto As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''txtcuotaApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtcuotaApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtLetraApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLetraApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtvalorcontApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtvalorcontApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtcanti1app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtcanti1app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''lblMsjError control.
     '''</summary>
     '''<remarks>
