@@ -317,6 +317,111 @@ Public Class DataClient
         End Try
 
     End Sub
+    Private Sub btnGuardarCamb_click(seder As Object, e As EventArgs) Handles btnGuardarCamb.Click
+        Try
+            Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
+            Dim Prima, ValorCont As Integer
+            Dim Sql, Producto, IdProduct As String
+
+            If Session("IdServicio") = "" Then
+                IdProduct = Session("IdServicioM")
+                Producto = Session("ProductoM")
+
+            Else
+                IdProduct = Session("IdServicio")
+                Producto = Session("Producto")
+            End If
+
+
+
+            Sql = "Select serv_codigo Codigo, serv_descri Descripcion
+		,serv_cant Equivale
+		,serv_precio Precio
+		,serv_valoje Cuotas
+		,SERV_PMAX  PrecioMaximo
+		,SERV_PMINI PrecioMinimo
+		from AEVentas..SERVICIO
+        WHERE serv_codigo not in ('','08') and serv_precio > 0 and serv_codigo = '" + IdProduct + "'"
+
+            Dim Datos = conf.EjecutaSql(Sql)
+
+            If Session("PrimaM") = "" Then
+                Prima = Session("Prima")
+                ValorCont = Session("ValorContratoApp")
+            Else
+                Prima = Session("PrimaM")
+                ValorCont = Session("ValorContApp")
+            End If
+
+
+            If txtprod1.Text.Trim.Length = 0 Then
+                msg = "Error: Debe agregar un producto"
+                Exit Sub
+            End If
+
+            If txtcuotaApp.Text.TrimEnd = 0 And Prima < txtvalorcontApp.Text Then
+                msg = "Error: Cuotas no debe ser cero"
+                Exit Sub
+            End If
+
+            If txtcuotaApp.Text.TrimEnd > 0 And Prima = txtvalorcontApp.Text Then
+                msg = "Error: Cuotas no debe ser Cero"
+                Exit Sub
+            End If
+
+            If txtLetraApp.Text = 0 And Prima < txtvalorcontApp.Text Then
+                msg = "Error: Debe Ingresar numero de letras"
+                Exit Sub
+            End If
+
+            If (txtLetraApp.Text * txtcuotaApp.Text) > txtvalorcontApp.Text Then
+                msg = "Error: Corregir el Valor o numero de cuota"
+                Exit Sub
+            End If
+
+            If txtcanti1app.Text = 0 Then
+                msg = "Error: Cantidad debe ser mayor a cero(0)"
+                Exit Sub
+            End If
+
+            'If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
+            '    lblMsjError.Text = "Error: Valor debe ser menor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMaximo"), "#,##0.00") + "'"
+            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+            '    Exit Sub
+            'End If
+
+            'If txtvalorcontApp.Text.TrimEnd < Datos.Tables(0).Rows(0).Item("PrecioMinimo") Then
+            '    lblMsjError.Text = "Error: Valor debe ser Mayor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMinimo"), "#,##0.00") + "'"
+            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+            '    Exit Sub
+            'End If
+
+            'If txtCodClienteapp.Text.Length = 0 Then
+            '    lblMsjError.Text = "Error: Debe Seleccionar un Cliente"
+            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+            '    Exit Sub
+            'End If
+
+
+
+            If txtcuotaApp.Text * txtLetraApp.Text > ((txtvalorcontApp.Text * txtcanti1app.Text) - Prima) Then
+                msg = "Error: Verifique el N.Cuotas y Letras"
+                Exit Sub
+            End If
+
+
+            'PanelConfirmacion.Visible = True
+        Catch ex As Exception
+
+
+        End Try
+
+    End Sub
+    Protected Sub btnCanModalCl_click(sender As Object, e As EventArgs) Handles btnCanModalCl.Click
+        'PanelEditarVenta.Visible = False
+    End Sub
+
+
 
 End Class
 Public Class ClientDataReceivedEventArgs

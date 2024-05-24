@@ -146,9 +146,6 @@ Public Class monitorventas
         PanelEditarVenta.Visible = False
     End Sub
 
-    Protected Sub btnCanModalCl_click(sender As Object, e As EventArgs) Handles btnCanModalCl.Click
-        PanelEditarVenta.Visible = False
-    End Sub
 
 
 
@@ -1155,9 +1152,9 @@ Public Class monitorventas
         'Dim Letras As Integer
         'Dim Sql As String
 
-        txtprod1.Text = gvDetalleProductosContrato.Rows(Fila).Cells(2).Text
-        txtvalorcontApp.Text = gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
-        txtcuotaApp.Text = gvDetalleProductosContrato.Rows(Fila).Cells(5).Text
+        Dim product = gvDetalleProductosContrato.Rows(Fila).Cells(2).Text
+        Dim amount = gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
+        Dim payment = gvDetalleProductosContrato.Rows(Fila).Cells(5).Text
 
         Session.Add("Producto", gvDetalleProductosContrato.Rows(Fila).Cells(2).Text)
         Session.Add("IdServicio", gvDetalleProductosContrato.Rows(Fila).Cells(1).Text)
@@ -1172,11 +1169,11 @@ Public Class monitorventas
 
     End Sub
 
-    Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles btnBuscarProducto.Click
-        PanelProductosApp.Visible = True
-        txtprod1_TextChanged(sender, e)
+    'Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles btnBuscarProducto.Click
+    '    PanelProductosApp.Visible = True
+    '    txtprod1_TextChanged(sender, e)
 
-    End Sub
+    'End Sub
 
     Protected Sub txtprod1_TextChanged(sender As Object, e As EventArgs)
         Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -1199,7 +1196,7 @@ Public Class monitorventas
         gvDetalleProductosContrato.DataSource = Datos.Tables(0)
         gvDetalleProductosContrato.DataBind()
 
-        btnGuardarCamb.Enabled = True
+        'btnGuardarCamb.Enabled = True
 
     End Sub
     'Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
@@ -1239,114 +1236,114 @@ Public Class monitorventas
 
     'End Sub
 
-    Private Sub btnGuardarCamb_click(seder As Object, e As EventArgs) Handles btnGuardarCamb.Click
-        Try
-            Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
-            Dim Prima, ValorCont As Integer
-            Dim Sql, Producto, IdProduct As String
+    '  Private Sub btnGuardarCamb_click(seder As Object, e As EventArgs) Handles btnGuardarCamb.Click
+    '      Try
+    '          Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
+    '          Dim Prima, ValorCont As Integer
+    '          Dim Sql, Producto, IdProduct As String
 
-            If Session("IdServicio") = "" Then
-                IdProduct = Session("IdServicioM")
-                Producto = Session("ProductoM")
+    '          If Session("IdServicio") = "" Then
+    '              IdProduct = Session("IdServicioM")
+    '              Producto = Session("ProductoM")
 
-            Else
-                IdProduct = Session("IdServicio")
-                Producto = Session("Producto")
-            End If
-
-
-
-            Sql = "Select serv_codigo Codigo, serv_descri Descripcion
-		,serv_cant Equivale
-		,serv_precio Precio
-		,serv_valoje Cuotas
-		,SERV_PMAX  PrecioMaximo
-		,SERV_PMINI PrecioMinimo
-		from AEVentas..SERVICIO
-        WHERE serv_codigo not in ('','08') and serv_precio > 0 and serv_codigo = '" + IdProduct + "'"
-
-            Datos = conf.EjecutaSql(Sql)
-
-            If Session("PrimaM") = "" Then
-                Prima = Session("Prima")
-                ValorCont = Session("ValorContratoApp")
-            Else
-                Prima = Session("PrimaM")
-                ValorCont = Session("ValorContApp")
-            End If
-
-
-            If txtprod1.Text.Trim.Length = 0 Then
-                lblMsjError.Text = "Error: Debe agregar un producto"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            If txtcuotaApp.Text.TrimEnd = 0 And Prima < txtvalorcontApp.Text Then
-                lblMsjError.Text = "Error: Cuotas no debe ser cero"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            If txtcuotaApp.Text.TrimEnd > 0 And Prima = txtvalorcontApp.Text Then
-                lblMsjError.Text = "Error: Cuotas no debe ser Cero"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            If txtLetraApp.Text = 0 And Prima < txtvalorcontApp.Text Then
-                lblMsjError.Text = "Error: Debe Ingresar numero de letras"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            If (txtLetraApp.Text * txtcuotaApp.Text) > txtvalorcontApp.Text Then
-                lblMsjError.Text = "Error: Corregir el Valor o numero de cuota"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            If txtcanti1app.Text = 0 Then
-                lblMsjError.Text = "Error: Cantidad debe ser mayor a cero(0)"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
-
-            'If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
-            '    lblMsjError.Text = "Error: Valor debe ser menor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMaximo"), "#,##0.00") + "'"
-            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            '    Exit Sub
-            'End If
-
-            'If txtvalorcontApp.Text.TrimEnd < Datos.Tables(0).Rows(0).Item("PrecioMinimo") Then
-            '    lblMsjError.Text = "Error: Valor debe ser Mayor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMinimo"), "#,##0.00") + "'"
-            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            '    Exit Sub
-            'End If
-
-            'If txtCodClienteapp.Text.Length = 0 Then
-            '    lblMsjError.Text = "Error: Debe Seleccionar un Cliente"
-            '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            '    Exit Sub
-            'End If
+    '          Else
+    '              IdProduct = Session("IdServicio")
+    '              Producto = Session("Producto")
+    '          End If
 
 
 
-            If txtcuotaApp.Text * txtLetraApp.Text > ((txtvalorcontApp.Text * txtcanti1app.Text) - Prima) Then
-                lblMsjError.Text = "Error: Verifique el N.Cuotas y Letras"
-                lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                Exit Sub
-            End If
+    '          Sql = "Select serv_codigo Codigo, serv_descri Descripcion
+    ',serv_cant Equivale
+    ',serv_precio Precio
+    ',serv_valoje Cuotas
+    ',SERV_PMAX  PrecioMaximo
+    ',SERV_PMINI PrecioMinimo
+    'from AEVentas..SERVICIO
+    '      WHERE serv_codigo not in ('','08') and serv_precio > 0 and serv_codigo = '" + IdProduct + "'"
+
+    '          Datos = conf.EjecutaSql(Sql)
+
+    '          If Session("PrimaM") = "" Then
+    '              Prima = Session("Prima")
+    '              ValorCont = Session("ValorContratoApp")
+    '          Else
+    '              Prima = Session("PrimaM")
+    '              ValorCont = Session("ValorContApp")
+    '          End If
 
 
-            PanelConfirmacion.Visible = True
-        Catch ex As Exception
-            lblMsjError.Text = "Error: " & ex.Message
-            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '          If txtprod1.Text.Trim.Length = 0 Then
+    '              lblMsjError.Text = "Error: Debe agregar un producto"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
 
-        End Try
+    '          If txtcuotaApp.Text.TrimEnd = 0 And Prima < txtvalorcontApp.Text Then
+    '              lblMsjError.Text = "Error: Cuotas no debe ser cero"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
 
-    End Sub
+    '          If txtcuotaApp.Text.TrimEnd > 0 And Prima = txtvalorcontApp.Text Then
+    '              lblMsjError.Text = "Error: Cuotas no debe ser Cero"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
+
+    '          If txtLetraApp.Text = 0 And Prima < txtvalorcontApp.Text Then
+    '              lblMsjError.Text = "Error: Debe Ingresar numero de letras"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
+
+    '          If (txtLetraApp.Text * txtcuotaApp.Text) > txtvalorcontApp.Text Then
+    '              lblMsjError.Text = "Error: Corregir el Valor o numero de cuota"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
+
+    '          If txtcanti1app.Text = 0 Then
+    '              lblMsjError.Text = "Error: Cantidad debe ser mayor a cero(0)"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
+
+    '          'If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
+    '          '    lblMsjError.Text = "Error: Valor debe ser menor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMaximo"), "#,##0.00") + "'"
+    '          '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '          '    Exit Sub
+    '          'End If
+
+    '          'If txtvalorcontApp.Text.TrimEnd < Datos.Tables(0).Rows(0).Item("PrecioMinimo") Then
+    '          '    lblMsjError.Text = "Error: Valor debe ser Mayor Que '" + Format(Datos.Tables(0).Rows(0).Item("PrecioMinimo"), "#,##0.00") + "'"
+    '          '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '          '    Exit Sub
+    '          'End If
+
+    '          'If txtCodClienteapp.Text.Length = 0 Then
+    '          '    lblMsjError.Text = "Error: Debe Seleccionar un Cliente"
+    '          '    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '          '    Exit Sub
+    '          'End If
+
+
+
+    '          If txtcuotaApp.Text * txtLetraApp.Text > ((txtvalorcontApp.Text * txtcanti1app.Text) - Prima) Then
+    '              lblMsjError.Text = "Error: Verifique el N.Cuotas y Letras"
+    '              lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+    '              Exit Sub
+    '          End If
+
+
+    '          PanelConfirmacion.Visible = True
+    '      Catch ex As Exception
+    '          lblMsjError.Text = "Error: " & ex.Message
+    '          lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+
+    '      End Try
+
+    '  End Sub
     Protected Sub dlempresaArr_TextChanged(sender As Object, e As EventArgs)
         Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
         Dim Sql As String
@@ -1461,14 +1458,17 @@ Public Class monitorventas
             '    lblMsg.ControlStyle.CssClass = "alert alert-danger"
             '    Exit Sub
             'End If
-
+            Dim amount = ""
+            Dim payment = ""
+            Dim billNumber = ""
+            Dim quantity = ""
             Sql = "Exec SP_CONTRATO_LOG '" + txtCodClienteapp.Text.TrimEnd + "'
-            ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + txtvalorcontApp.Text.TrimEnd.TrimStart + "'
+            ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + amount.TrimEnd.TrimStart + "'
             ,'" + Session("Cred") + "'," + Replace(initialPayment, ",", "") + "
-            ,'" + txtLetraApp.Text + "','" + txtcuotaApp.Text + "','" + txtCodVendEV.Text + "'
+            ,'" + billNumber + "','" + payment + "','" + txtCodVendEV.Text + "'
             ,'" + IdProduct + "'
-            ,'" + txtcanti1app.Text + "','','0','0','0','0','0','0'
-            ,'" + txtvalorcontApp.Text + "','0','0','0','S','F','" + CorrectSalesDataClient1.IdentificationText.TrimStart.TrimEnd + "'
+            ,'" + quantity + "','','0','0','0','0','0','0'
+            ,'" + amount + "','0','0','0','S','F','" + CorrectSalesDataClient1.IdentificationText.TrimStart.TrimEnd + "'
             ,'" + Producto + "','','','','W'
             ,'" + lblNameClientapp.InnerText.TrimEnd.TrimStart + "','202208201200','N',NULL,'" + Usuario_Aut + "'"
 
@@ -1489,14 +1489,9 @@ Public Class monitorventas
             Session("IdServicio") = ""
             lblNameClientapp.InnerText = ""
             'txtCobrador.Text = ""
-            txtLetraApp.Text = ""
-            txtvalorcontApp.Text = ""
-            txtcuotaApp.Text = ""
-            txtcanti1app.Text = ""
             txtFecha.Text = ""
             txtCodVendEV.Text = ""
-            txtprod1.Text = ""
-            btnGuardarCamb.Enabled = False
+            'btnGuardarCamb.Enabled = False
             Producto = ""
             IdProduct = ""
             PanelEditarVenta.Visible = False
@@ -1522,9 +1517,6 @@ Public Class monitorventas
 
 
 
-    Private Sub btnCanModalCl_Clik(sender As Object, e As EventArgs) Handles btnCanModalCl.Click
-        PanelEditarVenta.Visible = False
-    End Sub
 
     Private Sub btnCerrarPanelProductosApp_Click(sender As Object, e As EventArgs) Handles btnCerrarPanelProductosApp.Click
         PanelProductosApp.Visible = False
@@ -1535,7 +1527,7 @@ Public Class monitorventas
         AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
     End Sub
     Public Sub valorcontAppTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.enableButton
-        btnGuardarCamb.Enabled = True
+        'btnGuardarCamb.Enabled = True
     End Sub
     Public Sub CorrectContract_ProductTextChanged(sender As Object, e As EventArgs) Handles CorrectSalesDataClient1.ProductTextChanged
         ' Update the GridView
@@ -1560,7 +1552,7 @@ Public Class monitorventas
         gvDetalleProductosContrato.DataSource = Datos.Tables(0)
         gvDetalleProductosContrato.DataBind()
 
-        btnGuardarCamb.Enabled = True
+        'btnGuardarCamb.Enabled = True
     End Sub
 
 

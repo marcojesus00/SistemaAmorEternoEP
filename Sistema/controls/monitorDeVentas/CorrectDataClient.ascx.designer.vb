@@ -147,4 +147,22 @@ Partial Public Class DataClient
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtcanti1app As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnGuardarCamb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnGuardarCamb As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCanModalCl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCanModalCl As Global.System.Web.UI.WebControls.Button
 End Class

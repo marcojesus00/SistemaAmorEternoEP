@@ -179,6 +179,13 @@
 
 
     </div>
+            </div>
+        <%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">
+            <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">
+                <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp
+                <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger" />&nbsp&nbsp
+            </div>
+        </div>
 </div>
 
 

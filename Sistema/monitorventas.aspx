@@ -309,62 +309,66 @@
             <div class="col">
                 <asp:Label ID="lblMsjError" runat="server"></asp:Label>
             </div>
+
+        <asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton>
         </div>
-        <%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">               
-                <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">
-                  <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success"  />&nbsp&nbsp <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger"/>&nbsp&nbsp </div></div><asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton></div><%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
+        <%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
                <asp:Label ID="lblMsjError" runat="server">Prueba del Mensaje</asp:Label>
-           </div>--%></div><%-- Panel de Vendedores --%><div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0" id="PanelVendedoresEditar" runat="server" visible="false">
-               <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">
-                           
-                           <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true"/>
-                       </div>                    
-                   </div>
-                   <div class="row" style="background-color: white">
-                       <div class="col">
-                           <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
-                               <Columns>
-                                   <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
-                               </Columns>
-                           </asp:GridView>
-                       </div>                       
-                   </div>
-               </div>
+           </div>--%></div><%-- Panel de Vendedores --%>
+        <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelVendedoresEditar" runat="server" visible="false">
+            <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
+                <div class="row" style="background-color: white; padding-top: 15px;">
+                    <div class="col">
+
+                        <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true" />
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col">
+                        <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
+                            <Columns>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
                <asp:LinkButton ID="btnCerarPVend" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div><%-- Panel Clientes --%><div class="container-fluid" style="background-color: white; position:absolute; left: 0; top: 0; bottom: 0" id="PanelClientesVE" runat="server" visible="false">
                <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">                           
-                           <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true"   />
-                       </div>                    
+                   <div class="row" style="background-color: white; padding-top: 15px;">
+                       <div class="col">
+                           <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true" />
+                       </div>
                    </div>
                    <div class="row" style="background-color: white">
                        <div class="col">
                            <asp:GridView ID="gvClientesVE" HtmlEnCode="false" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
                                <Columns>
-                                   <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True" ></asp:CommandField>
-                               </Columns>
-                           </asp:GridView>
-                       </div>                       
-                   </div>
-               </div>
-               <asp:LinkButton ID="btnCerrarCliapp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div><%-- Panel Contrato --%><div class="container-fluid" style="background-color: white; position:absolute; left: 0; top: 0; bottom: 0" id="PanelProductosApp" runat="server" visible="false">
-               <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">                           
-                           <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine"   />
-                       </div>                    
-                   </div>
-                   <div class="row" style="background-color: white">
-                       <div class="col">
-                           <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
-                               <Columns>
                                    <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
                                </Columns>
                            </asp:GridView>
-                       </div>                       
+                       </div>
                    </div>
+               </div>
+                   <asp:LinkButton ID="btnCerrarCliapp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton>
+               </div>
+        <%-- Panel Contrato --%>
+        <div class="container-fluid" style="background-color: white; position: absolute; left: 0; top: 0; bottom: 0" id="PanelProductosApp" runat="server" visible="false">
+            <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
+                <div class="row" style="background-color: white; padding-top: 15px;">
+                    <div class="col">
+                        <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" />
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col">
+                        <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
+                            <Columns>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
                </div>
                <asp:LinkButton ID="btnCerrarPanelProductosApp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div>
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0" id="PanelConfirmacion" runat="server" visible="false">

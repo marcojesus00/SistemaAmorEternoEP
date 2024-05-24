@@ -419,24 +419,6 @@ Partial Public Class monitorventas
     Protected WithEvents lblMsjError As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnGuardarCamb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnGuardarCamb As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCanModalCl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCanModalCl As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''btnCancelarC control.
     '''</summary>
     '''<remarks>
