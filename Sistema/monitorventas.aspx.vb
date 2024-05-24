@@ -1103,7 +1103,7 @@ Public Class monitorventas
 
         SqlZona = $"Select  "
 
-
+        'Esto hace que el nombre y el codigo del cliente no se cambie si se escoge otro, para que sirve?
         If txtCodClienteapp.Text.Length = 0 Or lblNameClientapp.InnerText = "" Then
             txtCodClienteapp.Text = gvClientesVE.Rows(Fila).Cells(1).Text
             lblNameClientapp.InnerText = gvClientesVE.Rows(Fila).Cells(2).Text
