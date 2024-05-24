@@ -41,15 +41,6 @@ Partial Public Class DataClient
     Protected WithEvents TextBoxPhone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TxtPrimaApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtPrimaApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''dlDeptoCliente control.
     '''</summary>
     '''<remarks>
@@ -66,6 +57,15 @@ Partial Public Class DataClient
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlCiudadCliente As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TxtPrimaApp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtPrimaApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtdir1Cliapp control.

@@ -285,12 +285,19 @@
                     <div class="col-6" id="divClientes" style="background-color: azure">
                         <div>
                             <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 100%; background-color:#726e6e; color:aliceblue">Datos Del Cliente</label> </div></div></div><div class="col-6">
+                                <label class="input-group-text" style="width: 100%; background-color: #726e6e; color: aliceblue">Datos Del Cliente</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" style="width: 100%; background-color:#726e6e;color:aliceblue">Datos del Plan Adquirido</label> </div></div>
+                            <label class="input-group-text" style="width: 100%; background-color: #726e6e; color: aliceblue">Datos del Plan Adquirido</label>
+                        </div>
+                    </div>
 
-                </div><%-- Identidad --%>
-                
+                </div>
+                <%-- Identidad --%>
+
                 <div class="row" style="background-color: white">
                     <div class="col-6">
                         <div class="input-group input-group-sm">
