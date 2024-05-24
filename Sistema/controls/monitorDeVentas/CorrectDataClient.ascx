@@ -104,7 +104,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card text-bg-light  border-dark">
+            <div class="card text-bg-light mb-6 border-dark">
                 <div class="card-header">
                     Datos del plan adquirido
                 </div>
@@ -174,19 +174,28 @@
 
                 </div>
             </div>
+            <hr class="p-2" />
+
+            <div class="row justify-content-end pt-5 pr-1">
+                <div class="col-auto">
+                    <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success" />
+                </div>
+                <div class="col-auto">
+                    <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger" />
+
+                </div>
+
+            </div>
         </div>
-
-
-
     </div>
-            </div>
-        <%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">
-            <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">
-                <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp
-                <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger" />&nbsp&nbsp
-            </div>
-        </div>
 </div>
+
+
+</div>
+
+
+</div>
+
 
 
 <script type="text/javascript">
