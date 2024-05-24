@@ -1116,13 +1116,13 @@ Public Class monitorventas
         dlempresaArr.Items.Add("" + gvClientesVE.Rows(Fila).Cells(6).Text + "")
         initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
         Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text.TrimEnd
-        txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
-        txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
+        'txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
+        'txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
         'txtcodigoprod1.Text = gvClientesVE.Rows(Fila).Cells(15).Text
-        txtprod1.Text = gvClientesVE.Rows(Fila).Cells(16).Text
-        txtcuotaApp.Text = gvClientesVE.Rows(Fila).Cells(17).Text
-        txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
-        txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
+        'txtprod1.Text = gvClientesVE.Rows(Fila).Cells(16).Text
+        'txtcuotaApp.Text = gvClientesVE.Rows(Fila).Cells(17).Text
+        'txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
+        'txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
         Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text.TrimEnd
         Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text.TrimEnd
 
