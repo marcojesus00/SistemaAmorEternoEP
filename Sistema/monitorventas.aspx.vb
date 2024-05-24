@@ -119,6 +119,8 @@ Public Class monitorventas
 
         '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
         AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
+        AddHandler DataContractSendEvent, AddressOf CorrectSalesDataClient1.OnContractDataReceived
+
         AddHandler CorrectSalesDataClient1.AlertGenerated, AddressOf HandleAlertGenerated
         AddHandler CorrectSalesDataClient1.ProductTextChanged, AddressOf CorrectContract_ProductTextChanged
         AddHandler CorrectSalesDataClient1.enableButton, AddressOf CorrectContract_ProductTextChanged
@@ -127,6 +129,7 @@ Public Class monitorventas
     End Sub
 
     Public Event DataSendEvent As EventHandler(Of ClientDataReceivedEventArgs)
+    Public Event DataContractSendEvent As EventHandler(Of ContractDataReceivedEventArgs)
 
 
 
@@ -1116,16 +1119,14 @@ Public Class monitorventas
         dlempresaArr.Items.Add("" + gvClientesVE.Rows(Fila).Cells(6).Text + "")
         initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
         Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text.TrimEnd
-        'txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
-        'txtcanti1app.Text = gvClientesVE.Rows(Fila).Cells(14).Text
-        'txtcodigoprod1.Text = gvClientesVE.Rows(Fila).Cells(15).Text
-        'txtprod1.Text = gvClientesVE.Rows(Fila).Cells(16).Text
-        'txtcuotaApp.Text = gvClientesVE.Rows(Fila).Cells(17).Text
-        'txtvalorcontApp.Text = gvClientesVE.Rows(Fila).Cells(13).Text
-        'txtLetraApp.Text = gvClientesVE.Rows(Fila).Cells(12).Text
         Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text.TrimEnd
         Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text.TrimEnd
-
+        Dim serviceId = gvClientesVE.Rows(Fila).Cells(15).Text
+        Dim serviceName = gvClientesVE.Rows(Fila).Cells(16).Text
+        Dim quantity = gvClientesVE.Rows(Fila).Cells(14).Text
+        Dim payment = gvClientesVE.Rows(Fila).Cells(17).Text
+        Dim totalAmount = gvClientesVE.Rows(Fila).Cells(13).Text
+        Dim billNumber = gvClientesVE.Rows(Fila).Cells(12).Text
         'txtcuotaApp.Text =
         Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 
@@ -1139,6 +1140,7 @@ Public Class monitorventas
         dlempresaArr.DataValueField = "Empresa"
         dlempresaArr.DataBind()
         RaiseEvent DataSendEvent(Me, New ClientDataReceivedEventArgs(clientId, salesPersonId, identificationDocument, phoneNumberOne, phoneNumberTwo, initialPayment))
+        RaiseEvent DataContractSendEvent(Me, New ContractDataReceivedEventArgs(serviceId, serviceName, quantity, payment, totalAmount, billNumber))
 
         PanelClientesVE.Visible = False
 
@@ -1200,37 +1202,37 @@ Public Class monitorventas
         btnGuardarCamb.Enabled = True
 
     End Sub
-    Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
-        Dim Letra, Cuota As Integer
-        Try
-            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And initialPayment.Length > 0 Then
+    'Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
+    '    Dim Letra, Cuota As Integer
+    '    Try
+    '        If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And initialPayment.Length > 0 Then
 
-                If initialPayment = txtvalorcontApp.Text Then
-                    Cuota = 0
-                    Letra = 0
-                Else
-                    If txtvalorcontApp.Text > 0 And initialPayment > 0 And txtcuotaApp.Text > 0 Then
-                        Letra = (txtvalorcontApp.Text - initialPayment) / txtcuotaApp.Text
-                        Cuota = txtcuotaApp.Text
-                    End If
+    '            If initialPayment = txtvalorcontApp.Text Then
+    '                Cuota = 0
+    '                Letra = 0
+    '            Else
+    '                If txtvalorcontApp.Text > 0 And initialPayment > 0 And txtcuotaApp.Text > 0 Then
+    '                    Letra = (txtvalorcontApp.Text - initialPayment) / txtcuotaApp.Text
+    '                    Cuota = txtcuotaApp.Text
+    '                End If
 
-                End If
-                txtLetraApp.Text = Letra
-                txtcuotaApp.Text = Cuota
-
-
-                btnGuardarCamb.Enabled = True
-
-            End If
-
-        Catch ex As Exception
-            lblMsjError.Text = "Error: " & ex.Message
-            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-
-        End Try
+    '            End If
+    '            txtLetraApp.Text = Letra
+    '            txtcuotaApp.Text = Cuota
 
 
-    End Sub
+    '            btnGuardarCamb.Enabled = True
+
+    '        End If
+
+    '    Catch ex As Exception
+    '        lblMsjError.Text = "Error: " & ex.Message
+    '        lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+
+    '    End Try
+
+
+    'End Sub
 
     'Private Sub BtnGuardarSi_Click(sender As Object, e As EventArgs) Handles BtnGuardarSi.Click
     '    PanelClientesVE.Visible = False

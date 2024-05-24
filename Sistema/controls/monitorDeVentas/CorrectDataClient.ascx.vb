@@ -40,7 +40,6 @@ Public Class DataClient
 
 
     End Sub
-    'Public Event DataClientReceived As EventHandler(Of ClientDataReceivedEventArgs)
     Public Sub OnDataReceived(ByVal sender As Object, ByVal e As ClientDataReceivedEventArgs)
         Try
 
@@ -67,6 +66,32 @@ Public Class DataClient
                 dlCiudadCliente.DataTextField = _clientData.Municipio
                 dlCiudadCliente.SelectedValue = deptoCiudadQuery.MunicipioId
                 txtdir1Cliapp.Text = _clientData.Direccion
+
+            End Using
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error" & ex.Message, "danger"))
+
+        End Try
+
+
+    End Sub
+    Public Sub OnContractDataReceived(ByVal sender As Object, ByVal e As ContractDataReceivedEventArgs)
+        Try
+
+            Using dbcontext As New AeVentasDbContext
+
+
+                '_clientData = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                'Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
+                '                      .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(_clientData.Municipio)).FirstOrDefault()
+                'Dim department = dbcontext.MunicipiosZonasDepartamentos _
+                '.Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(_clientData.Departamento)) _
+                '.FirstOrDefault()
+                txtprod1.Text = e.ServiceName
+                txtcuotaApp.Text = e.Payment
+                txtLetraApp.Text = e.BillNumber
+                txtvalorcontApp.Text = e.TotalAmount
+                txtcanti1app.Text = e.Quantity
 
             End Using
         Catch ex As Exception
@@ -309,6 +334,27 @@ Public Class ClientDataReceivedEventArgs
         Me.InitialPayment = initialPayment
         Me.ClientId = ClientId
         Me.SalesPersonId = salesPersonId
+    End Sub
+
+End Class
+
+Public Class ContractDataReceivedEventArgs
+    Inherits EventArgs
+
+    Public Property ServiceId As String
+    Public Property ServiceName As String
+    Public Property Quantity As String
+    Public Property Payment As String
+    Public Property TotalAmount As String
+    Public Property BillNumber As String
+
+    Public Sub New(serviceId As String, serviceName As String, quantity As String, payment As String, totalAmount As String, billNumber As String)
+        Me.ServiceId = serviceId
+        Me.ServiceName = serviceName
+        Me.Quantity = quantity
+        Me.Payment = payment
+        Me.TotalAmount = totalAmount
+        Me.BillNumber = billNumber
     End Sub
 
 End Class
