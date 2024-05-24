@@ -140,9 +140,9 @@ Public Class DataClient
         Try
 
             Dim newDataClient As DatosDeCliente = _clientData
-            newDataClient.Identidad = txtidentiCliapp.Text.Trim
-            newDataClient.Celular = TextBoxCelular.Text.Trim
-            newDataClient.Telefono = TextBoxPhone.Text.Trim
+            newDataClient.Identidad = txtidentiCliapp.Text.Replace("-", String.Empty).Trim
+            newDataClient.Celular = TextBoxCelular.Text.Replace("-", String.Empty).Trim
+            newDataClient.Telefono = TextBoxPhone.Text.Replace("-", String.Empty).Trim
             newDataClient.Departamento = dlDeptoCliente.DataTextField.Trim
             newDataClient.Municipio = dlCiudadCliente.DataTextField.Trim
             newDataClient.Direccion = txtdir1Cliapp.Text.Trim

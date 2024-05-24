@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="CorrectDataClient.ascx.vb" Inherits="Sistema.DataClient" %>
 
+<script src="helpers\js\textFormatting.js">
 
+</script>
 
 <div class="container container-fluid ">
     <div class=" align-content-start ">
@@ -16,7 +18,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width: 100px">Identidad</label>
                                 </div>
-                                <asp:TextBox ID="txtidentiCliapp" runat="server" CssClass="form-control form-control-sm" placeholder="100319830001" TextMode="SingleLine" />
+                                <asp:TextBox ID="txtidentiCliapp" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="100319830001" TextMode="SingleLine" />
 
                             </div>
                         </div>
@@ -26,7 +28,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width: 100px">Celular</label>
                                 </div>
-                                <asp:TextBox ID="TextBoxCelular" runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
+                                <asp:TextBox ID="TextBoxCelular" onkeypress="formatNumbersWithDashesKeyPress(event, this)"  runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,7 +36,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width: 100px">Teléfono</label>
                                 </div>
-                                <asp:TextBox ID="TextBoxPhone" runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
+                                <asp:TextBox ID="TextBoxPhone" onkeypress="formatNumbersWithDashesKeyPress(event, this)"  runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
                             </div>
                         </div>
 
@@ -98,4 +100,8 @@
 </div>
 
 
-
+<script type="text/javascript">
+    function formatIDKeyPress(event, textbox) {
+        formatNumbersWithDashesKeyPress(event,textbox)
+    }
+</script>

@@ -282,13 +282,7 @@
                        <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
 
                 <div class="row" style="background-color: white">
-                    <div class="col-6" id="divClientes" style="background-color: azure">
-                        <div>
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 100%; background-color: #726e6e; color: aliceblue">Datos Del Cliente</label>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-6">
                         <div class="input-group-prepend">
                             <label class="input-group-text" style="width: 100%; background-color: #726e6e; color: aliceblue">Datos del Plan Adquirido</label>
@@ -316,7 +310,11 @@
                                     <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><%--         <div class="col">
 
                                 <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" />
-                       </div> --%></div><%-- Telefono --%><div class="row" style="background-color: white">
+                       </div> --%></div><%-- Telefono --%><div class="row" style="background-color: white
+
+
+
+
                     <div class="col-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
