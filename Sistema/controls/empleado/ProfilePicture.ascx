@@ -8,13 +8,11 @@
         var linkButton = document.getElementById('<%= PreviewButton0.ClientID %>');
         var fileInput = document.getElementById('<%= File1.ClientID %>');
         var lbl = document.getElementById('<%= lblUploadMessage.ClientID %>');
-        console.log(" initi")
 
         if (fileInput.files.length === 0) {
             linkButton.disabled = true;
             linkButton.classList.add('btn', 'btn-secondary');
             lbl.style.color = "red"
-            console.log(" length === 0")
 
         } else {
             linkButton.disabled = false;
@@ -22,13 +20,11 @@
             lbl.style.color = "white"
 
             linkButton.classList.add('btn', 'btn-primary');
-            console.log(" length > 0")
 
         }
     }
 
     function handleChange(input) {
-        console.log(" file chasnge")
 
         validateFileSize(input, 10);
         handleVal();
@@ -106,12 +102,10 @@
     function showModal() {
         var myModal2 = new bootstrap.Modal(document.getElementById('ChangeProfilePictureModal'));
         if (myModal2) {
-            //console.log('modal 2: ', myModal2);
             myModal2.show();
 
         }
         else {
-            //console.log('no modal 2');
 
 
         }
