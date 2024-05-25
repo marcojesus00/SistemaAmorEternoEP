@@ -1,4 +1,4 @@
-﻿Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
 Imports System.Data.SqlClient
 Imports System.IO
 
@@ -46,7 +46,7 @@ Public Class FileManager
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = MyGridView.Rows(rowIndex)
                 Dim documentName As String = row.Cells(2).Text
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorDbContext
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     Dim documentPath = record.Ruta
@@ -65,13 +65,13 @@ Public Class FileManager
         End If
         If e.CommandName = "RestoreFile" Then
             Try
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorDbContext
                     Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     recordToUpdate.Archivado = False
                     dbContext.SaveChanges()
-                    BindGridView(True)
+                    BindGridView()
 
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archvo restaurado", "success"))
 
@@ -94,7 +94,7 @@ Public Class FileManager
         Try
 
             Dim documentId As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Value)
-            Using dbcontext As New MyDbContext()
+            Using dbcontext As New FunamorDbContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
                 Dim relativePath As String = document.Ruta
@@ -148,7 +148,7 @@ Public Class FileManager
     End Sub
     Private Function DeleteRecordFromDatabase(documentId As String)
         Try
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorDbContext()
                 Dim recordsToDelete = dbContext.DocumentosDeEmpleados.Where(Function(f) f.Id = documentId)
                 dbContext.DocumentosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
@@ -164,14 +164,19 @@ Public Class FileManager
     End Function
 
 
-    Private Sub BindGridView(Optional areArchived As Boolean = False)
+    Private Sub BindGridView()
 
 
         Try
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(areArchived, numeroDeEmpleado)
+                Dim selectedValue As String = ddlAreArchived.SelectedValue
+                Dim isArchived As Boolean = False
+                If selectedValue = "True" Then
+                    isArchived = True
+                End If
+                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -200,7 +205,7 @@ Public Class FileManager
 
     End Sub
     Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer) As List(Of DocumentoDeEmpleado)
-        Using dbContext As New MyDbContext
+        Using dbContext As New FunamorDbContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
             Return data.ToList()
@@ -263,7 +268,7 @@ Public Class FileManager
                             Exit Sub
                         Else
                             File1.PostedFile.SaveAs(fileAbsolutePath)
-                            Using dbContext As New MyDbContext
+                            Using dbContext As New FunamorDbContext
                                 Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
@@ -364,12 +369,8 @@ Public Class FileManager
 
     End Sub
     Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
-        Dim selectedValue As String = ddlAreArchived.SelectedValue
-        Dim isArchived As Boolean = False
-        If ddlAreArchived.SelectedValue = "True" Then
-            isArchived = True
-        End If
-        BindGridView(isArchived)
+
+        BindGridView()
     End Sub
 
     Protected Sub MyGridView_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
