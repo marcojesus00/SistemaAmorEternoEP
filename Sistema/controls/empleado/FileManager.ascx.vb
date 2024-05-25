@@ -1,4 +1,4 @@
-﻿Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
 Imports System.Data.SqlClient
 Imports System.IO
 
@@ -71,7 +71,7 @@ Public Class FileManager
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     recordToUpdate.Archivado = False
                     dbContext.SaveChanges()
-                    BindGridView(True)
+                    BindGridView()
 
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs("Archvo restaurado", "success"))
 
@@ -164,14 +164,19 @@ Public Class FileManager
     End Function
 
 
-    Private Sub BindGridView(Optional areArchived As Boolean = False)
+    Private Sub BindGridView()
 
 
         Try
 
             If Session("Codigo_Empleado") Then
                 numeroDeEmpleado = Session("Codigo_Empleado")
-                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(areArchived, numeroDeEmpleado)
+                Dim selectedValue As String = ddlAreArchived.SelectedValue
+                Dim isArchived As Boolean = False
+                If selectedValue = "True" Then
+                    isArchived = True
+                End If
+                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -277,6 +282,7 @@ Public Class FileManager
                             End Using
                             Dim msg As String = "Carga exitosa"
                             Dim alertType As String = "success"
+                            TextBoxDescription.Text = ""
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             BindGridView()
                         End If
@@ -364,12 +370,8 @@ Public Class FileManager
 
     End Sub
     Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
-        Dim selectedValue As String = ddlAreArchived.SelectedValue
-        Dim isArchived As Boolean = False
-        If ddlAreArchived.SelectedValue = "True" Then
-            isArchived = True
-        End If
-        BindGridView(isArchived)
+
+        BindGridView()
     End Sub
 
     Protected Sub MyGridView_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
