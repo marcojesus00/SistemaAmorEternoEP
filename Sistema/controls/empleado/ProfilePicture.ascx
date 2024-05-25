@@ -30,8 +30,9 @@
     function handleChange(input) {
         console.log(" file chasnge")
 
-        handleVal();
         validateFileSize(input, 10);
+        handleVal();
+
     }
 </script>
 
