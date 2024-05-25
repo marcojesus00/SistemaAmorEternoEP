@@ -227,7 +227,6 @@
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
-    <Content Include="controls\monitorDeVentas\CorrectContract.ascx" />
     <Content Include="controls\monitorDeVentas\CorrectDataClient.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
@@ -2259,13 +2258,6 @@
     </Compile>
     <Compile Include="controls\empleado\ProfilePicture.ascx.vb">
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\monitorDeVentas\CorrectContract.ascx.designer.vb">
-      <DependentUpon>CorrectContract.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\monitorDeVentas\CorrectContract.ascx.vb">
-      <DependentUpon>CorrectContract.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.designer.vb">
