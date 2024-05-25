@@ -178,7 +178,6 @@
                                 </asp:TableRow>
                             </asp:Table>
                         </div>
-                        <asp:ImageButton Style="padding-top: 10px; position: absolute; top: 10px; right: 30px;" ID="btnSalir" ToolTip="Cancelar" runat="server" Height="28px" ImageUrl="~/imagenes/cancelar.png" />
 
                         <script src="js/JQuery.js"></script>
                         <p>
