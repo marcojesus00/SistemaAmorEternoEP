@@ -279,6 +279,8 @@ Public Class ProfilePicture
             UploadFile.Visible = False
             CancelUpload.Visible = False
             FileHelper.DeleteFile(Session("fileTempAbsolutePath").ToString)
+            BindCard(employeeId)
+
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("" & ex.Message, "danger"))
         End Try
