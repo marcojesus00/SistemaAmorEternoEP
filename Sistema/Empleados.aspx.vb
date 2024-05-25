@@ -1,9 +1,4 @@
-﻿Imports CrystalDecisions.Shared
-Imports System.IO
-Imports System.Drawing
-Imports System.Data.SqlClient
-Imports System.Web.Services
-Imports System.Web.Script.Services
+﻿Imports System.Data.SqlClient
 
 Public Class Empleados
     Inherits System.Web.UI.Page
@@ -28,6 +23,8 @@ Public Class Empleados
                 txtNombre.Text = Session("Nombre")
                 txtIdentidad.Text = Session("identidad")
             End If
+            Session("tabSelected") = "ProfilePicturaTab"
+
         End If
 
         Session.Timeout = 90
@@ -152,6 +149,7 @@ Public Class Empleados
     Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles btnActualizar.Click
         Dim conf As New Configuracion(Usuario, Clave, "PRUEBA", Servidor)
         Dim Sql As String
+        Session("tabSelected") = "DataTab"
 
         If String.IsNullOrEmpty(txtNombre.Text.ToString) Then
             Msg("Debe ingresar Nombre Empleado")

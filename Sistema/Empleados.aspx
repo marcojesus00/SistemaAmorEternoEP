@@ -30,7 +30,7 @@
                             Información general
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse <%= If(Session("tabSelected") = "ProfilePicturaTab", "collapse show", "collapse") %>"  data-bs-parent="#accordionExample">
                         <div class="accordion-body">
 
                        <uc:ProfilePicture class="w-100 " ID="ProfilePicture1" runat="server" />
@@ -50,7 +50,7 @@
                         Datos de empleado
                     </button>
                 </h2>
-                <div id="collapseTwo" class='<% If anEmployeeIsSelected Then Response.Write("accordion-collapse collapse ") Else Response.Write("accordion-collapse collapse show") %>' data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class='<% If (anEmployeeIsSelected Or Session("tabSelected") = "DataTab") Then Response.Write("accordion-collapse collapse ") Else Response.Write("accordion-collapse collapse show") %>' data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="container-fluid" style="padding-top: 5px;">
                             <section class="text-left;">
@@ -199,7 +199,7 @@
                             Documentos
                         </button>
                     </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="collapseThree" class="accordion-collapse <%= If(Session("tabSelected") = "DocsTab", "collapse show", "collapse") %>"  data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="container-fluid w-100">
                                 <div class="row">

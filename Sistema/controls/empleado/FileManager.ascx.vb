@@ -37,6 +37,7 @@ Public Class FileManager
         ddlAreArchived.Items.Add(New ListItem("Documentos archivados", "True"))
     End Sub
     Protected Sub MyGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
+        Session("tabSelected") = "DocsTab"
 
         If e.CommandName = "DownloadFile" Then
 
@@ -46,7 +47,7 @@ Public Class FileManager
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = MyGridView.Rows(rowIndex)
                 Dim documentName As String = row.Cells(2).Text
-                Using dbContext As New FunamorDbContext
+                Using dbContext As New MyDbContext
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     Dim documentPath = record.Ruta
@@ -65,7 +66,7 @@ Public Class FileManager
         End If
         If e.CommandName = "RestoreFile" Then
             Try
-                Using dbContext As New FunamorDbContext
+                Using dbContext As New MyDbContext
                     Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
@@ -92,9 +93,10 @@ Public Class FileManager
     Protected Sub MyGridView_RowDeleting(ByVal sender As Object, ByVal e As GridViewDeleteEventArgs) Handles MyGridView.RowDeleting
 
         Try
+            Session("tabSelected") = "DocsTab"
 
             Dim documentId As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Value)
-            Using dbcontext As New FunamorDbContext()
+            Using dbcontext As New MyDbContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
                 Dim relativePath As String = document.Ruta
@@ -148,7 +150,7 @@ Public Class FileManager
     End Sub
     Private Function DeleteRecordFromDatabase(documentId As String)
         Try
-            Using dbContext As New FunamorDbContext()
+            Using dbContext As New MyDbContext()
                 Dim recordsToDelete = dbContext.DocumentosDeEmpleados.Where(Function(f) f.Id = documentId)
                 dbContext.DocumentosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
@@ -205,7 +207,7 @@ Public Class FileManager
 
     End Sub
     Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer) As List(Of DocumentoDeEmpleado)
-        Using dbContext As New FunamorDbContext
+        Using dbContext As New MyDbContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
             Return data.ToList()
@@ -213,6 +215,7 @@ Public Class FileManager
     End Function
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
+        Session("tabSelected") = "DocsTab"
 
         Try
 
@@ -268,7 +271,7 @@ Public Class FileManager
                             Exit Sub
                         Else
                             File1.PostedFile.SaveAs(fileAbsolutePath)
-                            Using dbContext As New FunamorDbContext
+                            Using dbContext As New MyDbContext
                                 Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
@@ -370,12 +373,14 @@ Public Class FileManager
 
     End Sub
     Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
+        Session("tabSelected") = "DocsTab"
 
         BindGridView()
     End Sub
 
     Protected Sub MyGridView_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
         MyGridView.PageIndex = e.NewPageIndex
+        Session("tabSelected") = "DocsTab"
 
     End Sub
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)

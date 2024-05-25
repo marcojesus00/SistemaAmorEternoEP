@@ -38,6 +38,7 @@ Public Class ProfilePicture
                 dbContext.FotosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
             End Using
+            Session("tabSelected") = "ProfilePicturaTab"
 
         Catch ex As SqlException
             Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
@@ -60,6 +61,7 @@ Public Class ProfilePicture
                 dbContext.FotosDeEmpleados.Add(newProfilePicture)
                 dbContext.SaveChanges()
             End Using
+            Session("tabSelected") = "ProfilePicturaTab"
 
         Catch ex As SqlException
             Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
@@ -142,6 +144,7 @@ Public Class ProfilePicture
         Session("fileTempRelativePath") = fileTempRelativePath
 
         Try
+            Session("tabSelected") = "ProfilePicturaTab"
 
             msg = "Por favor seleccione un documento."
             alertType = "danger"
@@ -263,6 +266,7 @@ Public Class ProfilePicture
             Else
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs("Por favor seleccione un archivo para subir.", "danger"))
             End If
+            Session("tabSelected") = "ProfilePicturaTab"
 
 
         Catch ex As Exception
@@ -279,6 +283,8 @@ Public Class ProfilePicture
             UploadFile.Visible = False
             CancelUpload.Visible = False
             FileHelper.DeleteFile(Session("fileTempAbsolutePath").ToString)
+            Session("tabSelected") = "ProfilePicturaTab"
+
             BindCard(employeeId)
 
         Catch ex As Exception
