@@ -282,6 +282,7 @@ Public Class FileManager
                             End Using
                             Dim msg As String = "Carga exitosa"
                             Dim alertType As String = "success"
+                            TextBoxDescription.Text = ""
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
                             BindGridView()
                         End If
