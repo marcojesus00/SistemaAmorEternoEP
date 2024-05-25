@@ -26,7 +26,10 @@
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button  class='<% If Session("tabSelected") = "ProfilePicturaTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button collapsed") %>'
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+                        aria-expanded='<% If Session("tabSelected") = "ProfilePicturaTab" Then Response.Write("true") Else Response.Write("false") %>'
+                            aria-controls="collapseOne">
                             Información general
                         </button>
                     </h2>
@@ -45,12 +48,14 @@
             <div class="accordion-item">
 
                 <h2 class="accordion-header">
-                    <button class='<% If anEmployeeIsSelected Then Response.Write("accordion-button collapsed") Else Response.Write("accordion-button") %>'
-                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded='<% If anEmployeeIsSelected Then Response.Write("false") Else Response.Write("true") %>' aria-controls="collapseTwo">
+                    <button class='<% If Session("tabSelected") = "DataTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button collapsed") %>'
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
+                        aria-expanded='<% If Session("tabSelected") = "DataTab" Then Response.Write("true") Else Response.Write("false") %>'
+                        aria-controls="collapseTwo">
                         Datos de empleado
                     </button>
                 </h2>
-                <div id="collapseTwo" class='<% If (anEmployeeIsSelected Or Session("tabSelected") = "DataTab") Then Response.Write("accordion-collapse collapse ") Else Response.Write("accordion-collapse collapse show") %>' data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class='<% If Session("tabSelected") = "DataTab" Then Response.Write("accordion-collapse collapse show") Else Response.Write("accordion-collapse collapse") %>' data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="container-fluid" style="padding-top: 5px;">
                             <section class="text-left;">
@@ -194,7 +199,10 @@
                 <div class="accordion-item">
 
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class='<% If Session("tabSelected") = "DocsTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button  collapsed") %>'
+                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" 
+                        aria-expanded='<% If Session("tabSelected") = "DocsTab" Then Response.Write("true") Else Response.Write("false") %>'
+                        aria-controls="collapseThree">
                             Documentos
                         </button>
                     </h2>
