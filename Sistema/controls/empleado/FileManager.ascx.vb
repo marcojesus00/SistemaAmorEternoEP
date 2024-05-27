@@ -8,6 +8,7 @@ Public Class FileManager
     Dim queryDelete As String
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
+    Dim networkPath As String = ConfigurationManager.AppSettings("NetworkPath")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
@@ -105,7 +106,7 @@ Public Class FileManager
                 Dim targetTimeZoneOffset As Integer = -6
                 Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
                 Dim time24HoursLater As DateTime = creationDate.AddHours(24)
-                Dim filePath As String = Server.MapPath(relativePath)
+                Dim filePath As String = Path.Combine(networkPath, relativePath)
                 If utcTime > time24HoursLater Then
                     Try
                         document.Archivado = True
@@ -224,7 +225,7 @@ Public Class FileManager
                 Dim fileSize As Long = File1.PostedFile.ContentLength
                 Dim numeroDeEmpleado As String
                 Dim directoryRelativePath As String = "Subidos/Empleados/Documentos/"
-                Dim directoryAbsolutePath As String = Server.MapPath(directoryRelativePath)
+                Dim directoryAbsolutePath As String = Path.Combine(networkPath, directoryRelativePath)
 
                 If Not Directory.Exists(directoryAbsolutePath) Then
                     Directory.CreateDirectory(directoryAbsolutePath)

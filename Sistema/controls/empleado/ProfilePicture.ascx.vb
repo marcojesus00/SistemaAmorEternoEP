@@ -8,6 +8,8 @@ Public Class ProfilePicture
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
     Dim noProfilePictureRelativePath = "imagenes/no_profile_picture.png"
+    Dim networkPath As String = ConfigurationManager.AppSettings("NetworkPath")
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
 
@@ -108,7 +110,7 @@ Public Class ProfilePicture
 
             If employeeIsSelected Then
                 dbPath = RetrievePathFromDatabase(employeeId)
-                Dim fileExists As Boolean = FileHelper.CheckFileExists(Server.MapPath(dbPath))
+                Dim fileExists As Boolean = FileHelper.CheckFileExists(Path.Combine(networkPath, dbPath))
 
                 If dbPath.Length > 0 And fileExists Then
                     imgProfile.ImageUrl = "~/" & dbPath
@@ -133,7 +135,7 @@ Public Class ProfilePicture
         Dim alertType As String
         Dim fileSize As Long = File1.PostedFile.ContentLength
         Dim directoryTempRelativePath As String = "Subidos/Empleados/Temp/"
-        Dim directoryTempAbsolutePath As String = Server.MapPath(directoryTempRelativePath)
+        Dim directoryTempAbsolutePath As String = Path.Combine(networkPath, directoryTempRelativePath)
         Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
         Dim newFileName = employeeId & fileExtension
         Dim fileTempRelativePath = directoryTempRelativePath & newFileName
@@ -217,7 +219,7 @@ Public Class ProfilePicture
 
                 If Session("UploadedFileContentLength").ToString().Length > 0 Then
                     Dim relativeDirectoryPath As String = "Subidos/Empleados/FotosDePerfil/"
-                    Dim directoryAbsolutePath As String = MyBase.Server.MapPath(relativeDirectoryPath)
+                    Dim directoryAbsolutePath As String = Path.Combine(networkPath, relativeDirectoryPath)
                     Dim fileTempAbsolutePath = Session("fileTempAbsolutePath")
                     Dim newFileName = Path.GetFileName(fileTempAbsolutePath)
                     Dim fileRelativePath As String = Path.Combine(relativeDirectoryPath, newFileName)
@@ -233,13 +235,13 @@ Public Class ProfilePicture
                                 If Session("currentDBPath") IsNot Nothing Then
                                     priorFileRelativePath = Session("currentDBPath").ToString()
                                     If Path.GetFileName(priorFileRelativePath) <> newFileName Then
-                                        FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
+                                        FileHelper.DeleteFile(Path.Combine(networkPath, priorFileRelativePath))
                                     End If
                                 End If
 
                             End If
 
-                            If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
+                            If FileHelper.CheckFileExists(Path.Combine(networkPath, fileRelativePath)) Then
                                 msg = "Carga exitosa"
                                 alertType = "success"
                                 BindCard(employeeId)
