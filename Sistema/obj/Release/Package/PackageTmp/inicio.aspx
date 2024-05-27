@@ -4,25 +4,37 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Grupo Amor Eterno</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <%--<meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>--%>    
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
+    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" type="text/css" href="~/css/inicio.css"/> 
 </head>
 <body>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>    
     <form id="form1" runat="server">
+        <asp:Panel runat="server" HorizontalAlign="Center">
         <div>
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/imagenes/LOGO.bmp" />
+            <img  alt="Imagen" width="220" src="imagenes/LogoActual.jpg"/>            
+            <%--<h1>Grupo Amor Eterno</h1>--%>
         </div>
         
-        <div>
-             <asp:Table ID="Table1" runat="server" Width="279px" HorizontalAlign="Center">                
-                <asp:TableRow runat="server"><asp:TableCell runat="server" HorizontalAlign="Left">Usuario:</asp:TableCell><asp:TableCell runat="server" HorizontalAlign="Left"><asp:TextBox ID="txtUsuario" runat="server"/></asp:TableCell></asp:TableRow>
-                <asp:TableRow runat="server"><asp:TableCell runat="server" HorizontalAlign="Left">Clave:</asp:TableCell><asp:TableCell runat="server" HorizontalAlign="Left"><asp:TextBox ID="txtPassword" TextMode="Password" runat="server"/></asp:TableCell></asp:TableRow>
-                <asp:TableRow runat="server"><asp:TableCell runat="server" HorizontalAlign="Left">Compañia:</asp:TableCell><asp:TableCell runat="server" HorizontalAlign="Left"><asp:DropDownList ID="dlCompania" runat="server"></asp:DropDownList></asp:TableCell></asp:TableRow>
-                <asp:TableRow runat="server"><asp:TableCell runat="server"></asp:TableCell><asp:TableCell runat="server" HorizontalAlign="Left"><asp:Button OnClick="Button1_Click" ID="Button" runat="server" Text="Iniciar" /></asp:TableCell></asp:TableRow>           
-            </asp:Table>
-
-        </div>
-    </form>
-</body>
-</html>
+        <div class="login">
+             <asp:Table ID="Table1" runat="server" Width="100%" HorizontalAlign="Center">                
+                <asp:TableRow runat="server" >                
+                    <asp:TableCell runat="server">
+                        <asp:TextBox ID="txtUsuario" CssClass="TextBox" runat="server" placeholder=" Usuario" />
+                    </asp:TableCell></asp:TableRow><asp:TableRow runat="server" >
+                     <asp:TableCell runat="server">
+                         <asp:TextBox ID="txtPassword" TextMode="Password" class="TextBox" runat="server" placeholder=" Clave" />
+                     </asp:TableCell></asp:TableRow><asp:TableRow runat="server">
+                     <asp:TableCell runat="server">
+                         <asp:DropDownList ID="dlCompania" class="TextBox" runat="server"/>
+                     </asp:TableCell></asp:TableRow><asp:TableRow runat="server"> 
+                         
+                     <asp:TableCell runat="server">
+                         
+                         <asp:Button CssClass="btn btn-success"  ID="Button" runat="server" Text="Iniciar" />
+                     </asp:TableCell></asp:TableRow></asp:Table></div></asp:Panel><script src="js/JQuery.js"></script><script src="js/popper.min.js"></script><script src="js/bootstrap.min.js"></script></form></body></html>
