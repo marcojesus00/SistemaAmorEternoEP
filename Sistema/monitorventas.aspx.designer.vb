@@ -41,6 +41,15 @@ Partial Public Class monitorventas
     Protected WithEvents txtFecha As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''TextFinalDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextFinalDate As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''dlMostrar control.
     '''</summary>
     '''<remarks>
