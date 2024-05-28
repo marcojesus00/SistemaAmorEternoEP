@@ -8,6 +8,8 @@ Public Class ProfilePicture
     Dim fileTypesAllowed As String() = {".jpg", ".jpeg"}
     Dim thePostedImage
     Dim noProfilePictureRelativePath = "imagenes/no_profile_picture.png"
+    Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
 
@@ -41,7 +43,7 @@ Public Class ProfilePicture
             Session("tabSelected") = "ProfilePicturaTab"
 
         Catch ex As SqlException
-            Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
+            Dim msg As String = "Error en la base de datos: " & vbCrLf & ex.Message
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto de perfil: " & ex.Message, "danger"))
@@ -64,7 +66,7 @@ Public Class ProfilePicture
             Session("tabSelected") = "ProfilePicturaTab"
 
         Catch ex As SqlException
-            Dim msg As String = "Error: Database error occurred." & vbCrLf & ex.Message
+            Dim msg As String = "Error en la base de datos: ." & vbCrLf & ex.Message
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error al cambiar la foto de perfil: " & ex.Message, "danger"))
@@ -108,10 +110,11 @@ Public Class ProfilePicture
 
             If employeeIsSelected Then
                 dbPath = RetrievePathFromDatabase(employeeId)
-                Dim fileExists As Boolean = FileHelper.CheckFileExists(Server.MapPath(dbPath))
+
+                Dim fileExists As Boolean = FileHelper.CheckFileExists(Path.Combine(ServerPath, dbPath))
 
                 If dbPath.Length > 0 And fileExists Then
-                    imgProfile.ImageUrl = "~/" & dbPath
+                    imgProfile.ImageUrl = "http:" & ServerPath & dbPath
                     Session("currentDBPath") = dbPath
                 Else
                     imgProfile.ImageUrl = Path.Combine("~/", noProfilePictureRelativePath)
@@ -120,6 +123,18 @@ Public Class ProfilePicture
             Else
                 imgProfile.ImageUrl = Path.Combine("~/", noProfilePictureRelativePath)
             End If
+
+        Catch ex As ArgumentNullException
+            Dim msg = "Error: falta un argumento. " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
+        Catch ex As InvalidOperationException
+            Dim msg = "Error: Invalid operation. " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+
+        Catch ex As IOException
+            Dim msg = "Error al acceder al sistema de archivos. " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
 
         Catch ex As Exception
             Dim msg = "Error al leer archivo: " & ex.Message
@@ -132,10 +147,11 @@ Public Class ProfilePicture
         Dim msg As String
         Dim alertType As String
         Dim fileSize As Long = File1.PostedFile.ContentLength
-        Dim directoryTempRelativePath As String = "Subidos/Empleados/Temp/"
-        Dim directoryTempAbsolutePath As String = Server.MapPath(directoryTempRelativePath)
+        Dim directoryTempRelativePath As String = "Musica\Empleados\Temp\"
+        Dim directoryTempAbsolutePath As String = Path.Combine(ServerPath, directoryTempRelativePath)
         Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
-        Dim newFileName = employeeId & fileExtension
+        Dim randomNumer As String = NumberHelper.GenerateRandomNumber(3).ToString()
+        Dim newFileName = employeeId & "_" & randomNumer & fileExtension
         Dim fileTempRelativePath = directoryTempRelativePath & newFileName
         Dim fileTempAbsolutePath = directoryTempAbsolutePath & newFileName
         Dim combinedFileTypesString As String = Strings.Join(fileTypesAllowed, " ")
@@ -189,6 +205,17 @@ Public Class ProfilePicture
             changePhotoButton.Visible = False
             UploadFile.Visible = True
             CancelUpload.Visible = True
+        Catch ex As UnauthorizedAccessException
+            ' Handle access permissions issue
+            msg = "Acceso denegado: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
+        Catch ex As ArgumentException
+            ' Handle invalid path issue
+            alertType = "danger"
+            msg = "Ruta inválida: " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
         Catch ex As HttpException
             msg = "Error al cargar el archivo: " & ex.Message
@@ -216,8 +243,8 @@ Public Class ProfilePicture
             If Session("UploadedFileContentLength") IsNot Nothing Then
 
                 If Session("UploadedFileContentLength").ToString().Length > 0 Then
-                    Dim relativeDirectoryPath As String = "Subidos/Empleados/FotosDePerfil/"
-                    Dim directoryAbsolutePath As String = MyBase.Server.MapPath(relativeDirectoryPath)
+                    Dim relativeDirectoryPath As String = "Musica\Empleados\FotosDePerfil\"
+                    Dim directoryAbsolutePath As String = Path.Combine(ServerPath, relativeDirectoryPath)
                     Dim fileTempAbsolutePath = Session("fileTempAbsolutePath")
                     Dim newFileName = Path.GetFileName(fileTempAbsolutePath)
                     Dim fileRelativePath As String = Path.Combine(relativeDirectoryPath, newFileName)
@@ -227,27 +254,38 @@ Public Class ProfilePicture
                     If Session("Codigo_Empleado") IsNot Nothing Then
 
                         Try
-                            If FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath) Then
+                            Dim fileIsMoved = FileHelper.MoveFile(fileTempAbsolutePath, directoryAbsolutePath)
+                            If fileIsMoved Then
                                 DeleteRecordFromDatabase(employeeId)
                                 InsertRecordIntoDatabase(employeeId, fileRelativePath)
                                 If Session("currentDBPath") IsNot Nothing Then
                                     priorFileRelativePath = Session("currentDBPath").ToString()
                                     If Path.GetFileName(priorFileRelativePath) <> newFileName Then
-                                        FileHelper.DeleteFile(MyBase.Server.MapPath(priorFileRelativePath))
+                                        FileHelper.DeleteFile(Path.Combine(ServerPath, priorFileRelativePath))
                                     End If
                                 End If
 
-                            End If
+                                If FileHelper.CheckFileExists(Path.Combine(ServerPath, fileRelativePath)) Then
+                                    msg = "Carga exitosa"
+                                    alertType = "success"
+                                    BindCard(employeeId)
+                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
-                            If FileHelper.CheckFileExists(MyBase.Server.MapPath(fileRelativePath)) Then
-                                msg = "Carga exitosa"
-                                alertType = "success"
-                                BindCard(employeeId)
+                                Else
+
+                                    msg = "Error al cambiar la foto: Archivo no subido correctamente"
+                                    alertType = "danger"
+                                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
+                                End If
+
+
                             Else
                                 msg = "Error al cambiar la foto: Archivo no subido correctamente"
                                 alertType = "danger"
+                                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
                             End If
-                            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
 
                         Catch ex As Exception
                             msg = "Error al cargar archivos: " & ex.Message

@@ -8,6 +8,7 @@ Public Class FileManager
     Dim queryDelete As String
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
+    Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
@@ -99,13 +100,13 @@ Public Class FileManager
             Using dbcontext As New MyDbContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
-                Dim relativePath As String = document.Ruta
+                'Dim relativePath As String = 
 
                 Dim utcTime As DateTime = DateTime.UtcNow
                 Dim targetTimeZoneOffset As Integer = -6
                 Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
                 Dim time24HoursLater As DateTime = creationDate.AddHours(24)
-                Dim filePath As String = Server.MapPath(relativePath)
+                Dim filePath As String = document.Ruta
                 If utcTime > time24HoursLater Then
                     Try
                         document.Archivado = True
@@ -223,8 +224,8 @@ Public Class FileManager
                 Dim fileName As String = File1.PostedFile.FileName
                 Dim fileSize As Long = File1.PostedFile.ContentLength
                 Dim numeroDeEmpleado As String
-                Dim directoryRelativePath As String = "Subidos/Empleados/Documentos/"
-                Dim directoryAbsolutePath As String = Server.MapPath(directoryRelativePath)
+                Dim directoryRelativePath As String = "Musica\Empleados\Documentos\"
+                Dim directoryAbsolutePath As String = Path.Combine(ServerPath, directoryRelativePath)
 
                 If Not Directory.Exists(directoryAbsolutePath) Then
                     Directory.CreateDirectory(directoryAbsolutePath)
@@ -260,7 +261,7 @@ Public Class FileManager
                         numeroDeEmpleado = Session("Codigo_Empleado")
                         fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
                         Dim fileAbsolutePath As String = directoryAbsolutePath & fileName
-                        Dim fileRelativePath As String = directoryRelativePath & fileName
+                        'Dim fileRelativePath As String = directoryRelativePath & fileName
                         Dim description As String
                         description = TextBoxDescription.Text
                         Dim utcTime As DateTime = DateTime.UtcNow
@@ -276,7 +277,7 @@ Public Class FileManager
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
                                     .NombreDelArchivo = fileName,
-                                    .Ruta = fileRelativePath,
+                                    .Ruta = fileAbsolutePath,
                                     .Descripcion = description,
                                     .FechaDeCreacion = localTime,
                                     .Archivado = False}

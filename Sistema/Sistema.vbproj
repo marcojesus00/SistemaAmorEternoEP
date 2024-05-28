@@ -262,7 +262,6 @@
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
-    <Content Include="FotosDePerfil\no.png" />
     <Content Include="helpers\js\fileUploadValidation.js" />
     <Content Include="imagenes\atras1.png" />
     <Content Include="imagenes\Cancelar.png" />
@@ -2280,6 +2279,7 @@
     </Compile>
     <Compile Include="helpers\AlertHelper.vb" />
     <Compile Include="helpers\FileHelper.vb" />
+    <Compile Include="helpers\NumberHelper.vb" />
     <Compile Include="helpers\textInputHelper.vb" />
     <Compile Include="Inhumados.aspx.designer.vb">
       <DependentUpon>Inhumados.aspx</DependentUpon>
