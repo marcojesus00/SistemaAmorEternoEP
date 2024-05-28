@@ -100,13 +100,13 @@ Public Class FileManager
             Using dbcontext As New MyDbContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
-                Dim relativePath As String = document.Ruta
+                'Dim relativePath As String = 
 
                 Dim utcTime As DateTime = DateTime.UtcNow
                 Dim targetTimeZoneOffset As Integer = -6
                 Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
                 Dim time24HoursLater As DateTime = creationDate.AddHours(24)
-                Dim filePath As String = Path.Combine(ServerPath, relativePath)
+                Dim filePath As String = document.Ruta
                 If utcTime > time24HoursLater Then
                     Try
                         document.Archivado = True
@@ -261,7 +261,7 @@ Public Class FileManager
                         numeroDeEmpleado = Session("Codigo_Empleado")
                         fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
                         Dim fileAbsolutePath As String = directoryAbsolutePath & fileName
-                        Dim fileRelativePath As String = directoryRelativePath & fileName
+                        'Dim fileRelativePath As String = directoryRelativePath & fileName
                         Dim description As String
                         description = TextBoxDescription.Text
                         Dim utcTime As DateTime = DateTime.UtcNow
@@ -277,7 +277,7 @@ Public Class FileManager
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
                                     .NombreDelArchivo = fileName,
-                                    .Ruta = fileRelativePath,
+                                    .Ruta = fileAbsolutePath,
                                     .Descripcion = description,
                                     .FechaDeCreacion = localTime,
                                     .Archivado = False}
