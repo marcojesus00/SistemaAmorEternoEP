@@ -2279,6 +2279,7 @@
     </Compile>
     <Compile Include="helpers\AlertHelper.vb" />
     <Compile Include="helpers\FileHelper.vb" />
+    <Compile Include="helpers\NumberHelper.vb" />
     <Compile Include="helpers\textInputHelper.vb" />
     <Compile Include="Inhumados.aspx.designer.vb">
       <DependentUpon>Inhumados.aspx</DependentUpon>

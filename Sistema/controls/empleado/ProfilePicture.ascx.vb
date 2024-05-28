@@ -150,7 +150,8 @@ Public Class ProfilePicture
         Dim directoryTempRelativePath As String = "Musica\Empleados\Temp\"
         Dim directoryTempAbsolutePath As String = Path.Combine(ServerPath, directoryTempRelativePath)
         Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
-        Dim newFileName = employeeId & fileExtension
+        Dim randomNumer As String = NumberHelper.GenerateRandomNumber(3).ToString()
+        Dim newFileName = employeeId & "_" & randomNumer & fileExtension
         Dim fileTempRelativePath = directoryTempRelativePath & newFileName
         Dim fileTempAbsolutePath = directoryTempAbsolutePath & newFileName
         Dim combinedFileTypesString As String = Strings.Join(fileTypesAllowed, " ")
