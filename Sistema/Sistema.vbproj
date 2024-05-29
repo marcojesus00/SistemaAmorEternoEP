@@ -223,6 +223,7 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
+    <Content Include="Clientes\Informacion.aspx" />
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
@@ -2235,6 +2236,13 @@
       <DependentUpon>ClientesM1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Clientes\Informacion.aspx.designer.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\Informacion.aspx.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Contratos.aspx.designer.vb">
       <DependentUpon>Contratos.aspx</DependentUpon>
     </Compile>
@@ -2462,6 +2470,13 @@
     <Compile Include="SalasHome.aspx.vb">
       <DependentUpon>SalasHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="shared\AE.Master.designer.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="shared\AE.Master.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UbicacionLotes.aspx.designer.vb">
       <DependentUpon>UbicacionLotes.aspx</DependentUpon>
@@ -2781,6 +2796,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="shared\AE.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
