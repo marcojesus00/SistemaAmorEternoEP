@@ -1,5 +1,5 @@
-﻿Public Class AE
-    Inherits System.Web.UI.MasterPage
+﻿Public Class Footer
+    Inherits System.Web.UI.UserControl
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
