@@ -9,7 +9,7 @@ Public Class ClientsTable
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
     Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
-
+    Dim toalMessage As String = ""
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'lblUploadMessage.ForeColor = Drawing.Color.Red
         'lblUploadMessage.Text = "Archivo y descripción son obligatorios"
@@ -20,8 +20,11 @@ Public Class ClientsTable
 
             If Not IsPostBack Then
                 Try
+                    'Dim total = GetClientsAndContractsCount().ToString()
+                    'toalMessage = $"Total de códigos existentes : {total}"
 
                     BindGridView()
+
                 Catch ex As Exception
                     Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
@@ -149,11 +152,10 @@ Public Class ClientsTable
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
-
                 If MyGridView.Rows.Count = 0 Then
                     lblMessage.Text = "No se encontraron documentos"
                 Else
-                    lblMessage.Text = "Archivos encontrados: " & $"{dataList.Count}"
+                    lblMessage.Text = "Mostrando primeros " & $"{dataList.Count} resultados." & toalMessage
                 End If
 
             Else
@@ -190,7 +192,7 @@ Public Class ClientsTable
     Protected Function GetClientsAndContracts(Optional id As String = "") As List(Of ClientContractQueryResult)
         Using dbContext As New MyDbContext()
             Dim data = dbContext.Contratos.
-                    Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.NombreCliente.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.NombreCliente.Trim.Length > 0).
+                    Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.NombreCliente.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.NombreCliente.Trim.Length > 0 And Not c.Cliente.NombreCliente.Contains("*")).
                     Select(Function(c) New ClientContractQueryResult With {
                         .NombreCliente = c.Cliente.NombreCliente.Trim,
                         .CodigoCliente = c.CodigoCliente.Trim,
@@ -201,6 +203,12 @@ Public Class ClientsTable
                     OrderBy(Function(c) c.NombreCliente).
                     Take(10).
                     ToList()
+            Return data
+        End Using
+    End Function
+    Protected Function GetClientsAndContractsCount() As Integer
+        Using dbContext As New MyDbContext()
+            Dim data = dbContext.Contratos.Select(Function(c) c.CodigoCliente.Count).FirstOrDefault()
             Return data
         End Using
     End Function

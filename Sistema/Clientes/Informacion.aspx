@@ -9,13 +9,12 @@
 
         <div class="container mt-5">
             <div class="row">
-                <div class="">
-                    <div class="form-group col-4">
-                        <label for="textBoxCode">Buscar:</label>
-                        <asp:TextBox ID="textBoxCode" runat="server" MaxLength="28" CssClass="form-control" placeholder="Nombre, código o identidad"></asp:TextBox>
-                        <i class="bi bi-search"></i>
+                <div class="col-4">
+                    <div class="form-group d-flex align-items-center">
+                        <label for="textBoxCode" class="p-2">Buscar</label>
+                        <asp:TextBox ID="textBoxCode" runat="server" MaxLength="28" CssClass="form-control p-2" placeholder="Nombre, código o identidad"></asp:TextBox>
+                        <i class="bi bi-search p-2"></i>
                     </div>
-<%--                    <asp:Button ID="Search" runat="server" CssClass="btn btn-primary" Text="Buscar" />--%>
                 </div>
             </div>
 

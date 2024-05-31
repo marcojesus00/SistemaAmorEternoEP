@@ -72,7 +72,7 @@
 </div>
 --%>
 
-<div class="w-100 table-responsive pt-2">
+<div class="w-100 table-responsive">
 
     <div class="container mt-5">
         <div class="mb-3 ">
@@ -99,7 +99,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="CodigoCliente" HeaderText="Código de Cliente" />
             <asp:BoundField DataField="NombreCliente" HeaderText="Nombre" />
-                                    <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
+                                    <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                         <asp:BoundField DataField="Celular" HeaderText="Celular" />
 
                         <asp:BoundField DataField="Vendedor" HeaderText="Vendedor" />
@@ -108,5 +108,5 @@
 
         </Columns>
     </asp:GridView>
-<%--    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>--%>
+    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 </div>
