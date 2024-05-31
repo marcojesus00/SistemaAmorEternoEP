@@ -1,22 +1,28 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/shared/AE.Master" CodeBehind="Informacion.aspx.vb" Inherits="Sistema.Informacion" %>
+<%@ Register TagPrefix="uc" TagName="ClientsTable" Src="~/controls/informacionDeCliente/ClientsTable.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="h-100">
+        <p class="fs-2">Información de los clientes</p>
 
         <div class="container mt-5">
             <div class="row">
                 <div class="">
-                    <div class="form-group">
-                        <label for="textBoxCode">Buscar por código:</label>
-                        <asp:TextBox ID="textBoxCode" runat="server" MaxLength="28" CssClass="form-control" placeholder="Código de cliente"></asp:TextBox>
+                    <div class="form-group col-4">
+                        <label for="textBoxCode">Buscar:</label>
+                        <asp:TextBox ID="textBoxCode" runat="server" MaxLength="28" CssClass="form-control" placeholder="Nombre, código o identidad"></asp:TextBox>
+                        <i class="bi bi-search"></i>
                     </div>
 <%--                    <asp:Button ID="Search" runat="server" CssClass="btn btn-primary" Text="Buscar" />--%>
                 </div>
             </div>
 
         </div>
+                               <uc:ClientsTable class="w-100 " ID="ClientsTable1" runat="server" />
+
     </div>
+     <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>

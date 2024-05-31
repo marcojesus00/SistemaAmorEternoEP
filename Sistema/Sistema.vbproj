@@ -119,6 +119,8 @@
   <ItemGroup>
     <Folder Include="archivos\" />
     <Folder Include="fotosCarnet\" />
+    <Folder Include="models\aeventas\" />
+    <Folder Include="models\funamor\results\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -227,6 +229,7 @@
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
+    <Content Include="controls\informacionDeCliente\ClientsTable.ascx" />
     <Content Include="controls\shared\Footer.ascx" />
     <Content Include="controls\shared\NavBar.ascx" />
     <Content Include="controls\shared\Sidebar.ascx" />
@@ -2267,6 +2270,13 @@
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="controls\informacionDeCliente\ClientsTable.ascx.designer.vb">
+      <DependentUpon>ClientsTable.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\informacionDeCliente\ClientsTable.ascx.vb">
+      <DependentUpon>ClientsTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="controls\shared\Footer.ascx.designer.vb">
       <DependentUpon>Footer.ascx</DependentUpon>
     </Compile>
@@ -2332,8 +2342,11 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="models\EmpladoModels.vb" />
-    <Compile Include="models\MyDbContext.vb" />
+    <Compile Include="models\funamor\ClienteModel.vb" />
+    <Compile Include="models\funamor\ContratoModeld.vb" />
+    <Compile Include="models\funamor\EmpladoModels.vb" />
+    <Compile Include="models\funamor\MyDbContext.vb" />
+    <Compile Include="models\funamor\Results.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
     </Compile>

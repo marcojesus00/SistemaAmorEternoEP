@@ -11,32 +11,23 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Informacion
+Partial Public Class ClientsTable
 
     '''<summary>
-    '''textBoxCode control.
+    '''MyGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents textBoxCode As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents MyGridView As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''ClientsTable1 control.
+    '''lblMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ClientsTable1 As Global.Sistema.ClientsTable
-
-    '''<summary>
-    '''alertPlaceholder control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 End Class
