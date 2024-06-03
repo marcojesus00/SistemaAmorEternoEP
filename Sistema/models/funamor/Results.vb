@@ -7,3 +7,8 @@
     Public Property Celular As String
 
 End Class
+
+Public Class Document
+    Public Property Id As String
+    Public Property Path As String
+End Class

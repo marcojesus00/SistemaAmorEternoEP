@@ -266,3 +266,66 @@ Public Class Cliente
     Public Property ICN As Short?
 End Class
 
+
+
+
+
+<Table("UrlClientes")>
+Public Class UrlCliente
+
+    <Key>
+    <DatabaseGenerated(DatabaseGeneratedOption.Identity)>
+    <Column("idline")>
+    Public Property Id As Integer
+
+    <ForeignKey("Cliente")>
+    <MaxLength(12)>
+    <Column("Codigo_clie", TypeName:="varchar")>
+    Public Property CodigoCliente As String
+
+    <Column("FechaSys")>
+    Public Property FechaSys As DateTime?
+
+    <MaxLength(10)>
+    <Column("Hora", TypeName:="varchar")>
+    Public Property Hora As String
+
+    <Column("FechaMod")>
+    Public Property FechaModificacion As Date?
+
+    <MaxLength(200)>
+    <Column("Comentario", TypeName:="varchar")>
+    Public Property Comentario As String
+
+    <Column("NombreArchivo", TypeName:="varchar(max)")>
+    Public Property NombreDelDocumento As String
+
+    <Column("NombreArchivoCorrelativo", TypeName:="varchar(max)")>
+    Public Property NombreDelArchivo As String
+
+    <Column("Ruta", TypeName:="varchar(max)")>
+    Public Property RutaDelDirectorio As String
+
+    <Column("ImagenUrl", TypeName:="varchar(max)")>
+    Public Property RutaDelArchivo As String
+
+    <MaxLength(10)>
+    <Column("Terminal", TypeName:="varchar")>
+    Public Property Terminal As String
+
+    <MaxLength(12)>
+    <Column("usuario", TypeName:="varchar")>
+    Public Property Usuario As String
+
+    <MaxLength(25)>
+    <Column("Referencia", TypeName:="varchar")>
+    Public Property Referencia As String
+
+    <Column("Estado")>
+    Public Property Estado As Boolean?
+
+    <Column("ParaSala")>
+    Public Property ParaSala As Boolean?
+    Public Overridable Property Cliente As Cliente
+
+End Class
