@@ -11,32 +11,32 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class NavBar
+Partial Public Class ClientsTable
 
     '''<summary>
-    '''Linkbutton1 control.
+    '''MyGridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Linkbutton1 As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents MyGridView As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''back control.
+    '''lblMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents back As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''logOut control.
+    '''GridViewDocs control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents logOut As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents GridViewDocs As Global.System.Web.UI.WebControls.GridView
 End Class
