@@ -15,9 +15,6 @@ Public Class ClientsTable
         Usuario_Aut = Session("Usuario_Aut")
         Clave_Aut = Session("Clave_Aut")
 
-        If Session("Usuario") = "" Then
-            Response.Redirect("inicio.aspx")
-        End If
 
 
 

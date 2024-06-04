@@ -3,6 +3,9 @@
     Public Event SendTextboxSendEvent As EventHandler(Of TextboxEventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("Usuario") = "" Then
+            Response.Redirect("~/inicio.aspx")
+        End If
         AddHandler SendTextboxSendEvent, AddressOf ClientsTable1.OnDataReceived
         AddHandler ClientsTable1.AlertGenerated, AddressOf HandleAlertGenerated
 

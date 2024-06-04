@@ -18,7 +18,8 @@
 
             <div class="col-1">
                 <asp:LinkButton ID="logOut" runat="server" class="btn btn-outline-danger  ">
-                     Cerrrar sesión
+                     Salir
+                    <i class="bi bi-x-lg  align-content-end"></i>
                 </asp:LinkButton>
 
             </div>
