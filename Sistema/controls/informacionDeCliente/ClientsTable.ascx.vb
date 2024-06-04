@@ -5,22 +5,17 @@ Imports System.IO
 Public Class ClientsTable
     Inherits System.Web.UI.UserControl
 
-    Dim queryDelete As String
-    Dim queryRetrieve As String
-    Dim numeroDeEmpleado As String
-    Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'lblUploadMessage.ForeColor = Drawing.Color.Red
-        'lblUploadMessage.Text = "Archivo y descripción son obligatorios"
-        ServerPath &= "Musica"
-        If True Then
+
+        If Session("Usuario") = "" Then
+            Response.Redirect("inicio.aspx")
+        End If
 
 
 
-            If Not IsPostBack Then
+        If Not IsPostBack Then
                 Try
-                    'Dim total = GetClientsAndContractsCount().ToString()
-                    'toalMessage = $"Total de códigos existentes : {total}"
+
 
                     BindGridView()
 
@@ -29,8 +24,6 @@ Public Class ClientsTable
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
                 End Try
             End If
-
-        End If
 
     End Sub
 
@@ -43,12 +36,10 @@ Public Class ClientsTable
 
 
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                    'Dim row As GridViewRow = MyGridView.Rows(rowIndex)
-                    Dim dataKey As String = MyGridView.DataKeys(rowIndex).Value.ToString()
+                Dim dataKey As String = MyGridView.DataKeys(rowIndex).Value.ToString()
                 Dim ctrolDocuments As GridView = GridViewDocs
 
 
-                'Dim rptDocuments As Repeater = CType(MyGridView.Rows(rowIndex).FindControl("rptDocuments"), Repeater)
 
                 Dim documents As List(Of UrlCliente) = GetDocsByClientId(dataKey)
 
