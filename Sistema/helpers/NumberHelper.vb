@@ -1,3 +1,5 @@
+Imports System
+
 Public Class NumberHelper
     Public Shared Function GenerateRandomNumber(n As Integer) As Integer
         ' Input validation
