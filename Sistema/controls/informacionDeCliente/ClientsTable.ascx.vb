@@ -1,6 +1,7 @@
 Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
 Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Web.UI.WebControls
 
 Public Class ClientsTable
     Inherits System.Web.UI.UserControl
@@ -19,16 +20,16 @@ Public Class ClientsTable
 
 
         If Not IsPostBack Then
-                Try
+            Try
 
 
-                    BindGridView()
+                BindGridView()
 
-                Catch ex As Exception
-                    Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
-                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-                End Try
-            End If
+            Catch ex As Exception
+                Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            End Try
+        End If
 
     End Sub
 
@@ -48,10 +49,10 @@ Public Class ClientsTable
 
                 Dim documents As List(Of UrlCliente) = GetDocsByClientId(dataKey)
 
-                    If documents IsNot Nothing AndAlso documents.Count > 0 Then
-                        ctrolDocuments.DataSource = documents
-                        ctrolDocuments.DataBind()
-                    End If
+                If documents IsNot Nothing AndAlso documents.Count > 0 Then
+                    ctrolDocuments.DataSource = documents
+                    ctrolDocuments.DataBind()
+                End If
 
 
             Catch ex As IOException
