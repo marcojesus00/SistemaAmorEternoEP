@@ -223,9 +223,13 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
+    <Content Include="Clientes\Informacion.aspx" />
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
+    <Content Include="controls\shared\Footer.ascx" />
+    <Content Include="controls\shared\NavBar.ascx" />
+    <Content Include="controls\shared\Sidebar.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -2235,6 +2239,13 @@
       <DependentUpon>ClientesM1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Clientes\Informacion.aspx.designer.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\Informacion.aspx.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Contratos.aspx.designer.vb">
       <DependentUpon>Contratos.aspx</DependentUpon>
     </Compile>
@@ -2256,6 +2267,25 @@
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="controls\shared\Footer.ascx.designer.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\shared\Footer.ascx.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\shared\NavBar.ascx.designer.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\shared\NavBar.ascx.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\shared\Sidebar.ascx.vb">
+      <DependentUpon>Sidebar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\shared\Sidebar.designer.vb" />
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
       <DependentUpon>DetalleMovimientoClientes.aspx</DependentUpon>
     </Compile>
@@ -2462,6 +2492,13 @@
     <Compile Include="SalasHome.aspx.vb">
       <DependentUpon>SalasHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="shared\AE.Master.designer.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="shared\AE.Master.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UbicacionLotes.aspx.designer.vb">
       <DependentUpon>UbicacionLotes.aspx</DependentUpon>
@@ -2781,6 +2818,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="shared\AE.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
