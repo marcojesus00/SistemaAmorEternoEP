@@ -165,7 +165,7 @@ Public Class ClientsTable
                     Dim DocId As Integer = GridViewDocs.DataKeys(rowIndex).Value.ToString()
                     Dim record As UrlCliente = dbContext.urlClientes.Find(DocId)
                     Dim documentPath = record.RutaDelArchivo
-                    Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
+                    Dim handlerUrl As String = $"~/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
                     Response.Redirect(handlerUrl)
                 End Using
 

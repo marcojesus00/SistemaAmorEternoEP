@@ -122,10 +122,10 @@ C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.Resources.resources
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.GenerateResource.cache
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CoreCompileInputs.cache
-C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.Up2Date
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.dll
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
+C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CopyComplete
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
 C:\Users\chaxg\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll

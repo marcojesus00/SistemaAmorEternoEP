@@ -52,7 +52,7 @@ Public Class FileManager
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     Dim documentPath = record.Ruta
-                    Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
+                    Dim handlerUrl As String = $"~/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
                     Response.Redirect(handlerUrl)
                 End Using
 
