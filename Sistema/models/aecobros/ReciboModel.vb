@@ -2,11 +2,11 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 
 <Table("RECIBOS")>
-Public Class Recibo
+Public Class ReciboDeCobro
     <Key>
     <Column("Num_doc", TypeName:="char")>
     <StringLength(16)>
-    Public Property NumDoc As String
+    Public Property NumeroDeRecibo As String
 
     <Column("Tdoc", TypeName:="char")>
     <StringLength(1)>
@@ -51,7 +51,7 @@ Public Class Recibo
     <Column("rtermino", TypeName:="char")>
     <StringLength(1)>
     Public Property Rtermino As String
-
+    <ForeignKey("Cliente")>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
     Public Property CodigoCliente As String
@@ -81,10 +81,10 @@ Public Class Recibo
     Public Property Recibmodifi As String
 
     <Column("RECIBFMODIF", TypeName:="datetime")>
-    Public Property Recibfmodif As DateTime
+    Public Property Recibfmodif As DateTime?
 
     <Column("rduradeb", TypeName:="smallint")>
-    Public Property Rduradeb As Int16
+    Public Property Rduradeb As Int16?
 
     <Column("RTIPODEBI", TypeName:="char")>
     <StringLength(2)>
@@ -94,6 +94,7 @@ Public Class Recibo
     <StringLength(2)>
     Public Property Rsucursal As String
 
+    <ForeignKey("Cobrador")>
     <Column("codigo_cobr", TypeName:="char")>
     <StringLength(5)>
     Public Property CodigoCobr As String
@@ -103,16 +104,16 @@ Public Class Recibo
     Public Property Rnombrecli As String
 
     <Column("rprima", TypeName:="money")>
-    Public Property Rprima As Decimal
+    Public Property Rprima As Decimal?
 
     <Column("rno_letras", TypeName:="smallint")>
-    Public Property RnoLetras As Int16
+    Public Property RnoLetras As Int16?
 
     <Column("VEFECTI", TypeName:="money")>
-    Public Property Vefecto As Decimal
+    Public Property Vefecto As Decimal?
 
     <Column("VCHEQUE", TypeName:="money")>
-    Public Property Vcheque As Decimal
+    Public Property Vcheque As Decimal?
 
     <Column("PAGOCK", TypeName:="char")>
     <StringLength(10)>
@@ -135,7 +136,7 @@ Public Class Recibo
     Public Property Rnumefa As String
 
     <Column("RCUOTA", TypeName:="money")>
-    Public Property Rcuota As Decimal
+    Public Property Rcuota As Decimal?
 
     <Column("SUBIVIEJO", TypeName:="char")>
     <StringLength(1)>
@@ -146,7 +147,7 @@ Public Class Recibo
     Public Property Rcodvend As String
 
     <Column("rnumemp", TypeName:="int")>
-    Public Property Rnumemp As Integer
+    Public Property Rnumemp As Integer?
 
     <Column("LONGITUD", TypeName:="nchar")>
     <StringLength(60)>
@@ -169,7 +170,7 @@ Public Class Recibo
     Public Property Marca As String
 
     <Column("SALDOANT", TypeName:="numeric")>
-    Public Property Saldoant As Decimal
+    Public Property Saldoant As Decimal?
 
     <Column("liquida", TypeName:="nchar")>
     <StringLength(20)>
@@ -182,5 +183,9 @@ Public Class Recibo
     <Column("liquida2", TypeName:="nchar")>
     <StringLength(20)>
     Public Property Liquida2 As String
+    Public Overridable Property Cliente As Cliente
+    Public Overridable Property Cobrador As Cobrador
+    'Public Overridable Property Vendedor As Vendedor
+
 End Class
 

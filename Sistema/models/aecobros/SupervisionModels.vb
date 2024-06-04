@@ -2,7 +2,7 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 <Table("SUPERV")>
 Public Class Superv
-
+    <Key>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
     Public Property CodigoCliente As String
@@ -74,7 +74,7 @@ End Class
 
 <Table("NOSUPER")>
 Public Class Nosuper
-
+    <Key>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
     Public Property CodigoCliente As String

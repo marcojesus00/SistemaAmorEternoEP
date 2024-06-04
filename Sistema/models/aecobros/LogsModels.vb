@@ -3,7 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 <Table("LOG_NULOS")>
 Public Class LogNulo
-
+    <Key>
     <Column("NUM_DOC", TypeName:="varchar")>
     <StringLength(16)>
     Public Property NumDoc As String

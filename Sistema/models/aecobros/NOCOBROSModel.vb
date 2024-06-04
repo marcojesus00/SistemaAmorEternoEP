@@ -3,7 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 <Table("NOCOBRO")>
 Public Class NocobroModel
-
+    <Key>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
     Public Property CodigoCliente As String

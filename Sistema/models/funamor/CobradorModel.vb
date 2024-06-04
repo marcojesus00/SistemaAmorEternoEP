@@ -24,7 +24,7 @@ Public Class Cobrador
     Public Property CobZona As String
 
     <Column("cob_fingre", TypeName:="datetime")>
-    Public Property CobFingre As DateTime
+    Public Property CobFingre As DateTime?
 
     <Column("cob_lider", TypeName:="char")>
     <StringLength(5)>
@@ -35,7 +35,7 @@ Public Class Cobrador
     Public Property CobDireccion As String
 
     <Column("COB_FECHING", TypeName:="datetime")>
-    Public Property CobFeching As DateTime
+    Public Property CobFeching As DateTime?
 
     <Column("COB_SUPERVI", TypeName:="char")>
     <StringLength(5)>
@@ -54,7 +54,7 @@ Public Class Cobrador
     Public Property CobIdentid As String
 
     <Column("COB_FECNAC", TypeName:="datetime")>
-    Public Property CobFecnac As DateTime
+    Public Property CobFecnac As DateTime?
 
     <Column("COB_FOTO", TypeName:="varbinary")>
     Public Property CobFoto As Byte()
@@ -62,4 +62,7 @@ Public Class Cobrador
     <Column("COB_SUCU", TypeName:="char")>
     <StringLength(2)>
     Public Property CobSucu As String
+
+    Public WithEvents RecibosNavigation As ICollection(Of ReciboDeCobro)
+
 End Class

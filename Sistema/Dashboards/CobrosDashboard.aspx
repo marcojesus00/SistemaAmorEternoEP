@@ -69,7 +69,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
 
 
-    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="CodigoCliente" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
+    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="NumeroDeRecibo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
@@ -86,4 +86,6 @@
 
         </Columns>
     </asp:GridView>
+            <div id="alertPlaceholder" runat="server"></div>
+
 </asp:Content>

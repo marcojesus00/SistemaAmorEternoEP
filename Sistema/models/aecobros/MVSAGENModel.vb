@@ -2,7 +2,7 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 <Table("MVSAGEN")>
 Public Class Mvsagen
-
+    <Key>
     <Column("cveage", TypeName:="char")>
     <StringLength(10)>
     Public Property Cveage As String

@@ -102,4 +102,13 @@ Partial Public Class CobrosDashboard
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''alertPlaceholder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

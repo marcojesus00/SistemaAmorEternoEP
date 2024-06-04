@@ -5,38 +5,40 @@ Public Class CobrosDashboard
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        BindGridView()
     End Sub
     Private Sub BindGridView(Optional str As String = "")
 
 
         Try
 
-            If True Then
-                Dim msg = ""
-                Dim dataList = GetData()
+            Dim msg = ""
+            Dim dataList = GetData()
 
                 DashboardGridview.DataSource = dataList
-                DashboardGridview.DataBind()
                 DashboardGridview.DataBind()
                 If DashboardGridview.Rows.Count = 0 Then
                     msg = "No se encontraron resultados"
                 Else
-                    msg = "Mostrando primeros " & $"{dataList.Count} resultados."
-                End If
-
-            Else
+                msg = "Mostrando primeros " & $"{dataList.Count} resultados."
 
             End If
+
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
         End Try
     End Sub
     Public Function GetData()
+        Using context As New MyDbContext
 
-        Return 0
+            'Dim data = context.Cobrador.Where
+            'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
+            Return data.ToList()
+        End Using
     End Function
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         If e.CommandName = "ShowMap" Then
@@ -55,10 +57,10 @@ Public Class CobrosDashboard
 
             Catch ex As IOException
                 Dim msg = "Error al procesar  archivo: " & ex.Message
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
             Catch ex As Exception
                 Dim msg = "Error de descarga: " & ex.Message
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
             End Try
 
         End If

@@ -2360,7 +2360,14 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="models\aecobros\AeCobrosContext.vb" />
+    <Compile Include="models\aecobros\LogsModels.vb" />
+    <Compile Include="models\aecobros\MVSAGENModel.vb" />
+    <Compile Include="models\aecobros\NOCOBROSModel.vb" />
+    <Compile Include="models\aecobros\ReciboModel.vb" />
+    <Compile Include="models\aecobros\SupervisionModels.vb" />
     <Compile Include="models\funamor\ClienteModel.vb" />
+    <Compile Include="models\funamor\CobradorModel.vb" />
     <Compile Include="models\funamor\ContratoModeld.vb" />
     <Compile Include="models\funamor\EmpladoModels.vb" />
     <Compile Include="models\funamor\MyDbContext.vb" />

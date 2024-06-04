@@ -14,6 +14,8 @@ Public Class MyDbContext
     Public Property Contratos As DbSet(Of Contrato)
     Public Property Clientes As DbSet(Of Cliente)
     Public Property urlClientes As DbSet(Of UrlCliente)
+    Public Property Cobrador As DbSet(Of Cobrador)
+
 
 
 End Class
