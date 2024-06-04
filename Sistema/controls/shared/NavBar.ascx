@@ -10,8 +10,8 @@
             </div>
 
             <div class="col-1">
-                <asp:LinkButton ID="salir" runat="server" class="btn btn-outline-info  ">
-                     Atrás &nbsp
+                <asp:LinkButton ID="back" runat="server" class="btn btn-outline-info  ">
+                     Atrás
                      <i class="bi-arrow-return-left align-content-end" ></i>
                 </asp:LinkButton>
             </div>
@@ -19,7 +19,6 @@
             <div class="col-1">
                 <asp:LinkButton ID="logOut" runat="server" class="btn btn-outline-danger  ">
                      Cerrrar sesión
-<%--                     <i class="bi-arrow-return-left align-content-end" ></i>--%>
                 </asp:LinkButton>
 
             </div>
@@ -28,8 +27,6 @@
 
 
 
-        <%--                      <div>
-                                      <asp:ImageButton ID="btnSalir" ToolTip="Regresar" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" style="position:fixed; right:10px; top:10px;"/>--%>
     </div>
 
 

@@ -23,13 +23,13 @@ Partial Public Class NavBar
     Protected WithEvents Linkbutton1 As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''salir control.
+    '''back control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents salir As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents back As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''logOut control.
