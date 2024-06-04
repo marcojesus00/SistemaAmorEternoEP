@@ -33,11 +33,33 @@ Public Class CobrosDashboard
         End Try
     End Sub
     Public Function GetData()
+        Dim collectorCode = textBoxCode.Text.Trim
+        Dim endD As Date
+        Dim initD As Date
+        If endDate.Text IsNot "" Then
+            endD = CType(endDate.Text, Date).Date
+        Else
+            endD = Date.Now().Date
+        End If
+        If startDate.Text IsNot "" Then
+            initD = CType(startDate.Text, Date).Date
+        Else
+            initD = Date.Now().Date
+
+        End If
+        Dim dataCollector
         Using context As New MyDbContext
 
-            'Dim data = context.Cobrador.Where
+            dataCollector = context.Cobrador.Where(Function(c) c.CodigoCobr)
             'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
-            Return data.ToList()
+        End Using
+        Using cobrosContext As New AeCobrosContext
+
+            Dim bills = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD And r.CodigoCobr.Contains(collectorCode) And r.Cobrador.NombreCobr.Trim.Length > 0)
+            Dim gbills = bills.GroupBy(Function(r) r.CodigoCobr).Select(Function(r) New With {.Codigo = r.Key, .Recibos = r.Count(Function(d) d.PorLempira), .Cobrado = r.Sum(Function(c) c.PorLempira)})
+            Dim data = gbills.ToList()
+            Return data
+
         End Using
     End Function
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)

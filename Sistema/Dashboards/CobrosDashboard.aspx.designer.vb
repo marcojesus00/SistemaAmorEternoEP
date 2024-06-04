@@ -50,13 +50,13 @@ Partial Public Class CobrosDashboard
     Protected WithEvents company As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''code control.
+    '''textBoxCode control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents code As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''leader control.

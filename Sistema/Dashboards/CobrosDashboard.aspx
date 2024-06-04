@@ -29,7 +29,7 @@
 
         <div class="row mb-2">
             <div class="col-md-3">
-                <asp:TextBox ID="code" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="textBoxCode" runat="server" CssClass="form-control"></asp:TextBox>
                 <label for="code" class="text-left  text-secondary">Código de cobrador</label>
 
             </div>
@@ -69,7 +69,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
 
 
-    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="NumeroDeRecibo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
+    <asp:GridView ID="DashboardGridview" runat="server" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
