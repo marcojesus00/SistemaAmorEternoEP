@@ -12,17 +12,20 @@
     <link href="css/StyleResponsive.css" rel="stylesheet" />
 
     <script src="js/all.min.js"></script>
-        <style type="text/css"> 
-        .Boton:hover{
-            transform:scale(1.05);
-        }
-            p {font-size:small;
-                width:100%;
-                text-align:center;                
+        <style type="text/css">
+            .Boton:hover {
+                transform: scale(1.05);
             }
-        .card-link{
-            color:black;            
-        }
+
+            p {
+                font-size: small;
+                width: 100%;
+                text-align: center;
+            }
+
+            .card-link {
+                color: black;
+            }
         </style>
     
 </head>
@@ -266,6 +269,12 @@
                                    <asp:LinkButton ID="Movimiento_Cliente" runat="server" Enabled="false">&nbsp <i class="fas fa-arrow-right"></i>&nbsp Movimiento de Cliente</asp:LinkButton>
                                </div>
                            </div>
+                                <div class="row table">
+                                    <div class="col">
+
+                                        <asp:LinkButton ID="btnInformacionDeClientes" runat="server" Enabled="false">&nbsp <i class="fas fa-arrow-right"></i>&nbsp Información de Cliente</asp:LinkButton>
+                                    </div>
+                                </div>
                                   <div class="row table">
                                <div class="col">
                                    <asp:LinkButton ID="btninhumados" runat="server" Enabled="false">&nbsp <i class="fas fa-arrow-right"></i>&nbsp Ihumados</asp:LinkButton>

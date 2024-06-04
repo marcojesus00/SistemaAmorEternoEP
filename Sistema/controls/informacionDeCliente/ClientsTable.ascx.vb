@@ -4,8 +4,16 @@ Imports System.IO
 
 Public Class ClientsTable
     Inherits System.Web.UI.UserControl
+    Public Usuario, clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Session.Timeout = 90
+        Usuario = Session("Usuario")
+        clave = Session("Clave")
+        Servidor = Session("Servidor")
+        Bd = Session("Bd")
+        Usuario_Aut = Session("Usuario_Aut")
+        Clave_Aut = Session("Clave_Aut")
 
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
