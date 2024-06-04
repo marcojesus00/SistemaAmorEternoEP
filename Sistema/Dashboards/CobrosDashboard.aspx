@@ -14,15 +14,15 @@
                 <label for="endDate" class="text-left  text-secondary">Fecha final</label>
 
             </div>
-                        <div class="col-sm-3">
+            <div class="col-sm-3">
                 <asp:TextBox ID="zone" runat="server" CssClass="form-control"></asp:TextBox>
-            <label for="zone" class="text-left  text-secondary">Zona</label>
+                <label for="zone" class="text-left  text-secondary">Zona</label>
 
             </div>
 
             <div class="col-sm-3">
                 <asp:TextBox ID="company" runat="server" CssClass="form-control"></asp:TextBox>
-                            <label for="company" class="text-left  text-secondary">Empresa</label>
+                <label for="company" class="text-left  text-secondary">Empresa</label>
 
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <asp:ListItem Text="Líder actual" Value="current" />
                     <asp:ListItem Text="Líder anterior" Value="previous" />
                 </asp:DropDownList>
-                                <label for="leader" class="text-left text-secondary">Estado del lider</label>
+                <label for="leader" class="text-left text-secondary">Estado del lider</label>
 
             </div>
             <div class="col-md-3">
@@ -46,7 +46,7 @@
                     <asp:ListItem Text="Abdul" Value="current" />
                     <asp:ListItem Text="Líder Anterior" Value="previous" />
                 </asp:DropDownList>
-                                <label for="DropDownList1" class="text-left  text-secondary">Lider</label>
+                <label for="DropDownList1" class="text-left  text-secondary">Lider</label>
 
             </div>
 
@@ -60,11 +60,30 @@
 
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-center">
-                <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-primary" />
+                <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-outline-primary" />
             </div>
         </div>
     </div>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
+
+
+    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="CodigoCliente" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
+        <Columns>
+            <asp:TemplateField HeaderText="">
+                <ItemTemplate>
+                    <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ShowMap" CommandArgument='<%# Container.DataItemIndex %>'>
+<i class="bi bi-geo-alt-fill"></i>
+
+                    </asp:LinkButton>
+                </ItemTemplate>
+
+
+            </asp:TemplateField>
+
+
+
+        </Columns>
+    </asp:GridView>
 </asp:Content>

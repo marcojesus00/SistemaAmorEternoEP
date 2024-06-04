@@ -44,11 +44,11 @@
             <asp:GridView runat="server" ID='GridViewDocs' DataKeyNames="Id" OnRowCommand="GridViewDocs_RowCommand" AutoGenerateColumns="False" CssClass="table  table-sm table-striped table-hover" EmptyDataText="No se encontraron resultados" Visible="true">
                 <Columns>
                     <asp:BoundField DataField="NombreDelDocumento" HeaderText="Nombre" />
-                                <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                    <asp:PlaceHolder ID="IconPlaceholder" runat="server"></asp:PlaceHolder>
-                </ItemTemplate>
-            </asp:TemplateField>
+                    <asp:TemplateField HeaderText="">
+                        <ItemTemplate>
+                            <asp:PlaceHolder ID="IconPlaceholder" runat="server"></asp:PlaceHolder>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Comentario" HeaderText="Comentario" />
                     <asp:TemplateField HeaderText="">
                         <ItemTemplate>
