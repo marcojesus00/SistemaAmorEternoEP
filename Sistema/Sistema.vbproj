@@ -269,6 +269,7 @@
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
     <Content Include="Dashboards\CobrosDashboard.aspx" />
+    <Content Include="Dashboards\CobrosMap.aspx" />
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
@@ -368,6 +369,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Handlers\DownloadHandler.ashx" />
     <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="Dashboards\Map.master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2307,11 +2309,25 @@
       <DependentUpon>CobrosDashboard.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Dashboards\CobrosMap.aspx.designer.vb">
+      <DependentUpon>CobrosMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\CobrosMap.aspx.vb">
+      <DependentUpon>CobrosMap.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Dashboards\Dashboard.master.designer.vb">
       <DependentUpon>Dashboard.master</DependentUpon>
     </Compile>
     <Compile Include="Dashboards\Dashboard.master.vb">
       <DependentUpon>Dashboard.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Map.master.designer.vb">
+      <DependentUpon>Map.master</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Map.master.vb">
+      <DependentUpon>Map.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
