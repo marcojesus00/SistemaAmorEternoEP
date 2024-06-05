@@ -95,6 +95,9 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -2382,6 +2385,7 @@
     <Compile Include="models\aecobros\NOCOBROSModel.vb" />
     <Compile Include="models\aecobros\ReciboModel.vb" />
     <Compile Include="models\aecobros\SupervisionModels.vb" />
+    <Compile Include="models\Dto\CobrosMapDto.vb" />
     <Compile Include="models\funamor\ClienteModel.vb" />
     <Compile Include="models\funamor\CobradorModel.vb" />
     <Compile Include="models\funamor\ContratoModeld.vb" />

@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports Newtonsoft.Json
 
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
@@ -15,11 +16,11 @@ Public Class CobrosDashboard
             Dim msg = ""
             Dim dataList = GetData()
 
-                DashboardGridview.DataSource = dataList
-                DashboardGridview.DataBind()
-                If DashboardGridview.Rows.Count = 0 Then
-                    msg = "No se encontraron resultados"
-                Else
+            DashboardGridview.DataSource = dataList
+            DashboardGridview.DataBind()
+            If DashboardGridview.Rows.Count = 0 Then
+                msg = "No se encontraron resultados"
+            Else
                 msg = "Mostrando primeros " & $"{dataList.Count} resultados."
 
             End If
@@ -67,15 +68,28 @@ Public Class CobrosDashboard
 
             Try
 
-                Dim args As String() = e.CommandArgument.ToString().Split("|"c)
-                Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                Dim row As GridViewRow = DashboardGridview.Rows(rowIndex)
-                Dim documentName As String = row.Cells(0).Text
-                Using dbContext As New MyDbContext
-                    Dim DocId As Integer = DashboardGridview.DataKeys(rowIndex).Value.ToString()
-                    Dim record As UrlCliente = dbContext.urlClientes.Find(DocId)
-                    Dim documentPath = record.RutaDelArchivo
-                End Using
+                'Dim args As String() = e.CommandArgument.ToString().Split("|"c)
+                'Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+                'Dim row As GridViewRow = DashboardGridview.Rows(rowIndex)
+                'Dim documentName As String = row.Cells(0).Text
+                'Using dbContext As New MyDbContext
+                '    Dim DocId As Integer = DashboardGridview.DataKeys(rowIndex).Value.ToString()
+                '    Dim record As UrlCliente = dbContext.urlClientes.Find(DocId)
+                '    Dim documentPath = record.RutaDelArchivo
+                'End Using
+                Dim items As New List(Of TransactionMapDto)()
+                Dim a As New TransactionMapDto With {
+                    .CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M5C000002121", .NombreDelCliente = "Fernanda Antonnia Guzman Perez", .TipoDeTransaccion = "cobro", .Cantidad = "300.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.Hour.ToString(), .Latitud = "15.403546", .Longitud = "-87.810689"}
+                Dim b As New TransactionMapDto With {.CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M5C000002125", .NombreDelCliente = "Juan Cupertino Rivas Sanchez", .TipoDeTransaccion = "visita", .Cantidad = "302.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.Hour.ToString(), .Latitud = "15.401666", .Longitud = "-87.803231"}
+                Dim c As New TransactionMapDto With {.CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M5C0000425", .NombreDelCliente = "Marcelo Jose Alvarado Torres", .TipoDeTransaccion = "visita", .Cantidad = "2000.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.Hour.ToString(), .Latitud = "15.398078", .Longitud = "-87.809251"}
+
+                items.Add(a)
+                items.Add(b)
+                items.Add(c)
+
+                Dim queryString As String = "?items=" & Server.UrlEncode(JsonConvert.SerializeObject(items))
+                Response.Redirect("CobrosMap.aspx" & queryString)
+
 
             Catch ex As IOException
                 Dim msg = "Error al procesar  archivo: " & ex.Message
