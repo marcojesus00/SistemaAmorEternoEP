@@ -51,7 +51,7 @@ Public Class CobrosDashboard
         Dim dataCollector
         Using context As New MyDbContext
 
-            dataCollector = context.Cobrador.Where(Function(c) c.CodigoCobr)
+            dataCollector = context.Cobradores.Where(Function(c) c.CodigoCobr)
             'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
         End Using
         Using cobrosContext As New AeCobrosContext

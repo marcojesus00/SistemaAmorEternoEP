@@ -13,8 +13,9 @@ Public Class MyDbContext
     Public Property DocumentosDeEmpleados As DbSet(Of DocumentoDeEmpleado)
     Public Property Contratos As DbSet(Of Contrato)
     Public Property Clientes As DbSet(Of Cliente)
-    Public Property urlClientes As DbSet(Of UrlCliente)
-    Public Property Cobrador As DbSet(Of Cobrador)
+    Public Property UrlClientes As DbSet(Of UrlCliente)
+    Public Property Cobradores As DbSet(Of Cobrador)
+    Public Property Empresas As DbSet(Of Empresa)
 
 
 

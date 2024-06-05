@@ -68,7 +68,7 @@ Public Class ClientsTable
     End Sub
     Private Function GetDocsByClientId(Id As String)
         Using dbcontext As New MyDbContext
-            Dim docs = dbcontext.urlClientes.Where(Function(u) u.CodigoCliente.Contains(Id.Trim))
+            Dim docs = dbcontext.UrlClientes.Where(Function(u) u.CodigoCliente.Contains(Id.Trim))
             Return docs.ToList()
         End Using
     End Function
@@ -164,7 +164,7 @@ Public Class ClientsTable
                 Dim documentName As String = row.Cells(0).Text
                 Using dbContext As New MyDbContext
                     Dim DocId As Integer = GridViewDocs.DataKeys(rowIndex).Value.ToString()
-                    Dim record As UrlCliente = dbContext.urlClientes.Find(DocId)
+                    Dim record As UrlCliente = dbContext.UrlClientes.Find(DocId)
                     Dim documentPath = record.RutaDelArchivo
                     Dim handlerUrl As String = $"~/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
                     Response.Redirect(handlerUrl)
