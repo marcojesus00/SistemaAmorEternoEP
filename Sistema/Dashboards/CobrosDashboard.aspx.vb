@@ -6,7 +6,35 @@ Public Class CobrosDashboard
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        BindGridView()
+        Try
+            If Not IsPostBack Then
+            FillDll()
+            BindGridView()
+        End If
+
+        Catch ex As Exception
+            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+        End Try
+    End Sub
+    Private Sub FillDll()
+        Using context As New MyDbContext
+            Dim companies = context.Empresas.Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
+            ddlCompany.DataSource = companies
+            ddlCompany.DataTextField = "Nombre"
+            ddlCompany.DataValueField = "Codigo"
+            ddlCompany.DataBind()
+            ddlCompany.Items.Insert(0, New ListItem("Seleccione una empresa", ""))
+            Dim cities = context.Municipios.Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
+            ddlCity.DataSource = cities
+            ddlCity.DataTextField = "Nombre"
+            ddlCity.DataValueField = "Codigo"
+            ddlCity.DataBind()
+            ddlCity.Items.Insert(0, New ListItem("Seleccione una zona", ""))
+
+        End Using
     End Sub
     Private Sub BindGridView(Optional str As String = "")
 

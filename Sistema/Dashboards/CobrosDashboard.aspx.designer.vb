@@ -32,22 +32,22 @@ Partial Public Class CobrosDashboard
     Protected WithEvents endDate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''zone control.
+    '''ddlCity control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents zone As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlCity As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''company control.
+    '''ddlCompany control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents company As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlCompany As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''textBoxCode control.

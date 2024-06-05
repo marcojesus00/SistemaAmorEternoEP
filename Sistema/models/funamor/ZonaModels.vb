@@ -2,15 +2,15 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 
 <Table("CZONA")>
-Public Class Empresas
+Public Class Empresa
     <Key>
     <Column("Cod_zona", TypeName:="char")>
     <StringLength(3)>
-    Public Property CodZona As String
+    Public Property Codigo As String
 
     <Column("Nombre_zona", TypeName:="char")>
     <StringLength(40)>
-    Public Property NombreZona As String
+    Public Property Nombre As String
 
     <Column("E_ZONAS", TypeName:="char")>
     <StringLength(10)>
@@ -72,4 +72,28 @@ Public Class Empresas
     <Column("E_RTN", TypeName:="char")>
     <StringLength(16)>
     Public Property ERtn As String
+End Class
+
+<Table("VZONA")>
+Public Class Municipio
+    <Key>
+    <Column("vzon_codigo", TypeName:="char")>
+    <StringLength(4)>
+    Public Property Codigo As String
+
+    <Column("vzon_nombre", TypeName:="char")>
+    <StringLength(50)>
+    Public Property Nombre As String
+
+    <Column("vzon_ciudad", TypeName:="char")>
+    <StringLength(3)>
+    Public Property VzonCiudad As String
+
+    <Column("vzon_empres", TypeName:="char")>
+    <StringLength(3)>
+    Public Property VzonEmpres As String
+
+    <Column("vzon_app", TypeName:="char")>
+    <StringLength(4)>
+    Public Property VzonApp As String
 End Class
