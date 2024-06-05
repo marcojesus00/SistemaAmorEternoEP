@@ -76,17 +76,24 @@ Public Class CobrosDashboard
             initD = Date.Now().Date
 
         End If
-        Dim dataCollector
-        Using context As New MyDbContext
+        Dim dataCollector As List(Of Cobrador)
+        Using context As New MyDbContext, cobrosContext As New AeCobrosContext
 
-            dataCollector = context.Cobradores.Where(Function(c) c.CodigoCobr)
+            dataCollector = context.Cobradores.ToList()
             'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
-        End Using
-        Using cobrosContext As New AeCobrosContext
 
+            Dim leader As String = ""
+            leader = ddlLeader.DataValueField.ToString()
             Dim bills = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD And r.CodigoCobr.Contains(collectorCode) And r.Cobrador.NombreCobr.Trim.Length > 0)
-            Dim gbills = bills.GroupBy(Function(r) r.CodigoCobr).Select(Function(r) New With {.Codigo = r.Key, .Recibos = r.Count(Function(d) d.PorLempira), .Cobrado = r.Sum(Function(c) c.PorLempira)})
-            Dim data = gbills.ToList()
+            Dim gbills = bills.GroupBy(Function(r) r.CodigoCobr).Select(Function(r) New With {.Codigo = r.Key, .Recibos = r.Count(Function(w) w.PorLempira), .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
+            Dim data = gbills.Join(dataCollector, Function(e1) e1.Codigo,
+                                            Function(e2) e2.CodigoCobr,
+                                            Function(e1, e2) New With {
+                                                e1.Codigo,
+                                               e2.NombreCobr,
+                                               e1.Recibos,
+                                               e1.Cobrado
+                                            }).ToList()
             Return data
 
         End Using

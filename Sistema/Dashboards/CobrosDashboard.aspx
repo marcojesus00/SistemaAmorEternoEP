@@ -44,7 +44,7 @@
 
             </div>
             <div class="col-md-3">
-                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control">
+                <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Abdul" Value="1" />
                     <asp:ListItem Text="Francisco " Value="2" />
                     <asp:ListItem Text="Nora" Value="3" />
@@ -54,7 +54,7 @@
 
 
                 </asp:DropDownList>
-                <label for="DropDownList1" class="text-left  text-secondary fs-6">Lider</label>
+                <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
 
             </div>
 <div class="col-sm-3">
