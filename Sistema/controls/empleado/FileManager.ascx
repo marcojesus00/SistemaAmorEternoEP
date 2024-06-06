@@ -75,10 +75,20 @@
 
 <div class="w-100 table-responsive pt-2">
 
-    <div class="container mt-5">
+    <div class="container mt-1">
         <div class="mb-3 ">
             <%--            <label for="ddlExample" class="form-label">Example Dropdown</label>--%>
-            <asp:DropDownList ID="ddlAreArchived" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDocsState_SelectedIndexChanged"></asp:DropDownList>
+            <div class="row p-1">
+                <div class="col-6">
+                                <asp:DropDownList ID="ddlAreArchived" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDocsState_SelectedIndexChanged"></asp:DropDownList>
+
+                </div>
+                                <div class="col-6">
+                                <asp:DropDownList ID="ddlDocTypeTable"  CssClass="form-control" AutoPostBack="true"  OnSelectedIndexChanged="ddlDocstypeTable_SelectedIndexChanged" runat="server"></asp:DropDownList>
+
+                </div>
+            </div>
+
         </div>
     </div>
 

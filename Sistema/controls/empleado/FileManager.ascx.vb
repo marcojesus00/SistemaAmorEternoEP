@@ -42,7 +42,12 @@ Public Class FileManager
             ddlDocType.DataTextField = "Nombre"
             ddlDocType.DataValueField = "Id"
             ddlDocType.DataBind()
-            'ddlDocType.Items.Insert(0, New ListItem("Seleccione un tipo de documento", ""))
+
+            ddlDocTypeTable.DataSource = companies
+            ddlDocTypeTable.DataTextField = "Nombre"
+            ddlDocTypeTable.DataValueField = "Id"
+            ddlDocTypeTable.DataBind()
+            ddlDocTypeTable.Items.Insert(0, New ListItem("Todos los documentos", ""))
 
         End Using
     End Sub
@@ -185,10 +190,11 @@ Public Class FileManager
                 numeroDeEmpleado = Session("Codigo_Empleado")
                 Dim selectedValue As String = ddlAreArchived.SelectedValue
                 Dim isArchived As Boolean = False
+                Dim selectedType = ddlDocTypeTable.SelectedValue
                 If selectedValue = "True" Then
                     isArchived = True
                 End If
-                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado)
+                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado, selectedType)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -216,10 +222,13 @@ Public Class FileManager
 
 
     End Sub
-    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer) As List(Of DocumentoDeEmpleado)
+    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer, selectedType As String) As List(Of DocumentoDeEmpleado)
         Using dbContext As New MyDbContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
+            If selectedType.Length > 0 Then
+                data = data.Where(Function(d) d.TipoDeDocumentoId = selectedType)
+            End If
             Return data.ToList()
         End Using
     End Function
@@ -279,8 +288,8 @@ Public Class FileManager
                         Dim docTypeId = ddlDocType.SelectedValue
                         Dim user = ""
 
-                        If Session("USUARIO") IsNot Nothing Then
-                            user = Session("USUARIO")
+                        If Session("Usuario_Aut") IsNot Nothing Then
+                            user = Session("Usuario_Aut")
                         End If
                         If FileHelper.CheckFileExists(fileAbsolutePath) Then
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
@@ -391,6 +400,11 @@ Public Class FileManager
 
     End Sub
     Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
+        Session("tabSelected") = "DocsTab"
+
+        BindGridView()
+    End Sub
+    Protected Sub ddlDocstypeTable_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlDocTypeTable.SelectedIndexChanged
         Session("tabSelected") = "DocsTab"
 
         BindGridView()

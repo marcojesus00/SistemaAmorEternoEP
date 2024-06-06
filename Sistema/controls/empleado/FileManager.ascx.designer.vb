@@ -68,6 +68,15 @@ Partial Public Class FileManager
     Protected WithEvents ddlAreArchived As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddlDocTypeTable control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlDocTypeTable As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''MyGridView control.
     '''</summary>
     '''<remarks>
