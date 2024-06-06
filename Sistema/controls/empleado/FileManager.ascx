@@ -54,13 +54,14 @@
                     </div>
                 </div>
 
-                <div class="text-center">
+                <div class="text-center ">
                     <br />
+                    <div class="row p-3">
+                                            <asp:TextBox ID="TextBoxDescription" CssClass="form-control  mb-1" onkeyup="handleInputChange()" MaxLength="28" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
 
-                    <asp:TextBox ID="TextBoxDescription" onkeyup="handleInputChange()" MaxLength="28" Placeholder="Descripción requerida" runat="server" AutoPostBack="false"></asp:TextBox>
+                    <asp:DropDownList ID="ddlDocType"  CssClass="form-control" runat="server"></asp:DropDownList>
+                    </div>
 
-                    <br />
-                    <br />
                     <asp:LinkButton ID="UploadFile" CssClass="btn btn-secondary" runat="server" Text="Subir"></asp:LinkButton>
                 </div>
                 <div class="text-center mt-2">

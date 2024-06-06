@@ -36,6 +36,15 @@ Public Class FileManager
         ddlAreArchived.Items.Clear()
         ddlAreArchived.Items.Add(New ListItem("Documentos", "False"))
         ddlAreArchived.Items.Add(New ListItem("Documentos archivados", "True"))
+        Using context As New MyDbContext
+            Dim companies = context.TiposDeDocumentoDeEmpleado.ToList()
+            ddlDocType.DataSource = companies
+            ddlDocType.DataTextField = "Nombre"
+            ddlDocType.DataValueField = "Id"
+            ddlDocType.DataBind()
+            'ddlDocType.Items.Insert(0, New ListItem("Seleccione un tipo de documento", ""))
+
+        End Using
     End Sub
     Protected Sub MyGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         Session("tabSelected") = "DocsTab"
@@ -267,21 +276,29 @@ Public Class FileManager
                         Dim utcTime As DateTime = DateTime.UtcNow
                         Dim targetTimeZoneOffset As Integer = -6
                         Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
+                        Dim docTypeId = ddlDocType.SelectedValue
+                        Dim user = ""
+
+                        If Session("USUARIO") IsNot Nothing Then
+                            user = Session("USUARIO")
+                        End If
                         If FileHelper.CheckFileExists(fileAbsolutePath) Then
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
                             Exit Sub
                         Else
                             File1.PostedFile.SaveAs(fileAbsolutePath)
                             Using dbContext As New MyDbContext
-                                Dim newDoc As New DocumentoDeEmpleado With
+                            Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
                                     .NombreDelArchivo = fileName,
                                     .Ruta = fileAbsolutePath,
                                     .Descripcion = description,
                                     .FechaDeCreacion = localTime,
-                                    .Archivado = False}
-                                dbContext.DocumentosDeEmpleados.Add(newDoc)
+                                    .Archivado = False,
+                                    .Usuario = user,
+                                    .TipoDeDocumentoId = docTypeId}
+                            dbContext.DocumentosDeEmpleados.Add(newDoc)
                                 dbContext.SaveChanges()
                             End Using
                             Dim msg As String = "Carga exitosa"

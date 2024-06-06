@@ -32,6 +32,15 @@ Partial Public Class FileManager
     Protected WithEvents TextBoxDescription As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''ddlDocType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlDocType As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''UploadFile control.
     '''</summary>
     '''<remarks>

@@ -11,6 +11,8 @@ Public Class MyDbContext
 
     Public Property FotosDeEmpleados As DbSet(Of FotoDeEmpleado)
     Public Property DocumentosDeEmpleados As DbSet(Of DocumentoDeEmpleado)
+    Public Property TiposDeDocumentoDeEmpleado As DbSet(Of TipoDeDocumentoDeEmpleado)
+
     Public Property Contratos As DbSet(Of Contrato)
     Public Property Clientes As DbSet(Of Cliente)
     Public Property UrlClientes As DbSet(Of UrlCliente)
