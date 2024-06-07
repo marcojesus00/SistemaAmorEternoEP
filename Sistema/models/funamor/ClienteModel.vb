@@ -140,10 +140,10 @@ Public Class Cliente
     <Column("CL_FAX", TypeName:="char")>
     <StringLength(20)>
     Public Property Fax As String
-
+    <ForeignKey("VendedorNav")>
     <Column("CL_VENDEDOR", TypeName:="char")>
     <StringLength(8)>
-    Public Property Vendedor As String
+    Public Property CodigoVendedor As String
 
     <Column("CL_CELULAR", TypeName:="char")>
     <StringLength(20)>
@@ -165,9 +165,10 @@ Public Class Cliente
     <StringLength(80)>
     Public Property ConyugueDireccion As String
 
+    <ForeignKey("CobradorNav")>
     <Column("cl_cobrador", TypeName:="char")>
     <StringLength(5)>
-    Public Property Cobrador As String
+    Public Property CodigoCobrador As String
 
     <Column("CL_FECINAC", TypeName:="datetime")>
     Public Property FechaNacimientoCliente As DateTime?
@@ -264,6 +265,10 @@ Public Class Cliente
 
     <Column("CLICOMULTI", TypeName:="smallint")>
     Public Property ICN As Short?
+    Public Overridable Property CobradorNav As Cobrador
+    Public Overridable Property VendedorNav As Vendedor
+
+
 End Class
 
 

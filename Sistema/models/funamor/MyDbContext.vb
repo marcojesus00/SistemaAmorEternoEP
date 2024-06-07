@@ -19,7 +19,7 @@ Public Class MyDbContext
     Public Property Cobradores As DbSet(Of Cobrador)
     Public Property Empresas As DbSet(Of Empresa)
     Public Property Municipios As DbSet(Of Municipio)
-
+    Public Property Vendedores As DbSet(Of Vendedor)
 
 
 End Class
