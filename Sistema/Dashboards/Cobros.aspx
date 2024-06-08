@@ -4,6 +4,15 @@
 
     <div class="container mt-3 mb-3">
         <div class="row mb-2">
+                        <div class="col-sm-3">
+                            <asp:DropDownList ID="DashboardType"  CssClass="form-control" runat="server">
+                                    <asp:ListItem Text="Reibos" Value="1"></asp:ListItem>
+    <asp:ListItem Text="Cartera" Value="2"></asp:ListItem>
+                            </asp:DropDownList>
+                                <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de Dashboard</label>
+
+
+            </div>
             <div class="col-md-3">
                 <asp:TextBox ID="startDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
                 <label for="startDate" class="text-left  text-secondary fs-6">Fecha inicial</label>
