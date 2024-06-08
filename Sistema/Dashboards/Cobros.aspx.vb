@@ -1,5 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Web.UI.WebControls
 
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
@@ -85,12 +88,18 @@ Public Class CobrosDashboard
             Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
 
                 collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).ToList()
-                Dim billsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD)
+                Dim billsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD).Select(Function(r) New With {
+                                                                                                                                   r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
                 If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
                     clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).ToList()
-                    Dim clientCodes = clients.Select(Function(c) c.CodigoCliente).ToList()
-                    billsByDate = billsByDate.Join(clientCodes,
+                    'Dim clientCodes = clients.Select(Function(c) c.CodigoCliente).ToList()
+                    billsByDate = billsByDate.Join(clients, Function(e1) e1.CodigoCliente,
+                                                Function(e2) e2.CodigoCliente,
+                                                Function(e1, e2) New With {
+                                                e1.CodigoCliente,
+                                                e1.CodigoCobr,
+                                                e1.PorLempira}).ToList()
                 Else
 
                 End If
