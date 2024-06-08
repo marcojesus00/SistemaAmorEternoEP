@@ -124,7 +124,6 @@
   <ItemGroup>
     <Folder Include="archivos\" />
     <Folder Include="fotosCarnet\" />
-    <Folder Include="models\aeventas\" />
     <Folder Include="models\funamor\results\" />
   </ItemGroup>
   <ItemGroup>
@@ -271,7 +270,7 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
-    <Content Include="Dashboards\CobrosDashboard.aspx" />
+    <Content Include="Dashboards\Cobros.aspx" />
     <Content Include="Dashboards\Map.aspx" />
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
@@ -2305,11 +2304,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="controls\shared\Sidebar.designer.vb" />
-    <Compile Include="Dashboards\CobrosDashboard.aspx.designer.vb">
-      <DependentUpon>CobrosDashboard.aspx</DependentUpon>
+    <Compile Include="Dashboards\Cobros.aspx.designer.vb">
+      <DependentUpon>Cobros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboards\CobrosDashboard.aspx.vb">
-      <DependentUpon>CobrosDashboard.aspx</DependentUpon>
+    <Compile Include="Dashboards\Cobros.aspx.vb">
+      <DependentUpon>Cobros.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Dashboards\Map.aspx.designer.vb">
@@ -2379,6 +2378,8 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="models\aeventas\AeVentasContext.vb" />
+    <Compile Include="models\aeventas\ZonaModels.vb" />
     <Compile Include="models\aecobros\AeCobrosContext.vb" />
     <Compile Include="models\aecobros\LogsModels.vb" />
     <Compile Include="models\aecobros\MVSAGENModel.vb" />

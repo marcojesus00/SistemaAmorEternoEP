@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="CobrosDashboard.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
 
@@ -35,21 +35,16 @@
                 <label for="code" class="text-left  text-secondary fs-6">Código de cobrador</label>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" hidden>
                 <asp:DropDownList ID="leader" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Líder actual" Value="current" />
                     <asp:ListItem Text="Líder anterior" Value="previous" />
                 </asp:DropDownList>
-                <label for="leader" class="text-left text-secondary fs-6">Estado del lider</label>
+                <label for="leader" class="text-left text-secondary fs-6" >Estado del lider</label>
 
             </div>
             <div class="col-md-3">
                 <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="Abdul" Value="1" />
-                    <asp:ListItem Text="Francisco " Value="2" />
-                    <asp:ListItem Text="Nora" Value="3" />
-                                        <asp:ListItem Text="Jazmin" Value="4" />
-                                        <asp:ListItem Text="Oficina" Value="5" />
 
 
 
@@ -57,8 +52,8 @@
                 <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
 
             </div>
-<div class="col-sm-3">
-    <div class="form-check">
+<div class="col-sm-3 " hidden>
+    <div class="form-check ">
         <asp:CheckBox ID="supervised" runat="server" CssClass="form-check-input" />
         <label for="supervised" class="form-check-label">Incluir supervisado</label>
     </div>

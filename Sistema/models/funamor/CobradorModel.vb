@@ -5,11 +5,11 @@ Public Class Cobrador
     <Key>
     <Column("codigo_cobr", TypeName:="char")>
     <StringLength(5)>
-    Public Property CodigoCobr As String
+    Public Property Codigo As String
 
     <Column("nombre_cobr", TypeName:="char")>
     <StringLength(40)>
-    Public Property NombreCobr As String
+    Public Property Nombre As String
 
     <Column("COBR_STATUS", TypeName:="char")>
     <StringLength(1)>

@@ -1,6 +1,4 @@
-﻿Imports Newtonsoft.Json
-
-Public Class MapPage
+﻿Public Class MapPage
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -75,7 +73,7 @@ Public Class MapPage
                 AlertHelper.GenerateAlert("warning", dataForMaps.CountOfCorruptItems.ToString() & " coordenadas corruptas.", alertPlaceholder)
 
             Else
-                Response.Redirect("CobrosDashboard.aspx")
+                Response.Redirect("Cobros.aspx")
             End If
 
         Catch ex As Exception
