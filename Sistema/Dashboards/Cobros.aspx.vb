@@ -80,19 +80,29 @@ Public Class CobrosDashboard
             Dim zoneCode As String = ddlCity.SelectedValue.Trim
             Dim endD = endDate.Text
             Dim initD = startDate.Text
-
             Dim collectors As List(Of Cobrador)
-            Using context As New MyDbContext, cobrosContext As New AeCobrosContext
+            Dim clients As List(Of Cliente)
+            Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
 
-                collectors = context.Cobradores.ToList()
+                collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).ToList()
+                Dim billsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD)
+
+                If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
+                    clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).ToList()
+                    Dim clientCodes = clients.Select(Function(c) c.CodigoCliente).ToList()
+                    billsByDate = billsByDate.Join(clientCodes,
+                Else
+
+                End If
+
+
                 'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
-                Dim bills = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD And r.CodigoCobr.Contains(collectorCode) And r.Cobrador.Nombre.Trim.Length > 0 And r.Cobrador.CobLider.Contains(leaderCode) And r.Cliente.CodigoCompania.Contains(CompanyCode) And r.Cliente.CodigoZona.Contains(zoneCode))
-                Dim gbills = bills.GroupBy(Function(r) r.CodigoCobr)
-                Dim gbills2 = gbills.Select(Function(r) New With {
+                Dim gbills = billsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
+                Dim gbillsSelect = gbills.Select(Function(r) New With {
                                                 .Codigo = r.Key,
                                                 .Recibos = r.Count(Function(w) w.PorLempira),
                                                 .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
-                Dim data = gbills2.Join(collectors, Function(e1) e1.Codigo,
+                Dim data = gbillsSelect.Join(collectors, Function(e1) e1.Codigo,
                                                 Function(e2) e2.Codigo,
                                                 Function(e1, e2) New With {
                                                     e1.Codigo,
@@ -101,6 +111,8 @@ Public Class CobrosDashboard
                                                    e1.Cobrado
                                                 }).ToList()
                 Return data
+
+
 
             End Using
         Catch ex As SqlException
