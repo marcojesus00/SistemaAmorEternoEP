@@ -12,7 +12,7 @@ Public Class CobrosDashboard
         Try
             If Not IsPostBack Then
                 FillDll()
-                BindGridView()
+                reBind()
             End If
 
         Catch ex As Exception
@@ -22,6 +22,37 @@ Public Class CobrosDashboard
 
         End Try
     End Sub
+    Protected Sub DashboardType_change(sender As Object, e As EventArgs) Handles DashboardType.SelectedIndexChanged
+        reBind()
+    End Sub
+    Protected Sub reBind()
+        Try
+
+            If DashboardType.SelectedValue = "0" Then
+                Dim dataList = GetData()
+                endDate.Enabled = True
+                startDate.Enabled = True
+                BindGridView(dataList)
+            ElseIf DashboardType.SelectedValue = "1" Then
+                Dim dataList = GetPortfolioData()
+                startDate.Enabled = False
+                endDate.Enabled = False
+                BindGridView(dataList)
+            End If
+        Catch ex As SqlException
+            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+
+        Catch ex As Exception
+            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+        End Try
+    End Sub
+
     Private Sub FillDll()
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
@@ -46,14 +77,13 @@ Public Class CobrosDashboard
             ddlLeader.Items.Insert(0, New ListItem("Seleccione un líder", ""))
         End Using
     End Sub
-    Private Sub BindGridView(Optional str As String = "")
+
+    Private Sub BindGridView(dataList As Object)
 
 
         Try
 
             Dim msg = ""
-            Dim dataList = GetData()
-
             DashboardGridview.DataSource = dataList
             DashboardGridview.DataBind()
             If DashboardGridview.Rows.Count = 0 Then
@@ -75,67 +105,101 @@ Public Class CobrosDashboard
 
         End Try
     End Sub
-    Public Function GetData()
-        Try
-            Dim collectorCode = textBoxCode.Text.Trim
-            Dim CompanyCode = ddlCompany.SelectedValue.Trim
-            Dim leaderCode As String = ddlLeader.SelectedValue.Trim
-            Dim zoneCode As String = ddlCity.SelectedValue.Trim
-            Dim endD = endDate.Text
-            Dim initD = startDate.Text
-            Dim collectors As List(Of Cobrador)
-            Dim clients As List(Of Cliente)
-            Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
+    Public Class SimpleCollectorDto
+        Public Property Codigo As String
+        Public Property Nombre As String
 
-                collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).ToList()
-                Dim billsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD).Select(Function(r) New With {
+    End Class
+    Public Class SimpleClientDto
+        Public Property Codigo As String
+        Public Property Nombre As String
+
+    End Class
+    Public Function GetData()
+        Dim collectorCode = textBoxCode.Text.Trim
+        Dim CompanyCode = ddlCompany.SelectedValue.Trim
+        Dim leaderCode As String = ddlLeader.SelectedValue.Trim
+        Dim zoneCode As String = ddlCity.SelectedValue.Trim
+        Dim endD = endDate.Text
+        Dim initD = startDate.Text
+        Dim collectors As List(Of SimpleCollectorDto)
+        Dim clients As List(Of SimpleClientDto)
+        Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
+
+            collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD).Select(Function(r) New With {
                                                                                                                                    r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
-                If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
-                    clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).ToList()
-                    'Dim clientCodes = clients.Select(Function(c) c.CodigoCliente).ToList()
-                    billsByDate = billsByDate.Join(clients, Function(e1) e1.CodigoCliente,
-                                                Function(e2) e2.CodigoCliente,
+            If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
+                clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+                receiptsByDate = receiptsByDate.Join(clients, Function(e1) e1.CodigoCliente,
+                                                Function(e2) e2.Codigo,
                                                 Function(e1, e2) New With {
                                                 e1.CodigoCliente,
                                                 e1.CodigoCobr,
                                                 e1.PorLempira}).ToList()
-                Else
+            Else
 
-                End If
-
-
-                'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
-                Dim gbills = billsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
-                Dim gbillsSelect = gbills.Select(Function(r) New With {
+            End If
+            Dim greceipts = receiptsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
+            Dim greceiptsSelect = greceipts.Select(Function(r) New With {
                                                 .Codigo = r.Key,
                                                 .Recibos = r.Count(Function(w) w.PorLempira),
                                                 .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
-                Dim data = gbillsSelect.Join(collectors, Function(e1) e1.Codigo,
+            Dim data = greceiptsSelect.Join(collectors, Function(e1) e1.Codigo,
                                                 Function(e2) e2.Codigo,
                                                 Function(e1, e2) New With {
                                                     e1.Codigo,
                                                    e2.Nombre,
                                                    e1.Recibos,
                                                    e1.Cobrado
-                                                }).ToList()
-                Return data
+                                                }).OrderByDescending(Function(r) r.Cobrado).ToList()
+            Return data
 
+        End Using
 
+    End Function
+    Public Function GetPortfolioData()
+        Dim collectorCode = textBoxCode.Text.Trim
+        Dim CompanyCode = ddlCompany.SelectedValue.Trim
+        Dim leaderCode As String = ddlLeader.SelectedValue.Trim
+        Dim zoneCode As String = ddlCity.SelectedValue.Trim
 
-            End Using
-        Catch ex As SqlException
-            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+        Dim collectors As List(Of SimpleCollectorDto)
+        Dim clients As List(Of SimpleClientDto)
+        Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
 
+            collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Select(Function(r) New With {r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
-        Catch ex As Exception
-            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+            If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
+                clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+                receiptsByDate = receiptsByDate.Join(clients, Function(e1) e1.CodigoCliente,
+                                                Function(e2) e2.Codigo,
+                                                Function(e1, e2) New With {
+                                                e1.CodigoCliente,
+                                                e1.CodigoCobr,
+                                                e1.PorLempira}).ToList()
+            Else
 
-        End Try
+            End If
+            Dim greceipts = receiptsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
+            Dim greceiptsSelect = greceipts.Select(Function(r) New With {
+                                                .Codigo = r.Key,
+                                                .Recibos = r.Count(Function(w) w.PorLempira),
+                                                .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
+            Dim data = greceiptsSelect.Join(collectors, Function(e1) e1.Codigo,
+                                                Function(e2) e2.Codigo,
+                                                Function(e1, e2) New With {
+                                                    e1.Codigo,
+                                                   e2.Nombre,
+                                                   e1.Recibos,
+                                                   e1.Cobrado
+                                                }).OrderByDescending(Function(r) r.Cobrado).ToList()
+            Return data
+
+        End Using
+
     End Function
     Public Function GetClientsByCollector(collectorCode As String)
         Using context As New MyDbContext, cobrosContext As New AeCobrosContext
@@ -160,7 +224,7 @@ Public Class CobrosDashboard
                 Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
                 Dim markers As New List(Of MarkerForMap)
                 For Each cliente As Cliente In clients
-                    Dim tooltipMsg = $"cliete: {cliente.NombreCliente}   {cliente.DireccionCliente}"
+                    Dim tooltipMsg = $"cliete: {cliente.Nombre}   {cliente.DireccionCliente}"
                     If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
                         Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
                         markers.Add(marker)
@@ -193,7 +257,7 @@ Public Class CobrosDashboard
         End If
     End Sub
     Private Sub submitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
-        BindGridView()
+        reBind()
 
     End Sub
 End Class

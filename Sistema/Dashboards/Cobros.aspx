@@ -4,12 +4,12 @@
 
     <div class="container mt-3 mb-3">
         <div class="row mb-2">
-                        <div class="col-sm-3">
-                            <asp:DropDownList ID="DashboardType"  CssClass="form-control" runat="server">
-                                    <asp:ListItem Text="Reibos" Value="1"></asp:ListItem>
-    <asp:ListItem Text="Cartera" Value="2"></asp:ListItem>
-                            </asp:DropDownList>
-                                <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de Dashboard</label>
+            <div class="col-sm-3">
+                <asp:DropDownList ID="DashboardType" CssClass="form-control" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Reibos" Value="0"></asp:ListItem>
+                    <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
+                </asp:DropDownList>
+                <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de Dashboard</label>
 
 
             </div>
@@ -24,15 +24,15 @@
 
             </div>
             <div class="col-sm-3">
-                            <asp:DropDownList ID="ddlCity"  CssClass="form-control" runat="server"></asp:DropDownList>
-                                <label for="ddlCity" class="text-left  text-secondary fs-6">Zona</label>
+                <asp:DropDownList ID="ddlCity" CssClass="form-control" runat="server"></asp:DropDownList>
+                <label for="ddlCity" class="text-left  text-secondary fs-6">Zona</label>
 
 
             </div>
 
             <div class="col-sm-3">
-                            <asp:DropDownList ID="ddlCompany"  CssClass="form-control" runat="server"></asp:DropDownList>
-                                <label for="ddlCompany" class="text-left  text-secondary fs-6">Empresa</label>
+                <asp:DropDownList ID="ddlCompany" CssClass="form-control" runat="server"></asp:DropDownList>
+                <label for="ddlCompany" class="text-left  text-secondary fs-6">Empresa</label>
 
 
             </div>
@@ -49,24 +49,21 @@
                     <asp:ListItem Text="Líder actual" Value="current" />
                     <asp:ListItem Text="Líder anterior" Value="previous" />
                 </asp:DropDownList>
-                <label for="leader" class="text-left text-secondary fs-6" >Estado del lider</label>
+                <label for="leader" class="text-left text-secondary fs-6">Estado del lider</label>
 
             </div>
             <div class="col-md-3">
                 <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
-
-
-
                 </asp:DropDownList>
                 <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
 
             </div>
-<div class="col-sm-3 " hidden>
-    <div class="form-check ">
-        <asp:CheckBox ID="supervised" runat="server" CssClass="form-check-input" />
-        <label for="supervised" class="form-check-label">Incluir supervisado</label>
-    </div>
-</div>
+            <div class="col-sm-3 " hidden>
+                <div class="form-check ">
+                    <asp:CheckBox ID="supervised" runat="server" CssClass="form-check-input" />
+                    <label for="supervised" class="form-check-label">Incluir supervisado</label>
+                </div>
+            </div>
 
         </div>
 
@@ -98,6 +95,6 @@
 
         </Columns>
     </asp:GridView>
-            <div id="alertPlaceholder" runat="server"></div>
+    <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>

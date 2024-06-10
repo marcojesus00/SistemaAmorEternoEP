@@ -6,11 +6,11 @@ Public Class Cliente
     <Key>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
-    Public Property CodigoCliente As String
+    Public Property Codigo As String
 
     <Column("Nombre_clie", TypeName:="char")>
     <StringLength(55)>
-    Public Property NombreCliente As String
+    Public Property Nombre As String
 
     <Column("CTIPOCLI", TypeName:="char")>
     <StringLength(1)>

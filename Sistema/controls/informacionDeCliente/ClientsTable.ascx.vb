@@ -120,9 +120,9 @@ Public Class ClientsTable
     Protected Function GetClientsAndContracts(Optional id As String = "") As List(Of ClientContractQueryResult)
         Using dbContext As New MyDbContext()
             Dim data = dbContext.Contratos.
-                    Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.NombreCliente.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.NombreCliente.Trim.Length > 0 And Not c.Cliente.NombreCliente.Contains("*")).
+                    Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.Nombre.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.Nombre.Trim.Length > 0 And Not c.Cliente.Nombre.Contains("*")).
                     Select(Function(c) New ClientContractQueryResult With {
-                        .NombreCliente = c.Cliente.NombreCliente.Trim,
+                        .NombreCliente = c.Cliente.Nombre.Trim,
                         .CodigoCliente = c.CodigoCliente.Trim,
                         .Telefono = c.Cliente.TelefonoCliente.Trim,
                         .Celular = c.Cliente.Celular.Trim,
