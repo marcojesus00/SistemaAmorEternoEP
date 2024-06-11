@@ -1,6 +1,7 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false"  EnableEventValidation="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
 
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectDataClient.ascx" %>
 
 <!DOCTYPE html>
 
@@ -10,10 +11,10 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
     <title>Monitor de Ventas</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
-    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    
+<%--    <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    --%>
     <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>    
     <link href="css/inicio.css" rel="stylesheet" type="text/css"/>    
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<%--      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>--%>
     <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
 
   <!-- Custom styles for this template -->
@@ -21,28 +22,28 @@
   <link rel="stylesheet" href="css4/all.min.css"/>
 
      <!-- Bootstrap core CSS -->  
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<%--  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>--%>
   <link rel="shortcut icon" type="image/x-icon" href="svgs/solid/drafting-compass.svg"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
 
 
   <script src="https://kit.fontawesome.com/9189b1e7bc.js" ></script>
     
     <style>
-h4:hover {
-    background-color: aliceblue;
-    color: blue;
-}
+        h4:hover {
+            background-color: aliceblue;
+            color: blue;
+        }
 
- /*#gvMonitor tr.rowHover:hover
+        /*#gvMonitor tr.rowHover:hover
         {
             background-color: #FFEB9C;
             border-top: solid;
             color:#9C6500;
         }*/
-
-
-</style>
+    </style>
 </head>
 <body>  
     <form id="form1" runat="server">
@@ -109,7 +110,7 @@ h4:hover {
                     </div>
                        <asp:Button ID="btnBuscar" runat="server" Text="   Buscar   " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
                        
-                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   ArreglarVenta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
+                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   Arreglar una venta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
                    </div>
                
               
@@ -226,29 +227,40 @@ h4:hover {
             <iframe id="ifRepote" runat="server" style="position:fixed; width:100%; height:100%; top:42px;"></iframe>
             </div>
             
-        </asp:Panel>     
-     <%-- Panel Para Editar Venta --%>
+        </asp:Panel>
+        <%-- Panel Para Editar Venta --%>
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelEditarVenta" runat="server" visible="false">
-            <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
+            <div  style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
                 <div class="row" style="background-color: white">
-                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Venta</h2></div><%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
+                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Venta</h2>
+                </div>
+                <%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Vendedor</label> </div><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
+                                <label class="input-group-text" style="width: 150px">Vendedor</label>
+                            </div>
+                            <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
                             <div class="input-group-append">
                                 <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><div class="col">
+                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="input-group input-group-sm">
                             <label class="form-control form-control-sm" id="txtnombreVendArr" runat="server"></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group input-group-sm">
-                          <div class="input-group-prepend">
-                              <label class="input-group-text" style="width: 125px">Cambiar Estatus</label> </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" style="width:150px">Cambiar estatus</label>
+                            </div>
                             <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
+
+                        .                   
                     </div>
 
                 </div>
@@ -257,10 +269,16 @@ h4:hover {
                     <div class="col">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Codigo Cliente</label> </div><%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Codigo" ID="txtCodClienteapp" runat="server" />
+                                <label class="input-group-text" style="width: 150px">Cliente</label>
+                            </div>
+                            <%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodClienteapp" runat="server" />
                             <div class="input-group-append">
                                 <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><div class="col">
+                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="input-group input-group-sm">
 
                             <label class="form-control form-control-sm" id="lblNameClientapp" runat="server"></label>
@@ -268,186 +286,92 @@ h4:hover {
                     </div>
                     <div class="col">
                         <%--<label class="btn btn-group-sm btn-dark" style="grid-column-end">Liquidar</label>--%>
-                          <div class="input-group input-group-sm">
-                          <div class="input-group-prepend">
-                              <label class="input-group-text" style="width: 125px">Estatus</label> </div><asp:DropDownList ID="dlstatusvend" runat="server" CssClass="form-control form-control-sm" Style="width: 95px"></asp:DropDownList>
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" style="width: 150px">Estatus</label>
+                            </div>
+                            <asp:DropDownList ID="dlstatusvend" runat="server" CssClass="form-control form-control-sm" Style="width: 95px"></asp:DropDownList>
                         </div>
-                      <%--  <asp:LinkButton ID="LinkButton2" runat="server" Style="font-size: x-large">  Liquidar </asp:LinkButton>
+                        <%--  <asp:LinkButton ID="LinkButton2" runat="server" Style="font-size: x-large">  Liquidar </asp:LinkButton>
 
                         <asp:LinkButton ID="LinkButton1" runat="server" Style="position: absolute; right: 8%; font-size: x-large">  Pausar </asp:LinkButton>--%>
                     </div>
                 </div>
+                                <div class="row" style="background-color: white">                <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
+</div>
+
+                <%-- Identidad --%>
+            </div>
+        </div>
 
 
-                <div class="row" style="background-color: white">
-                    <div class="col-6" id="divClientes" style="background-color: azure">
-                        <div>
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 100%; background-color:#726e6e; color:aliceblue">Datos Del Cliente</label> </div></div></div><div class="col-6">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" style="width: 100%; background-color:#726e6e;color:aliceblue">Datos del Plan Adquirido</label> </div></div>
+        <div class="row" style="background-color: white; padding-top: 15px">
+            <div class="col">
+                <asp:Label ID="lblMsjError" runat="server"></asp:Label>
+            </div>
 
-                </div><%-- Identidad --%>
-                
-                <div class="row" style="background-color: white">
-                    <div class="col-6">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 80px">Identidad</label> </div><asp:TextBox ID="txtidentiCliapp" runat="server" CssClass="form-control form-control-sm" placeholder="Identidad Cliente..." TextMode="SingleLine" />
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="input-group input-group-sm" >
-
-                              <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true"/>
-                          <%--  <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm"   placeholder="Codigo" ID="txtcodigoprod1" runat="server" />--%>
-                            <div class="input-group-append">
-                                <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label></div></div></div><%--         <div class="col">
-
-                                <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm"  placeholder="Producto..." TextMode="SingleLine" />
-                       </div> --%></div><%-- Telefono --%><div class="row" style="background-color: white">
-                    <div class="col-4">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 80px">Telefono</label> </div><asp:TextBox ID="txttel1app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 1..." TextMode="SingleLine" />                   
-                            <asp:TextBox ID="txttel2app" runat="server" CssClass="form-control form-control-sm" placeholder="Telefono 2..." TextMode="SingleLine" />
-                        
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        
-                         <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 55px">Prima</label> </div><asp:TextBox ID="TxtPrimaApp" runat="server" CssClass="form-control form-control-sm" TextMode="Number" Enabled="false"/>                   
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Cuota</label> </div><asp:TextBox ID="txtcuotaApp" runat="server"  CssClass="form-control form-control-sm" placeholder="Valor Cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
-                        </div>
-                    </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                               <label class="input-group-text" style="width: 110px">N° Letras</label> </div><asp:TextBox ID="txtLetraApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true"/>
-                        </div>
-                    </div>
-                </div>
-                <%-- Direccion --%>
-                <div class="row" style="background-color: white">
-                    
-                        <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Depto</label> </div>
-                          <asp:DropDownList ID="dlDeptoCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlDeptoCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
-
-                    </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Ciudad</label> </div>
-                           <asp:DropDownList ID="dlCiudadCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlCiudadCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
-
-                    </div>
-                    <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Valor</label> </div><asp:TextBox ID="txtvalorcontApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true"/>
-                        </div>
-
-                    </div>
-                     <div class="col-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" style="width: 110px">Cantidad</label> </div><asp:TextBox ID="txtcanti1app" runat="server" CssClass="form-control form-control-sm" placeholder="Cant.." TextMode="SingleLine" />
-                        </div>
-
-                    </div>
-
-                </div>
-
-                    <div class="row" style="background-color: white">
-                    <div class="col-6">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <%--<label class="input-group-text" style="width: 110px">Direccion</label>--%>
-                            </div>
-                            <p class="list-group-item list-group-item-action bg-light"><i class="far fa-comment-alt" style="font-size:large; text-align:center">
-
-                         </i>&nbsp Direccion<asp:TextBox ID="txtdir1Cliapp" TextMode="MultiLine"  runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-
-                            </p>
-                            <%--<asp:TextBox ID="txtdir1Cliapp" runat="server" CssClass="form-control form-control-sm" placeholder="Direccion Completa..." TextMode="SingleLine" />--%>
-
-                        </div>
-
-                    </div>
-                        </div>
-
- 
-                <div class="row" style="background-color: white; padding-top: 15px">
-                    <div class="col">
-                    <asp:Label ID="lblMsjError" runat="server"></asp:Label></div></div><%-- Botones Guardar y Cancelar --%><div class="row" style="background-color: white">               
-                <div style="padding-left: 50%; padding-right: 15%; padding-top: 30px;">
-                  <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success"  />&nbsp&nbsp <asp:Button ID="btnCanModalCl" runat="server" Text="   Cancelar   " CssClass="btn btn-sm btn-danger"/>&nbsp&nbsp </div></div><asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton></div><%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
+        <asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton>
+        </div>
+        <%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
                <asp:Label ID="lblMsjError" runat="server">Prueba del Mensaje</asp:Label>
-           </div>--%></div><%-- Panel de Vendedores --%><div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0" id="PanelVendedoresEditar" runat="server" visible="false">
-               <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">
-                           
-                           <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true"/>
-                       </div>                    
-                   </div>
-                   <div class="row" style="background-color: white">
-                       <div class="col">
-                           <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
-                               <Columns>
-                                   <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
-                               </Columns>
-                           </asp:GridView>
-                       </div>                       
-                   </div>
-               </div>
-               <asp:LinkButton ID="btnCerarPVend" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div><%-- Panel Clientes --%><div class="container-fluid" style="background-color: white; position:absolute; left: 0; top: 0; bottom: 0" id="PanelClientesVE" runat="server" visible="false">
-               <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">                           
-                           <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true"   />
-                       </div>                    
-                   </div>
-                   <div class="row" style="background-color: white">
-                       <div class="col">
-                           <asp:GridView ID="gvClientesVE" HtmlEnCode="false" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
-                               <Columns>
-                                   <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True" ></asp:CommandField>
-                               </Columns>
-                           </asp:GridView>
-                       </div>                       
-                   </div>
-               </div>
-               <asp:LinkButton ID="btnCerrarCliapp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div><%-- Panel Contrato --%><div class="container-fluid" style="background-color: white; position:absolute; left: 0; top: 0; bottom: 0" id="PanelProductosApp" runat="server" visible="false">
-               <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
-                   <div class="row" style="background-color: white; padding-top: 15px;">                   
-                       <div class="col">                           
-                           <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine"   />
-                       </div>                    
-                   </div>
-                   <div class="row" style="background-color: white">
-                       <div class="col">
-                           <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
-                               <Columns>
-                                   <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
-                               </Columns>
-                           </asp:GridView>
-                       </div>                       
-                   </div>
+           </div>--%></div><%-- Panel de Vendedores --%>
+        <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelVendedoresEditar" runat="server" visible="false">
+            <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
+                <div class="row" style="background-color: white; padding-top: 15px;">
+                    <div class="col">
+
+                        <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true" />
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col">
+                        <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
+                            <Columns>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+            <asp:LinkButton ID="btnCerarPVend" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton>
+        </div>
+        <%-- Panel Clientes --%>
+        <div class="container-fluid" style="background-color: white; position: absolute; left: 0; top: 0; bottom: 0" id="PanelClientesVE" runat="server" visible="false">
+            <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
+                <div class="row" style="background-color: white; padding-top: 15px;">
+                    <div class="col">
+                        <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true" />
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col">
+                        <asp:GridView ID="gvClientesVE" HtmlEnCode="false" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
+                            <Columns>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+            <asp:LinkButton ID="btnCerrarCliapp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton>
+        </div>
+        <%-- Panel Contrato --%>
+        <div class="container-fluid" style="background-color: white; position: absolute; left: 0; top: 0; bottom: 0" id="PanelProductosApp" runat="server" visible="false">
+            <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
+                <div class="row" style="background-color: white; padding-top: 15px;">
+                    <div class="col">
+                        <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" />
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col">
+                        <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
+                            <Columns>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
                </div>
                <asp:LinkButton ID="btnCerrarPanelProductosApp" runat="server" Style="position: absolute; right: 5%; top: 38px; font-size: x-large"><i class="far fa-times-circle text-secondary"></i></asp:LinkButton></div>
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0" id="PanelConfirmacion" runat="server" visible="false">
@@ -456,7 +380,7 @@ h4:hover {
                        <div class="col-8">
                            <div class="input-group-prepend align-content-center" style="text-align: left"">
                                
-                           <label class="alert-primary align-content-center">Está seguro Que desea Grabar Este Documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
+                           <label class="alert-primary align-content-center">Está seguro qué desea grabar este documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
                        <div class="col-8">
                            <div class="col" style="text-align: right">
                                <asp:Button ID="BtnSiSalvarCamb" runat="server" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp<asp:Button ID="BtnNoSalvar" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-secondary" />
@@ -500,7 +424,8 @@ h4:hover {
              
                </div>
            </div>
-       
+               <div id="alertPlaceholder" runat="server"></div>
+
 
         <script src="js/JQuery.js"></script>
         <script src="js/popper.min.js"></script>
@@ -515,7 +440,7 @@ h4:hover {
                 $(this).closest("tr").next().remove();
             });
 
-                   
+
             //const btnArreglar = document.getElementById('btnArreglarVenta');
             //        grid = document.getElementById
 
