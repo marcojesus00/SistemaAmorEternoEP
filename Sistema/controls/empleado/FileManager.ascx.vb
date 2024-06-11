@@ -36,7 +36,7 @@ Public Class FileManager
         ddlAreArchived.Items.Clear()
         ddlAreArchived.Items.Add(New ListItem("Documentos", "False"))
         ddlAreArchived.Items.Add(New ListItem("Documentos archivados", "True"))
-        Using context As New MyDbContext
+        Using context As New FunamorContext
             Dim companies = context.TiposDeDocumentoDeEmpleado.ToList()
             ddlDocType.DataSource = companies
             ddlDocType.DataTextField = "Nombre"
@@ -62,7 +62,7 @@ Public Class FileManager
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = MyGridView.Rows(rowIndex)
                 Dim documentName As String = row.Cells(2).Text
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorContext
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     Dim documentPath = record.Ruta
@@ -81,7 +81,7 @@ Public Class FileManager
         End If
         If e.CommandName = "RestoreFile" Then
             Try
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorContext
                     Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
@@ -111,7 +111,7 @@ Public Class FileManager
             Session("tabSelected") = "DocsTab"
 
             Dim documentId As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Value)
-            Using dbcontext As New MyDbContext()
+            Using dbcontext As New FunamorContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
                 'Dim relativePath As String = 
@@ -165,7 +165,7 @@ Public Class FileManager
     End Sub
     Private Function DeleteRecordFromDatabase(documentId As String)
         Try
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorContext()
                 Dim recordsToDelete = dbContext.DocumentosDeEmpleados.Where(Function(f) f.Id = documentId)
                 dbContext.DocumentosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
@@ -223,7 +223,7 @@ Public Class FileManager
 
     End Sub
     Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer, selectedType As String) As List(Of DocumentoDeEmpleado)
-        Using dbContext As New MyDbContext
+        Using dbContext As New FunamorContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
             If selectedType.Length > 0 Then
@@ -296,7 +296,7 @@ Public Class FileManager
                             Exit Sub
                         Else
                             File1.PostedFile.SaveAs(fileAbsolutePath)
-                            Using dbContext As New MyDbContext
+                            Using dbContext As New FunamorContext
                             Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,

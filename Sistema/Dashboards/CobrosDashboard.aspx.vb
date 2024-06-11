@@ -20,7 +20,7 @@ Public Class CobrosDashboard
         End Try
     End Sub
     Private Sub FillDll()
-        Using context As New MyDbContext
+        Using context As New FunamorContext
             Dim companies = context.Empresas.Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
             ddlCompany.DataSource = companies
             ddlCompany.DataTextField = "Nombre"
@@ -77,7 +77,7 @@ Public Class CobrosDashboard
 
         End If
         Dim dataCollector As List(Of Cobrador)
-        Using context As New MyDbContext, cobrosContext As New AeCobrosContext
+        Using context As New FunamorContext, cobrosContext As New AeCobrosContext
 
             dataCollector = context.Cobradores.ToList()
             'cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha > "2024-06-03").Select(Function(r) New With {r.NumeroDeRecibo, r.PorLempira, r.Cliente.NombreCliente, r.Cobrador.NombreCobr, r.Rfecha}).OrderByDescending(Function(r) r.Rfecha).Take(10)
