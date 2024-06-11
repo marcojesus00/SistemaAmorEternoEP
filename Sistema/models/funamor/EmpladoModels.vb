@@ -28,23 +28,11 @@ Public Class DocumentoDeEmpleado
     Public Property Ruta As String
     Public Property Descripcion As String
     Public Property Archivado As Boolean
-    <ForeignKey("TipoDeDocumento")>
-    Public Property TipoDeDocumentoId As Integer
-    Public Property Usuario As String
-
     Public Overridable Property Empleado As DatosDeEmpleado
 
-    Public Overridable Property TipoDeDocumento As TipoDeDocumentoDeEmpleado
 
 End Class
-<Table("TiposDeDocumentosDeEmpleado")>
-Public Class TipoDeDocumentoDeEmpleado
-    <Key>
-    <DatabaseGenerated(DatabaseGeneratedOption.Identity)>
-    Public Property Id As Integer
-    Public Property Nombre As String
 
-End Class
 
 <Table("PLAEMP")>
 Public Class DatosDeEmpleado

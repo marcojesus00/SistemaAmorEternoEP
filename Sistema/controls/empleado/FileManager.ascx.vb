@@ -8,7 +8,6 @@ Public Class FileManager
     Dim queryDelete As String
     Dim queryRetrieve As String
     Dim numeroDeEmpleado As String
-    Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUploadMessage.ForeColor = Drawing.Color.Red
@@ -36,23 +35,8 @@ Public Class FileManager
         ddlAreArchived.Items.Clear()
         ddlAreArchived.Items.Add(New ListItem("Documentos", "False"))
         ddlAreArchived.Items.Add(New ListItem("Documentos archivados", "True"))
-        Using context As New MyDbContext
-            Dim companies = context.TiposDeDocumentoDeEmpleado.ToList()
-            ddlDocType.DataSource = companies
-            ddlDocType.DataTextField = "Nombre"
-            ddlDocType.DataValueField = "Id"
-            ddlDocType.DataBind()
-
-            ddlDocTypeTable.DataSource = companies
-            ddlDocTypeTable.DataTextField = "Nombre"
-            ddlDocTypeTable.DataValueField = "Id"
-            ddlDocTypeTable.DataBind()
-            ddlDocTypeTable.Items.Insert(0, New ListItem("Todos los documentos", ""))
-
-        End Using
     End Sub
     Protected Sub MyGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
-        Session("tabSelected") = "DocsTab"
 
         If e.CommandName = "DownloadFile" Then
 
@@ -62,11 +46,11 @@ Public Class FileManager
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = MyGridView.Rows(rowIndex)
                 Dim documentName As String = row.Cells(2).Text
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorDbContext
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim record As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
                     Dim documentPath = record.Ruta
-                    Dim handlerUrl As String = $"~/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
+                    Dim handlerUrl As String = $"/Handlers/DownloadHandler.ashx?path={HttpUtility.UrlEncode(documentPath)}&name={HttpUtility.UrlEncode(documentName)}"
                     Response.Redirect(handlerUrl)
                 End Using
 
@@ -81,7 +65,7 @@ Public Class FileManager
         End If
         If e.CommandName = "RestoreFile" Then
             Try
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorDbContext
                     Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                     Dim DocId As Integer = MyGridView.DataKeys(rowIndex).Value.ToString()
                     Dim recordToUpdate As DocumentoDeEmpleado = dbContext.DocumentosDeEmpleados.Find(DocId)
@@ -108,19 +92,18 @@ Public Class FileManager
     Protected Sub MyGridView_RowDeleting(ByVal sender As Object, ByVal e As GridViewDeleteEventArgs) Handles MyGridView.RowDeleting
 
         Try
-            Session("tabSelected") = "DocsTab"
 
             Dim documentId As Integer = Convert.ToInt32(MyGridView.DataKeys(e.RowIndex).Value)
-            Using dbcontext As New MyDbContext()
+            Using dbcontext As New FunamorDbContext()
                 Dim document As DocumentoDeEmpleado = dbcontext.DocumentosDeEmpleados.SingleOrDefault(Function(d) d.Id = documentId)
                 Dim creationDate As DateTime = document.FechaDeCreacion
-                'Dim relativePath As String = 
+                Dim relativePath As String = document.Ruta
 
                 Dim utcTime As DateTime = DateTime.UtcNow
                 Dim targetTimeZoneOffset As Integer = -6
                 Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
                 Dim time24HoursLater As DateTime = creationDate.AddHours(24)
-                Dim filePath As String = document.Ruta
+                Dim filePath As String = Server.MapPath(relativePath)
                 If utcTime > time24HoursLater Then
                     Try
                         document.Archivado = True
@@ -165,7 +148,7 @@ Public Class FileManager
     End Sub
     Private Function DeleteRecordFromDatabase(documentId As String)
         Try
-            Using dbContext As New MyDbContext()
+            Using dbContext As New FunamorDbContext()
                 Dim recordsToDelete = dbContext.DocumentosDeEmpleados.Where(Function(f) f.Id = documentId)
                 dbContext.DocumentosDeEmpleados.RemoveRange(recordsToDelete)
                 dbContext.SaveChanges()
@@ -190,11 +173,10 @@ Public Class FileManager
                 numeroDeEmpleado = Session("Codigo_Empleado")
                 Dim selectedValue As String = ddlAreArchived.SelectedValue
                 Dim isArchived As Boolean = False
-                Dim selectedType = ddlDocTypeTable.SelectedValue
                 If selectedValue = "True" Then
                     isArchived = True
                 End If
-                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado, selectedType)
+                Dim dataList As List(Of DocumentoDeEmpleado) = GetEmployeeDocs(isArchived, numeroDeEmpleado)
 
                 MyGridView.DataSource = dataList
                 MyGridView.DataBind()
@@ -222,19 +204,15 @@ Public Class FileManager
 
 
     End Sub
-    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer, selectedType As String) As List(Of DocumentoDeEmpleado)
-        Using dbContext As New MyDbContext
+    Protected Function GetEmployeeDocs(areArechived As Boolean, employeeId As Integer) As List(Of DocumentoDeEmpleado)
+        Using dbContext As New FunamorDbContext
 
             Dim data = dbContext.DocumentosDeEmpleados.Where(Function(d) d.NumeroDeEmpleado = employeeId And d.Archivado = areArechived)
-            If selectedType.Length > 0 Then
-                data = data.Where(Function(d) d.TipoDeDocumentoId = selectedType)
-            End If
             Return data.ToList()
         End Using
     End Function
 
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
-        Session("tabSelected") = "DocsTab"
 
         Try
 
@@ -242,8 +220,8 @@ Public Class FileManager
                 Dim fileName As String = File1.PostedFile.FileName
                 Dim fileSize As Long = File1.PostedFile.ContentLength
                 Dim numeroDeEmpleado As String
-                Dim directoryRelativePath As String = "Musica\Empleados\Documentos\"
-                Dim directoryAbsolutePath As String = Path.Combine(ServerPath, directoryRelativePath)
+                Dim directoryRelativePath As String = "Subidos/Empleados/Documentos/"
+                Dim directoryAbsolutePath As String = Server.MapPath(directoryRelativePath)
 
                 If Not Directory.Exists(directoryAbsolutePath) Then
                     Directory.CreateDirectory(directoryAbsolutePath)
@@ -279,35 +257,27 @@ Public Class FileManager
                         numeroDeEmpleado = Session("Codigo_Empleado")
                         fileName = numeroDeEmpleado & "_" & DateString & "_" & fileName
                         Dim fileAbsolutePath As String = directoryAbsolutePath & fileName
-                        'Dim fileRelativePath As String = directoryRelativePath & fileName
+                        Dim fileRelativePath As String = directoryRelativePath & fileName
                         Dim description As String
                         description = TextBoxDescription.Text
                         Dim utcTime As DateTime = DateTime.UtcNow
                         Dim targetTimeZoneOffset As Integer = -6
                         Dim localTime As DateTime = utcTime.AddHours(targetTimeZoneOffset)
-                        Dim docTypeId = ddlDocType.SelectedValue
-                        Dim user = ""
-
-                        If Session("Usuario_Aut") IsNot Nothing Then
-                            user = Session("Usuario_Aut")
-                        End If
                         If FileHelper.CheckFileExists(fileAbsolutePath) Then
                             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Ya existe un archivo con ese nombre", "danger"))
                             Exit Sub
                         Else
                             File1.PostedFile.SaveAs(fileAbsolutePath)
-                            Using dbContext As New MyDbContext
-                            Dim newDoc As New DocumentoDeEmpleado With
+                            Using dbContext As New FunamorDbContext
+                                Dim newDoc As New DocumentoDeEmpleado With
                                     {
                                     .NumeroDeEmpleado = numeroDeEmpleado,
                                     .NombreDelArchivo = fileName,
-                                    .Ruta = fileAbsolutePath,
+                                    .Ruta = fileRelativePath,
                                     .Descripcion = description,
                                     .FechaDeCreacion = localTime,
-                                    .Archivado = False,
-                                    .Usuario = user,
-                                    .TipoDeDocumentoId = docTypeId}
-                            dbContext.DocumentosDeEmpleados.Add(newDoc)
+                                    .Archivado = False}
+                                dbContext.DocumentosDeEmpleados.Add(newDoc)
                                 dbContext.SaveChanges()
                             End Using
                             Dim msg As String = "Carga exitosa"
@@ -400,19 +370,12 @@ Public Class FileManager
 
     End Sub
     Protected Sub ddlDocsState_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAreArchived.SelectedIndexChanged
-        Session("tabSelected") = "DocsTab"
-
-        BindGridView()
-    End Sub
-    Protected Sub ddlDocstypeTable_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlDocTypeTable.SelectedIndexChanged
-        Session("tabSelected") = "DocsTab"
 
         BindGridView()
     End Sub
 
     Protected Sub MyGridView_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles MyGridView.PageIndexChanging
         MyGridView.PageIndex = e.NewPageIndex
-        Session("tabSelected") = "DocsTab"
 
     End Sub
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)

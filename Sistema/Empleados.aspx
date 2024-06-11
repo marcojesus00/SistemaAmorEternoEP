@@ -26,14 +26,11 @@
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button  class='<% If Session("tabSelected") = "ProfilePicturaTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button collapsed") %>'
-                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
-                        aria-expanded='<% If Session("tabSelected") = "ProfilePicturaTab" Then Response.Write("true") Else Response.Write("false") %>'
-                            aria-controls="collapseOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Información general
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse <%= If(Session("tabSelected") = "ProfilePicturaTab", "collapse show", "collapse") %>"  data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
 
                        <uc:ProfilePicture class="w-100 " ID="ProfilePicture1" runat="server" />
@@ -48,14 +45,12 @@
             <div class="accordion-item">
 
                 <h2 class="accordion-header">
-                    <button class='<% If Session("tabSelected") = "DataTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button collapsed") %>'
-                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
-                        aria-expanded='<% If Session("tabSelected") = "DataTab" Then Response.Write("true") Else Response.Write("false") %>'
-                        aria-controls="collapseTwo">
+                    <button class='<% If anEmployeeIsSelected Then Response.Write("accordion-button collapsed") Else Response.Write("accordion-button") %>'
+                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded='<% If anEmployeeIsSelected Then Response.Write("false") Else Response.Write("true") %>' aria-controls="collapseTwo">
                         Datos de empleado
                     </button>
                 </h2>
-                <div id="collapseTwo" class='<% If Session("tabSelected") = "DataTab" Then Response.Write("accordion-collapse collapse show") Else Response.Write("accordion-collapse collapse") %>' data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class='<% If anEmployeeIsSelected Then Response.Write("accordion-collapse collapse ") Else Response.Write("accordion-collapse collapse show") %>' data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="container-fluid" style="padding-top: 5px;">
                             <section class="text-left;">
@@ -183,6 +178,7 @@
                                 </asp:TableRow>
                             </asp:Table>
                         </div>
+                        <asp:ImageButton Style="padding-top: 10px; position: absolute; top: 10px; right: 30px;" ID="btnSalir" ToolTip="Cancelar" runat="server" Height="28px" ImageUrl="~/imagenes/cancelar.png" />
 
                         <script src="js/JQuery.js"></script>
                         <p>
@@ -199,14 +195,11 @@
                 <div class="accordion-item">
 
                     <h2 class="accordion-header">
-                    <button class='<% If Session("tabSelected") = "DocsTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button  collapsed") %>'
-                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" 
-                        aria-expanded='<% If Session("tabSelected") = "DocsTab" Then Response.Write("true") Else Response.Write("false") %>'
-                        aria-controls="collapseThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Documentos
                         </button>
                     </h2>
-                    <div id="collapseThree" class="accordion-collapse <%= If(Session("tabSelected") = "DocsTab", "collapse show", "collapse") %>"  data-bs-parent="#accordionExample">
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="container-fluid w-100">
                                 <div class="row">

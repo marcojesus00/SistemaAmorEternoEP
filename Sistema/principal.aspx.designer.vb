@@ -302,15 +302,6 @@ Partial Public Class principal
     Protected WithEvents Movimiento_Cliente As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''btnInformacionDeClientes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnInformacionDeClientes As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''btninhumados control.
     '''</summary>
     '''<remarks>

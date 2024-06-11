@@ -95,9 +95,6 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -110,9 +107,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -124,8 +119,7 @@
   <ItemGroup>
     <Folder Include="archivos\" />
     <Folder Include="fotosCarnet\" />
-    <Folder Include="models\aeventas\" />
-    <Folder Include="models\funamor\results\" />
+    <Folder Include="models\aeCobros\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -230,14 +224,10 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
-    <Content Include="Clientes\Informacion.aspx" />
     <Content Include="Contratos.aspx" />
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
-    <Content Include="controls\informacionDeCliente\ClientsTable.ascx" />
-    <Content Include="controls\shared\Footer.ascx" />
-    <Content Include="controls\shared\NavBar.ascx" />
-    <Content Include="controls\shared\Sidebar.ascx" />
+    <Content Include="controls\monitorDeVentas\CorrectDataClient.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -271,11 +261,11 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
-    <Content Include="Dashboards\CobrosDashboard.aspx" />
-    <Content Include="Dashboards\CobrosMap.aspx" />
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
+    <Content Include="FotosDePerfil\no.png" />
+    <Content Include="helpers\js\textFormatting.js" />
     <Content Include="helpers\js\fileUploadValidation.js" />
     <Content Include="imagenes\atras1.png" />
     <Content Include="imagenes\Cancelar.png" />
@@ -371,8 +361,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Handlers\DownloadHandler.ashx" />
-    <Content Include="Dashboards\Dashboard.master" />
-    <Content Include="Dashboards\Map.master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2251,13 +2239,6 @@
       <DependentUpon>ClientesM1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Clientes\Informacion.aspx.designer.vb">
-      <DependentUpon>Informacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clientes\Informacion.aspx.vb">
-      <DependentUpon>Informacion.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Contratos.aspx.designer.vb">
       <DependentUpon>Contratos.aspx</DependentUpon>
     </Compile>
@@ -2279,58 +2260,11 @@
       <DependentUpon>ProfilePicture.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="controls\informacionDeCliente\ClientsTable.ascx.designer.vb">
-      <DependentUpon>ClientsTable.ascx</DependentUpon>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.designer.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
     </Compile>
-    <Compile Include="controls\informacionDeCliente\ClientsTable.ascx.vb">
-      <DependentUpon>ClientsTable.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\shared\Footer.ascx.designer.vb">
-      <DependentUpon>Footer.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\shared\Footer.ascx.vb">
-      <DependentUpon>Footer.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\shared\NavBar.ascx.designer.vb">
-      <DependentUpon>NavBar.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\shared\NavBar.ascx.vb">
-      <DependentUpon>NavBar.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\shared\Sidebar.ascx.vb">
-      <DependentUpon>Sidebar.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\shared\Sidebar.designer.vb" />
-    <Compile Include="Dashboards\CobrosDashboard.aspx.designer.vb">
-      <DependentUpon>CobrosDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboards\CobrosDashboard.aspx.vb">
-      <DependentUpon>CobrosDashboard.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Dashboards\CobrosMap.aspx.designer.vb">
-      <DependentUpon>CobrosMap.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboards\CobrosMap.aspx.vb">
-      <DependentUpon>CobrosMap.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Dashboards\Dashboard.master.designer.vb">
-      <DependentUpon>Dashboard.master</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboards\Dashboard.master.vb">
-      <DependentUpon>Dashboard.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboards\Map.master.designer.vb">
-      <DependentUpon>Map.master</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboards\Map.master.vb">
-      <DependentUpon>Map.master</DependentUpon>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
@@ -2356,7 +2290,6 @@
     </Compile>
     <Compile Include="helpers\AlertHelper.vb" />
     <Compile Include="helpers\FileHelper.vb" />
-    <Compile Include="helpers\NumberHelper.vb" />
     <Compile Include="helpers\textInputHelper.vb" />
     <Compile Include="Inhumados.aspx.designer.vb">
       <DependentUpon>Inhumados.aspx</DependentUpon>
@@ -2379,20 +2312,10 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="models\aecobros\AeCobrosContext.vb" />
-    <Compile Include="models\aecobros\LogsModels.vb" />
-    <Compile Include="models\aecobros\MVSAGENModel.vb" />
-    <Compile Include="models\aecobros\NOCOBROSModel.vb" />
-    <Compile Include="models\aecobros\ReciboModel.vb" />
-    <Compile Include="models\aecobros\SupervisionModels.vb" />
-    <Compile Include="models\Dto\CobrosMapDto.vb" />
-    <Compile Include="models\funamor\ClienteModel.vb" />
-    <Compile Include="models\funamor\CobradorModel.vb" />
-    <Compile Include="models\funamor\ContratoModeld.vb" />
+    <Compile Include="models\aaeVentas\AeventasModels.vb" />
     <Compile Include="models\funamor\EmpladoModels.vb" />
-    <Compile Include="models\funamor\MyDbContext.vb" />
-    <Compile Include="models\funamor\Results.vb" />
-    <Compile Include="models\funamor\ZonaModels.vb" />
+    <Compile Include="models\funamor\FunamorDbContext.vb" />
+    <Compile Include="models\aaeVentas\AeVentasDbContext.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
     </Compile>
@@ -2551,13 +2474,6 @@
     <Compile Include="SalasHome.aspx.vb">
       <DependentUpon>SalasHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="shared\AE.Master.designer.vb">
-      <DependentUpon>AE.Master</DependentUpon>
-    </Compile>
-    <Compile Include="shared\AE.Master.vb">
-      <DependentUpon>AE.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UbicacionLotes.aspx.designer.vb">
       <DependentUpon>UbicacionLotes.aspx</DependentUpon>
@@ -2877,7 +2793,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="shared\AE.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

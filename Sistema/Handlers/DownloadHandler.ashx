@@ -7,10 +7,10 @@ Imports System.IO
 Public Class DownloadHandler : Implements IHttpHandler
 
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
-        Dim filePath As String = context.Request.QueryString("path")
+        Dim documentPath As String = context.Request.QueryString("path")
         Dim documentName As String = context.Request.QueryString("name")
 
-        'Dim filePath As String = context.Server.MapPath($"~/{documentPath}")
+        Dim filePath As String = context.Server.MapPath($"~/{documentPath}")
 
         If File.Exists(filePath) Then
             context.Response.Clear()

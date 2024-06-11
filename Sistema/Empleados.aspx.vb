@@ -1,4 +1,9 @@
-﻿Imports System.Data.SqlClient
+﻿Imports CrystalDecisions.Shared
+Imports System.IO
+Imports System.Drawing
+Imports System.Data.SqlClient
+Imports System.Web.Services
+Imports System.Web.Script.Services
 
 Public Class Empleados
     Inherits System.Web.UI.Page
@@ -17,6 +22,13 @@ Public Class Empleados
             Response.Redirect("inicio.aspx")
         End If
 
+        If Not IsPostBack Then
+            Session.Add("Orden1", "0")
+            If Session("Estatus") = "Pendiente" Then
+                txtNombre.Text = Session("Nombre")
+                txtIdentidad.Text = Session("identidad")
+            End If
+        End If
 
         Session.Timeout = 90
         Usuario = Session("Usuario")
@@ -75,20 +87,6 @@ Public Class Empleados
         AddHandler FileManager1.AlertGenerated, AddressOf HandleAlertGenerated
         AddHandler ProfilePicture1.AlertGenerated, AddressOf HandleAlertGenerated
 
-        If Not IsPostBack Then
-            Session.Add("Orden1", "0")
-            If Session("Estatus") = "Pendiente" Then
-                txtNombre.Text = Session("Nombre")
-                txtIdentidad.Text = Session("identidad")
-            End If
-            If anEmployeeIsSelected Then
-                Session("tabSelected") = "ProfilePicturaTab"
-            Else
-                Session("tabSelected") = "DataTab"
-
-            End If
-
-        End If
     End Sub
 
     Sub llenar_Campos()
@@ -144,11 +142,16 @@ Public Class Empleados
         End If
 
     End Sub
+    Private Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
+        Session.Add("Codigo_Empleado", "")
+        Session.Add("Nombre_Completo", "")
+        Session.Add("Identidad", "")
+        Response.Redirect("Empleados.aspx")
+    End Sub
 
     Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles btnActualizar.Click
         Dim conf As New Configuracion(Usuario, Clave, "PRUEBA", Servidor)
         Dim Sql As String
-        Session("tabSelected") = "DataTab"
 
         If String.IsNullOrEmpty(txtNombre.Text.ToString) Then
             Msg("Debe ingresar Nombre Empleado")

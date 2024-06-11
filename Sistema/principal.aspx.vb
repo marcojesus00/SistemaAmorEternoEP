@@ -287,13 +287,6 @@ Public Class principal
             Movimiento_Cliente.ToolTip = "No Tiene Acceso"
             Movimiento_Cliente.Style.Value = "color:darkgrey;"
         End If
-        Tabla.DefaultView.RowFilter = "SEG_ARCHIVO = 'CLI_1'"
-        If Tabla.DefaultView.Count > 0 Then
-            btnInformacionDeClientes.Enabled = True
-        Else
-            btnInformacionDeClientes.ToolTip = "No Tiene Acceso"
-            btnInformacionDeClientes.Style.Value = "color:darkgrey;"
-        End If
 
 
         'Ver Ihumados
@@ -461,22 +454,6 @@ Public Class principal
 
         Session.Add("Reporte", "Movimiento Cliente")
         Response.Redirect("monitorclientes.aspx")
-    End Sub
-    Private Sub btnInformacionDeClientes_Click(sender As Object, e As EventArgs) Handles btnInformacionDeClientes.Click
-        Dim conf As New Configuracion(Usuario, clave, Bd, Servidor)
-        Dim SQL As String
-
-        SQL = " Insert into FUNAMOR..LogAccesoApp 
-                (Usuario, Fecha,Hora,NombreReporte) 
-                 values
-                ('" + Session("Usuario_Aut") + "',
-                '" + Format(Date.Now, "yyyy/MM/dd").ToString + "',
-                '" + Format(DateTime.Now, "HH:mm:ss") + "',
-                '" + "Informacion Clientes" + "')"
-        Datos = conf.EjecutaSql(SQL)
-
-        'Session.Add("Reporte", "Movimiento Cliente")
-        Response.Redirect("Clientes/Informacion.aspx")
     End Sub
 
 

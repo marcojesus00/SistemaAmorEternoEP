@@ -32,15 +32,6 @@ Partial Public Class FileManager
     Protected WithEvents TextBoxDescription As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlDocType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlDocType As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''UploadFile control.
     '''</summary>
     '''<remarks>
@@ -66,15 +57,6 @@ Partial Public Class FileManager
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlAreArchived As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''ddlDocTypeTable control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlDocTypeTable As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''MyGridView control.

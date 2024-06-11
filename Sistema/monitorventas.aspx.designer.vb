@@ -41,6 +41,15 @@ Partial Public Class monitorventas
     Protected WithEvents txtFecha As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''TextFinalDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextFinalDate As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''dlMostrar control.
     '''</summary>
     '''<remarks>
@@ -401,121 +410,13 @@ Partial Public Class monitorventas
     Protected WithEvents dlstatusvend As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txtidentiCliapp control.
+    '''CorrectSalesDataClient1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtidentiCliapp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtprod1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtprod1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnBuscarProducto control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnBuscarProducto As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''txttel1app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txttel1app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txttel2app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txttel2app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''TxtPrimaApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtPrimaApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtcuotaApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtcuotaApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtLetraApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtLetraApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''dlDeptoCliente control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlDeptoCliente As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''dlCiudadCliente control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlCiudadCliente As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''txtvalorcontApp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtvalorcontApp As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtcanti1app control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtcanti1app As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtdir1Cliapp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtdir1Cliapp As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents CorrectSalesDataClient1 As Global.Sistema.DataClient
 
     '''<summary>
     '''lblMsjError control.
@@ -525,24 +426,6 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMsjError As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''btnGuardarCamb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnGuardarCamb As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnCanModalCl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCanModalCl As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnCancelarC control.
@@ -723,4 +606,13 @@ Partial Public Class monitorventas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BtnCerrarStatus As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''alertPlaceholder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class
