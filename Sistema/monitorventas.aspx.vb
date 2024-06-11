@@ -132,13 +132,18 @@ Public Class monitorventas
             AddHandler CorrectSalesDataClient1.ProductTextChanged, AddressOf CorrectContract_ProductTextChanged
             AddHandler CorrectSalesDataClient1.enableButton, AddressOf CorrectContract_ProductTextChanged
             AddHandler CorrectSalesDataClient1.ProductButtonClick, AddressOf ProductButtonClick
+            AddHandler CorrectSalesDataClient1.PanelEditarVentaVisible, AddressOf HandlePanelEditarVentaVisible
+
         Catch ex As Exception
             Alert(dangerMsg & ex.Message, "danger")
         End Try
 
     End Sub
 
+    Protected Sub HandlePanelEditarVentaVisible(ByVal sender As Object, ByVal e As EventArgs)
 
+        PanelEditarVenta.Visible = False
+    End Sub
     Protected Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
         Try
             Response.Redirect("principal.aspx")

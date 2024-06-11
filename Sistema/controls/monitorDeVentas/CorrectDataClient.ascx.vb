@@ -4,6 +4,12 @@ Public Class DataClient
     Inherits System.Web.UI.UserControl
     Public Usuario, Clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
+    Public Event PanelEditarVentaVisible As EventHandler
+    Public Event ProductTextChanged As EventHandler(Of EventArgs)
+    Public Event enableButton As EventHandler(Of EventArgs)
+    Public Event ProductButtonClick As EventHandler(Of EventArgs)
+
+
     Dim msg = "Error inesperado: "
     Private _clientData As DatosDeCliente
     Public Property IdentificationText As String
@@ -275,9 +281,6 @@ Public Class DataClient
 
 
     'Editar contrato
-    Public Event ProductTextChanged As EventHandler(Of EventArgs)
-    Public Event enableButton As EventHandler(Of EventArgs)
-    Public Event ProductButtonClick As EventHandler(Of EventArgs)
 
     Protected Sub txtprod1_TextChanged(sender As Object, e As EventArgs)
         Try
@@ -434,7 +437,7 @@ Public Class DataClient
 
     End Sub
     Protected Sub btnCanModalCl_click(sender As Object, e As EventArgs) Handles btnCanModalCl.Click
-        'PanelEditarVenta.Visible = False
+        RaiseEvent PanelEditarVentaVisible(Me, EventArgs.Empty)
     End Sub
     Public Sub valorcontAppTextChanged(sender As Object, e As EventArgs)
         btnGuardarCamb.Enabled = True
