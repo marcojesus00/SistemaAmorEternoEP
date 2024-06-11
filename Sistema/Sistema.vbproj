@@ -2390,7 +2390,7 @@
     <Compile Include="models\funamor\CobradorModel.vb" />
     <Compile Include="models\funamor\ContratoModeld.vb" />
     <Compile Include="models\funamor\EmpladoModels.vb" />
-    <Compile Include="models\funamor\MyDbContext.vb" />
+    <Compile Include="models\funamor\FunamorContext.vb" />
     <Compile Include="models\funamor\Results.vb" />
     <Compile Include="models\funamor\ZonaModels.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
