@@ -170,33 +170,10 @@ Public Class CobrosDashboard
         Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Select(Function(r) New With {r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
-            If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
-                clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-                receiptsByDate = receiptsByDate.Join(clients, Function(e1) e1.CodigoCliente,
-                                                Function(e2) e2.Codigo,
-                                                Function(e1, e2) New With {
-                                                e1.CodigoCliente,
-                                                e1.CodigoCobr,
-                                                e1.PorLempira}).ToList()
-            Else
-
-            End If
-            Dim greceipts = receiptsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
-            Dim greceiptsSelect = greceipts.Select(Function(r) New With {
-                                                .Codigo = r.Key,
-                                                .Recibos = r.Count(Function(w) w.PorLempira),
-                                                .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
-            Dim data = greceiptsSelect.Join(collectors, Function(e1) e1.Codigo,
-                                                Function(e2) e2.Codigo,
-                                                Function(e1, e2) New With {
-                                                    e1.Codigo,
-                                                   e2.Nombre,
-                                                   e1.Recibos,
-                                                   e1.Cobrado
-                                                }).OrderByDescending(Function(r) r.Cobrado).ToList()
-            Return data
+            clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+            Dim data
+            Return clients
 
         End Using
 
