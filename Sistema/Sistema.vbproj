@@ -235,6 +235,7 @@
     <Content Include="controls\empleado\FileManager.ascx" />
     <Content Include="controls\empleado\ProfilePicture.ascx" />
     <Content Include="controls\informacionDeCliente\ClientsTable.ascx" />
+    <Content Include="controls\monitorDeVentas\CorrectDataClient.ascx" />
     <Content Include="controls\shared\Footer.ascx" />
     <Content Include="controls\shared\NavBar.ascx" />
     <Content Include="controls\shared\Sidebar.ascx" />
@@ -2286,6 +2287,13 @@
       <DependentUpon>ClientsTable.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.designer.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="controls\monitorDeVentas\CorrectDataClient.ascx.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="controls\shared\Footer.ascx.designer.vb">
       <DependentUpon>Footer.ascx</DependentUpon>
     </Compile>
@@ -2379,6 +2387,8 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="models\aaeVentas\AeVentasDbContext.vb" />
+    <Compile Include="models\aaeVentas\AeventasModels.vb" />
     <Compile Include="models\aecobros\AeCobrosContext.vb" />
     <Compile Include="models\aecobros\LogsModels.vb" />
     <Compile Include="models\aecobros\MVSAGENModel.vb" />
