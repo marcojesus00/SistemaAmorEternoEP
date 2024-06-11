@@ -108,55 +108,71 @@
                        <input type="text" class="form-control form-control-sm" placeholder="Codigo Vendedor" id="txtCobrador" runat="server" />
                          
                     </div>
-                       <asp:Button ID="btnBuscar" runat="server" Text="   Buscar   " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
-                       
-                      <asp:Button ID="btnArreglarVenta" runat="server" Text="   Arreglar una venta   " ToolTip="Boton en Proceso, completo en un 80%..." visible ="false" CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
-                   </div>
+                      <div class="row p-2">
+                          
+    <div class="col-md-2 mb-2">
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-sm btn-primary w-100" />
+    </div>
+    <div class="col-md-2 mb-2">
+        <asp:Button ID="btnArreglarVenta" runat="server" Text="Arreglar una venta" ToolTip="Boton en Proceso, completo en un 80%..." Visible="false" CssClass="btn btn-sm btn-primary w-100" />
+    </div>  </div>
+
+                          </div>
                
               
           </div>
            
             <div class="container-fluid" style="padding-top:5px;"> 
-                <asp:GridView ID="gvMonitor" runat="server" CssClass="table-hover"  DataKeyNames="Codigo" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowSorting="True"><AlternatingRowStyle BackColor="#DCDCDC" /><Columns>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <img alt = "" src="imagenes/plus.png" />
-                                <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
-                                    <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="false"  CssClass="ChildGrid"><AlternatingRowStyle BackColor="#eeeeee" />
-                                        <Columns>                                       
-                                            <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
-                                            <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" ItemStyle-Width="80px" />
-                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-Width="80px" />
-                                            <asp:BoundField DataField="Hora" HeaderText="Hora" ItemStyle-Width="60px" />
-                                            <asp:BoundField DataField="Codigo Cliente" HeaderText="Cod. Cliente" ItemStyle-Width="80px" />
-                                            <asp:BoundField DataField="Nombre_clie" HeaderText="Nombre Cliente" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
-                                            <asp:BoundField DataField="identidad" HeaderText="Identidad" ItemStyle-Width="110px" ControlStyle-Font-Size="Small" />
-                                            <asp:BoundField DataField="CONT_VALCUO" HeaderText="Cuota" ItemStyle-Width="80px" />
-                                            <asp:BoundField DataField="CONT_NUMCUO" HeaderText="N. Cuotas" ItemStyle-Width="80px" />
-                                            <asp:BoundField DataField="SERVI1DES" HeaderText="Producto" ItemStyle-Width="280px" />
-                                            <asp:BoundField DataField="CONCEPTO" HeaderText="Motivo" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" />
-                                            <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
-                                            <asp:BoundField DataField="Telefono" HeaderText="Telefono" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
-                                            <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>--%>
-                                            <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
-                                        </Columns>
-                                    </asp:GridView>
-                                </asp:Panel>
-                       
-                            </ItemTemplate>
-                        </asp:TemplateField>  
-                        <asp:ButtonField CommandName="Liquidar" Text="Liquidar" Visible="False"/>
-                        <asp:ButtonField Text="Imprimir" CommandName ="Imprimir" Visible="false"/>
-                        <asp:ButtonField Text="Mapa" CommandName ="Mapa" Visible="true"/>
-                        <%--<asp:ButtonField CommandName="ver" Text="Ver" Visible="true"/>--%>
-                    
-                    </Columns>
-                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" /><HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" /><SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" /><SortedAscendingCellStyle BackColor="#F1F1F1" />
-                    <SortedAscendingHeaderStyle BackColor="#0000A9" /><SortedDescendingCellStyle BackColor="#CAC9C9" />
-                    <SortedDescendingHeaderStyle BackColor="#000065" /></asp:GridView> 
-                <br />
-                <asp:GridView ID="gvMonitor2" runat="server"  CssClass="table-hover" DataKeyNames="Codigo" BackColor="White" 
+                <div class="table-responsive">
+
+                    <asp:GridView ID="gvMonitor" runat="server" CssClass="table table-sm table-striped table-hover" DataKeyNames="Codigo" BackColor="white" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowSorting="True">
+                        <AlternatingRowStyle BackColor="#DCDCDC" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <img alt="" src="imagenes/plus.png" />
+                                    <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
+                                        <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="false" CssClass="ChildGrid">
+                                            <AlternatingRowStyle BackColor="#eeeeee" />
+                                            <Columns>
+                                                <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" />
+                                                <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" ItemStyle-Width="80px" />
+                                                <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-Width="80px" />
+                                                <asp:BoundField DataField="Hora" HeaderText="Hora" ItemStyle-Width="60px" />
+                                                <asp:BoundField DataField="Codigo Cliente" HeaderText="Cod. Cliente" ItemStyle-Width="80px" />
+                                                <asp:BoundField DataField="Nombre_clie" HeaderText="Nombre Cliente" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
+                                                <asp:BoundField DataField="identidad" HeaderText="Identidad" ItemStyle-Width="110px" ControlStyle-Font-Size="Small" />
+                                                <asp:BoundField DataField="CONT_VALCUO" HeaderText="Cuota" ItemStyle-Width="80px" />
+                                                <asp:BoundField DataField="CONT_NUMCUO" HeaderText="N. Cuotas" ItemStyle-Width="80px" />
+                                                <asp:BoundField DataField="SERVI1DES" HeaderText="Producto" ItemStyle-Width="280px" />
+                                                <asp:BoundField DataField="CONCEPTO" HeaderText="Motivo" ItemStyle-Width="100px" ControlStyle-Font-Size="Small" />
+                                                <asp:BoundField DataField="Dir_cliente" HeaderText="Direccion" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
+                                                <asp:BoundField DataField="Telefono" HeaderText="Telefono" ItemStyle-Width="360px" ControlStyle-Font-Size="Small" />
+                                                <%--<asp:ButtonField CommandName ="Ver" Text="Ubicacion" ControlStyle-CssClass ="fa-solid fa-screwdriver-wrench"/>--%>
+                                                <asp:BoundField DataField="ClientesSistema" HeaderText="ClienteSistema" ItemStyle-Width="185px" ControlStyle-Font-Size="Small" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </asp:Panel>
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:ButtonField CommandName="Liquidar" Text="Liquidar" Visible="False" />
+                            <asp:ButtonField Text="Imprimir" CommandName="Imprimir" Visible="false" />
+                            <asp:ButtonField Text="Mapa" CommandName="Mapa" Visible="true" />
+                            <%--<asp:ButtonField CommandName="ver" Text="Ver" Visible="true"/>--%>
+                        </Columns>
+                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="black" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#000065" />
+                    </asp:GridView>
+                    <br />
+                <asp:GridView ID="gvMonitor2" runat="server"  CssClass="table table-sm table-striped table-hover" DataKeyNames="Codigo" BackColor="White" 
                     BorderColor="#DEDFDE" BorderStyle="None" 
                     BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AllowSorting="True"><AlternatingRowStyle BackColor="White" />
                     
@@ -169,7 +185,8 @@
                     <SortedAscendingHeaderStyle BackColor="#848384" /><SortedDescendingCellStyle BackColor="#EAEAD3" /><SortedDescendingHeaderStyle BackColor="#575357" />
 
                 </asp:GridView> 
-                <asp:GridView ID="gvDetalle2" runat="server"  DataKeyNames="Codigo" AllowSorting="True" Visible="False" CssClass="ChildGrid table-hover" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"><Columns>
+                    </div>
+                <asp:GridView ID="gvDetalle2" runat="server"  DataKeyNames="Codigo" AllowSorting="True" Visible="False" CssClass="ChildGrid table-sm table-striped table-hover" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"><Columns>
                     <asp:ButtonField CommandName="Anular" Text="Anular"/>
                      <asp:ButtonField CommandName ="Ubicacion" Text="Ubicacion"/>
                     <asp:BoundField DataField="Codigo" HeaderText="Codigo" ItemStyle-Width="120px" ><ItemStyle Width="120px" /></asp:BoundField>

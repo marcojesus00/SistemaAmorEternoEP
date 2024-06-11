@@ -80,10 +80,10 @@
 
                                 <div class="input-group input-group-sm">
                                     <div class="row">
-                                        <i class="far fa-comment-alt pb-1" style="font-size: large; text-align: start">Dirección</i>
+                                        <i class="far fa-comment-alt pb-1" style="font-size: large; text-align: start">Dirección </i>
 
                                     </div>
-                                    <div class="row">
+                                    <div class="row p-1">
                                         <asp:TextBox ID="txtdir1Cliapp" TextMode="SingleLine" placeholder="Línea 1" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <asp:TextBox ID="TextBoxAddress2" TextMode="SingleLine" placeholder="Línea 2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <asp:TextBox ID="TextBoxAddress3" TextMode="SingleLine" placeholder="Línea 3" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
