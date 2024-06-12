@@ -17,9 +17,9 @@
                             <div class="form-group">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Identidad</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Identidad</span>
                                     </div>
-                                    <asp:TextBox ID="txtidentiCliapp" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="100319830001" TextMode="SingleLine" />
+                                    <asp:TextBox ID="txtidentiCliapp" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="0801..." TextMode="SingleLine" />
 
                                 </div>
                             </div>
@@ -27,17 +27,17 @@
 
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Celular</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Celular</span>
                                     </div>
-                                    <asp:TextBox ID="TextBoxCelular" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxCelular" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="8000..." TextMode="SingleLine" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Teléfono</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Teléfono</span>
                                     </div>
-                                    <asp:TextBox ID="TextBoxPhone" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="00000000" TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxPhone" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="9000..." TextMode="SingleLine" />
                                 </div>
                             </div>
 
@@ -48,18 +48,18 @@
 
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Depto</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Depto</span>
                                     </div>
-                                    <asp:DropDownList ID="dlDeptoCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlDeptoCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="dlDeptoCliente" runat="server" CssClass="form-control form-control-sm" OnTextChanged="dlDeptoCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
 
 
                                 <div class="form-group">
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" >Municipio</label>
+                                            <span class="input-group-text"  style="min-width: 100px;">Municipio</span>
                                         </div>
-                                        <asp:DropDownList ID="dlCiudadCliente" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlCiudadCliente_TextChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="dlCiudadCliente" runat="server" CssClass="form-control form-control-sm" OnTextChanged="dlCiudadCliente_TextChanged" ></asp:DropDownList>
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
 
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" >Prima</label>
+                                            <span class="input-group-text"  style="min-width: 100px;">Prima</span>
                                         </div>
                                         <asp:TextBox ID="TxtPrimaApp" runat="server" CssClass="form-control form-control-sm" TextMode="Number" Enabled="false" />
                                     </div>
@@ -113,10 +113,10 @@
                             <div class="form-group">
                                 <div class="input-group input-group-sm">
 
-                                    <asp:TextBox ID="txtprod1" runat="server" CssClass="form-control form-control-sm" placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true" />
+                                    <asp:TextBox ID="textBoxProductNombre1" runat="server" CssClass="form-control form-control-sm" placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true" />
                                     <div class="input-group-append">
-                                        <label class="input-group-text input-group-">
-                                            <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                                        <span class="input-group-text input-group-">
+                                            <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
                                     </div>
                                 </div>
                             </div>
@@ -127,9 +127,9 @@
                             <div class="form-group">
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Cuota</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Cuota</span>
                                     </div>
-                                    <asp:TextBox ID="txtcuotaApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor Cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
+                                    <asp:TextBox ID="textBoxCuotaContratoApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor cuota..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
 
                                 </div>
                             </div>
@@ -137,9 +137,9 @@
 
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >N. letras</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">N. letras</span>
                                     </div>
-                                    <asp:TextBox ID="txtLetraApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
+                                    <asp:TextBox ID="textBoxLetraContratoApp" runat="server" CssClass="form-control form-control-sm" placeholder=".." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
                                 </div>
                             </div>
 
@@ -150,18 +150,18 @@
 
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" >Valor</label>
+                                        <span class="input-group-text"  style="min-width: 100px;">Valor</span>
                                     </div>
-                                    <asp:TextBox ID="txtvalorcontApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
+                                    <asp:TextBox ID="textBoxValorContratoApp" runat="server" CssClass="form-control form-control-sm" placeholder="Valor..." TextMode="Number" OnTextChanged="txtvalorcontApp_TextChanged" AutoPostBack="true" />
                                 </div>
 
 
                                 <div class="form-group">
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" >Cantidad</label>
+                                            <span class="input-group-text"  style="min-width: 100px;">Cantidad</span>
                                         </div>
-                                        <asp:TextBox ID="txtcanti1app" runat="server" CssClass="form-control form-control-sm" placeholder="Cant.." TextMode="SingleLine" />
+                                        <asp:TextBox ID="textBoxCantidadProducto1app" runat="server" CssClass="form-control form-control-sm" placeholder="0..." TextMode="SingleLine" />
                                     </div>
                                 </div>
 
@@ -175,7 +175,7 @@
             </div>
             <hr class="p-2" />
 
-            <div class="row justify-content-end pt-lg-5 pr-1">
+            <div class="row justify-content-end pt-md-5 pr-1">
                 <div class="col-auto">
                     <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success" />
                 </div>

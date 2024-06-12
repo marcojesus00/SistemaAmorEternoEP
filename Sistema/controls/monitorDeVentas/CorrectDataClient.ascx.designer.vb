@@ -95,13 +95,13 @@ Partial Public Class DataClient
     Protected WithEvents TextBoxAddress3 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtprod1 control.
+    '''textBoxProductNombre1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtprod1 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxProductNombre1 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnBuscarProducto control.
@@ -113,40 +113,40 @@ Partial Public Class DataClient
     Protected WithEvents btnBuscarProducto As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''txtcuotaApp control.
+    '''textBoxCuotaContratoApp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtcuotaApp As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxCuotaContratoApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtLetraApp control.
+    '''textBoxLetraContratoApp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLetraApp As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxLetraContratoApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtvalorcontApp control.
+    '''textBoxValorContratoApp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtvalorcontApp As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxValorContratoApp As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtcanti1app control.
+    '''textBoxCantidadProducto1app control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtcanti1app As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents textBoxCantidadProducto1app As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnGuardarCamb control.

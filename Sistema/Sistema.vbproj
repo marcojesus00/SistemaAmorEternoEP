@@ -2389,6 +2389,7 @@
     </Compile>
     <Compile Include="models\aaeVentas\AeVentasDbContext.vb" />
     <Compile Include="models\aaeVentas\AeventasModels.vb" />
+    <Compile Include="models\aaeVentas\Extensions\AeventasExtension.vb" />
     <Compile Include="models\aecobros\AeCobrosContext.vb" />
     <Compile Include="models\aecobros\LogsModels.vb" />
     <Compile Include="models\aecobros\MVSAGENModel.vb" />

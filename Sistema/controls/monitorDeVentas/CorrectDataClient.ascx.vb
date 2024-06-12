@@ -1,17 +1,86 @@
 ﻿Imports System.Data.SqlClient
 
+'<Serializable>
 Public Class DataClient
     Inherits System.Web.UI.UserControl
     Public Usuario, Clave, Servidor, Bd, Usuario_Aut, Clave_Aut As String
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Public Event PanelEditarVentaVisible As EventHandler
+    Public Event PanelConfirmacionVisible As EventHandler
+
     Public Event ProductTextChanged As EventHandler(Of EventArgs)
     Public Event enableButton As EventHandler(Of EventArgs)
     Public Event ProductButtonClick As EventHandler(Of EventArgs)
+    Public Property DataOfClient As DatosDeCliente
+        Get
+            If Session("DataOfClient") IsNot Nothing Then
+                Return Session("DataOfClient")
+            Else
+                Return Nothing
+            End If
+        End Get
+        Set(value As DatosDeCliente)
+            Session("DataOfClient") = value
+        End Set
+    End Property
+    Public Property DataOfMunicipiosZonasDepartmentos As MunicipioZonaDepartamento
+        Get
+            If Session("DataOfMunicipiosZonasDepartmentos") IsNot Nothing Then
+                Return Session("DataOfMunicipiosZonasDepartmentos")
+            Else
+                Return Nothing
+            End If
+        End Get
+        Set(value As DatosDeCliente)
+            Session("DataOfMunicipiosZonasDepartmentos") = value
+        End Set
+    End Property
+    Public Property ProductNombre1Text As String
+        Get
+            Return textBoxProductNombre1.Text
+        End Get
+        Set(value As String)
+            textBoxProductNombre1.Text = value.Trim()
+        End Set
+    End Property
 
+    Public Property CuotaContratoAppText As String
+        Get
+            Return textBoxCuotaContratoApp.Text
+        End Get
+        Set(value As String)
+            textBoxCuotaContratoApp.Text = value
+        End Set
+    End Property
+
+    Public Property LetraContratoAppText As String
+        Get
+            Return textBoxLetraContratoApp.Text
+        End Get
+        Set(value As String)
+            textBoxLetraContratoApp.Text = value
+        End Set
+    End Property
+
+    Public Property ValorContratoAppText As String
+        Get
+            Return textBoxValorContratoApp.Text
+        End Get
+        Set(value As String)
+            textBoxValorContratoApp.Text = value
+        End Set
+    End Property
+
+    Public Property CantidadProducto1appText As String
+        Get
+            Return textBoxCantidadProducto1app.Text
+        End Get
+        Set(value As String)
+            textBoxCantidadProducto1app.Text = value
+        End Set
+    End Property
 
     Dim msg = "Error inesperado: "
-    Private _clientData As DatosDeCliente
     Public Property IdentificationText As String
         Get
             Return txtidentiCliapp.Text
@@ -51,27 +120,28 @@ Public Class DataClient
             Using dbcontext As New AeVentasDbContext
 
 
-                _clientData = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                DataOfClient = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
                 Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
-                                      .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(_clientData.Municipio)).FirstOrDefault()
+                                      .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(DataOfClient.Municipio)).FirstOrDefault()
                 Dim department = dbcontext.MunicipiosZonasDepartamentos _
-                .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(_clientData.Departamento)) _
+                .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(DataOfClient.Departamento)) _
                 .FirstOrDefault()
 
-                txtidentiCliapp.Text = textInputHelper.FormatWithHyphens(_clientData.Identidad.Trim)
-                TextBoxCelular.Text = textInputHelper.FormatWithHyphens(_clientData.Celular.Trim)
-                TextBoxPhone.Text = textInputHelper.FormatWithHyphens(_clientData.Telefono.Trim)
+                txtidentiCliapp.Text = textInputHelper.FormatWithHyphens(DataOfClient.Identidad.Trim)
+                TextBoxCelular.Text = textInputHelper.FormatWithHyphens(DataOfClient.Celular.Trim)
+                TextBoxPhone.Text = textInputHelper.FormatWithHyphens(DataOfClient.Telefono.Trim)
                 TxtPrimaApp.Text = e.InitialPayment.Trim
-                txtdir1Cliapp.Text = _clientData.Direccion.Trim
-                TextBoxAddress2.Text = _clientData.Dir2_client.Trim
-                TextBoxAddress3.Text = _clientData.Dir3_client.Trim
-                dlDeptoCliente.DataTextField = _clientData.Departamento.Trim
+                txtdir1Cliapp.Text = DataOfClient.Direccion.Trim
+                TextBoxAddress2.Text = DataOfClient.Dir2_client.Trim
+                TextBoxAddress3.Text = DataOfClient.Dir3_client.Trim
+                dlDeptoCliente.DataTextField = DataOfClient.Departamento.Trim
                 dlDeptoCliente.SelectedValue = department.DepartamentoId
 
-                dlCiudadCliente.DataTextField = _clientData.Municipio.Trim.Trim
+                dlCiudadCliente.DataTextField = DataOfClient.Municipio.Trim.Trim
                 dlCiudadCliente.SelectedValue = deptoCiudadQuery.MunicipioId
-                txtdir1Cliapp.Text = _clientData.Direccion.Trim
-
+                txtdir1Cliapp.Text = DataOfClient.Direccion.Trim
+                dlCiudadCliente.Enabled = True
+                dlDeptoCliente.Enabled = True
             End Using
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs("Error" & ex.Message, "danger"))
@@ -84,11 +154,11 @@ Public Class DataClient
         Try
 
             Using dbcontext As New AeVentasDbContext
-                txtprod1.Text = e.ServiceName.Trim
-                txtcuotaApp.Text = e.Payment
-                txtLetraApp.Text = e.BillNumber
-                txtvalorcontApp.Text = e.TotalAmount
-                txtcanti1app.Text = e.Quantity
+                textBoxProductNombre1.Text = e.ServiceName.Trim
+                textBoxCuotaContratoApp.Text = e.Payment
+                textBoxLetraContratoApp.Text = e.BillNumber
+                textBoxValorContratoApp.Text = e.TotalAmount
+                textBoxCantidadProducto1app.Text = e.Quantity
 
             End Using
         Catch ex As Exception
@@ -102,9 +172,9 @@ Public Class DataClient
         Try
 
             Using dbcontext As New AeVentasDbContext
-                txtprod1.Text = e.ServiceName.Trim
-                txtcuotaApp.Text = e.Payment
-                txtvalorcontApp.Text = e.TotalAmount
+                textBoxProductNombre1.Text = e.ServiceName.Trim
+                textBoxCuotaContratoApp.Text = e.Payment
+                textBoxValorContratoApp.Text = e.TotalAmount
 
             End Using
         Catch ex As Exception
@@ -135,8 +205,8 @@ Public Class DataClient
             Dim SelectedDeptoCode As String = dlDeptoCliente.SelectedValue
             Using dbcontext As New AeVentasDbContext
                 Dim deptoCiudadByDepartment = dbcontext.MunicipiosZonasDepartamentos _
-                  .Select(Function(d) New With {d.NombreDepartamento, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId, d.MunicipioId, d.DepartamentoId}) _
-                  .Where(Function(c) c.DepartamentoId = SelectedDeptoCode) _
+                                      .Where(Function(c) c.DepartamentoId = SelectedDeptoCode) _
+                .Select(Function(d) New With {d.MunicipioId, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId}) _
                 .ToList()
                 dlCiudadCliente.DataSource = deptoCiudadByDepartment
                 dlCiudadCliente.DataTextField = "CiudadEmpresa"
@@ -158,7 +228,7 @@ Public Class DataClient
                                       .Distinct() _
                                       .ToList()
                 Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
-                                  .Select(Function(d) New With {d.NombreDepartamento, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId, d.MunicipioId, d.DepartamentoId}) _
+                                  .Select(Function(d) New With {d.MunicipioId, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId}) _
                                   .ToList()
                 dlDeptoCliente.DataSource = departments
                 dlDeptoCliente.DataTextField = "NombreDepartamento"
@@ -170,6 +240,9 @@ Public Class DataClient
                 dlCiudadCliente.DataTextField = "CiudadEmpresa"
                 dlCiudadCliente.DataValueField = "MunicipioId"
                 dlCiudadCliente.DataBind()
+                dlCiudadCliente.Enabled = False
+                dlDeptoCliente.Enabled = False
+
             End Using
         Catch ex As SqlException
 
@@ -184,13 +257,20 @@ Public Class DataClient
     End Sub
     Public Sub SaveChanges()
         Try
+            Dim city = dlCiudadCliente.DataTextField.Trim
+            Dim index As Integer = city.IndexOf("-")
 
-            Dim newDataClient As DatosDeCliente = _clientData
+            If index >= 0 Then
+                ' If the character is found, remove everything after it
+                city = city.Substring(0, index)
+            End If
+
+            Dim newDataClient As DatosDeCliente = DataOfClient.DeepCopy()
             newDataClient.Identidad = txtidentiCliapp.Text.Replace("-", String.Empty).Trim
             newDataClient.Celular = TextBoxCelular.Text.Replace("-", String.Empty).Trim
             newDataClient.Telefono = TextBoxPhone.Text.Replace("-", String.Empty).Trim
             newDataClient.Departamento = dlDeptoCliente.DataTextField.Trim
-            newDataClient.Municipio = dlCiudadCliente.DataTextField.Trim
+            newDataClient.Municipio = city
             newDataClient.Direccion = txtdir1Cliapp.Text.Trim
             newDataClient.Dir2_client = TextBoxAddress2.Text.Trim
             newDataClient.Dir3_client = TextBoxAddress3.Text.Trim
@@ -201,8 +281,8 @@ Public Class DataClient
         Nombre_clie:=newDataClient.Nombre,
         identidad:=newDataClient.Identidad,
         tributario:=newDataClient.tributario,
-        CL_STATUS:=newDataClient.CL_STATUS,
-        CL_COMPANIA:=newDataClient.CL_COMPANIA,
+        CL_STATUS:="", 'newDataClient.CL_STATUS,
+        CL_COMPANIA:="",'=newDataClient.CL_COMPANIA,
         Dir_cliente:=newDataClient.Direccion,
         Dir2_client:=newDataClient.Dir2_client,
         Dir3_client:=newDataClient.Dir3_client,
@@ -215,7 +295,7 @@ Public Class DataClient
         cl_conyutel:=newDataClient.TelefonoDelConyuge,
         cl_conyudir:=newDataClient.DireccionDelConyuge,
         CL_PARENt:=newDataClient.CL_PARENt,
-        Cod_zona:=newDataClient.Cod_zona,
+        Cod_zona:="",'newDataClient.Cod_zona,
         CL_VENDEDOR:=newDataClient.CodigoVendedor,
         cl_usuario:=newDataClient.Cl_usuario,
         cl_terminal:=newDataClient.Cl_terminal,
@@ -233,36 +313,36 @@ Public Class DataClient
 
                 Dim newLogClientesNEdition As New LogEdicionCLIENTESN() With {
     .TiempoDeEdicion = DateTime.Now,
-    .EditadoPor = Session("Usuario"),
-    .Codigo_clie = _clientData.Codigo,
-    .CL_VENDEDOR = _clientData.CodigoVendedor,
-    .Anterior_identidad = _clientData.Identidad,
+    .EditadoPor = Session("Usuario_Aut"),
+    .Codigo_clie = DataOfClient.Codigo,
+    .CL_VENDEDOR = DataOfClient.CodigoVendedor,
+    .Anterior_identidad = DataOfClient.Identidad,
     .Nuevo_identidad = newDataClient.Identidad,
-    .Anterior_Dir_cliente = _clientData.Direccion,
+    .Anterior_Dir_cliente = DataOfClient.Direccion,
     .Nuevo_Dir_cliente = newDataClient.Direccion,
-    .Anterior_Dir2_client = _clientData.Dir2_client,
+    .Anterior_Dir2_client = DataOfClient.Dir2_client,
     .Nuevo_Dir2_client = newDataClient.Dir2_client,
-    .Anterior_Dir3_client = _clientData.Dir3_client,
+    .Anterior_Dir3_client = DataOfClient.Dir3_client,
     .Nuevo_Dir3_client = newDataClient.Dir3_client,
-    .Anterior_Dir4_client = _clientData.Dir4_client,
+    .Anterior_Dir4_client = DataOfClient.Dir4_client,
     .Nuevo_Dir4_client = newDataClient.Dir4_client,
-    .Anterior_Dir5_client = _clientData.Dir5_client,
+    .Anterior_Dir5_client = DataOfClient.Dir5_client,
     .Nuevo_Dir5_client = newDataClient.Dir5_client,
-    .Anterior_Telef_clien = _clientData.Telefono,
+    .Anterior_Telef_clien = DataOfClient.Telefono,
     .Nuevo_Telef_clien = newDataClient.Telefono,
-    .Anterior_CL_CELULAR = _clientData.Celular,
+    .Anterior_CL_CELULAR = DataOfClient.Celular,
     .Nuevo_CL_CELULAR = newDataClient.Celular,
-    .Anterior_CL_EMAIL = _clientData.Email,
+    .Anterior_CL_EMAIL = DataOfClient.Email,
     .Nuevo_CL_EMAIL = newDataClient.Email,
-    .Anterior_cl_conyunom = _clientData.NombreDelConyuge,
+    .Anterior_cl_conyunom = DataOfClient.NombreDelConyuge,
     .Nuevo_cl_conyunom = newDataClient.NombreDelConyuge,
-    .Anterior_cl_conyutel = _clientData.TelefonoDelConyuge,
+    .Anterior_cl_conyutel = DataOfClient.TelefonoDelConyuge,
     .Nuevo_cl_conyutel = newDataClient.TelefonoDelConyuge,
-    .Anterior_cl_conyudir = _clientData.DireccionDelConyuge,
+    .Anterior_cl_conyudir = DataOfClient.DireccionDelConyuge,
     .Nuevo_cl_conyudir = newDataClient.DireccionDelConyuge,
-    .Anterior_departa = _clientData.Departamento,
+    .Anterior_departa = DataOfClient.Departamento,
     .Nuevo_departa = newDataClient.Departamento,
-    .Anterior_municipio = _clientData.Municipio,
+    .Anterior_municipio = DataOfClient.Municipio,
     .Nuevo_municipio = newDataClient.Municipio
 }
 
@@ -296,20 +376,20 @@ Public Class DataClient
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra, Cuota As Integer
         Try
-            If txtcuotaApp.Text.Length > 0 And txtvalorcontApp.Text.Length > 0 And txtLetraApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
+            If textBoxCuotaContratoApp.Text.Length > 0 And textBoxValorContratoApp.Text.Length > 0 And textBoxLetraContratoApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
 
-                If TxtPrimaApp.Text = txtvalorcontApp.Text Then
+                If TxtPrimaApp.Text = textBoxValorContratoApp.Text Then
                     Cuota = 0
                     Letra = 0
                 Else
-                    If txtvalorcontApp.Text > 0 And TxtPrimaApp.Text > 0 And txtcuotaApp.Text > 0 Then
-                        Letra = (txtvalorcontApp.Text - TxtPrimaApp.Text) / txtcuotaApp.Text
-                        Cuota = txtcuotaApp.Text
+                    If textBoxValorContratoApp.Text > 0 And TxtPrimaApp.Text > 0 And textBoxCuotaContratoApp.Text > 0 Then
+                        Letra = (textBoxValorContratoApp.Text - TxtPrimaApp.Text) / textBoxCuotaContratoApp.Text
+                        Cuota = textBoxCuotaContratoApp.Text
                     End If
 
                 End If
-                txtLetraApp.Text = Letra
-                txtcuotaApp.Text = Cuota
+                textBoxLetraContratoApp.Text = Letra
+                textBoxCuotaContratoApp.Text = Cuota
 
                 RaiseEvent enableButton(sender, e)
                 btnGuardarCamb.Enabled = True
@@ -373,32 +453,32 @@ Public Class DataClient
             End If
 
 
-            If txtprod1.Text.Trim.Length = 0 Then
+            If textBoxProductNombre1.Text.Trim.Length = 0 Then
                 msg = "Error: Debe agregar un producto"
                 Exit Sub
             End If
 
-            If txtcuotaApp.Text.TrimEnd = 0 And Prima < txtvalorcontApp.Text Then
+            If textBoxCuotaContratoApp.Text.TrimEnd = 0 And Prima < textBoxValorContratoApp.Text Then
                 msg = "Error: Cuotas no debe ser cero"
                 Exit Sub
             End If
 
-            If txtcuotaApp.Text.TrimEnd > 0 And Prima = txtvalorcontApp.Text Then
+            If textBoxCuotaContratoApp.Text.TrimEnd > 0 And Prima = textBoxValorContratoApp.Text Then
                 msg = "Error: Cuotas no debe ser Cero"
                 Exit Sub
             End If
 
-            If txtLetraApp.Text = 0 And Prima < txtvalorcontApp.Text Then
+            If textBoxLetraContratoApp.Text = 0 And Prima < textBoxValorContratoApp.Text Then
                 msg = "Error: Debe Ingresar numero de letras"
                 Exit Sub
             End If
 
-            If (txtLetraApp.Text * txtcuotaApp.Text) > txtvalorcontApp.Text Then
+            If (textBoxLetraContratoApp.Text * textBoxCuotaContratoApp.Text) > textBoxValorContratoApp.Text Then
                 msg = "Error: Corregir el Valor o numero de cuota"
                 Exit Sub
             End If
 
-            If txtcanti1app.Text = 0 Then
+            If textBoxCantidadProducto1app.Text = 0 Then
                 msg = "Error: Cantidad debe ser mayor a cero(0)"
                 Exit Sub
             End If
@@ -423,13 +503,14 @@ Public Class DataClient
 
 
 
-            If txtcuotaApp.Text * txtLetraApp.Text > ((txtvalorcontApp.Text * txtcanti1app.Text) - Prima) Then
+            If textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
                 msg = "Error: Verifique el N.Cuotas y Letras"
                 Exit Sub
             End If
 
 
-            'PanelConfirmacion.Visible = True
+            RaiseEvent PanelConfirmacionVisible(Me, EventArgs.Empty)
+
         Catch ex As Exception
 
 

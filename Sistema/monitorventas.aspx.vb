@@ -19,6 +19,7 @@ Public Class monitorventas
     Public Event DataSendEvent As EventHandler(Of ClientDataReceivedEventArgs)
     Public Event DataContractSendEvent As EventHandler(Of ContractDataReceivedEventArgs)
     Public Event ProductSendEvent As EventHandler(Of ProductDataReceivedEventArgs)
+    Public Event ConfirmacionSi As EventHandler(Of EventArgs)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
@@ -124,7 +125,6 @@ Public Class monitorventas
             End If
             Dim dataClientControl As DataClient = CType(FindControl("CorrectSalesDataClient1"), DataClient)
 
-            '        AddHandler CorrectSalesDataClient1.DataClientReceived, AddressOf dataClientControl.OnDataReceived
             AddHandler DataSendEvent, AddressOf CorrectSalesDataClient1.OnDataReceived
             AddHandler DataContractSendEvent, AddressOf CorrectSalesDataClient1.OnContractDataReceived
             AddHandler ProductSendEvent, AddressOf CorrectSalesDataClient1.OnProductDataReceived
@@ -133,6 +133,7 @@ Public Class monitorventas
             AddHandler CorrectSalesDataClient1.enableButton, AddressOf CorrectContract_ProductTextChanged
             AddHandler CorrectSalesDataClient1.ProductButtonClick, AddressOf ProductButtonClick
             AddHandler CorrectSalesDataClient1.PanelEditarVentaVisible, AddressOf HandlePanelEditarVentaVisible
+            AddHandler CorrectSalesDataClient1.PanelConfirmacionVisible, AddressOf HandlePanelConfirmacionVisible
 
         Catch ex As Exception
             Alert(dangerMsg & ex.Message, "danger")
@@ -143,6 +144,10 @@ Public Class monitorventas
     Protected Sub HandlePanelEditarVentaVisible(ByVal sender As Object, ByVal e As EventArgs)
 
         PanelEditarVenta.Visible = False
+    End Sub
+    Protected Sub HandlePanelConfirmacionVisible(ByVal sender As Object, ByVal e As EventArgs)
+
+        PanelConfirmacion.Visible = True
     End Sub
     Protected Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
         Try
@@ -1197,10 +1202,10 @@ Public Class monitorventas
             SqlZona = $"Select  "
 
             'Esto hace que el nombre y el codigo del cliente no se cambie si se escoge otro, para que sirve?
-            If txtCodClienteapp.Text.Length = 0 Or lblNameClientapp.InnerText = "" Then
-                txtCodClienteapp.Text = gvClientesVE.Rows(Fila).Cells(1).Text
-                lblNameClientapp.InnerText = gvClientesVE.Rows(Fila).Cells(2).Text
-            End If
+            'If txtCodClienteapp.Text.Length = 0 Or lblNameClientapp.InnerText = "" Then
+            txtCodClienteapp.Text = gvClientesVE.Rows(Fila).Cells(1).Text
+            lblNameClientapp.InnerText = gvClientesVE.Rows(Fila).Cells(2).Text
+            'End If
             Dim clientId = gvClientesVE.Rows(Fila).Cells(1).Text.TrimEnd
             Dim salesPersonId = gvClientesVE.Rows(Fila).Cells(3).Text.TrimEnd
             txtCodVendEV.Text = gvClientesVE.Rows(Fila).Cells(3).Text.TrimEnd
@@ -1585,10 +1590,10 @@ Public Class monitorventas
             '    lblMsg.ControlStyle.CssClass = "alert alert-danger"
             '    Exit Sub
             'End If
-            Dim amount = ""
-            Dim payment = ""
-            Dim billNumber = ""
-            Dim quantity = ""
+            Dim amount = CorrectSalesDataClient1.ValorContratoAppText
+            Dim payment = CorrectSalesDataClient1.CuotaContratoAppText
+            Dim billNumber = CorrectSalesDataClient1.LetraContratoAppText
+            Dim quantity = CorrectSalesDataClient1.CantidadProducto1appText
             Sql = "Exec SP_CONTRATO_LOG '" + txtCodClienteapp.Text.TrimEnd + "'
             ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + amount.TrimEnd.TrimStart + "'
             ,'" + Session("Cred") + "'," + Replace(initialPayment, ",", "") + "
@@ -1621,6 +1626,7 @@ Public Class monitorventas
             'btnGuardarCamb.Enabled = False
             Producto = ""
             IdProduct = ""
+            CorrectSalesDataClient1.SaveChanges()
             PanelEditarVenta.Visible = False
             PanelConfirmacion.Visible = False
             'txtCobrador.Text = txtCodVendEV.Text
