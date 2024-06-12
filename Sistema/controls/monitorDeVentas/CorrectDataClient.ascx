@@ -19,7 +19,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"  style="min-width: 100px;">Identidad</span>
                                     </div>
-                                    <asp:TextBox ID="txtidentiCliapp" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="0801..." TextMode="SingleLine" />
+                                    <asp:TextBox ID="txtidentiCliapp"  runat="server" CssClass="form-control form-control-sm" placeholder="0801..." TextMode="SingleLine" />
 
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"  style="min-width: 100px;">Celular</span>
                                     </div>
-                                    <asp:TextBox ID="TextBoxCelular" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="8000..." TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxCelular"  runat="server" CssClass="form-control form-control-sm" placeholder="8000..." TextMode="SingleLine" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -37,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"  style="min-width: 100px;">Teléfono</span>
                                     </div>
-                                    <asp:TextBox ID="TextBoxPhone" onkeypress="formatNumbersWithDashesKeyPress(event, this)" runat="server" CssClass="form-control form-control-sm" placeholder="9000..." TextMode="SingleLine" />
+                                    <asp:TextBox ID="TextBoxPhone"  runat="server" CssClass="form-control form-control-sm" placeholder="9000..." TextMode="SingleLine" />
                                 </div>
                             </div>
 

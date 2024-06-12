@@ -142,9 +142,9 @@ Public Class DataClient
                 .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).ToList()
                 DataCities = dbcontext.MunicipiosZonasDepartamentos _
                                       .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).ToList()
-                txtidentiCliapp.Text = textInputHelper.FormatWithHyphens(DataOfClient.Identidad.Trim)
-                TextBoxCelular.Text = textInputHelper.FormatWithHyphens(DataOfClient.Celular.Trim)
-                TextBoxPhone.Text = textInputHelper.FormatWithHyphens(DataOfClient.Telefono.Trim)
+                txtidentiCliapp.Text = DataOfClient.Identidad.Trim
+                TextBoxCelular.Text = DataOfClient.Celular.Trim
+                TextBoxPhone.Text = DataOfClient.Telefono.Trim
                 TxtPrimaApp.Text = e.InitialPayment.Trim
                 txtdir1Cliapp.Text = DataOfClient.Direccion.Trim
                 TextBoxAddress2.Text = DataOfClient.Dir2_client.Trim
@@ -519,7 +519,9 @@ Public Class DataClient
                 msg = "Error: Verifique el N.Cuotas y Letras"
                 Exit Sub
             End If
-
+            If txtidentiCliapp.Text.Trim.Length > 15 Then
+                msg = "La identidad no puede ser mayor a 15 caracteres"
+            End If
 
             RaiseEvent PanelConfirmacionVisible(Me, EventArgs.Empty)
 
