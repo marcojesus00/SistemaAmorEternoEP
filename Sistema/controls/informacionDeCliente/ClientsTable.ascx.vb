@@ -67,7 +67,7 @@ Public Class ClientsTable
 
     End Sub
     Private Function GetDocsByClientId(Id As String)
-        Using dbcontext As New MyDbContext
+        Using dbcontext As New FunamorContext
             Dim docs = dbcontext.UrlClientes.Where(Function(u) u.CodigoCliente.Contains(Id.Trim))
             Return docs.ToList()
         End Using
@@ -118,7 +118,7 @@ Public Class ClientsTable
     End Sub
 
     Protected Function GetClientsAndContracts(Optional id As String = "") As List(Of ClientContractQueryResult)
-        Using dbContext As New MyDbContext()
+        Using dbContext As New FunamorContext()
             Dim data = dbContext.Contratos.
                     Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.Nombre.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.Nombre.Trim.Length > 0 And Not c.Cliente.Nombre.Contains("*")).
                     Select(Function(c) New ClientContractQueryResult With {
@@ -135,7 +135,7 @@ Public Class ClientsTable
         End Using
     End Function
     Protected Function GetClientsAndContractsCount() As Integer
-        Using dbContext As New MyDbContext()
+        Using dbContext As New FunamorContext()
             Dim data = dbContext.Contratos.Select(Function(c) c.CodigoCliente.Count).FirstOrDefault()
             Return data
         End Using
@@ -162,7 +162,7 @@ Public Class ClientsTable
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridViewDocs.Rows(rowIndex)
                 Dim documentName As String = row.Cells(0).Text
-                Using dbContext As New MyDbContext
+                Using dbContext As New FunamorContext
                     Dim DocId As Integer = GridViewDocs.DataKeys(rowIndex).Value.ToString()
                     Dim record As UrlCliente = dbContext.UrlClientes.Find(DocId)
                     Dim documentPath = record.RutaDelArchivo
