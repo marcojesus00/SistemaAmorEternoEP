@@ -433,7 +433,7 @@ Public Class DataClient
             Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
             Dim Prima, ValorCont As Integer
             Dim Sql, Producto, IdProduct As String
-
+            Dim isValid = True
             If Session("IdServicio") = "" Then
                 IdProduct = Session("IdServicioM")
                 Producto = Session("ProductoM")
@@ -467,32 +467,32 @@ Public Class DataClient
 
             If textBoxProductNombre1.Text.Trim.Length = 0 Then
                 msg = "Error: Debe agregar un producto"
-                Exit Sub
+                isValid = False
             End If
 
             If textBoxCuotaContratoApp.Text.TrimEnd = 0 And Prima < textBoxValorContratoApp.Text Then
                 msg = "Error: Cuotas no debe ser cero"
-                Exit Sub
+                isValid = False
             End If
 
             If textBoxCuotaContratoApp.Text.TrimEnd > 0 And Prima = textBoxValorContratoApp.Text Then
                 msg = "Error: Cuotas no debe ser Cero"
-                Exit Sub
+                isValid = False
             End If
 
             If textBoxLetraContratoApp.Text = 0 And Prima < textBoxValorContratoApp.Text Then
-                msg = "Error: Debe Ingresar numero de letras"
-                Exit Sub
+                msg = "Error: Debe Ingresar número de letras"
+                isValid = False
             End If
 
             If (textBoxLetraContratoApp.Text * textBoxCuotaContratoApp.Text) > textBoxValorContratoApp.Text Then
-                msg = "Error: Corregir el Valor o numero de cuota"
-                Exit Sub
+                msg = "Error: Corregir el valor o numero de cuota"
+                isValid = False
             End If
 
             If textBoxCantidadProducto1app.Text = 0 Then
                 msg = "Error: Cantidad debe ser mayor a cero(0)"
-                Exit Sub
+                isValid = False
             End If
 
             'If txtvalorcontApp.Text.TrimEnd > Datos.Tables(0).Rows(0).Item("PrecioMaximo") Then
@@ -517,11 +517,31 @@ Public Class DataClient
 
             If textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
                 msg = "Error: Verifique el N.Cuotas y Letras"
-                Exit Sub
+                isValid = False
             End If
             If txtidentiCliapp.Text.Trim.Length > 15 Then
                 msg = "La identidad no puede ser mayor a 15 caracteres"
+                isValid = False
+
             End If
+            If TextBoxCelular.Text.Trim.Length > 20 Then
+                msg = "El celular no puede ser mayor a 20 caracteres"
+                isValid = False
+
+            End If
+            If TextBoxPhone.Text.Trim.Length > 20 Then
+                msg = "El teléfono no puede ser mayor a 20 caracteres"
+                isValid = False
+            End If
+            If txtdir1Cliapp.Text.Trim.Length > 80 Or TextBoxAddress2.Text.Trim.Length > 80 Or TextBoxAddress3.Text.Trim.Length > 80 Then
+                msg = "Cada línea de dirección no puede ser mayor a 80 caracteres"
+                isValid = False
+            End If
+            If isValid = False Then
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                Exit Sub
+            End If
+
 
             RaiseEvent PanelConfirmacionVisible(Me, EventArgs.Empty)
 

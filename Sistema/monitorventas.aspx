@@ -255,24 +255,24 @@
                     <div class="col-lg-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" >Vendedor</label>
+                                <span class="input-group-text" style="min-width: 100px;" >Vendedor</span>
                             </div>
                             <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
                             <div class="input-group-append">
-                                <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                                <span class="input-group-text input-group-">
+                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="input-group input-group-sm">
-                            <label class="form-control form-control-sm" id="txtnombreVendArr" runat="server"></label>
+                            <span class="form-control form-control-sm" style="min-width: 100px;" id="txtnombreVendArr" runat="server"></span>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" >Cambiar estatus</label>
+                                <span class="input-group-text" style="min-width: 100px;">Cambiar estatus</span>
                             </div>
                             <asp:DropDownList ID="dlempresaArr" runat="server" CssClass="form-control form-control-sm" Style="width: 95px" OnTextChanged="dlempresaArr_TextChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
@@ -286,12 +286,12 @@
                     <div class="col-lg-4">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" >Cliente</label>
+                                <span class="input-group-text" style="min-width: 100px;">Cliente</span>
                             </div>
                             <%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodClienteapp" runat="server" />
                             <div class="input-group-append">
-                                <label class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></label>
+                                <span class="input-group-text input-group-" >
+                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <%--<label class="btn btn-group-sm btn-dark" style="grid-column-end">Liquidar</label>--%>
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" >Estatus</label>
+                                <span class="input-group-text" style="min-width: 100px;" >Estatus</span>
                             </div>
                             <asp:DropDownList ID="dlstatusvend" runat="server" CssClass="form-control form-control-sm" Style="width: 95px"></asp:DropDownList>
                         </div>
