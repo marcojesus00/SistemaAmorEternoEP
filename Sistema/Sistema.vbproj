@@ -2399,12 +2399,14 @@
     <Compile Include="models\aecobros\ReciboModel.vb" />
     <Compile Include="models\aecobros\SupervisionModels.vb" />
     <Compile Include="models\Dto\CobrosMapDto.vb" />
+    <Compile Include="models\Dto\MarkerForMap.vb" />
     <Compile Include="models\funamor\ClienteModel.vb" />
     <Compile Include="models\funamor\CobradorModel.vb" />
     <Compile Include="models\funamor\ContratoModeld.vb" />
     <Compile Include="models\funamor\EmpladoModels.vb" />
     <Compile Include="models\funamor\FunamorContext.vb" />
     <Compile Include="models\funamor\Results.vb" />
+    <Compile Include="models\funamor\VendedorModel.vb" />
     <Compile Include="models\funamor\ZonaModels.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>

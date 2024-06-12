@@ -56,14 +56,14 @@ Public Class CobrosDashboard
     Private Sub FillDll()
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
-        Using context As New MyDbContext, ventasContext As New AeVentasContext
+        Using context As New FunamorContext, ventasContext As New AeVentasDbContext
             Dim companies = context.Empresas.Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
             ddlCompany.DataSource = companies
             ddlCompany.DataTextField = "Nombre"
             ddlCompany.DataValueField = "Codigo"
             ddlCompany.DataBind()
             ddlCompany.Items.Insert(0, New ListItem("Seleccione una empresa", ""))
-            Dim zones = ventasContext.DeptoZona.Select(Function(c) New With {c.Nombre, c.Codigo}).ToList()
+            Dim zones = ventasContext.MunicipiosZonasDepartamentos.Select(Function(c) New With {.Nombre = c.NombreMunicipio, .Codigo = c.MunicipioId}).ToList()
             ddlCity.DataSource = zones
             ddlCity.DataTextField = "Nombre"
             ddlCity.DataValueField = "Codigo"
@@ -124,7 +124,7 @@ Public Class CobrosDashboard
         Dim initD = startDate.Text
         Dim collectors As List(Of SimpleCollectorDto)
         Dim clients As List(Of SimpleClientDto)
-        Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
+        Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
             Dim receiptsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD).Select(Function(r) New With {
@@ -167,7 +167,7 @@ Public Class CobrosDashboard
 
         Dim collectors As List(Of SimpleCollectorDto)
         Dim clients As List(Of SimpleClientDto)
-        Using funamorContext As New MyDbContext, cobrosContext As New AeCobrosContext
+        Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
 
@@ -179,7 +179,7 @@ Public Class CobrosDashboard
 
     End Function
     Public Function GetClientsByCollector(collectorCode As String)
-        Using context As New MyDbContext, cobrosContext As New AeCobrosContext
+        Using context As New FunamorContext, cobrosContext As New AeCobrosContext
 
 
             Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode)).ToList()
