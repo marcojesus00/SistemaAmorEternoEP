@@ -23,16 +23,28 @@ Public Class DataClient
             Session("DataOfClient") = value
         End Set
     End Property
-    Public Property DataOfMunicipiosZonasDepartmentos As MunicipioZonaDepartamento
+    Public Property DataDepartments As IEnumerable(Of Object)
         Get
-            If Session("DataOfMunicipiosZonasDepartmentos") IsNot Nothing Then
-                Return Session("DataOfMunicipiosZonasDepartmentos")
+            If Session("DataDepartments") IsNot Nothing Then
+                Return Session("DataDepartments")
             Else
                 Return Nothing
             End If
         End Get
-        Set(value As DatosDeCliente)
-            Session("DataOfMunicipiosZonasDepartmentos") = value
+        Set(value As IEnumerable(Of Object))
+            Session("DataDepartments") = value
+        End Set
+    End Property
+    Public Property DataCities As IEnumerable(Of Object)
+        Get
+            If Session("DataCities") IsNot Nothing Then
+                Return Session("DataCities")
+            Else
+                Return Nothing
+            End If
+        End Get
+        Set(value As IEnumerable(Of Object))
+            Session("DataCities") = value
         End Set
     End Property
     Public Property ProductNombre1Text As String
@@ -103,7 +115,7 @@ Public Class DataClient
 
         If Not IsPostBack Then
             Try
-                DeptoCliente()
+                PopulateDdlDeptoCliente()
 
 
             Catch ex As Exception
@@ -126,7 +138,10 @@ Public Class DataClient
                 Dim department = dbcontext.MunicipiosZonasDepartamentos _
                 .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).Where(Function(d) d.NombreDepartamento.Contains(DataOfClient.Departamento)) _
                 .FirstOrDefault()
-
+                DataDepartments = dbcontext.MunicipiosZonasDepartamentos _
+                .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}).ToList()
+                DataCities = dbcontext.MunicipiosZonasDepartamentos _
+                                      .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).ToList()
                 txtidentiCliapp.Text = textInputHelper.FormatWithHyphens(DataOfClient.Identidad.Trim)
                 TextBoxCelular.Text = textInputHelper.FormatWithHyphens(DataOfClient.Celular.Trim)
                 TextBoxPhone.Text = textInputHelper.FormatWithHyphens(DataOfClient.Telefono.Trim)
@@ -134,11 +149,11 @@ Public Class DataClient
                 txtdir1Cliapp.Text = DataOfClient.Direccion.Trim
                 TextBoxAddress2.Text = DataOfClient.Dir2_client.Trim
                 TextBoxAddress3.Text = DataOfClient.Dir3_client.Trim
-                dlDeptoCliente.DataTextField = DataOfClient.Departamento.Trim
-                dlDeptoCliente.SelectedValue = department.DepartamentoId
-
-                dlCiudadCliente.DataTextField = DataOfClient.Municipio.Trim.Trim
-                dlCiudadCliente.SelectedValue = deptoCiudadQuery.MunicipioId
+                'dlDeptoCliente.DataTextField = department.NombreDepartamento
+                dlDeptoCliente.SelectedValue = department.DepartamentoId.Trim
+                PopulateDdlCiudadCliente()
+                'dlCiudadCliente.DataTextField = deptoCiudadQuery.NombreMunicipio
+                dlCiudadCliente.SelectedValue = deptoCiudadQuery.MunicipioId.Trim
                 txtdir1Cliapp.Text = DataOfClient.Direccion.Trim
                 dlCiudadCliente.Enabled = True
                 dlDeptoCliente.Enabled = True
@@ -201,45 +216,42 @@ Public Class DataClient
     End Sub
     Protected Sub dlDeptoCliente_TextChanged(sender As Object, e As EventArgs)
         Try
+            PopulateDdlCiudadCliente()
 
-            Dim SelectedDeptoCode As String = dlDeptoCliente.SelectedValue
-            Using dbcontext As New AeVentasDbContext
-                Dim deptoCiudadByDepartment = dbcontext.MunicipiosZonasDepartamentos _
-                                      .Where(Function(c) c.DepartamentoId = SelectedDeptoCode) _
-                .Select(Function(d) New With {d.MunicipioId, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId}) _
-                .ToList()
-                dlCiudadCliente.DataSource = deptoCiudadByDepartment
-                dlCiudadCliente.DataTextField = "CiudadEmpresa"
-                dlCiudadCliente.DataValueField = "MunicipioId"
-                dlCiudadCliente.DataBind()
-            End Using
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
 
         End Try
 
     End Sub
-    Sub DeptoCliente()
+    Sub PopulateDdlCiudadCliente()
+        Dim SelectedDeptoCode As String = dlDeptoCliente.SelectedValue.Trim
+        Using dbcontext As New AeVentasDbContext
+            Dim deptoCiudadByDepartment = dbcontext.MunicipiosZonasDepartamentos _
+                                  .Where(Function(c) c.DepartamentoId.Contains(SelectedDeptoCode)) _
+            .Select(Function(d) New With {.Id = d.MunicipioId.Trim(), .Nombre = d.NombreMunicipio.Trim() & "-" & d.ZonaId.Trim()}) _
+            .ToList()
+            dlCiudadCliente.Items.Clear()
+            dlCiudadCliente.DataSource = deptoCiudadByDepartment
+            dlCiudadCliente.DataTextField = "Nombre"
+            dlCiudadCliente.DataValueField = "Id"
+            dlCiudadCliente.DataBind()
+        End Using
+    End Sub
+    Sub PopulateDdlDeptoCliente()
         Try
 
             Using dbcontext As New AeVentasDbContext
                 Dim departments = dbcontext.MunicipiosZonasDepartamentos _
-                .Select(Function(d) New With {d.NombreDepartamento, d.DepartamentoId}) _
+                .Select(Function(d) New With {.Id = d.DepartamentoId.Trim(), .Nombre = d.NombreDepartamento.Trim()}) _
                                       .Distinct() _
                                       .ToList()
-                Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
-                                  .Select(Function(d) New With {d.MunicipioId, .CiudadEmpresa = d.NombreMunicipio.Trim() & "-" & d.ZonaId}) _
-                                  .ToList()
+
                 dlDeptoCliente.DataSource = departments
-                dlDeptoCliente.DataTextField = "NombreDepartamento"
-                dlDeptoCliente.DataValueField = "DepartamentoId"
+                dlDeptoCliente.DataTextField = "Nombre"
+                dlDeptoCliente.DataValueField = "Id"
                 dlDeptoCliente.DataBind()
 
-
-                dlCiudadCliente.DataSource = deptoCiudadQuery
-                dlCiudadCliente.DataTextField = "CiudadEmpresa"
-                dlCiudadCliente.DataValueField = "MunicipioId"
-                dlCiudadCliente.DataBind()
                 dlCiudadCliente.Enabled = False
                 dlDeptoCliente.Enabled = False
 
@@ -257,7 +269,7 @@ Public Class DataClient
     End Sub
     Public Sub SaveChanges()
         Try
-            Dim city = dlCiudadCliente.DataTextField.Trim
+            Dim city = dlCiudadCliente.SelectedItem.Text.Trim
             Dim index As Integer = city.IndexOf("-")
 
             If index >= 0 Then
@@ -269,7 +281,7 @@ Public Class DataClient
             newDataClient.Identidad = txtidentiCliapp.Text.Replace("-", String.Empty).Trim
             newDataClient.Celular = TextBoxCelular.Text.Replace("-", String.Empty).Trim
             newDataClient.Telefono = TextBoxPhone.Text.Replace("-", String.Empty).Trim
-            newDataClient.Departamento = dlDeptoCliente.DataTextField.Trim
+            newDataClient.Departamento = dlDeptoCliente.SelectedItem.Text.Trim
             newDataClient.Municipio = city
             newDataClient.Direccion = txtdir1Cliapp.Text.Trim
             newDataClient.Dir2_client = TextBoxAddress2.Text.Trim
@@ -281,8 +293,8 @@ Public Class DataClient
         Nombre_clie:=newDataClient.Nombre,
         identidad:=newDataClient.Identidad,
         tributario:=newDataClient.tributario,
-        CL_STATUS:="", 'newDataClient.CL_STATUS,
-        CL_COMPANIA:="",'=newDataClient.CL_COMPANIA,
+        CL_STATUS:="",
+        CL_COMPANIA:="",
         Dir_cliente:=newDataClient.Direccion,
         Dir2_client:=newDataClient.Dir2_client,
         Dir3_client:=newDataClient.Dir3_client,
@@ -295,7 +307,7 @@ Public Class DataClient
         cl_conyutel:=newDataClient.TelefonoDelConyuge,
         cl_conyudir:=newDataClient.DireccionDelConyuge,
         CL_PARENt:=newDataClient.CL_PARENt,
-        Cod_zona:="",'newDataClient.Cod_zona,
+        Cod_zona:="",
         CL_VENDEDOR:=newDataClient.CodigoVendedor,
         cl_usuario:=newDataClient.Cl_usuario,
         cl_terminal:=newDataClient.Cl_terminal,
