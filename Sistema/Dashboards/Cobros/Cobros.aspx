@@ -82,7 +82,11 @@
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
-                    <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ShowMap" CommandArgument='<%# Container.DataItemIndex %>'>
+                    <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
+<i class="bi bi-geo-alt-fill"></i>
+
+                    </asp:LinkButton>
+                                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
                     </asp:LinkButton>
