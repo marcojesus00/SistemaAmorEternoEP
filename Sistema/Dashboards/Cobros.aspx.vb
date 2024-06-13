@@ -3,6 +3,7 @@ Imports System.Collections.Generic
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Web.UI.WebControls
+Imports System.Data.Entity
 
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
@@ -12,7 +13,7 @@ Public Class CobrosDashboard
         Try
             If Not IsPostBack Then
                 FillDll()
-                reBind()
+                ReBind()
             End If
 
         Catch ex As Exception
@@ -23,13 +24,13 @@ Public Class CobrosDashboard
         End Try
     End Sub
     Protected Sub DashboardType_change(sender As Object, e As EventArgs) Handles DashboardType.SelectedIndexChanged
-        reBind()
+        ReBind()
     End Sub
-    Protected Sub reBind()
+    Protected Sub ReBind()
         Try
 
             If DashboardType.SelectedValue = "0" Then
-                Dim dataList = GetData()
+                Dim dataList = GetReceiptData()
                 endDate.Enabled = True
                 startDate.Enabled = True
                 BindGridView(dataList)
@@ -115,7 +116,15 @@ Public Class CobrosDashboard
         Public Property Nombre As String
 
     End Class
-    Public Function GetData()
+    Public Class PortfolioDto
+        Public Property Codigo As String
+        Public Property Nombre As String
+        Public Property Clientes As Integer
+        Public Property Deudas As String
+        Public Property Cobrado As String
+
+    End Class
+    Public Function GetReceiptData()
         Dim collectorCode = textBoxCode.Text.Trim
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
@@ -165,17 +174,28 @@ Public Class CobrosDashboard
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
         Dim zoneCode As String = ddlCity.SelectedValue.Trim
 
-        Dim collectors As List(Of SimpleCollectorDto)
-        Dim clients As List(Of SimpleClientDto)
-        Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
+        Dim data As List(Of PortfolioDto)
+        Using funamorContext As New FunamorContext
 
-            collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
 
-            clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-            Dim data
-            Return clients
+            data = funamorContext.Clientes.Include(Function(d) d.CobradorNav) _
+                .Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0) _
+                .GroupBy(Function(c) c.CobradorNav.Codigo) _
+                .Select(Function(g) New PortfolioDto With
+                {.Codigo = g.Key,
+                .Nombre = g.FirstOrDefault().CobradorNav.Nombre,
+                .Clientes = g.Count(),
+                .Deudas = g.Sum(Function(e) e.SaldoActual)}) _
+                .OrderByDescending(Function(e) e.Deudas).ToList()
+            For Each item In data
+                item.Deudas = FormattingHelper.ToLempiras(item.Deudas)
+                item.Cobrado = FormattingHelper.ToLempiras(item.Cobrado)
+
+            Next
+            Return data
 
         End Using
+
 
     End Function
     Public Function GetClientsByCollector(collectorCode As String)
@@ -185,6 +205,12 @@ Public Class CobrosDashboard
             Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode)).ToList()
         End Using
     End Function
+    Public Sub ToClientsByCollectorMap()
+
+    End Sub
+    Public Sub RouteOfReceiptsMap()
+
+    End Sub
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         If e.CommandName = "ShowMap" Then
 
@@ -194,10 +220,6 @@ Public Class CobrosDashboard
                 Dim keyValue As String = DashboardGridview.DataKeys(rowIndex).Value.ToString()
 
 
-                Dim items As New List(Of TransactionMapDto)()
-                Dim a As New TransactionMapDto With {.CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M05-02121", .NombreDelCliente = "Fernanda Antonnia Guzman Perez", .TipoDeTransaccion = "cobro", .Cantidad = "300.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.ToString("HH:mm:ss"), .Latitud = "15.403546", .Longitud = "-87.810689"}
-                Dim b As New TransactionMapDto With {.CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M05-02125", .NombreDelCliente = "Juan Cupertino Rivas Sanchez", .TipoDeTransaccion = "visita", .Cantidad = "302.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.ToString("HH:mm:ss"), .Latitud = "15.401666", .Longitud = "-87.803231"}
-                Dim c As New TransactionMapDto With {.CodigoDeCobrador = "4150", .NombreDeCobrador = "Camilo", .CodigoDelCLiente = "M05-C0425", .NombreDelCliente = "Marcelo Jose Alvarado Torres", .TipoDeTransaccion = "visita", .Cantidad = "2000.00", .Fecha = DateTime.Now.ToString("yyyy/MM/dd"), .Hora = DateTime.Now.ToString("HH:mm:ss"), .Latitud = "15.398078", .Longitud = "-87.809251"}
                 Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
                 Dim markers As New List(Of MarkerForMap)
                 For Each cliente As Cliente In clients
@@ -234,7 +256,7 @@ Public Class CobrosDashboard
         End If
     End Sub
     Private Sub submitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
-        reBind()
+        ReBind()
 
     End Sub
 End Class

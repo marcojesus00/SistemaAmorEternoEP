@@ -64,5 +64,7 @@ Public Class Cobrador
     Public Property CobSucu As String
 
     Public WithEvents RecibosNavigation As ICollection(Of ReciboDeCobro)
+    Public Overridable Property Clientes As ICollection(Of Cliente)
+
 
 End Class
