@@ -272,12 +272,12 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
-    <Content Include="Dashboards\Cobros.aspx" />
+    <Content Include="Dashboards\Cobros\Cobros.aspx" />
     <Content Include="Dashboards\css\leaflet.icon-material.css" />
     <Content Include="Dashboards\Dashboard.master" />
     <Content Include="Dashboards\js\leaflet.icon-material.js" />
-    <Content Include="Dashboards\Map.aspx" />
-    <Content Include="Dashboards\Map.master" />
+    <Content Include="shared\Map\Map.aspx" />
+    <Content Include="shared\Map\Map.master" />
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
@@ -2315,11 +2315,14 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="controls\shared\Sidebar.designer.vb" />
-    <Compile Include="Dashboards\Cobros.aspx.designer.vb">
+    <Compile Include="Dashboards\Cobros\Cobros.aspx.designer.vb">
       <DependentUpon>Cobros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboards\Cobros.aspx.vb">
+    <Compile Include="Dashboards\Cobros\Cobros.aspx.vb">
       <DependentUpon>Cobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\CobrosPortfolio.aspx.partial.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Dashboards\Dashboard.master.designer.vb">
@@ -2329,17 +2332,17 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dashboards\Map.aspx.designer.vb">
+    <Compile Include="shared\Map\Map.aspx.designer.vb">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboards\Map.aspx.vb">
+    <Compile Include="shared\Map\Map.aspx.vb">
       <DependentUpon>Map.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dashboards\Map.master.designer.vb">
+    <Compile Include="shared\Map\Map.master.designer.vb">
       <DependentUpon>Map.master</DependentUpon>
     </Compile>
-    <Compile Include="Dashboards\Map.master.vb">
+    <Compile Include="shared\Map\Map.master.vb">
       <DependentUpon>Map.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

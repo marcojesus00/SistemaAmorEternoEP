@@ -64,13 +64,17 @@ Public Class CobrosDashboard
             ddlCompany.DataValueField = "Codigo"
             ddlCompany.DataBind()
             ddlCompany.Items.Insert(0, New ListItem("Seleccione una empresa", ""))
-            Dim zones = ventasContext.MunicipiosZonasDepartamentos.Select(Function(c) New With {.Nombre = c.NombreMunicipio, .Codigo = c.MunicipioId}).ToList()
+            Dim zones = ventasContext.MunicipiosZonasDepartamentos.
+                Select(Function(c) New With {.Nombre = c.NombreMunicipio, .Codigo = c.MunicipioId}) _
+                .OrderBy(Function(z) z.Nombre).ToList()
             ddlCity.DataSource = zones
             ddlCity.DataTextField = "Nombre"
             ddlCity.DataValueField = "Codigo"
             ddlCity.DataBind()
             ddlCity.Items.Insert(0, New ListItem("Seleccione una zona", ""))
-            Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")).Select(Function(l) New With {l.Codigo, l.Nombre}).ToList()
+            Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
+                .Select(Function(l) New With {l.Codigo, l.Nombre}) _
+                .OrderBy(Function(l) l.Nombre).ToList()
             ddlLeader.DataSource = leaders
             ddlLeader.DataTextField = "Nombre"
             ddlLeader.DataValueField = "Codigo"
@@ -116,14 +120,7 @@ Public Class CobrosDashboard
         Public Property Nombre As String
 
     End Class
-    Public Class PortfolioDto
-        Public Property Codigo As String
-        Public Property Nombre As String
-        Public Property Clientes As Integer
-        Public Property Deudas As String
-        Public Property Cobrado As String
 
-    End Class
     Public Function GetReceiptData()
         Dim collectorCode = textBoxCode.Text.Trim
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
@@ -166,36 +163,6 @@ Public Class CobrosDashboard
             Return data
 
         End Using
-
-    End Function
-    Public Function GetPortfolioData()
-        Dim collectorCode = textBoxCode.Text.Trim
-        Dim CompanyCode = ddlCompany.SelectedValue.Trim
-        Dim leaderCode As String = ddlLeader.SelectedValue.Trim
-        Dim zoneCode As String = ddlCity.SelectedValue.Trim
-
-        Dim data As List(Of PortfolioDto)
-        Using funamorContext As New FunamorContext
-
-
-            data = funamorContext.Clientes.Include(Function(d) d.CobradorNav) _
-                .Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0) _
-                .GroupBy(Function(c) c.CobradorNav.Codigo) _
-                .Select(Function(g) New PortfolioDto With
-                {.Codigo = g.Key,
-                .Nombre = g.FirstOrDefault().CobradorNav.Nombre,
-                .Clientes = g.Count(),
-                .Deudas = g.Sum(Function(e) e.SaldoActual)}) _
-                .OrderByDescending(Function(e) e.Deudas).ToList()
-            For Each item In data
-                item.Deudas = FormattingHelper.ToLempiras(item.Deudas)
-                item.Cobrado = FormattingHelper.ToLempiras(item.Cobrado)
-
-            Next
-            Return data
-
-        End Using
-
 
     End Function
     Public Function GetClientsByCollector(collectorCode As String)
