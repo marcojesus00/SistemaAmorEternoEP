@@ -35,14 +35,19 @@
                       "}).addTo(map);" & vbCrLf &
                       "var markers = [];" & vbCrLf
                 script &= "var linePoints = [];"
-                For i As Integer = 0 To items.Count - 1
+                If items.Count < 1 Then
+                    AlertHelper.GenerateAlert("warning", "No se encontraron registros para mostrar en el mapa.", alertPlaceholder)
 
-                    Dim icon = "map.png"
-                    Dim tooltipMsg As String = items(i).TooltipMessage
-                    If items(i).MarkerType = MarkerTypes.Cobro Then
-                        icon = "moneyIcon.png"
-                    End If
-                    script &= "var myIcon = L.icon({
+                Else
+
+                    For i As Integer = 0 To items.Count - 1
+
+                        Dim icon = "map.png"
+                        Dim tooltipMsg As String = items(i).TooltipMessage
+                        If items(i).MarkerType = MarkerTypes.Cobro Then
+                            icon = "moneyIcon.png"
+                        End If
+                        script &= "var myIcon = L.icon({
                         iconUrl: '/imagenes/" & icon & "',
                         iconSize: [38, 38],
                         iconAnchor: [19, 38],
@@ -51,25 +56,25 @@
                         shadowSize: [44, 44],
                         shadowAnchor: [22, 44]
                     });" & vbCrLf
-                    script &= "linePoints.push([" & items(i).Latitud & ", " & items(i).Longitud & "]);"
-                    script &= "var marker = L.marker([" & items(i).Latitud & ", " & items(i).Longitud & "], {icon: myIcon}).addTo(map);" & vbCrLf
-                    script &= "marker.bindTooltip('" & tooltipMsg & "');" & vbCrLf
-                    script &= "markers.push(marker);" & vbCrLf
+                        script &= "linePoints.push([" & items(i).Latitud & ", " & items(i).Longitud & "]);"
+                        script &= "var marker = L.marker([" & items(i).Latitud & ", " & items(i).Longitud & "], {icon: myIcon}).addTo(map);" & vbCrLf
+                        script &= "marker.bindTooltip('" & tooltipMsg & "');" & vbCrLf
+                        script &= "markers.push(marker);" & vbCrLf
 
 
-                Next
-                If dataForMaps.TraceLine = True Then
-                    script &= "var line = L.polyline(linePoints, {
+                    Next
+                    If dataForMaps.TraceLine = True Then
+                        script &= "var line = L.polyline(linePoints, {
                       color: 'red', 
                       weight: 2
                     });" & vbCrLf
-                    script &= "line.addTo(map);" & vbCrLf
+                        script &= "line.addTo(map);" & vbCrLf
+                    End If
+
+                    script &= "</script>"
+                    ClientScript.RegisterStartupScript(Me.GetType(), "initializeMap", script)
+                    AlertHelper.GenerateAlert("warning", dataForMaps.CountOfCorruptItems.ToString() & " coordenadas corruptas.", alertPlaceholder)
                 End If
-
-                script &= "</script>"
-                ClientScript.RegisterStartupScript(Me.GetType(), "initializeMap", script)
-                AlertHelper.GenerateAlert("warning", dataForMaps.CountOfCorruptItems.ToString() & " coordenadas corruptas.", alertPlaceholder)
-
             Else
                 Response.Redirect("Cobros.aspx")
             End If

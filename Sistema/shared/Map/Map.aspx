@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Map.master" CodeBehind="Map.aspx.vb" Inherits="Sistema.MapPage" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/shared/Map/Map.master" CodeBehind="Map.aspx.vb" Inherits="Sistema.MapPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Map1" runat="server">
                 <asp:PlaceHolder ID="MapTitleHolder" runat="server"></asp:PlaceHolder>
 

@@ -131,17 +131,9 @@ Public Class CobrosDashboard
 
         Next
 
-        If markers.Count > 0 Then
-
-            Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
-            Session("MarkersData") = dataForMaps
-            Response.Redirect("Map.aspx")
-
-        Else
-            AlertHelper.GenerateAlert("warning", "No se encontraron registros para mostrar en el mapa.", alertPlaceholder)
-
-        End If
-
+        Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
+        Session("MarkersData") = dataForMaps
+        Response.Redirect("Map.aspx")
 
     End Sub
     Public Sub RouteOfReceiptsMap(keyValue As String)
