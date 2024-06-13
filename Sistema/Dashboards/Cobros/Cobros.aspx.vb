@@ -17,6 +17,15 @@ Public Class CobrosDashboard
             Session("ReceiptsByDate") = value
         End Set
     End Property
+    Public Property ClientsWithRemainingBalance As List(Of Cliente)
+        Get
+            Return Session("ClientsWithRemainingBalance")
+        End Get
+        Set(value As List(Of Cliente))
+            Session("ClientsWithRemainingBalance") = value
+        End Set
+    End Property
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Not IsPostBack Then
@@ -123,7 +132,7 @@ Public Class CobrosDashboard
         Using context As New FunamorContext, cobrosContext As New AeCobrosContext
 
 
-            Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode)).ToList()
+            Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0).ToList()
         End Using
     End Function
     Public Sub RouteOfReceiptsMap(keyValue As String)
@@ -148,8 +157,10 @@ Public Class CobrosDashboard
     Public Sub ClientsByCollectorMap(keyValue As String)
         Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
         Dim markers As New List(Of MarkerForMap)
+        Dim count = 0
+        clients = clients.Skip(252).Take(85).ToList()
         For Each cliente As Cliente In clients
-            Dim tooltipMsg = $"cliete: {cliente.Nombre}   {cliente.DireccionCliente}"
+            Dim tooltipMsg = $"cliete: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)

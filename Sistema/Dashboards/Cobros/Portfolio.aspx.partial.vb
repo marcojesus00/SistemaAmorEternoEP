@@ -16,7 +16,7 @@ Partial Public Class CobrosDashboard
         Dim data As List(Of PortfolioDto)
         Using funamorContext As New FunamorContext
 
-
+            'ClientsWithRemainingBalance = 
             data = funamorContext.Clientes.Include(Function(d) d.CobradorNav) _
                 .Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0) _
                 .GroupBy(Function(c) c.CobradorNav.Codigo) _
