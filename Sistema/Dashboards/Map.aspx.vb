@@ -7,9 +7,7 @@
 
 
             If Session("MarkersData") IsNot Nothing Then
-                'Dim serializedList As String = Request.QueryString("items")
-                'Dim items As List(Of MarkerMapDto) = JsonConvert.DeserializeObject(Of List(Of MarkerMapDto))(Server.UrlDecode(serializedList))
-                ' Use the items list here
+
                 Dim dataForMaps = TryCast(Session("MarkersData"), DataForMapGenerator)
                 Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
                 mapTitle = dataForMaps.Title

@@ -70,7 +70,7 @@ Public Class CobrosDashboard
             ddlCity.DataValueField = "Codigo"
             ddlCity.DataBind()
             ddlCity.Items.Insert(0, New ListItem("Seleccione una zona", ""))
-            Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider).ToList()
+            Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")).Select(Function(l) New With {l.Codigo, l.Nombre}).ToList()
             ddlLeader.DataSource = leaders
             ddlLeader.DataTextField = "Nombre"
             ddlLeader.DataValueField = "Codigo"
@@ -135,12 +135,12 @@ Public Class CobrosDashboard
         Dim clients As List(Of SimpleClientDto)
         Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
 
-            collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) And c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD And r.Rfecha <= endD).Select(Function(r) New With {
+            collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) AndAlso c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).Select(Function(r) New With {
                                                                                                                                    r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
             If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
-                clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
+                clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
                 receiptsByDate = receiptsByDate.Join(clients, Function(e1) e1.CodigoCliente,
                                                 Function(e2) e2.Codigo,
                                                 Function(e1, e2) New With {
@@ -179,7 +179,7 @@ Public Class CobrosDashboard
 
 
             data = funamorContext.Clientes.Include(Function(d) d.CobradorNav) _
-                .Where(Function(c) c.CodigoZona.Contains(CompanyCode) And c.CodigoVZ.Contains(zoneCode) And c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0) _
+                .Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0) _
                 .GroupBy(Function(c) c.CobradorNav.Codigo) _
                 .Select(Function(g) New PortfolioDto With
                 {.Codigo = g.Key,
