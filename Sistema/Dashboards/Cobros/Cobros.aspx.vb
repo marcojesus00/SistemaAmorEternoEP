@@ -8,7 +8,15 @@ Imports System.Data.Entity
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
-
+    Private _receipts As List(Of ReciboDeCobro)
+    Public Property ReceiptsByDate1 As List(Of ReciboDeCobro)
+        Get
+            Return Session("ReceiptsByDate")
+        End Get
+        Set(value As List(Of ReciboDeCobro))
+            Session("ReceiptsByDate") = value
+        End Set
+    End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Not IsPostBack Then
@@ -118,8 +126,28 @@ Public Class CobrosDashboard
             Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode)).ToList()
         End Using
     End Function
-    Public Sub ClientsByCollectorMap(keyValue As String)
+    Public Sub RouteOfReceiptsMap(keyValue As String, startDate As DateAndTime)
+        Dim clients As List(Of ReciboDeCobro)
 
+        Using myContext As New AeCobrosContext()
+            clients = myContext.RecibosDeCobro.Where(Function(r) r.CodigoCobr.Contains(keyValue) AndAlso)
+        End Using
+        Dim markers As New List(Of MarkerForMap)
+        For Each cliente As ReciboDeCobro In clients
+            Dim tooltipMsg = $"Fecha: {cliente.FechaRecib}, cliente: {cliente.Cliente} cobrado: {cliente.PorLempira}"
+            If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
+                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
+                markers.Add(marker)
+            End If
+
+        Next
+
+        Dim dataForMaps As New DataForMapGenerator($"Recibos del cobrador {keyValue} en {startDate} a {endDate}", markers, True)
+        Session("MarkersData") = dataForMaps
+        Response.Redirect("Map.aspx")
+
+    End Sub
+    Public Sub ClientsByCollectorMap(keyValue As String)
         Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
         Dim markers As New List(Of MarkerForMap)
         For Each cliente As Cliente In clients
@@ -134,9 +162,6 @@ Public Class CobrosDashboard
         Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
         Session("MarkersData") = dataForMaps
         Response.Redirect("Map.aspx")
-
-    End Sub
-    Public Sub RouteOfReceiptsMap(keyValue As String)
 
     End Sub
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)

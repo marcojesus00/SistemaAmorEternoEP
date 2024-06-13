@@ -28,9 +28,10 @@ Partial Public Class CobrosDashboard
         Dim collectors As List(Of SimpleCollectorDto)
         Dim clients As List(Of SimpleClientDto)
         Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
+            ReceiptsByDate1 = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).ToList()
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) AndAlso c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-            Dim receiptsByDate = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).Select(Function(r) New With {
+            Dim receiptsByDate = ReceiptsByDate1.Select(Function(r) New With {
                                                                                                                                    r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
             If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
