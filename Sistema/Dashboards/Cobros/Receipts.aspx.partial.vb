@@ -32,7 +32,7 @@ Partial Public Class CobrosDashboard
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) AndAlso c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
             Dim receiptsByDate = ReceiptsByDate1.Select(Function(r) New With {
-                                                                                                                                   r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
+                                                            r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
 
             If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
                 clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode)).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()

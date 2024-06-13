@@ -2335,6 +2335,7 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="helpers\cachingHelper.vb" />
     <Compile Include="shared\Map\Map.aspx.designer.vb">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>

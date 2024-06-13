@@ -51,7 +51,6 @@ Public Class ReciboDeCobro
     <Column("rtermino", TypeName:="char")>
     <StringLength(1)>
     Public Property Rtermino As String
-    <ForeignKey("Cliente")>
     <Column("Codigo_clie", TypeName:="char")>
     <StringLength(10)>
     Public Property CodigoCliente As String
@@ -94,14 +93,13 @@ Public Class ReciboDeCobro
     <StringLength(2)>
     Public Property Rsucursal As String
 
-    <ForeignKey("Cobrador")>
     <Column("codigo_cobr", TypeName:="char")>
     <StringLength(5)>
     Public Property CodigoCobr As String
 
     <Column("RNOMBRECLI", TypeName:="char")>
     <StringLength(40)>
-    Public Property Rnombrecli As String
+    Public Property NombreDelCliente As String
 
     <Column("rprima", TypeName:="money")>
     Public Property Rprima As Decimal?
@@ -183,8 +181,7 @@ Public Class ReciboDeCobro
     <Column("liquida2", TypeName:="nchar")>
     <StringLength(20)>
     Public Property Liquida2 As String
-    Public Overridable Property Cliente As Cliente
-    Public Overridable Property Cobrador As Cobrador
+
     'Public Overridable Property Vendedor As Vendedor
 
 End Class
