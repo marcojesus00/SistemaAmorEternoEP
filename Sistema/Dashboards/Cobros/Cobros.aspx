@@ -77,6 +77,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
 
+    <div class="table-responsive">
 
     <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="true">
         <Columns>
@@ -91,14 +92,10 @@
 
                     </asp:LinkButton>
                 </ItemTemplate>
-
-
             </asp:TemplateField>
-
-
-
         </Columns>
     </asp:GridView>
+        </div>
     <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>

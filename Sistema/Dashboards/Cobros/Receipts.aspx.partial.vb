@@ -58,7 +58,7 @@ Partial Public Class CobrosDashboard
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
             Dim query As String = "
-            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, cb.nombre_cobr, cb.cob_lider, c.Codigo_clie, c.Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
+            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
@@ -76,11 +76,7 @@ Partial Public Class CobrosDashboard
                         query,
                         New SqlParameter("@start", startDateParam),
                         New SqlParameter("@end", endDateParam)).ToList()
-                    'For Each row In result
-                    '    Dim numDoc = row.Num_doc
-                    '    Dim fecha = row.RFECHA
-                    '    Dim codigoCobrador = row.codigo_cobr
-                    'Next
+
 
                     Return result
                 Else
@@ -105,10 +101,7 @@ Partial Public Class CobrosDashboard
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
         Dim zoneCode As String = ddlCity.SelectedValue.Trim
-        'Dim endD = endDate.Text
-        'Dim initD = startDate.Text
-        'Dim collectors As List(Of SimpleCollectorDto)
-        'Dim clients As List(Of SimpleClientDto)
+
         Try
             Dim data1 = ReceiptsByDateCachedList _
                    .Where(
@@ -116,10 +109,8 @@ Partial Public Class CobrosDashboard
                 ' Check for null and then perform operations
                 Dim collectorCodeValid = If(r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode), True, False)
                 Dim leaderCodeValid = If(r.cob_lider IsNot Nothing AndAlso r.cob_lider.Contains(leaderCode), True, False)
-                'Dim zoneCodeValid = If(r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode), True, False)
-                'Dim companyCodeValid = If(r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode), True, False)
 
-                Return collectorCodeValid AndAlso leaderCodeValid 'AndAlso zoneCodeValid AndAlso companyCodeValid
+                Return collectorCodeValid AndAlso leaderCodeValid
             End Function).OrderBy(Function(c) c.codigo_cobr).ToList()
             If zoneCode.Length > 0 Then
                 data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
@@ -129,13 +120,7 @@ Partial Public Class CobrosDashboard
                 data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
 
             End If
-            'Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
-            '    .GroupBy(Function(r) New With {r.codigo_cobr, r.nombre_cobr}).ToList()
-            'Dim data = groupedData.Select(Function(r) New With {
-            '.Codigo = r.Key.codigo_cobr,
-            '.Nombre = r.Key.nombre_cobr,
-            '.Recibos = r.Count(),
-            '    .Cobrado = r.Sum(Function(c) c.Por_lempira)}).OrderByDescending(Function(r) r.Cobrado).ToList()
+
             Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
                 .GroupBy(Function(r) r.codigo_cobr).
                  Select(Function(group) New With {
@@ -144,24 +129,6 @@ Partial Public Class CobrosDashboard
         .Cobrado = group.Sum(Function(r) r.Por_lempira)
     }).
     ToList()
-            'Dim data2 = groupedData.Select(Function(r) New With {
-            '.Codigo = r.Key,
-            '.Recibos = r.Count(),
-            '    .Cobrado = r.Sum(Function(c) c.Por_lempira)}).OrderByDescending(Function(r) r.Cobrado).ToList()
-            'Dim data = data2.Join(data1, Function(greceipt) greceipt.Codigo, Function(receipt) receipt.codigo_cobr,
-            '                      Function(greceipt, receipt) New With {
-            '                      .Codigo = greceipt,
-            '                      .Nombre = receipt.nombre_cobr,
-            '                      .Cobrado = greceipt.Cobrado,
-            '                          .recibos = greceipt.Codigo.Count()}) _
-            '                          .ToList()
-            'Dim data3 = data2.GroupJoin(data1, Function(greceipt) greceipt.Codigo, Function(receipt) receipt.codigo_cobr,
-            '                      Function(greceipt, receipt) New With {
-            '                      .Codigo = greceipt,
-            '                      .Nombre = receipt,
-            '                      .Cobrado = greceipt.Cobrado,
-            '                          .recibos = greceipt.Codigo.Count()}) _
-            '                          .SelectMany(Function(c) c.).ToList()
 
             Dim dataCount = groupedData.Count()
         Return groupedData
