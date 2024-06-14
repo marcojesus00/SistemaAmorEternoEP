@@ -5,6 +5,7 @@ Imports System.IO
 Imports System.Web.UI.WebControls
 Imports System.Data.Entity
 Imports System.ComponentModel.DataAnnotations.Schema
+Imports System.ComponentModel.DataAnnotations
 
 Partial Public Class CobrosDashboard
     Inherits System.Web.UI.Page
@@ -20,65 +21,77 @@ Partial Public Class CobrosDashboard
     End Class
 
     Public Class RecibosDTO
-        <Column("RFECHA")>
-        Public Property Fecha As String
+        <Key>
+        Public Property Num_doc As String
 
-        <Column("codigo_cobr")>
-        Public Property CodigoCobrador As String
+        Public Property RFECHA As DateTime
 
-        <Column("nombre_cobr")>
-        Public Property NombreCobrador As String
+        Public Property codigo_cobr As String
 
-        <Column("cob_lider")>
-        Public Property LiderCobrador As String
+        Public Property nombre_cobr As String
 
-        <Column("Codigo_clie")>
-        Public Property CodigoCLiente As String
+        Public Property cob_lider As String
 
-        <Column("Nombre_clie")>
-        Public Property NombreCliente As String
+        Public Property Codigo_clie As String
 
-        <Column("Por_lempira")>
-        Public Property PorLempira As String
+        Public Property Nombre_clie As String
 
-        <Column("Saldo_actua")>
-        Public Property SaldoActual As String
+        Public Property Por_lempira As Decimal
 
-        <Column("Cod_zona")>
-        Public Property Empresa As String
+        Public Property Saldo_actua As Decimal
 
-        <Column("VZCODIGO")>
-        Public Property Municipio As String
+        Public Property Cod_zona As String
 
-        <Column("LATITUD")>
-        Public Property Latitud As String
+        Public Property VZCODIGO As String
 
-        <Column("LONGITUD")>
-        Public Property Longitud As String
+        Public Property LATITUD As String
+
+        Public Property LONGITUD As String
     End Class
 
     Public Function getReceiptsFromDB() As Object
         Dim endD = endDate.Text
         Dim initD = startDate.Text
-        Using cobrosContext As New AeCobrosContext
-            Dim a = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).ToList()
-        End Using
+
+
         Using funamorContext As New FunamorContext
+            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
             Dim query As String = "
-        SELECT r.RFECHA, r.codigo_cobr, cb.nombre_cobr, cb.cob_lider, c.Codigo_clie, c.Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
-        FROM aecobros.dbo.recibos r
-        INNER JOIN aecobros.dbo.clientes c ON r.codigo_clie = c.codigo_clie
-        LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-        WHERE r.RFECHA >= @start
-    "
-            Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
-        query,
-        New SqlParameter("@start", initD),
-        New SqlParameter("@end", endD)).ToList()
-            Return result
+            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, cb.nombre_cobr, cb.cob_lider, c.Codigo_clie, c.Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
+            FROM aecobros.dbo.recibos r
+            LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
+            LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end
+        "
+            Try
+                Dim startDateParam As DateTime
+                Dim endDateParam As DateTime
+
+                If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
+                    startDateParam = startDateParam.Date
+                    endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
+
+                    Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
+                        query,
+                        New SqlParameter("@start", startDateParam),
+                        New SqlParameter("@end", endDateParam)).ToList()
+                    'For Each row In result
+                    '    Dim numDoc = row.Num_doc
+                    '    Dim fecha = row.RFECHA
+                    '    Dim codigoCobrador = row.codigo_cobr
+                    'Next
+
+                    Return result
+                Else
+                    ' Handle parsing error if needed
+                    Throw New ArgumentException("Invalid date format for start or end date.")
+                End If
+            Catch ex As Exception
+                ' Handle any other exceptions
+                Throw New Exception("Error retrieving receipts from database.", ex)
+            End Try
         End Using
-
-
     End Function
     Public Function GetCollectorsFromDb() As Object
 
@@ -96,58 +109,41 @@ Partial Public Class CobrosDashboard
         'Dim initD = startDate.Text
         'Dim collectors As List(Of SimpleCollectorDto)
         'Dim clients As List(Of SimpleClientDto)
-        Dim data = ReceiptsByDateCachedList _
-            .Where(
-  Function(r) (If(r.CodigoCobrador, "").Contains(collectorCode)) AndAlso
-                    (If(r.LiderCobrador, "").Contains(leaderCode)) AndAlso
-                    (If(r.Municipio, "").Contains(zoneCode)) AndAlso
-                    (If(r.Empresa, "").Contains(CompanyCode))).GroupBy(Function(r) r.CodigoCobrador) _
-            .Select(Function(r) New With {
-                                                .Codigo = r.Key,
-                                                .Nombre = r.Count(Function(w) w.NombreCobrador),
-                                                .Recibos = r.Count(Function(w) w.NombreCliente),
-                                                .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
+        Try
+            Dim data1 = ReceiptsByDateCachedList _
+                   .Where(
+            Function(r)
+                ' Check for null and then perform operations
+                Dim collectorCodeValid = If(r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode), True, False)
+                Dim leaderCodeValid = If(r.cob_lider IsNot Nothing AndAlso r.cob_lider.Contains(leaderCode), True, False)
+                'Dim zoneCodeValid = If(r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode), True, False)
+                'Dim companyCodeValid = If(r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode), True, False)
 
-        'Using funamorContext As New FunamorContext
-        '    Dim a = CollectorsCachedList
-        '    collectors = CollectorsCachedList.Where(Function(c)
-        '                                                Dim codigoDeLider = If(c.CodigoDeLider, "") ' Handle null cases
-        '                                                Dim codigo = If(c.Codigo, "")
+                Return collectorCodeValid AndAlso leaderCodeValid 'AndAlso zoneCodeValid AndAlso companyCodeValid
+            End Function).ToList()
+            If zoneCode.Length > 0 Then
+                data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
-        '                                                Return codigoDeLider.Contains(leaderCode) AndAlso
-        '                                               codigo.Contains(collectorCode)
-        '                                            End Function).ToList()
+            End If
+            If CompanyCode.Length > 0 Then
+                data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
 
-        '    Dim receiptsByDate = ReceiptsByDateCachedList.Select(Function(r) New With {
-        '                                                    r.CodigoCliente, r.CodigoCobr, r.PorLempira}).ToList()
+            End If
+            Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
+                .GroupBy(Function(r) New With {r.codigo_cobr, r.nombre_cobr}).ToList()
+            Dim data = groupedData.Select(Function(r) New With {
+            .Codigo = r.Key.codigo_cobr,
+            .Nombre = r.Key.nombre_cobr,
+            .Recibos = r.Count(),
+                .Cobrado = r.Sum(Function(c) c.Por_lempira)}).ToList()
 
-        '    If CompanyCode.Length > 0 Or zoneCode.Length > 0 Then
-        '        clients = funamorContext.Clientes.Where(Function(c) c.CodigoZona.Contains(CompanyCode) AndAlso c.CodigoVZ.Contains(zoneCode) AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0).Select(Function(c) New SimpleClientDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
-        '        receiptsByDate = receiptsByDate.Join(clients, Function(e1) e1.CodigoCliente,
-        '                                        Function(e2) e2.Codigo,
-        '                                        Function(e1, e2) New With {
-        '                                        e1.CodigoCliente,
-        '                                        e1.CodigoCobr,
-        '                                        e1.PorLempira}).ToList()
-        '    Else
 
-        '    End If
-        '    Dim greceipts = receiptsByDate.Where(Function(c) c.CodigoCobr.Contains(collectorCode)).GroupBy(Function(r) r.CodigoCobr).ToList()
-        '    Dim greceiptsSelect = greceipts.Select(Function(r) New With {
-        '                                        .Codigo = r.Key,
-        '                                        .Recibos = r.Count(Function(w) w.PorLempira),
-        '                                        .Cobrado = r.Sum(Function(c) c.PorLempira)}).ToList()
-        '    Dim data = greceiptsSelect.Join(collectors, Function(e1) e1.Codigo,
-        '                                        Function(e2) e2.Codigo,
-        '                                        Function(e1, e2) New With {
-        '                                            e1.Codigo,
-        '                                           e2.Nombre,
-        '                                           e1.Recibos,
-        '                                           e1.Cobrado
-        '                                        }).OrderByDescending(Function(r) r.Cobrado).ToList()
-        Return data
 
-        'End Using
+            Return data
 
+        Catch ex As Exception
+            Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
+            Throw
+        End Try
     End Function
 End Class
