@@ -86,7 +86,7 @@ Public Class DataForMapGenerator
             Dim LongToDouble As Boolean = Double.TryParse(marker.Longitud, longitude)
 
             If (LatToDouble AndAlso LongToDouble) Then
-                If latitude <> 0.0 And longitude <> 0.0 Then
+                If latitude > 0.0 AndAlso latitude < 26 AndAlso longitude < -60 AndAlso longitude > -104 Then
                     validMarkers.Add(marker)
                     Dim location As New Point(latitude, longitude)
                     locations.Add(location)
