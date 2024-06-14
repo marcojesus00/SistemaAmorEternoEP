@@ -17,8 +17,14 @@ Partial Public Class CobrosDashboard
         Public Property Nombre As String
 
     End Class
-
-    Public Function GetReceiptData()
+    Public Function getReceiptsFromDB() As Object
+        Dim endD = endDate.Text
+        Dim initD = startDate.Text
+        Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
+            Return cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).ToList()
+        End Using
+    End Function
+    Public Function GetReceiptDataForGridview()
         Dim collectorCode = textBoxCode.Text.Trim
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
@@ -28,7 +34,6 @@ Partial Public Class CobrosDashboard
         Dim collectors As List(Of SimpleCollectorDto)
         Dim clients As List(Of SimpleClientDto)
         Using funamorContext As New FunamorContext, cobrosContext As New AeCobrosContext
-            ReceiptsByDate1 = cobrosContext.RecibosDeCobro.Where(Function(r) r.Rfecha >= initD AndAlso r.Rfecha <= endD).ToList()
 
             collectors = funamorContext.Cobradores.Where(Function(c) c.CobLider.Contains(leaderCode) AndAlso c.Codigo.Contains(collectorCode)).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre}).ToList()
             Dim receiptsByDate = ReceiptsByDate1.Select(Function(r) New With {

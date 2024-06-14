@@ -10,25 +10,25 @@ Public Class CachingHelper
         End If
     End Function
 
-    Public Shared Sub SetCachedItem(key As String, value As Object, expirationSeconds As Integer)
+    Public Shared Sub SetCachedItem(Of T)(key As String, value As T, expirationSeconds As Integer)
         HttpContext.Current.Cache.Insert(key, value, Nothing, DateTime.Now.AddSeconds(expirationSeconds), System.Web.Caching.Cache.NoSlidingExpiration)
     End Sub
 
 
 
-    Public Function GetOrFetchAList(theKey As String, getFromDb As Func(Of List(Of Object))) As List(Of Object)
-        Dim cachedList As List(Of Object) = CachingHelper.GetCachedItem(Of List(Of Object))(theKey)
+    Public Shared Function GetOrFetch(Of T)(theKey As String, getFromDb As Func(Of T), Optional expirationSeconds As Integer = 60) As T
+        Dim cachedItem As T = CachingHelper.GetCachedItem(Of T)(theKey)
 
-        If cachedList IsNot Nothing Then
-            Return cachedList
+        If cachedItem IsNot Nothing Then
+            Return cachedItem
         Else
-            Dim newList As List(Of Object) = getFromDb()
-            CacheSet(theKey, newList)
-            Return newList
+            Dim newObject As T = getFromDb()
+            CacheSet(theKey, newObject, expirationSeconds)
+            Return newObject
         End If
     End Function
-    Public Sub CacheSet(myKey As String, myList As List(Of Object), Optional seconds As Integer = 60)
-        CachingHelper.SetCachedItem(myKey, myList, seconds)
+    Public Shared Sub CacheSet(Of T)(myKey As String, myObject As T, Optional expirationSeconds As Integer = 60)
+        CachingHelper.SetCachedItem(myKey, myObject, expirationSeconds)
     End Sub
 End Class
 
