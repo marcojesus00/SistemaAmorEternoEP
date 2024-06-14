@@ -40,6 +40,7 @@ Public Class CobrosDashboard
                 FillDll()
                 ReBind()
             End If
+            AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
@@ -205,6 +206,12 @@ Public Class CobrosDashboard
         Catch ex As Exception
             AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
         End Try
+    End Sub
+    Protected Sub DashboardGridview_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
+        ' Handle the PageIndexChanging event here
+        DashboardGridview.PageIndex = e.NewPageIndex
+        ' Rebind your GridView data here
+        ReBind() ' Example method to bind data
     End Sub
     Private Sub submitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
         ReBind()

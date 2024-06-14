@@ -78,7 +78,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
 
 
-    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" AllowSorting="true">
+    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="true">
         <Columns>
             <asp:TemplateField HeaderText="">
                 <ItemTemplate>
@@ -86,7 +86,7 @@
 <i class="bi bi-geo-alt-fill"></i>
 
                     </asp:LinkButton>
-                                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
+                    <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
                     </asp:LinkButton>

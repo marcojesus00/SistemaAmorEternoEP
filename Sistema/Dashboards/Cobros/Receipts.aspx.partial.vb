@@ -120,7 +120,7 @@ Partial Public Class CobrosDashboard
                 'Dim companyCodeValid = If(r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode), True, False)
 
                 Return collectorCodeValid AndAlso leaderCodeValid 'AndAlso zoneCodeValid AndAlso companyCodeValid
-            End Function).ToList()
+            End Function).OrderBy(Function(c) c.codigo_cobr).ToList()
             If zoneCode.Length > 0 Then
                 data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
@@ -129,21 +129,46 @@ Partial Public Class CobrosDashboard
                 data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
 
             End If
+            'Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
+            '    .GroupBy(Function(r) New With {r.codigo_cobr, r.nombre_cobr}).ToList()
+            'Dim data = groupedData.Select(Function(r) New With {
+            '.Codigo = r.Key.codigo_cobr,
+            '.Nombre = r.Key.nombre_cobr,
+            '.Recibos = r.Count(),
+            '    .Cobrado = r.Sum(Function(c) c.Por_lempira)}).OrderByDescending(Function(r) r.Cobrado).ToList()
             Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
-                .GroupBy(Function(r) New With {r.codigo_cobr, r.nombre_cobr}).ToList()
-            Dim data = groupedData.Select(Function(r) New With {
-            .Codigo = r.Key.codigo_cobr,
-            .Nombre = r.Key.nombre_cobr,
-            .Recibos = r.Count(),
-                .Cobrado = r.Sum(Function(c) c.Por_lempira)}).ToList()
+                .GroupBy(Function(r) r.codigo_cobr).
+                 Select(Function(group) New With {
+        .Codigo = group.Key,
+        .Nombre = group.FirstOrDefault().nombre_cobr,
+        .Cobrado = group.Sum(Function(r) r.Por_lempira)
+    }).
+    ToList()
+            'Dim data2 = groupedData.Select(Function(r) New With {
+            '.Codigo = r.Key,
+            '.Recibos = r.Count(),
+            '    .Cobrado = r.Sum(Function(c) c.Por_lempira)}).OrderByDescending(Function(r) r.Cobrado).ToList()
+            'Dim data = data2.Join(data1, Function(greceipt) greceipt.Codigo, Function(receipt) receipt.codigo_cobr,
+            '                      Function(greceipt, receipt) New With {
+            '                      .Codigo = greceipt,
+            '                      .Nombre = receipt.nombre_cobr,
+            '                      .Cobrado = greceipt.Cobrado,
+            '                          .recibos = greceipt.Codigo.Count()}) _
+            '                          .ToList()
+            'Dim data3 = data2.GroupJoin(data1, Function(greceipt) greceipt.Codigo, Function(receipt) receipt.codigo_cobr,
+            '                      Function(greceipt, receipt) New With {
+            '                      .Codigo = greceipt,
+            '                      .Nombre = receipt,
+            '                      .Cobrado = greceipt.Cobrado,
+            '                          .recibos = greceipt.Codigo.Count()}) _
+            '                          .SelectMany(Function(c) c.).ToList()
 
-
-
-            Return data
+            Dim dataCount = groupedData.Count()
+        Return groupedData
 
         Catch ex As Exception
-            Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
-            Throw
+        Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
+        Throw
         End Try
     End Function
 End Class
