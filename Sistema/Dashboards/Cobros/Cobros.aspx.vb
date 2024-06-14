@@ -9,12 +9,20 @@ Public Class CobrosDashboard
     Inherits System.Web.UI.Page
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
-    Public Property ReceiptsByDate1 As List(Of ReciboDeCobro)
+    Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
         Get
-            Return Session("ReceiptsByDate")
+            Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getReceiptsFromDB, 100)
         End Get
-        Set(value As List(Of ReciboDeCobro))
-            Session("ReceiptsByDate") = value
+        Set(value As List(Of RecibosDTO))
+            CachingHelper.CacheSet("ReceiptsByDate", value, 100)
+        End Set
+    End Property
+    Public Property CollectorsCachedList As List(Of SimpleCollectorDto)
+        Get
+            Return CachingHelper.GetOrFetch("Collectors", AddressOf GetCollectorsFromDb, 150)
+        End Get
+        Set(value As List(Of SimpleCollectorDto))
+            CachingHelper.CacheSet("Collectors", value, 150)
         End Set
     End Property
     Public Property ClientsWithRemainingBalance As List(Of Cliente)
@@ -43,11 +51,13 @@ Public Class CobrosDashboard
     Protected Sub DashboardType_change(sender As Object, e As EventArgs) Handles DashboardType.SelectedIndexChanged
         ReBind()
     End Sub
+
+    'Fill the gridviews 
     Protected Sub ReBind()
         Try
 
             If DashboardType.SelectedValue = "0" Then
-                Dim dataList = GetReceiptData()
+                Dim dataList = GetReceiptDataForGridview()
                 endDate.Enabled = True
                 startDate.Enabled = True
                 BindGridView(dataList)
@@ -136,12 +146,12 @@ Public Class CobrosDashboard
         End Using
     End Function
     Public Sub RouteOfReceiptsMap(keyValue As String)
-        Dim receipts As List(Of ReciboDeCobro)
-
-        receipts = ReceiptsByDate1.Where(Function(c) c.CodigoCobr.Contains(keyValue)).ToList()
+        Dim receipts As List(Of RecibosDTO)
+        Dim cachedReceipts = ReceiptsByDateCachedList
+        receipts = cachedReceipts.Where(Function(c) c.CodigoCobrador.Contains(keyValue)).ToList()
         Dim markers As New List(Of MarkerForMap)
-        For Each receipt As ReciboDeCobro In receipts
-            Dim tooltipMsg = $"Fecha: {receipt.FechaRecib}, cliente: {receipt.NombreDelCliente} cobrado: {receipt.PorLempira}"
+        For Each receipt As RecibosDTO In receipts
+            Dim tooltipMsg = $"Fecha: {receipt.Fecha}, cliente: {receipt.NombreCliente} cobrado: {receipt.PorLempira}"
             If receipt.Latitud.ToString().Trim.Length > 0 AndAlso receipt.Longitud.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.Latitud, .Longitud = receipt.Longitud, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)
@@ -158,7 +168,7 @@ Public Class CobrosDashboard
         Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
         Dim markers As New List(Of MarkerForMap)
         Dim count = 0
-        clients = clients.Skip(252).Take(85).ToList()
+        'clients = clients.Skip(300).ToList()
         For Each cliente As Cliente In clients
             Dim tooltipMsg = $"cliete: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
