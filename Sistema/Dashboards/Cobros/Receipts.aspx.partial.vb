@@ -92,7 +92,7 @@ Partial Public Class CobrosDashboard
     Public Function GetCollectorsFromDb() As Object
 
         Using funamorContext As New FunamorContext
-            Return funamorContext.Cobradores.Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre, .CodigoDeLider = c.CobLider}).ToList()
+            Return funamorContext.Cobradores.Where(Function(r) r.CobLider IsNot Nothing).Select(Function(c) New SimpleCollectorDto With {.Codigo = c.Codigo, .Nombre = c.Nombre, .CodigoDeLider = c.CobLider}).ToList()
         End Using
     End Function
 

@@ -4,6 +4,7 @@ Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Web.UI.WebControls
 Imports System.Data.Entity
+Imports System.Linq
 
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
@@ -25,12 +26,12 @@ Public Class CobrosDashboard
             CachingHelper.CacheSet("Collectors", value, 150)
         End Set
     End Property
-    Public Property ClientsWithRemainingBalance As List(Of Cliente)
+    Public Property ClientsContainsCollectorCachedList As List(Of Cliente)
         Get
-            Return Session("ClientsWithRemainingBalance")
+            Return CachingHelper.GetOrFetch("ClientsWithRemainingBalance", AddressOf GetClientsByCollectorIdFromDb, 150)
         End Get
         Set(value As List(Of Cliente))
-            Session("ClientsWithRemainingBalance") = value
+            CachingHelper.CacheSet("ClientsWithRemainingBalance", value, 150)
         End Set
     End Property
 
@@ -63,10 +64,19 @@ Public Class CobrosDashboard
                 startDate.Enabled = True
                 BindGridView(dataList)
             ElseIf DashboardType.SelectedValue = "1" Then
-                Dim dataList = GetPortfolioData()
                 startDate.Enabled = False
                 endDate.Enabled = False
-                BindGridView(dataList)
+                DashboardGridview.DataSource = Nothing
+                DashboardGridview.DataBind()
+                If textBoxCode.Text.Trim.Length <= 2 AndAlso ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" And ddlCity.SelectedValue.Trim = "" Then
+                    Dim msg = "Por favor refine su búsqueda"
+                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+                Else
+                    Dim dataList = GetPortfolioDataForGridview()
+
+                    BindGridView(dataList)
+                End If
+
             End If
         Catch ex As SqlException
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
@@ -139,33 +149,9 @@ Public Class CobrosDashboard
         End Try
     End Sub
 
-    Public Function GetClientsByCollector(collectorCode As String)
-        Using context As New FunamorContext, cobrosContext As New AeCobrosContext
 
 
-            Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0).ToList()
-        End Using
-    End Function
 
-    Public Sub ClientsByCollectorMap(keyValue As String)
-        Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
-        Dim markers As New List(Of MarkerForMap)
-        Dim count = 0
-        'clients = clients.Skip(300).ToList()
-        For Each cliente As Cliente In clients
-            Dim tooltipMsg = $"cliete: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
-            If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
-                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
-                markers.Add(marker)
-            End If
-
-        Next
-
-        Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
-        Session("MarkersData") = dataForMaps
-        Response.Redirect("~/shared/Map/Map.aspx")
-
-    End Sub
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         Try
 

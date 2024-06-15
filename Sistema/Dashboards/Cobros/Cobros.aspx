@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
 
-    <div class="container mt-3 mb-3">
+    <div class="container mt-3 mb-3" >
+        <div class="border border-dark-subtle p-3">
         <div class="row mb-2">
             <div class="col-sm-3">
                 <asp:DropDownList ID="DashboardType" CssClass="form-control" runat="server" AutoPostBack="true">
@@ -37,9 +38,7 @@
 
 
             </div>
-        </div>
 
-        <div class="row mb-2">
             <div class="col-md-3">
                 <asp:TextBox ID="textBoxCode" runat="server" CssClass="form-control"></asp:TextBox>
                 <label for="code" class="text-left  text-secondary fs-6">Código de cobrador</label>
@@ -84,6 +83,7 @@
                 <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-outline-primary" />
             </div>
         </div>
+            </div>
     </div>
 
 </asp:Content>
