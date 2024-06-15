@@ -86,6 +86,15 @@ Partial Public Class CobrosDashboard
     Protected WithEvents ddlLeader As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''BtnRouteOfReceiptsMap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnRouteOfReceiptsMap As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''supervised control.
     '''</summary>
     '''<remarks>

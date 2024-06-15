@@ -6,7 +6,8 @@
         <div class="row mb-2">
             <div class="col-sm-3">
                 <asp:DropDownList ID="DashboardType" CssClass="form-control" runat="server" AutoPostBack="true">
-                    <asp:ListItem Text="Reibos" Value="0"></asp:ListItem>
+                    <asp:ListItem Text="Recibos" Value="0">
+                    </asp:ListItem>
                     <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
                 </asp:DropDownList>
                 <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de Dashboard</label>
@@ -53,10 +54,21 @@
 
             </div>
             <div class="col-md-3">
-                <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
-                </asp:DropDownList>
-                <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
+                <div class="row">
+                    <div class="col-md-10">
+                        <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
+                        </asp:DropDownList>
+                        <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
+                    </div>
+                    <div class="col-md-2">
 
+                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-danger" runat="server">
+<i class="bi bi-geo-alt-fill"></i>
+
+                        </asp:LinkButton>
+                    </div>
+
+                </div>
             </div>
             <div class="col-sm-3 " hidden>
                 <div class="form-check ">
@@ -79,23 +91,23 @@
 
     <div class="table-responsive">
 
-    <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="true">
-        <Columns>
-            <asp:TemplateField HeaderText="">
-                <ItemTemplate>
-                    <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
+        <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="true">
+            <Columns>
+                <asp:TemplateField HeaderText="">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
-                    </asp:LinkButton>
-                    <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
-                    </asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-        </div>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
     <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>

@@ -5,9 +5,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
+    <div class="container" >
 
-    <asp:ContentPlaceHolder ID="Filters" runat="server">
+            <asp:ContentPlaceHolder ID="Filters" runat="server">
     </asp:ContentPlaceHolder>
     <asp:ContentPlaceHolder ID="Table" runat="server">
     </asp:ContentPlaceHolder>
+
+
+
+    </div>
+
 </asp:Content>

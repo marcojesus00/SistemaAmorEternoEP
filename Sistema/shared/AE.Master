@@ -33,7 +33,7 @@
             </header>
 
             <div class="row d-flex flex-grow-1" >
-                <div class="col-md-1">
+                <div class="">
 <%--                    <uc:Sidebar runat="server" ID="theSideBar" />--%>
                 </div>
 
