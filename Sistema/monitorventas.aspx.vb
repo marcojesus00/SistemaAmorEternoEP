@@ -61,7 +61,7 @@ Public Class monitorventas
                 dlRun.Items.Add("True")
                 dlRun.SelectedIndex = 0
 
-                If Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "REINALDO" Or Usuario_Aut = "yasmin" Or Usuario_Aut = "manager" Or Usuario_Aut = "mderas" Or Usuario_Aut = "reinaldo" Then
+                If Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "REINALDO" Or Usuario_Aut = "yasmin" Or Usuario_Aut = "YASMIN" Or Usuario_Aut = "manager" Or Usuario_Aut = "mderas" Or Usuario_Aut = "reinaldo" Then
                     btnArreglarVenta.Visible = True
                 End If
 
