@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-2">
 
-                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-danger" runat="server">
+                        <asp:LinkButton ID="BtnRouteOfReceiptsMapByLeader" ToolTip="Mostrar mapa de " CssClass="btn btn-outline-danger" runat="server">
 <i class="bi bi-geo-alt-fill"></i>
 
                         </asp:LinkButton>

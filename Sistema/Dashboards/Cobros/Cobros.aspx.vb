@@ -146,25 +146,7 @@ Public Class CobrosDashboard
             Return context.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0).ToList()
         End Using
     End Function
-    Public Sub RouteOfReceiptsMap(keyValue As String)
-        Dim receipts As List(Of RecibosDTO)
-        Dim cachedReceipts = ReceiptsByDateCachedList
-        receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).ToList()
-        Dim markers As New List(Of MarkerForMap)
-        For Each receipt As RecibosDTO In receipts
-            Dim tooltipMsg = $"Fecha: {receipt.RFECHA}, cliente: {receipt.Nombre_clie} cobrado: {receipt.Por_lempira}"
-            If receipt.Latitud.ToString().Trim.Length > 0 AndAlso receipt.Longitud.ToString().Trim.Length > 0 Then
-                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.Latitud, .Longitud = receipt.Longitud, .MarkerType = MarkerTypes.Cliente}
-                markers.Add(marker)
-            End If
 
-        Next
-
-        Dim dataForMaps As New DataForMapGenerator($"Recibos del cobrador {keyValue} del {startDate.Text} al {endDate.Text}", markers, True)
-        Session("MarkersData") = dataForMaps
-        Response.Redirect("~/shared/Map/Map.aspx")
-
-    End Sub
     Public Sub ClientsByCollectorMap(keyValue As String)
         Dim clients As List(Of Cliente) = GetClientsByCollector(keyValue)
         Dim markers As New List(Of MarkerForMap)

@@ -126,16 +126,62 @@ Partial Public Class CobrosDashboard
                  Select(Function(group) New With {
         .Codigo = group.Key,
         .Nombre = group.FirstOrDefault().nombre_cobr,
-        .Cobrado = group.Sum(Function(r) r.Por_lempira)
+        .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira))
     }).
     ToList()
 
             Dim dataCount = groupedData.Count()
-        Return groupedData
+            Return groupedData
 
         Catch ex As Exception
-        Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
-        Throw
+            Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
+            Throw
         End Try
     End Function
+
+    Public Sub RouteOfReceiptsMap(keyValue As String)
+        Dim receipts As List(Of RecibosDTO)
+        Dim cachedReceipts = ReceiptsByDateCachedList
+        receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).ToList()
+        Dim markers As New List(Of MarkerForMap)
+        For Each receipt As RecibosDTO In receipts
+            Dim tooltipMsg = $"Fecha: {receipt.RFECHA}, cliente: {receipt.Nombre_clie} cobrado: {receipt.Por_lempira}"
+            If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
+                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
+                markers.Add(marker)
+            End If
+
+        Next
+
+        Dim dataForMaps As New DataForMapGenerator($"Recibos del cobrador {keyValue} del {startDate.Text} al {endDate.Text}", markers, True)
+        Session("MarkersData") = dataForMaps
+        Response.Redirect("~/shared/Map/Map.aspx")
+
+    End Sub
+    Public Sub RouteOfReceiptsByLeaderMap(sender As Object, e As EventArgs) Handles BtnRouteOfReceiptsMapByLeader.Click
+        Dim keyValue = ddlLeader.SelectedValue
+        If keyValue = "" Then
+            Dim msg = "Seleccione unlider"
+            AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+            Exit Sub
+        End If
+        Dim receipts As List(Of RecibosDTO)
+        Dim cachedReceipts = ReceiptsByDateCachedList
+        receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).ToList()
+        Dim markers As New List(Of MarkerForMap)
+        For Each receipt As RecibosDTO In receipts
+            Dim tooltipMsg = $"<b>Cobrador: {receipt.codigo_cobr} </b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Fecha:{receipt.RFECHA.ToString("dd-MM-yyyy")}"
+            If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
+                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
+                markers.Add(marker)
+            End If
+
+        Next
+
+        Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
+        Session("MarkersData") = dataForMaps
+        Response.Redirect("~/shared/Map/Map.aspx")
+
+    End Sub
+
 End Class
