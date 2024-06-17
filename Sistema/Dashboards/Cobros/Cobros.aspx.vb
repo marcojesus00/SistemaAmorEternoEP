@@ -185,4 +185,11 @@ Public Class CobrosDashboard
         ReBind()
 
     End Sub
+    Public Sub StartDate_OnTextChanged() Handles startDate.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+    End Sub
+    Public Sub EndDate_OnTextChanged() Handles endDate.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+
+    End Sub
 End Class

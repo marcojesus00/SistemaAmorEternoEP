@@ -30,6 +30,9 @@ Public Class CachingHelper
     Public Shared Sub CacheSet(Of T)(myKey As String, myObject As T, Optional expirationSeconds As Integer = 60)
         CachingHelper.SetCachedItem(myKey, myObject, expirationSeconds)
     End Sub
+    Public Shared Sub CacheRemove(key As String)
+        HttpContext.Current.Cache.Remove(key)
+    End Sub
 End Class
 
 
