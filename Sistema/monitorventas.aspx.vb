@@ -768,7 +768,7 @@ Public Class monitorventas
 
             Datos = conf.EjecutaSql(Sql)
 
-            If Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "CBONILLA" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIO" And (Datos.Tables(0).Rows.Count = 1 And dlMostrar.SelectedIndex = 1) Then
+            If Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "MANAGER" Or Usuario_Aut = "manager" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "CBONILLA" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIO" And (Datos.Tables(0).Rows.Count = 1 And dlMostrar.SelectedIndex = 1) Then
                 Datos1 = Conf1.EjecutaSql(Sql1)
                 Session.Add("GVDetalle", Datos1.Tables(0))
 
@@ -1095,7 +1095,7 @@ Public Class monitorventas
                 Exit Sub
             End If
 
-            If e.CommandName = "Anular" And dlMostrar.SelectedIndex = 1 And (Usuario_Aut = "MANAGER" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "JULIO") Then
+            If e.CommandName = "Anular" And dlMostrar.SelectedIndex = 1 And (Usuario_Aut = "MANAGER" Or Usuario_Aut = "manager" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "yasmin" Or Usuario_Aut = "YASMIN" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "JULIO") Then
                 Dim conf1 As New Configuracion(Usuario, Clave, "AEVENTAS", Servidor)
                 Dim Sql1 As String
                 lblMensaje.Text = gvDetalle2.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd
@@ -1510,7 +1510,7 @@ Public Class monitorventas
                 Exit Sub
             End If
 
-            If dlMostrar.SelectedItem.Text = "POR LIQUIDACION" And (Usuario_Aut.ToUpper = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut.ToUpper = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut.ToUpper = "JULIOCAJA" Or Usuario_Aut.ToUpper = "JULIO") Then
+            If dlMostrar.SelectedItem.Text = "POR LIQUIDACION" And (Usuario_Aut.ToUpper = "MANAGER" Or Usuario_Aut.ToUpper = "YASMIN" Or Usuario_Aut = "MDERAS" Or Usuario_Aut.ToUpper = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut.ToUpper = "JULIOCAJA" Or Usuario_Aut.ToUpper = "JULIO") Then
                 Dim conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
                 Dim Sql1 As String
 
