@@ -8,7 +8,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
-    <title>Monitor de Ventas</title>
+    <titleMonitor de Ventas</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
     <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/>    
     <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>    
@@ -231,7 +231,7 @@ h4:hover {
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelEditarVenta" runat="server" visible="false">
             <div style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">
                 <div class="row" style="background-color: white">
-                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Venta</h2></div><%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
+                    <h2 style="padding-left: 40%; padding-right: 5%; padding-top: 10px;">Editar Ventaa</h2></div><%-- Cuerpo del Modal --%><div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
