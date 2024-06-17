@@ -161,6 +161,9 @@ Public Class CobrosDashboard
             If e.CommandName = "ClientsByCollectorMap" Then
                 ClientsByCollectorMap(keyValue)
             ElseIf e.CommandName = "RouteOfReceiptsMap" Then
+                If textBoxClientCode.Text.Length > 0 Then
+                    textBoxClientCode.Text = ""
+                End If
                 RouteOfReceiptsMap(keyValue)
             End If
 

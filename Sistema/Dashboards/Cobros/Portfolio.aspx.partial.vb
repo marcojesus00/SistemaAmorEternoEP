@@ -13,6 +13,7 @@ Partial Public Class CobrosDashboard
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
         Dim cityCode As String = ddlCity.SelectedValue.Trim
+        Dim ClientCode As String = textBoxClientCode.Text.Trim
         Dim collectorList As List(Of SimpleCollectorDto) = CollectorsCachedList
         Dim ClientsList As List(Of Cliente)
         Dim ClientsQuery As IQueryable(Of Cliente)
@@ -24,9 +25,11 @@ Partial Public Class CobrosDashboard
                 collectorList = collectorList.Where(Function(c) c.CodigoDeLider.Contains(leaderCode)).ToList()
 
             End If
-            ClientsQuery = funamorContext.Clientes.Where(Function(c) c.CodigoCobrador.Contains(collectorCode) And c.SaldoActual > 0)
+            ClientsQuery = funamorContext.Clientes.Where(Function(c) c.CodigoCobrador IsNot Nothing AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0)
 
-
+            If ClientCode.Length > 0 Then
+                ClientsQuery.Where(Function(c) c.Codigo.Contains(ClientCode))
+            End If
             If CompanyCode.Length > 0 Then
                 ClientsQuery = ClientsQuery.Where(Function(c) c.CodigoZona IsNot Nothing AndAlso c.CodigoZona.Contains(CompanyCode))
             End If

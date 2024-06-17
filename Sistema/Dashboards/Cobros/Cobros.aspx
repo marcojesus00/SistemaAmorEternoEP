@@ -75,6 +75,11 @@
                     <label for="supervised" class="form-check-label">Incluir supervisado</label>
                 </div>
             </div>
+                       <div class="col-md-3">
+                <asp:TextBox ID="textBoxClientCode" runat="server" CssClass="form-control"></asp:TextBox>
+                <label for="textBoxClientCode" class="text-left  text-secondary fs-6">Código de cliente</label>
+
+            </div>
 
         </div>
 

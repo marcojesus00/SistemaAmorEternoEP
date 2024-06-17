@@ -52,7 +52,7 @@ Partial Public Class CobrosDashboard
     Public Function getReceiptsFromDB() As Object
         Dim endD = endDate.Text
         Dim initD = startDate.Text
-
+        Dim ClientCode = textBoxClientCode.Text.Trim
 
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
@@ -62,7 +62,7 @@ Partial Public Class CobrosDashboard
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client
         "
             Try
                 Dim startDateParam As DateTime
@@ -71,9 +71,11 @@ Partial Public Class CobrosDashboard
                 If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
                     startDateParam = startDateParam.Date
                     endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
+                    Dim clientCodeParam As String = "%" & ClientCode & "%"
 
                     Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
                         query,
+                        New SqlParameter("@client", clientCodeParam),
                         New SqlParameter("@start", startDateParam),
                         New SqlParameter("@end", endDateParam)).ToList()
 
