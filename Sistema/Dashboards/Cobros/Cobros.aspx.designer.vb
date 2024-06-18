@@ -131,6 +131,15 @@ Partial Public Class CobrosDashboard
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''DetailsView1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DetailsView1 As Global.System.Web.UI.WebControls.DetailsView
+
+    '''<summary>
     '''alertPlaceholder control.
     '''</summary>
     '''<remarks>

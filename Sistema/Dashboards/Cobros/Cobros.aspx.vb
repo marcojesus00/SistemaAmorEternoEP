@@ -116,7 +116,7 @@ Public Class CobrosDashboard
             ddlCity.DataBind()
             ddlCity.Items.Insert(0, New ListItem("Seleccione una zona", ""))
             Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
-                .Select(Function(l) New With {l.Codigo, l.Nombre}) _
+                .Select(Function(l) New With {l.Codigo, .Nombre = l.Nombre & " " & l.Codigo}) _
                 .OrderBy(Function(l) l.Nombre).ToList()
             ddlLeader.DataSource = leaders
             ddlLeader.DataTextField = "Nombre"

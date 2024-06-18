@@ -112,6 +112,9 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="True" Visible="False">
+            </asp:DetailsView>
+
     </div>
     <div id="alertPlaceholder" runat="server"></div>
 

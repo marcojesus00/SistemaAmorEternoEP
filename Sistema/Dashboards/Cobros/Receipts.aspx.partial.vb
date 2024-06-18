@@ -134,7 +134,8 @@ Partial Public Class CobrosDashboard
         .Codigo = group.Key,
         .Nombre = group.FirstOrDefault().nombre_cobr,
         .Recibos = group.Count(),
-        .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira))
+        .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
+        .Lider = group.FirstOrDefault().cob_lider
     }).
     ToList()
 
