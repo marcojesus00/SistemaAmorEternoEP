@@ -226,4 +226,30 @@ Public Class CobrosDashboard
     Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
     End Sub
+    Protected Sub DashboardGridview_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim selectedRowIndex As Integer = DashboardGridview.SelectedIndex
+        Dim selectedRow As GridViewRow = DashboardGridview.Rows(selectedRowIndex)
+        Dim Id As String = DashboardGridview.DataKeys(selectedRowIndex).Value.ToString()
+
+        ' Assuming you have a method to get details by ID
+        Dim details = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr.Contains(Id)).ToList()
+
+        DetailsControl.DataSource = details
+        DetailsControl.DataBind()
+        DetailsControl.Visible = True
+    End Sub
+
+    Private Function GetDetailsById(id As String) As DataTable
+        ' Mock function to return details for a specific ID
+        Dim dt As New DataTable()
+        dt.Columns.Add("ID")
+        dt.Columns.Add("Name")
+        dt.Columns.Add("Age")
+        dt.Columns.Add("Address")
+
+        ' Example detail row
+        dt.Rows.Add("1", "John Doe", "30", "123 Main St")
+
+        Return dt
+    End Function
 End Class
