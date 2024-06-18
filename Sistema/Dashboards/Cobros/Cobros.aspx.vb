@@ -201,7 +201,21 @@ Public Class CobrosDashboard
             End If
         End If
     End Sub
+    Protected Sub SellerGridView_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim selectedRowIndex As Integer = DashboardGridview.SelectedIndex
+        Dim selectedRow As GridViewRow = DashboardGridview.Rows(selectedRowIndex)
+        Dim sellerID As String = selectedRow.Cells(0).Text
+        Dim keyValue As String = DashboardGridview.DataKeys(selectedRowIndex).Value.ToString()
+        ' Bind the Receipts ListView with the receipts for the selected seller
+        BindReceiptsListView(keyValue)
+    End Sub
+    Private Sub BindReceiptsListView(keyValue As String)
 
+        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Fecha = r.RFECHA.ToString("dd/M/yyyy")}).ToList()
+        DetailsControl.DataSource = d
+        DetailsControl.DataBind()
+        DetailsControl.Visible = True
+    End Sub
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
         ' Handle button click event here
     End Sub

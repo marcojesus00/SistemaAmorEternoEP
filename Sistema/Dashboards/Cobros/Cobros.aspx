@@ -95,9 +95,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
 
     <div class="table-responsive">
-
-        <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="false" OnRowDataBound="DashboardGridView_RowDataBound">
+        <div class="row">
+            <div class="col-md-12">
+        <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="false" OnRowDataBound="DashboardGridView_RowDataBound" OnSelectedIndexChanged="SellerGridView_SelectedIndexChanged">
             <Columns>
+                        <asp:CommandField ShowSelectButton="True" />
+
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnClientsByCollectorMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
@@ -112,9 +115,13 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="True" Visible="False">
-            </asp:DetailsView>
+                </div>
+                        <div class="col-md-4">
 
+        <asp:Gridview ID="DetailsControl" runat="server" AutoGenerateRows="True" Visible="False">
+            </asp:Gridview>
+                            </div>
+            </div>
     </div>
     <div id="alertPlaceholder" runat="server"></div>
 
