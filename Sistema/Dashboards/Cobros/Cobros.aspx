@@ -117,9 +117,12 @@
         </asp:GridView>
                 </div>
                         <div class="col-md-4">
+<asp:Panel>
 
         <asp:Gridview ID="DetailsControl" runat="server" AutoGenerateRows="True" Visible="False">
             </asp:Gridview>
+    </asp:Panel>
+
                             </div>
             </div>
     </div>

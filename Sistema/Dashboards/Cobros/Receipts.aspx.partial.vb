@@ -36,9 +36,9 @@ Partial Public Class CobrosDashboard
 
         Public Property Nombre_clie As String
 
-        Public Property Por_lempira As Decimal
+        Public Property Por_lempira As Decimal?
 
-        Public Property Saldo_actua As Decimal
+        Public Property Saldo_actua As Decimal?
 
         Public Property Cod_zona As String
 
@@ -62,7 +62,7 @@ Partial Public Class CobrosDashboard
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA NOT LIKE '%X%'
         "
             Try
                 Dim startDateParam As DateTime
@@ -107,13 +107,9 @@ Partial Public Class CobrosDashboard
         Try
             Dim data1 = ReceiptsByDateCachedList _
                    .Where(
-            Function(r)
-                ' Check for null and then perform operations
-                Dim collectorCodeValid = If(r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode), True, False)
-                Dim leaderCodeValid = If(r.cob_lider IsNot Nothing AndAlso r.cob_lider.Contains(leaderCode), True, False)
-
-                Return collectorCodeValid AndAlso leaderCodeValid
-            End Function).OrderBy(Function(c) c.codigo_cobr).ToList()
+            Function(r) r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode)).ToList()
+            data1 = data1.Where(Function(r) r.cob_lider IsNot Nothing AndAlso r.cob_lider.Contains(leaderCode)
+).OrderBy(Function(c) c.codigo_cobr).ToList()
             If zoneCode.Length > 0 Then
                 data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
