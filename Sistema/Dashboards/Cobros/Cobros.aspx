@@ -11,7 +11,7 @@
                     </asp:ListItem>
                     <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
                 </asp:DropDownList>
-                <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de Dashboard</label>
+                <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de dashboard</label>
 
 
             </div>
@@ -96,15 +96,15 @@
 
     <div class="table-responsive">
 
-        <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="true">
+        <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-striped table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="false" OnRowDataBound="DashboardGridView_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
+                        <asp:LinkButton ID="btnClientsByCollectorMap" ToolTip="Mostrar mapa de clientes" CssClass="btn btn-outline-info pb-2" runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
                         </asp:LinkButton>
-                        <asp:LinkButton ID="BtnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
+                        <asp:LinkButton ID="btnRouteOfReceiptsMap" ToolTip="Mostrar mapa de ruta de recibos" CssClass="btn btn-outline-warning pb-2" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>
 
                         </asp:LinkButton>

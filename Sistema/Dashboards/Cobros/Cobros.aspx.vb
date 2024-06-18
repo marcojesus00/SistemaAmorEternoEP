@@ -10,6 +10,9 @@ Public Class CobrosDashboard
     Inherits System.Web.UI.Page
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
+    'Protected WithEvents btnClientsByCollectorMap As Global.System.Web.UI.WebControls.LinkButton
+    'Protected WithEvents BtnRouteOfReceiptsMap As Global.System.Web.UI.WebControls.LinkButton
+
     Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
         Get
             Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getReceiptsFromDB, 100)
@@ -59,13 +62,15 @@ Public Class CobrosDashboard
         Try
 
             If DashboardType.SelectedValue = "0" Then
-                Dim dataList = GetReceiptDataForGridview()
+
+                Dim DataList = GetReceiptDataForGridview()
                 endDate.Enabled = True
                 startDate.Enabled = True
-                BindGridView(dataList)
+                BindGridView(DataList)
             ElseIf DashboardType.SelectedValue = "1" Then
                 startDate.Enabled = False
                 endDate.Enabled = False
+
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
                 If textBoxCode.Text.Trim.Length <= 2 AndAlso ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" And ddlCity.SelectedValue.Trim = "" Then
@@ -163,6 +168,7 @@ Public Class CobrosDashboard
             ElseIf e.CommandName = "RouteOfReceiptsMap" Then
                 If textBoxClientCode.Text.Length > 0 Then
                     textBoxClientCode.Text = ""
+
                 End If
                 RouteOfReceiptsMap(keyValue)
             End If
@@ -178,6 +184,28 @@ Public Class CobrosDashboard
             AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
         End Try
     End Sub
+    Protected Sub DashboardGridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)
+            Dim btnRouteOfReceiptsMap As LinkButton = CType(e.Row.FindControl("btnRouteOfReceiptsMap"), LinkButton)
+
+            If btnClientsByCollectorMap IsNot Nothing Then
+                ' Set the button to be hidden
+                If DashboardType.SelectedValue = "0" Then
+                    btnClientsByCollectorMap.Visible = False
+                    btnRouteOfReceiptsMap.Visible = True
+                ElseIf DashboardType.SelectedValue = "1" Then
+                    btnClientsByCollectorMap.Visible = True
+                    btnRouteOfReceiptsMap.Visible = False
+                End If
+            End If
+        End If
+    End Sub
+
+    Protected Sub Button1_Click(sender As Object, e As EventArgs)
+        ' Handle button click event here
+    End Sub
+
     Protected Sub DashboardGridview_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
         ' Handle the PageIndexChanging event here
         DashboardGridview.PageIndex = e.NewPageIndex

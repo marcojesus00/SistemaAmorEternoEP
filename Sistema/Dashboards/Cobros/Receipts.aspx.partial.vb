@@ -52,7 +52,7 @@ Partial Public Class CobrosDashboard
     Public Function getReceiptsFromDB() As Object
         Dim endD = endDate.Text
         Dim initD = startDate.Text
-        Dim ClientCode = textBoxClientCode.Text.Trim
+        Dim ClientCode = ""
 
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
@@ -103,7 +103,7 @@ Partial Public Class CobrosDashboard
         Dim CompanyCode = ddlCompany.SelectedValue.Trim
         Dim leaderCode As String = ddlLeader.SelectedValue.Trim
         Dim zoneCode As String = ddlCity.SelectedValue.Trim
-
+        Dim ClientCode As String = textBoxClientCode.Text.Trim
         Try
             Dim data1 = ReceiptsByDateCachedList _
                    .Where(
@@ -118,6 +118,11 @@ Partial Public Class CobrosDashboard
                 data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
             End If
+            If ClientCode.Length > 0 Then
+                data1 = data1.Where((Function(r) r.Codigo_clie IsNot Nothing AndAlso r.Codigo_clie.Contains(ClientCode))).ToList()
+
+            End If
+
             If CompanyCode.Length > 0 Then
                 data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
 
@@ -128,6 +133,7 @@ Partial Public Class CobrosDashboard
                  Select(Function(group) New With {
         .Codigo = group.Key,
         .Nombre = group.FirstOrDefault().nombre_cobr,
+        .Recibos = group.Count(),
         .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira))
     }).
     ToList()
