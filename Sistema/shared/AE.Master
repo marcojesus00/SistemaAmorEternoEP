@@ -37,7 +37,7 @@
 <%--                    <uc:Sidebar runat="server" ID="theSideBar" />--%>
                 </div>
 
-                <div class="col-md-11">
+                <div class="">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
 
