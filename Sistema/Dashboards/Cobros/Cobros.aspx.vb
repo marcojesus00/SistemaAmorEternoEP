@@ -37,6 +37,14 @@ Public Class CobrosDashboard
             CachingHelper.CacheSet("ClientsWithRemainingBalance", value, 150)
         End Set
     End Property
+    Public Property ClientsForGridviewsCachedList As List(Of Cliente)
+        Get
+            Return CachingHelper.GetOrFetch("ClientsForGridviewsCachedList", AddressOf GetClientsForGridViewFromDb, 150)
+        End Get
+        Set(value As List(Of Cliente))
+            CachingHelper.CacheSet("ClientsForGridviewsCachedList", value, 150)
+        End Set
+    End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
@@ -61,7 +69,9 @@ Public Class CobrosDashboard
     Protected Sub ReBind()
         Try
 
-            Dim almostEmpyFilters = (textBoxCode.Text.Trim.Length <= 2 OrElse textBoxClientCode.Text.Trim.Length <= 2) AndAlso ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
+            Dim almostEmpyFilters = ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
+            Dim collectorCodeConstraint = textBoxCode.Text.Trim.Length <= 2 AndAlso almostEmpyFilters
+            Dim clientCodeConstraint = textBoxClientCode.Text.Trim.Length <= 2 AndAlso almostEmpyFilters
             Dim startDateParam As DateTime
             Dim endDateParam As DateTime
             Dim endD = endDate.Text
@@ -76,7 +86,9 @@ Public Class CobrosDashboard
                 End If
             End If
             If DashboardType.SelectedValue = "0" Then
-                If almostEmpyFilters And datesTooSpread Then
+                DetailsTitle.Text = "Detalle de los recibos"
+
+                If (collectorCodeConstraint AndAlso clientCodeConstraint) And datesTooSpread Then
                     Dim msg = "Por favor refine su búsqueda"
                     AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 Else
@@ -90,7 +102,6 @@ Public Class CobrosDashboard
                     DetailsControl.DataSource = dt
                     DetailsControl.DataBind()
 
-                    DetailsTitle.Text = "Detalle de los recibos"
                 End If
             ElseIf DashboardType.SelectedValue = "1" Then
                 startDate.Enabled = False
@@ -98,15 +109,18 @@ Public Class CobrosDashboard
 
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
-                If almostEmpyFilters Then
+                DetailsTitle.Text = "Clientes"
+
+                If collectorCodeConstraint AndAlso clientCodeConstraint Then
                     Dim msg = "Por favor refine su búsqueda"
+                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+
                 Else
-                    Dim dataList = GetPortfolioDataForGridview()
-                    DetailsTitle.Text = "Clientes"
 
-                    BindGridView(dataList)
                 End If
+                Dim dataList = GetPortfolioDataForGridview()
 
+                BindGridView(dataList)
             End If
         Catch ex As SqlException
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
@@ -126,12 +140,12 @@ Public Class CobrosDashboard
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         Using context As New FunamorContext, ventasContext As New AeVentasDbContext
-            Dim companies = context.Empresas.Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
+            Dim companies = context.Empresas.Where(Function(e) e.Codigo IsNot Nothing AndAlso e.Codigo.Trim().Length > 0).Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
             ddlCompany.DataSource = companies
             ddlCompany.DataTextField = "Nombre"
             ddlCompany.DataValueField = "Codigo"
             ddlCompany.DataBind()
-            ddlCompany.Items.Insert(0, New ListItem("Seleccione una empresa", ""))
+            ddlCompany.Items.Insert(0, New ListItem("Todas las empresas", ""))
             Dim zones = ventasContext.MunicipiosZonasDepartamentos.
                 Select(Function(c) New With {.Nombre = c.NombreMunicipio & " " & c.ZonaId, .Codigo = c.MunicipioId}) _
                 .OrderBy(Function(z) z.Nombre).ToList()
@@ -139,7 +153,7 @@ Public Class CobrosDashboard
             ddlCity.DataTextField = "Nombre"
             ddlCity.DataValueField = "Codigo"
             ddlCity.DataBind()
-            ddlCity.Items.Insert(0, New ListItem("Seleccione una zona", ""))
+            ddlCity.Items.Insert(0, New ListItem("Todas las zonas", ""))
             Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
                 .Select(Function(l) New With {l.Codigo, .Nombre = l.Nombre & " " & l.Codigo}) _
                 .OrderBy(Function(l) l.Nombre).ToList()
@@ -147,8 +161,11 @@ Public Class CobrosDashboard
             ddlLeader.DataTextField = "Nombre"
             ddlLeader.DataValueField = "Codigo"
             ddlLeader.DataBind()
-            ddlLeader.Items.Insert(0, New ListItem("Seleccione un líder", ""))
+            ddlLeader.Items.Insert(0, New ListItem("Todos los líderes", ""))
         End Using
+        ddlValidReceipts.Items.Add(New ListItem("Todos los recibos", ""))
+        ddlValidReceipts.Items.Add(New ListItem("Válidos", "N"))
+        ddlValidReceipts.Items.Add(New ListItem("Nulos", "X"))
     End Sub
 
     Private Sub BindGridView(dataList As Object)
@@ -234,6 +251,9 @@ Public Class CobrosDashboard
 
             BindReceiptsDetails(keyValue)
         ElseIf DashboardType.SelectedValue = "1" Then
+            DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
+            BindClientDetails(keyValue)
+
 
         End If
     End Sub
@@ -261,9 +281,72 @@ Public Class CobrosDashboard
     End Sub
     Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
 
     End Sub
     Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
     End Sub
+    Public Sub ddlValisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+    Public Function GetFromDb(Of T)(query As String, CollectorCode As String, Optional specificQuery As Boolean = True) As List(Of T)
+        Dim endD = endDate.Text
+        Dim initD = startDate.Text
+        Dim ClientCode = ""
+        Dim companyCode = ""
+        Dim ZoneCode = ""
+        Dim leaderCode = ""
+        Using funamorContext As New FunamorContext
+            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            If specificQuery Then
+                collectorCode = textBoxCode.Text.Trim
+                ClientCode = textBoxClientCode.Text
+                companyCode = ddlCompany.SelectedValue.Trim
+                ZoneCode = ddlCity.SelectedValue.Trim
+                leaderCode = ddlLeader.SelectedValue.Trim
+            Else
+
+            End If
+
+            Try
+                Dim startDateParam As DateTime
+                Dim endDateParam As DateTime
+
+                If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
+                    startDateParam = startDateParam.Date
+                    endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
+                    Dim clientCodeParam As String = "%" & ClientCode & "%"
+                    Dim collectorCodeParam As String = "%" & collectorCode & "%"
+                    Dim LeaderCodeParam As String = "%" & LeaderCode & "%"
+                    Dim CompanyCodeParam As String = "%" & companyCode & "%"
+                    Dim CityCodeParam As String = "%" & ZoneCode & "%"
+
+                    Return funamorContext.Database.SqlQuery(Of T)(
+                        query,
+                        New SqlParameter("@Leader", LeaderCodeParam),
+                        New SqlParameter("@Collector", collectorCodeParam),
+                        New SqlParameter("@Client", clientCodeParam),
+                       New SqlParameter("@Company", CompanyCodeParam),
+                       New SqlParameter("@City", CityCodeParam),
+                       New SqlParameter("@start", startDateParam),
+                        New SqlParameter("@end", endDateParam)
+                    ).ToList()
+
+
+                Else
+                    ' Handle parsing error if needed
+                    Throw New ArgumentException("Invalid date format for start or end date.")
+                End If
+            Catch ex As Exception
+                ' Handle any other exceptions
+                Throw New Exception("Error retrieving receipts from database.", ex)
+            End Try
+        End Using
+    End Function
 End Class
