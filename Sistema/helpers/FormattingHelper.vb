@@ -32,6 +32,20 @@
         End Try
     End Function
 
+    Public Shared Function ToLempiras(amount As Decimal) As String
+        Try
+            Dim cultureInfoHN As New System.Globalization.CultureInfo("es-HN")
+            ' Format the amount as currency using the specified culture
+            Dim lempiraString As String = String.Format(cultureInfoHN, "{0:C2}", amount)
+                Return lempiraString
+
+            ' Use the culture info for Honduras (es-HN)
+
+        Catch ex As Exception
+            ' Fallback formatting if the culture is not available
+            Return "L " & amount.ToString("N2")
+        End Try
+    End Function
     ' Function to format a string amount as Lempiras currency
     Public Shared Function ToLempiras(amountString As String) As String
         Dim amount As Double
@@ -42,5 +56,16 @@
         End If
         ' Call the function to format the parsed Double amount
         Return ToLempiras(amount)
+    End Function
+
+
+    Public Shared Function MarcaToNulo(mark As String) As String
+        If mark.Contains("X") Then
+            Return "nulo"
+        ElseIf mark.Contains("N") Then
+            Return ""
+        Else
+            Return "indefinido"
+        End If
     End Function
 End Class
