@@ -49,20 +49,27 @@ Partial Public Class CobrosDashboard
         Public Property LONGITUD As String
     End Class
 
-    Public Function getReceiptsFromDB() As Object
+    Public Function getReceiptsFromDB(Optional specificQuery As Boolean = True) As Object
         Dim endD = endDate.Text
         Dim initD = startDate.Text
         Dim ClientCode = ""
-
+        Dim collectorCode = ""
+        Dim query As String
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            If specificQuery Then
+                collectorCode = textBoxCode.Text.Trim
+                ClientCode = textBoxClientCode.Text
+            Else
+                'query = ""
 
-            Dim query As String = "
+            End If
+            query = "
             SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA NOT LIKE '%X%'
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA NOT LIKE '%X%' AND r.codigo_cobr like @Collector
         "
             Try
                 Dim startDateParam As DateTime
@@ -72,9 +79,11 @@ Partial Public Class CobrosDashboard
                     startDateParam = startDateParam.Date
                     endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
                     Dim clientCodeParam As String = "%" & ClientCode & "%"
+                    Dim collectorCodeParam As String = "%" & collectorCode & "%"
 
                     Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
                         query,
+                        New SqlParameter("@Collector", collectorCodeParam),
                         New SqlParameter("@client", clientCodeParam),
                         New SqlParameter("@start", startDateParam),
                         New SqlParameter("@end", endDateParam)).ToList()
@@ -128,7 +137,7 @@ Partial Public Class CobrosDashboard
                 .GroupBy(Function(r) r.codigo_cobr).
                  Select(Function(group) New With {
         .Codigo = group.Key,
-        .Nombre = group.FirstOrDefault().nombre_cobr,
+        .Cobrador = group.FirstOrDefault().nombre_cobr,
         .Recibos = group.Count(),
         .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
         .Lider = group.FirstOrDefault().cob_lider
@@ -187,6 +196,13 @@ Partial Public Class CobrosDashboard
         Session("MarkersData") = dataForMaps
         Response.Redirect("~/shared/Map/Map.aspx")
 
+    End Sub
+    Private Sub BindReceiptsDetails(keyValue As String)
+
+        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Fecha = r.RFECHA.ToString("dd/M/yyyy")}).ToList()
+        DetailsControl.DataSource = d
+        DetailsControl.DataBind()
+        DetailsControl.Visible = True
     End Sub
 
 End Class

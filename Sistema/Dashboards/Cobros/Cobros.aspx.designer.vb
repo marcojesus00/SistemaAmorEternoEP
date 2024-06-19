@@ -59,15 +59,6 @@ Partial Public Class CobrosDashboard
     Protected WithEvents ddlCompany As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''textBoxCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents textBoxCode As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''leader control.
     '''</summary>
     '''<remarks>
@@ -104,6 +95,15 @@ Partial Public Class CobrosDashboard
     Protected WithEvents supervised As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''textBoxCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents textBoxCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''textBoxClientCode control.
     '''</summary>
     '''<remarks>
@@ -129,6 +129,15 @@ Partial Public Class CobrosDashboard
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''DetailsTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DetailsTitle As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''DetailsControl control.

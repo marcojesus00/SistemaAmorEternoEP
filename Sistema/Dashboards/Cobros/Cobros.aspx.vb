@@ -61,23 +61,48 @@ Public Class CobrosDashboard
     Protected Sub ReBind()
         Try
 
-            If DashboardType.SelectedValue = "0" Then
+            Dim almostEmpyFilters = (textBoxCode.Text.Trim.Length <= 2 OrElse textBoxClientCode.Text.Trim.Length <= 2) AndAlso ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
+            Dim startDateParam As DateTime
+            Dim endDateParam As DateTime
+            Dim endD = endDate.Text
+            Dim initD = startDate.Text
+            Dim datesTooSpread = False
+            DetailsControl.DataSource = Nothing
+            DetailsControl.DataBind()
 
-                Dim DataList = GetReceiptDataForGridview()
-                endDate.Enabled = True
-                startDate.Enabled = True
-                BindGridView(DataList)
+            If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
+                If startDateParam.Year <> endDateParam.Year Then
+                    datesTooSpread = True
+                End If
+            End If
+            If DashboardType.SelectedValue = "0" Then
+                If almostEmpyFilters And datesTooSpread Then
+                    Dim msg = "Por favor refine su búsqueda"
+                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+                Else
+                    Dim DataList = GetReceiptDataForGridview()
+                    endDate.Enabled = True
+                    startDate.Enabled = True
+                    BindGridView(DataList)
+                    Dim dt As New DataTable()
+                    dt.Columns.Add("Recibo")
+                    dt.Columns.Add("Cliente")
+                    DetailsControl.DataSource = dt
+                    DetailsControl.DataBind()
+
+                    DetailsTitle.Text = "Detalle de los recibos"
+                End If
             ElseIf DashboardType.SelectedValue = "1" Then
                 startDate.Enabled = False
                 endDate.Enabled = False
 
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
-                If textBoxCode.Text.Trim.Length <= 2 AndAlso ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" And ddlCity.SelectedValue.Trim = "" Then
+                If almostEmpyFilters Then
                     Dim msg = "Por favor refine su búsqueda"
-                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 Else
                     Dim dataList = GetPortfolioDataForGridview()
+                    DetailsTitle.Text = "Clientes"
 
                     BindGridView(dataList)
                 End If
@@ -108,7 +133,7 @@ Public Class CobrosDashboard
             ddlCompany.DataBind()
             ddlCompany.Items.Insert(0, New ListItem("Seleccione una empresa", ""))
             Dim zones = ventasContext.MunicipiosZonasDepartamentos.
-                Select(Function(c) New With {.Nombre = c.NombreMunicipio, .Codigo = c.MunicipioId}) _
+                Select(Function(c) New With {.Nombre = c.NombreMunicipio & " " & c.ZonaId, .Codigo = c.MunicipioId}) _
                 .OrderBy(Function(z) z.Nombre).ToList()
             ddlCity.DataSource = zones
             ddlCity.DataTextField = "Nombre"
@@ -203,19 +228,16 @@ Public Class CobrosDashboard
     End Sub
     Protected Sub SellerGridView_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim selectedRowIndex As Integer = DashboardGridview.SelectedIndex
-        Dim selectedRow As GridViewRow = DashboardGridview.Rows(selectedRowIndex)
-        Dim sellerID As String = selectedRow.Cells(0).Text
         Dim keyValue As String = DashboardGridview.DataKeys(selectedRowIndex).Value.ToString()
-        ' Bind the Receipts ListView with the receipts for the selected seller
-        BindReceiptsListView(keyValue)
-    End Sub
-    Private Sub BindReceiptsListView(keyValue As String)
+        If DashboardType.SelectedValue = "0" Then
+            DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
 
-        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Fecha = r.RFECHA.ToString("dd/M/yyyy")}).ToList()
-        DetailsControl.DataSource = d
-        DetailsControl.DataBind()
-        DetailsControl.Visible = True
+            BindReceiptsDetails(keyValue)
+        ElseIf DashboardType.SelectedValue = "1" Then
+
+        End If
     End Sub
+
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
         ' Handle button click event here
     End Sub
@@ -238,6 +260,10 @@ Public Class CobrosDashboard
 
     End Sub
     Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+
+    End Sub
+    Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
     End Sub
 End Class
