@@ -47,6 +47,9 @@ Partial Public Class CobrosDashboard
         Public Property LATITUD As String
 
         Public Property LONGITUD As String
+        Public Property SALDOANT As Decimal
+        Public Property MARCA As String
+        Public Property rhora As String
     End Class
 
     Public Function getReceiptsFromDB(Optional specificQuery As Boolean = True) As Object
@@ -54,22 +57,28 @@ Partial Public Class CobrosDashboard
         Dim initD = startDate.Text
         Dim ClientCode = ""
         Dim collectorCode = ""
+        Dim mark = ""
+        Dim companyCode = ""
+        Dim ZoneCode = ""
         Dim query As String
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
             If specificQuery Then
                 collectorCode = textBoxCode.Text.Trim
                 ClientCode = textBoxClientCode.Text
+                mark = ddlValidReceipts.SelectedValue
+                companyCode = ddlCompany.SelectedValue.Trim
+                ZoneCode = ddlCity.SelectedValue.Trim
             Else
                 'query = ""
 
             End If
             query = "
-            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
+            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, r.SALDOANT, r.MARCA, r.rhora, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA NOT LIKE '%X%' AND r.codigo_cobr like @Collector
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City
         "
             Try
                 Dim startDateParam As DateTime
@@ -80,11 +89,16 @@ Partial Public Class CobrosDashboard
                     endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
                     Dim clientCodeParam As String = "%" & ClientCode & "%"
                     Dim collectorCodeParam As String = "%" & collectorCode & "%"
-
+                    Dim markParam = "%" & mark & "%"
+                    Dim CompanyCodeParam As String = "%" & companyCode & "%"
+                    Dim CityCodeParam As String = "%" & ZoneCode & "%"
                     Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
                         query,
                         New SqlParameter("@Collector", collectorCodeParam),
+                        New SqlParameter("@Mark", markParam),
                         New SqlParameter("@client", clientCodeParam),
+                                               New SqlParameter("@Company", CompanyCodeParam),
+                       New SqlParameter("@City", CityCodeParam),
                         New SqlParameter("@start", startDateParam),
                         New SqlParameter("@end", endDateParam)).ToList()
 
@@ -175,7 +189,7 @@ Partial Public Class CobrosDashboard
     Public Sub RouteOfReceiptsByLeaderMap(sender As Object, e As EventArgs) Handles BtnRouteOfReceiptsMapByLeader.Click
         Dim keyValue = ddlLeader.SelectedValue
         If keyValue = "" Then
-            Dim msg = "Seleccione unlider"
+            Dim msg = "Seleccione un lider"
             AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
             Exit Sub
         End If
@@ -199,7 +213,7 @@ Partial Public Class CobrosDashboard
     End Sub
     Private Sub BindReceiptsDetails(keyValue As String)
 
-        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Fecha = r.RFECHA.ToString("dd/M/yyyy")}).ToList()
+        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
         DetailsControl.Visible = True
