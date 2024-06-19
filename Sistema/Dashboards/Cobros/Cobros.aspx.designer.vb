@@ -113,6 +113,15 @@ Partial Public Class CobrosDashboard
     Protected WithEvents textBoxClientCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''ddlValidReceipts control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlValidReceipts As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''submitButton control.
     '''</summary>
     '''<remarks>
