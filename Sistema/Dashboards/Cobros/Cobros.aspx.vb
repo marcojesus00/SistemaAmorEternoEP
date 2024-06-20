@@ -163,9 +163,10 @@ Public Class CobrosDashboard
             ddlLeader.DataBind()
             ddlLeader.Items.Insert(0, New ListItem("Todos los líderes", ""))
         End Using
-        ddlValidReceipts.Items.Add(New ListItem("Todos los recibos", ""))
         ddlValidReceipts.Items.Add(New ListItem("Válidos", "N"))
         ddlValidReceipts.Items.Add(New ListItem("Nulos", "X"))
+        ddlValidReceipts.Items.Add(New ListItem("Todos los recibos", ""))
+
     End Sub
 
     Private Sub BindGridView(dataList As Object)
@@ -261,9 +262,16 @@ Public Class CobrosDashboard
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnReceiptLocation As LinkButton = CType(e.Row.FindControl("btnReceiptLocation"), LinkButton)
 
-            ' Set the button to be hidden
             If DashboardType.SelectedValue = "0" Then
                 btnReceiptLocation.Visible = True
+                Dim estadoCell As TableCell = e.Row.Cells(7)
+
+                ' Check the value of the "Estado" column
+                If estadoCell.Text.ToLower() = "nulo" Then
+                    'e.Row.ForeColor = System.Drawing.Color.Red
+                    e.Row.CssClass = "table-danger"
+                    'e.Row.Font.Strikeout = True
+                End If
             ElseIf DashboardType.SelectedValue = "1" Then
                 btnReceiptLocation.Visible = False
             End If
@@ -271,15 +279,11 @@ Public Class CobrosDashboard
         End If
     End Sub
 
-    Protected Sub Button1_Click(sender As Object, e As EventArgs)
-        ' Handle button click event here
-    End Sub
 
     Protected Sub DashboardGridview_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
         ' Handle the PageIndexChanging event here
         DashboardGridview.PageIndex = e.NewPageIndex
-        ' Rebind your GridView data here
-        ReBind() ' Example method to bind data
+        ReBind()
     End Sub
     Private Sub submitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
         ReBind()
@@ -298,11 +302,27 @@ Public Class CobrosDashboard
 
 
     End Sub
+    Public Sub ddlLeader_OnTextChanged(sender As Object, e As EventArgs) Handles ddlLeader.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
     Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
         CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
+    Public Sub ddlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+    Public Sub ddlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+
     Public Sub ddlValisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
         CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
