@@ -257,6 +257,19 @@ Public Class CobrosDashboard
 
         End If
     End Sub
+    Protected Sub DetailsControl_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim btnReceiptLocation As LinkButton = CType(e.Row.FindControl("btnReceiptLocation"), LinkButton)
+
+            ' Set the button to be hidden
+            If DashboardType.SelectedValue = "0" Then
+                btnReceiptLocation.Visible = True
+            ElseIf DashboardType.SelectedValue = "1" Then
+                btnReceiptLocation.Visible = False
+            End If
+
+        End If
+    End Sub
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs)
         ' Handle button click event here
@@ -349,4 +362,38 @@ Public Class CobrosDashboard
             End Try
         End Using
     End Function
+
+    Protected Sub DetailsControl_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+        Try
+
+            Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim s = DetailsControl
+            Dim keyValue As String = DetailsControl.DataKeys(rowIndex).Value.ToString()
+
+            If e.CommandName = "ReceiptLocationMap" Then
+                Dim d = ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+                If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
+                    Dim lat = d.LATITUD.Trim().ToString()
+                    Dim lon = d.LONGITUD.Trim().ToString()
+                    Dim linkToMaps = $"https://www.google.com/maps?q={lat},{lon}"
+                    Response.Redirect(linkToMaps)
+                Else
+                    AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
+
+                End If
+
+
+            End If
+
+
+        Catch ex As FormatException
+            AlertHelper.GenerateAlert("danger", "Error al convertir el índice de fila.", alertPlaceholder)
+        Catch ex As IndexOutOfRangeException
+            AlertHelper.GenerateAlert("danger", "Índice de fila fuera de rango.", alertPlaceholder)
+        Catch ex As IOException
+            AlertHelper.GenerateAlert("danger", "Error de entrada/salida al procesar el archivo.", alertPlaceholder)
+        Catch ex As Exception
+            AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
+        End Try
+    End Sub
 End Class

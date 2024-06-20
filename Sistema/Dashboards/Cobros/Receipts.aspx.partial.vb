@@ -213,7 +213,7 @@ Partial Public Class CobrosDashboard
     End Sub
     Private Sub BindReceiptsDetails(keyValue As String)
 
-        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Documento = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
+        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
         DetailsControl.Visible = True
