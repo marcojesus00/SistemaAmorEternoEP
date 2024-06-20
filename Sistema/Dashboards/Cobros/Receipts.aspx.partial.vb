@@ -56,6 +56,7 @@ Partial Public Class CobrosDashboard
         Dim endD = endDate.Text
         Dim initD = startDate.Text
         Dim ClientCode = ""
+        Dim leaderCode = ""
         Dim collectorCode = ""
         Dim mark = ""
         Dim companyCode = ""
@@ -64,6 +65,7 @@ Partial Public Class CobrosDashboard
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
             If specificQuery Then
+                leaderCode = ddlLeader.SelectedValue.Trim
                 collectorCode = textBoxCode.Text.Trim
                 ClientCode = textBoxClientCode.Text
                 mark = ddlValidReceipts.SelectedValue
@@ -78,7 +80,7 @@ Partial Public Class CobrosDashboard
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader
         "
             Try
                 Dim startDateParam As DateTime
@@ -88,12 +90,14 @@ Partial Public Class CobrosDashboard
                     startDateParam = startDateParam.Date
                     endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
                     Dim clientCodeParam As String = "%" & ClientCode & "%"
+                    Dim LeaderCodeParam As String = "%" & LeaderCode & "%"
                     Dim collectorCodeParam As String = "%" & collectorCode & "%"
                     Dim markParam = "%" & mark & "%"
                     Dim CompanyCodeParam As String = "%" & companyCode & "%"
                     Dim CityCodeParam As String = "%" & ZoneCode & "%"
                     Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
                         query,
+                                                New SqlParameter("@Leader", LeaderCodeParam),
                         New SqlParameter("@Collector", collectorCodeParam),
                         New SqlParameter("@Mark", markParam),
                         New SqlParameter("@client", clientCodeParam),
@@ -128,24 +132,23 @@ Partial Public Class CobrosDashboard
         Dim zoneCode As String = ddlCity.SelectedValue.Trim
         Dim ClientCode As String = textBoxClientCode.Text.Trim
         Try
-            Dim data1 = ReceiptsByDateCachedList _
-                   .Where(
-            Function(r) r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode)).ToList()
-            data1 = data1.Where(Function(r) r.cob_lider IsNot Nothing AndAlso r.cob_lider.Contains(leaderCode)
-).OrderBy(Function(c) c.codigo_cobr).ToList()
-            If zoneCode.Length > 0 Then
-                data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
+            'Dim data1 = ReceiptsByDateCachedList _
+            '       .Where(
+            'Function(r) r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode)).ToList()
+            Dim data1 = ReceiptsByDateCachedList.OrderByDescending(Function(c) c.Por_lempira).ToList()
+            'If zoneCode.Length > 0 Then
+            '    data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
-            End If
-            If ClientCode.Length > 0 Then
-                data1 = data1.Where((Function(r) r.Codigo_clie IsNot Nothing AndAlso r.Codigo_clie.Contains(ClientCode))).ToList()
+            'End If
+            'If ClientCode.Length > 0 Then
+            '    data1 = data1.Where((Function(r) r.Codigo_clie IsNot Nothing AndAlso r.Codigo_clie.Contains(ClientCode))).ToList()
 
-            End If
+            'End If
 
-            If CompanyCode.Length > 0 Then
-                data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
+            'If CompanyCode.Length > 0 Then
+            '    data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
 
-            End If
+            'End If
 
             Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
                 .GroupBy(Function(r) r.codigo_cobr).
@@ -154,9 +157,9 @@ Partial Public Class CobrosDashboard
         .Cobrador = group.FirstOrDefault().nombre_cobr,
         .Recibos = group.Count(),
         .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
+                .CobradoDecimal = group.Sum(Function(r) r.Por_lempira),
         .Lider = group.FirstOrDefault().cob_lider
-    }).
-    ToList()
+    }).OrderByDescending(Function(c) c.Cobrado).Select(Function(r) New With {r.Codigo, r.Cobrador, r.Recibos, r.Cobrado, r.Lider}).ToList()
 
             Dim dataCount = groupedData.Count()
             Return groupedData
@@ -213,7 +216,16 @@ Partial Public Class CobrosDashboard
     End Sub
     Private Sub BindReceiptsDetails(keyValue As String)
 
-        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
+        Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).OrderByDescending(Function(r) r.RFECHA).ThenByDescending _
+            (Function(e)
+                 Dim time As DateTime
+                 If DateTime.TryParse(e.rhora, time) Then
+                     Return time
+                 Else
+                     Return DateTime.MinValue ' Default value for invalid time strings
+                 End If
+             End Function) _
+            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
         DetailsControl.Visible = True
