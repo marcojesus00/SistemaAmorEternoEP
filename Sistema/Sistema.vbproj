@@ -2335,7 +2335,9 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="helpers\authHelper.vb" />
     <Compile Include="helpers\cachingHelper.vb" />
+    <Compile Include="models\funamor\UsuariosModels.vb" />
     <Compile Include="shared\Map\Map.aspx.designer.vb">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>

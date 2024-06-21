@@ -61,6 +61,7 @@ Partial Public Class CobrosDashboard
         Dim mark = ""
         Dim companyCode = ""
         Dim ZoneCode = ""
+        Dim documentNumber = ""
         Dim query As String
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
@@ -71,6 +72,7 @@ Partial Public Class CobrosDashboard
                 mark = ddlValidReceipts.SelectedValue
                 companyCode = ddlCompany.SelectedValue.Trim
                 ZoneCode = ddlCity.SelectedValue.Trim
+                documentNumber = textBoxNumDoc.Text.Trim
             Else
                 'query = ""
 
@@ -80,7 +82,7 @@ Partial Public Class CobrosDashboard
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
-            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader
+            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader and r.Num_doc like @Document
         "
             Try
                 Dim startDateParam As DateTime
@@ -95,9 +97,12 @@ Partial Public Class CobrosDashboard
                     Dim markParam = "%" & mark & "%"
                     Dim CompanyCodeParam As String = "%" & companyCode & "%"
                     Dim CityCodeParam As String = "%" & ZoneCode & "%"
+                    Dim documentNumberParam As String = "%" & documentNumber & "%"
+
                     Dim result As List(Of RecibosDTO) = funamorContext.Database.SqlQuery(Of RecibosDTO)(
                         query,
                                                 New SqlParameter("@Leader", LeaderCodeParam),
+                            New SqlParameter("@Document", documentNumberParam),
                         New SqlParameter("@Collector", collectorCodeParam),
                         New SqlParameter("@Mark", markParam),
                         New SqlParameter("@client", clientCodeParam),
