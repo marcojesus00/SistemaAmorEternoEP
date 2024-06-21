@@ -20,6 +20,6 @@ Public Class FunamorContext
     Public Property Empresas As DbSet(Of Empresa)
     Public Property Municipios As DbSet(Of Municipio)
     Public Property Vendedores As DbSet(Of Vendedor)
-
+    Public Property Permisos As DbSet(Of Detseg)
 
 End Class

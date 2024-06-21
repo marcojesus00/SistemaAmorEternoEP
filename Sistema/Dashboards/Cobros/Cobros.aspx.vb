@@ -48,11 +48,25 @@ Public Class CobrosDashboard
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            If Not IsPostBack Then
-                FillDll()
-                ReBind()
+            Dim Usuario_Aut = Session("Usuario_Aut")
+            If Usuario_Aut IsNot Nothing Then
+                Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
+
+
+
+                If Session("Usuario") = "" OrElse Not authHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
+                    Response.Redirect("~/Principal.aspx")
+                End If
+
+                If Not IsPostBack Then
+                    FillDll()
+                    ReBind()
+                End If
+                AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
+            Else
+                Response.Redirect("~/Principal.aspx")
+
             End If
-            AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
@@ -311,6 +325,10 @@ Public Class CobrosDashboard
         CachingHelper.CacheRemove("ReceiptsByDate")
         CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
+    End Sub
+    Public Sub textBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
     End Sub
     Public Sub ddlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
