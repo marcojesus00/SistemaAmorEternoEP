@@ -21,7 +21,9 @@
         Usuario_Aut = Session("Usuario_Aut")
         Clave_Aut = Session("Clave_Aut")
         Session.Timeout = 90
-
+        If authHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
+            btnCobrosAdvanced.Visible = True
+        End If
         Dim conf3 As New Configuracion(Usuario, Clave, Bd, Servidor)
         Dim SQL3 As String
         SQL3 = " SELECT COUNT(codigo_cobr) codigo_cobr FROM FUNAMOR..COBRADOR A WHERE A.COB_SUPERVI = '" + Usuario_Aut + "' "
@@ -599,6 +601,9 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
             btnBuscar_Click(sender, e)
         End If
 
+    End Sub
+    Public Sub RedirectToCobrosAdvanced(sender As Object, e As EventArgs) Handles btnCobrosAdvanced.Click
+        Response.Redirect("~/Dashboards/Cobros/Cobros.aspx")
     End Sub
 
 End Class
