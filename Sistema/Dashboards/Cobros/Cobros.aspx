@@ -9,7 +9,7 @@
                     <asp:DropDownList ID="DashboardType" CssClass="form-control" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Recibos" Value="0">
                         </asp:ListItem>
-                        <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Cartera (Bloqueado)" Value="100"></asp:ListItem>
                     </asp:DropDownList>
                     <label for="DashboardType" class="text-left  text-secondary fs-6">Tipo de dashboard</label>
 
@@ -65,11 +65,22 @@
 
                     </div>
                 </div>
+                                            <div class="col-lg-2  col-md-6 col-12 ">
+                <asp:DropDownList ID="ddlValidReceipts" CssClass="form-control" runat="server"></asp:DropDownList>
+                <label for="ddlValidReceipts" class="text-left  text-secondary fs-6">Estado de los recibos</label>
+
+
+            </div>
                 <div class="col-sm-3  col-md-6 col-12 " hidden>
                     <div class="form-check ">
                         <asp:CheckBox ID="supervised" runat="server" CssClass="form-check-input" />
                         <label for="supervised" class="form-check-label">Incluir supervisado</label>
                     </div>
+                </div>
+                             <div class="col-lg-2  col-md-6 col-12 ">
+                    <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label for="textBoxNumDoc" class="text-left  text-secondary fs-6">Número de documento</label>
+
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 ">
                     <asp:TextBox ID="textBoxCode" runat="server" CssClass="form-control"></asp:TextBox>
@@ -81,12 +92,7 @@
                     <label for="textBoxClientCode" class="text-left  text-secondary fs-6">Código de cliente</label>
 
                 </div>
-                            <div class="col-lg-2  col-md-6 col-12 ">
-                <asp:DropDownList ID="ddlValidReceipts" CssClass="form-control" runat="server"></asp:DropDownList>
-                <label for="ddlValidReceipts" class="text-left  text-secondary fs-6">Estado de los recibos</label>
 
-
-            </div>
 
 
                 <div class="col-lg-2 align-self-center">
