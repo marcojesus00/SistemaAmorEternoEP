@@ -4,6 +4,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         Try
             Dim mapTitle As String = ""
+            Dim ProductionBasePath As String = ConfigurationManager.AppSettings("ProductionBasePath")
 
 
             If Session("MarkersData") IsNot Nothing Then
@@ -48,7 +49,7 @@
                             icon = "moneyIcon.png"
                         End If
                         script &= "var myIcon = L.icon({
-                        iconUrl: '/imagenes/" & icon & "',
+                        iconUrl: '" & ProductionBasePath & "imagenes/" & icon & "',
                         iconSize: [38, 38],
                         iconAnchor: [19, 38],
                         popupAnchor: [-3, -76],
