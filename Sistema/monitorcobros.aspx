@@ -82,17 +82,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row pb-2">
-                        <div class="col-sm-4 col-d-3 col-lg-2">
-                            <input type="text" class="form-control form-control-sm" placeholder="Codigo Cobrador" id="txtCobrador" runat="server" />
-                        </div>
-                        <asp:Button ID="btnBuscar" runat="server" Text="   Buscar   " CssClass="btn btn-sm btn-primary" />&nbsp&nbsp
-                                           <asp:LinkButton Visible="false" ID="btnCobrosAdvanced" ToolTip="Ir a MONITOR DE COBROS AVANZADO" CssClass="btn  btn-sm btn-outline-warning" runat="server">
-<i class="bi bi-coin"></i> AVANZADO
-                    </asp:LinkButton>
-
-
-                    </div>
+    <div class="row pb-2">
+        <div class="col-sm-4 col-md-3 col-lg-2 mb-2 mb-sm-0">
+            <input type="text" class="form-control form-control-sm" placeholder="Codigo Cobrador" id="txtCobrador" runat="server" />
+        </div>
+        <div class="col-auto mb-2 mb-sm-0">
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-sm btn-primary" />
+        </div>
+        <div class="col-auto">
+            <asp:LinkButton Visible="false" ID="btnCobrosAdvanced" ToolTip="Ir a MONITOR DE COBROS AVANZADO" CssClass="btn btn-sm btn-outline-warning" runat="server">
+                <i class="bi bi-coin"></i> AVANZADO
+            </asp:LinkButton>
+        </div>
+    </div>
                     
  
 

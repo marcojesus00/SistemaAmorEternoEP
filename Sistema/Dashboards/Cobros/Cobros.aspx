@@ -48,14 +48,14 @@
                     <label for="leader" class="text-left text-secondary fs-6">Estado del lider</label>
 
                 </div>
-                <div class="col-lg-3  col-md-6 col-12 ">
+                <div class="col-lg-3  col-md-6 col-12">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-10 col-10">
                             <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control">
                             </asp:DropDownList>
                             <label for="ddlLeader" class="text-left  text-secondary fs-6">Lider</label>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-2">
 
                             <asp:LinkButton ID="BtnRouteOfReceiptsMapByLeader" ToolTip="Mapa de recibos por lider" CssClass="btn btn-outline-danger" runat="server">
 <i class="bi bi-geo-alt-fill"></i>
