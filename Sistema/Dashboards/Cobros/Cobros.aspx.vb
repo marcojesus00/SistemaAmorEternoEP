@@ -154,13 +154,13 @@ Public Class CobrosDashboard
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         Using context As New FunamorContext, ventasContext As New AeVentasDbContext
-            Dim companies = context.Empresas.Where(Function(e) e.Codigo IsNot Nothing AndAlso e.Codigo.Trim().Length > 0).Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
+            Dim companies = context.Empresas.AsNoTracking().Where(Function(e) e.Codigo IsNot Nothing AndAlso e.Codigo.Trim().Length > 0).Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
             ddlCompany.DataSource = companies
             ddlCompany.DataTextField = "Nombre"
             ddlCompany.DataValueField = "Codigo"
             ddlCompany.DataBind()
             ddlCompany.Items.Insert(0, New ListItem("Todas las empresas", ""))
-            Dim zones = ventasContext.MunicipiosZonasDepartamentos.
+            Dim zones = ventasContext.MunicipiosZonasDepartamentos.AsNoTracking().
                 Select(Function(c) New With {.Nombre = c.NombreMunicipio & " " & c.ZonaId, .Codigo = c.MunicipioId}) _
                 .OrderBy(Function(z) z.Nombre).ToList()
             ddlCity.DataSource = zones
@@ -168,7 +168,7 @@ Public Class CobrosDashboard
             ddlCity.DataValueField = "Codigo"
             ddlCity.DataBind()
             ddlCity.Items.Insert(0, New ListItem("Todas las zonas", ""))
-            Dim leaders = context.Cobradores.Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
+            Dim leaders = context.Cobradores.AsNoTracking().Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
                 .Select(Function(l) New With {l.Codigo, .Nombre = l.Nombre & " " & l.Codigo}) _
                 .OrderBy(Function(l) l.Nombre).ToList()
             ddlLeader.DataSource = leaders
