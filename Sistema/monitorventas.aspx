@@ -327,7 +327,7 @@
                 <asp:Label ID="lblMsjError" runat="server"></asp:Label>
             </div>
 
-        <asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton>
+<%--        <asp:LinkButton ID="btnCancelarC" runat="server" Style="position: absolute; right: 15%; top: 38px; font-size: x-large">  X </asp:LinkButton>--%>
         </div>
         <%--         <div style="position:fixed; bottom:60px; padding-left:35px;" >               
                <asp:Label ID="lblMsjError" runat="server">Prueba del Mensaje</asp:Label>

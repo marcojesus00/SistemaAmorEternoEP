@@ -419,15 +419,6 @@ Partial Public Class monitorventas
     Protected WithEvents lblMsjError As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''btnCancelarC control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnCancelarC As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''PanelVendedoresEditar control.
     '''</summary>
     '''<remarks>
