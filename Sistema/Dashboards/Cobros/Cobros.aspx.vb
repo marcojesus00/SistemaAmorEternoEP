@@ -92,8 +92,8 @@ Public Class CobrosDashboard
             Dim endD = endDate.Text
             Dim initD = startDate.Text
             Dim datesTooSpread = False
-            DetailsControl.DataSource = Nothing
-            DetailsControl.DataBind()
+            'DetailsControl.DataSource = Nothing
+            'DetailsControl.DataBind()
 
             If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
                 If startDateParam.Year <> endDateParam.Year Then
@@ -114,8 +114,8 @@ Public Class CobrosDashboard
                     Dim dt As New DataTable()
                     dt.Columns.Add("Recibo")
                     dt.Columns.Add("Cliente")
-                    DetailsControl.DataSource = dt
-                    DetailsControl.DataBind()
+                    'DetailsControl.DataSource = dt
+                    'DetailsControl.DataBind()
 
                 End If
             ElseIf DashboardType.SelectedValue = "1" Then
@@ -246,6 +246,11 @@ Public Class CobrosDashboard
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)
             Dim btnRouteOfReceiptsMap As LinkButton = CType(e.Row.FindControl("btnRouteOfReceiptsMap"), LinkButton)
+            'Dim nestedGridview As New GridView()
+            'nestedGridview.ID = "DetailsControl"
+            'nestedGridview.CssClass = "table table-sm table-striped table-hover table-bordered border-primary-subtle"
+            'nestedGridview.Visible = False
+            'e.Row.Cells(e.Row.Cells.Count - 1).Controls.Add(nestedGridview)
 
             If btnClientsByCollectorMap IsNot Nothing Then
                 ' Set the button to be hidden
@@ -262,13 +267,14 @@ Public Class CobrosDashboard
     Protected Sub SellerGridView_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim selectedRowIndex As Integer = DashboardGridview.SelectedIndex
         Dim keyValue As String = DashboardGridview.DataKeys(selectedRowIndex).Value.ToString()
+        'DashboardGridview.Rows.
         If DashboardType.SelectedValue = "0" Then
-            DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
+            '    DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
 
-            BindReceiptsDetails(keyValue)
+        '    BindReceiptsDetails(keyValue)
         ElseIf DashboardType.SelectedValue = "1" Then
-            DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
-            BindClientDetails(keyValue)
+            '    DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
+            '    BindClientDetails(keyValue)
 
 
         End If
@@ -402,37 +408,72 @@ Public Class CobrosDashboard
         End Using
     End Function
 
-    Protected Sub DetailsControl_RowCommand(sender As Object, e As GridViewCommandEventArgs)
-        Try
+    'Protected Sub DetailsControl_RowCommand(sender As Object, e As GridViewCommandEventArgs)
+    '    Try
+    '        Dim nestedGrid As GridView = DirectCast(Row.FindControl("DetailsControl"), GridView)
 
-            Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim s = DetailsControl
-            Dim keyValue As String = DetailsControl.DataKeys(rowIndex).Value.ToString()
+    '        Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+    '        Dim s = DetailsControl
+    '        Dim keyValue As String = DetailsControl.DataKeys(rowIndex).Value.ToString()
 
-            If e.CommandName = "ReceiptLocationMap" Then
-                Dim d = ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
-                If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
-                    Dim lat = d.LATITUD.Trim().ToString()
-                    Dim lon = d.LONGITUD.Trim().ToString()
-                    Dim linkToMaps = $"https://www.google.com/maps?q={lat},{lon}"
-                    Response.Redirect(linkToMaps)
-                Else
-                    AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
+    '        If e.CommandName = "ReceiptLocationMap" Then
+    '            Dim d = ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+    '            If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
+    '                Dim lat = d.LATITUD.Trim().ToString()
+    '                Dim lon = d.LONGITUD.Trim().ToString()
+    '                Dim linkToMaps = $"https://www.google.com/maps?q={lat},{lon}"
+    '                Response.Redirect(linkToMaps)
+    '            Else
+    '                AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
 
-                End If
+    '            End If
 
 
+    '        End If
+
+
+    '    Catch ex As FormatException
+    '        AlertHelper.GenerateAlert("danger", "Error al convertir el índice de fila.", alertPlaceholder)
+    '    Catch ex As IndexOutOfRangeException
+    '        AlertHelper.GenerateAlert("danger", "Índice de fila fuera de rango.", alertPlaceholder)
+    '    Catch ex As IOException
+    '        AlertHelper.GenerateAlert("danger", "Error de entrada/salida al procesar el archivo.", alertPlaceholder)
+    '    Catch ex As Exception
+    '        AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
+    '    End Try
+    'End Sub
+
+    Protected Sub ExpandButton_Click(sender As Object, e As EventArgs)
+        Dim button As LinkButton = DirectCast(sender, LinkButton)
+        Dim rowIndex As Integer = Convert.ToInt32(button.CommandArgument)
+
+        ' Hide any previously expanded rows
+        For Each row As GridViewRow In DashboardGridview.Rows
+            Dim nestedGrid As GridView = DirectCast(row.FindControl("DetailsControl"), GridView)
+            If nestedGrid IsNot Nothing Then
+                nestedGrid.Visible = False
             End If
+        Next
+
+        ' Show the nested GridView for the clicked row
+        Dim currentRow As GridViewRow = DashboardGridview.Rows(rowIndex)
+        Dim currentNestedGrid As GridView = DirectCast(currentRow.FindControl("DetailsControl"), GridView)
+        If currentNestedGrid IsNot Nothing Then
+            currentNestedGrid.Visible = True
+            ' Bind data to the nested GridView here
+            BindNestedGridView(currentNestedGrid, rowIndex)
+        End If
+    End Sub
+    Public Sub BindNestedGridview(currentNestedGrid As GridView, keyValue As Integer)
+        If DashboardType.SelectedValue = "0" Then
+            DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
+
+            BindReceiptsDetails(currentNestedGrid, keyValue)
+        ElseIf DashboardType.SelectedValue = "1" Then
+            DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
+            BindClientDetails(currentNestedGrid, keyValue)
 
 
-        Catch ex As FormatException
-            AlertHelper.GenerateAlert("danger", "Error al convertir el índice de fila.", alertPlaceholder)
-        Catch ex As IndexOutOfRangeException
-            AlertHelper.GenerateAlert("danger", "Índice de fila fuera de rango.", alertPlaceholder)
-        Catch ex As IOException
-            AlertHelper.GenerateAlert("danger", "Error de entrada/salida al procesar el archivo.", alertPlaceholder)
-        Catch ex As Exception
-            AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
-        End Try
+        End If
     End Sub
 End Class

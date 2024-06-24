@@ -104,7 +104,7 @@ Partial Public Class CobrosDashboard
 
 
     End Class
-    Public Sub BindClientDetails(id As String)
+    Public Sub BindClientDetails(DetailsControl As GridView, id As String)
         Dim q As List(Of PortfolioDetailsDto) = GetClientsByCollectorIdFromDb(id)
         Dim d = q.Select(Function(c) New With {
                                                                                                       c.Codigo,

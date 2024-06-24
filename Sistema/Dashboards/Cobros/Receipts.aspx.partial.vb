@@ -219,7 +219,7 @@ Partial Public Class CobrosDashboard
         Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
-    Private Sub BindReceiptsDetails(keyValue As String)
+    Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
 
         Dim d = ReceiptsByDateCachedList.Where(Function(r) r.codigo_cobr = keyValue).OrderByDescending(Function(r) r.RFECHA).ThenByDescending _
             (Function(e)
