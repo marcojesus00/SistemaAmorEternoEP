@@ -273,6 +273,8 @@
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
     <Content Include="Dashboards\Cobros\Cobros.aspx" />
+    <Content Include="Dashboards\Cobros\images\minus.png" />
+    <Content Include="Dashboards\Cobros\images\plus.png" />
     <Content Include="Dashboards\css\leaflet.icon-material.css" />
     <Content Include="Dashboards\Dashboard.master" />
     <Content Include="Dashboards\js\leaflet.icon-material.js" />
