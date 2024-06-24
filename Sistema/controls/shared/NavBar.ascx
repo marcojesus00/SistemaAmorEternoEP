@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="vb" AutoEventWireup="false" CodeBehind="NavBar.ascx.vb" Inherits="Sistema.NavBar" %>
-<%@ OutputCache Duration="60" VaryByParam="None" %>
+<%--<%@ OutputCache Duration="60" VaryByParam="None" %>--%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
