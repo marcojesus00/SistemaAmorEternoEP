@@ -49,6 +49,7 @@ Public Class CobrosDashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim Usuario_Aut = Session("Usuario_Aut")
+            Session("BackPageUrl") = "~/monitorcobros.aspx"
             If Usuario_Aut IsNot Nothing Then
                 Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
 

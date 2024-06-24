@@ -31,7 +31,16 @@
     End Sub
     Private Sub Back_Click(sender As Object, e As EventArgs) Handles back.Click
 
+        If Session("BackPageUrl") IsNot Nothing Then
+            If Session("BackPageUrl").ToString().Length > 0 Then
+                Response.Redirect(Session("BackPageUrl"))
+            Else
+                Response.Redirect("~/principal.aspx")
 
-        Response.Redirect("~/principal.aspx")
+            End If
+        Else
+                Response.Redirect("~/principal.aspx")
+
+        End If
     End Sub
 End Class
