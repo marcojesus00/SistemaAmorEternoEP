@@ -167,7 +167,7 @@ Partial Public Class CobrosDashboard
         receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).ToList()
         Dim markers As New List(Of MarkerForMap)
         For Each receipt As RecibosDTO In receipts
-            Dim tooltipMsg = $"Fecha: {receipt.RFECHA}, cliente: {receipt.Nombre_clie} cobrado: {receipt.Por_lempira}"
+            Dim tooltipMsg = $"<b>Documento:{receipt.Num_doc.Trim}</b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {receipt.Por_lempira} <br>Hora: {receipt.rhora} <br>Fecha: {receipt.RFECHA:dd/MM/yyyy}"
             If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)
