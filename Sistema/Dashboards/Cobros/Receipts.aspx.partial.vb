@@ -221,7 +221,7 @@ Partial Public Class CobrosDashboard
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
         Dim lista = ReceiptsByDateCachedList
-        Dim d = lista.Where(Function(r) r.codigo_cobr = keyValue).OrderByDescending(Function(r) r.RFECHA).ThenByDescending _
+        Dim d = lista.Where(Function(r) r.codigo_cobr.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenByDescending _
             (Function(e)
                  Dim time As DateTime
                  If DateTime.TryParse(e.rhora, time) Then

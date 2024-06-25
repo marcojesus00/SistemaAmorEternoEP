@@ -269,21 +269,7 @@ Public Class CobrosDashboard
             End If
         End If
     End Sub
-    Protected Sub SellerGridView_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim selectedRowIndex As Integer = DashboardGridview.SelectedIndex
-        Dim keyValue As String = DashboardGridview.DataKeys(selectedRowIndex).Value.ToString()
-        'DashboardGridview.Rows.
-        If DashboardType.SelectedValue = "0" Then
-            '    DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
 
-        '    BindReceiptsDetails(keyValue)
-        ElseIf DashboardType.SelectedValue = "1" Then
-            '    DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
-            '    BindClientDetails(keyValue)
-
-
-        End If
-    End Sub
     Protected Sub DetailsControl_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnReceiptLocation As LinkButton = CType(e.Row.FindControl("btnReceiptLocation"), LinkButton)
@@ -448,37 +434,38 @@ Public Class CobrosDashboard
     '    End Try
     'End Sub
 
-    Protected Sub ExpandButton_Click(sender As Object, e As EventArgs)
-        Dim button As LinkButton = DirectCast(sender, LinkButton)
-        Dim rowIndex As Integer = Convert.ToInt32(button.CommandArgument)
+    'Protected Sub ExpandButton_Click(sender As Object, e As EventArgs)
+    '    Dim button As LinkButton = DirectCast(sender, LinkButton)
+    '    Dim rowIndex As Integer = Convert.ToInt32(button.CommandArgument)
 
-        ' Hide any previously expanded rows
-        For Each row As GridViewRow In DashboardGridview.Rows
-            Dim nestedGrid As GridView = DirectCast(row.FindControl("DetailsControl"), GridView)
-            If nestedGrid IsNot Nothing Then
-                nestedGrid.Visible = False
-            End If
-        Next
+    '    ' Hide any previously expanded rows
+    '    For Each row As GridViewRow In DashboardGridview.Rows
+    '        Dim nestedGrid As GridView = DirectCast(row.FindControl("DetailsControl"), GridView)
+    '        If nestedGrid IsNot Nothing Then
+    '            nestedGrid.Visible = False
+    '        End If
+    '    Next
 
-        ' Show the nested GridView for the clicked row
-        Dim currentRow As GridViewRow = DashboardGridview.Rows(rowIndex)
-        Dim currentNestedGrid As GridView = DirectCast(currentRow.FindControl("DetailsControl"), GridView)
-        If currentNestedGrid IsNot Nothing Then
-            currentNestedGrid.Visible = True
-            ' Bind data to the nested GridView here
-            BindNestedGridView(currentNestedGrid, rowIndex)
-        End If
-    End Sub
+    '    ' Show the nested GridView for the clicked row
+    '    Dim currentRow As GridViewRow = DashboardGridview.Rows(rowIndex)
+    '    Dim currentNestedGrid As GridView = DirectCast(currentRow.FindControl("DetailsControl"), GridView)
+    '    If currentNestedGrid IsNot Nothing Then
+    '        currentNestedGrid.Visible = True
+    '        ' Bind data to the nested GridView here
+    '        BindNestedGridView(currentNestedGrid, rowIndex)
+    '    End If
+    'End Sub
     Public Sub BindNestedGridview(currentNestedGrid As GridView, keyValue As Integer)
         If DashboardType.SelectedValue = "0" Then
-            DetailsTitle.Text = $"Detalle de los recibos del cobrador {keyValue}"
-
             BindReceiptsDetails(currentNestedGrid, keyValue)
         ElseIf DashboardType.SelectedValue = "1" Then
-            DetailsTitle.Text = $"Detalle de los clientes del cobrador {keyValue}"
             BindClientDetails(currentNestedGrid, keyValue)
 
 
         End If
+    End Sub
+
+    Protected Sub DashboardGridview_SelectedIndexChanged(sender As Object, e As EventArgs)
+
     End Sub
 End Class
