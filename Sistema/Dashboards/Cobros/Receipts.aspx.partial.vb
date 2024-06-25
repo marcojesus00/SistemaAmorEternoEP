@@ -150,7 +150,7 @@ Partial Public Class CobrosDashboard
         .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
                 .CobradoDecimal = group.Sum(Function(r) r.Por_lempira),
         .Lider = group.FirstOrDefault().cob_lider
-    }).OrderByDescending(Function(c) c.Cobrado).Select(Function(r) New With {r.Codigo, r.Cobrador, r.Recibos, r.Cobrado, r.Lider}).ToList()
+    }).OrderByDescending(Function(c) c.CobradoDecimal).Select(Function(r) New With {r.Codigo, r.Cobrador, r.Recibos, r.Cobrado, r.Lider}).ToList()
 
             Dim dataCount = groupedData.Count()
             Return groupedData
@@ -164,10 +164,18 @@ Partial Public Class CobrosDashboard
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim receipts As List(Of RecibosDTO)
         Dim cachedReceipts = ReceiptsByDateCachedList
-        receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).ToList()
+        receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
+            (Function(r)
+                 Dim time As DateTime
+                 If DateTime.TryParse(r.rhora, time) Then
+                     Return time
+                 Else
+                     Return DateTime.MinValue ' Default value for invalid time strings
+                 End If
+             End Function).ToList()
         Dim markers As New List(Of MarkerForMap)
         For Each receipt As RecibosDTO In receipts
-            Dim tooltipMsg = $"<b>Documento:{receipt.Num_doc.Trim}</b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {receipt.Por_lempira} <br>Hora: {receipt.rhora} <br>Fecha: {receipt.RFECHA:dd/MM/yyyy}"
+            Dim tooltipMsg = $"<b>Documento:{receipt.Num_doc.Trim}</b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Hora: {receipt.rhora} <br>Fecha: {receipt.RFECHA:dd/MM/yyyy}"
             If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)
@@ -177,6 +185,7 @@ Partial Public Class CobrosDashboard
 
         Dim dataForMaps As New DataForMapGenerator($"Recibos del cobrador {keyValue} del {startDate.Text} al {endDate.Text}", markers, True)
         Session("MarkersData") = dataForMaps
+        Session("BackPageUrl") = thisPage
         Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
@@ -189,7 +198,15 @@ Partial Public Class CobrosDashboard
         End If
         Dim receipts As List(Of RecibosDTO)
         Dim cachedReceipts = ReceiptsByDateCachedList
-        receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).ToList()
+        receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
+            (Function(r)
+                 Dim time As DateTime
+                 If DateTime.TryParse(r.rhora, time) Then
+                     Return time
+                 Else
+                     Return DateTime.MinValue ' Default value for invalid time strings
+                 End If
+             End Function).ToList()
         Dim markers As New List(Of MarkerForMap)
         For Each receipt As RecibosDTO In receipts
             Dim tooltipMsg = $"<b>Cobrador: {receipt.codigo_cobr} </b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Fecha:{receipt.RFECHA.ToString("dd-MM-yyyy")}"
@@ -202,6 +219,8 @@ Partial Public Class CobrosDashboard
 
         Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
         Session("MarkersData") = dataForMaps
+        Session("BackPageUrl") = thisPage
+
         Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
