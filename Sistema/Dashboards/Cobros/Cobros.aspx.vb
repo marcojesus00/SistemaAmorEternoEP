@@ -10,6 +10,8 @@ Public Class CobrosDashboard
     Inherits System.Web.UI.Page
     Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
+    Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
+
     'Protected WithEvents btnClientsByCollectorMap As Global.System.Web.UI.WebControls.LinkButton
     'Protected WithEvents BtnRouteOfReceiptsMap As Global.System.Web.UI.WebControls.LinkButton
     Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
@@ -49,6 +51,7 @@ Public Class CobrosDashboard
         Try
             Dim Usuario_Aut = Session("Usuario_Aut")
             Session("BackPageUrl") = "~/monitorcobros.aspx"
+            Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
             If Usuario_Aut IsNot Nothing Then
                 Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
 
@@ -161,7 +164,7 @@ Public Class CobrosDashboard
             ddlCity.DataValueField = "Codigo"
             ddlCity.DataBind()
             ddlCity.Items.Insert(0, New ListItem("Todas las zonas", ""))
-            Dim leaders = context.Cobradores.AsNoTracking().Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894")) _
+            Dim leaders = context.Cobradores.AsNoTracking().Where(Function(c) c.Codigo = c.CobLider Or c.Codigo.Contains("4894") Or c.Codigo.Contains("3072")) _
                 .Select(Function(l) New With {l.Codigo, .Nombre = l.Nombre & " " & l.Codigo}) _
                 .OrderBy(Function(l) l.Nombre).ToList()
             ddlLeader.DataSource = leaders

@@ -149,13 +149,13 @@ Partial Public Class CobrosDashboard
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''DetailsTitle control.
+    '''ifRepote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DetailsTitle As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents ifRepote As Global.System.Web.UI.HtmlControls.HtmlIframe
 
     '''<summary>
     '''alertPlaceholder control.
