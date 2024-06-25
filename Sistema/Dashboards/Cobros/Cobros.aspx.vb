@@ -93,7 +93,8 @@ Public Class CobrosDashboard
             Dim datesTooSpread = False
 
             If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
-                If startDateParam.Year <> endDateParam.Year Then
+                Dim difference As TimeSpan = endDateParam - startDateParam
+                If difference.TotalDays > 7 Then
                     datesTooSpread = True
                 End If
             End If
