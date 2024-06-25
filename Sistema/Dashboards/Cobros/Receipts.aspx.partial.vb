@@ -137,23 +137,9 @@ Partial Public Class CobrosDashboard
         Dim zoneCode As String = ddlCity.SelectedValue.Trim
         Dim ClientCode As String = textBoxClientCode.Text.Trim
         Try
-            'Dim data1 = ReceiptsByDateCachedList _
-            '       .Where(
-            'Function(r) r.codigo_cobr IsNot Nothing AndAlso r.codigo_cobr.Contains(collectorCode)).ToList()
+
             Dim data1 = ReceiptsByDateCachedList.OrderByDescending(Function(c) c.Por_lempira).ToList()
-            'If zoneCode.Length > 0 Then
-            '    data1 = data1.Where((Function(r) r.VZCODIGO IsNot Nothing AndAlso r.VZCODIGO.Contains(zoneCode))).ToList()
 
-            'End If
-            'If ClientCode.Length > 0 Then
-            '    data1 = data1.Where((Function(r) r.Codigo_clie IsNot Nothing AndAlso r.Codigo_clie.Contains(ClientCode))).ToList()
-
-            'End If
-
-            'If CompanyCode.Length > 0 Then
-            '    data1 = data1.Where((Function(r) r.Cod_zona IsNot Nothing AndAlso r.Cod_zona.Contains(CompanyCode))).ToList()
-
-            'End If
 
             Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
                 .GroupBy(Function(r) r.codigo_cobr).
@@ -230,9 +216,11 @@ Partial Public Class CobrosDashboard
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function) _
-            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)}).ToList()
+            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)
+}).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
+
         DetailsControl.Visible = True
     End Sub
 

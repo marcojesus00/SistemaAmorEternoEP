@@ -166,13 +166,7 @@ Public Class monitorventas
     End Sub
 
 
-    Protected Sub btnCancelarC_click(sender As Object, e As EventArgs) Handles btnCancelarC.Click
-        Try
-            PanelEditarVenta.Visible = False
-        Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
-        End Try
-    End Sub
+
 
 
 

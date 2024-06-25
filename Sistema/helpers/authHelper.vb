@@ -1,4 +1,4 @@
-﻿Public Class authHelper
+﻿Public Class AuthHelper
     Public Shared Function isAuthorized(user As String, permission As String) As Boolean
         If user IsNot Nothing AndAlso user.Length > 0 AndAlso permission IsNot Nothing AndAlso permission.Length > 0 Then
             Using dbContext As New FunamorContext()
