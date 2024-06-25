@@ -6,7 +6,8 @@
             Dim mapTitle As String = ""
             Dim ProductionBasePath As String = ConfigurationManager.AppSettings("ProductionBasePath")
 
-
+            Dim redIcon As New IconGenerator2("#FF0000", "black")
+            Dim blueIcon As New IconGenerator2("#0000FF", "black")
             If Session("MarkersData") IsNot Nothing Then
 
                 Dim dataForMaps = TryCast(Session("MarkersData"), DataForMapGenerator)
@@ -42,14 +43,16 @@
                 Else
 
                     For i As Integer = 0 To items.Count - 1
-
-                        Dim icon = "map.png"
+                        Dim count = (i + 1)
+                        redIcon.TextContent = count.ToString
+                        Dim icon = redIcon.GetBase64UriIcon()
                         Dim tooltipMsg As String = items(i).TooltipMessage
                         If items(i).MarkerType = MarkerTypes.Cobro Then
-                            icon = "moneyIcon.png"
+                            blueIcon.TextContent = count.ToString
+                            icon = blueIcon.GetBase64UriIcon()
                         End If
                         script &= "var myIcon = L.icon({
-                        iconUrl: '" & ProductionBasePath & "imagenes/" & icon & "',
+                        iconUrl: '" & icon & "',
                         iconSize: [38, 38],
                         iconAnchor: [19, 38],
                         popupAnchor: [-3, -76],
@@ -77,7 +80,7 @@
                     AlertHelper.GenerateAlert("warning", dataForMaps.CountOfCorruptItems.ToString() & " coordenadas corruptas.", alertPlaceholder)
                 End If
             Else
-                Response.Redirect("Cobros.aspx")
+                Response.Redirect("~/Principal.aspx")
             End If
 
         Catch ex As Exception

@@ -2340,6 +2340,7 @@
     <Compile Include="Helpers\AuthHelper.vb" />
     <Compile Include="Helpers\CachingHelper.vb" />
     <Compile Include="Helpers\LinkHelper.vb" />
+    <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />
     <Compile Include="Shared\Map\Map.aspx.designer.vb">
       <DependentUpon>Map.aspx</DependentUpon>
