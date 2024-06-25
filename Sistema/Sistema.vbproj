@@ -2342,6 +2342,13 @@
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="Shared\Map\MapIFrame.master.designer.vb">
+      <DependentUpon>MapIFrame.master</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\MapIFrame.master.vb">
+      <DependentUpon>MapIFrame.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Shared\Map\Map.aspx.designer.vb">
       <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
@@ -2907,6 +2914,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Shared\AE.Master" />
+    <Content Include="Shared\Map\MapIFrame.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

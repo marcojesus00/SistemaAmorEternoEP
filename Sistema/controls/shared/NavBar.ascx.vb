@@ -33,7 +33,12 @@
 
         If Session("BackPageUrl") IsNot Nothing Then
             If Session("BackPageUrl").ToString().Length > 0 Then
-                Response.Redirect(Session("BackPageUrl"))
+                If Session("BackPageUrl").ToString() = "Close" Then
+
+                Else
+                    Response.Redirect(Session("BackPageUrl"))
+
+                End If
             Else
                 Response.Redirect("~/principal.aspx")
 

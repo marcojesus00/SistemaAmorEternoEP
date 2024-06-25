@@ -164,13 +164,22 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            <asp:Label ID="DetailsTitle" runat="server" Text="GridView Title" CssClass="lead" Visible="false"></asp:Label>
-
-            <div class="table-responsive">
-            </div>
-        </div>
+  
     </div>
+            <asp:Panel ID="pnlMap" runat="server" Visible="false" BackColor="White">
+<%--            <div>
+                <asp:Button ID="btnProcesar" ToolTip="Procesar" Text="Procesar" runat="server" Height="30px" CssClass="btn btn-primary btn-sm" Style="position: fixed; left: 10px; top: 10px;" />
+                <asp:ImageButton ID="btnRegresar" ToolTip="Regresar" runat="server" Height="30px" Style="position: fixed; right: 10px; top: 10px;" ImageUrl="~/imagenes/atras.png" Width="30px" />
+            </div>--%>
+    
+            <div style="width: 100%; height: 100%;">
+     
+                <iframe id="iMap" runat="server" style="position: fixed;background-color : rgba(255, 255, 255, 0.8); width: 100%; height: 100%; top: 42px;">
+                            <%--               <asp:LinkButton ID="Close" runat="server" CssClass="btn btn-close" OnClick="Close_Click">
+                </asp:LinkButton>--%>
+                </iframe>
+            </div>
+        </asp:Panel>
     <div id="alertPlaceholder" runat="server"></div>
 
     <script type="module">

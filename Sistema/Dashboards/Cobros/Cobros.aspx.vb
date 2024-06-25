@@ -223,6 +223,7 @@ Public Class CobrosDashboard
                     textBoxClientCode.Text = ""
 
                 End If
+
                 RouteOfReceiptsMap(keyValue)
             End If
 
@@ -459,5 +460,7 @@ Public Class CobrosDashboard
         End If
     End Sub
 
-
+    Protected Sub Close_Click(sender As Object, e As EventArgs)
+        pnlMap.Visible = False
+    End Sub
 End Class

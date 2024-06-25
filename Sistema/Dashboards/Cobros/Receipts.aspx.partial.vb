@@ -186,7 +186,10 @@ Partial Public Class CobrosDashboard
         Dim dataForMaps As New DataForMapGenerator($"Recibos del cobrador {keyValue} del {startDate.Text} al {endDate.Text}", markers, True)
         Session("MarkersData") = dataForMaps
         Session("BackPageUrl") = thisPage
-        Response.Redirect("~/shared/Map/Map.aspx")
+        iMap.Dispose()
+        iMap.Src = "/shared/Map/Map.aspx"
+        pnlMap.Visible = True
+        'Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
     Public Sub RouteOfReceiptsByLeaderMap(sender As Object, e As EventArgs) Handles BtnRouteOfReceiptsMapByLeader.Click

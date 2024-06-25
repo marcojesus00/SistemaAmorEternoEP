@@ -149,13 +149,22 @@ Partial Public Class CobrosDashboard
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''ifRepote control.
+    '''pnlMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ifRepote As Global.System.Web.UI.HtmlControls.HtmlIframe
+    Protected WithEvents pnlMap As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''iMap control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents iMap As Global.System.Web.UI.HtmlControls.HtmlIframe
 
     '''<summary>
     '''alertPlaceholder control.
