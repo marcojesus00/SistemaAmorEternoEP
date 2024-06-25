@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <asp:LinkButton ID="back" runat="server" class="btn btn-sm btn-outline-info me-2">
+                    <asp:LinkButton ID="back"   runat="server" class="btn btn-sm btn-outline-info me-2">
                         Atrás
                         <i class="bi bi-arrow-return-left align-content-end"></i>
                     </asp:LinkButton>
@@ -26,4 +26,12 @@
             </ul>
         </div>
     </div>
+<%--    <script type="text/javascript">
+        function goBack() {
+            console.log("back");
+
+        window.history.back();
+        console.log("backfin");
+    }
+</script>--%>
 </nav>

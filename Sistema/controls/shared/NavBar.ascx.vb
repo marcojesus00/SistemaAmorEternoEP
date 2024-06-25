@@ -39,8 +39,12 @@
 
             End If
         Else
-                Response.Redirect("~/principal.aspx")
+            Response.Redirect("~/principal.aspx")
 
         End If
     End Sub
+    'Protected Sub btnGoBack_Click(ByVal sender As Object, ByVal e As EventArgs)
+    '    ' Register the JavaScript to go back in browser history
+    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "goBackScript", "goBack();", True)
+    'End Sub
 End Class
