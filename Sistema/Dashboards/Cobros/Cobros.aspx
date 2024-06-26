@@ -6,7 +6,7 @@
         <div class="border border-dark-subtle p-2">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12 pb-2 ">
-                                        <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>
+                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>
 
                     <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Recibos" Value="0">
@@ -23,20 +23,20 @@
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="endDate" class="form-control-label">Fecha final</label>
+                    <label for="endDate" class="form-control-label">Fecha final</label>
 
                     <asp:TextBox ID="endDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="ddlCity" class="form-control-label">Zona</label>
+                    <label for="ddlCity" class="form-control-label">Zona</label>
                     <asp:DropDownList ID="ddlCity" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
 
                 </div>
 
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="ddlCompany" class="form-control-label">Empresa</label>
+                    <label for="ddlCompany" class="form-control-label">Empresa</label>
 
                     <asp:DropDownList ID="ddlCompany" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -45,7 +45,7 @@
 
 
                 <div class="col-md-3  col-md-6 col-12 pb-2 " hidden>
-                                        <label for="leader" class="form-control-label">Estado del lider</label>
+                    <label for="leader" class="form-control-label">Estado del lider</label>
 
                     <asp:DropDownList ID="leader" runat="server" CssClass="form-control form-control-sm">
                         <asp:ListItem Text="Líder actual" Value="current" />
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-3  col-md-6 col-12 pb-2">
                     <div class="row">
-                                                                                <label for="ddlLeader" class="form-control-label">Lider</label>
+                        <label for="ddlLeader" class="form-control-label">Lider</label>
 
                         <div class="col-lg-10 col-10">
 
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>
+                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>
 
                     <asp:DropDownList ID="ddlValidReceipts" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -81,25 +81,25 @@
                 </div>
                 <div class="col-sm-3  col-md-6 col-12 pb-2 " hidden>
                     <div class="form-check ">
-                                                <label for="supervised" class="form-check-label">Incluir supervisado</label>
+                        <label for="supervised" class="form-check-label">Incluir supervisado</label>
 
                         <asp:CheckBox ID="supervised" runat="server" CssClass="form-check-input" />
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="textBoxNumDoc" class="form-control-label">Número de documento</label>
+                    <label for="textBoxNumDoc" class="form-control-label">Número de documento</label>
 
                     <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="code" class="form-control-label">Código de cobrador</label>
+                    <label for="code" class="form-control-label">Código de cobrador</label>
 
                     <asp:TextBox ID="textBoxCode" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                                        <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>
+                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>
 
                     <asp:TextBox ID="textBoxClientCode" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
@@ -131,7 +131,7 @@
                                     <img alt="" style="cursor: pointer; display: none" src="images/minus.png" />
                                     <%--                                                   <asp:LinkButton ID="ExpandButton" runat="server" Text="Expand" CssClass="btn btn-primary" OnClick="ExpandButton_Click" CommandArgument='<%# Container.DataItemIndex %>' />--%>
                                     <asp:Panel ID="pnlDetails" runat="server" Style="display: none">
-                                        <asp:GridView ID="DetailsControl" DataKeyNames="Codigo" BackColor="White"   CssClass="ChildGrid table table-sm table-striped table-hover "  runat="server" AutoGeneratedColumns="True" OnRowDataBound="DetailsControl_RowDataBound" OnRowCommand="DetailsControl_RowCommand">
+                                        <asp:GridView ID="DetailsControl" DataKeyNames="Codigo" BackColor="White" CssClass="ChildGrid table table-sm table-striped table-hover " runat="server" AutoGeneratedColumns="True" OnRowDataBound="DetailsControl_RowDataBound" OnRowCommand="DetailsControl_RowCommand">
 
                                             <Columns>
 
@@ -164,22 +164,14 @@
                 </div>
             </div>
         </div>
-  
+
     </div>
-            <asp:Panel ID="pnlMap" runat="server" Visible="false" BackColor="White">
-<%--            <div>
-                <asp:Button ID="btnProcesar" ToolTip="Procesar" Text="Procesar" runat="server" Height="30px" CssClass="btn btn-primary btn-sm" Style="position: fixed; left: 10px; top: 10px;" />
-                <asp:ImageButton ID="btnRegresar" ToolTip="Regresar" runat="server" Height="30px" Style="position: fixed; right: 10px; top: 10px;" ImageUrl="~/imagenes/atras.png" Width="30px" />
-            </div>--%>
-    
-            <div style="width: 100%; height: 100%;">
-     
-                <iframe id="iMap" runat="server" style="position: fixed;background-color : rgba(255, 255, 255, 0.8); width: 100%; height: 100%; top: 42px;">
-                            <%--               <asp:LinkButton ID="Close" runat="server" CssClass="btn btn-close" OnClick="Close_Click">
-                </asp:LinkButton>--%>
-                </iframe>
-            </div>
-        </asp:Panel>
+    <asp:Panel ID="pnlMap" runat="server" Visible="false">
+ 
+        <div style="width: 100%; height: 100%;">
+            <iframe  id="iMap" runat="server" style="position: fixed; width: 100%; height: 90%; top: 42px; background-color: none"></iframe>
+        </div>
+    </asp:Panel>
     <div id="alertPlaceholder" runat="server"></div>
 
     <script type="module">
@@ -214,5 +206,13 @@
             window.open(url, '_blank');
         }
 </script>
+        <script>
+            window.addEventListener('message', function (event) {
+                if (event.data === 'closeMap') {
+
+                    document.getElementById('<%= pnlMap.ClientID %>').style.display = 'none';
+            }
+        });
+    </script>
 
 </asp:Content>

@@ -65,6 +65,8 @@ Public Class CobrosDashboard
                     FillDll()
                     ReBind()
                 End If
+                pnlMap.Visible = False
+
                 AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
             Else
                 Response.Redirect("~/Principal.aspx")
