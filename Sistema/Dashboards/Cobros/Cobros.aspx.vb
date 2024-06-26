@@ -119,7 +119,9 @@ Public Class CobrosDashboard
             ElseIf DashboardType.SelectedValue = "1" Then
                 startDate.Enabled = False
                 endDate.Enabled = False
-
+                ddlValidReceipts.Visible = False
+                textBoxNumDoc.Visible = False
+                BtnRouteOfReceiptsMapByLeader.Visible = False
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 
@@ -319,24 +321,13 @@ Public Class CobrosDashboard
         CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
-    Public Function GetFromDb(Of T)(query As String, CollectorCode As String, Optional specificQuery As Boolean = True) As List(Of T)
+    Public Function GetFromDb(Of T)(query As String, Optional CollectorCode As String = "", Optional ClientCode As String = "", Optional clientIdentification As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "") As List(Of T)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
-        Dim ClientCode = ""
-        Dim companyCode = ""
-        Dim ZoneCode = ""
-        Dim leaderCode = ""
+
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
-            If specificQuery Then
-                CollectorCode = textBoxCode.Text.Trim
-                ClientCode = textBoxClientCode.Text
-                companyCode = ddlCompany.SelectedValue.Trim
-                ZoneCode = ddlCity.SelectedValue.Trim
-                leaderCode = ddlLeader.SelectedValue.Trim
-            Else
 
-            End If
 
             Try
                 Dim startDateParam As DateTime
@@ -350,7 +341,7 @@ Public Class CobrosDashboard
                     Dim LeaderCodeParam As String = "%" & leaderCode & "%"
                     Dim CompanyCodeParam As String = "%" & companyCode & "%"
                     Dim CityCodeParam As String = "%" & ZoneCode & "%"
-
+                    Dim clientIdentificationDateParam As String = "%" & clientIdentification & "%"
                     Return funamorContext.Database.SqlQuery(Of T)(
                         query,
                         New SqlParameter("@Leader", LeaderCodeParam),
@@ -359,7 +350,8 @@ Public Class CobrosDashboard
                        New SqlParameter("@Company", CompanyCodeParam),
                        New SqlParameter("@City", CityCodeParam),
                        New SqlParameter("@start", startDateParam),
-                        New SqlParameter("@end", endDateParam)
+                        New SqlParameter("@end", endDateParam),
+                        New SqlParameter("@ClientIdentification", clientIdentificationDateParam)
                     ).ToList()
 
 
@@ -369,7 +361,7 @@ Public Class CobrosDashboard
                 End If
             Catch ex As Exception
                 ' Handle any other exceptions
-                Throw New Exception("Error retrieving receipts from database.", ex)
+                Throw New Exception("Error retrieving receipts from database." & ex.Message, ex)
             End Try
         End Using
     End Function

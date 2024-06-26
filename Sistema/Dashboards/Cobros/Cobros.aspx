@@ -11,7 +11,7 @@
                     <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Recibos" Value="0">
                         </asp:ListItem>
-                        <asp:ListItem Text="Cartera (Bloqueado)" Value="100"></asp:ListItem>
+                        <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
                     </asp:DropDownList>
 
 

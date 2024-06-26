@@ -9,17 +9,13 @@ Imports System.Linq
 Partial Public Class CobrosDashboard
     Inherits System.Web.UI.Page
     Public Function GetPortfolioDataForGridview()
-        Dim leaderCode = textBoxCode.Text.Trim
-        Dim collectorCode = textBoxCode.Text.Trim
 
-        Dim collectorList As List(Of SimpleCollectorDto) = CollectorsCachedList
-
-        Dim finalData As List(Of PortfolioGDtio) = GetGroupedClientsByCollectorFromDb()
-        Dim s As List(Of PortfolioFinalDto) = finalData.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.nombre_cobr, .Clientes = c.Clientes, .Cartera = FormattingHelper.ToLempiras(CType(c.Cartera, Decimal?))}).ToList()
+        Dim portfolioList As List(Of PortfolioGDtio) = GetGroupedClientsByCollectorFromDb()
+        Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.nombre_cobr, .Clientes = c.Clientes, .Cartera = FormattingHelper.ToLempiras(CType(c.Cartera, Decimal?))}).ToList()
 
 
 
-        Return finalData
+        Return finalList
 
 
 
@@ -46,7 +42,7 @@ Partial Public Class CobrosDashboard
 
             End If
             query = "
-            select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera from COBRADOR cr join CLIENTES cl 
+            select top 10 cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera from COBRADOR cr join CLIENTES cl 
              on cl.cl_cobrador = cr.codigo_cobr
             WHERE  cl.Codigo_clie like @client  AND cr.codigo_cobr like @Collector AND  cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City
             AND cl.Saldo_actua>0
@@ -109,6 +105,10 @@ Partial Public Class CobrosDashboard
         Dim d = q.Select(Function(c) New With {
                                                                                                       c.Codigo,
                                                                                                       c.Nombre,
+                                                                                                      c.Identidad,
+                                                                                                      c.Telefonos,
+                                                                                                      c.Direccion,
+                                                                                                      c.Empresa,
                                                                                                       .Saldo = FormattingHelper.ToLempiras(c.Saldo)}).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
@@ -126,7 +126,7 @@ Partial Public Class CobrosDashboard
         Dim cacheKey As String = collectorCode & CompanyCode & leaderCode & cityCode
         Using funamorContext As New FunamorContext
 
-            ClientsQuery = funamorContext.Clientes.Where(Function(c) c.CodigoCobrador IsNot Nothing AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0)
+            ClientsQuery = funamorContext.Clientes.AsNoTracking().Where(Function(c) c.CodigoCobrador IsNot Nothing AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual > 0)
             Dim ds = ClientsQuery.ToList()
             If ClientCode.Length > 0 Then
                 ClientsQuery = ClientsQuery.Where(Function(c) c.Codigo AndAlso c.Codigo.Contains(ClientCode))
@@ -173,13 +173,7 @@ Partial Public Class CobrosDashboard
         Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
-    Public Class CollectorData
-        Public Property Codigo As String
-        Public Property Nombre As String
-        Public Property Clientes As String
-        Public Property Saldo As Decimal
-        Public Property SaldoFormatted As String
-    End Class
+
 
     Public Function GetClientsByCollectorIdFromDb(Optional ByVal rowValue = "")
         Dim collectorCode
@@ -189,22 +183,79 @@ Partial Public Class CobrosDashboard
         Else
             collectorCode = rowValue
         End If
+
+        Dim companyCode = ddlCompany.SelectedValue.Trim
+        Dim ZoneCode = ddlCity.SelectedValue.Trim
+        Dim leaderCode = ddlLeader.SelectedValue.Trim
+        Dim clientIdentification = ""
         'Using context As New FunamorContext
         '    Return context.Clientes.Where(Function(c) c.Codigo.Contains(clientCode) AndAlso c.CodigoCobrador IsNot Nothing AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual IsNot Nothing AndAlso c.SaldoActual > 0).OrderByDescending(Function(c) c.SaldoActual).ToList()
         'End Using
-        Dim query As String = "
-        select cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre, cl.Saldo_actua as Saldo 
-        from COBRADOR cr join CLIENTES cl 
-        on cl.cl_cobrador = cr.codigo_cobr
-        WHERE cl.Codigo_clie like @Client AND cr.codigo_cobr like @Collector AND cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City
-        AND cl.Saldo_actua > 0
-        order by Saldo desc
-    "
-        Return GetFromDb(Of PortfolioDetailsDto)(query, rowValue)
+        Dim selectClause As String = "select top 10 cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,
+	REPLACE(cl.identidad, '-', '') as Identidad,
+    CASE 
+        WHEN LTRIM(RTRIM(cl.Telef_clien)) <> '' AND LTRIM(RTRIM(cl.CL_CELULAR)) <> '' THEN LTRIM(RTRIM(cl.Telef_clien)) + ', ' + LTRIM(RTRIM(cl.CL_CELULAR))
+        WHEN LTRIM(RTRIM(cl.Telef_clien)) <> '' THEN LTRIM(RTRIM(cl.Telef_clien))
+        WHEN LTRIM(RTRIM(cl.CL_CELULAR)) <> '' THEN LTRIM(RTRIM(cl.CL_CELULAR))
+        ELSE ''
+    END AS Telefonos, 
+     LTRIM(RTRIM(cl.Dir_cliente))  + ' ' +  LTRIM(RTRIM(cl.Dir2_client)) AS Direccion, 
+    cl.Cod_zona AS Empresa, cl.Saldo_actua as Saldo, cl.latitud, cl.longitud "
+        Dim fromClause As String = "from COBRADOR cr join CLIENTES cl on cl.cl_cobrador = cr.codigo_cobr"
+        Dim whereClauseList As New List(Of String)()
+
+        'Dim whereClause As String = "WHERE cl.Saldo_actua > 0 AND cl.Codigo_clie like @Client AND cr.codigo_cobr like @Collector AND cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City AND REPLACE(cl.identidad, '-', '') LIKE @ClientIdentification"
+        Dim orderByClause As String = "order by Saldo desc"
+
+
+
+        whereClauseList.Add("cl.Saldo_actua > 0")
+        If Not String.IsNullOrEmpty(clientCode) Then
+            whereClauseList.Add("cl.Codigo_clie like @Client")
+        End If
+
+        If Not String.IsNullOrEmpty(collectorCode) Then
+            whereClauseList.Add("cr.codigo_cobr like @Collector")
+        End If
+
+        If Not String.IsNullOrEmpty(leaderCode) Then
+            whereClauseList.Add("cr.cob_lider like @Leader")
+        End If
+
+        If Not String.IsNullOrEmpty(companyCode) Then
+            whereClauseList.Add("cl.Cod_zona like @Company")
+        End If
+
+        If Not String.IsNullOrEmpty(ZoneCode) Then
+            whereClauseList.Add("cl.VZCODIGO like @City")
+        End If
+
+        If Not String.IsNullOrEmpty(clientIdentification) Then
+            whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @ClientIdentification")
+        End If
+
+        Dim whereClause As String = ""
+        If whereClauseList.Count > 0 Then
+            whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
+        End If
+        Dim query As String = String.Format("{0} {1} {2} {3}", selectClause, fromClause, whereClause, orderByClause)
+
+        Return GetFromDb(Of PortfolioDetailsDto)(query, collectorCode, clientCode, clientIdentification, companyCode, ZoneCode, leaderCode)
     End Function
     Public Class PortfolioDetailsDto
         Public Property Codigo As String
         Public Property Nombre As String
+        Public Property Identidad As String
+
+        Public Property Telefonos As String
+
+        Public Property Direccion As String
+        Public Property Empresa As String
+
         Public Property Saldo As Decimal
+        Public Property Latitud As Decimal
+
+        Public Property Longitud As Decimal
+
     End Class
 End Class
