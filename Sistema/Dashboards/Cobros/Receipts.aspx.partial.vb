@@ -223,8 +223,9 @@ Partial Public Class CobrosDashboard
         Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
         Session("MarkersData") = dataForMaps
         Session("BackPageUrl") = thisPage
-
-        Response.Redirect("~/shared/Map/Map.aspx")
+        iMap.Src = "/shared/Map/Map.aspx"
+        pnlMap.Visible = True
+        'Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)

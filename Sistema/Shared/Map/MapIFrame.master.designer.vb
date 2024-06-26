@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class MapIframe
 
     '''<summary>
+    '''Headplace control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Headplace As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
     '''form1 control.
     '''</summary>
     '''<remarks>
@@ -21,15 +30,6 @@ Partial Public Class MapIframe
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
-    '''btnClose control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnClose As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Map1 control.

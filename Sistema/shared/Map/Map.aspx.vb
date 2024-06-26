@@ -13,7 +13,7 @@
                 Dim dataForMaps = TryCast(Session("MarkersData"), DataForMapGenerator)
                 Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
                 mapTitle = dataForMaps.Title
-                Dim title As New LiteralControl($"<h2 class=""mb-4"">{dataForMaps.Title}</h2>")
+                Dim title As New LiteralControl($"<h2 class""display-6 fw-bold text-center text-lg-start text-sm text-md"">{dataForMaps.Title}</h2>")
                 MapTitleHolder.Controls.Add(title)
                 'If Not IsPostBack Then
                 '    Dim scriptInit As String = "
