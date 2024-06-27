@@ -1,4 +1,4 @@
-﻿Public Class textInputHelper
+﻿Public Class TextInputHelper
     Public Shared Function ValidateTextLength(text As String, lengthAllowed As Integer) As Boolean
         If text.Length > lengthAllowed Then
             Return False

@@ -21,7 +21,7 @@
         Usuario_Aut = Session("Usuario_Aut")
         Clave_Aut = Session("Clave_Aut")
         Session.Timeout = 90
-        If authHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
+        If AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
             btnCobrosAdvanced.Visible = True
         End If
         Dim conf3 As New Configuracion(Usuario, Clave, Bd, Servidor)

@@ -31,7 +31,25 @@
     End Sub
     Private Sub Back_Click(sender As Object, e As EventArgs) Handles back.Click
 
+        If Session("BackPageUrl") IsNot Nothing Then
+            If Session("BackPageUrl").ToString().Length > 0 Then
+                If Session("BackPageUrl").ToString() = "Close" Then
 
-        Response.Redirect("~/principal.aspx")
+                Else
+                    Response.Redirect(Session("BackPageUrl"))
+
+                End If
+            Else
+                Response.Redirect("~/principal.aspx")
+
+            End If
+        Else
+            Response.Redirect("~/principal.aspx")
+
+        End If
     End Sub
+    'Protected Sub btnGoBack_Click(ByVal sender As Object, ByVal e As EventArgs)
+    '    ' Register the JavaScript to go back in browser history
+    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "goBackScript", "goBack();", True)
+    'End Sub
 End Class

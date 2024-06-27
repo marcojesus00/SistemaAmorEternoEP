@@ -104,6 +104,15 @@ Partial Public Class CobrosDashboard
     Protected WithEvents supervised As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''lblNumDoc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNumDoc As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''textBoxNumDoc control.
     '''</summary>
     '''<remarks>
@@ -149,22 +158,22 @@ Partial Public Class CobrosDashboard
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''DetailsTitle control.
+    '''pnlMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DetailsTitle As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pnlMap As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''DetailsControl control.
+    '''iMap control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DetailsControl As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents iMap As Global.System.Web.UI.HtmlControls.HtmlIframe
 
     '''<summary>
     '''alertPlaceholder control.
