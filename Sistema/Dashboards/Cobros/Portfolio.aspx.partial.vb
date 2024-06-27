@@ -19,7 +19,6 @@ Partial Public Class CobrosDashboard
     Public Function GetGroupedClientsByCollectorFromDb(Optional specificQuery As Boolean = True) As List(Of PortfolioIDto)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
-        Dim query As String
 
         Using funamorContext As New FunamorContext
             funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
@@ -29,14 +28,51 @@ Partial Public Class CobrosDashboard
             Dim companyCode = ddlCompany.SelectedValue.Trim
             Dim ZoneCode = ddlCity.SelectedValue.Trim
             Dim clientIdentification = textBoxNumDoc.Text.Trim
-            query = "
-            select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera from COBRADOR cr join CLIENTES cl 
-             on cl.cl_cobrador = cr.codigo_cobr
-            WHERE  cl.Codigo_clie like @client  AND cr.codigo_cobr like @Collector AND  cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City
-            AND cl.Saldo_actua>0 AND cl.identidad like @Document
-            group by cr.codigo_cobr, nombre_cobr
-            order by Cartera desc
-        "
+            '    query = "
+            '    select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera from COBRADOR cr join CLIENTES cl 
+            '     on cl.cl_cobrador = cr.codigo_cobr
+            '    WHERE  cl.Codigo_clie like @client  AND cr.codigo_cobr like @Collector AND  cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City
+            '    AND cl.Saldo_actua>0 AND cl.identidad like @Document
+            '    group by cr.codigo_cobr, nombre_cobr
+            '    order by Cartera desc
+            '"
+            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
+            Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
+                 on cl.cl_cobrador = cr.codigo_cobr"
+            Dim whereClauseList As New List(Of String)()
+
+            Dim orderByClause As String = "order by Cartera desc"
+            Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
+            whereClauseList.Add("cl.Saldo_actua > 0")
+            If Not String.IsNullOrEmpty(ClientCode) Then
+                whereClauseList.Add("cl.Codigo_clie like @Client")
+            End If
+
+            If Not String.IsNullOrEmpty(collectorCode) Then
+                whereClauseList.Add("cr.codigo_cobr like @Collector")
+            End If
+
+            If Not String.IsNullOrEmpty(LeaderCode) Then
+                whereClauseList.Add("cr.cob_lider like @Leader")
+            End If
+
+            If Not String.IsNullOrEmpty(companyCode) Then
+                whereClauseList.Add("cl.Cod_zona like @Company")
+            End If
+
+            If Not String.IsNullOrEmpty(ZoneCode) Then
+                whereClauseList.Add("cl.VZCODIGO like @City")
+            End If
+
+            If Not String.IsNullOrEmpty(clientIdentification) Then
+                whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
+            End If
+
+            Dim whereClause As String = ""
+            If whereClauseList.Count > 0 Then
+                whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
+            End If
+            Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
             Try
 
                 Return GetFromDb(Of PortfolioIDto)(query, collectorCode, ClientCode, clientIdentification, companyCode, ZoneCode, LeaderCode)
