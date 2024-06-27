@@ -2324,6 +2324,9 @@
       <DependentUpon>Cobros.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Dashboards\Cobros\CobrosDto.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Dashboards\Cobros\Portfolio.aspx.partial.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

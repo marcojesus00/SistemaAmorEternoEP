@@ -8,12 +8,11 @@ Imports System.Linq
 
 Public Class CobrosDashboard
     Inherits System.Web.UI.Page
-    Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
+    'Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
     Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
 
-    'Protected WithEvents btnClientsByCollectorMap As Global.System.Web.UI.WebControls.LinkButton
-    'Protected WithEvents BtnRouteOfReceiptsMap As Global.System.Web.UI.WebControls.LinkButton
+
     Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
         Get
             Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getReceiptsFromDB, 100)
@@ -22,14 +21,7 @@ Public Class CobrosDashboard
             CachingHelper.CacheSet("ReceiptsByDate", value, 100)
         End Set
     End Property
-    Public Property CollectorsCachedList As List(Of SimpleCollectorDto)
-        Get
-            Return CachingHelper.GetOrFetch("Collectors", AddressOf GetCollectorsFromDb, 150)
-        End Get
-        Set(value As List(Of SimpleCollectorDto))
-            CachingHelper.CacheSet("Collectors", value, 150)
-        End Set
-    End Property
+
     Public Property ClientsContainsCollectorCachedList As List(Of Cliente)
         Get
             Return CachingHelper.GetOrFetch("ClientsWithRemainingBalance", AddressOf GetClientsByCollectorIdFromDb, 150)
@@ -38,14 +30,7 @@ Public Class CobrosDashboard
             CachingHelper.CacheSet("ClientsWithRemainingBalance", value, 150)
         End Set
     End Property
-    Public Property ClientsForGridviewsCachedList As List(Of Cliente)
-        Get
-            Return CachingHelper.GetOrFetch("ClientsForGridviewsCachedList", AddressOf GetClientsForGridViewFromDb, 150)
-        End Get
-        Set(value As List(Of Cliente))
-            CachingHelper.CacheSet("ClientsForGridviewsCachedList", value, 150)
-        End Set
-    End Property
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
@@ -54,9 +39,6 @@ Public Class CobrosDashboard
             Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
             If Usuario_Aut IsNot Nothing Then
                 Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
-
-
-
                 If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
                     Response.Redirect("~/Principal.aspx")
                 End If
@@ -74,8 +56,8 @@ Public Class CobrosDashboard
             End If
 
         Catch ex As Exception
-            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -112,6 +94,9 @@ Public Class CobrosDashboard
                     Dim DataList = GetReceiptDataForGridview()
                     endDate.Enabled = True
                     startDate.Enabled = True
+                    ddlValidReceipts.Enabled = True
+                    lblNumDoc.Text = "Número de documento"
+                    BtnRouteOfReceiptsMapByLeader.Enabled = True
                     BindGridView(DataList)
 
 
@@ -119,9 +104,9 @@ Public Class CobrosDashboard
             ElseIf DashboardType.SelectedValue = "1" Then
                 startDate.Enabled = False
                 endDate.Enabled = False
-                ddlValidReceipts.Visible = False
-                textBoxNumDoc.Visible = False
-                BtnRouteOfReceiptsMapByLeader.Visible = False
+                ddlValidReceipts.Enabled = False
+                lblNumDoc.Text = "Número de identidad"
+                BtnRouteOfReceiptsMapByLeader.Enabled = False
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 
@@ -137,14 +122,14 @@ Public Class CobrosDashboard
                 BindGridView(dataList)
             End If
         Catch ex As SqlException
-            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -198,14 +183,14 @@ Public Class CobrosDashboard
 
             End If
         Catch ex As SqlException
-            Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -303,7 +288,6 @@ Public Class CobrosDashboard
     End Sub
     Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
     End Sub
     Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
@@ -318,10 +302,9 @@ Public Class CobrosDashboard
 
     Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
-    Public Function GetFromDb(Of T)(query As String, Optional CollectorCode As String = "", Optional ClientCode As String = "", Optional clientIdentification As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "") As List(Of T)
+    Public Function GetFromDb(Of T)(query As String, Optional CollectorCode As String = "", Optional ClientCode As String = "", Optional numDoc As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "") As List(Of T)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
 
@@ -341,7 +324,7 @@ Public Class CobrosDashboard
                     Dim LeaderCodeParam As String = "%" & leaderCode & "%"
                     Dim CompanyCodeParam As String = "%" & companyCode & "%"
                     Dim CityCodeParam As String = "%" & ZoneCode & "%"
-                    Dim clientIdentificationDateParam As String = "%" & clientIdentification & "%"
+                    Dim numDocParam As String = "%" & numDoc & "%"
                     Return funamorContext.Database.SqlQuery(Of T)(
                         query,
                         New SqlParameter("@Leader", LeaderCodeParam),
@@ -351,7 +334,7 @@ Public Class CobrosDashboard
                        New SqlParameter("@City", CityCodeParam),
                        New SqlParameter("@start", startDateParam),
                         New SqlParameter("@end", endDateParam),
-                        New SqlParameter("@ClientIdentification", clientIdentificationDateParam)
+                        New SqlParameter("@Document", numDocParam)
                     ).ToList()
 
 
@@ -359,9 +342,13 @@ Public Class CobrosDashboard
                     ' Handle parsing error if needed
                     Throw New ArgumentException("Invalid date format for start or end date.")
                 End If
+            Catch ex As SqlException
+                Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
+                'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
             Catch ex As Exception
                 ' Handle any other exceptions
-                Throw New Exception("Error retrieving receipts from database." & ex.Message, ex)
+                Throw New Exception("Problema al recibir información de la base de datos." & ex.Message, ex)
             End Try
         End Using
     End Function
@@ -437,13 +424,6 @@ Public Class CobrosDashboard
 
         End If
     End Sub
-
-    Public Function FindMapLink(Id)
-        Return ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD IsNot Nothing AndAlso r.LONGITUD IsNot Nothing,
-               $"https://www.google.com/maps?q={r.LATITUD.Trim},{r.LONGITUD.Trim}",
-               "https://www.google.com/maps")}).FirstOrDefault().Link
-    End Function
-
     Public Sub BindNestedGridview(currentNestedGrid As GridView, keyValue As Integer)
         If DashboardType.SelectedValue = "0" Then
             BindReceiptsDetails(currentNestedGrid, keyValue)
@@ -453,6 +433,13 @@ Public Class CobrosDashboard
 
         End If
     End Sub
+    Public Function FindMapLink(Id)
+        Return ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD IsNot Nothing AndAlso r.LONGITUD IsNot Nothing,
+               $"https://www.google.com/maps?q={r.LATITUD.Trim},{r.LONGITUD.Trim}",
+               "https://www.google.com/maps")}).FirstOrDefault().Link
+    End Function
+
+
 
     Protected Sub Close_Click(sender As Object, e As EventArgs)
         pnlMap.Visible = False

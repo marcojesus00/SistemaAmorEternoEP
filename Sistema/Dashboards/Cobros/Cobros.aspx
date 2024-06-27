@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="textBoxNumDoc" class="form-control-label">Número de documento</label>
+<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>
 
                     <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
