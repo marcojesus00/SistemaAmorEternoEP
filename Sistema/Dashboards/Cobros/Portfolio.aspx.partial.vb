@@ -28,14 +28,7 @@ Partial Public Class CobrosDashboard
             Dim companyCode = ddlCompany.SelectedValue.Trim
             Dim ZoneCode = ddlCity.SelectedValue.Trim
             Dim clientIdentification = textBoxNumDoc.Text.Trim
-            '    query = "
-            '    select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera from COBRADOR cr join CLIENTES cl 
-            '     on cl.cl_cobrador = cr.codigo_cobr
-            '    WHERE  cl.Codigo_clie like @client  AND cr.codigo_cobr like @Collector AND  cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City
-            '    AND cl.Saldo_actua>0 AND cl.identidad like @Document
-            '    group by cr.codigo_cobr, nombre_cobr
-            '    order by Cartera desc
-            '"
+
             Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
             Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
                  on cl.cl_cobrador = cr.codigo_cobr"
@@ -101,7 +94,7 @@ Partial Public Class CobrosDashboard
 
 
     Public Function GetClientsByCollectorIdFromDb(Optional ByVal rowValue = "")
-        Dim collectorCode
+        Dim collectorCode As String
         Dim clientCode = textBoxClientCode.Text.Trim
         If rowValue = "" Then
             collectorCode = textBoxCode.Text.Trim
@@ -113,10 +106,11 @@ Partial Public Class CobrosDashboard
         Dim ZoneCode = ddlCity.SelectedValue.Trim
         Dim leaderCode = ddlLeader.SelectedValue.Trim
         Dim clientIdentification = textBoxNumDoc.Text.Trim
-        'Using context As New FunamorContext
-        '    Return context.Clientes.Where(Function(c) c.Codigo.Contains(clientCode) AndAlso c.CodigoCobrador IsNot Nothing AndAlso c.CodigoCobrador.Contains(collectorCode) AndAlso c.SaldoActual IsNot Nothing AndAlso c.SaldoActual > 0).OrderByDescending(Function(c) c.SaldoActual).ToList()
-        'End Using
-        Dim selectClause As String = "select top 1 cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,
+        Dim top = "1"
+        If textBoxClientCode.Text.Trim.Length > 3 Then
+            top = "30"
+        End If
+        Dim selectClause As String = $"select top {top} cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,
 	REPLACE(cl.identidad, '-', '') as Identidad,
     CASE 
         WHEN LTRIM(RTRIM(cl.Telef_clien)) <> '' AND LTRIM(RTRIM(cl.CL_CELULAR)) <> '' THEN LTRIM(RTRIM(cl.Telef_clien)) + ', ' + LTRIM(RTRIM(cl.CL_CELULAR))
@@ -125,11 +119,9 @@ Partial Public Class CobrosDashboard
         ELSE ''
     END AS Telefonos, 
      LTRIM(RTRIM(cl.Dir_cliente))  + ' ' +  LTRIM(RTRIM(cl.Dir2_client)) AS Direccion, 
-    cl.Cod_zona AS Empresa,  ISNULL(cl.latitud, 0) as Saldo,ISNULL(cl.latitud, 0), ISNULL(cl.longitud, 0) "
+    cl.Cod_zona AS Empresa,  ISNULL(cl.Saldo_actua, 0) as Saldo,ISNULL(cl.latitud, 0), ISNULL(cl.longitud, 0) "
         Dim fromClause As String = "from COBRADOR cr join CLIENTES cl on cl.cl_cobrador = cr.codigo_cobr"
         Dim whereClauseList As New List(Of String)()
-
-        'Dim whereClause As String = "WHERE cl.Saldo_actua > 0 AND cl.Codigo_clie like @Client AND cr.codigo_cobr like @Collector AND cr.cob_lider like @Leader AND cl.Cod_zona like @Company AND cl.VZCODIGO like @City AND REPLACE(cl.identidad, '-', '') LIKE @ClientIdentification"
         Dim orderByClause As String = "order by Saldo desc"
 
         whereClauseList.Add("cl.Saldo_actua > 0")
@@ -165,11 +157,12 @@ Partial Public Class CobrosDashboard
 
         Return GetFromDb(Of PortfolioDetailsDto)(query, collectorCode, clientCode, clientIdentification, companyCode, ZoneCode, leaderCode)
     End Function
+
     Public Sub ClientsByCollectorMap(keyValue As String)
         Dim clients As List(Of Cliente) = ClientsContainsCollectorCachedList.Where(Function(c) c.CodigoCobrador.Contains(keyValue)).ToList()
         Dim markers As New List(Of MarkerForMap)
         Dim count = 0
-        'clients = clients.Skip(300).ToList()
+
         For Each cliente As Cliente In clients
             Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
@@ -178,13 +171,10 @@ Partial Public Class CobrosDashboard
             End If
 
         Next
-
         Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
         Session("MarkersData") = dataForMaps
         iMap.Dispose()
         iMap.Src = "/shared/Map/Map.aspx"
-        iMap.Dispose()
-        'Response.Redirect("~/shared/Map/Map.aspx")
 
     End Sub
 
