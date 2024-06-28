@@ -16,7 +16,7 @@ Partial Public Class CobrosDashboard
         Return finalList
 
     End Function
-    Public Function GetGroupedClientsByCollectorFromDb(Optional specificQuery As Boolean = True) As List(Of PortfolioIDto)
+    Public Function GetGroupedClientsByCollectorFromDb(Optional orderBy = "Valor") As List(Of PortfolioIDto)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
 
