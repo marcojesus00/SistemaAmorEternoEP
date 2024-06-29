@@ -12,6 +12,7 @@ Public Class VentasDashboard
     Private _receipts As List(Of ReciboDeCobro)
     Dim thisPage = "~/Dashboards/Ventas/Ventas.aspx"
 
+    Private ReadOnly _controlStateManager As New ControlStateManager()
 
     Public Property ReceiptsByDateCachedList As List(Of VentasDto)
         Get
@@ -35,8 +36,8 @@ Public Class VentasDashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim Usuario_Aut = Session("Usuario_Aut")
-            Session("BackPageUrl") = "~/monitorcobros.aspx"
-            Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
+            Session("BackPageUrl") = "~/monitorventas.aspx"
+            Dim thisPage = "~/Dashboards/Ventas/Ventas.aspx"
             'If Usuario_Aut IsNot Nothing Then
             'Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
             'If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
@@ -44,12 +45,13 @@ Public Class VentasDashboard
             '    End If
 
             If Not IsPostBack Then
-                    FillDll()
-                    ReBind()
-                End If
-                pnlMap.Visible = False
+                FillDll()
+                ReBind()
+                'storeOldValues()
+            End If
+            pnlMap.Visible = False
 
-                AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
+            AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
             ' Else
             'Response.Redirect("~/Principal.aspx")
 
@@ -62,6 +64,7 @@ Public Class VentasDashboard
 
         End Try
     End Sub
+
     Protected Sub DashboardType_change(sender As Object, e As EventArgs) Handles DashboardType.SelectedIndexChanged
         ReBind()
     End Sub
@@ -95,7 +98,7 @@ Public Class VentasDashboard
                     endDate.Enabled = True
                     startDate.Enabled = True
                     ddlValidReceipts.Enabled = True
-                    lblNumDoc.Text = "Número de documento"
+                lblNumDoc.Text = "Número de documento del recibo"
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 ddlService.Enabled = False
                 BindGridView(DataList)
@@ -109,7 +112,7 @@ Public Class VentasDashboard
                 ddlService.Enabled = True
 
                 BtnRouteOfReceiptsMapByLeader.Enabled = False
-                lblNumDoc.Text = "Número de identidad"
+                lblNumDoc.Text = "Número de identidad del cliente"
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 
@@ -274,47 +277,7 @@ Public Class VentasDashboard
         ReBind()
 
     End Sub
-    Public Sub StartDate_OnTextChanged(sender As Object, e As EventArgs) Handles startDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-    End Sub
-    Public Sub EndDate_OnTextChanged(sender As Object, e As EventArgs) Handles endDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
 
-    End Sub
-    Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-
-    End Sub
-    Public Sub DdlLeader_OnTextChanged(sender As Object, e As EventArgs) Handles ddlLeader.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-    End Sub
-    Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub DdlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-
-    Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-
-    End Sub
     Public Function GetFromDb(Of T)(query As String, Optional salesPersonCode As String = "", Optional ClientCode As String = "", Optional documentNumber As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "", Optional mark As String = "", Optional ServiceId As String = "") As List(Of T)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
@@ -415,7 +378,7 @@ Public Class VentasDashboard
         If e.Row.RowType = DataControlRowType.DataRow Then
 
             If DashboardType.SelectedValue = "0" Then
-                Dim estadoCell As TableCell = e.Row.Cells(7)
+                Dim estadoCell As TableCell = e.Row.Cells(9)
                 Dim linkUrl As String = FindMapLink(e.Row.Cells(1).Text)
                 ' Create a button to open the link in a new tab
                 Dim linkButotnOpenLink As New LinkButton()
@@ -460,5 +423,51 @@ Public Class VentasDashboard
 
     Protected Sub Close_Click(sender As Object, e As EventArgs)
         pnlMap.Visible = False
+    End Sub
+    Public Sub StartDate_OnTextChanged(sender As Object, e As EventArgs) Handles startDate.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+    End Sub
+    Public Sub EndDate_OnTextChanged(sender As Object, e As EventArgs) Handles endDate.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+
+    End Sub
+    Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
+        Dim txt As TextBox = CType(sender, TextBox)
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+
+    End Sub
+
+
+    Public Sub DdlLeader_OnTextChanged(sender As Object, e As EventArgs) Handles ddlLeader.SelectedIndexChanged
+
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+
+    End Sub
+    Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+    Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+    End Sub
+    Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+    Public Sub DdlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+
+    End Sub
+
+    Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
+        CachingHelper.CacheRemove("ReceiptsByDate")
+
     End Sub
 End Class
