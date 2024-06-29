@@ -41,6 +41,15 @@ Partial Public Class Empleados
     Protected WithEvents ProfilePicture1 As Global.Sistema.ProfilePicture
 
     '''<summary>
+    '''employeeDataTab control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents employeeDataTab As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''sm control.
     '''</summary>
     '''<remarks>

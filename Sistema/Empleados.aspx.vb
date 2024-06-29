@@ -27,7 +27,8 @@ Public Class Empleados
         Clave_Aut = Session("Clave_Aut")
 
         txtCodigo.Text = Session("Codigo_Empleado")
-
+        Dim isAuthToAdvancedEmployeeManagement As Boolean = AuthHelper.isAuthorized(Usuario_Aut, "MAN_3_A")
+        employeeDataTab.Visible = False
         If txtCodigo.Text.Length > 0 And IsPostBack = False Then
             llenar_Campos()
         Else
@@ -64,7 +65,9 @@ Public Class Empleados
             EmployeeCard.Visible = True
             Documents.Visible = True
             anEmployeeIsSelected = True
-
+            If isAuthToAdvancedEmployeeManagement Then
+                employeeDataTab.Visible = True
+            End If
 
         End If
         If anEmployeeIsSelected Then
