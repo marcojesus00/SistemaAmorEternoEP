@@ -159,12 +159,12 @@ Partial Public Class CobrosDashboard
     End Function
 
     Public Sub ClientsByCollectorMap(keyValue As String)
-        Dim clients As List(Of Cliente) = ClientsContainsCollectorCachedList.Where(Function(c) c.CodigoCobrador.Contains(keyValue)).ToList()
+        Dim clients As List(Of PortfolioDetailsDto) = ClientsContainsCollectorCachedList
         Dim markers As New List(Of MarkerForMap)
         Dim count = 0
 
-        For Each cliente As Cliente In clients
-            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
+        For Each cliente As PortfolioDetailsDto In clients
+            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.Direccion}  deuda: {cliente.Saldo}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)
