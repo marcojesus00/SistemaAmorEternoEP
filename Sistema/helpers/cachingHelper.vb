@@ -35,6 +35,67 @@ Public Class CachingHelper
     End Sub
 End Class
 
+Public Class ControlStateManager
+
+    Private ReadOnly _trackedValues As New Dictionary(Of String, String)
+
+    Public Sub TrackValue(controlId As String, value As String)
+        If Not _trackedValues.ContainsKey(controlId) Then
+            _trackedValues.Add(controlId, value)
+        End If
+    End Sub
+    Public Function GetValue(key As String) As Object
+        If _trackedValues.ContainsKey(key) Then
+            Return _trackedValues(key)
+        End If
+        Return Nothing
+    End Function
+
+    Public Function HasValueChanged(controlId As String, newValue As String) As Boolean
+        If _trackedValues.ContainsKey(controlId) Then
+            Dim oldValue As String = _trackedValues(controlId)
+            Return Not String.Equals(oldValue, newValue, StringComparison.Ordinal)
+        End If
+        Return False
+    End Function
+
+    Public Function NewValueContainsOldValue(controlId As String, newValue As String) As Boolean
+        If _trackedValues.ContainsKey(controlId) Then
+            Dim oldValue As String = _trackedValues(controlId)
+            Return newValue.Contains(oldValue)
+        End If
+        Return False
+    End Function
+
+End Class
+
+
+'Public Class ControlStateManager
+
+'    Private ReadOnly _trackedValues As New Dictionary(Of String, Object)
+
+'    Public Sub TrackValue(controlId As String, value As Object)
+'        If Not _trackedValues.ContainsKey(controlId) Then
+'            _trackedValues.Add(controlId, value)
+'        End If
+'    End Sub
+
+'    Public Function HasValueChanged(controlId As String, newValue As Object) As Boolean
+'        If _trackedValues.ContainsKey(controlId) Then
+'            Dim oldValue As Object = _trackedValues(controlId)
+'            Return Not Object.Equals(oldValue, newValue)
+'        End If
+'        Return False
+'    End Function
+'    Public Function HasNewContainsOldValue(controlId As String, newValue As Object) As Boolean
+'        If _trackedValues.ContainsKey(controlId) Then
+'            Dim oldValue As Object = _trackedValues(controlId)
+'            Return Not Object.Equals(oldValue, newValue)
+'        End If
+'        Return False
+'    End Function
+'End Class
+
 
 
 
