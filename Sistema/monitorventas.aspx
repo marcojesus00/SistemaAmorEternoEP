@@ -115,7 +115,13 @@
     </div>
     <div class="col-md-2 mb-2">
         <asp:Button ID="btnArreglarVenta" runat="server" Text="Arreglar una venta" ToolTip="Boton en Proceso, completo en un 80%..." Visible="false" CssClass="btn btn-sm btn-primary w-100" />
-    </div>  </div>
+    </div>
+                                 <div class="col-auto">
+            <asp:LinkButton Visible="false" ID="btnAdvanced" ToolTip="IR A DASHBOARD AVANZADO" CssClass="btn btn-sm btn-outline-warning" runat="server">
+                <i class="bi bi-coin"></i> AVANZADO
+            </asp:LinkButton>
+        </div>
+                      </div>
 
                           </div>
                
