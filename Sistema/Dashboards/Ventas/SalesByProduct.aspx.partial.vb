@@ -75,7 +75,7 @@ LEFT JOIN
 
 
         If Not String.IsNullOrEmpty(documentNumber) Then
-            whereClauseList.Add("REPLACE(c.Num_doc, '-', '') LIKE @Document")
+            whereClauseList.Add("REPLACE(r.Num_doc, '-', '') LIKE @Document")
         End If
 
         Dim whereClause As String = ""

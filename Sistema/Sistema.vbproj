@@ -2318,6 +2318,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controls\Shared\Sidebar.designer.vb" />
+    <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Dashboards\Ventas\Ventas.aspx.designer.vb">
       <DependentUpon>Ventas.aspx</DependentUpon>
     </Compile>
