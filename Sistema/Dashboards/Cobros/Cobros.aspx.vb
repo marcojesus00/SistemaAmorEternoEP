@@ -22,11 +22,11 @@ Public Class CobrosDashboard
         End Set
     End Property
 
-    Public Property ClientsContainsCollectorCachedList As List(Of Cliente)
+    Public Property ClientsContainsCollectorCachedList As List(Of PortfolioDetailsDto)
         Get
             Return CachingHelper.GetOrFetch("ClientsWithRemainingBalance", AddressOf GetClientsByCollectorIdFromDb, 150)
         End Get
-        Set(value As List(Of Cliente))
+        Set(value As List(Of PortfolioDetailsDto))
             CachingHelper.CacheSet("ClientsWithRemainingBalance", value, 150)
         End Set
     End Property
