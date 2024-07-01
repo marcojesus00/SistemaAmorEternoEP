@@ -24,7 +24,7 @@ Public Class FileManager
 
                     BindGridView()
                 Catch ex As Exception
-                    Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
+                    Dim msg = "Error al leer de la base de datos, por favor recargue la página: " & ex.Message
                     RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
                 End Try
             End If
@@ -55,9 +55,7 @@ Public Class FileManager
         Session("tabSelected") = "DocsTab"
 
         If e.CommandName = "DownloadFile" Then
-
             Try
-
                 Dim args As String() = e.CommandArgument.ToString().Split("|"c)
                 Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = MyGridView.Rows(rowIndex)
@@ -77,7 +75,6 @@ Public Class FileManager
                 Dim msg = "Error de descarga: " & ex.Message
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             End Try
-
         End If
         If e.CommandName = "RestoreFile" Then
             Try

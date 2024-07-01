@@ -50,6 +50,7 @@ Public Class monitorventas
             'Tabla.Columns.Add("Total")
 
             If Not IsPostBack Then
+                'Throw New ArgumentException("Ejemplo de error")
                 Session.Add("Orden", "0")
                 dlMostrar.Items.Add("POR DIA DE TRABAJO")
                 dlMostrar.Items.Add("POR LIQUIDACION")
@@ -136,7 +137,8 @@ Public Class monitorventas
             AddHandler CorrectSalesDataClient1.PanelConfirmacionVisible, AddressOf HandlePanelConfirmacionVisible
 
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -153,7 +155,8 @@ Public Class monitorventas
         Try
             Response.Redirect("principal.aspx")
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -161,7 +164,8 @@ Public Class monitorventas
         Try
             PanelEditarVenta.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -194,7 +198,8 @@ Public Class monitorventas
         Try
             PanelVendedoresEditar.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -202,7 +207,8 @@ Public Class monitorventas
         Try
             PanelVendedoresEditar.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -210,11 +216,12 @@ Public Class monitorventas
     Protected Sub btnRegresar_Click(sender As Object, e As ImageClickEventArgs) Handles btnRegresar.Click
         Try
             Panel1.Visible = True
-        PanelImpresion.Visible = False
-        ifRepote.Dispose()
+            PanelImpresion.Visible = False
+            ifRepote.Dispose()
             ifRepote.Src = ""
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -248,7 +255,8 @@ Public Class monitorventas
             PanelImpresion.Visible = False
             Panel1.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -264,7 +272,8 @@ Public Class monitorventas
             gvvendEditVent.DataSource = Datos.Tables(0)
             gvvendEditVent.DataBind()
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -281,7 +290,8 @@ Public Class monitorventas
 
 
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -317,7 +327,8 @@ Public Class monitorventas
                 End If
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -348,7 +359,8 @@ Public Class monitorventas
 
             Next
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -843,7 +855,8 @@ Public Class monitorventas
             lblHora.Text = "Actualizado: " + System.DateTime.Now.ToShortTimeString
 
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -869,7 +882,8 @@ Public Class monitorventas
         Left Join CONTRATON CO ON CO.Codigo_clie = R.Codigo_clie And CONT_NUMERO = R.Codigo_clie And CO.cont_vended = R.RCODVEND
         WHERE Liquida2 = 'N' and marca = 'N' AND r.codigo_clie = '" + txtCodClienteapp.Text + "'"
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -901,7 +915,8 @@ Public Class monitorventas
             gvClientesVE.DataBind()
             'txtCodClienteapp_TextChanged()
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -911,7 +926,8 @@ Public Class monitorventas
 
             PanelClientesVE.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -939,7 +955,8 @@ Public Class monitorventas
             dlempresaArr.DataTextField = "Descripcion"
             dlempresaArr.DataBind()
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -949,7 +966,8 @@ Public Class monitorventas
             PanelClientesVE.Visible = True
             txtBuscarCliente_TextChanged(sender, e)
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -971,7 +989,8 @@ Public Class monitorventas
             gvMonitor.DataSource = Session("GV")
             gvMonitor.DataBind()
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1019,6 +1038,7 @@ Public Class monitorventas
                     e.Row.Cells(6).Text = Format(Fila.Item(2), "#,##0.00")
                 End If
             Catch ex As Exception
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
                 Msg(ex.Message.ToString() + " - " + ex.Source.ToString())
             End Try
 
@@ -1069,7 +1089,8 @@ Public Class monitorventas
                 Next
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1114,7 +1135,8 @@ Public Class monitorventas
                 Panel2.Visible = True
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1168,7 +1190,8 @@ Public Class monitorventas
 
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1180,7 +1203,8 @@ Public Class monitorventas
                 e.Row.Attributes("style") = "cursor:pointer"
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1234,7 +1258,8 @@ Public Class monitorventas
             PanelClientesVE.Visible = False
 
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1264,7 +1289,8 @@ Public Class monitorventas
 
             PanelProductosApp.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1299,7 +1325,8 @@ Public Class monitorventas
 
             'btnGuardarCamb.Enabled = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
     'Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
@@ -1468,7 +1495,8 @@ Public Class monitorventas
 
             PanelConfirmacion2.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1483,7 +1511,8 @@ Public Class monitorventas
             PanelVendedoresEditar.Visible = False
             'txtVendEV_TextChanged(sender, e)
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1493,7 +1522,8 @@ Public Class monitorventas
             Panel2.Visible = False
             Panel1.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1529,7 +1559,8 @@ Public Class monitorventas
                 btnBuscar_Click(sender, e)
             End If
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
     Private Sub btnCambStatus_click(Sender As Object, e As EventArgs) Handles btnCambStatus.Click
@@ -1547,7 +1578,8 @@ Public Class monitorventas
             PanelConfirmacion2.Visible = False
             PanelEditarVenta.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1556,7 +1588,8 @@ Public Class monitorventas
             PanelConfirmacion2.Visible = False
             PanelEditarVenta.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
     Private Sub BtnSiSalvarCamb_Clik(sender As Object, e As EventArgs) Handles BtnSiSalvarCamb.Click
@@ -1628,7 +1661,8 @@ Public Class monitorventas
 
 
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
 
@@ -1641,7 +1675,8 @@ Public Class monitorventas
         Try
             PanelConfirmacion.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1652,7 +1687,8 @@ Public Class monitorventas
         Try
             PanelProductosApp.Visible = False
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
     Protected Sub HandleAlertGenerated(ByVal sender As Object, ByVal e As AlertEventArgs)
@@ -1690,7 +1726,8 @@ Public Class monitorventas
 
             'btnGuardarCamb.Enabled = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1698,7 +1735,8 @@ Public Class monitorventas
         Try
             PanelProductosApp.Visible = True
         Catch ex As Exception
-            Alert(dangerMsg & ex.Message, "danger")
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
     End Sub
