@@ -59,13 +59,23 @@
     End Function
 
 
-    Public Shared Function MarcaToNulo(mark As String) As String
-        If mark.Contains("X") Then
-            Return "nulo"
+    Public Shared Function MarcaToNulo(mark As String, liquida As String, liquida2 As String) As String
+        mark = mark.Trim()
+        liquida = liquida.Trim()
+        liquida2 = liquida2.Trim()
+        If mark IsNot Nothing AndAlso mark.Contains("X") Then
+            Return "Nulo"
         ElseIf mark.Contains("N") Then
-            Return ""
-        Else
-            Return "indefinido"
+            If liquida2 IsNot Nothing AndAlso liquida2.Length > 5 Then
+                Return "Procesado en la web"
+            ElseIf liquida IsNot Nothing AndAlso liquida.Length > 5 Then
+                Return "Liquidado en dispositivo"
+            End If
+
+            Return "No liquidado en dispositivo"
+
         End If
+        Return "Recibo corrupto"
+
     End Function
 End Class

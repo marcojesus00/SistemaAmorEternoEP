@@ -106,7 +106,7 @@ Partial Public Class CobrosDashboard
         Dim ZoneCode = ddlCity.SelectedValue.Trim
         Dim leaderCode = ddlLeader.SelectedValue.Trim
         Dim clientIdentification = textBoxNumDoc.Text.Trim
-        Dim top = "1"
+        Dim top = "3"
         If textBoxClientCode.Text.Trim.Length > 3 Then
             top = "30"
         End If

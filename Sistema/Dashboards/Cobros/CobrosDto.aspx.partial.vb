@@ -21,6 +21,8 @@ Partial Public Class CobrosDashboard
         Public Property SALDOANT As Decimal
         Public Property MARCA As String
         Public Property rhora As String
+        Public Property liquida As String
+        Public Property liquida2 As String
     End Class
     Public Class PortfolioIDto
         Public Property Codigo As String

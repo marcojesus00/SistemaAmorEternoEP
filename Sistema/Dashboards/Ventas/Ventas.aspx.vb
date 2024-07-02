@@ -14,12 +14,12 @@ Public Class VentasDashboard
 
     Private ReadOnly _controlStateManager As New ControlStateManager()
 
-    Public Property ReceiptsByDateCachedList As List(Of VentasDto)
+    Public Property SalesReceiptsCachedList As List(Of VentasDto)
         Get
-            Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getReceiptsFromDB, 100)
+            Return CachingHelper.GetOrFetch("SalesReceipts", AddressOf getReceiptsFromDB, 100)
         End Get
         Set(value As List(Of VentasDto))
-            CachingHelper.CacheSet("ReceiptsByDate", value, 100)
+            CachingHelper.CacheSet("SalesReceipts", value, 100)
         End Set
     End Property
 
@@ -95,9 +95,9 @@ Public Class VentasDashboard
                 '    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 'Else
                 Dim DataList = GetReceiptDataForGridview()
-                    endDate.Enabled = True
-                    startDate.Enabled = True
-                    ddlValidReceipts.Enabled = True
+                endDate.Enabled = True
+                startDate.Enabled = True
+                ddlValidReceipts.Enabled = True
                 lblNumDoc.Text = "Número de documento del recibo"
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 ddlService.Enabled = False
@@ -345,7 +345,7 @@ Public Class VentasDashboard
 
 
             If e.CommandName = "ReceiptLocationMap" Then
-                Dim d = ReceiptsByDateCachedList.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+                Dim d = SalesReceiptsCachedList.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
                 If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
                     Dim lat = d.LATITUD
                     Dim lon = d.LONGITUD
@@ -414,7 +414,7 @@ Public Class VentasDashboard
         End If
     End Sub
     Public Function FindMapLink(Id)
-        Return ReceiptsByDateCachedList.Where(Function(r) r.Recibo.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD.ToString() IsNot Nothing AndAlso r.LONGITUD.ToString() IsNot Nothing,
+        Return SalesReceiptsCachedList.Where(Function(r) r.Recibo.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD.ToString() IsNot Nothing AndAlso r.LONGITUD.ToString() IsNot Nothing,
                $"https://www.google.com/maps?q={r.LATITUD},{r.LONGITUD}",
                "https://www.google.com/maps")}).FirstOrDefault().Link
     End Function
@@ -425,16 +425,16 @@ Public Class VentasDashboard
         pnlMap.Visible = False
     End Sub
     Public Sub StartDate_OnTextChanged(sender As Object, e As EventArgs) Handles startDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("SalesReceipts")
     End Sub
     Public Sub EndDate_OnTextChanged(sender As Object, e As EventArgs) Handles endDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("SalesReceipts")
 
     End Sub
     Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
         Dim txt As TextBox = CType(sender, TextBox)
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        CachingHelper.CacheRemove("SalesReceipts")
+        ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
 
     End Sub
@@ -442,32 +442,32 @@ Public Class VentasDashboard
 
     Public Sub DdlLeader_OnTextChanged(sender As Object, e As EventArgs) Handles ddlLeader.SelectedIndexChanged
 
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        CachingHelper.CacheRemove("SalesReceipts")
+        ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
 
     End Sub
     Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        CachingHelper.CacheRemove("SalesReceipts")
+        ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
     Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("SalesReceipts")
     End Sub
     Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        CachingHelper.CacheRemove("SalesReceipts")
+        ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
     Public Sub DdlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        CachingHelper.CacheRemove("SalesReceipts")
+        ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
 
     Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
+        CachingHelper.CacheRemove("SalesReceipts")
 
     End Sub
 End Class

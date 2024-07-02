@@ -38,6 +38,8 @@ Partial Public Class VentasDashboard
 	  ISNULL(con.CONT_CANTI , 0) as Cantidad, 
     r.MARCA,
     r.rhora as Hora,
+r.liquida,
+r.liquida2,
      ISNULL(c.LATITUD, 0) as LATITUD,
      ISNULL(c.LONGITUD , 0) AS LONGITUD"
         Dim fromClause As String = "from recibos r LEFT JOIN
@@ -106,7 +108,7 @@ LEFT JOIN
         Dim ClientCode As String = textBoxClientCode.Text.Trim
         Try
 
-            Dim data1 = ReceiptsByDateCachedList.OrderByDescending(Function(c) c.Por_lempira).ToList()
+            Dim data1 = SalesReceiptsCachedList.OrderByDescending(Function(c) c.Por_lempira).ToList()
 
 
             Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.VendedorId IsNot Nothing) _
@@ -131,7 +133,7 @@ LEFT JOIN
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim receipts As List(Of VentasDto)
-        Dim cachedReceipts = ReceiptsByDateCachedList
+        Dim cachedReceipts = SalesReceiptsCachedList
         receipts = cachedReceipts.Where(Function(c) c.VendedorId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
                  Dim time As DateTime
@@ -159,7 +161,7 @@ LEFT JOIN
 
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
-        Dim lista = ReceiptsByDateCachedList
+        Dim lista = SalesReceiptsCachedList
         Dim d = lista.Where(Function(r) r.VendedorId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenByDescending _
             (Function(e)
                  Dim time As DateTime
@@ -169,7 +171,7 @@ LEFT JOIN
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function) _
-            .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Prima), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), .Hora = r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)
+            .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + " " + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Prima), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), .Hora = r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
 }).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
@@ -183,7 +185,7 @@ LEFT JOIN
             Exit Sub
         End If
         Dim receipts As List(Of VentasDto)
-        Dim cachedReceipts = ReceiptsByDateCachedList
+        Dim cachedReceipts = SalesReceiptsCachedList
         receipts = cachedReceipts.Where(Function(c) c.LiderId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
                  Dim time As DateTime

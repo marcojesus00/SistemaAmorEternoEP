@@ -22,6 +22,8 @@ Partial Public Class VentasDashboard
         Public Property Cantidad As Int16
         Public Property MARCA As String
         Public Property Hora As String
+        Public Property liquida As String
+        Public Property liquida2 As String
         Public Property LATITUD As Decimal
         Public Property LONGITUD As Decimal
     End Class

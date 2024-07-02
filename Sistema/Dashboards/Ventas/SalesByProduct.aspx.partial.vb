@@ -116,7 +116,7 @@ LEFT JOIN
 
 
     Private Sub BindReceiptsByProductDetails(DetailsControl As GridView, keyValue As String)
-        Dim lista = ReceiptsByDateCachedList
+        Dim lista = SalesReceiptsCachedList
         Dim d = lista.Where(Function(r) r.ServicioId IsNot Nothing AndAlso r.ServicioId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenByDescending _
             (Function(e)
                  Dim time As DateTime
@@ -126,7 +126,7 @@ LEFT JOIN
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function) _
-            .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Por_lempira), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), .Hora = r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)
+            .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Por_lempira), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), .Hora = r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
 }).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
