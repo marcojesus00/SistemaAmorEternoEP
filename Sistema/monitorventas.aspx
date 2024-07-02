@@ -185,7 +185,7 @@
                     <Columns>   
                     <%-- <asp:ButtonField Text="Ver" CommandName ="Ver" Visible="true"/>   --%>
                     </Columns>
-                    <FooterStyle BackColor="#CCCC99" /><HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                    <FooterStyle BackColor="#CCCC99" /><HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="Black" />
                     <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /><RowStyle BackColor="#F7F7DE" />
                     <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" /><SortedAscendingCellStyle BackColor="#FBFBF2" />
                     <SortedAscendingHeaderStyle BackColor="#848384" /><SortedDescendingCellStyle BackColor="#EAEAD3" /><SortedDescendingHeaderStyle BackColor="#575357" />

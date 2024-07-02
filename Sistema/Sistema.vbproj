@@ -2359,6 +2359,7 @@
     </Compile>
     <Compile Include="Helpers\AuthHelper.vb" />
     <Compile Include="Helpers\CachingHelper.vb" />
+    <Compile Include="Helpers\DebugHelper.vb" />
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />

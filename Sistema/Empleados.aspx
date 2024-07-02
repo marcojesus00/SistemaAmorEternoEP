@@ -45,7 +45,7 @@
 
             </asp:PlaceHolder>
 
-            <div class="accordion-item">
+            <div class="accordion-item" id="employeeDataTab" runat="server">
 
                 <h2 class="accordion-header">
                     <button class='<% If Session("tabSelected") = "DataTab" Then Response.Write("accordion-button") Else Response.Write("accordion-button collapsed") %>'
