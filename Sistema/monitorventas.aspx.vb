@@ -34,7 +34,7 @@ Public Class monitorventas
             Usuario_Aut = Session("Usuario_Aut")
             Clave_Aut = Session("Clave_Aut")
             Session.Timeout = 90
-            Dim isAuthToAdvanced As Boolean = True 'AuthHelper.isAuthorized(Usuario_Aut, "")
+            Dim isAuthToAdvanced As Boolean = AuthHelper.isAuthorized(Usuario_Aut, "VENTAS_A")
             If isAuthToAdvanced Then
                 btnAdvanced.Visible = True
             End If

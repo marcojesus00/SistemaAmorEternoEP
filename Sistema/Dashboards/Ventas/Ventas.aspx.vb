@@ -38,27 +38,27 @@ Public Class VentasDashboard
             Dim Usuario_Aut = Session("Usuario_Aut")
             Session("BackPageUrl") = "~/monitorventas.aspx"
             Dim thisPage = "~/Dashboards/Ventas/Ventas.aspx"
-            'If Usuario_Aut IsNot Nothing Then
-            'Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
-            'If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
-            '        'Response.Redirect("~/Principal.aspx")
-            '    End If
+            If Usuario_Aut IsNot Nothing Then
+                Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
+                If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "VENTAS_A") Then
+                    'Response.Redirect("~/Principal.aspx")
+                End If
 
-            If Not IsPostBack Then
-                FillDll()
-                ReBind()
-                'storeOldValues()
+                If Not IsPostBack Then
+                    FillDll()
+                    ReBind()
+                    'storeOldValues()
+                End If
+                pnlMap.Visible = False
+
+                AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
+            Else
+                Response.Redirect("~/Principal.aspx")
+
             End If
-            pnlMap.Visible = False
-
-            AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
-            ' Else
-            'Response.Redirect("~/Principal.aspx")
-
-            'End If
 
         Catch ex As Exception
-            Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
+            Dim msg = "Problema al cargar página, por favor vuelva a intentarlo : " & ex.Message
             'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
@@ -246,6 +246,7 @@ Public Class VentasDashboard
             Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)
             Dim btnRouteOfReceiptsMap As LinkButton = CType(e.Row.FindControl("btnRouteOfReceiptsMap"), LinkButton)
             Dim detailsControl As GridView = TryCast(e.Row.FindControl("DetailsControl"), GridView)
+            Dim pnlPluMinus As Panel = TryCast(e.Row.FindControl("pnlPluMinus"), Panel)
 
             Dim rowIndex As Integer = e.Row.RowIndex
             Dim dataKeyValue As Object = DashboardGridview.DataKeys(rowIndex).Value
@@ -254,10 +255,12 @@ Public Class VentasDashboard
             If btnClientsByCollectorMap IsNot Nothing Then
                 ' Set the button to be hidden
                 If DashboardType.SelectedValue = "0" Then
+                    pnlPluMinus.Visible = True
                     btnClientsByCollectorMap.Visible = False
                     btnRouteOfReceiptsMap.Visible = True
                 ElseIf DashboardType.SelectedValue = "1" Then
-                    btnClientsByCollectorMap.Visible = True
+                    pnlPluMinus.Visible = False
+                    btnClientsByCollectorMap.Visible = False
                     btnRouteOfReceiptsMap.Visible = False
                 End If
             End If
