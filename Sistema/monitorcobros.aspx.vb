@@ -178,6 +178,7 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
         'lblMsg.Text = Sql1
         'Exit Sub
 
+        'Por liquidacion
         If dlMostrar.SelectedIndex = 1 Then
             gvMonitor.Columns(1).Visible = False
             gvMonitor.Columns(2).Visible = False
@@ -185,7 +186,7 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
             Sql += " SET @FECHA = '" + Session("F1") + "'"
             Sql += " SELECT distinct A.codigo_cobr [Codigo], B.nombre_cobr [Cobrador], SUM(A.Por_lempira) [Cobrado], MIN(A.rhora) [Primer Visita], MAX(A.rhora) [Ultima Visita], SUM(A.Recibos) Recibos, SUM(A.Visitados) Visitados, SUBSTRING(C.nombre_cobr,1,16) [Lider], SUBSTRING(A.liquida,1,4) +'/'+ SUBSTRING(A.liquida,5,2) +'/'+ SUBSTRING(A.liquida,7,2) +' '+ SUBSTRING(A.liquida,9,2) +':'+ SUBSTRING(A.liquida,11,2) Liquida, CASE WHEN A.liquida2 != 'N' THEN SUBSTRING(A.liquida2,1,4) +'/'+ SUBSTRING(A.liquida2,5,2) +'/'+ SUBSTRING(A.liquida2,7,2) +' '+ SUBSTRING(A.liquida2,9,2) +':'+ SUBSTRING(A.liquida2,11,2) ELSE 'N' END Procesado, E.NOMBRE_SUCU [Zona], B.COB_TELEFO Telefono "
             Sql += " FROM ("
-            Sql += " SELECT distinct A.codigo_cobr, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, A.liquida, A.liquida2 FROM RECIBOS A WHERE CONVERT(DATE,SUBSTRING(A.liquida,1,8)) = @FECHA AND A.MARCA = 'N' "
+            Sql += " SELECT distinct A.Num_doc, A.codigo_cobr, A.Por_lempira, A.rhora, 1 Recibos, 1 Visitados, A.liquida, A.liquida2 FROM RECIBOS A WHERE CONVERT(DATE,SUBSTRING(A.liquida,1,8)) = @FECHA AND A.MARCA = 'N' "
             Sql += " ) A LEFT JOIN FUNAMOR..COBRADOR B ON A.codigo_cobr = B.codigo_cobr "
             Sql += " LEFT JOIN FUNAMOR..COBRADOR C ON B.Cob_Lider = C.Codigo_cobr "
             'Sql += " LEFT JOIN AE_VZONA D ON B.cob_zona = D.vzon_codigo "
