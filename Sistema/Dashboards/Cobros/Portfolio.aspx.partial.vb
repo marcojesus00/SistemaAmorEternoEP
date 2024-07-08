@@ -16,7 +16,7 @@ Partial Public Class CobrosDashboard
         Return finalList
 
     End Function
-    Public Function GetGroupedClientsByCollectorFromDb(Optional specificQuery As Boolean = True) As List(Of PortfolioIDto)
+    Public Function GetGroupedClientsByCollectorFromDb(Optional orderBy = "Valor") As List(Of PortfolioIDto)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
 
@@ -106,7 +106,7 @@ Partial Public Class CobrosDashboard
         Dim ZoneCode = ddlCity.SelectedValue.Trim
         Dim leaderCode = ddlLeader.SelectedValue.Trim
         Dim clientIdentification = textBoxNumDoc.Text.Trim
-        Dim top = "1"
+        Dim top = "3"
         If textBoxClientCode.Text.Trim.Length > 3 Then
             top = "30"
         End If
@@ -159,12 +159,12 @@ Partial Public Class CobrosDashboard
     End Function
 
     Public Sub ClientsByCollectorMap(keyValue As String)
-        Dim clients As List(Of Cliente) = ClientsContainsCollectorCachedList.Where(Function(c) c.CodigoCobrador.Contains(keyValue)).ToList()
+        Dim clients As List(Of PortfolioDetailsDto) = ClientsContainsCollectorCachedList
         Dim markers As New List(Of MarkerForMap)
         Dim count = 0
 
-        For Each cliente As Cliente In clients
-            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.DireccionCliente}  deuda: {cliente.SaldoActual}"
+        For Each cliente As PortfolioDetailsDto In clients
+            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.Direccion}  deuda: {cliente.Saldo}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)

@@ -272,12 +272,13 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
+    <Content Include="Dashboards\Ventas\Ventas.aspx" />
+    <Content Include="Dashboards\Ventas\images\minus.png" />
+    <Content Include="Dashboards\Ventas\images\plus.png" />
     <Content Include="Dashboards\Cobros\Cobros.aspx" />
     <Content Include="Dashboards\Cobros\images\minus.png" />
     <Content Include="Dashboards\Cobros\images\plus.png" />
-    <Content Include="Dashboards\css\leaflet.icon-material.css" />
     <Content Include="Dashboards\Dashboard.master" />
-    <Content Include="Dashboards\js\leaflet.icon-material.js" />
     <Content Include="Shared\Map\Map.aspx" />
     <Content Include="Shared\Map\Map.master" />
     <Content Include="DetalleMovimientoClientes.aspx" />
@@ -2317,6 +2318,22 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controls\Shared\Sidebar.designer.vb" />
+    <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Ventas.aspx.designer.vb">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Ventas.aspx.vb">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\VentasDto.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Receipts.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Dashboards\Cobros\Cobros.aspx.designer.vb">
       <DependentUpon>Cobros.aspx</DependentUpon>
     </Compile>

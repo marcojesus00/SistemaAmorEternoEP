@@ -34,6 +34,10 @@ Public Class monitorventas
             Usuario_Aut = Session("Usuario_Aut")
             Clave_Aut = Session("Clave_Aut")
             Session.Timeout = 90
+            Dim isAuthToAdvanced As Boolean = AuthHelper.isAuthorized(Usuario_Aut, "VENTAS_A")
+            If isAuthToAdvanced Then
+                btnAdvanced.Visible = True
+            End If
 
             'Tabla.Columns.Add("CodigoVendedor")
             'Tabla.Columns.Add("Producto")
@@ -1739,5 +1743,8 @@ Public Class monitorventas
             Alert(dangerMsg & ex.Message & ex.HResult, "danger")
         End Try
 
+    End Sub
+    Public Sub RedirectToCobrosAdvanced(sender As Object, e As EventArgs) Handles btnAdvanced.Click
+        Response.Redirect("~/Dashboards/Ventas/Ventas.aspx")
     End Sub
 End Class

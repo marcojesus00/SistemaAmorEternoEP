@@ -26,7 +26,7 @@ Partial Public Class CobrosDashboard
             Dim documentNumber = textBoxNumDoc.Text.Trim
 
             query = "
-            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, r.SALDOANT, r.MARCA, r.rhora, c.Cod_zona, c.VZCODIGO, r.LATITUD, r.LONGITUD
+            SELECT r.Num_doc, r.RFECHA, r.codigo_cobr, LTRIM(RTRIM(cb.nombre_cobr)) as nombre_cobr, cb.cob_lider, c.Codigo_clie, LTRIM(RTRIM(c.Nombre_clie)) as Nombre_clie, r.Por_lempira, c.Saldo_actua, r.SALDOANT, r.MARCA, r.rhora, c.Cod_zona, c.VZCODIGO,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
@@ -145,7 +145,7 @@ Partial Public Class CobrosDashboard
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function) _
-            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA)
+            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie + " " + r.Codigo_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
 }).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()
