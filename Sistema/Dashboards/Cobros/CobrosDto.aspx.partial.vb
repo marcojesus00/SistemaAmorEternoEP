@@ -29,6 +29,7 @@ Partial Public Class CobrosDashboard
         Public Property nombre_cobr As String
         Public Property Clientes As Integer
         Public Property Cartera As Decimal
+        Public Property Cuota_mensual As Decimal
 
 
     End Class
@@ -36,7 +37,7 @@ Partial Public Class CobrosDashboard
         Public Property Codigo As String
         Public Property Nombre As String
         Public Property Clientes As Integer
-        Public Property Cartera As String
+        Public Property Cuota_mensual As String
 
     End Class
     Public Class PortfolioDetailsDto
@@ -49,6 +50,8 @@ Partial Public Class CobrosDashboard
         Public Property Saldo As Decimal
         Public Property Latitud As Decimal
         Public Property Longitud As Decimal
+        Public Property codigo_cobr As String
+        Public Property cob_lider As String
 
     End Class
 

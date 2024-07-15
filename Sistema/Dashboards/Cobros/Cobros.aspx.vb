@@ -106,7 +106,7 @@ Public Class CobrosDashboard
                 endDate.Enabled = False
                 ddlValidReceipts.Enabled = False
                 lblNumDoc.Text = "Número de identidad"
-                BtnRouteOfReceiptsMapByLeader.Enabled = False
+                BtnRouteOfReceiptsMapByLeader.Enabled = True
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 

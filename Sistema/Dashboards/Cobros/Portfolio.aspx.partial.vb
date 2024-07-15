@@ -11,7 +11,7 @@ Partial Public Class CobrosDashboard
     Public Function GetPortfolioDataForGridview()
 
         Dim portfolioList As List(Of PortfolioIDto) = GetGroupedClientsByCollectorFromDb()
-        Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.nombre_cobr, .Clientes = c.Clientes, .Cartera = FormattingHelper.ToLempiras(CType(c.Cartera, Decimal?))}).ToList()
+        Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.nombre_cobr, .Clientes = c.Clientes, .Cuota_mensual = FormattingHelper.ToLempiras(CType(c.Cuota_mensual, Decimal?))}).ToList()
 
         Return finalList
 
@@ -29,12 +29,14 @@ Partial Public Class CobrosDashboard
             Dim ZoneCode = ddlCity.SelectedValue.Trim
             Dim clientIdentification = textBoxNumDoc.Text.Trim
 
-            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
+            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera,  sum(cn.CONT_VALCUO) as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
             Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
-                 on cl.cl_cobrador = cr.codigo_cobr"
+                 on cl.cl_cobrador = cr.codigo_cobr
+                 left join CONTRATO cn
+				 on cl.Codigo_clie = cn.Codigo_clie"
             Dim whereClauseList As New List(Of String)()
 
-            Dim orderByClause As String = "order by Cartera desc"
+            Dim orderByClause As String = "order by Cuota_mensual  desc"
             Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
             whereClauseList.Add("cl.Saldo_actua > 0")
             If Not String.IsNullOrEmpty(ClientCode) Then
@@ -93,7 +95,7 @@ Partial Public Class CobrosDashboard
     End Sub
 
 
-    Public Function GetClientsByCollectorIdFromDb(Optional ByVal rowValue = "")
+    Public Function GetClientsByCollectorIdFromDb(Optional ByVal rowValue = "", Optional ByVal top = "top 5")
         Dim collectorCode As String
         Dim clientCode = textBoxClientCode.Text.Trim
         If rowValue = "" Then
@@ -106,11 +108,11 @@ Partial Public Class CobrosDashboard
         Dim ZoneCode = ddlCity.SelectedValue.Trim
         Dim leaderCode = ddlLeader.SelectedValue.Trim
         Dim clientIdentification = textBoxNumDoc.Text.Trim
-        Dim top = "3"
         If textBoxClientCode.Text.Trim.Length > 3 Then
-            top = "30"
+            top = "top 50"
         End If
-        Dim selectClause As String = $"select top {top} cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,
+
+        Dim selectClause As String = $"select {top} cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,
 	REPLACE(cl.identidad, '-', '') as Identidad,
     CASE 
         WHEN LTRIM(RTRIM(cl.Telef_clien)) <> '' AND LTRIM(RTRIM(cl.CL_CELULAR)) <> '' THEN LTRIM(RTRIM(cl.Telef_clien)) + ', ' + LTRIM(RTRIM(cl.CL_CELULAR))
@@ -119,7 +121,7 @@ Partial Public Class CobrosDashboard
         ELSE ''
     END AS Telefonos, 
      LTRIM(RTRIM(cl.Dir_cliente))  + ' ' +  LTRIM(RTRIM(cl.Dir2_client)) AS Direccion, 
-    cl.Cod_zona AS Empresa,  ISNULL(cl.Saldo_actua, 0) as Saldo,ISNULL(cl.latitud, 0), ISNULL(cl.longitud, 0) "
+    cl.Cod_zona AS Empresa,  ISNULL(cl.Saldo_actua, 0) as Saldo,ISNULL(cl.latitud, 0) as latitud, ISNULL(cl.longitud, 0) as longitud, cr.codigo_cobr, cr.cob_lider "
         Dim fromClause As String = "from COBRADOR cr join CLIENTES cl on cl.cl_cobrador = cr.codigo_cobr"
         Dim whereClauseList As New List(Of String)()
         Dim orderByClause As String = "order by Saldo desc"
@@ -174,7 +176,7 @@ Partial Public Class CobrosDashboard
         Dim dataForMaps As New DataForMapGenerator($"Clientes del cobrador {keyValue}", markers, False)
         Session("MarkersData") = dataForMaps
         iMap.Dispose()
-        iMap.Src = "/shared/Map/Map.aspx"
+        iMap.Src = "../../Shared/Map/Map.aspx"
 
     End Sub
 

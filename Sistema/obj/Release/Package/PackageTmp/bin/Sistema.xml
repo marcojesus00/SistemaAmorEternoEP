@@ -2350,6 +2350,186 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.VentasDashboard._DashboardType">
+<summary>
+DashboardType control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._startDate">
+<summary>
+startDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._endDate">
+<summary>
+endDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._ddlCity">
+<summary>
+ddlCity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._ddlCompany">
+<summary>
+ddlCompany control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._leader">
+<summary>
+leader control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._ddlLeader">
+<summary>
+ddlLeader control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._BtnRouteOfReceiptsMapByLeader">
+<summary>
+BtnRouteOfReceiptsMapByLeader control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._ddlValidReceipts">
+<summary>
+ddlValidReceipts control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._ddlService">
+<summary>
+ddlService control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._supervised">
+<summary>
+supervised control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._lblNumDoc">
+<summary>
+lblNumDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._textBoxNumDoc">
+<summary>
+textBoxNumDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._textBoxCode">
+<summary>
+textBoxCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._textBoxClientCode">
+<summary>
+textBoxClientCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._submitButton">
+<summary>
+submitButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._DashboardGridview">
+<summary>
+DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._pnlMap">
+<summary>
+pnlMap control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._iMap">
+<summary>
+iMap control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.VentasDashboard._alertPlaceholder">
+<summary>
+alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.CobrosDashboard._DashboardType">
 <summary>
 DashboardType control.
@@ -2440,6 +2620,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.CobrosDashboard._lblNumDoc">
+<summary>
+lblNumDoc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.CobrosDashboard._textBoxNumDoc">
 <summary>
 textBoxNumDoc control.
@@ -2485,18 +2674,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.CobrosDashboard._DetailsTitle">
+<member name="F:Sistema.CobrosDashboard._pnlMap">
 <summary>
-DetailsTitle control.
+pnlMap control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.CobrosDashboard._DetailsControl">
+<member name="F:Sistema.CobrosDashboard._iMap">
 <summary>
-DetailsControl control.
+iMap control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2524,6 +2713,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.Dashboard._Table">
 <summary>
 Table control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.MapIframe._Headplace">
+<summary>
+Headplace control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.MapIframe._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.MapIframe._Map1">
+<summary>
+Map1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2596,6 +2812,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.Empleados._ProfilePicture1">
 <summary>
 ProfilePicture1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Empleados._employeeDataTab">
+<summary>
+employeeDataTab control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3889,6 +4114,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.monitorventas._btnAdvanced">
+<summary>
+btnAdvanced control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.monitorventas._gvMonitor">
 <summary>
 gvMonitor control.
@@ -4198,15 +4432,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorventas._lblMsjError">
 <summary>
 lblMsjError control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.monitorventas._btnCancelarC">
-<summary>
-btnCancelarC control.
 </summary>
 <remarks>
 Auto-generated field.

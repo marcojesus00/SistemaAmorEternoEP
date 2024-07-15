@@ -130,7 +130,7 @@ Partial Public Class CobrosDashboard
         Session("MarkersData") = dataForMaps
         'Session("BackPageUrl") = thisPage
         iMap.Dispose()
-        iMap.Src = "/shared/Map/Map.aspx"
+        iMap.Src = "../../Shared/Map/Map.aspx"
         pnlMap.Visible = True
 
     End Sub
@@ -153,14 +153,20 @@ Partial Public Class CobrosDashboard
     End Sub
     Public Sub RouteOfReceiptsByLeaderMap(sender As Object, e As EventArgs) Handles BtnRouteOfReceiptsMapByLeader.Click
         Dim keyValue = ddlLeader.SelectedValue
+        iMap.Dispose()
+
         If keyValue = "" Then
             Dim msg = "Seleccione un lider"
             AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
             Exit Sub
         End If
-        Dim receipts As List(Of RecibosDTO)
-        Dim cachedReceipts = ReceiptsByDateCachedList
-        receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
+        If DashboardType.SelectedValue = "0" Then
+
+
+
+            Dim receipts As List(Of RecibosDTO)
+            Dim cachedReceipts = ReceiptsByDateCachedList
+            receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
             (Function(r)
                  Dim time As DateTime
                  If DateTime.TryParse(r.rhora, time) Then
@@ -169,21 +175,45 @@ Partial Public Class CobrosDashboard
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function).ToList()
-        Dim markers As New List(Of MarkerForMap)
-        For Each receipt As RecibosDTO In receipts
-            Dim tooltipMsg = $"<b>Cobrador: {receipt.codigo_cobr} </b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Fecha:{receipt.RFECHA.ToString("dd-MM-yyyy")}"
-            If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
-                Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
-                markers.Add(marker)
-            End If
+            Dim markers As New List(Of MarkerForMap)
+            For Each receipt As RecibosDTO In receipts
+                Dim tooltipMsg = $"<b>Cobrador: {receipt.codigo_cobr} </b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Fecha:{receipt.RFECHA.ToString("dd-MM-yyyy")}"
+                If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
+                    Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
+                    markers.Add(marker)
+                End If
 
-        Next
+            Next
 
-        Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
-        Session("MarkersData") = dataForMaps
-        'Session("BackPageUrl") = thisPage
-        iMap.Dispose()
-        iMap.Src = "/shared/Map/Map.aspx"
+            Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
+            Session("MarkersData") = dataForMaps
+            'Session("BackPageUrl") = thisPage
+        ElseIf DashboardType.SelectedValue = "1" Then
+            Dim clients As List(Of PortfolioDetailsDto)
+            clients = GetClientsByCollectorIdFromDb(top:="")
+            clients = clients.Where(Function(c) c.cob_lider.Contains(keyValue)).OrderByDescending(Function(r) r.Saldo).ToList() '.ThenBy _
+            '(Function(r)
+            '     Dim time As DateTime
+            '     If DateTime.TryParse(r.rhora, time) Then
+            '         Return time
+            '     Else
+            '         Return DateTime.MinValue ' Default value for invalid time strings
+            '     End If
+            ' End Function).ToList()
+            Dim markers As New List(Of MarkerForMap)
+            For Each client As PortfolioDetailsDto In clients
+                Dim tooltipMsg = $"<b>Cliente: {client.Nombre}  </b> <br>Saldo: {FormattingHelper.ToLempiras(client.Saldo)} <br>Cobrador:{client.codigo_cobr}"
+                If client.Latitud.ToString().Trim.Length > 0 AndAlso client.Longitud.ToString().Trim.Length > 0 Then
+                    Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = client.Latitud, .Longitud = client.Longitud, .MarkerType = MarkerTypes.Cliente}
+                    markers.Add(marker)
+                End If
+
+            Next
+
+            Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
+            Session("MarkersData") = dataForMaps
+        End If
+        iMap.Src = "../../Shared/Map/MapClustered.aspx"
         pnlMap.Visible = True
 
     End Sub

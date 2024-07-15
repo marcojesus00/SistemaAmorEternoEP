@@ -156,7 +156,7 @@ LEFT JOIN
         Dim dataForMaps As New DataForMapGenerator($"Recibos del vendedor {keyValue} del {startDate.Text} al {endDate.Text}", markers, True)
         Session("MarkersData") = dataForMaps
         iMap.Dispose()
-        iMap.Src = "/shared/Map/Map.aspx"
+        iMap.Src = "../../Shared/Map/Map.aspx"
         pnlMap.Visible = True
 
     End Sub
@@ -214,7 +214,7 @@ LEFT JOIN
         Session("MarkersData") = dataForMaps
         'Session("BackPageUrl") = thisPage
         iMap.Dispose()
-        iMap.Src = "/shared/Map/Map.aspx"
+        iMap.Src = "../../Shared/Map/Map.aspx"
         pnlMap.Visible = True
 
     End Sub

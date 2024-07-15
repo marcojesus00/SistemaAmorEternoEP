@@ -279,6 +279,8 @@
     <Content Include="Dashboards\Cobros\images\minus.png" />
     <Content Include="Dashboards\Cobros\images\plus.png" />
     <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="Shared\Map\MapClustered.aspx" />
+    <Content Include="Shared\Map\Map - Copy.aspx" />
     <Content Include="Shared\Map\Map.aspx" />
     <Content Include="Shared\Map\Map.master" />
     <Content Include="DetalleMovimientoClientes.aspx" />
@@ -2363,6 +2365,19 @@
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="Shared\Map\MapClustered.aspx.designer.vb">
+      <DependentUpon>MapClustered.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\MapClustered.aspx.vb">
+      <DependentUpon>MapClustered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Map\Map - Copy.aspx.designer.vb">
+      <DependentUpon>Map - Copy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\Map - Copy.aspx.vb">
+      <DependentUpon>Map - Copy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shared\Map\MapIFrame.master.designer.vb">
       <DependentUpon>MapIFrame.master</DependentUpon>
     </Compile>
