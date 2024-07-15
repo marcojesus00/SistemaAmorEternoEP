@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/shared/Map/MapIFrame.master" CodeBehind="Map.aspx.vb" Inherits="Sistema.MapPage" %>
+﻿<%@ Page Title="" Async="true" Language="vb" AutoEventWireup="false" MasterPageFile="~/shared/Map/MapIFrame.master" CodeBehind="MapClustered.aspx.vb" Inherits="Sistema.MapClusteredPage" %>
 <asp:Content ID="h1" ContentPlaceHolderID="Headplace" runat="server">
     <style>
 
