@@ -213,7 +213,7 @@ Partial Public Class CobrosDashboard
             Dim dataForMaps As New DataForMapGenerator($"Recibos del lider {keyValue} del {startDate.Text} al {endDate.Text}", markers, False)
             Session("MarkersData") = dataForMaps
         End If
-        iMap.Src = "../../Shared/Map/MapClustered.aspx"
+        iMap.Src = "../../Shared/Map/Map.aspx"
         pnlMap.Visible = True
 
     End Sub
