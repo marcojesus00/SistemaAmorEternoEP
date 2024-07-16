@@ -32,6 +32,15 @@ Partial Public Class ProfilePicture
     Protected WithEvents PreviewButton0 As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''PreviewButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PreviewButton1 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''lblUploadMessage control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class ProfilePicture
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblUploadMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''HiddenFieldImageData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HiddenFieldImageData As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''imgProfile control.

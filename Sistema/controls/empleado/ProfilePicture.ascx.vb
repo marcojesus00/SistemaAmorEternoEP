@@ -232,7 +232,100 @@ Public Class ProfilePicture
         End Try
 
     End Sub
+    Protected Sub PreviewButton1_Click(sender As Object, e As EventArgs) Handles PreviewButton1.Click
+        Dim msg As String
+        Dim alertType As String
+        'Dim fileSize As Long = File1.PostedFile.ContentLength
+        Dim directoryTempRelativePath As String = "Musica\Empleados\Temp\"
+        Dim directoryTempAbsolutePath As String = Path.Combine(ServerPath, directoryTempRelativePath)
+        'Dim fileExtension As String = Path.GetExtension(File1.PostedFile.FileName)
+        Dim randomNumer As String = NumberHelper.GenerateRandomNumber(3).ToString()
+        Dim newFileName = employeeId & "_" & randomNumer & ".jpg"
+        Dim fileTempRelativePath = directoryTempRelativePath & newFileName
+        Dim fileTempAbsolutePath = directoryTempAbsolutePath & newFileName
+        Dim combinedFileTypesString As String = Strings.Join(fileTypesAllowed, " ")
 
+        Session("fileTempAbsolutePath") = fileTempAbsolutePath
+        Session("fileTempRelativePath") = fileTempRelativePath
+
+        Try
+            Session("tabSelected") = "ProfilePicturaTab"
+
+            msg = "Por favor seleccione un documento."
+            alertType = "danger"
+            Dim imageData As String = HiddenFieldImageData.Value
+
+            If String.IsNullOrEmpty(imageData) Then
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+                Exit Sub
+            End If
+
+            'Dim postedFile As HttpPostedFile = File1.PostedFile
+
+            'If postedFile.ContentLength < 1 Then
+            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+            '    Exit Sub
+            'End If
+
+            'If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
+            '    msg = "El archivo no puede tener un tamaño mayor a 10MB"
+            '    alertType = "danger"
+            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+            '    Exit Sub
+            'End If
+
+            'If Not FileHelper.ValidateFileExtension(newFileName, fileTypesAllowed) Then
+            '    msg = "Solo se admiten archivos con los formatos: " & combinedFileTypesString
+            '    alertType = "danger"
+            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+            '    Exit Sub
+            'End If
+
+
+            ' Read the file content
+            Dim base64Data As String = imageData.Replace("data:image/jpeg;base64,", String.Empty)
+            Dim bytes As Byte() = Convert.FromBase64String(base64Data)
+            'Dim reader As New BinaryReader(postedFile.InputStream)
+            'Dim fileContent As Byte() = reader.ReadBytes(CInt(fileSize))
+
+            ' Create data URL
+            'Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
+            Session("UploadedFileContentLength") = "1000"
+            FileHelper.createFolderIfNotExists(directoryTempAbsolutePath)
+            'File1.PostedFile.SaveAs(fileTempAbsolutePath)
+            File.WriteAllBytes(fileTempAbsolutePath, bytes)
+
+            imgProfile.ImageUrl = imageData
+            changePhotoButton.Visible = False
+            UploadFile.Visible = True
+            CancelUpload.Visible = True
+        Catch ex As UnauthorizedAccessException
+            ' Handle access permissions issue
+            msg = "Acceso denegado: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
+        Catch ex As ArgumentException
+            ' Handle invalid path issue
+            alertType = "danger"
+            msg = "Ruta inválida: " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+
+        Catch ex As HttpException
+            msg = "Error al cargar el archivo: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+        Catch ex As IOException
+            msg = "Error al procesar el archivo: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+        Catch ex As Exception
+            msg = "Error inesperado: " & ex.Message
+            alertType = "danger"
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
+        End Try
+
+    End Sub
     Protected Sub UploadFileButton_Click(sender As Object, e As EventArgs) Handles UploadFile.Click
 
         Try
