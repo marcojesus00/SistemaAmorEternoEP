@@ -251,7 +251,7 @@ Public Class ProfilePicture
         Try
             Session("tabSelected") = "ProfilePicturaTab"
 
-            msg = "Por favor seleccione un documento."
+            msg = "Por favor toma una fotografía."
             alertType = "danger"
             Dim imageData As String = HiddenFieldImageData.Value
 
@@ -260,39 +260,13 @@ Public Class ProfilePicture
                 Exit Sub
             End If
 
-            'Dim postedFile As HttpPostedFile = File1.PostedFile
-
-            'If postedFile.ContentLength < 1 Then
-            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-            '    Exit Sub
-            'End If
-
-            'If Not FileHelper.LessThanFileSizeLimit(fileSize, 10485760) Then
-            '    msg = "El archivo no puede tener un tamaño mayor a 10MB"
-            '    alertType = "danger"
-            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-            '    Exit Sub
-            'End If
-
-            'If Not FileHelper.ValidateFileExtension(newFileName, fileTypesAllowed) Then
-            '    msg = "Solo se admiten archivos con los formatos: " & combinedFileTypesString
-            '    alertType = "danger"
-            '    RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, alertType))
-            '    Exit Sub
-            'End If
-
 
             ' Read the file content
             Dim base64Data As String = imageData.Replace("data:image/jpeg;base64,", String.Empty)
             Dim bytes As Byte() = Convert.FromBase64String(base64Data)
-            'Dim reader As New BinaryReader(postedFile.InputStream)
-            'Dim fileContent As Byte() = reader.ReadBytes(CInt(fileSize))
 
-            ' Create data URL
-            'Dim dataUrl As String = "data:" & postedFile.ContentType & ";base64," & Convert.ToBase64String(fileContent)
             Session("UploadedFileContentLength") = "1000"
             FileHelper.createFolderIfNotExists(directoryTempAbsolutePath)
-            'File1.PostedFile.SaveAs(fileTempAbsolutePath)
             File.WriteAllBytes(fileTempAbsolutePath, bytes)
 
             imgProfile.ImageUrl = imageData
