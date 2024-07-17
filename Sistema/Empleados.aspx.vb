@@ -12,6 +12,7 @@ Public Class Empleados
     Public nombreDeEmpleado As String = ""
     Dim numeroDeEmpleado As String
     Public anEmployeeIsSelected As Boolean = False
+    Dim isAuthToAdvancedEmployeeManagement As Boolean = False
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
@@ -27,29 +28,32 @@ Public Class Empleados
         Clave_Aut = Session("Clave_Aut")
 
         txtCodigo.Text = Session("Codigo_Empleado")
-        Dim isAuthToAdvancedEmployeeManagement As Boolean = AuthHelper.isAuthorized(Usuario_Aut, "MAN_3_A")
+        isAuthToAdvancedEmployeeManagement = AuthHelper.isAuthorized(Usuario_Aut, "MAN_3_A")
         employeeDataTab.Visible = False
         If txtCodigo.Text.Length > 0 And IsPostBack = False Then
             llenar_Campos()
         Else
-            txtCodigo.Enabled = True
-            'Limpiar campos
-            txtNombre.Text = ""
-            txtIdentidad.Text = ""
-            txtDireccion.Text = ""
-            txtFechaN.Text = ""
-            txtSexo.Text = ""
-            txtDepto.Text = ""
-            txtCiudad.Text = ""
-            txtCivil.Text = ""
-            txtCargo.Text = ""
-            txtDepto.Text = ""
-            txtTmpPer.Text = ""
-            txtSueldo.Text = ""
-            txtTipoPlan.Text = ""
-            txtActivo.Text = ""
-            txtFechaI.Text = ""
-            TxtMotivo.Text = ""
+            If isAuthToAdvancedEmployeeManagement Then
+                txtCodigo.Enabled = True
+                'Limpiar campos
+                txtNombre.Text = ""
+                txtIdentidad.Text = ""
+                txtDireccion.Text = ""
+                txtFechaN.Text = ""
+                txtSexo.Text = ""
+                txtDepto.Text = ""
+                txtCiudad.Text = ""
+                txtCivil.Text = ""
+                txtCargo.Text = ""
+                txtDepto.Text = ""
+                txtTmpPer.Text = ""
+                txtSueldo.Text = ""
+                txtTipoPlan.Text = ""
+                txtActivo.Text = ""
+                txtFechaI.Text = ""
+                TxtMotivo.Text = ""
+            End If
+
         End If
         If (Session("Codigo_Empleado") Is Nothing) Then
             EmployeeCard.Visible = False
@@ -108,43 +112,31 @@ Public Class Empleados
             Exit Sub
         End If
 
-        'If Not String.IsNullOrWhiteSpace(Datos.Tables(0).Rows(0).Item("P_carnet_fo").ToString) Then
-        '    Dim FilePath As String = Server.MapPath("~\fotosCarnet\") + Datos.Tables(0).Rows(0).Item("P_num_emple").ToString.TrimEnd + ".jpg"
-        '    Dim stringB64 As String
-        '    Using fs As New FileStream(FilePath, FileMode.Open)
-        '        Dim br As New BinaryReader(fs)
-        '        Dim datosImg As Byte()
-        '        datosImg = br.ReadBytes(br.BaseStream.Length)
-        '        stringB64 = Convert.ToBase64String(datosImg, 0, datosImg.Length)
-        '        Dim imgStr = "data:image/png;base64," + stringB64
-        '        'imgFoto.Attributes.Add("src", imgStr)
-        '        'imgFoto.Visible = True
-        '    End Using
-
-        'End If
-
         nombreDeEmpleado = Datos.Tables(0).Rows(0).Item("P_nomb_empl").ToString
         txtNombre.Text = nombreDeEmpleado
         Session("nombreDeEmpleado") = nombreDeEmpleado
-        txtIdentidad.Text = Datos.Tables(0).Rows(0).Item("P_identidad").ToString
-        txtDireccion.Text = Datos.Tables(0).Rows(0).Item("P_dir_emple").ToString
-        txtFechaN.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_nac").ToString), "", Format(Datos.Tables(0).Rows(0).Item("P_fecha_nac"), "yyyy-MM-dd").ToString)
-        txtSexo.Text = Datos.Tables(0).Rows(0).Item("P_sexo").ToString
-        txtDepto.Text = Datos.Tables(0).Rows(0).Item("P_cod_sucur").ToString
-        txtCiudad.Text = Datos.Tables(0).Rows(0).Item("P_lugar_nac").ToString
-        txtCivil.Text = Datos.Tables(0).Rows(0).Item("P_estado_ci").ToString
-        txtCargo.Text = Datos.Tables(0).Rows(0).Item("P_cod_puest").ToString
-        txtDepto.Text = Datos.Tables(0).Rows(0).Item("P_cod_depar").ToString
-        txtTmpPer.Text = Datos.Tables(0).Rows(0).Item("P_temporal").ToString
-        txtSueldo.Text = Datos.Tables(0).Rows(0).Item("P_sueldo_ac").ToString
-        txtTipoPlan.Text = Datos.Tables(0).Rows(0).Item("P_tipo_plan").ToString
-        txtActivo.Text = Datos.Tables(0).Rows(0).Item("P_status").ToString
-        txtFechaI.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_ing").ToString), " ", Format(Datos.Tables(0).Rows(0).Item("P_fecha_ing"), "yyyy-MM-dd").ToString)
-        TxtMotivo.Text = Datos.Tables(0).Rows(0).Item("P_causa_can").ToString
+        If isAuthToAdvancedEmployeeManagement Then
+            txtIdentidad.Text = Datos.Tables(0).Rows(0).Item("P_identidad").ToString
+            txtDireccion.Text = Datos.Tables(0).Rows(0).Item("P_dir_emple").ToString
+            txtFechaN.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_nac").ToString), "", Format(Datos.Tables(0).Rows(0).Item("P_fecha_nac"), "yyyy-MM-dd").ToString)
+            txtSexo.Text = Datos.Tables(0).Rows(0).Item("P_sexo").ToString
+            txtDepto.Text = Datos.Tables(0).Rows(0).Item("P_cod_sucur").ToString
+            txtCiudad.Text = Datos.Tables(0).Rows(0).Item("P_lugar_nac").ToString
+            txtCivil.Text = Datos.Tables(0).Rows(0).Item("P_estado_ci").ToString
+            txtCargo.Text = Datos.Tables(0).Rows(0).Item("P_cod_puest").ToString
+            txtDepto.Text = Datos.Tables(0).Rows(0).Item("P_cod_depar").ToString
+            txtTmpPer.Text = Datos.Tables(0).Rows(0).Item("P_temporal").ToString
+            txtSueldo.Text = Datos.Tables(0).Rows(0).Item("P_sueldo_ac").ToString
+            txtTipoPlan.Text = Datos.Tables(0).Rows(0).Item("P_tipo_plan").ToString
+            txtActivo.Text = Datos.Tables(0).Rows(0).Item("P_status").ToString
+            txtFechaI.Text = If(String.IsNullOrEmpty(Datos.Tables(0).Rows(0).Item("P_fecha_ing").ToString), " ", Format(Datos.Tables(0).Rows(0).Item("P_fecha_ing"), "yyyy-MM-dd").ToString)
+            TxtMotivo.Text = Datos.Tables(0).Rows(0).Item("P_causa_can").ToString
 
-        If Datos.Tables(0).Rows(0).Item("P_fecha_can").Equals(DBNull.Value) = False Then
-            txtFechaS.Text = Format(Datos.Tables(0).Rows(0).Item("P_fecha_can"), "yyyy-MM-dd").ToString
+            If Datos.Tables(0).Rows(0).Item("P_fecha_can").Equals(DBNull.Value) = False Then
+                txtFechaS.Text = Format(Datos.Tables(0).Rows(0).Item("P_fecha_can"), "yyyy-MM-dd").ToString
+            End If
         End If
+
 
     End Sub
 
@@ -173,20 +165,6 @@ Public Class Empleados
 
         If txtCodigo.Enabled Then
 
-            'If archivoInput.HasFile = True Then
-            '    Dim ruta As String = Server.MapPath("~\fotosCarnet\") + txtCodigo.Text + ".jpg"
-            '    Dim stream As Stream = archivoInput.PostedFile.InputStream
-            '    Dim BR As BinaryReader = New BinaryReader(stream)
-            '    Dim Bytes As Byte() = BR.ReadBytes(stream.Length)
-
-            '    Using fs As New FileStream(ruta, FileMode.Create)
-            '        Using bw As New BinaryWriter(fs)
-            '            Session.Add("rutaFoto", txtCodigo.Text + ".jpg")
-            '            bw.Write(Bytes)
-            '            bw.Close()
-            '        End Using
-            '    End Using
-            'End If
 
             Sql = " INSERT INTO [dbo].[PLAEMP]
                     ([P_num_emple]
@@ -229,27 +207,7 @@ Public Class Empleados
             Datos = conf.EjecutaSql(Sql)
             Msg("Se agregaron los datos")
         Else
-            'Dim rutaFoto As String
-            'If archivoInput.HasFile = True Then
-            '    Dim ruta As String = Server.MapPath("~\fotosCarnet\") + txtCodigo.Text + ".jpg"
-            '    Dim stream As Stream = archivoInput.PostedFile.InputStream
-            '    Dim BR As BinaryReader = New BinaryReader(stream)
-            '    Dim Bytes As Byte() = BR.ReadBytes(stream.Length)
 
-            '    Using fs As New FileStream(ruta, FileMode.Create)
-            '        Using bw As New BinaryWriter(fs)
-            '            Session.Add("rutaFoto", txtCodigo.Text + ".jpg")
-            '            bw.Write(Bytes)
-            '            bw.Close()
-            '        End Using
-            '    End Using
-            'End If
-
-            'If Not Session("rutaFoto") Is Nothing Then
-            '    rutaFoto = Session("rutaFoto").ToString
-            'Else
-            '    rutaFoto = ""
-            'End If
             Sql = "UPDATE PLAEMP SET                 
                 P_nomb_empl = '" + txtNombre.Text + "',
                 P_dir_emple = '" + txtDireccion.Text + "',
