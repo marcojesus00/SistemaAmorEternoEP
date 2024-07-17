@@ -8,7 +8,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NameOfLastUsedPublishProfile>C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\My Project\PublishProfiles\FolderProfile2.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>FolderProfile2</NameOfLastUsedPublishProfile>
     <ProjectView>ShowAllFiles</ProjectView>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
   </PropertyGroup>

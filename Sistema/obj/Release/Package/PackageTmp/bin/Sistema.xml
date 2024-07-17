@@ -1171,9 +1171,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.ProfilePicture._PreviewButton1">
+<summary>
+PreviewButton1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.ProfilePicture._lblUploadMessage">
 <summary>
 lblUploadMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ProfilePicture._HiddenFieldImageData">
+<summary>
+HiddenFieldImageData control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2713,6 +2731,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.Dashboard._Table">
 <summary>
 Table control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.MapClusteredPage._MapTitleHolder">
+<summary>
+MapTitleHolder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.MapClusteredPage._alertPlaceholder">
+<summary>
+alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Map2Page._MapTitleHolder">
+<summary>
+MapTitleHolder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Map2Page._alertPlaceholder">
+<summary>
+alertPlaceholder control.
 </summary>
 <remarks>
 Auto-generated field.
