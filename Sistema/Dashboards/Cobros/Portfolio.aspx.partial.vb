@@ -72,7 +72,7 @@ Partial Public Class CobrosDashboard
 
                 Return GetFromDb(Of PortfolioIDto)(query, collectorCode, ClientCode, clientIdentification, companyCode, ZoneCode, LeaderCode)
             Catch ex As Exception
-                ' Handle any other exceptions
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
                 Throw New Exception("Problema al recibir información de la base de datos.", ex)
             End Try
         End Using

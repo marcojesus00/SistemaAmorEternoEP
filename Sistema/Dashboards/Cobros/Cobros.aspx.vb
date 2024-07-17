@@ -58,6 +58,8 @@ Public Class CobrosDashboard
         Catch ex As Exception
             Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
             'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -123,13 +125,15 @@ Public Class CobrosDashboard
             End If
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
-            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
             'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -184,13 +188,13 @@ Public Class CobrosDashboard
             End If
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
-            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
 
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
-            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
 
         End Try
@@ -219,12 +223,20 @@ Public Class CobrosDashboard
 
         Catch ex As FormatException
             AlertHelper.GenerateAlert("danger", "Error al convertir el índice de fila.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As IndexOutOfRangeException
             AlertHelper.GenerateAlert("danger", "Índice de fila fuera de rango.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As IOException
             AlertHelper.GenerateAlert("danger", "Error de entrada/salida al procesar el archivo.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As Exception
             AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         End Try
     End Sub
     Protected Sub DashboardGridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
@@ -344,10 +356,10 @@ Public Class CobrosDashboard
                 End If
             Catch ex As SqlException
                 Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
-                'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
                 AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
             Catch ex As Exception
-                ' Handle any other exceptions
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
                 Throw New Exception("Problema al recibir información de la base de datos." & ex.Message, ex)
             End Try
         End Using
@@ -386,12 +398,20 @@ Public Class CobrosDashboard
 
         Catch ex As FormatException
             AlertHelper.GenerateAlert("danger", "Error al convertir el índice de fila.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As IndexOutOfRangeException
             AlertHelper.GenerateAlert("danger", "Índice de fila fuera de rango.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As IOException
             AlertHelper.GenerateAlert("danger", "Error de entrada/salida al procesar el archivo.", alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Catch ex As Exception
             AlertHelper.GenerateAlert("danger", "Se produjo un error inesperado: " & ex.Message, alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         End Try
     End Sub
 

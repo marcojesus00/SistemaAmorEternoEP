@@ -95,7 +95,7 @@ LEFT JOIN
 
 
         Catch ex As Exception
-            ' Handle any other exceptions
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             Throw New Exception("Problema al recibir información de la base de datos.", ex)
         End Try
     End Function
@@ -126,8 +126,9 @@ LEFT JOIN
             Return groupedData
 
         Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
             Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
-            Throw
         End Try
     End Function
 
