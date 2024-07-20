@@ -12,17 +12,7 @@ Partial Public Class VentasDashboard
 
 
     Public Function getGroupedSalesByProductFromDB(Optional orderBy As String = "Valor") As Object
-        Dim endD = endDate.Text
-        Dim initD = startDate.Text
-
-        Dim leaderCode = ddlLeader.SelectedValue.Trim
-        Dim salesPersonCode = textBoxCode.Text.Trim
-        Dim ClientCode = textBoxClientCode.Text
-        Dim mark = ddlValidReceipts.SelectedValue
-        Dim companyCode = ddlCompany.SelectedValue.Trim
-        Dim ZoneCode = ddlCity.SelectedValue.Trim
-        Dim documentNumber = textBoxNumDoc.Text.Trim
-        Dim serviceId = ddlService.SelectedValue.Trim
+        Dim currentData As ReportData = filterData.GetUpdatedData()
         Dim selectClause As String = "Select	con.CONT_SERVI as ServicioId,
 	con.SERVI1DES as Servicio,
 	SUM(con.CONT_PRIMA) as Prima,
@@ -47,15 +37,15 @@ LEFT JOIN
         whereClauseList.Add("con.CONT_SERVI is not null")
 
 
-        If Not String.IsNullOrEmpty(ClientCode) Then
+        If Not String.IsNullOrEmpty(currentData.ClientCode) Then
             whereClauseList.Add("r.Codigo_clie like @Client")
         End If
 
-        If Not String.IsNullOrEmpty(salesPersonCode) Then
+        If Not String.IsNullOrEmpty(currentData.SalesPersonCode) Then
             whereClauseList.Add("r.RCODVEND like @Collector")
         End If
 
-        If Not String.IsNullOrEmpty(leaderCode) Then
+        If Not String.IsNullOrEmpty(currentData.LeaderCode) Then
             whereClauseList.Add("v.VEND_LIDER like @Leader")
         End If
 
@@ -63,18 +53,18 @@ LEFT JOIN
         '    whereClauseList.Add("cl.Cod_zona like @Company")
         'End If
 
-        If Not String.IsNullOrEmpty(ZoneCode) Then
+        If Not String.IsNullOrEmpty(currentData.ZoneCode) Then
             whereClauseList.Add("v.VZCODIGO like @City")
         End If
-        If Not String.IsNullOrEmpty(mark) Then
+        If Not String.IsNullOrEmpty(currentData.ValidReceiptsMark) Then
             whereClauseList.Add("r.MARCA like @Mark")
         End If
-        If Not String.IsNullOrEmpty(serviceId) Then
+        If Not String.IsNullOrEmpty(currentData.ServiceId) Then
             whereClauseList.Add("con.CONT_SERVI like @ServiceId")
         End If
 
 
-        If Not String.IsNullOrEmpty(documentNumber) Then
+        If Not String.IsNullOrEmpty(currentData.DocumentNumber) Then
             whereClauseList.Add("REPLACE(r.Num_doc, '-', '') LIKE @Document")
         End If
 
@@ -84,7 +74,10 @@ LEFT JOIN
         End If
         Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
         Try
-            Return GetFromDb(Of SalesByProductDto)(query, salesPersonCode, ClientCode, documentNumber, companyCode, ZoneCode, leaderCode, mark, ServiceId:=serviceId)
+            Using context As New AeVentasDbContext()
+                Return context.Database.SqlQuery(Of SalesByProductDto)(query, filterData.GetWhereAndParams().sqlParams.ToArray())
+
+            End Using
 
 
         Catch ex As Exception
@@ -119,8 +112,9 @@ LEFT JOIN
 
 
     Private Sub BindReceiptsByProductDetails(DetailsControl As GridView, keyValue As String)
-        Dim lista = SalesReceiptsCachedList
-        Dim d = lista.Where(Function(r) r.ServicioId IsNot Nothing AndAlso r.ServicioId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenByDescending _
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB()
+
+        Dim d = sales.Where(Function(r) r.ServicioId IsNot Nothing AndAlso r.ServicioId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenByDescending _
             (Function(e)
                  Dim time As DateTime
                  If DateTime.TryParse(e.Hora, time) Then

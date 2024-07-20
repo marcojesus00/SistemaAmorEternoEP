@@ -11,15 +11,19 @@ Public Class VentasDashboard
     'Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
     Dim thisPage = "~/Dashboards/Ventas/Ventas.aspx"
-
+    Public PageNumber As Integer = 1
+    Public PageSize As Integer = 10
+    Public TotalPages As Integer '
+    Public TotalItems As Integer = 0
     Private ReadOnly _controlStateManager As New ControlStateManager()
 
+    Dim filterData As New ReportData()
     Public Property SalesReceiptsCachedList As List(Of VentasDto)
         Get
-            Return CachingHelper.GetOrFetch("SalesReceipts", AddressOf getReceiptsFromDB, 100)
+            Return CachingHelper.GetOrFetch(filterData.GenerateCacheKey, AddressOf getReceiptsFromDB, 100)
         End Get
         Set(value As List(Of VentasDto))
-            CachingHelper.CacheSet("SalesReceipts", value, 100)
+            CachingHelper.CacheSet(filterData.GenerateCacheKey(), value, 100)
         End Set
     End Property
 
@@ -46,6 +50,7 @@ Public Class VentasDashboard
 
                 If Not IsPostBack Then
                     FillDll()
+                    UpdatedData(filterData)
                     ReBind()
                     'storeOldValues()
                 End If
@@ -64,13 +69,28 @@ Public Class VentasDashboard
 
         End Try
     End Sub
+    Public Sub UpdatedData(ByVal Data As ReportData)
+
+        Data.EndDate = endDate.Text
+        Data.StartDate = startDate.Text
+        Data.LeaderCode = ddlLeader.SelectedValue.Trim
+        Data.SalesPersonCode = textBoxCode.Text.Trim
+        Data.ClientCode = textBoxClientCode.Text
+        Data.ValidReceiptsMark = ddlValidReceipts.SelectedValue
+        Data.CompanyCode = ddlCompany.SelectedValue.Trim
+        Data.ZoneCode = ddlCity.SelectedValue.Trim
+        Data.DocumentNumber = textBoxNumDoc.Text.Trim
+        Data.ServiceId = ddlService.SelectedValue.Trim
+        Data.PageNumber = PageNumber ' Assuming PageNumber and PageSize are set elsewhere
+        Data.PageSize = PageSize
+    End Sub
 
     Protected Sub DashboardType_change(sender As Object, e As EventArgs) Handles DashboardType.SelectedIndexChanged
         ReBind()
     End Sub
 
     'Fill the gridviews 
-    Protected Sub ReBind()
+    Protected Sub ReBind(Optional selectedPage As Integer = 1)
         Try
 
             Dim almostEmpyFilters = ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
@@ -94,14 +114,16 @@ Public Class VentasDashboard
                 '    Dim msg = "Por favor refine su búsqueda"
                 '    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 'Else
-                Dim DataList = GetReceiptDataForGridview()
+                'Dim DataList = GetReceiptDataForGridview()
+                Dim result As PaginatedResult(Of SalesGroupedDto) = GetGroupedSalesBySalesmanFromDB(selectedPage)
+
                 endDate.Enabled = True
                 startDate.Enabled = True
                 ddlValidReceipts.Enabled = True
                 lblNumDoc.Text = "Número de documento del recibo"
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 ddlService.Enabled = False
-                BindGridView(DataList)
+                BindGridView(result.Data, result.TotalCount, selectedPage)
 
 
                 'End If
@@ -125,7 +147,7 @@ Public Class VentasDashboard
                 'End If
                 Dim dataList = GetReceiptByServiceDataForGridview() ' GetPortfolioDataForGridview()
 
-                BindGridView(dataList)
+                'BindGridView(dataList)
             End If
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
@@ -146,7 +168,7 @@ Public Class VentasDashboard
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         Using context As New FunamorContext, ventasContext As New AeVentasDbContext
             Dim queryServices = "SELECT serv_codigo as Codigo, serv_descri as Nombre  FROM [FUNAMOR].[dbo].[SERVICIO] where serv_codigo <>''"
-            Dim services = GetFromDb(Of ServicesDto)(queryServices)
+            Dim services = context.Database.SqlQuery(Of ServicesDto)(queryServices).ToList()
             ddlService.DataSource = services
             ddlService.DataTextField = "Nombre"
             ddlService.DataValueField = "Codigo"
@@ -182,14 +204,30 @@ Public Class VentasDashboard
 
     End Sub
 
-    Private Sub BindGridView(dataList As Object)
+    Private Sub BindGridView(dataList As Object, totalCount As Integer, page As Integer)
 
 
         Try
 
             Dim msg = ""
+
+            TotalItems = totalCount
+            PageNumber = page
+            TotalPages = Math.Ceiling(totalCount / PageSize)
             DashboardGridview.DataSource = dataList
             DashboardGridview.DataBind()
+            ' Update the Previous and Next buttons' enabled state
+            Dim pages As New List(Of Integer)()
+            For i As Integer = 1 To TotalPages
+                pages.Add(i)
+            Next
+
+            rptPager.DataSource = pages
+            rptPager.DataBind()
+            lnkbtnPrevious.Enabled = PageNumber > 1
+            lnkbtnNext.Enabled = PageNumber < TotalPages
+            lblTotalCount.DataBind()
+
             If DashboardGridview.Rows.Count = 0 Then
                 msg = "No se encontraron resultados"
             Else
@@ -289,59 +327,8 @@ Public Class VentasDashboard
 
     End Sub
 
-    Public Function GetFromDb(Of T)(query As String, Optional salesPersonCode As String = "", Optional ClientCode As String = "", Optional documentNumber As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "", Optional mark As String = "", Optional ServiceId As String = "") As List(Of T)
-        Dim endD = endDate.Text
-        Dim initD = startDate.Text
-
-        Using aeVentasDbContext As New AeVentasDbContext
-            aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
 
-            Try
-                Dim startDateParam As DateTime
-                Dim endDateParam As DateTime
-
-                If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
-                    startDateParam = startDateParam.Date
-                    endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
-                    Dim clientCodeParam As String = "%" & ClientCode & "%"
-                    Dim LeaderCodeParam As String = "%" & leaderCode & "%"
-                    Dim collectorCodeParam As String = "%" & salesPersonCode & "%"
-                    Dim markParam = "%" & mark & "%"
-                    Dim CompanyCodeParam As String = "%" & companyCode & "%"
-                    Dim CityCodeParam As String = "%" & ZoneCode & "%"
-                    Dim documentNumberParam As String = "%" & documentNumber & "%"
-                    Dim ServiceIdParam As String = "%" & ServiceId & "%"
-                    Dim result As List(Of T) = aeVentasDbContext.Database.SqlQuery(Of T)(
-                        query,
-                                                New SqlParameter("@Leader", LeaderCodeParam),
-                            New SqlParameter("@Document", documentNumberParam),
-                        New SqlParameter("@Collector", collectorCodeParam),
-                        New SqlParameter("@Mark", markParam),
-                        New SqlParameter("@client", clientCodeParam),
-                                               New SqlParameter("@Company", CompanyCodeParam),
-                       New SqlParameter("@City", CityCodeParam),
-                                               New SqlParameter("@ServiceId", ServiceIdParam),
-                        New SqlParameter("@Start", startDateParam),
-                        New SqlParameter("@End", endDateParam)).ToList()
-
-
-                    Return result
-
-                Else
-                    ' Handle parsing error if needed
-                    Throw New ArgumentException("Invalid date format for start or end date.")
-                End If
-            Catch ex As SqlException
-                Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
-                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-                AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
-            Catch ex As Exception
-                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-                Throw New Exception("Problema al recibir información de la base de datos." & ex.Message, ex)
-            End Try
-        End Using
-    End Function
 
     Protected Sub DetailsControl_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         Try
@@ -356,7 +343,9 @@ Public Class VentasDashboard
 
 
             If e.CommandName = "ReceiptLocationMap" Then
-                Dim d = SalesReceiptsCachedList.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+                'Dim result As PaginatedResult(Of VentasDto) = 
+                Dim sales As List(Of VentasDto) = getReceiptsFromDB()
+                Dim d = sales.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
                 If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
                     Dim lat = d.LATITUD
                     Dim lon = d.LONGITUD
@@ -433,7 +422,9 @@ Public Class VentasDashboard
         End If
     End Sub
     Public Function FindMapLink(Id)
-        Return SalesReceiptsCachedList.Where(Function(r) r.Recibo.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD.ToString() IsNot Nothing AndAlso r.LONGITUD.ToString() IsNot Nothing,
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB(receiptNumber:=Id)
+
+        Return sales.Where(Function(r) r.Recibo.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD.ToString() IsNot Nothing AndAlso r.LONGITUD.ToString() IsNot Nothing,
                $"https://www.google.com/maps?q={r.LATITUD},{r.LONGITUD}",
                "https://www.google.com/maps")}).FirstOrDefault().Link
     End Function
@@ -463,30 +454,63 @@ Public Class VentasDashboard
 
         CachingHelper.CacheRemove("SalesReceipts")
         ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        filterData.LeaderCode = ddlLeader.SelectedValue.Trim
 
 
     End Sub
     Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
         CachingHelper.CacheRemove("SalesReceipts")
         ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        filterData.SalesPersonCode = textBoxCode.Text.Trim
+
 
     End Sub
     Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
         CachingHelper.CacheRemove("SalesReceipts")
+        filterData.DocumentNumber = textBoxNumDoc.Text.Trim
+
     End Sub
     Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
         CachingHelper.CacheRemove("SalesReceipts")
         ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
+        filterData.CompanyCode = ddlCompany.SelectedValue.Trim
+
 
     End Sub
     Public Sub DdlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
         CachingHelper.CacheRemove("SalesReceipts")
+        filterData.ZoneCode = ddlCity.SelectedValue.Trim
+
         ' CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
 
     End Sub
 
     Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
         CachingHelper.CacheRemove("SalesReceipts")
+        filterData.ValidReceiptsMark = ddlValidReceipts.SelectedValue.Trim
+
 
     End Sub
+
+    Protected Sub lnkbtnPage_Click(sender As Object, e As EventArgs)
+        Dim lnkButton As LinkButton = CType(sender, LinkButton)
+        Dim selectedPage As Integer = Integer.Parse(lnkButton.Text)
+        filterData.PageNumber = selectedPage
+        ReBind(selectedPage)
+    End Sub
+
+    Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
+        filterData.PageNumber = filterData.PageNumber - 1
+        ReBind(PageNumber - 1)
+        'filterData.PageNumber = selectedPage
+
+    End Sub
+
+    Protected Sub lnkbtnNext_Click(sender As Object, e As EventArgs)
+        filterData.PageNumber = filterData.PageNumber + 1
+
+        ReBind(PageNumber + 1)
+    End Sub
+
+
 End Class
