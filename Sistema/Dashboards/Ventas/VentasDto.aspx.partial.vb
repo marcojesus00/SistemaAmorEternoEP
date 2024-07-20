@@ -41,8 +41,13 @@ Partial Public Class VentasDashboard
     End Class
     Public Class ServicesDto
         Public Property Codigo As String
-        Public Property nombre As String
+        Public Property Nombre As String
     End Class
 
-
+    Public Class SalesGroupedDto
+        Public Property Codigo As String
+        Public Property Nombre As String
+        Public Property Ventas As Integer
+        Public Property Cobrado As Decimal
+    End Class
 End Class
