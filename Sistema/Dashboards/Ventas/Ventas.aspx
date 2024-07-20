@@ -172,7 +172,7 @@
                     </asp:GridView>
 <nav aria-label="Page navigation"> 
     <ul class="pagination justify-content-center">
-        <asp:label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems %>'></asp:label>
+        <asp:label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & " ventas" %>'></asp:label>
 
         <li class="page-item" runat="server" id="PreviousPage">
             <asp:LinkButton ID="lnkbtnPrevious" runat="server" Text="&laquo; Previa" CssClass="page-link" OnClick="lnkbtnPrevious_Click" Enabled='<%# PageNumber > 1 %>'></asp:LinkButton>
@@ -180,11 +180,12 @@
         
         <asp:Repeater ID="rptPager" runat="server">
             <ItemTemplate>
-                <li class="page-item <%# If(Container.DataItem = PageNumber, "active", "") %>">
+<li class="page-item <%# IsActivePage(Container.DataItem, PageNumber) %>">
                     <asp:LinkButton ID="lnkbtnPage" runat="server" Text='<%# Container.DataItem %>' CssClass="page-link" OnClick="lnkbtnPage_Click"></asp:LinkButton>
                 </li>
             </ItemTemplate>
         </asp:Repeater>
+
         <li class="page-item" runat="server" id="NextPage">
             <asp:LinkButton ID="lnkbtnNext" runat="server" Text="Siguiente &raquo;" CssClass="page-link" OnClick="lnkbtnNext_Click" Enabled='<%# PageNumber < TotalPages %>'></asp:LinkButton>
         </li>

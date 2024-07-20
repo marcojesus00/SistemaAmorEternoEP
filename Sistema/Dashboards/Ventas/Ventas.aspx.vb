@@ -53,7 +53,11 @@ Public Class VentasDashboard
                     UpdatedData(filterData)
                     ReBind()
                     'storeOldValues()
+                Else
+                    UpdatedData(filterData)
+
                 End If
+
                 pnlMap.Visible = False
 
                 AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
@@ -222,7 +226,7 @@ Public Class VentasDashboard
                 pages.Add(i)
             Next
 
-            rptPager.DataSource = pages
+            rptPager.DataSource = GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
             rptPager.DataBind()
             lnkbtnPrevious.Enabled = PageNumber > 1
             lnkbtnNext.Enabled = PageNumber < TotalPages
@@ -333,34 +337,37 @@ Public Class VentasDashboard
     Protected Sub DetailsControl_RowCommand(sender As Object, e As GridViewCommandEventArgs)
         Try
 
-            Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-            'Dim nestedGrid As GridView = DirectCast(DashboardGridview.Rows(rowIndex).FindControl("DetailsControl"), GridView)
-            Dim nestedGrid As GridView = CType(sender, GridView)
-            Dim row As GridViewRow = nestedGrid.Rows(rowIndex)
+            'Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+            'Dim nestedGrid As GridView = CType(sender, GridView)
+            'Dim row As GridViewRow = nestedGrid.Rows(rowIndex)
+
             'Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
-            'Dim keyValue As String = DataBinder.Eval(e.Row.DataItem, "Codigo").ToString()
-            Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
 
 
-            If e.CommandName = "ReceiptLocationMap" Then
-                'Dim result As PaginatedResult(Of VentasDto) = 
-                Dim sales As List(Of VentasDto) = getReceiptsFromDB()
-                Dim d = sales.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
-                If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
-                    Dim lat = d.LATITUD
-                    Dim lon = d.LONGITUD
-                    Dim linkToMaps = $"https://www.google.com/maps?q={lat},{lon}"
-                    ClientScript.RegisterStartupScript(Me.GetType(), "OpenNewTabScript", "openLinkInNewTab('" & linkToMaps & "');", True)
+            'If e.CommandName = "ReceiptLocationMap" Then
+            '    'Dim result As PaginatedResult(Of VentasDto) = 
+            '    Dim sales As List(Of VentasDto) = getReceiptsFromDB()
+            '    Dim d = sales.Where(Function(r) r.Recibo.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+            '    If d IsNot Nothing Then
 
-                    'Response.Redirect(linkToMaps)
-                    'LinkHelper.OpenLinkInNewTab(Me.Page, linkToMaps)
-                Else
-                    AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
+            '        Dim linkToMaps = GetLinkToMaps(d.LATITUD, d.LONGITUD)
+            '        If String.IsNullOrWhiteSpace(linkToMaps) Then
+            '            AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
+            '        Else
+            '            ClientScript.RegisterStartupScript(Me.GetType(), "OpenNewTabScript", "openLinkInNewTab('" & linkToMaps & "');", True)
 
-                End If
+            '        End If
 
 
-            End If
+
+            '    Else
+            '            AlertHelper.GenerateAlert("danger", "Coordenadas corruptas", alertPlaceholder)
+
+            '    End If
+
+
+            'End If
+
 
 
         Catch ex As FormatException
@@ -381,6 +388,7 @@ Public Class VentasDashboard
 
         End Try
     End Sub
+
 
     Protected Sub DetailsControl_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
@@ -494,14 +502,18 @@ Public Class VentasDashboard
 
     Protected Sub lnkbtnPage_Click(sender As Object, e As EventArgs)
         Dim lnkButton As LinkButton = CType(sender, LinkButton)
-        Dim selectedPage As Integer = Integer.Parse(lnkButton.Text)
-        filterData.PageNumber = selectedPage
-        ReBind(selectedPage)
+        Dim resultInteger As Integer
+        If Integer.TryParse(lnkButton.Text, resultInteger) Then
+            Dim selectedPage As Integer = Integer.Parse(lnkButton.Text)
+            filterData.PageNumber = selectedPage
+            ReBind(selectedPage)
+        End If
+
     End Sub
 
     Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
         filterData.PageNumber = filterData.PageNumber - 1
-        ReBind(PageNumber - 1)
+        ReBind(filterData.PageNumber)
         'filterData.PageNumber = selectedPage
 
     End Sub
@@ -509,8 +521,50 @@ Public Class VentasDashboard
     Protected Sub lnkbtnNext_Click(sender As Object, e As EventArgs)
         filterData.PageNumber = filterData.PageNumber + 1
 
-        ReBind(PageNumber + 1)
+        ReBind(filterData.PageNumber)
     End Sub
+
+    'Private Function GetLimitedPageNumbers(ByVal totalItems As Integer, ByVal itemsPerPage As Integer, ByVal currentPage As Integer, ByVal range As Integer) As List(Of Integer)
+    '    Dim totalPages As Integer = Math.Ceiling(totalItems / itemsPerPage)
+    '    Dim startPage As Integer = Math.Max(currentPage - range, 1)
+    '    Dim endPage As Integer = Math.Min(currentPage + range, totalPages)
+
+    '    Dim pageNumbers As New List(Of Integer)
+    '    For i As Integer = startPage To endPage
+    '        pageNumbers.Add(i)
+    '    Next
+    '    Return pageNumbers
+    'End Function
+
+    Private Function GetLimitedPageNumbers(ByVal totalItems As Integer, ByVal itemsPerPage As Integer, ByVal currentPage As Integer, ByVal range As Integer) As List(Of Object)
+        Dim totalPages As Integer = Math.Ceiling(totalItems / itemsPerPage)
+        Dim startPage As Integer = Math.Max(currentPage - range, 1)
+        Dim endPage As Integer = Math.Min(currentPage + range, totalPages)
+
+        Dim pageNumbers As New List(Of Object)
+
+        For i As Integer = startPage To endPage
+            pageNumbers.Add(i)
+        Next
+
+        If startPage > 2 Then
+            pageNumbers.Insert(0, "...")
+        End If
+
+        If endPage < totalPages - 1 Then
+            pageNumbers.Add("...")
+        End If
+
+        Return pageNumbers
+    End Function
+    Protected Function IsActivePage(dataItem As Object, pageNumber As Double) As String
+        Dim parsedNumber As Double
+        If Double.TryParse(Convert.ToString(dataItem), parsedNumber) AndAlso parsedNumber = pageNumber Then
+            Return "active"
+        Else
+            Return String.Empty
+        End If
+    End Function
 
 
 End Class
