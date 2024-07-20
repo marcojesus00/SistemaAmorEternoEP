@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Ventas.aspx.vb" Inherits="Sistema.VentasDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
+        <h1 class=" text-center">Dashboard de ventas</h1>
 
     <div class="container-fluid mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
@@ -172,7 +173,7 @@
                     </asp:GridView>
 <nav aria-label="Page navigation"> 
     <ul class="pagination justify-content-center">
-        <asp:label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & " ventas" %>'></asp:label>
+        <asp:label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & "    " %>'></asp:label>
 
         <li class="page-item" runat="server" id="PreviousPage">
             <asp:LinkButton ID="lnkbtnPrevious" runat="server" Text="&laquo; Previa" CssClass="page-link" OnClick="lnkbtnPrevious_Click" Enabled='<%# PageNumber > 1 %>'></asp:LinkButton>

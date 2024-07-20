@@ -75,7 +75,6 @@ Public Class MapPage
                         iconSize: [38, 38],
                         iconAnchor: [19, 38],
                         popupAnchor: [-3, -76],
-                        shadowUrl: '/imagenes/circleShadow.png',
                         shadowSize: [44, 44],
                         shadowAnchor: [22, 44]
                     });" & vbCrLf

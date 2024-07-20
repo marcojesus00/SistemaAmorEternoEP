@@ -11,7 +11,7 @@ Partial Public Class VentasDashboard
     Inherits System.Web.UI.Page
 
 
-    Public Function getGroupedSalesByProductFromDB(Optional orderBy As String = "Valor") As Object
+    Public Function getGroupedSalesByProductFromDB(selectedPage, Optional orderBy = "Valor") As Object
         Dim currentData As ReportData = filterData.GetUpdatedData()
         Dim selectClause As String = "Select	con.CONT_SERVI as ServicioId,
 	con.SERVI1DES as Servicio,
@@ -30,6 +30,8 @@ LEFT JOIN
 
         Dim orderByClause As String = $"order by {orderBy} desc"
         Dim groupByClause As String = "GROUP BY con.CONT_SERVI, con.SERVI1DES"
+        Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
+
         whereClauseList.Add("r.RFECHA <= @End")
         whereClauseList.Add("r.RFECHA >= @Start")
 
@@ -72,11 +74,23 @@ LEFT JOIN
         If whereClauseList.Count > 0 Then
             whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
         End If
-        Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
+        Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause, paginationClause)
         Try
             Using context As New AeVentasDbContext()
-                Return context.Database.SqlQuery(Of SalesByProductDto)(query, filterData.GetWhereAndParams().sqlParams.ToArray())
+                context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+                Dim queryCount = $"
+                    SELECT COUNT(*) AS TotalCount from
+                         ( select con.CONT_SERVI  {fromClause}
+                        {whereClause} {groupByClause}) as subquery
+                             ;"
+                Dim result = context.Database.SqlQuery(Of SalesByProductDto)(query, filterData.GetWhereAndParams(selectedPage:=selectedPage).sqlParams.ToArray()).ToList()
+                Dim toltalC = context.Database.SqlQuery(Of Integer)(queryCount, filterData.GetWhereAndParams(selectedPage:=selectedPage).sqlParams.ToArray()).FirstOrDefault()
 
+                Dim p = New PaginatedResult(Of SalesByProductDto) With {
+                                            .Data = result,
+                                            .TotalCount = toltalC
+                                        }
+                Return p
             End Using
 
 
@@ -89,19 +103,9 @@ LEFT JOIN
     End Function
 
     Public Function GetReceiptByServiceDataForGridview()
-        Dim collectorCode = textBoxCode.Text.Trim
-        Dim CompanyCode = ddlCompany.SelectedValue.Trim
-        Dim leaderCode As String = ddlLeader.SelectedValue.Trim
-        Dim zoneCode As String = ddlCity.SelectedValue.Trim
-        Dim ClientCode As String = textBoxClientCode.Text.Trim
+
         Try
 
-            Dim data1 As List(Of SalesByProductDto) = getGroupedSalesByProductFromDB()
-
-
-            Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
-
-            Return finalData
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))

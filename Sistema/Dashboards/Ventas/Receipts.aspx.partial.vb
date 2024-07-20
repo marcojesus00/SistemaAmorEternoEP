@@ -79,12 +79,8 @@ Partial Public Class VentasDashboard
             End If
 
             ' Parameters passed
-            If Not String.IsNullOrEmpty(salesman) Then
-                currentData.SalesPersonCode = salesman
-            End If
-            If Not String.IsNullOrEmpty(receiptNumber) Then
-                currentData.DocumentNumber = receiptNumber
-            End If
+
+
 
             ' Constant where clause list
             whereClauseList.Add("r.RFECHA <= @End")
@@ -92,15 +88,34 @@ Partial Public Class VentasDashboard
             whereClauseList.Add("r.Por_lempira > 0")
 
             ' Conditionally where and params
+            If Not String.IsNullOrEmpty(currentData.CompanyCode) Then
+                sqlParameters.Add(New SqlParameter("@Company", currentData.CompanyCode & "%"))
+                whereClauseList.Add("r.Num_doc like  @Company")
+
+
+            End If
             If Not String.IsNullOrEmpty(currentData.ClientCode) Then
                 whereClauseList.Add("r.Codigo_clie like @Client")
                 sqlParameters.Add(New SqlParameter("@Client", "%" & currentData.ClientCode & "%"))
             End If
 
-            If Not String.IsNullOrEmpty(currentData.SalesPersonCode) Then
+
+            If Not String.IsNullOrEmpty(currentData.SalesPersonCode) OrElse Not String.IsNullOrEmpty(salesman) Then
+                Dim salesManEfective
+                If Not String.IsNullOrEmpty(salesman) Then
+
+                    salesManEfective = salesman
+                Else
+                    salesManEfective = currentData.SalesPersonCode
+
+                End If
+
                 whereClauseList.Add("r.RCODVEND like @Collector")
-                sqlParameters.Add(New SqlParameter("@Collector", "%" & currentData.SalesPersonCode & "%"))
+                sqlParameters.Add(New SqlParameter("@Collector", "%" & salesManEfective & "%"))
+
+
             End If
+
 
             If Not String.IsNullOrEmpty(currentData.LeaderCode) Then
                 whereClauseList.Add("v.VEND_LIDER like @Leader")
@@ -117,9 +132,15 @@ Partial Public Class VentasDashboard
                 sqlParameters.Add(New SqlParameter("@Mark", "%" & currentData.ValidReceiptsMark & "%"))
             End If
 
-            If Not String.IsNullOrEmpty(currentData.DocumentNumber) Then
+            If Not String.IsNullOrEmpty(currentData.DocumentNumber) OrElse Not String.IsNullOrEmpty(receiptNumber) Then
+                Dim documentNumberEfective
+                If Not String.IsNullOrEmpty(receiptNumber) Then
+                    documentNumberEfective = receiptNumber
+                Else
+                    documentNumberEfective = currentData.DocumentNumber
+                End If
                 whereClauseList.Add("REPLACE(r.Num_doc, '-', '') LIKE @Document")
-                sqlParameters.Add(New SqlParameter("@Document", "%" & currentData.DocumentNumber & "%"))
+                sqlParameters.Add(New SqlParameter("@Document", "%" & documentNumberEfective & "%"))
             End If
 
             If Not String.IsNullOrEmpty(currentData.ServiceId) Then
@@ -178,7 +199,7 @@ Partial Public Class VentasDashboard
         Dim paginated As New PaginatedResult(Of SalesGroupedDto) ' GetFromDb1(Of PaginatedResult(Of SalesBySalesmanDto))(query, queryCOunt:=queryCount)
 
         Using aeVentasDbContext As New AeVentasDbContext
-            aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            'aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
             Dim parameters As List(Of SqlParameter) = filterData.GetWhereAndParams(selectedPage).sqlParams
             Dim totalCountParams As List(Of SqlParameter) = filterData.GetWhereAndParams(selectedPage).sqlParams ' Clonar los parámetros para la segunda consulta
 
@@ -224,9 +245,11 @@ Partial Public Class VentasDashboard
 
 
         Try
-
-
-            selectClause = "select top 20  r.Num_doc as Recibo, r.RFECHA as Fecha, r.RCODVEND as VendedorId,
+            Dim top = "top 11"
+            If filterData.SalesPersonCode.Length > 3 OrElse filterData.ClientCode.Length > 3 Then
+                top = "top 100"
+            End If
+            selectClause = $"select {top}  r.Num_doc as Recibo, r.RFECHA as Fecha, r.RCODVEND as VendedorId,
                                     LTRIM(RTRIM(v.Nombre_vend)) AS Vendedor, v.VEND_LIDER as LiderId,
                                     c.Codigo_clie as ClienteId, LTRIM(RTRIM(c.Nombre_clie)) AS Cliente,
                                     r.Por_lempira, con.CONT_SERVI ServicioId,
@@ -247,7 +270,7 @@ Partial Public Class VentasDashboard
 
 
             Using aeVentasDbContext As New AeVentasDbContext()
-                aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+                'aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
                 aeVentasDbContext.Configuration.AutoDetectChangesEnabled = False
                 aeVentasDbContext.Configuration.LazyLoadingEnabled = False
@@ -273,7 +296,7 @@ Partial Public Class VentasDashboard
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim receipts As List(Of VentasDto)
-        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue)
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="")
 
         receipts = sales.Where(Function(c) c.VendedorId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
@@ -302,21 +325,27 @@ Partial Public Class VentasDashboard
 
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
-        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue)
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="")
         If sales IsNot Nothing Then
+            'Try
             Dim result = sales.OrderByDescending(Function(r) r.Fecha).ThenByDescending _
-                (Function(e)
-                     Dim time As DateTime
-                     If DateTime.TryParse(e.Hora, time) Then
-                         Return time
-                     Else
-                         Return DateTime.MinValue ' Default value for invalid time strings
-                     End If
-                 End Function) _
-                .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + " " + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Prima), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)}).ToList()
-            DetailsControl.DataSource = result
+    (Function(e)
+         Dim time As DateTime
+         If DateTime.TryParse(e.Hora, time) Then
+             Return time
+         Else
+             Return DateTime.MinValue ' Default value for invalid time strings
+         End If
+     End Function) _
+    .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + " " + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Prima), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)}).ToList()
 
-        Else
+                DetailsControl.DataSource = result
+
+                'Catch ex As Exception
+                'End Try
+
+
+                Else
             DetailsControl.DataSource = sales
         End If
 

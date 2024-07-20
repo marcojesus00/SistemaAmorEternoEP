@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
-
+    <h1 class=" text-center">Dashboard de cobros</h1>
     <div class="container-fluid mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">

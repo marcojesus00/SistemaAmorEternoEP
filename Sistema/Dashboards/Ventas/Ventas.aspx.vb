@@ -149,9 +149,20 @@ Public Class VentasDashboard
                 'Else
 
                 'End If
-                Dim dataList = GetReceiptByServiceDataForGridview() ' GetPortfolioDataForGridview()
+                Dim result As PaginatedResult(Of SalesByProductDto) = getGroupedSalesByProductFromDB(selectedPage)
+                Dim data1 As List(Of SalesByProductDto) = result.Data
+                Dim count = result.TotalCount
+                If data1 IsNot Nothing Then
+                    Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
 
-                'BindGridView(dataList)
+                    BindGridView(finalData, count, selectedPage)
+
+                Else
+                    BindGridView(data1, count, selectedPage)
+
+                End If
+                'Dim dataList = GetReceiptByServiceDataForGridview() ' GetPortfolioDataForGridview()
+
             End If
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
@@ -389,24 +400,38 @@ Public Class VentasDashboard
         End Try
     End Sub
 
+    Protected Sub linkButotnOpenLink_Click(sender As Object, e As EventArgs)
+        ' This is your custom function that gets executed on click
+        ' Put your desired logic here
 
+        ' Example: Redirect to a new page
+        Dim linkUrl As String = FindMapLink("")
+
+        Dim sScript = "window.open('" & linkUrl & "', '_blank'); return false;"
+        'this.ClientScript.RegisterStartupScript(this.GetType(), "MyOpener", sScript, True);
+
+    End Sub
     Protected Sub DetailsControl_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
 
             If DashboardType.SelectedValue = "0" Then
                 Dim estadoCell As TableCell = e.Row.Cells(9)
-                Dim linkUrl As String = FindMapLink(e.Row.Cells(1).Text)
+                'Dim linkUrl As String = FindMapLink(e.Row.Cells(1).Text)
                 ' Create a button to open the link in a new tab
-                Dim linkButotnOpenLink As New LinkButton()
-                linkButotnOpenLink.CssClass = "btn btn-sm btn-outline-dark"
-                linkButotnOpenLink.ToolTip = "Ubicación del recibo"
-                linkButotnOpenLink.Attributes("onclick") = "window.open('" & linkUrl & "', '_blank'); return false;"
-                Dim icon As New HtmlGenericControl("i")
-                icon.Attributes("class") = "bi bi-geo-alt-fill" ' Bootstrap icon class
-                linkButotnOpenLink.Controls.Add(icon)
+                'Dim linkButotnOpenLink As New LinkButton()
+                'linkButotnOpenLink.ID = "ReceiptMapLinkButton"
+                'linkButotnOpenLink.CssClass = "btn btn-sm btn-outline-dark"
+                'linkButotnOpenLink.ToolTip = "Ubicación del recibo"
+                'linkButotnOpenLink.CommandArgument ="<%# Eval("Codigo") %>"
+                'linkButotnOpenLink.Attributes("onclick") = "window.open('" & linkUrl & "', '_blank'); return false;"
+                'AddHandler linkButotnOpenLink.Click, AddressOf linkButotnOpenLink_Click ' Wire up the event handler
 
-                ' Add the button to the first cell of the row
-                e.Row.Cells(0).Controls.Add(linkButotnOpenLink)
+                'Dim icon As New HtmlGenericControl("i")
+                'icon.Attributes("class") = "bi bi-geo-alt-fill" ' Bootstrap icon class
+                'linkButotnOpenLink.Controls.Add(icon)
+
+                '' Add the button to the first cell of the row
+                'e.Row.Cells(0).Controls.Add(linkButotnOpenLink)
 
                 ' Check the value of the "Estado" column
                 If estadoCell.Text.ToLower() = "nulo" Then
@@ -512,8 +537,11 @@ Public Class VentasDashboard
     End Sub
 
     Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
-        filterData.PageNumber = filterData.PageNumber - 1
-        ReBind(filterData.PageNumber)
+        If filterData.PageNumber > 1 Then
+            filterData.PageNumber = filterData.PageNumber - 1
+            ReBind(filterData.PageNumber)
+
+        End If
         'filterData.PageNumber = selectedPage
 
     End Sub
@@ -524,17 +552,6 @@ Public Class VentasDashboard
         ReBind(filterData.PageNumber)
     End Sub
 
-    'Private Function GetLimitedPageNumbers(ByVal totalItems As Integer, ByVal itemsPerPage As Integer, ByVal currentPage As Integer, ByVal range As Integer) As List(Of Integer)
-    '    Dim totalPages As Integer = Math.Ceiling(totalItems / itemsPerPage)
-    '    Dim startPage As Integer = Math.Max(currentPage - range, 1)
-    '    Dim endPage As Integer = Math.Min(currentPage + range, totalPages)
-
-    '    Dim pageNumbers As New List(Of Integer)
-    '    For i As Integer = startPage To endPage
-    '        pageNumbers.Add(i)
-    '    Next
-    '    Return pageNumbers
-    'End Function
 
     Private Function GetLimitedPageNumbers(ByVal totalItems As Integer, ByVal itemsPerPage As Integer, ByVal currentPage As Integer, ByVal range As Integer) As List(Of Object)
         Dim totalPages As Integer = Math.Ceiling(totalItems / itemsPerPage)
