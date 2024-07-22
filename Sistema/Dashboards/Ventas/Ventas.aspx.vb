@@ -16,7 +16,7 @@ Public Class VentasDashboard
     Public TotalPages As Integer '
     Public TotalItems As Integer = 0
     Private ReadOnly _controlStateManager As New ControlStateManager()
-
+    Public itemText As String
     Dim filterData As New ReportData()
     Public Property SalesReceiptsCachedList As List(Of VentasDto)
         Get
@@ -120,25 +120,31 @@ Public Class VentasDashboard
                 'Else
                 'Dim DataList = GetReceiptDataForGridview()
                 Dim result As PaginatedResult(Of SalesGroupedDto) = GetGroupedSalesBySalesmanFromDB(selectedPage)
-
+                itemText = " vendedores"
                 endDate.Enabled = True
                 startDate.Enabled = True
                 ddlValidReceipts.Enabled = True
-                lblNumDoc.Text = "Número de documento del recibo"
+                lblNumDoc.Text = "Número de recibo"
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
+                BtnRouteOfReceiptsMapByLeader.CssClass = "btn btn-sm btn-outline-danger" ' New class
+
                 ddlService.Enabled = False
                 BindGridView(result.Data, result.TotalCount, selectedPage)
 
 
                 'End If
             ElseIf DashboardType.SelectedValue = "1" Then
+                itemText = " productos"
+
+
                 startDate.Enabled = True
                 endDate.Enabled = True
-                ddlValidReceipts.Enabled = True
+                ddlValidReceipts.Enabled = False
                 ddlService.Enabled = True
 
                 BtnRouteOfReceiptsMapByLeader.Enabled = False
-                lblNumDoc.Text = "Número de identidad del cliente"
+                BtnRouteOfReceiptsMapByLeader.CssClass = "btn btn-sm btn-outline-secondary" ' New class
+                lblNumDoc.Text = "Identidad del cliente"
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Ventas.aspx.vb" Inherits="Sistema.VentasDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
-        <h1 class=" text-center">Dashboard de ventas</h1>
+    <h2 class="  text-center">Dashboard de ventas</h2>
 
     <div class="container-fluid mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12 pb-2 ">
+                <div class="col-lg-2 col-md-6 col-12 pb-2 ">
                     <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>
 
                     <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm" runat="server" AutoPostBack="true">
@@ -54,18 +54,18 @@
                     </asp:DropDownList>
 
                 </div>
-                <div class="col-lg-3  col-md-6 col-12 pb-2">
+                <div class="col-lg-2  col-md-6 col-12 pb-2">
                     <div class="row">
                         <label for="ddlLeader" class="form-control-label">Lider</label>
 
-                        <div class="col-lg-10 col-10">
+                        <div class="col-lg-8 col-8 ">
 
                             <asp:DropDownList ID="ddlLeader" runat="server" CssClass="form-control form-control-sm">
                             </asp:DropDownList>
                         </div>
-                        <div class="col-lg-2 col-2">
+                        <div class="col-lg-auto col-auto">
 
-                            <asp:LinkButton ID="BtnRouteOfReceiptsMapByLeader" ToolTip="Mapa de recibos por lider" CssClass="btn btn-sm btn-outline-danger" runat="server">
+                            <asp:LinkButton ID="BtnRouteOfReceiptsMapByLeader" ToolTip="Mapa de recibos por lider" runat="server">
 <i class="bi bi-geo-alt-fill"></i>
 
                             </asp:LinkButton>
@@ -80,7 +80,7 @@
 
 
                 </div>
-                                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
                     <label for="ddlService" class="form-control-label">Servicio </label>
 
                     <asp:DropDownList ID="ddlService" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>
+                    <asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>
 
                     <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
@@ -115,7 +115,7 @@
 
 
 
-                <div class="col-lg-2 align-self-center">
+                <div class="col-lg-2 align-self-end pb-2">
                     <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
                 </div>
             </div>
@@ -133,13 +133,13 @@
                     <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="false" OnRowDataBound="DashboardGridView_RowDataBound" OnSelectedIndexChanged="DashboardGridview_SelectedIndexChanged">
                         <Columns>
                             <%--<asp:CommandField ShowSelectButton="True" />--%>
-                            <asp:TemplateField >
+                            <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:Panel ID="pnlPluMinus" runat="server" Visible="true"> 
-                                                               <img alt="" style="cursor: pointer" src="images/plus.png" />
-                                    <img alt="" style="cursor: pointer; display: none" src="images/minus.png" />
+                                    <asp:Panel ID="pnlPluMinus" runat="server" Visible="true">
+                                        <img alt="" style="cursor: pointer" src="images/plus.png" />
+                                        <img alt="" style="cursor: pointer; display: none" src="images/minus.png" />
                                     </asp:Panel>
-             
+
                                     <%--                                                   <asp:LinkButton ID="ExpandButton" runat="server" Text="Expand" CssClass="btn btn-primary" OnClick="ExpandButton_Click" CommandArgument='<%# Container.DataItemIndex %>' />--%>
                                     <asp:Panel ID="pnlDetails" runat="server" Style="display: none">
                                         <asp:GridView ID="DetailsControl" DataKeyNames="Codigo" BackColor="White" CssClass="ChildGrid table table-sm table-striped table-hover " runat="server" AutoGeneratedColumns="True" OnRowDataBound="DetailsControl_RowDataBound" OnRowCommand="DetailsControl_RowCommand">
@@ -169,29 +169,41 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
-                        
+
                     </asp:GridView>
-<nav aria-label="Page navigation"> 
-    <ul class="pagination justify-content-center">
-        <asp:label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & "    " %>'></asp:label>
+                    <nav aria-label="Page navigation">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-2">
+                                    <asp:Label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & itemText %>'></asp:Label>
 
-        <li class="page-item" runat="server" id="PreviousPage">
-            <asp:LinkButton ID="lnkbtnPrevious" runat="server" Text="&laquo; Previa" CssClass="page-link" OnClick="lnkbtnPrevious_Click" Enabled='<%# PageNumber > 1 %>'></asp:LinkButton>
-        </li>
-        
-        <asp:Repeater ID="rptPager" runat="server">
-            <ItemTemplate>
-<li class="page-item <%# IsActivePage(Container.DataItem, PageNumber) %>">
-                    <asp:LinkButton ID="lnkbtnPage" runat="server" Text='<%# Container.DataItem %>' CssClass="page-link" OnClick="lnkbtnPage_Click"></asp:LinkButton>
-                </li>
-            </ItemTemplate>
-        </asp:Repeater>
+                                </div>
+                                <div class="col-10">
+                                    <ul class="pagination justify-content-center">
 
-        <li class="page-item" runat="server" id="NextPage">
-            <asp:LinkButton ID="lnkbtnNext" runat="server" Text="Siguiente &raquo;" CssClass="page-link" OnClick="lnkbtnNext_Click" Enabled='<%# PageNumber < TotalPages %>'></asp:LinkButton>
-        </li>
-    </ul>
-</nav>
+                                        <li class="page-item" runat="server" id="PreviousPage">
+                                            <asp:LinkButton ID="lnkbtnPrevious" runat="server" Text="&laquo; Previa" CssClass="page-link" OnClick="lnkbtnPrevious_Click" Enabled='<%# PageNumber > 1 %>'></asp:LinkButton>
+                                        </li>
+
+                                        <asp:Repeater ID="rptPager" runat="server">
+                                            <ItemTemplate>
+                                                <li class="page-item <%# IsActivePage(Container.DataItem, PageNumber) %>">
+                                                    <asp:LinkButton ID="lnkbtnPage" runat="server" Text='<%# Container.DataItem %>' CssClass="page-link" OnClick="lnkbtnPage_Click"></asp:LinkButton>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
+                                        <li class="page-item" runat="server" id="NextPage">
+                                            <asp:LinkButton ID="lnkbtnNext" runat="server" Text="Siguiente &raquo;" CssClass="page-link" OnClick="lnkbtnNext_Click" Enabled='<%# PageNumber < TotalPages %>'></asp:LinkButton>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </nav>
                 </div>
                 <div class="col-lg-4">
                 </div>
@@ -200,9 +212,9 @@
 
     </div>
     <asp:Panel ID="pnlMap" runat="server" Visible="false">
- 
+
         <div style="width: 100%; height: 100%;">
-            <iframe  id="iMap" runat="server" style="position: fixed; width: 100%; height: 90%; top: 42px; background-color: none"></iframe>
+            <iframe id="iMap" runat="server" style="position: fixed; width: 100%; height: 90%; top: 42px; background-color: none"></iframe>
         </div>
     </asp:Panel>
     <div id="alertPlaceholder" runat="server"></div>
@@ -238,14 +250,14 @@
         function openLinkInNewTab(url) {
             window.open(url, '_blank');
         }
-</script>
-        <script>
-            window.addEventListener('message', function (event) {
-                if (event.data === 'closeMap') {
+    </script>
+    <script>
+        window.addEventListener('message', function (event) {
+            if (event.data === 'closeMap') {
 
-                    document.getElementById('<%= pnlMap.ClientID %>').style.display = 'none';
-            }
-        });
+                document.getElementById('<%= pnlMap.ClientID %>').style.display = 'none';
+                }
+            });
     </script>
 
 </asp:Content>
