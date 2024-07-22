@@ -20,13 +20,13 @@ Public Class MapPage
                 Debug.WriteLine("Session handling time: " & (sessionEndTime - sessionStartTime).TotalMilliseconds & " ms")
 
                 mapTitle = dataForMaps.Title
-                Dim title As New LiteralControl($"<h2 class""display-6 fw-bold text-center text-lg-start text-sm text-md"">{dataForMaps.Title}</h2>")
+                Dim title As New LiteralControl($"<h2 class=""display-6 fw-bold text-center text-lg-start text-sm text-md"">{dataForMaps.Title}</h2>")
                 MapTitleHolder.Controls.Add(title)
-                Dim hasToBeBeClustered = dataForMaps.ValidMarkers.Count > 200 ' (dataForMaps.ValidMarkers.Count > 250 AndAlso dataForMaps.TraceLine = False) OrElse (dataForMaps.ValidMarkers.Count > 400)
+                Dim hasToBeBeClustered = dataForMaps.ValidMarkers.Count > 90 ' (dataForMaps.ValidMarkers.Count > 250 AndAlso dataForMaps.TraceLine = False) OrElse (dataForMaps.ValidMarkers.Count > 400)
                 If hasToBeBeClustered Then
-                    ProcessClusteredMap(dataForMaps)
+                    Await ProcessClusteredMap(dataForMaps)
                 Else
-                    ProcessMap(dataForMaps)
+                    Await ProcessMap(dataForMaps)
                 End If
 
                 AlertHelper.GenerateAlert("warning", dataForMaps.CountOfCorruptItems.ToString() & " coordenadas corruptas.", alertPlaceholder)
@@ -43,7 +43,7 @@ Public Class MapPage
         End Try
 
     End Sub
-    Private Async Sub ProcessMap(dataForMaps)
+    Private Async Function ProcessMap(dataForMaps) As Task
         Dim dataProcessingStartTime As DateTime = DateTime.Now
 
         Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
@@ -101,35 +101,23 @@ Public Class MapPage
         Dim dataProcessingEndTime As DateTime = DateTime.Now
         Debug.WriteLine("Data processing time: " & (dataProcessingEndTime - dataProcessingStartTime).TotalMilliseconds & " ms")
 
-    End Sub
-    Private Async Sub ProcessClusteredMap(dataForMaps)
+    End Function
+    Private Async Function ProcessClusteredMap(dataForMaps) As Task
         Dim dataProcessingStartTime As DateTime = DateTime.Now
 
         Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
+        Dim initMarkerListScript = "<script> var markerList = []; </script>"
+        ClientScript.RegisterStartupScript(Me.GetType(), "initMarkerList", initMarkerListScript)
 
         Dim script As String = "<script>" & vbCrLf &
               "var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {" & vbCrLf &
               "  attribution: 'Map data © <a href=""https://openstreetmap.org"">OpenStreetMap</a> contributors'," & vbCrLf &
-              "  maxZoom: 18," & vbCrLf &
+              "  maxZoom: 18" & vbCrLf &
               "}), 			latlng = L.latLng(" & dataForMaps.SetViewlLat & ", " & dataForMaps.SetViewlLong & " );" & vbCrLf &
               "var map = L.map('mapContainer', { center: latlng, zoom: 13, layers: [tiles] });" & vbCrLf
-        script &= "		var progress = document.getElementById('progress');" & vbCrLf
-        script &= "var progressBar = document.getElementById('progress-bar');" & vbCrLf
-        script &= "		function updateProgressBar(processed, total, elapsed, layersArray) {
-                    if (elapsed > 1000) {
-                        // if it takes more than a second to load, display the progress bar:
-                        progress.style.display = 'block';
-                        progressBar.style.width = Math.round(processed/total*100) + '%';
-                    }
 
-                    if (processed === total) {
-                        // all markers processed - hide the progress bar:
-                        progress.style.display = 'none';
-                    }
-                }" & vbCrLf
-        script &= "var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });" & vbCrLf
-        script &= "var markerList = [];" & vbCrLf
-        script &= "console.log('start creating markers: ' + window.performance.now());" & vbCrLf
+        script &= "var markers = L.markerClusterGroup({ chunkedLoading: true });" & vbCrLf
+        script &= "" & vbCrLf
 
 
         If items.Count < 1 Then
@@ -142,13 +130,12 @@ Public Class MapPage
                                For i As Integer = 0 To items.Count - 1 Step batchSize
                                    Dim batch = items.Skip(i).Take(batchSize)
                                    'script &= "markerList = [];" & vbCrLf
-                                   Dim batchScript = ""
+                                   Dim batchScript = "markerList = [];"
                                    For Each item In batch
 
                                        batchScript &= "var marker = L.marker([" & item.Latitud & ", " & item.Longitud & "]).bindTooltip('" & item.TooltipMessage & "');" & vbCrLf
                                        batchScript &= "markerList.push(marker);" & vbCrLf
                                    Next
-                                   script &= "markerList = [];" & vbCrLf
                                    script &= batchScript
                                    script &= "markers.addLayers(markerList);" & vbCrLf
                                    ClientScript.RegisterStartupScript(Me.GetType(), "updateMarkers_" & i, batchScript, True)
@@ -156,75 +143,75 @@ Public Class MapPage
                                Next
 
                            End Sub)
-            script &= "map.addLayer(markers);" & vbCrLf
+            script &= "map.addLayer(markers);" & vbCrLf &
+          "</script>"
 
-            script &= "</script>"
 
             ClientScript.RegisterStartupScript(Me.GetType(), "initializeMap", script)
         End If
         Dim dataProcessingEndTime As DateTime = DateTime.Now
         Debug.WriteLine("Data processing time: " & (dataProcessingEndTime - dataProcessingStartTime).TotalMilliseconds & " ms")
 
-    End Sub
+    End Function
 
 
-    'First is necesary to improve the dashboard performance and robustness when dealing with 400,000 markers
-    Private Async Sub ProcessClusteredMapImproved(dataForMaps)
-        Dim dataProcessingStartTime As DateTime = DateTime.Now
+    '    'First is necesary to improve the dashboard performance and robustness when dealing with 400,000 markers
+    '    Private Async Sub ProcessClusteredMapImproved(dataForMaps)
+    '        Dim dataProcessingStartTime As DateTime = DateTime.Now
 
-        Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
+    '        Dim items As List(Of MarkerForMap) = dataForMaps.ValidMarkers
 
-        ' Initial map setup script (send once)
-        Dim initScript As String = "<script>" & vbCrLf &
-        "var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {" & vbCrLf &
-        " attribution: 'Map data © <a href=""https://openstreetmap.org"">OpenStreetMap</a> contributors'," & vbCrLf &
-        " maxZoom: 18," & vbCrLf &
-        "}), 			latlng = L.latLng(" & dataForMaps.SetViewlLat & ", " & dataForMaps.SetViewlLong & " );" & vbCrLf &
-        "var map = L.map('mapContainer', { center: latlng, zoom: 13, layers: [tiles] });" & vbCrLf &
-        "var progress = document.getElementById('progress');" & vbCrLf &
-        "var progressBar = document.getElementById('progress-bar');" & vbCrLf &
-        "function updateProgressBar(processed, total, elapsed, layersArray) {" & vbCrLf &
-        "    if (elapsed > 1000) { " & vbCrLf &
-        "       progress.style.display = 'block';" & vbCrLf &
-        "       progressBar.style.width = Math.round(processed/total*100) + '%';" & vbCrLf &
-        "    }" & vbCrLf &
-        "    if (processed === total) { " & vbCrLf &
-        "       progress.style.display = 'none';" & vbCrLf &
-        "    }" & vbCrLf &
-        "}" & vbCrLf &
-        "var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });" & vbCrLf &
-        "</script>"
+    '        ' Initial map setup script (send once)
+    '        Dim initScript As String = "<script>" & vbCrLf &
+    '        "var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {" & vbCrLf &
+    '        " attribution: 'Map data © <a href=""https://openstreetmap.org"">OpenStreetMap</a> contributors'," & vbCrLf &
+    '        " maxZoom: 18," & vbCrLf &
+    '        "}), 			latlng = L.latLng(" & dataForMaps.SetViewlLat & ", " & dataForMaps.SetViewlLong & " );" & vbCrLf &
+    '        "var map = L.map('mapContainer', { center: latlng, zoom: 13, layers: [tiles] });" & vbCrLf &
+    '        "var progress = document.getElementById('progress');" & vbCrLf &
+    '        "var progressBar = document.getElementById('progress-bar');" & vbCrLf &
+    '        "function updateProgressBar(processed, total, elapsed, layersArray) {" & vbCrLf &
+    '        "    if (elapsed > 1000) { " & vbCrLf &
+    '        "       progress.style.display = 'block';" & vbCrLf &
+    '        "       progressBar.style.width = Math.round(processed/total*100) + '%';" & vbCrLf &
+    '        "    }" & vbCrLf &
+    '        "    if (processed === total) { " & vbCrLf &
+    '        "       progress.style.display = 'none';" & vbCrLf &
+    '        "    }" & vbCrLf &
+    '        "}" & vbCrLf &
+    '        "var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });" & vbCrLf &
+    '        "</script>"
 
-        ClientScript.RegisterStartupScript(Me.GetType(), "initializeMap", initScript, True) ' Send init script 
+    '        ClientScript.RegisterStartupScript(Me.GetType(), "initializeMap", initScript, True) ' Send init script 
 
-        If items.Count < 1 Then
-            AlertHelper.GenerateAlert("warning", "No se encontraron registros para mostrar en el mapa.", alertPlaceholder)
+    '        If items.Count < 1 Then
+    '            AlertHelper.GenerateAlert("warning", "No se encontraron registros para mostrar en el mapa.", alertPlaceholder)
 
-        Else
-            ' Batch processing markers asynchronously
-            Dim batchSize As Integer = 1000 ' Adjust batch size as needed
-            Await Task.Run(Sub()
-                               For i As Integer = 0 To items.Count - 1 Step batchSize
-                                   Dim batch = items.Skip(i).Take(batchSize)
+    '        Else
+    '            ' Batch processing markers asynchronously
+    '            Dim batchSize As Integer = 1000 ' Adjust batch size as needed
+    '            Await Task.Run(Sub()
+    '                               For i As Integer = 0 To items.Count - 1 Step batchSize
+    '                                   Dim batch = items.Skip(i).Take(batchSize)
 
-                                   ' Generate JavaScript for the current batch
-                                   Dim batchScript As String = "markerList = [];" & vbCrLf ' Initialize for each batch
-                                   For Each item In batch
-                                       batchScript &= "var marker = L.marker([" & item.Latitud & ", " & item.Longitud & "]).bindTooltip('" & item.TooltipMessage & "');" & vbCrLf
-                                       batchScript &= "markerList.push(marker);" & vbCrLf
-                                   Next
-                                   batchScript &= "markers.addLayers(markerList);" & vbCrLf
+    '                                   ' Generate JavaScript for the current batch
+    '                                   Dim batchScript As String = "markerList = [];" & vbCrLf ' Initialize for each batch
+    '                                   For Each item In batch
+    '                                       batchScript &= "var marker = L.marker([" & item.Latitud & ", " & item.Longitud & "]).bindTooltip('" & item.TooltipMessage & "');" & vbCrLf
+    '                                       batchScript &= "markerList.push(marker);" & vbCrLf
+    '                                   Next
+    '                                   batchScript &= "markers.addLayers(markerList);" & vbCrLf
 
-                                   ' Send the batch script directly
-                                   ClientScript.RegisterStartupScript(Me.GetType(), "updateMarkers_" & i, batchScript, True)
-                               Next
-                           End Sub)
-        End If
+    '                                   ' Send the batch script directly
+    '                                   ClientScript.RegisterStartupScript(Me.GetType(), "updateMarkers_" & i, batchScript, True)
+    '                               Next
+    '                           End Sub)
+    '        End If
 
-        Dim dataProcessingEndTime As DateTime = DateTime.Now
-        Debug.WriteLine("Data processing time: " & (dataProcessingEndTime - dataProcessingStartTime).TotalMilliseconds & " ms")
+    '        Dim dataProcessingEndTime As DateTime = DateTime.Now
+    '        Debug.WriteLine("Data processing time: " & (dataProcessingEndTime - dataProcessingStartTime).TotalMilliseconds & " ms")
 
-    End Sub
+    '    End Sub
 
 
 End Class

@@ -192,7 +192,7 @@ Partial Public Class VentasDashboard
         Dim queryCount = $"
                     SELECT COUNT(*) AS TotalCount from
                          ( select r.RCODVEND  {fromClause}
-                        {whereClause} {groupByClause}) as subquery
+                        {whereClause} {groupByClause}) as subquery  OPTION(RECOMPILE)
                              ;"
 
 
@@ -246,8 +246,8 @@ Partial Public Class VentasDashboard
 
         Try
             Dim top = "top 11"
-            If filterData.SalesPersonCode.Length > 3 OrElse filterData.ClientCode.Length > 3 Then
-                top = "top 100"
+            If filterData.SalesPersonCode.Length > 3 OrElse filterData.ClientCode.Length > 3 OrElse salesMan <> "" Then
+                top = ""
             End If
             selectClause = $"select {top}  r.Num_doc as Recibo, r.RFECHA as Fecha, r.RCODVEND as VendedorId,
                                     LTRIM(RTRIM(v.Nombre_vend)) AS Vendedor, v.VEND_LIDER as LiderId,
@@ -270,7 +270,7 @@ Partial Public Class VentasDashboard
 
 
             Using aeVentasDbContext As New AeVentasDbContext()
-                'aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+                aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
                 aeVentasDbContext.Configuration.AutoDetectChangesEnabled = False
                 aeVentasDbContext.Configuration.LazyLoadingEnabled = False
@@ -298,7 +298,7 @@ Partial Public Class VentasDashboard
         Dim receipts As List(Of VentasDto)
         Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="")
 
-        receipts = sales.Where(Function(c) c.VendedorId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenBy _
+        receipts = sales.OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
                  Dim time As DateTime
                  If DateTime.TryParse(r.Hora, time) Then
@@ -325,28 +325,51 @@ Partial Public Class VentasDashboard
 
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
+        ' Retrieve sales data from the database
         Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="")
+
         If sales IsNot Nothing Then
-            'Try
-            Dim result = sales.OrderByDescending(Function(r) r.Fecha).ThenByDescending _
-    (Function(e)
-         Dim time As DateTime
-         If DateTime.TryParse(e.Hora, time) Then
-             Return time
-         Else
-             Return DateTime.MinValue ' Default value for invalid time strings
-         End If
-     End Function) _
-    .Select(Function(r) New With {.Codigo = r.Recibo, .Cliente = r.Cliente.Trim() + " " + r.ClienteId.Trim(), .Prima = FormattingHelper.ToLempiras(r.Prima), r.Servicio, r.Cantidad, .Valor = FormattingHelper.ToLempiras(r.Valor), .Fecha = r.Fecha.ToString("dd/M/yyyy"), r.Hora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)}).ToList()
+            Try
+                Dim result = sales _
+            .OrderByDescending(Function(r) r.Fecha) _
+            .ThenByDescending(Function(e)
+                                  Dim time As DateTime
+                                  If DateTime.TryParse(e.Hora, time) Then
+                                      Return time
+                                  Else
+                                      Return DateTime.MinValue ' Default value for invalid time strings
+                                  End If
+                              End Function) _
+            .Select(Function(r)
+                        ' Ensure that all fields are handled safely
+                        Dim cliente As String = If(r.Cliente IsNot Nothing, r.Cliente.Trim(), String.Empty)
+                        Dim clienteId As String = If(r.ClienteId IsNot Nothing, r.ClienteId.Trim(), String.Empty)
+                        Dim prima As String = FormattingHelper.ToLempiras(r.Prima)
+                        Dim valor As String = FormattingHelper.ToLempiras(r.Valor)
+                        Dim fecha As String = If(r.Fecha <> Date.MinValue, r.Fecha.ToString("dd/M/yyyy"), String.Empty)
+                        Dim estado As String = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
+
+                        Return New With {
+                    .Codigo = r.Recibo,
+                    .Cliente = cliente + " " + clienteId,
+                    .Prima = prima,
+                    .Servicio = r.Servicio,
+                    .Cantidad = r.Cantidad,
+                    .Valor = valor,
+                    .Fecha = fecha,
+                    .Hora = r.Hora,
+                    .Estado = estado
+                }
+                    End Function).ToList()
 
                 DetailsControl.DataSource = result
 
-                'Catch ex As Exception
-                'End Try
-
-
-                Else
-            DetailsControl.DataSource = sales
+            Catch ex As Exception
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+                Throw New Exception("Problema al procesar información de ventas, datos corruptos.", ex)
+            End Try
+        Else
+            DetailsControl.DataSource = New List(Of Object)()
         End If
 
         DetailsControl.DataBind()

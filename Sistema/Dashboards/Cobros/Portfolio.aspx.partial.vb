@@ -166,7 +166,7 @@ Partial Public Class CobrosDashboard
         Dim count = 0
 
         For Each cliente As PortfolioDetailsDto In clients
-            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.Direccion}  deuda: {cliente.Saldo}"
+            Dim tooltipMsg = $"cliente: {cliente.Nombre}   {cliente.Direccion.Replace("'", "")}  deuda: {cliente.Saldo}"
             If cliente.Latitud.ToString().Trim.Length > 0 And cliente.Longitud.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = cliente.Latitud, .Longitud = cliente.Longitud, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)

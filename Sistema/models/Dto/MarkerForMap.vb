@@ -90,6 +90,9 @@ Public Class DataForMapGenerator
                     validMarkers.Add(marker)
                     Dim location As New Point(latitude, longitude)
                     locations.Add(location)
+                    marker.TooltipMessage = marker.TooltipMessage.Replace("'", "").Replace("""", "").Replace("\", "").Replace(vbCrLf, "").Replace(vbLf, "").Replace(vbCr, "")         ' Ensure that LF line breaks are also replaced
+
+
                 Else
                     _countOfCorruptItems += 1
 
