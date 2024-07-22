@@ -202,12 +202,26 @@ Public Class CobrosDashboard
 
 
 
+    Function GetDigitalRoot(ByVal number As Integer) As Integer
+        ' Repeat the process until number is a single digit
+        While number >= 10
+            Dim sum As Integer = 0
+            ' Sum the digits of the number
+            While number > 0
+                sum += number Mod 10
+                number \= 10
+            End While
+            number = sum
+        End While
+        Return number
+    End Function
 
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         Try
 
             Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim keyValue As String = DashboardGridview.DataKeys(rowIndex).Value.ToString()
+            Dim digitalRoot = GetDigitalRoot(rowIndex)
+            Dim keyValue As String = DashboardGridview.DataKeys(digitalRoot).Value.ToString()
 
             If e.CommandName = "ClientsByCollectorMap" Then
                 ClientsByCollectorMap(keyValue)

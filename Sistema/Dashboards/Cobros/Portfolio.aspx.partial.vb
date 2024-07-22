@@ -161,7 +161,7 @@ Partial Public Class CobrosDashboard
     End Function
 
     Public Sub ClientsByCollectorMap(keyValue As String)
-        Dim clients As List(Of PortfolioDetailsDto) = ClientsContainsCollectorCachedList
+        Dim clients As List(Of PortfolioDetailsDto) = GetClientsByCollectorIdFromDb(keyValue, "")
         Dim markers As New List(Of MarkerForMap)
         Dim count = 0
 
@@ -177,6 +177,7 @@ Partial Public Class CobrosDashboard
         Session("MarkersData") = dataForMaps
         iMap.Dispose()
         iMap.Src = "../../Shared/Map/Map.aspx"
+        pnlMap.Visible = True
 
     End Sub
 

@@ -40,7 +40,7 @@ Partial Public Class CobrosDashboard
                     startDateParam = startDateParam.Date
                     endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
                     Dim clientCodeParam As String = "%" & ClientCode & "%"
-                    Dim LeaderCodeParam As String = "%" & LeaderCode & "%"
+                    Dim LeaderCodeParam As String = "%" & leaderCode & "%"
                     Dim collectorCodeParam As String = "%" & collectorCode & "%"
                     Dim markParam = "%" & mark & "%"
                     Dim CompanyCodeParam As String = "%" & companyCode & "%"
