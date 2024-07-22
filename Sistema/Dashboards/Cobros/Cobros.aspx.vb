@@ -203,17 +203,9 @@ Public Class CobrosDashboard
 
 
     Function GetDigitalRoot(ByVal number As Integer) As Integer
-        ' Repeat the process until number is a single digit
-        While number >= 10
-            Dim sum As Integer = 0
-            ' Sum the digits of the number
-            While number > 0
-                sum += number Mod 10
-                number \= 10
-            End While
-            number = sum
-        End While
-        Return number
+
+        Return number Mod 10
+
     End Function
 
     Protected Sub DashboardGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
