@@ -17,7 +17,7 @@ Public Class VentasDashboard
     Public TotalItems As Integer = 0
     Private ReadOnly _controlStateManager As New ControlStateManager()
     Public itemText As String
-    Dim filterData As New ReportData()
+    Dim filterData As New ReportData
     Public Property SalesReceiptsCachedList As List(Of VentasDto)
         Get
             Return CachingHelper.GetOrFetch(filterData.GenerateCacheKey, AddressOf getReceiptsFromDB, 100)
@@ -49,6 +49,9 @@ Public Class VentasDashboard
                 End If
 
                 If Not IsPostBack Then
+                    Session("SelectedPageDashboardVentas") = 1
+
+                    filterData = New ReportData()
                     FillDll()
                     UpdatedData(filterData)
                     ReBind()
@@ -94,7 +97,7 @@ Public Class VentasDashboard
     End Sub
 
     'Fill the gridviews 
-    Protected Sub ReBind(Optional selectedPage As Integer = 1)
+    Protected Sub ReBind(Optional SelectedPageDashboardVentas As Integer = 1)
         Try
 
             Dim almostEmpyFilters = ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
@@ -119,7 +122,7 @@ Public Class VentasDashboard
                 '    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 'Else
                 'Dim DataList = GetReceiptDataForGridview()
-                Dim result As PaginatedResult(Of SalesGroupedDto) = GetGroupedSalesBySalesmanFromDB(selectedPage)
+                Dim result As PaginatedResult(Of SalesGroupedDto) = GetGroupedSalesBySalesmanFromDB(SelectedPageDashboardVentas)
                 itemText = " vendedores"
                 endDate.Enabled = True
                 startDate.Enabled = True
@@ -129,7 +132,7 @@ Public Class VentasDashboard
                 BtnRouteOfReceiptsMapByLeader.CssClass = "btn btn-sm btn-outline-danger" ' New class
 
                 ddlService.Enabled = False
-                BindGridView(result.Data, result.TotalCount, selectedPage)
+                BindGridView(result.Data, result.TotalCount, SelectedPageDashboardVentas)
 
 
                 'End If
@@ -155,16 +158,16 @@ Public Class VentasDashboard
                 'Else
 
                 'End If
-                Dim result As PaginatedResult(Of SalesByProductDto) = getGroupedSalesByProductFromDB(selectedPage)
+                Dim result As PaginatedResult(Of SalesByProductDto) = getGroupedSalesByProductFromDB(SelectedPageDashboardVentas)
                 Dim data1 As List(Of SalesByProductDto) = result.Data
                 Dim count = result.TotalCount
                 If data1 IsNot Nothing Then
                     Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
 
-                    BindGridView(finalData, count, selectedPage)
+                    BindGridView(finalData, count, SelectedPageDashboardVentas)
 
                 Else
-                    BindGridView(data1, count, selectedPage)
+                    BindGridView(data1, count, SelectedPageDashboardVentas)
 
                 End If
                 'Dim dataList = GetReceiptByServiceDataForGridview() ' GetPortfolioDataForGridview()
@@ -535,27 +538,34 @@ Public Class VentasDashboard
         Dim lnkButton As LinkButton = CType(sender, LinkButton)
         Dim resultInteger As Integer
         If Integer.TryParse(lnkButton.Text, resultInteger) Then
-            Dim selectedPage As Integer = Integer.Parse(lnkButton.Text)
-            filterData.PageNumber = selectedPage
-            ReBind(selectedPage)
+            Dim SelectedPageDashboardVentas As Integer = Integer.Parse(lnkButton.Text)
+            filterData.PageNumber = SelectedPageDashboardVentas
+            Session("SelectedPageDashboardVentas") = SelectedPageDashboardVentas
+            ReBind(SelectedPageDashboardVentas)
         End If
 
     End Sub
 
     Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
-        If filterData.PageNumber > 1 Then
+
+        If Session("SelectedPageDashboardVentas") IsNot Nothing AndAlso Session("SelectedPageDashboardVentas") > 1 Then
             filterData.PageNumber = filterData.PageNumber - 1
-            ReBind(filterData.PageNumber)
+            Session("SelectedPageDashboardVentas") = Session("SelectedPageDashboardVentas") - 1
+
+            ReBind(Session("SelectedPageDashboardVentas"))
 
         End If
-        'filterData.PageNumber = selectedPage
+        'filterData.PageNumber = SelectedPageDashboardVentas
 
     End Sub
 
     Protected Sub lnkbtnNext_Click(sender As Object, e As EventArgs)
         filterData.PageNumber = filterData.PageNumber + 1
+        If Session("SelectedPageDashboardVentas") IsNot Nothing Then
+            Session("SelectedPageDashboardVentas") = Session("SelectedPageDashboardVentas") + 1
+            ReBind(Session("SelectedPageDashboardVentas"))
+        End If
 
-        ReBind(filterData.PageNumber)
     End Sub
 
 
