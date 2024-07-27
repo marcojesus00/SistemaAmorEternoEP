@@ -162,6 +162,30 @@ Public Class VentasDashboard
                 Dim result As PaginatedResult(Of SalesByProductDto) = getGroupedSalesByProductFromDB(SelectedPageDashboardVentas)
                 Dim data1 As List(Of SalesByProductDto) = result.Data
                 Dim count = result.TotalCount
+                For Each p In data1
+                    If String.IsNullOrEmpty(p.Servicio) Then
+                        p.Servicio = "No predefinido - "
+
+                        Select Case p.ServicioId.Trim()
+                            Case "01"
+                                p.Servicio += "ATAUD IDEAL ARENADO"
+                            Case "02"
+                                p.Servicio += "LOTE DE 2 NIVELES"
+                            Case "03"
+                                p.Servicio += "ATAUD CONTEMPORANEO"
+                            Case "07"
+                                p.Servicio += "ATAUD AMOR ETERNO"
+                            Case "09"
+                                p.Servicio += "ATAUD MEMORIAL KING"
+                            Case "10"
+                                p.Servicio += "SALA DE VELACION"
+
+                            Case Else
+
+                        End Select
+
+                    End If
+                Next
                 If data1 IsNot Nothing Then
                     Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, .Tipo = s.TipoDeServicio, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
 

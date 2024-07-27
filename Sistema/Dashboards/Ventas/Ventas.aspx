@@ -127,7 +127,7 @@
 
 
                 <div class="col-lg-2 align-self-end pb-2">
-                    <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
+                    <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" OnClientClick="" />
                 </div>
                                 <div class="col-lg-2  col-md-6 col-12 pb-2">
 <%--                    <label for="ddlService" class="form-control-label">Servicio </label>--%>

@@ -124,10 +124,18 @@
                 </div>
 
 
-
+          
                 <div class="col-lg-2 align-self-center">
                     <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
+                                          <asp:LinkButton  ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
+<i class="bi bi-stars"></i>
+                            </asp:LinkButton>
                 </div>
+                                                              <div class="col-lg-1 col-1">
+
+      
+                        </div>
+
             </div>
         </div>
     </div>

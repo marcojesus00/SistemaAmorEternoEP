@@ -14,7 +14,7 @@ Partial Public Class VentasDashboard
     Public Function getGroupedSalesByProductFromDB(selectedPage, Optional orderBy = "Valor") As Object
         Dim currentData As ReportData = filterData.GetUpdatedData()
         Dim selectClause As String = "Select	con.CONT_SERVI as ServicioId, con.SERVIEMPRE as TipoDeServicio,
-	con.SERVI1DES as Servicio,
+	ser.serv_descri as Servicio,
 	SUM(con.CONT_PRIMA) as Prima,
 	SUM(con.CONT_VALOR) as Valor,
 	Sum(con.CONT_VALCUO) as Cuota,
@@ -25,16 +25,18 @@ Partial Public Class VentasDashboard
 LEFT JOIN
 	CONTRATON con ON con.Codigo_clie = r.Codigo_clie and con.cont_vended= r.RCODVEND
 LEFT JOIN
+    FUNAMOR.DBO.SERVICIO ser ON con.SERVIEMPRE = ser.serv_tipo COLLATE DATABASE_DEFAULT AND con.CONT_SERVI = ser.serv_codigo COLLATE DATABASE_DEFAULT
+LEFT JOIN
     funamor.dbo.VENDEDOR v ON r.RCODVEND = v.Cod_vendedo COLLATE DATABASE_DEFAULT"
         Dim whereClauseList As New List(Of String)()
 
         Dim orderByClause As String = $"order by {orderBy} desc"
-        Dim groupByClause As String = "GROUP BY con.CONT_SERVI, con.SERVIEMPRE, con.SERVI1DES"
+        Dim groupByClause As String = "GROUP BY con.CONT_SERVI, con.SERVIEMPRE, ser.serv_descri"
         Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
 
         whereClauseList.Add("r.RFECHA <= @End")
         whereClauseList.Add("r.RFECHA >= @Start")
-
+        whereClauseList.Add("r.Por_lempira > 0")
         whereClauseList.Add("con.SERVI1DES is not null")
         whereClauseList.Add("con.CONT_SERVI is not null")
 
@@ -51,9 +53,9 @@ LEFT JOIN
             whereClauseList.Add("v.VEND_LIDER like @Leader")
         End If
 
-        'If Not String.IsNullOrEmpty(companyCode) Then
-        '    whereClauseList.Add("cl.Cod_zona like @Company")
-        'End If
+        If Not String.IsNullOrEmpty(currentData.CompanyCode) Then
+            whereClauseList.Add("r.Num_doc like  @Company")
+        End If
 
         If Not String.IsNullOrEmpty(currentData.ZoneCode) Then
             whereClauseList.Add("v.VZCODIGO like @City")

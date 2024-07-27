@@ -282,7 +282,24 @@ Public Class CobrosDashboard
     End Sub
     Private Sub SubmitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
         ReBind()
+        CachingHelper.CacheRemove("ReceiptsByDate")
 
+    End Sub
+    Private Sub LinkButtonClear_Click(sender As Object, e As EventArgs) Handles LinkButtonClear.Click
+        'ReBind()
+        CachingHelper.CacheRemove("ReceiptsByDate")
+        clearFilters()
+    End Sub
+    Private Sub clearFilters()
+        endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
+        startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
+        ddlCity.SelectedIndex = 0
+        ddlCompany.SelectedIndex = 0
+        ddlLeader.SelectedIndex = 0
+        ddlValidReceipts.SelectedIndex = 0
+        textBoxNumDoc.Text = ""
+        textBoxCode.Text = ""
+        textBoxClientCode.Text = ""
     End Sub
     Public Sub StartDate_OnTextChanged(sender As Object, e As EventArgs) Handles startDate.TextChanged
         CachingHelper.CacheRemove("ReceiptsByDate")
@@ -473,4 +490,5 @@ Public Class CobrosDashboard
     Protected Sub Close_Click(sender As Object, e As EventArgs)
         pnlMap.Visible = False
     End Sub
+
 End Class
