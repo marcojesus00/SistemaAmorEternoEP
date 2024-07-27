@@ -15,7 +15,7 @@ Public Class CobrosDashboard
 
     Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
         Get
-            Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getReceiptsFromDB, 100)
+            Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getCobrosReceiptsFromDB, 100)
         End Get
         Set(value As List(Of RecibosDTO))
             CachingHelper.CacheSet("ReceiptsByDate", value, 100)
@@ -281,8 +281,9 @@ Public Class CobrosDashboard
         ReBind()
     End Sub
     Private Sub SubmitButton_Click(sender As Object, e As EventArgs) Handles submitButton.Click
-        ReBind()
         CachingHelper.CacheRemove("ReceiptsByDate")
+
+        ReBind()
 
     End Sub
     Private Sub LinkButtonClear_Click(sender As Object, e As EventArgs) Handles LinkButtonClear.Click
