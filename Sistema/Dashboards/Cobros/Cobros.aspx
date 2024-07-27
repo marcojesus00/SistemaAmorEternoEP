@@ -1,42 +1,60 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
-    <h1 class=" text-center">Dashboard de cobros</h1>
-    <div class="container-fluid mt-1 mb-1">
+    <h2 class=" text-center">Dashboard de cobros</h2>
+    <div class="container mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12 pb-2 ">
-                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>
+                <div class="col-lg-3 col-md-12 col-12 pb-2 ">
+<%--                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
 
-                    <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm" runat="server" AutoPostBack="true">
-                        <asp:ListItem Text="Recibos" Value="0">
+                    <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true">
+                        <asp:ListItem Text="Dashboard de recibos" Value="0">
                         </asp:ListItem>
-                        <asp:ListItem Text="Cartera" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Dashboard de cartera" Value="1"></asp:ListItem>
                     </asp:DropDownList>
 
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="startDate" class="form-control-label">Fecha inicial</label>
+                    <div class="row">
+                                                  <div class="col-3">
+                                                                          <label for="startDate" class="form-control-label">Desde </label>
 
-                    <asp:TextBox ID="startDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                  </div>
+                                                  <div class="col-9">
+                                                                          <asp:TextBox ID="startDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                  </div>
+
+                    </div>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="endDate" class="form-control-label">Fecha final</label>
+                    <div class="row">
+                          <div class="col-3">
+<%--                                                <asp:TextBox ID="TextBox1" runat="server" Text="Desde" CssClass="form-control form-control-sm">desde</asp:TextBox>--%>
+                                                  <label for="endDate" class="form-control-label">Hasta </label>
 
-                    <asp:TextBox ID="endDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                        </div>
+                        <div class="col-9">
+                                                <asp:TextBox ID="endDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm">desde</asp:TextBox>
+
+                        </div>
+                                 
+                    </div>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="ddlCity" class="form-control-label">Zona</label>
+<%--                    <label for="ddlCity" class="form-control-label">Zona</label>--%>
                     <asp:DropDownList ID="ddlCity" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
 
                 </div>
 
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="ddlCompany" class="form-control-label">Empresa</label>
+<%--                    <label for="ddlCompany" class="form-control-label">Empresa</label>--%>
 
                     <asp:DropDownList ID="ddlCompany" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -55,7 +73,7 @@
                 </div>
                 <div class="col-lg-3  col-md-6 col-12 pb-2">
                     <div class="row">
-                        <label for="ddlLeader" class="form-control-label">Lider</label>
+<%--                        <label for="ddlLeader" class="form-control-label">Lider</label>--%>
 
                         <div class="col-lg-10 col-10">
 
@@ -73,7 +91,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>
+<%--                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>--%>
 
                     <asp:DropDownList ID="ddlValidReceipts" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -87,21 +105,21 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>
+<%--<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>--%>
 
                     <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="code" class="form-control-label">Código de cobrador</label>
+<%--                    <label for="code" class="form-control-label">Código de cobrador</label>--%>
 
-                    <asp:TextBox ID="textBoxCode" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                    <asp:TextBox ID="textBoxCode" Placeholder="Código de cobrador" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>
+<%--                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>--%>
 
-                    <asp:TextBox ID="textBoxClientCode" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                    <asp:TextBox ID="textBoxClientCode" runat="server" Placeholder="Código de cliente" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
 
@@ -116,12 +134,10 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
-    <div class="row">
-        <div class="col-lg-12 mb-2">
-            <%--                                        <asp:Label ID="GridviewTitle" runat="server" Text="GridView Title" CssClass="gridViewTitle"></asp:Label>--%>
+    <div class="container">
+   
 
             <div class="table-responsive">
-                <div class="row">
                     <asp:GridView ID="DashboardGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" OnRowCommand="DashboardGridView_RowCommand" EnableViewState="true" AllowPaging="true" PageIndexChanging="DashboardGridview_PageIndexChanging" AllowSorting="false" OnRowDataBound="DashboardGridView_RowDataBound" OnSelectedIndexChanged="DashboardGridview_SelectedIndexChanged">
                         <Columns>
                             <%--<asp:CommandField ShowSelectButton="True" />--%>
@@ -160,12 +176,9 @@
                         </Columns>
                     </asp:GridView>
                 </div>
-                <div class="col-lg-4">
-                </div>
-            </div>
+    
         </div>
 
-    </div>
     <asp:Panel ID="pnlMap" runat="server" Visible="false">
  
         <div style="width: 100%; height: 100%;">

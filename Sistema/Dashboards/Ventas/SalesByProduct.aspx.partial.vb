@@ -13,7 +13,7 @@ Partial Public Class VentasDashboard
 
     Public Function getGroupedSalesByProductFromDB(selectedPage, Optional orderBy = "Valor") As Object
         Dim currentData As ReportData = filterData.GetUpdatedData()
-        Dim selectClause As String = "Select	con.CONT_SERVI as ServicioId,
+        Dim selectClause As String = "Select	con.CONT_SERVI as ServicioId, con.SERVIEMPRE as TipoDeServicio,
 	con.SERVI1DES as Servicio,
 	SUM(con.CONT_PRIMA) as Prima,
 	SUM(con.CONT_VALOR) as Valor,
@@ -29,7 +29,7 @@ LEFT JOIN
         Dim whereClauseList As New List(Of String)()
 
         Dim orderByClause As String = $"order by {orderBy} desc"
-        Dim groupByClause As String = "GROUP BY con.CONT_SERVI, con.SERVI1DES"
+        Dim groupByClause As String = "GROUP BY con.CONT_SERVI, con.SERVIEMPRE, con.SERVI1DES"
         Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
 
         whereClauseList.Add("r.RFECHA <= @End")
@@ -74,7 +74,7 @@ LEFT JOIN
         If whereClauseList.Count > 0 Then
             whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
         End If
-        Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause, paginationClause)
+        Dim query As String = String.Format("{0} {1} {2} {3} {4} {5}", selectClause, fromClause, whereClause, groupByClause, orderByClause, paginationClause)
         Try
             Using context As New AeVentasDbContext()
                 context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)

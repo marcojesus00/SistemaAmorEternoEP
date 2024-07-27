@@ -145,7 +145,7 @@ Partial Public Class CobrosDashboard
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
              End Function) _
-            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie + " " + r.Codigo_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = r.SALDOANT, .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
+            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie + " " + r.Codigo_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = FormattingHelper.ToLempiras(r.SALDOANT), .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
 }).ToList()
         DetailsControl.DataSource = d
         DetailsControl.DataBind()

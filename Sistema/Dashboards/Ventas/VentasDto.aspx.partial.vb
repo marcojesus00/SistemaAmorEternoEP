@@ -14,6 +14,7 @@ Partial Public Class VentasDashboard
         Public Property Cliente As String
         Public Property Por_lempira As Decimal?
         Public Property ServicioId As String
+        Public Property TipoDeServicio As String
         Public Property Servicio As String
         Public Property Valor As Decimal
         Public Property Prima As Decimal
@@ -29,6 +30,8 @@ Partial Public Class VentasDashboard
     End Class
     Public Class SalesByProductDto
         Public Property ServicioId As String
+        Public Property TipoDeServicio As String
+
         Public Property Servicio As String
         Public Property Prima As Decimal
         Public Property Valor As Decimal
@@ -41,6 +44,7 @@ Partial Public Class VentasDashboard
     End Class
     Public Class ServicesDto
         Public Property Codigo As String
+        Public Property TipoDeServicio As String
         Public Property Nombre As String
     End Class
 
@@ -49,5 +53,6 @@ Partial Public Class VentasDashboard
         Public Property Nombre As String
         Public Property Ventas As Integer
         Public Property Cobrado As Decimal
+        Public Property Lider As String
     End Class
 End Class

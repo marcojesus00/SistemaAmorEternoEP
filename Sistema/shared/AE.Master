@@ -20,9 +20,9 @@
     </asp:ContentPlaceHolder>
 
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="">
 
-    <form id="form1" class="h-100" runat="server">
+    <form id="form1" class="" runat="server">
             <header class="header">
 
 
@@ -33,7 +33,7 @@
 
             </header>
 
-            <div class="row d-flex flex-grow-1" >
+            <div class="" >
                 <div class="">
 <%--                    <uc:Sidebar runat="server" ID="theSideBar" />--%>
                 </div>

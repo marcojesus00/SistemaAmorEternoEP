@@ -97,7 +97,8 @@ Public Class CobrosDashboard
                     endDate.Enabled = True
                     startDate.Enabled = True
                     ddlValidReceipts.Enabled = True
-                    lblNumDoc.Text = "Número de documento"
+                    'lblNumDoc.Text = "Número de documento"
+                    textBoxNumDoc.Attributes("placeholder") = "Número de documento"
                     BtnRouteOfReceiptsMapByLeader.Enabled = True
                     BindGridView(DataList)
 
@@ -107,7 +108,9 @@ Public Class CobrosDashboard
                 startDate.Enabled = False
                 endDate.Enabled = False
                 ddlValidReceipts.Enabled = False
-                lblNumDoc.Text = "Número de identidad"
+                'lblNumDoc.Text = "Número de identidad"
+                textBoxNumDoc.Attributes("placeholder") = "Número de identidad"
+
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
@@ -166,8 +169,8 @@ Public Class CobrosDashboard
             ddlLeader.DataBind()
             ddlLeader.Items.Insert(0, New ListItem("Todos los líderes", ""))
         End Using
-        ddlValidReceipts.Items.Add(New ListItem("Válidos", "N"))
-        ddlValidReceipts.Items.Add(New ListItem("Nulos", "X"))
+        ddlValidReceipts.Items.Add(New ListItem("Recibos válidos", "N"))
+        ddlValidReceipts.Items.Add(New ListItem("Rcibos nulos", "X"))
         ddlValidReceipts.Items.Add(New ListItem("Todos los recibos", ""))
 
     End Sub

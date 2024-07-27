@@ -180,8 +180,8 @@ Partial Public Class VentasDashboard
 
         Dim whereClause = filterData.GetWhereAndParams().whereClause
 
-        Dim selectClause = " select r.RCODVEND as Codigo, v.Nombre_vend as Nombre, COUNT(r.Num_doc) as Ventas,sum(r.Por_lempira) as Cobrado"
-        Dim groupByClause = "	group by r.RCODVEND, v.Nombre_vend"
+        Dim selectClause = " select r.RCODVEND as Codigo, v.Nombre_vend as Nombre, COUNT(r.Num_doc) as Ventas,sum(r.Por_lempira) as Cobrado, v.VEND_LIDER as Lider"
+        Dim groupByClause = "	group by r.RCODVEND, v.Nombre_vend, v.VEND_LIDER"
         Dim orderByClause = "    order by Ventas desc,v.Nombre_vend  "
         Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
         Dim query = $"
@@ -226,7 +226,7 @@ Partial Public Class VentasDashboard
         End Using
         Return paginated
     End Function
-    Public Function getReceiptsFromDB(Optional salesMan As String = "", Optional receiptNumber As String = "") As Object
+    Public Function getReceiptsFromDB(Optional salesMan As String = "", Optional receiptNumber As String = "", Optional top As String = "top 11") As Object
 
         Dim selectClause As String = ""
 
@@ -245,14 +245,13 @@ Partial Public Class VentasDashboard
 
 
         Try
-            Dim top = "top 11"
-            If filterData.SalesPersonCode.Length > 3 OrElse filterData.ClientCode.Length > 3 OrElse salesMan <> "" Then
+            If filterData.SalesPersonCode.Length > 3 OrElse filterData.ClientCode.Length > 3 Then
                 top = ""
             End If
             selectClause = $"select {top}  r.Num_doc as Recibo, r.RFECHA as Fecha, r.RCODVEND as VendedorId,
                                     LTRIM(RTRIM(v.Nombre_vend)) AS Vendedor, v.VEND_LIDER as LiderId,
                                     c.Codigo_clie as ClienteId, LTRIM(RTRIM(c.Nombre_clie)) AS Cliente,
-                                    r.Por_lempira, con.CONT_SERVI ServicioId,
+                                    r.Por_lempira, con.CONT_SERVI ServicioId, con.SERVIEMPRE as TipoDeServicio,
 	                                con.SERVI1DES as Servicio,
                                     ISNULL(r.SALDOANT, 0) as Valor,
 	                                ISNULL(con.CONT_PRIMA, 0) as Prima,
@@ -296,7 +295,7 @@ Partial Public Class VentasDashboard
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim receipts As List(Of VentasDto)
-        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="")
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB(salesMan:=keyValue, receiptNumber:="", top:="")
 
         receipts = sales.OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
@@ -383,7 +382,7 @@ Partial Public Class VentasDashboard
             Exit Sub
         End If
         Dim receipts As List(Of VentasDto)
-        Dim sales As List(Of VentasDto) = getReceiptsFromDB()
+        Dim sales As List(Of VentasDto) = getReceiptsFromDB(top:="")
 
         receipts = sales.Where(Function(c) c.LiderId.Contains(keyValue)).OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)

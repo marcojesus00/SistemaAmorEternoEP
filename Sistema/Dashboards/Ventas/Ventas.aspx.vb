@@ -123,16 +123,17 @@ Public Class VentasDashboard
                 'Else
                 'Dim DataList = GetReceiptDataForGridview()
                 Dim result As PaginatedResult(Of SalesGroupedDto) = GetGroupedSalesBySalesmanFromDB(SelectedPageDashboardVentas)
+                Dim dataProcesed = result.Data.Select(Function(r) New With {r.Codigo, r.Nombre, .Cobrado = FormattingHelper.ToLempiras(r.Cobrado), r.Ventas, r.Lider}).ToList()
                 itemText = " vendedores"
                 endDate.Enabled = True
                 startDate.Enabled = True
                 ddlValidReceipts.Enabled = True
-                lblNumDoc.Text = "Número de recibo"
+                textBoxNumDoc.Attributes("placeholder") = "Número de recibo"
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 BtnRouteOfReceiptsMapByLeader.CssClass = "btn btn-sm btn-outline-danger" ' New class
 
                 ddlService.Enabled = False
-                BindGridView(result.Data, result.TotalCount, SelectedPageDashboardVentas)
+                BindGridView(dataProcesed, result.TotalCount, SelectedPageDashboardVentas)
 
 
                 'End If
@@ -147,7 +148,7 @@ Public Class VentasDashboard
 
                 BtnRouteOfReceiptsMapByLeader.Enabled = False
                 BtnRouteOfReceiptsMapByLeader.CssClass = "btn btn-sm btn-outline-secondary" ' New class
-                lblNumDoc.Text = "Identidad del cliente"
+                textBoxNumDoc.Attributes("placeholder") = "Identidad del cliente"
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 
@@ -162,7 +163,7 @@ Public Class VentasDashboard
                 Dim data1 As List(Of SalesByProductDto) = result.Data
                 Dim count = result.TotalCount
                 If data1 IsNot Nothing Then
-                    Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
+                    Dim finalData = data1.Select(Function(s) New With {.Codigo = s.ServicioId, .Tipo = s.TipoDeServicio, s.Servicio, s.Cantidad, s.Contratos, .Prima = FormattingHelper.ToLempiras(s.Prima), .Cuota = FormattingHelper.ToLempiras(s.Cuota), .Valor = FormattingHelper.ToLempiras(s.Valor)}).ToList()
 
                     BindGridView(finalData, count, SelectedPageDashboardVentas)
 
@@ -191,7 +192,7 @@ Public Class VentasDashboard
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         Using context As New FunamorContext, ventasContext As New AeVentasDbContext
-            Dim queryServices = "SELECT serv_codigo as Codigo, serv_descri as Nombre  FROM [FUNAMOR].[dbo].[SERVICIO] where serv_codigo <>''"
+            Dim queryServices = "SELECT serv_codigo as Codigo, serv_tipo as TipoDeServicio, serv_descri as Nombre  FROM [FUNAMOR].[dbo].[SERVICIO] where serv_codigo <>''"
             Dim services = context.Database.SqlQuery(Of ServicesDto)(queryServices).ToList()
             ddlService.DataSource = services
             ddlService.DataTextField = "Nombre"
@@ -222,8 +223,8 @@ Public Class VentasDashboard
             ddlLeader.DataBind()
             ddlLeader.Items.Insert(0, New ListItem("Todos los líderes", ""))
         End Using
-        ddlValidReceipts.Items.Add(New ListItem("Válidos", "N"))
-        ddlValidReceipts.Items.Add(New ListItem("Nulos", "X"))
+        ddlValidReceipts.Items.Add(New ListItem("Recibos válidos", "N"))
+        ddlValidReceipts.Items.Add(New ListItem("Recibos nulos", "X"))
         ddlValidReceipts.Items.Add(New ListItem("Todos los recibos", ""))
 
     End Sub

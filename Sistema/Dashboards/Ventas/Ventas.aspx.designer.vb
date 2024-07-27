@@ -95,15 +95,6 @@ Partial Public Class VentasDashboard
     Protected WithEvents ddlValidReceipts As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''ddlService control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlService As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''supervised control.
     '''</summary>
     '''<remarks>
@@ -111,15 +102,6 @@ Partial Public Class VentasDashboard
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents supervised As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lblNumDoc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblNumDoc As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''textBoxNumDoc control.
@@ -156,6 +138,15 @@ Partial Public Class VentasDashboard
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents submitButton As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''ddlService control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlService As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''DashboardGridview control.
