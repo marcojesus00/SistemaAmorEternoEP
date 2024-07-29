@@ -2366,6 +2366,7 @@
     <Compile Include="Helpers\DebugHelper.vb" />
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
+    <Compile Include="Helpers\PaginationHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />
     <Compile Include="Shared\Map\MapClustered.aspx.designer.vb">
       <DependentUpon>MapClustered.aspx</DependentUpon>

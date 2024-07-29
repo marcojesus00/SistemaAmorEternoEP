@@ -5,19 +5,18 @@ Partial Public Class CobrosDashboard
     Public Class ReciboDTO
         <Key>
         Public Property Codigo As String
-        Public Property Fecha As DateTime
-        Public Property Lider As String
         Public Property Cliente As String
         Public Property Codigo_cliente As String
-        Public Property Cobrado As Decimal?
-        Public Property Saldo_actua As Decimal?
-        Public Property Cod_zona As String
-        Public Property VZCODIGO As String
+        Public Property Cobrado As String
+        Public Property Saldo_actual As String
+        Public Property Saldo_anterior As String
+        Public Property Empresa As String
+        Public Property Zona As String
+        Public Property Hora As String
+        Public Property Fecha As String
         Public Property LATITUD As String
         Public Property LONGITUD As String
-        Public Property SALDOANT As Decimal
         Public Property MARCA As String
-        Public Property rhora As String
         Public Property liquida As String
         Public Property liquida2 As String
     End Class

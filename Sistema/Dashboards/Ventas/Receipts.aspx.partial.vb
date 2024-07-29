@@ -269,7 +269,7 @@ Partial Public Class VentasDashboard
 
 
             Using aeVentasDbContext As New AeVentasDbContext()
-                aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+                'aeVentasDbContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
                 aeVentasDbContext.Configuration.AutoDetectChangesEnabled = False
                 aeVentasDbContext.Configuration.LazyLoadingEnabled = False

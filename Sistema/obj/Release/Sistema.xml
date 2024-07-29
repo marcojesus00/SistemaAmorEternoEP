@@ -2719,9 +2719,72 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.CobrosDashboard._LinkButtonClear">
+<summary>
+LinkButtonClear control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.CobrosDashboard._DashboardGridview">
 <summary>
 DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._lblTotalCount">
+<summary>
+lblTotalCount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._PreviousPage">
+<summary>
+PreviousPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._lnkbtnPrevious">
+<summary>
+lnkbtnPrevious control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._rptPager">
+<summary>
+rptPager control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._NextPage">
+<summary>
+NextPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.CobrosDashboard._lnkbtnNext">
+<summary>
+lnkbtnNext control.
 </summary>
 <remarks>
 Auto-generated field.

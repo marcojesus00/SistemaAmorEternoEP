@@ -15,8 +15,9 @@ Public Class VentasDashboard
     Public PageSize As Integer = 10
     Public TotalPages As Integer '
     Public TotalItems As Integer = 0
-    Private ReadOnly _controlStateManager As New ControlStateManager()
     Public itemText As String
+
+    Private ReadOnly _controlStateManager As New ControlStateManager()
     Dim filterData As New ReportData
     Public Property SalesReceiptsCachedList As List(Of VentasDto)
         Get

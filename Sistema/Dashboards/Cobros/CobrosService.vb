@@ -74,7 +74,7 @@ Public Class CobrosService
         Using funamorContext As New FunamorContext()
 
             Dim Query = "
-            SELECT r.Num_doc as Codigo, r.RFECHA as Fecha, c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, r.Por_lempira as Cobrado, c.Saldo_actua, r.SALDOANT, r.MARCA, r.rhora, c.Cod_zona, c.VZCODIGO,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
+            SELECT r.Num_doc as Codigo,  c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, FORMAT(r.Por_lempira, 'C', 'es-HN')  as Cobrado, FORMAT(c.Saldo_actua , 'C', 'es-HN') as Saldo_actual, FORMAT(r.SALDOANT , 'C', 'es-HN') as Saldo_anterior, r.MARCA, r.rhora as Hora, FORMAT(r.RFECHA, 'dd-MM-yyyy') as Fecha, c.Cod_zona as Empresa, c.VZCODIGO as Zona,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
@@ -83,9 +83,11 @@ Public Class CobrosService
 
             Query += whereClause
             Dim orderByClause = "
-ORDER BY r.RFECHA DESC
+ORDER BY r.RFECHA DESC, Hora desc
 "
             Query += orderByClause
+            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
             Dim result As List(Of ReciboDTO) = funamorContext.Database.SqlQuery(Of ReciboDTO)(
                     Query, params.ToArray()).ToList()
 
@@ -95,36 +97,56 @@ ORDER BY r.RFECHA DESC
         End Using
 
     End Function
-    Public Function GetRecepitsGrouped(r As whereAndParamsDto)
+    Public Function GetRecepitsGrouped(r As whereAndParamsDto, totalCountparams As List(Of SqlParameter)) As PaginatedResult(Of groupedreceiptDto)
+        'Params
         Dim params = r.sqlParams
         Dim whereClause = r.whereClause
         Using funamorContext As New FunamorContext()
 
-            Dim Query = ""
 
             Dim selectClause = "
-            SELECT r.codigo_cobr as Codigo, LTRIM(RTRIM(cb.nombre_cobr)) as Nombre, sum(r.Por_lempira) as Cobrado, cb.cob_lider as Lider
-            FROM aecobros.dbo.recibos r
-            LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
-            LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
+            SELECT r.codigo_cobr as Codigo, LTRIM(RTRIM(cb.nombre_cobr)) as Nombre, COUNT(r.Num_doc) as Recibos, SUM(r.Por_lempira) as Cobrado, cb.cob_lider as Lider
         "
             '"            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader and r.Num_doc like @Document"
-            Dim groupClause = "
+            Dim fromClause = "            FROM aecobros.dbo.recibos r
+            LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
+            LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
+"
+            Dim groupByClause = "
 GROUP BY r.codigo_cobr, cb.nombre_cobr, cb.cob_lider
 "
             Dim orderByClause = "
 ORDER BY Cobrado desc"
-            Query += selectClause
+            'Dim Query = ""
 
-            Query += whereClause
-            Query += groupClause
-            Query += orderByClause
+            'Query += selectClause
+            'Query += fromClause
+            'Query += whereClause
+            'Query += groupByClause
+            'Query += orderByClause
+            Dim queryCount = $"
+                    SELECT COUNT(*) AS TotalCount from
+                         ( select r.codigo_cobr  {fromClause}
+                        {whereClause} {groupByClause}) as subquery  OPTION(RECOMPILE)
+                             ;"
+            Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
+            Dim dataQuery = $"
+                            {selectClause} {fromClause}  {whereClause} {groupByClause}
+                            {orderByClause} 
+                            {paginationClause} OPTION(RECOMPILE)
+                        "
+            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
             Dim result As List(Of groupedreceiptDto) = funamorContext.Database.SqlQuery(Of groupedreceiptDto)(
-                    Query, params.ToArray()).ToList()
+                    dataQuery, params.ToArray()).ToList()
+            Dim toltalC = funamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
 
-
-            Return result
+            Dim p = New PaginatedResult(Of groupedreceiptDto) With {
+                                                            .Data = result,
+                                                            .TotalCount = toltalC
+                                                        }
+            Dim paginatedEmpty As New PaginatedResult(Of groupedreceiptDto)
+            Return p
 
         End Using
 
@@ -134,10 +156,16 @@ ORDER BY Cobrado desc"
         Return result
     End Function
 End Class
+Public Class PaginatedResult(Of T)
+    Public Property Data As List(Of T)
+    Public Property TotalCount As Integer
+End Class
+
 Public Class groupedreceiptDto
     Public Property Codigo As String
     Public Property Nombre As String
-    Public Property Cobrado As Decimal
+    Public Property Recibos As Integer
+    Public Property Cobrado As Decimal?
     Public Property Lider As String
 End Class
 Public Class CobrosParams

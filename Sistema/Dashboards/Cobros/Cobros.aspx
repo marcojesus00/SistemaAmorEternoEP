@@ -183,6 +183,39 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
+                 <nav aria-label="Page navigation">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-2">
+                                    <asp:Label runat="server" ID="lblTotalCount" Text=' <%# "Total: " & TotalItems & itemText %>'></asp:Label>
+
+                                </div>
+                                <div class="col-10">
+                                    <ul class="pagination justify-content-center">
+
+                                        <li class="page-item" runat="server" id="PreviousPage">
+                                            <asp:LinkButton ID="lnkbtnPrevious" runat="server" Text="&laquo; Previa" CssClass="page-link" OnClick="lnkbtnPrevious_Click" Enabled='<%# PageNumber > 1 %>'></asp:LinkButton>
+                                        </li>
+
+                                        <asp:Repeater ID="rptPager" runat="server">
+                                            <ItemTemplate>
+                                                <li class="page-item <%# pagination.IsActivePage(Container.DataItem, PageNumber) %>">
+                                                    <asp:LinkButton ID="lnkbtnPage" runat="server" Text='<%# Container.DataItem %>' CssClass="page-link" OnClick="lnkbtnPage_Click"></asp:LinkButton>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
+                                        <li class="page-item" runat="server" id="NextPage">
+                                            <asp:LinkButton ID="lnkbtnNext" runat="server" Text="Siguiente &raquo;" CssClass="page-link" OnClick="lnkbtnNext_Click" Enabled='<%# PageNumber < TotalPages %>'></asp:LinkButton>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </nav>
                 </div>
     
         </div>

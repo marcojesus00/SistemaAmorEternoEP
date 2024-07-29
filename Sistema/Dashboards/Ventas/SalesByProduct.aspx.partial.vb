@@ -79,7 +79,7 @@ LEFT JOIN
         Dim query As String = String.Format("{0} {1} {2} {3} {4} {5}", selectClause, fromClause, whereClause, groupByClause, orderByClause, paginationClause)
         Try
             Using context As New AeVentasDbContext()
-                context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+                'context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
                 Dim queryCount = $"
                     SELECT COUNT(*) AS TotalCount from
                          ( select con.CONT_SERVI  {fromClause}

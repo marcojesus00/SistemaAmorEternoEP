@@ -13,27 +13,15 @@ Public Class CobrosDashboard
     Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
     Public PageNumber As Integer = 1
     Public PageSize As Integer = 10
-    Dim g As RecibosDTO
-    'Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
-    '    Get
-    '        Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getCobrosReceiptsFromDB, 100)
-    '    End Get
-    '    Set(value As List(Of RecibosDTO))
-    '        CachingHelper.CacheSet("ReceiptsByDate", value, 100)
-    '    End Set
-    'End Property
+    Public TotalPages As Integer '
+    Public TotalItems As Integer = 0
+    Public itemText As String
+    Public pagination As PaginationHelper = New PaginationHelper
+
     Public Class whereAndParamsDto
         Public Property whereClause As String
         Public Property sqlParams As List(Of SqlParameter)
     End Class
-    Public Property ClientsContainsCollectorCachedList As List(Of PortfolioDetailsDto)
-        Get
-            Return CachingHelper.GetOrFetch("ClientsWithRemainingBalance", AddressOf GetClientsByCollectorIdFromDb, 150)
-        End Get
-        Set(value As List(Of PortfolioDetailsDto))
-            CachingHelper.CacheSet("ClientsWithRemainingBalance", value, 150)
-        End Set
-    End Property
 
     Public Function UpdatedData(Optional receiptNumber = "", Optional salesman = "", Optional pageNumer = 1) As CobrosParams
         Dim currentData As New CobrosParams
@@ -57,7 +45,7 @@ Public Class CobrosDashboard
 
         Dim whereClause As String = ""
 
-        Dim offset = 10 '(selectedPage - 1) * currentData.PageSize
+        Dim offset = (currentData.PageNumber - 1) * currentData.PageSize
 
         Dim startDateParam As DateTime
         Dim endDateParam As DateTime
@@ -69,10 +57,6 @@ Public Class CobrosDashboard
             startDateParam = DateAndTime.Now().AddDays(-1)
             endDateParam = DateAndTime.Now()
         End If
-
-        ' Parameters passed
-
-
 
         ' Constant where clause list
         whereClauseList.Add("r.RFECHA <= @End")
@@ -96,8 +80,6 @@ Public Class CobrosDashboard
 
             whereClauseList.Add("r.codigo_cobr like @Collector")
             sqlParameters.Add(New SqlParameter("@Collector", "%" & currentData.SalesPersonCode & "%"))
-
-
         End If
 
 
@@ -121,11 +103,6 @@ Public Class CobrosDashboard
             whereClauseList.Add("REPLACE(r.Num_doc, '-', '') LIKE @Document")
             sqlParameters.Add(New SqlParameter("@Document", "%" & currentData.DocumentNumber & "%"))
         End If
-
-        'If Not String.IsNullOrEmpty(currentData.ServiceId) Then
-        '    whereClauseList.Add("r.ServicioId like @ServiceId")
-        '    sqlParameters.Add(New SqlParameter("@ServiceId", "%" & currentData.ServiceId & "%"))
-        'End If
 
         sqlParameters.Add(New SqlParameter("@Start", startDateParam))
         sqlParameters.Add(New SqlParameter("@End", endDateParam))
@@ -177,7 +154,7 @@ Public Class CobrosDashboard
     End Sub
 
     'Fill the gridviews 
-    Protected Sub ReBind()
+    Protected Sub ReBind(Optional selectedPage As Integer = 1)
         Try
 
             Dim almostEmpyFilters = ddlCompany.SelectedValue.Trim = "" AndAlso ddlLeader.SelectedValue.Trim = "" AndAlso ddlCity.SelectedValue.Trim = ""
@@ -202,15 +179,37 @@ Public Class CobrosDashboard
                     AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 Else
                     Dim cobrosService As New CobrosService()
-                    Dim params = GetParams(UpdatedData())
-                    Dim DataList As List(Of groupedreceiptDto) = cobrosService.GetRecepitsGrouped(params)
+                    Dim filters = UpdatedData()
+                    filters.PageNumber = selectedPage
+                    Dim params = GetParams(filters)
+                    Dim totalCountparams = GetParams(filters).sqlParams
+
+                    Dim result As PaginatedResult(Of groupedreceiptDto) = cobrosService.GetRecepitsGrouped(params, totalCountparams)
+                    Dim dataList = result.Data.Select(Function(r) New With {r.Codigo, r.Nombre, r.Recibos, .Cobrado = FormattingHelper.ToLempiras(r.Cobrado), r.Lider}).ToList()
+                    Dim count = result.TotalCount
                     endDate.Enabled = True
                     startDate.Enabled = True
                     ddlValidReceipts.Enabled = True
                     'lblNumDoc.Text = "Número de documento"
                     textBoxNumDoc.Attributes("placeholder") = "Número de documento"
                     BtnRouteOfReceiptsMapByLeader.Enabled = True
-                    BindGridView(DataList)
+                    BindGridView(dataList)
+
+                    TotalItems = count
+                    PageNumber = selectedPage
+                    TotalPages = Math.Ceiling(count / PageSize)
+
+                    ' Update the Previous and Next buttons' enabled state
+                    Dim pages As New List(Of Integer)()
+                    For i As Integer = 1 To TotalPages
+                        pages.Add(i)
+                    Next
+
+                    rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
+                    rptPager.DataBind()
+                    lnkbtnPrevious.Enabled = PageNumber > 1
+                    lnkbtnNext.Enabled = PageNumber < TotalPages
+                    lblTotalCount.DataBind()
 
 
                 End If
@@ -236,6 +235,7 @@ Public Class CobrosDashboard
 
                 BindGridView(dataList)
             End If
+
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
@@ -412,53 +412,13 @@ Public Class CobrosDashboard
         textBoxCode.Text = ""
         textBoxClientCode.Text = ""
     End Sub
-    Public Sub StartDate_OnTextChanged(sender As Object, e As EventArgs) Handles startDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-    End Sub
-    Public Sub EndDate_OnTextChanged(sender As Object, e As EventArgs) Handles endDate.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
 
-    End Sub
-    Public Sub CLientCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxClientCode.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-
-    End Sub
-    Public Sub DdlLeader_OnTextChanged(sender As Object, e As EventArgs) Handles ddlLeader.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub CollectorCode_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxCode.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub TextBoxNumDoc_OnTextChanged(sender As Object, e As EventArgs) Handles textBoxNumDoc.TextChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-    End Sub
-    Public Sub DdlCompanyalisReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCompany.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-    Public Sub DdlZone_OnTextChanged(sender As Object, e As EventArgs) Handles ddlCity.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-        CachingHelper.CacheRemove("ClientsForGridviewsCachedList")
-
-    End Sub
-
-    Public Sub DdlValidReceips_OnTextChanged(sender As Object, e As EventArgs) Handles ddlValidReceipts.SelectedIndexChanged
-        CachingHelper.CacheRemove("ReceiptsByDate")
-
-    End Sub
     Public Function GetFromDb(Of T)(query As String, Optional CollectorCode As String = "", Optional ClientCode As String = "", Optional numDoc As String = "", Optional companyCode As String = "", Optional ZoneCode As String = "", Optional leaderCode As String = "") As List(Of T)
         Dim endD = endDate.Text
         Dim initD = startDate.Text
 
         Using funamorContext As New FunamorContext
-            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
 
             Try
@@ -608,6 +568,40 @@ Public Class CobrosDashboard
 
     Protected Sub Close_Click(sender As Object, e As EventArgs)
         pnlMap.Visible = False
+    End Sub
+
+    Protected Sub lnkbtnPage_Click(sender As Object, e As EventArgs)
+        Dim lnkButton As LinkButton = CType(sender, LinkButton)
+        Dim resultInteger As Integer
+        If Integer.TryParse(lnkButton.Text, resultInteger) Then
+            Dim SelectedPageDashboardVentas As Integer = Integer.Parse(lnkButton.Text)
+            'filterData.PageNumber = SelectedPageDashboardVentas
+            Session("SelectedPageDashboardVentas") = SelectedPageDashboardVentas
+            ReBind(SelectedPageDashboardVentas)
+        End If
+
+    End Sub
+
+    Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
+
+        If Session("SelectedPageDashboardVentas") IsNot Nothing AndAlso Session("SelectedPageDashboardVentas") > 1 Then
+            'filterData.PageNumber = filterData.PageNumber - 1
+            Session("SelectedPageDashboardVentas") = Session("SelectedPageDashboardVentas") - 1
+
+            ReBind(Session("SelectedPageDashboardVentas"))
+
+        End If
+        'filterData.PageNumber = SelectedPageDashboardVentas
+
+    End Sub
+
+    Protected Sub lnkbtnNext_Click(sender As Object, e As EventArgs)
+        'filterData.PageNumber = filterData.PageNumber + 1
+        If Session("SelectedPageDashboardVentas") IsNot Nothing Then
+            Session("SelectedPageDashboardVentas") = Session("SelectedPageDashboardVentas") + 1
+            ReBind(Session("SelectedPageDashboardVentas"))
+        End If
+
     End Sub
 
 End Class

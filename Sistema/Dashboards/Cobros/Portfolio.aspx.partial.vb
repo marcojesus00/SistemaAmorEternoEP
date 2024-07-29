@@ -21,7 +21,7 @@ Partial Public Class CobrosDashboard
         Dim initD = startDate.Text
 
         Using funamorContext As New FunamorContext
-            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
             Dim collectorCode = textBoxCode.Text.Trim
             Dim ClientCode = textBoxClientCode.Text
             Dim LeaderCode = ddlLeader.SelectedValue.Trim
