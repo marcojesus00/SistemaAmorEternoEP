@@ -12,54 +12,59 @@ Partial Public Class CobrosDashboard
 
 
 
-    Public Function GetReceiptDataForGridview()
-        Dim collectorCode = textBoxCode.Text.Trim
-        Dim CompanyCode = ddlCompany.SelectedValue.Trim
-        Dim leaderCode As String = ddlLeader.SelectedValue.Trim
-        Dim zoneCode As String = ddlCity.SelectedValue.Trim
-        Dim ClientCode As String = textBoxClientCode.Text.Trim
-        Try
+    'Public Function GetReceiptDataForGridview()
+    '    Dim collectorCode = textBoxCode.Text.Trim
+    '    Dim CompanyCode = ddlCompany.SelectedValue.Trim
+    '    Dim leaderCode As String = ddlLeader.SelectedValue.Trim
+    '    Dim zoneCode As String = ddlCity.SelectedValue.Trim
+    '    Dim ClientCode As String = textBoxClientCode.Text.Trim
+    '    Try
+    '        Dim s As New CobrosService()
+    '        Dim params = GetParams(UpdatedData())
+    '        Dim data1 = s.GetRecepits(params)
 
-            Dim data1 = ReceiptsByDateCachedList.OrderByDescending(Function(c) c.Por_lempira).ToList()
 
+    '        Dim groupedData = data1
+    '        '        .Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
+    '        '            .GroupBy(Function(r) r.codigo_cobr).
+    '        '             Select(Function(group) New With {
+    '        '    .Codigo = group.Key,
+    '        '    .Cobrador = group.FirstOrDefault().nombre_cobr,
+    '        '    .Recibos = group.Count(),
+    '        '    .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
+    '        '            .CobradoDecimal = group.Sum(Function(r) r.Por_lempira),
+    '        '    .Lider = group.FirstOrDefault().cob_lider
+    '        '}).OrderByDescending(Function(c) c.CobradoDecimal).Select(Function(r) New With {r.Codigo, r.Cobrador, r.Recibos, r.Cobrado, r.Lider}).ToList()
 
-            Dim groupedData = data1.Where(Function(r) r.Por_lempira.ToString().Trim() <> "" AndAlso r.codigo_cobr IsNot Nothing) _
-                .GroupBy(Function(r) r.codigo_cobr).
-                 Select(Function(group) New With {
-        .Codigo = group.Key,
-        .Cobrador = group.FirstOrDefault().nombre_cobr,
-        .Recibos = group.Count(),
-        .Cobrado = FormattingHelper.ToLempiras(group.Sum(Function(r) r.Por_lempira)),
-                .CobradoDecimal = group.Sum(Function(r) r.Por_lempira),
-        .Lider = group.FirstOrDefault().cob_lider
-    }).OrderByDescending(Function(c) c.CobradoDecimal).Select(Function(r) New With {r.Codigo, r.Cobrador, r.Recibos, r.Cobrado, r.Lider}).ToList()
+    '        Dim dataCount = groupedData.Count()
+    '        Return groupedData
 
-            Dim dataCount = groupedData.Count()
-            Return groupedData
+    '    Catch ex As Exception
+    '        DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
-        Catch ex As Exception
-            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-
-            Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
-        End Try
-    End Function
+    '        Throw New Exception(ex.Message & ex.InnerException.Message, ex.InnerException)
+    '    End Try
+    'End Function
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim cobros As New CobrosService()
-        Dim receipts As List(Of RecibosDTO) = cobros.GetRecepits(keyValue)
+        Dim controlsData As CobrosParams = UpdatedData()
+        controlsData.SalesPersonCode = keyValue
+        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+
         'ReceiptsByDateCachedList
-        'receipts = cachedReceipts.Where(Function(c) c.codigo_cobr.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
-        '    (Function(r)
-        '         Dim time As DateTime
-        '         If DateTime.TryParse(r.rhora, time) Then
-        '             Return time
-        '         Else
-        '             Return DateTime.MinValue ' Default value for invalid time strings
-        '         End If
-        '     End Function).ToList()
+        receipts = receipts.OrderByDescending _
+            (Function(e)
+                 Dim time As DateTime
+                 If DateTime.TryParse(e.rhora, time) Then
+                     Return time
+                 Else
+                     Return DateTime.MinValue ' Default value for invalid time strings
+                 End If
+             End Function).ToList()
         Dim markers As New List(Of MarkerForMap)
-        For Each receipt As RecibosDTO In receipts
-            Dim tooltipMsg = $"<b>Documento:{receipt.Num_doc.Trim}</b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Hora: {receipt.rhora} <br>Fecha: {receipt.RFECHA:dd/MM/yyyy}"
+        For Each receipt As ReciboDTO In receipts
+            Dim tooltipMsg = $"<b>Documento:{receipt.Codigo.Trim}</b> <br>Cliente: {receipt.Cliente} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Cobrado)} <br>Hora: {receipt.rhora} <br>Fecha: {receipt.Fecha:dd/MM/yyyy}"
             If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
                 Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
                 markers.Add(marker)
@@ -76,8 +81,12 @@ Partial Public Class CobrosDashboard
 
     End Sub
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
-        Dim lista = ReceiptsByDateCachedList
-        Dim d = lista.Where(Function(r) r.codigo_cobr.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenByDescending _
+
+        Dim cobros As New CobrosService()
+        Dim controlsData As CobrosParams = UpdatedData()
+        controlsData.SalesPersonCode = keyValue
+        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+        receipts = receipts.OrderByDescending _
             (Function(e)
                  Dim time As DateTime
                  If DateTime.TryParse(e.rhora, time) Then
@@ -85,10 +94,8 @@ Partial Public Class CobrosDashboard
                  Else
                      Return DateTime.MinValue ' Default value for invalid time strings
                  End If
-             End Function) _
-            .Select(Function(r) New With {.Codigo = r.Num_doc, .Cliente = r.Nombre_clie + " " + r.Codigo_clie, .Cobrado = FormattingHelper.ToLempiras(r.Por_lempira), .Saldo_anterior = FormattingHelper.ToLempiras(r.SALDOANT), .Fecha = r.RFECHA.ToString("dd/M/yyyy"), .Hora = r.rhora, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)
-}).ToList()
-        DetailsControl.DataSource = d
+             End Function).ToList()
+        DetailsControl.DataSource = receipts
         DetailsControl.DataBind()
         DetailsControl.Visible = True
     End Sub
@@ -105,9 +112,12 @@ Partial Public Class CobrosDashboard
 
 
 
-            Dim receipts As List(Of RecibosDTO)
-            Dim cachedReceipts = ReceiptsByDateCachedList
-            receipts = cachedReceipts.Where(Function(c) c.cob_lider.Contains(keyValue)).OrderByDescending(Function(r) r.RFECHA).ThenBy _
+            Dim cobros As New CobrosService()
+            Dim controlsData = UpdatedData()
+            controlsData.LeaderCode = keyValue
+            Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))            'Dim cachedReceipts = ReceiptsByDateCachedList
+
+            receipts = receipts.OrderByDescending(Function(r) r.Fecha).ThenBy _
             (Function(r)
                  Dim time As DateTime
                  If DateTime.TryParse(r.rhora, time) Then
@@ -117,8 +127,8 @@ Partial Public Class CobrosDashboard
                  End If
              End Function).ToList()
             Dim markers As New List(Of MarkerForMap)
-            For Each receipt As RecibosDTO In receipts
-                Dim tooltipMsg = $"<b>Cobrador: {receipt.codigo_cobr} </b> <br>Cliente: {receipt.Nombre_clie} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Por_lempira)} <br>Fecha:{receipt.RFECHA.ToString("dd-MM-yyyy")}"
+            For Each receipt As ReciboDTO In receipts
+                Dim tooltipMsg = $"<b>Cobrador: {receipt.Codigo} </b> <br>Cliente: {receipt.Cliente} <br>Cobrado: {FormattingHelper.ToLempiras(receipt.Cobrado)} <br>Fecha:{receipt.Fecha.ToString("dd-MM-yyyy")}"
                 If receipt.LATITUD.ToString().Trim.Length > 0 AndAlso receipt.LONGITUD.ToString().Trim.Length > 0 Then
                     Dim marker As New MarkerForMap With {.TooltipMessage = tooltipMsg, .Latitud = receipt.LATITUD, .Longitud = receipt.LONGITUD, .MarkerType = MarkerTypes.Cliente}
                     markers.Add(marker)

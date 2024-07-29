@@ -11,17 +11,21 @@ Public Class CobrosDashboard
     'Public Event AlertGenerated As EventHandler(Of AlertEventArgs)
     Private _receipts As List(Of ReciboDeCobro)
     Dim thisPage = "~/Dashboards/Cobros/Cobros.aspx"
-
-
-    Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
-        Get
-            Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getCobrosReceiptsFromDB, 100)
-        End Get
-        Set(value As List(Of RecibosDTO))
-            CachingHelper.CacheSet("ReceiptsByDate", value, 100)
-        End Set
-    End Property
-
+    Public PageNumber As Integer = 1
+    Public PageSize As Integer = 10
+    Dim g As RecibosDTO
+    'Public Property ReceiptsByDateCachedList As List(Of RecibosDTO)
+    '    Get
+    '        Return CachingHelper.GetOrFetch("ReceiptsByDate", AddressOf getCobrosReceiptsFromDB, 100)
+    '    End Get
+    '    Set(value As List(Of RecibosDTO))
+    '        CachingHelper.CacheSet("ReceiptsByDate", value, 100)
+    '    End Set
+    'End Property
+    Public Class whereAndParamsDto
+        Public Property whereClause As String
+        Public Property sqlParams As List(Of SqlParameter)
+    End Class
     Public Property ClientsContainsCollectorCachedList As List(Of PortfolioDetailsDto)
         Get
             Return CachingHelper.GetOrFetch("ClientsWithRemainingBalance", AddressOf GetClientsByCollectorIdFromDb, 150)
@@ -31,7 +35,111 @@ Public Class CobrosDashboard
         End Set
     End Property
 
+    Public Function UpdatedData(Optional receiptNumber = "", Optional salesman = "", Optional pageNumer = 1) As CobrosParams
+        Dim currentData As New CobrosParams
+        currentData.EndDate = endDate.Text
+        currentData.StartDate = startDate.Text
+        currentData.LeaderCode = ddlLeader.SelectedValue.Trim
+        currentData.SalesPersonCode = textBoxCode.Text.Trim
+        currentData.ClientCode = textBoxClientCode.Text
+        currentData.ValidReceiptsMark = ddlValidReceipts.SelectedValue
+        currentData.CompanyCode = ddlCompany.SelectedValue.Trim
+        currentData.ZoneCode = ddlCity.SelectedValue.Trim
+        currentData.DocumentNumber = textBoxNumDoc.Text.Trim
+        currentData.PageNumber = PageNumber ' Assuming PageNumber and PageSize are set elsewhere
+        currentData.PageSize = PageSize
+        Return currentData
+    End Function
+    Public Function GetParams(currentData As CobrosParams) As whereAndParamsDto
 
+        Dim sqlParameters As New List(Of SqlParameter)
+        Dim whereClauseList As New List(Of String)()
+
+        Dim whereClause As String = ""
+
+        Dim offset = 10 '(selectedPage - 1) * currentData.PageSize
+
+        Dim startDateParam As DateTime
+        Dim endDateParam As DateTime
+
+        If DateTime.TryParse(currentData.StartDate, startDateParam) AndAlso DateTime.TryParse(currentData.EndDate, endDateParam) Then
+            startDateParam = startDateParam.Date
+            endDateParam = endDateParam.Date.AddDays(1).AddSeconds(-1)
+        Else
+            startDateParam = DateAndTime.Now().AddDays(-1)
+            endDateParam = DateAndTime.Now()
+        End If
+
+        ' Parameters passed
+
+
+
+        ' Constant where clause list
+        whereClauseList.Add("r.RFECHA <= @End")
+        whereClauseList.Add("r.RFECHA >= @Start")
+        whereClauseList.Add("r.Por_lempira > 0")
+
+        ' Conditionally where and params
+        If Not String.IsNullOrEmpty(currentData.CompanyCode) Then
+            sqlParameters.Add(New SqlParameter("@Company", currentData.CompanyCode & "%"))
+            whereClauseList.Add("r.Num_doc like  @Company")
+
+
+        End If
+        If Not String.IsNullOrEmpty(currentData.ClientCode) Then
+            whereClauseList.Add("r.Codigo_clie like @Client")
+            sqlParameters.Add(New SqlParameter("@Client", "%" & currentData.ClientCode & "%"))
+        End If
+
+
+        If Not String.IsNullOrEmpty(currentData.SalesPersonCode) Then
+
+            whereClauseList.Add("r.codigo_cobr like @Collector")
+            sqlParameters.Add(New SqlParameter("@Collector", "%" & currentData.SalesPersonCode & "%"))
+
+
+        End If
+
+
+        If Not String.IsNullOrEmpty(currentData.LeaderCode) Then
+            whereClauseList.Add("cb.cob_lider like @Leader")
+            sqlParameters.Add(New SqlParameter("@Leader", "%" & currentData.LeaderCode & "%"))
+        End If
+
+        If Not String.IsNullOrEmpty(currentData.ZoneCode) Then
+            whereClauseList.Add("c.Cod_zona like @City")
+            sqlParameters.Add(New SqlParameter("@City", "%" & currentData.ZoneCode & "%"))
+        End If
+
+        If Not String.IsNullOrEmpty(currentData.ValidReceiptsMark) Then
+            whereClauseList.Add("r.MARCA like @Mark")
+            sqlParameters.Add(New SqlParameter("@Mark", "%" & currentData.ValidReceiptsMark & "%"))
+        End If
+
+        If Not String.IsNullOrEmpty(currentData.DocumentNumber) Then
+
+            whereClauseList.Add("REPLACE(r.Num_doc, '-', '') LIKE @Document")
+            sqlParameters.Add(New SqlParameter("@Document", "%" & currentData.DocumentNumber & "%"))
+        End If
+
+        'If Not String.IsNullOrEmpty(currentData.ServiceId) Then
+        '    whereClauseList.Add("r.ServicioId like @ServiceId")
+        '    sqlParameters.Add(New SqlParameter("@ServiceId", "%" & currentData.ServiceId & "%"))
+        'End If
+
+        sqlParameters.Add(New SqlParameter("@Start", startDateParam))
+        sqlParameters.Add(New SqlParameter("@End", endDateParam))
+        sqlParameters.Add(New SqlParameter("@Offset", offset))
+        sqlParameters.Add(New SqlParameter("@PageSize", currentData.PageSize))
+
+        If whereClauseList.Count > 0 Then
+            whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
+        End If
+        Dim result As New whereAndParamsDto
+        result.sqlParams = sqlParameters
+        result.whereClause = whereClause
+        Return result
+    End Function
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim Usuario_Aut = Session("Usuario_Aut")
@@ -93,7 +201,9 @@ Public Class CobrosDashboard
                     Dim msg = "Por favor refine su búsqueda"
                     AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 Else
-                    Dim DataList = GetReceiptDataForGridview()
+                    Dim cobrosService As New CobrosService()
+                    Dim params = GetParams(UpdatedData())
+                    Dim DataList As List(Of groupedreceiptDto) = cobrosService.GetRecepitsGrouped(params)
                     endDate.Enabled = True
                     startDate.Enabled = True
                     ddlValidReceipts.Enabled = True
@@ -402,10 +512,14 @@ Public Class CobrosDashboard
             'Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
             'Dim keyValue As String = DataBinder.Eval(e.Row.DataItem, "Codigo").ToString()
             Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
-
+            Dim controlsData As CobrosParams = UpdatedData()
+            controlsData.DocumentNumber = keyValue
+            Dim cobros As New CobrosService()
+            Dim params = GetParams(controlsData)
 
             If e.CommandName = "ReceiptLocationMap" Then
-                Dim d = ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
+                Dim d = cobros.GetRecepits(params).FirstOrDefault()
+                'cobroas.getCobrosReceiptsFromDB.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
                 If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
                     Dim lat = d.LATITUD.Trim().ToString()
                     Dim lon = d.LONGITUD.Trim().ToString()
@@ -481,9 +595,13 @@ Public Class CobrosDashboard
         End If
     End Sub
     Public Function FindMapLink(Id)
-        Return ReceiptsByDateCachedList.Where(Function(r) r.Num_doc.Contains(Id)).Select(Function(r) New With {.Link = If(r.LATITUD IsNot Nothing AndAlso r.LONGITUD IsNot Nothing,
-               $"https://www.google.com/maps?q={r.LATITUD.Trim},{r.LONGITUD.Trim}",
-               "https://www.google.com/maps")}).FirstOrDefault().Link
+        Dim cobrosService As New CobrosService()
+        Dim controlsData As CobrosParams = UpdatedData()
+        controlsData.DocumentNumber = Id
+        Dim receipt As ReciboDTO = cobrosService.GetRecepits(GetParams(controlsData)).FirstOrDefault()
+        Return If(receipt.LATITUD IsNot Nothing AndAlso receipt.LONGITUD IsNot Nothing,
+               $"https://www.google.com/maps?q={receipt.LATITUD.Trim},{receipt.LONGITUD.Trim}",
+               "https://www.google.com/maps")
     End Function
 
 
