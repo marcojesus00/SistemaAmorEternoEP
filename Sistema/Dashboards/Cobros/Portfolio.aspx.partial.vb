@@ -40,8 +40,8 @@ Partial Public Class CobrosDashboard
         Dim ZoneCode = ddlCity.SelectedValue.Trim
         Dim leaderCode = ddlLeader.SelectedValue.Trim
         Dim clientIdentification = textBoxNumDoc.Text.Trim
-        If textBoxClientCode.Text.Trim.Length > 3 Then
-            top = "top 50"
+        If textBoxClientCode.Text.Trim.Length > 3 OrElse textBoxCode.Text.Trim.Length > 3 Then
+            top = ""
         End If
 
         Dim selectClause As String = $"select {top} cl.Codigo_clie as Codigo, cl.Nombre_clie as Nombre,

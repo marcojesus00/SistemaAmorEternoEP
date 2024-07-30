@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
     <h2 class="  text-center">Dashboard de ventas</h2>
 
-    <div class="container mt-1 mb-1">
+    <div class="container-fluid container-lg pb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12 pb-2">
@@ -126,23 +126,23 @@
 
 
 
-                <div class="col-lg-2 align-self-end pb-2">
+                <div class="col-lg-2 align-self-end ">
                     <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" OnClientClick="" />
                 </div>
-                                <div class="col-lg-2  col-md-6 col-12 pb-2">
+                                <div class="col-lg-2  col-md-6 col-12 ">
 <%--                    <label for="ddlService" class="form-control-label">Servicio </label>--%>
 
                     <asp:DropDownList ID="ddlService" Visible="false" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
 
-                </div>s
+                </div>
             </div>
         </div>
     </div>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
-    <div class="container">
+    <div class="container-fluid container-lg">
     
 
             <div class="table-responsive">

@@ -68,13 +68,21 @@ Public Class CobrosService
         Dim result As New Point(15, 87)
         Return result
     End Function
-    Public Function GetRecepits(r As whereAndParamsDto) As List(Of ReciboDTO)
+    Public Function GetRecepits(r As whereAndParamsDto, Optional filters As CobrosFiltersData = Nothing, Optional top As String = "") As List(Of ReciboDTO)
         Dim params = r.sqlParams
         Dim whereClause = r.whereClause
+        If top.Length > 0 AndAlso filters IsNot Nothing Then
+            If (filters.ClientCode IsNot Nothing AndAlso filters.ClientCode.Length > 0) Then
+                top = ""
+
+            Else
+            End If
+        End If
+
         Using funamorContext As New FunamorContext()
 
-            Dim Query = "
-            SELECT r.Num_doc as Codigo,  c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, FORMAT(r.Por_lempira, 'C', 'es-HN')  as Cobrado, FORMAT(c.Saldo_actua , 'C', 'es-HN') as Saldo_actual, FORMAT(r.SALDOANT , 'C', 'es-HN') as Saldo_anterior, r.MARCA, r.rhora as Hora, FORMAT(r.RFECHA, 'dd-MM-yyyy') as Fecha, c.Cod_zona as Empresa, c.VZCODIGO as Zona,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
+            Dim Query = $"
+            SELECT {top} r.Num_doc as Codigo,  c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, FORMAT(r.Por_lempira, 'C', 'es-HN')  as Cobrado, FORMAT(c.Saldo_actua , 'C', 'es-HN') as Saldo_actual, FORMAT(r.SALDOANT , 'C', 'es-HN') as Saldo_anterior, r.MARCA, r.rhora as Hora, FORMAT(r.RFECHA, 'dd-MM-yyyy') as Fecha, c.Cod_zona as Empresa, c.VZCODIGO as Zona,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
             LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr

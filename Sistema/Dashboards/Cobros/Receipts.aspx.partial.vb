@@ -37,9 +37,9 @@ Partial Public Class CobrosDashboard
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
 
         Dim cobros As New CobrosService()
-        Dim controlsData As CobrosFiltersData = UpdatedData()
-        controlsData.SalesPersonCode = keyValue
-        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+        Dim filters As CobrosFiltersData = UpdatedData()
+        filters.SalesPersonCode = keyValue
+        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(filters), filters, top:="top 25")
         For Each rec In receipts
             If Not receiptLocations.ContainsKey(rec.Codigo) Then
                 Dim latitude As Double

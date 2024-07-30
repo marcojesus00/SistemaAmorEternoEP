@@ -475,10 +475,10 @@ Public Class CobrosDashboard
             'Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
             'Dim keyValue As String = DataBinder.Eval(e.Row.DataItem, "Codigo").ToString()
             Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
-            Dim controlsData As CobrosFiltersData = UpdatedData()
-            controlsData.DocumentNumber = keyValue
+            Dim filters As CobrosFiltersData = UpdatedData()
+            filters.DocumentNumber = keyValue
             Dim cobros As New CobrosService()
-            Dim params = GetParams(controlsData)
+            Dim params = GetParams(filters)
 
             If e.CommandName = "ReceiptLocationMap" Then
                 Dim d = cobros.GetRecepits(params).FirstOrDefault()
