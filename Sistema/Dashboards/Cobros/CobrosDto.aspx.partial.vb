@@ -43,9 +43,8 @@ Partial Public Class CobrosDashboard
     End Class
     Public Class PortfolioIDto
         Public Property Codigo As String
-        Public Property nombre_cobr As String
+        Public Property Nombre As String
         Public Property Clientes As Integer
-        Public Property Cartera As Decimal
         Public Property Cuota_mensual As Decimal
 
 

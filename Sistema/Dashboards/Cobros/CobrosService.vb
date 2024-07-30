@@ -151,10 +151,77 @@ ORDER BY Cobrado desc"
         End Using
 
     End Function
-    Public Function GetReceipt(cobrador)
-        Dim result As New RecibosDTO
-        Return result
+
+
+    Public Function GetClients(filters As CobrosFiltersData, params As List(Of SqlParameter), totalCountparams As List(Of SqlParameter)) As PaginatedResult(Of PortfolioIDto)
+
+        Using funamorContext As New FunamorContext
+            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
+
+            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr as Nombre, count(cl.Codigo_clie) as Clientes,  sum(cn.CONT_VALCUO) as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
+            Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
+                 on cl.cl_cobrador = cr.codigo_cobr
+                 left join CONTRATO cn
+				 on cl.Codigo_clie = cn.Codigo_clie"
+            Dim whereClauseList As New List(Of String)()
+
+            Dim orderByClause As String = "order by Cuota_mensual  desc"
+            Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
+            whereClauseList.Add("cl.Saldo_actua > 0")
+            If Not String.IsNullOrEmpty(filters.ClientCode) Then
+                whereClauseList.Add("cl.Codigo_clie like @Client")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.SalesPersonCode) Then
+                whereClauseList.Add("cr.codigo_cobr like @Collector")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.LeaderCode) Then
+                whereClauseList.Add("cr.cob_lider like @Leader")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.CompanyCode) Then
+                whereClauseList.Add("cl.Cod_zona like @Company")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.ZoneCode) Then
+                whereClauseList.Add("cl.VZCODIGO like @City")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.DocumentNumber) Then
+                whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
+            End If
+
+            Dim whereClause As String = ""
+            If whereClauseList.Count > 0 Then
+                whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
+            End If
+            Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
+            Dim queryCount = $"
+                    SELECT COUNT(*) AS TotalCount from
+                         ( select cr.codigo_cobr  {fromClause}
+                        {whereClause} {groupByClause}) as subquery  OPTION(RECOMPILE)
+                             ;"
+            Dim paginationClause = "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY"
+            Dim dataQuery = $"
+                            {selectClause} {fromClause}  {whereClause} {groupByClause}
+                            {orderByClause} 
+                            {paginationClause} OPTION(RECOMPILE)"
+
+            Dim result As List(Of PortfolioIDto) = funamorContext.Database.SqlQuery(Of PortfolioIDto)(
+                    dataQuery, params.ToArray()).ToList()
+            Dim toltalC = funamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
+
+            Dim p = New PaginatedResult(Of PortfolioIDto) With {
+                                                            .Data = result,
+                                                            .TotalCount = toltalC
+                                                        }
+            Return p
+        End Using
     End Function
+
+
 End Class
 Public Class PaginatedResult(Of T)
     Public Property Data As List(Of T)
@@ -168,7 +235,7 @@ Public Class groupedreceiptDto
     Public Property Cobrado As Decimal?
     Public Property Lider As String
 End Class
-Public Class CobrosParams
+Public Class CobrosFiltersData
     Public Property EndDate As String
     Public Property StartDate As String
     Public Property LeaderCode As String

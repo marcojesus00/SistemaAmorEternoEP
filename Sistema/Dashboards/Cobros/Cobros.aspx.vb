@@ -17,14 +17,15 @@ Public Class CobrosDashboard
     Public TotalItems As Integer = 0
     Public itemText As String
     Public pagination As PaginationHelper = New PaginationHelper
+    Dim receiptLocations As New Dictionary(Of String, Point)
 
     Public Class whereAndParamsDto
         Public Property whereClause As String
         Public Property sqlParams As List(Of SqlParameter)
     End Class
 
-    Public Function UpdatedData(Optional receiptNumber = "", Optional salesman = "", Optional pageNumer = 1) As CobrosParams
-        Dim currentData As New CobrosParams
+    Public Function UpdatedData(Optional receiptNumber = "", Optional salesman = "", Optional pageNumer = 1) As CobrosFiltersData
+        Dim currentData As New CobrosFiltersData
         currentData.EndDate = endDate.Text
         currentData.StartDate = startDate.Text
         currentData.LeaderCode = ddlLeader.SelectedValue.Trim
@@ -38,7 +39,7 @@ Public Class CobrosDashboard
         currentData.PageSize = PageSize
         Return currentData
     End Function
-    Public Function GetParams(currentData As CobrosParams) As whereAndParamsDto
+    Public Function GetParams(currentData As CobrosFiltersData) As whereAndParamsDto
 
         Dim sqlParameters As New List(Of SqlParameter)
         Dim whereClauseList As New List(Of String)()
@@ -165,51 +166,35 @@ Public Class CobrosDashboard
             Dim endD = endDate.Text
             Dim initD = startDate.Text
             Dim datesTooSpread = False
-
-            If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
-                Dim difference As TimeSpan = endDateParam - startDateParam
-                If difference.TotalDays > 7 Then
-                    datesTooSpread = True
-                End If
-            End If
+            Dim cobrosService As New CobrosService()
+            Dim filters = UpdatedData()
+            filters.PageNumber = selectedPage
+            Dim params = GetParams(filters)
+            Dim totalCountparams = GetParams(filters).sqlParams
+            'If DateTime.TryParse(initD, startDateParam) AndAlso DateTime.TryParse(endD, endDateParam) Then
+            '    Dim difference As TimeSpan = endDateParam - startDateParam
+            '    If difference.TotalDays > 7 Then
+            '        datesTooSpread = True
+            '    End If
+            'End If
             If DashboardType.SelectedValue = "0" Then
 
                 If (collectorCodeConstraint AndAlso clientCodeConstraint) And datesTooSpread Then
-                    Dim msg = "Por favor refine su búsqueda"
-                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+                    'Dim msg = "Por favor refine su búsqueda"
+                    'AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
                 Else
-                    Dim cobrosService As New CobrosService()
-                    Dim filters = UpdatedData()
-                    filters.PageNumber = selectedPage
-                    Dim params = GetParams(filters)
-                    Dim totalCountparams = GetParams(filters).sqlParams
-
-                    Dim result As PaginatedResult(Of groupedreceiptDto) = cobrosService.GetRecepitsGrouped(params, totalCountparams)
-                    Dim dataList = result.Data.Select(Function(r) New With {r.Codigo, r.Nombre, r.Recibos, .Cobrado = FormattingHelper.ToLempiras(r.Cobrado), r.Lider}).ToList()
-                    Dim count = result.TotalCount
                     endDate.Enabled = True
                     startDate.Enabled = True
                     ddlValidReceipts.Enabled = True
-                    'lblNumDoc.Text = "Número de documento"
+
+
+                    Dim result As PaginatedResult(Of groupedreceiptDto) = cobrosService.GetRecepitsGrouped(params, totalCountparams)
+                    Dim dataList = result.Data.Select(Function(r) New With {r.Codigo, r.Nombre, r.Recibos, .Cobrado = FormattingHelper.ToLempiras(r.Cobrado), r.Lider}).ToList()
+
                     textBoxNumDoc.Attributes("placeholder") = "Número de documento"
                     BtnRouteOfReceiptsMapByLeader.Enabled = True
-                    BindGridView(dataList)
+                    BindPrincipalGridView(dataList, result.TotalCount, selectedPage)
 
-                    TotalItems = count
-                    PageNumber = selectedPage
-                    TotalPages = Math.Ceiling(count / PageSize)
-
-                    ' Update the Previous and Next buttons' enabled state
-                    Dim pages As New List(Of Integer)()
-                    For i As Integer = 1 To TotalPages
-                        pages.Add(i)
-                    Next
-
-                    rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
-                    rptPager.DataBind()
-                    lnkbtnPrevious.Enabled = PageNumber > 1
-                    lnkbtnNext.Enabled = PageNumber < TotalPages
-                    lblTotalCount.DataBind()
 
 
                 End If
@@ -217,23 +202,25 @@ Public Class CobrosDashboard
                 startDate.Enabled = False
                 endDate.Enabled = False
                 ddlValidReceipts.Enabled = False
-                'lblNumDoc.Text = "Número de identidad"
                 textBoxNumDoc.Attributes("placeholder") = "Número de identidad"
 
                 BtnRouteOfReceiptsMapByLeader.Enabled = True
                 DashboardGridview.DataSource = Nothing
                 DashboardGridview.DataBind()
 
-                If collectorCodeConstraint AndAlso clientCodeConstraint Then
-                    Dim msg = "Por favor refine su búsqueda"
-                    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
+                'If collectorCodeConstraint AndAlso clientCodeConstraint Then
+                '    Dim msg = "Por favor refine su búsqueda"
+                '    AlertHelper.GenerateAlert("warning", msg, alertPlaceholder)
 
-                Else
+                'Else
 
-                End If
-                Dim dataList = GetPortfolioDataForGridview()
+                'End If
+                Dim result = cobrosService.GetClients(filters, params.sqlParams, totalCountparams)
+                Dim portfolioList As List(Of PortfolioIDto) = result.Data
+                Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.Nombre, .Clientes = c.Clientes, .Cuota_mensual = FormattingHelper.ToLempiras(CType(c.Cuota_mensual, Decimal?))}).ToList()
 
-                BindGridView(dataList)
+
+                BindPrincipalGridView(finalList, result.TotalCount, selectedPage)
             End If
 
         Catch ex As SqlException
@@ -285,7 +272,7 @@ Public Class CobrosDashboard
 
     End Sub
 
-    Private Sub BindGridView(dataList As Object)
+    Private Sub BindPrincipalGridView(dataList As Object, itemCount As Integer, selectedpage As Integer)
 
 
         Try
@@ -293,6 +280,22 @@ Public Class CobrosDashboard
             Dim msg = ""
             DashboardGridview.DataSource = dataList
             DashboardGridview.DataBind()
+
+            TotalItems = itemCount
+            PageNumber = selectedpage
+            TotalPages = Math.Ceiling(itemCount / PageSize)
+
+            ' Update the Previous and Next buttons' enabled state
+            Dim pages As New List(Of Integer)()
+            For i As Integer = 1 To TotalPages
+                pages.Add(i)
+            Next
+
+            rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
+            rptPager.DataBind()
+            lnkbtnPrevious.Enabled = PageNumber > 1
+            lnkbtnNext.Enabled = PageNumber < TotalPages
+            lblTotalCount.DataBind()
             If DashboardGridview.Rows.Count = 0 Then
                 msg = "No se encontraron resultados"
             Else
@@ -472,7 +475,7 @@ Public Class CobrosDashboard
             'Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
             'Dim keyValue As String = DataBinder.Eval(e.Row.DataItem, "Codigo").ToString()
             Dim keyValue As String = nestedGrid.DataKeys(rowIndex).Value.ToString()
-            Dim controlsData As CobrosParams = UpdatedData()
+            Dim controlsData As CobrosFiltersData = UpdatedData()
             controlsData.DocumentNumber = keyValue
             Dim cobros As New CobrosService()
             Dim params = GetParams(controlsData)
@@ -555,13 +558,15 @@ Public Class CobrosDashboard
         End If
     End Sub
     Public Function FindMapLink(Id)
-        Dim cobrosService As New CobrosService()
-        Dim controlsData As CobrosParams = UpdatedData()
-        controlsData.DocumentNumber = Id
-        Dim receipt As ReciboDTO = cobrosService.GetRecepits(GetParams(controlsData)).FirstOrDefault()
-        Return If(receipt.LATITUD IsNot Nothing AndAlso receipt.LONGITUD IsNot Nothing,
-               $"https://www.google.com/maps?q={receipt.LATITUD.Trim},{receipt.LONGITUD.Trim}",
-               "https://www.google.com/maps")
+        'Dim cobrosService As New CobrosService()
+        'Dim controlsData As CobrosParams = UpdatedData()
+        'controlsData.DocumentNumber = Id
+        'Dim receipt As ReciboDTO = cobrosService.GetRecepits(GetParams(controlsData)).FirstOrDefault()
+        If receiptLocations.ContainsKey(Id) Then
+            Dim location As Point = receiptLocations(Id)
+            Return $"https://www.google.com/maps?q={location.Latitude},{location.Longitude}"
+        End If
+        Return "https://www.google.com/maps"
     End Function
 
 

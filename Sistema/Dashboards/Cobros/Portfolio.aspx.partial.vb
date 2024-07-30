@@ -8,75 +8,7 @@ Imports System.Linq
 
 Partial Public Class CobrosDashboard
     Inherits System.Web.UI.Page
-    Public Function GetPortfolioDataForGridview()
 
-        Dim portfolioList As List(Of PortfolioIDto) = GetGroupedClientsByCollectorFromDb()
-        Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.nombre_cobr, .Clientes = c.Clientes, .Cuota_mensual = FormattingHelper.ToLempiras(CType(c.Cuota_mensual, Decimal?))}).ToList()
-
-        Return finalList
-
-    End Function
-    Public Function GetGroupedClientsByCollectorFromDb(Optional orderBy = "Valor") As List(Of PortfolioIDto)
-        Dim endD = endDate.Text
-        Dim initD = startDate.Text
-
-        Using funamorContext As New FunamorContext
-            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
-            Dim collectorCode = textBoxCode.Text.Trim
-            Dim ClientCode = textBoxClientCode.Text
-            Dim LeaderCode = ddlLeader.SelectedValue.Trim
-            Dim companyCode = ddlCompany.SelectedValue.Trim
-            Dim ZoneCode = ddlCity.SelectedValue.Trim
-            Dim clientIdentification = textBoxNumDoc.Text.Trim
-
-            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera,  sum(cn.CONT_VALCUO) as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
-            Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
-                 on cl.cl_cobrador = cr.codigo_cobr
-                 left join CONTRATO cn
-				 on cl.Codigo_clie = cn.Codigo_clie"
-            Dim whereClauseList As New List(Of String)()
-
-            Dim orderByClause As String = "order by Cuota_mensual  desc"
-            Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
-            whereClauseList.Add("cl.Saldo_actua > 0")
-            If Not String.IsNullOrEmpty(ClientCode) Then
-                whereClauseList.Add("cl.Codigo_clie like @Client")
-            End If
-
-            If Not String.IsNullOrEmpty(collectorCode) Then
-                whereClauseList.Add("cr.codigo_cobr like @Collector")
-            End If
-
-            If Not String.IsNullOrEmpty(LeaderCode) Then
-                whereClauseList.Add("cr.cob_lider like @Leader")
-            End If
-
-            If Not String.IsNullOrEmpty(companyCode) Then
-                whereClauseList.Add("cl.Cod_zona like @Company")
-            End If
-
-            If Not String.IsNullOrEmpty(ZoneCode) Then
-                whereClauseList.Add("cl.VZCODIGO like @City")
-            End If
-
-            If Not String.IsNullOrEmpty(clientIdentification) Then
-                whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
-            End If
-
-            Dim whereClause As String = ""
-            If whereClauseList.Count > 0 Then
-                whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
-            End If
-            Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
-            Try
-
-                Return GetFromDb(Of PortfolioIDto)(query, collectorCode, ClientCode, clientIdentification, companyCode, ZoneCode, LeaderCode)
-            Catch ex As Exception
-                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-                Throw New Exception("Problema al recibir información de la base de datos.", ex)
-            End Try
-        End Using
-    End Function
 
 
     Public Sub BindClientDetails(DetailsControl As GridView, id As String)

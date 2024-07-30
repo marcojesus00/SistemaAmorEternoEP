@@ -12,7 +12,7 @@ Partial Public Class CobrosDashboard
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim cobros As New CobrosService()
-        Dim controlsData As CobrosParams = UpdatedData()
+        Dim controlsData As CobrosFiltersData = UpdatedData()
         controlsData.SalesPersonCode = keyValue
         Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
 
@@ -37,9 +37,24 @@ Partial Public Class CobrosDashboard
     Private Sub BindReceiptsDetails(DetailsControl As GridView, keyValue As String)
 
         Dim cobros As New CobrosService()
-        Dim controlsData As CobrosParams = UpdatedData()
+        Dim controlsData As CobrosFiltersData = UpdatedData()
         controlsData.SalesPersonCode = keyValue
         Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+        For Each rec In receipts
+            If Not receiptLocations.ContainsKey(rec.Codigo) Then
+                Dim latitude As Double
+                Dim longitude As Double
+
+                ' Attempt to parse LATITUD and LONGITUD to Double
+                Dim isLatitudeValid As Boolean = Double.TryParse(rec.LATITUD, latitude)
+                Dim isLongitudeValid As Boolean = Double.TryParse(rec.LONGITUD, longitude)
+                If isLatitudeValid AndAlso isLongitudeValid Then
+                    ' Create a new Point with the parsed Double values
+                    receiptLocations.Add(rec.Codigo, New Point(latitude, longitude))
+                End If
+            End If
+        Next
+
         Dim re = receipts.Select(Function(r) New With {r.Codigo, r.Cliente, r.Codigo_cliente, r.Cobrado, r.Fecha, r.Hora, r.Saldo_actual, r.Saldo_anterior, r.Empresa, .Estado = FormattingHelper.MarcaToNulo(r.MARCA, r.liquida, r.liquida2)}).ToList()
         DetailsControl.DataSource = re
         DetailsControl.DataBind()
