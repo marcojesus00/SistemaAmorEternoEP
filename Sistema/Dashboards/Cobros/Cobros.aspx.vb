@@ -30,7 +30,7 @@ Public Class CobrosDashboard
         currentData.StartDate = startDate.Text
         currentData.LeaderCode = ddlLeader.SelectedValue.Trim
         currentData.SalesPersonCode = textBoxCode.Text.Trim
-        currentData.ClientCode = textBoxClientCode.Text
+        currentData.ClientCode = textBoxClientCode.Text.Trim
         currentData.ValidReceiptsMark = ddlValidReceipts.SelectedValue
         currentData.CompanyCode = ddlCompany.SelectedValue.Trim
         currentData.ZoneCode = ddlCity.SelectedValue.Trim
@@ -481,7 +481,7 @@ Public Class CobrosDashboard
             Dim params = GetParams(filters)
 
             If e.CommandName = "ReceiptLocationMap" Then
-                Dim d = cobros.GetRecepits(params).FirstOrDefault()
+                Dim d = cobros.GetRecepits(params, filters:=filters).FirstOrDefault()
                 'cobroas.getCobrosReceiptsFromDB.Where(Function(r) r.Num_doc.Contains(keyValue)).Select(Function(r) New With {r.LATITUD, r.LONGITUD}).FirstOrDefault()
                 If d IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(d.LATITUD) AndAlso Not String.IsNullOrWhiteSpace(d.LONGITUD) Then
                     Dim lat = d.LATITUD.Trim().ToString()

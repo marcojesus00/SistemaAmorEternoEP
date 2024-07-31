@@ -83,7 +83,7 @@ Public Class VentasDashboard
         Data.StartDate = startDate.Text
         Data.LeaderCode = ddlLeader.SelectedValue.Trim
         Data.SalesPersonCode = textBoxCode.Text.Trim
-        Data.ClientCode = textBoxClientCode.Text
+        Data.ClientCode = textBoxClientCode.Text.Trim
         Data.ValidReceiptsMark = ddlValidReceipts.SelectedValue
         Data.CompanyCode = ddlCompany.SelectedValue.Trim
         Data.ZoneCode = ddlCity.SelectedValue.Trim
