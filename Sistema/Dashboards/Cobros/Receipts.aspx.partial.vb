@@ -12,9 +12,9 @@ Partial Public Class CobrosDashboard
 
     Public Sub RouteOfReceiptsMap(keyValue As String)
         Dim cobros As New CobrosService()
-        Dim controlsData As CobrosFiltersData = UpdatedData()
-        controlsData.SalesPersonCode = keyValue
-        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+        Dim filters As CobrosFiltersData = UpdatedData()
+        filters.SalesPersonCode = keyValue
+        Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(filters), filters:=filters)
 
 
         Dim markers As New List(Of MarkerForMap)
@@ -74,9 +74,9 @@ Partial Public Class CobrosDashboard
 
 
             Dim cobros As New CobrosService()
-            Dim controlsData = UpdatedData()
-            controlsData.LeaderCode = keyValue
-            Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(controlsData))
+            Dim filters = UpdatedData()
+            filters.LeaderCode = keyValue
+            Dim receipts As List(Of ReciboDTO) = cobros.GetRecepits(GetParams(filters), filters:=filters)
             Dim markers As New List(Of MarkerForMap)
             For Each receipt As ReciboDTO In receipts
                 Dim tooltipMsg = $"<b>Cobrador: {receipt.Codigo} </b> <br>Cliente: {receipt.Cliente} <br>Cobrado: {receipt.Cobrado} <br>Fecha:{receipt.Fecha}"

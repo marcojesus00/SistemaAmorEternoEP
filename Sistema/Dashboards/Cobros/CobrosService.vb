@@ -68,7 +68,7 @@ Public Class CobrosService
         Dim result As New Point(15, 87)
         Return result
     End Function
-    Public Function GetRecepits(r As whereAndParamsDto, Optional filters As CobrosFiltersData = Nothing, Optional top As String = "") As List(Of ReciboDTO)
+    Public Function GetRecepits(r As whereAndParamsDto, filters As CobrosFiltersData, Optional top As String = "") As List(Of ReciboDTO)
         Dim params = r.sqlParams
         Dim whereClause = r.whereClause
         If top.Length > 0 AndAlso filters IsNot Nothing Then
@@ -78,14 +78,17 @@ Public Class CobrosService
             Else
             End If
         End If
-
+        Dim leftj = ""
+        If filters IsNot Nothing AndAlso filters.LeaderCode.Length > 0 Then
+            leftj = "LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr"
+        End If
         Using funamorContext As New FunamorContext()
 
             Dim Query = $"
             SELECT {top} r.Num_doc as Codigo,  c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, FORMAT(r.Por_lempira, 'C', 'es-HN')  as Cobrado, FORMAT(c.Saldo_actua , 'C', 'es-HN') as Saldo_actual, FORMAT(r.SALDOANT , 'C', 'es-HN') as Saldo_anterior, r.MARCA, r.rhora as Hora, FORMAT(r.RFECHA, 'dd-MM-yyyy') as Fecha, c.Cod_zona as Empresa, c.VZCODIGO as Zona,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
             FROM aecobros.dbo.recibos r
             LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
-            LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
+            {leftj}
         "
             '"            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader and r.Num_doc like @Document"
 
