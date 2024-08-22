@@ -62,10 +62,14 @@ Public Class Reportes
     Private Sub btnEjecutar_Click(sender As Object, e As EventArgs) Handles btnEjecutar.Click
         If Reporte = "Estadistica de Visitas" Then
             If dlAgrupa.SelectedIndex = 0 Then
+                pnlDialog.Visible = False
+
                 Estadistica_Visitas()
             End If
 
             If dlAgrupa.SelectedIndex = 1 Then
+                pnlDialog.Visible = False
+
                 Estadistica_Visitas_Zona()
             End If
             If dlAgrupa.SelectedIndex = 2 Then
@@ -308,6 +312,13 @@ Public Class Reportes
         reporte.ExportToHttpResponse(exportOpts, Response, False, "VentasRendLider")
         reporte.Close()
         reporte.Dispose()
+    End Sub
+
+    Protected Sub dlAgrupa_TextChanged(sender As Object, e As EventArgs)
+        If dlAgrupa.SelectedIndex <> 2 Then
+            pnlDialog.Visible = False
+
+        End If
     End Sub
 
     Sub VentasRensindidas()

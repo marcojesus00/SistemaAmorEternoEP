@@ -45,7 +45,7 @@
                     <asp:TableCell runat="server">
                         <asp:Label ID="Label5" runat="server" Text="Agrupado por:" Visible="false" /></asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:DropDownList ID="dlAgrupa" runat="server" Visible="false" CssClass="form-control form-control-sm" Width="200" Height="27" Font-Size="Small"></asp:DropDownList></asp:TableCell>
+                        <asp:DropDownList ID="dlAgrupa" runat="server" AutoPostBack="true" Visible="false" CssClass="form-control form-control-sm" Width="200" Height="27" Font-Size="Small" OnTextChanged="dlAgrupa_TextChanged"></asp:DropDownList></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server"></asp:TableCell>
