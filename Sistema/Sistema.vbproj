@@ -346,6 +346,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>EntregasPrg.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rpt\Estadistica Visitas Cobrador.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estadistica Visitas Cobrador.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rpt\FirmaClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FirmaClientes.vb</LastGenOutput>
@@ -2368,6 +2372,12 @@
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Helpers\PaginationHelper.vb" />
     <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="rpt\Estadistica Visitas Cobrador.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estadistica Visitas Cobrador.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Shared\Map\MapClustered.aspx.designer.vb">
       <DependentUpon>MapClustered.aspx</DependentUpon>
     </Compile>
