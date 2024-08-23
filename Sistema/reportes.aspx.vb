@@ -318,6 +318,7 @@ Public Class Reportes
         If dlAgrupa.SelectedIndex <> 2 Then
             pnlDialog.Visible = False
 
+
         End If
     End Sub
 
