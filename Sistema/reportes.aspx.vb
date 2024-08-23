@@ -370,7 +370,7 @@ Public Class Reportes
         Dim esValidaFechaFinal As Boolean = DateTime.TryParse(fechaFinal, convertedDate)
 
 
-        If userInput.Trim().Length < 4 Then
+        If userInput.Trim().Length < 4 OrElse userInput.Trim().Length > 4 Then
             lblError.Text = "Ingrese un código de 4 dígitos"
             Exit Sub
         End If
@@ -390,7 +390,7 @@ Public Class Reportes
         Informe.SetDatabaseLogon(Usuario, Clave)
         Informe.SetParameterValue("F1", txtFecha1.Text)
         Informe.SetParameterValue("F2", txtFecha2.Text)
-        Informe.SetParameterValue("COBRADOR", userInput)
+        Informe.SetParameterValue("COBRADOR", userInput.Trim())
 
 
         Dim exportOpts As CrystalDecisions.Shared.ExportOptions = New CrystalDecisions.Shared.ExportOptions()

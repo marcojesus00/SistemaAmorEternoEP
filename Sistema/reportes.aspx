@@ -19,46 +19,81 @@
             <asp:Table ID="Table1" runat="server">
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Label ID="Label1" runat="server" Text="Desde la Fecha:" /></asp:TableCell>
+                        <asp:Label ID="Label1" runat="server" Text="Desde la Fecha:" />
+                    </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtFecha1" runat="server" TextMode="Date" CssClass="form-control form-control-sm" Width="200" Height="26" Font-Size="Small"></asp:TextBox></asp:TableCell>
+                        <asp:TextBox ID="txtFecha1" runat="server" TextMode="Date" CssClass="form-control form-control-sm" Width="200" Height="26" Font-Size="Small"></asp:TextBox>
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Label ID="Label2" runat="server" Text="Hasta la Fecha:" /></asp:TableCell>
+                        <asp:Label ID="Label2" runat="server" Text="Hasta la Fecha:" />
+                    </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtFecha2" runat="server" TextMode="Date" CssClass="form-control form-control-sm" Width="200" Height="26" Font-Size="Small"></asp:TextBox></asp:TableCell>
+                        <asp:TextBox ID="txtFecha2" runat="server" TextMode="Date" CssClass="form-control form-control-sm" Width="200" Height="26" Font-Size="Small"></asp:TextBox>
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Label ID="Label3" runat="server" Text="Codigo Cobrador:" /></asp:TableCell>
+                        <asp:Label ID="Label3" runat="server" Text="Codigo Cobrador:" />
+                    </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtCobrador" runat="server" CssClass="form-control form-control-sm" Width="200" Height="24" Font-Size="Small" /></asp:TableCell>
+                        <asp:TextBox ID="txtCobrador" runat="server" CssClass="form-control form-control-sm" Width="200" Height="24" Font-Size="Small" />
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Label ID="Label4" Visible="false" runat="server" Text="Cobrador:" /></asp:TableCell>
+                        <asp:Label ID="Label4" Visible="false" runat="server" Text="Cobrador:" />
+                    </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtlider" Visible="false" runat="server" CssClass="form-control form-control-sm" Width="200" Height="24" Font-Size="Small" /></asp:TableCell>
+                        <asp:TextBox ID="txtlider" Visible="false" runat="server" CssClass="form-control form-control-sm" Width="200" Height="24" Font-Size="Small" />
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">
-                        <asp:Label ID="Label5" runat="server" Text="Agrupado por:" Visible="false" /></asp:TableCell>
+                        <asp:Label ID="Label5" runat="server" Text="Agrupado por:" Visible="false" />
+                    </asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:DropDownList ID="dlAgrupa" runat="server" AutoPostBack="true" Visible="false" CssClass="form-control form-control-sm" Width="200" Height="27" Font-Size="Small" OnTextChanged="dlAgrupa_TextChanged"></asp:DropDownList></asp:TableCell>
+                        <asp:DropDownList ID="dlAgrupa" runat="server" AutoPostBack="true" Visible="false" CssClass="form-control form-control-sm" Width="200" Height="27" Font-Size="Small" OnTextChanged="dlAgrupa_TextChanged"></asp:DropDownList>
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server"></asp:TableCell>
 
                     <asp:TableCell runat="server">
-                        <asp:Button ID="btnEjecutar" runat="server" Text="Generar" CssClass="btn btn-dark btn-sm" /></asp:TableCell>
+                        <asp:Button ID="btnEjecutar" runat="server" Text="Generar" CssClass="btn btn-dark btn-sm" />
+                    </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-            <asp:Panel ID="pnlDialog" runat="server" CssClass="dialog-panel pt-2" Visible="False">
-                <asp:Label cssClass="form-control form-control-sm" ID="lblMessage" runat="server" Text="Codigo de cobrador:"></asp:Label>
-                <asp:TextBox ID="txtCodigoCObrador" runat="server"></asp:TextBox>
-                <asp:Button ID="btnSubmit" runat="server" Text="Ver reporte" CssClass="btn btn-dark btn-sm" OnClick="btnSubmit_Click" />
-                <asp:Label cssClass="form-control form-control-sm" ID="lblError" runat="server" ></asp:Label>
+            <asp:Panel ID="pnlDialog" runat="server" CssClass="dialog-panel pt-4" Visible="False">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="row">
+
+<%--                            <div class="col-3">
+
+                                <asp:Label CssClass="" ID="lblMessage" runat="server" Text="Cobrador:"></asp:Label>
+
+
+                            </div>--%>
+                            <div class="col-6">
+                                <asp:TextBox style="max-height:stretch" ID="txtCodigoCObrador" PlaceHolder="Código cobrador" runat="server"></asp:TextBox>
+
+
+                            </div>
+                            <div class="col-4">
+
+                                <asp:Button ID="btnSubmit" runat="server" Text="Ver reporte" CssClass="btn btn-dark btn-sm" OnClick="btnSubmit_Click" />
+
+
+                            </div>
+                        </div>
+                        <asp:Label CssClass="" ID="lblError" runat="server"></asp:Label>
+
+                    </div>
+
+                </div>
+
 
             </asp:Panel>
             <asp:ImageButton ID="btnRegresar" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" Style="position: fixed; right: 10px; top: 10px;" />
