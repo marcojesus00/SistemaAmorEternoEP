@@ -9532,15 +9532,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.reportes._lblMessage">
-<summary>
-lblMessage control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.reportes._txtCodigoCObrador">
 <summary>
 txtCodigoCObrador control.
