@@ -539,10 +539,10 @@ h4:hover {
                                    <label for="txttelefono" class="input-group-text" style="width: 135px">Telefono Whatsapp</label> <i class="fas fa-solid fa-whatsapp" style="color: #49e44c;"></i>
                                </div>
                                <%--<input type="text" class="form-control form-control-sm" id="TxtTelefonoWhatsapp" runat="server" />&nbsp--%>
-                               <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" Enabled="false" runat="server"></asp:TextBox>
+                               <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
 
                          
-                           <asp:Button ID="btnEnviarWhatsapp" runat="server" Text="   Enviar Por whatsapp  " Enabled="false" CssClass="btn btn-sm btn-success" />
+                           <asp:Button ID="btnEnviarWhatsapp" runat="server" Text="   Enviar por WhatsApp  "  CssClass="btn btn-sm btn-success" />
                        </div>
                      </div>
                      

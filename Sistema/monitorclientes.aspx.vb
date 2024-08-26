@@ -6,13 +6,14 @@ Imports System.Web.Services
 Imports System.Web.Script.Services
 Imports System.Net.Mail
 Imports System.Net
-
+Imports System.Net.Http
+Imports System.Text
+Imports Newtonsoft.Json
 
 
 
 Imports System.Threading.Tasks
 
-Imports System.Text
 'Imports Newtonsoft.Json.Linq
 'Imports System.Net.Http
 'Imports RestSharp
@@ -420,7 +421,119 @@ Public Class monitorclientes
     End Sub
 
 
+    Private Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As String
+        Using client As New HttpClient()
+            client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
 
+            ' Convert the dictionary to JSON
+            Dim json As String = JsonConvert.SerializeObject(data)
+            Dim content As New StringContent(json, Encoding.UTF8, "application/json")
+
+            Try
+                ' Make the POST request synchronously
+                Dim response1 As HttpResponseMessage = client.PostAsync(url, content).Result
+
+                ' Log status code and reason phrase
+                Response.Write("Status Code: " & response1.StatusCode.ToString() & "<br>")
+                Response.Write("Reason Phrase: " & response1.ReasonPhrase & "<br>")
+
+                If response1.IsSuccessStatusCode Then
+                    Return response1.Content.ReadAsStringAsync().Result
+                Else
+                    Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
+                End If
+
+            Catch ex As Exception
+                ' Catch any exceptions that occur during the HTTP request
+                Return $"Exception: {ex.Message}"
+            End Try
+        End Using
+    End Function
+
+    Private Sub btnEnviarWhatsapp_click(sender As Object, e As EventArgs) Handles btnEnviarWhatsapp.Click
+        Dim Informe As New Movimiento_Clientes
+
+        Informe.SetDatabaseLogon(Usuario, Clave)
+        Informe.SetParameterValue("Cliente", Session("CodigoCliente").TrimEnd)
+
+        ' Ruta donde se guardará el archivo PDF
+        Dim rutaPDF As String = "\\192.168.20.226\inetpub\wwwroot\Musica\Temp\Estados"
+        Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+        Dim rutaCompletaArchivo As String = Path.Combine(rutaPDF, nombreArchivo)
+
+        Try
+            ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
+            'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
+            Using memoryStream As New System.IO.MemoryStream()
+                ' Export the report to the memory stream as a PDF
+                Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat).CopyTo(memoryStream)
+
+                ' Convert the memory stream to a byte array
+                Dim reportBytes As Byte() = memoryStream.ToArray()
+
+                ' Convert the byte array to a base64 string
+                Dim base64String As String = Convert.ToBase64String(reportBytes)
+
+                ' Now you have the base64String variable containing the PDF as a base64 string
+                ' You can use this string as needed
+                Try
+
+
+                    Dim caption = "Estimado(a) " + Session("NombreCliente") + "Amor eterno adjunta su estado de cuenta."
+
+                    Dim url As String = "http://localhost:8002/v1/messages/docs/"
+
+                    Dim phoneNumber As New Dictionary(Of String, String) From {
+                    {"country_code", "504"},
+                    {"local_number", TxtTelefonoWhats.Text}
+                }
+
+                    Dim data As New Dictionary(Of String, Object) From {
+                    {"phone_number", phoneNumber},
+                    {"url", base64String},
+                    {"file_name", nombreArchivo},
+                    {"caption", caption},
+                    {"priority", 10},
+                    {"referenceID", ""}
+                }
+
+                    ' Send the POST request
+                    Dim rapiRsponse = PostData(url, data)
+                    Response.Write(rapiRsponse)
+
+
+                    PanelEnviarWhatsapp.Visible = False
+                    TxtTelefonoWhats.Text = ""
+
+
+
+                    PanelConfirmaCorreoEnviado.Visible = True
+
+
+                Catch ex As Exception
+                    ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
+                    Dim errorMessage As String = ex.Message
+                    ' Puedes mostrar o registrar el mensaje de error aquí
+                End Try
+            End Using
+            ' Mostrar un mensaje o redireccionar después de la descarga exitosa
+            ' Response.Redirect("TuPaginaDestino.aspx")
+        Catch ex As Exception
+            ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
+            Dim errorMessage As String = ex.Message
+            ' Puedes mostrar o registrar el mensaje de error aquí
+        Finally
+            ' Cerrar y liberar recursos
+            Informe.Close()
+            Informe.Dispose()
+        End Try
+
+
+        ' Dim rutaPDF As String = "C:\inetpub\wwwroot\EstadoDeCuenta\Movimiento_Cliente.pdf"
+
+
+
+    End Sub
     ' End Class
 
     'Protected Sub btnEnviarWhatsapp_Click(sender As Object, e As EventArgs) Handles btnEnviarWhatsapp.Click
