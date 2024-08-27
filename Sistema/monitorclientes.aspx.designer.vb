@@ -617,6 +617,15 @@ Partial Public Class monitorclientes
     Protected WithEvents PanelConfirmaCorreoEnviado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''lblAlert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAlert As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnCerrarConfCorreo control.
     '''</summary>
     '''<remarks>

@@ -404,7 +404,8 @@ Public Class monitorclientes
             TxtCorreoCliente.Text = ""
 
 
-
+            lblAlert.CssClass = "alert-primary align-content-center"
+            lblAlert.Text = "Correo enviado exitosamente"
             PanelConfirmaCorreoEnviado.Visible = True
 
 
@@ -438,13 +439,18 @@ Public Class monitorclientes
                 Response.Write("Reason Phrase: " & response1.ReasonPhrase & "<br>")
 
                 If response1.IsSuccessStatusCode Then
+                    lblAlert.CssClass = "alert-primary align-content-center"
+                    lblAlert.Text = "WhatsApp enviado"
                     Return response1.Content.ReadAsStringAsync().Result
                 Else
+                    lblAlert.CssClass = "alert-danger align-content-center"
+                    lblAlert.Text = "Error, intente de nuevo"
                     Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
                 End If
 
             Catch ex As Exception
-                ' Catch any exceptions that occur during the HTTP request
+                lblAlert.CssClass = "alert-danger align-content-center"
+                lblAlert.Text = "Error, intente de nuevo"
                 Return $"Exception: {ex.Message}"
             End Try
         End Using
@@ -479,7 +485,7 @@ Public Class monitorclientes
                 Try
 
 
-                    Dim caption = "Estimado(a) " + Session("NombreCliente") + "Amor eterno adjunta su estado de cuenta."
+                    Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor eterno adjunta su estado de cuenta."
 
                     Dim url As String = "http://localhost:8002/v1/messages/docs/"
 
@@ -504,7 +510,6 @@ Public Class monitorclientes
 
                     PanelEnviarWhatsapp.Visible = False
                     TxtTelefonoWhats.Text = ""
-
 
 
                     PanelConfirmaCorreoEnviado.Visible = True

@@ -596,7 +596,7 @@ h4:hover {
                     <div class="col-8">
                            <div class="input-group-prepend align-content-center" style="text-align: left"">
                                
-                           <label class="alert-primary align-content-center">Correo Enviado Correctamente</label>
+                           <asp:Label runat="server" Id="lblAlert" >Correo Enviado Correctamente</asp:Label>
                             </div>
                        </div>
                 </div>
