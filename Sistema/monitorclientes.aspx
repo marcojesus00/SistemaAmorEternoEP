@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorclientes.aspx.vb" Inherits="Sistema.monitorclientes" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,55 +9,84 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
     <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
     <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>   
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
            <style>
+               .Principal {
+                   background-color: rgba(0,0,0,0.6);
+                   position: absolute;
+                   left: 0;
+                   top: 0;
+                   bottom: 0
+               }
 
-               .Principal{
-            background-color:rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0
-        }
-        .Principal-2{
-            padding-left: 35%; padding-right: 35%; padding-top: 55px;
-        }
-        .Principal-3{
-            background-color: white; padding-top: 15px;
-        }
-        .Principal-4{
-            background-color: white; padding-top: 15px; padding-left: 20%;
-        }
-        .Principal-BotonCerrar{
-            position: absolute; right: 33%; top: 35px; font-size: x-large;
-        }
+               .Principal-2 {
+                   padding-left: 35%;
+                   padding-right: 35%;
+                   padding-top: 55px;
+               }
 
-        @media (max-width: 768px){
-            .Principal{
-            background-color:rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0
-        }
-        .Principal-2{
-            padding-left: 5%; padding-right: 5%; padding-top: 25px;
-        }
-        .Principal-3{
-            background-color: white; padding-top: 15px;
-        }
-        .Principal-4{
-            background-color: white; padding-top: 15px; padding-left: 20%;
-        }
-        .Principal-BotonCerrar{
-            position: absolute; right: 1%; top: 2px; font-size: x-large;
-        }
-        }
-h4:hover {
-    background-color: aliceblue;
-    color: blue;
- 
-}
+               .Principal-3 {
+                   background-color: white;
+                   padding-top: 15px;
+               }
 
-.Boton{
-    width:80%;
+               .Principal-4 {
+                   background-color: white;
+                   padding-top: 15px;
+                   padding-left: 20%;
+               }
 
+               .Principal-BotonCerrar {
+                   position: absolute;
+                   right: 33%;
+                   top: 35px;
+                   font-size: x-large;
+               }
 
-}
+               @media (max-width: 768px) {
+                   .Principal {
+                       background-color: rgba(0,0,0,0.6);
+                       position: absolute;
+                       left: 0;
+                       top: 0;
+                       bottom: 0
+                   }
 
-/*  .boton{
+                   .Principal-2 {
+                       padding-left: 5%;
+                       padding-right: 5%;
+                       padding-top: 25px;
+                   }
+
+                   .Principal-3 {
+                       background-color: white;
+                       padding-top: 15px;
+                   }
+
+                   .Principal-4 {
+                       background-color: white;
+                       padding-top: 15px;
+                       padding-left: 20%;
+                   }
+
+                   .Principal-BotonCerrar {
+                       position: absolute;
+                       right: 1%;
+                       top: 2px;
+                       font-size: x-large;
+                   }
+               }
+
+               h4:hover {
+                   background-color: aliceblue;
+                   color: blue;
+               }
+
+               .Boton {
+                   width: 80%;
+               }
+
+               /*  .boton{
         font-size:10px;
         font-family:Verdana,Helvetica;
         font-weight:bold;
@@ -70,9 +98,7 @@ h4:hover {
         cursor:pointer;
        }
 */
-
-
-</style>
+           </style>
 </head>
 
 <body>
@@ -530,61 +556,89 @@ h4:hover {
                 <%-- Panel Envio de Estado de Cuenta Por whatsapp --%>
         <div class="container-fluid Principal" id="PanelEnviarWhatsapp" runat="server" visible="false">
             <div class="Principal-2">
-                <div class="row Principal-3">
+                <div class="card text-center " style="min-width:25rem">
 
-                        
-                       <div class="col">
-                           <div class="input-group input-group-sm">
-                               <div class="input-group-prepend">
-                                   <label for="txttelefono" class="input-group-text" style="width: 135px">Telefono Whatsapp</label> <i class="fas fa-solid fa-whatsapp" style="color: #49e44c;"></i>
-                               </div>
-                               <%--<input type="text" class="form-control form-control-sm" id="TxtTelefonoWhatsapp" runat="server" />&nbsp--%>
-                               <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
 
-                         
-                           <asp:Button ID="btnEnviarWhatsapp" runat="server" Text="   Enviar por WhatsApp  "  CssClass="btn btn-sm btn-success" />
-                       </div>
-                     </div>
-                     
-                </div>
-                 <div class="row Principal-3">                      
-                       <div class="col">
-                           <div class="input-group input-group-sm">
-                               <div class="input-group-prepend">
-                                   <label for="txttelefono" class="input-group-text" style="width: 135px">Correo / Email</label> <i class="fas fa-solid fa-whatsapp" style="color: #49e44c;"></i>
-                               </div>
-                               <%--<input type="text" class="form-control form-control-sm" id="txtCorreoCliente" runat="server" />--%>
-                               <asp:TextBox class="form-control form-control-sm" TextMode="Email" ID="TxtCorreoCliente" runat="server"></asp:TextBox>
 
-                           </div>
-                       </div>
-                     
-                </div>
-          
+
+
+
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Enviar estado de cuenta</h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="row Principal-3 text-right">
+
+                            <div class="col-12">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label for="txttelefono" class="input-group-text">Teléfono</label>
+                                    </div>
+                                    <%--<input type="text" class="form-control form-control-sm" id="TxtTelefonoWhatsapp" runat="server" />&nbsp--%>
+                                    <asp:DropDownList ID="ddlCountryCode" runat="server"></asp:DropDownList>
+
+                                    <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
+
+
+                                </div>
  
-                  <div class="row Principal-3">
+
+                            </div>
+                                                           <div class="col-12 pt-2">
+                                <asp:button ID="btnEnviarWhatsapp" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
+
+
+                                </div>
+                                <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
+                        </div>
+                        <div class="row text-right">
+
+                        </div>
+                        <div class="row Principal-3 text-right">
+                            <div class="col-12">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label for="TxtCorreoCliente" class="input-group-text">Correo</label>
+                                    </div>
+                                    <%--<input type="text" class="form-control form-control-sm" id="txtCorreoCliente" runat="server" />--%>
+                                    <asp:TextBox class="form-control form-control-sm" TextMode="Email" ID="TxtCorreoCliente" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-12 pt-2" >
+                                                                    <asp:Button ID="btnEnviarPorCorreo" runat="server" Text="Enviar correo" CssClass="btn btn-sm btn-success" />
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="card-footer text-muted">
                  
-                </div>
-
-                  <div class="row Principal-3">
-                      <div class="col">
-
-                      </div>
-                        <div class="col">
-                           <div class="input-group input-group-sm">                             
-                                <asp:Button ID="btnEnviarPorCorreo" runat="server" Text="  Enviar Por Correo  " CssClass="btn btn-sm btn-success" />
-                           </div>
-                       </div>
-                </div>
-
-                <div class="row Principal-3">
-                <div class="col-8">
-                           <div class="col" style="text-align: right"><i class="fa-brands fa-whatsapp" style="color: #49e44c;"></i>
-                               <asp:Button ID="btnImprimirPdf" runat="server" Text="   Descargar PDF  "  CssClass="btn btn-sm btn-success" />&nbsp&nbsp
+                            <asp:Button ID="btnImprimirPdf" runat="server" Text="   Descargar PDF  " CssClass="btn btn-sm btn-success" />&nbsp&nbsp
                                <asp:Button ID="btnCerrarDivWhatsapp" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-secondary" />
-                           </div>
-                       </div> 
+                        </div>
                 </div>
+
             </div>
         </div>
 

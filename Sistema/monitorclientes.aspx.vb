@@ -52,7 +52,11 @@ Public Class monitorclientes
         Bd = Session("Bd")
         Usuario_Aut = Session("Usuario_Aut")
         Clave_Aut = Session("Clave_Aut")
-
+        If Not IsPostBack Then
+            For Each country As KeyValuePair(Of String, String) In CountryPhoneCodes.countryCodes
+                ddlCountryCode.Items.Add(New ListItem($"{country.Key} ({country.Value})", country.Value))
+            Next
+        End If
 
 
         'If Not IsPostBack Then
@@ -288,6 +292,7 @@ Public Class monitorclientes
 
 
 
+            lblWhatsAppValidation.Text = ""
 
             'Movimiento_Clientes(gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
             Session.Add("CodigoCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
@@ -421,7 +426,19 @@ Public Class monitorclientes
 
     End Sub
 
+    Public Class ResponseObject
+        Public Property Success As Boolean
+        Public Property Data As Object
+        Public Property Errors As List(Of ErrorObject)
+    End Class
 
+    Public Class ErrorObject
+        Public Property Type As String
+        Public Property Loc As Object
+        Public Property Msg As String
+        Public Property Code As String
+        Public Property StatusCode As Integer
+    End Class
     Private Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As String
         Using client As New HttpClient()
             client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
@@ -431,21 +448,29 @@ Public Class monitorclientes
             Dim content As New StringContent(json, Encoding.UTF8, "application/json")
 
             Try
-                ' Make the POST request synchronously
                 Dim response1 As HttpResponseMessage = client.PostAsync(url, content).Result
+                Dim contentStr As StreamContent = response1.Content
+                Dim contentString As String = contentStr.ReadAsStringAsync().Result
+                Dim serializer As New Newtonsoft.Json.JsonSerializer
+                Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
+                Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
 
-                ' Log status code and reason phrase
-                Response.Write("Status Code: " & response1.StatusCode.ToString() & "<br>")
-                Response.Write("Reason Phrase: " & response1.ReasonPhrase & "<br>")
 
                 If response1.IsSuccessStatusCode Then
                     lblAlert.CssClass = "alert-primary align-content-center"
-                    lblAlert.Text = "WhatsApp enviado"
+                    lblAlert.Text = "WhatsApp enviado con éxito"
                     Return response1.Content.ReadAsStringAsync().Result
                 Else
                     lblAlert.CssClass = "alert-danger align-content-center"
-                    lblAlert.Text = "Error, intente de nuevo"
+                    Dim msg = ""
+                    If jsonResponse.Errors(0) IsNot Nothing Then
+                        msg = jsonResponse.Errors(0).Msg
+                    Else
+                        msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
+                    End If
+                    lblAlert.Text = $"Error, intente de nuevo: {msg}"
                     Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
+
                 End If
 
             Catch ex As Exception
@@ -457,6 +482,13 @@ Public Class monitorclientes
     End Function
 
     Private Sub btnEnviarWhatsapp_click(sender As Object, e As EventArgs) Handles btnEnviarWhatsapp.Click
+        If TxtTelefonoWhats.Text.Trim.Length < 7 Then
+            lblWhatsAppValidation.Text = "Ingrese por lo menos 8 digitos"
+            lblWhatsAppValidation.CssClass = "alert-danger align-content-center"
+
+            Exit Sub
+        End If
+        lblWhatsAppValidation.Text = ""
         Dim Informe As New Movimiento_Clientes
 
         Informe.SetDatabaseLogon(Usuario, Clave)
@@ -488,9 +520,9 @@ Public Class monitorclientes
                     Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor eterno adjunta su estado de cuenta."
 
                     Dim url As String = "http://localhost:8002/v1/messages/docs/"
-
+                    url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
                     Dim phoneNumber As New Dictionary(Of String, String) From {
-                    {"country_code", "504"},
+                    {"country_code", ddlCountryCode.SelectedValue.Replace("+", "")},
                     {"local_number", TxtTelefonoWhats.Text}
                 }
 
