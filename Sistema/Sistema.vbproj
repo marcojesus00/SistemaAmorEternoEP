@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
@@ -67,6 +68,12 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Gmap.net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.Net.1.0.1\lib\Gmap.net.dll</HintPath>
     </Reference>
@@ -88,6 +95,9 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -100,7 +110,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -112,6 +124,8 @@
   <ItemGroup>
     <Folder Include="archivos\" />
     <Folder Include="fotosCarnet\" />
+    <Folder Include="Models\aeventas\" />
+    <Folder Include="Models\funamor\results\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -216,7 +230,15 @@
     <Content Include="cambioclave.aspx" />
     <Content Include="ClientePagos.aspx" />
     <Content Include="ClientesM1.aspx" />
+    <Content Include="Clientes\Informacion.aspx" />
     <Content Include="Contratos.aspx" />
+    <Content Include="Controls\Empleado\FileManager.ascx" />
+    <Content Include="Controls\Empleado\ProfilePicture.ascx" />
+    <Content Include="Controls\InformacionDeCliente\ClientsTable.ascx" />
+    <Content Include="Controls\MonitorDeVentas\CorrectDataClient.ascx" />
+    <Content Include="Controls\Shared\Footer.ascx" />
+    <Content Include="Controls\Shared\NavBar.ascx" />
+    <Content Include="Controls\Shared\Sidebar.ascx" />
     <Content Include="css\3.3\bootstrap-theme.css" />
     <Content Include="css\3.3\bootstrap-theme.min.css" />
     <Content Include="css\3.3\bootstrap.css" />
@@ -250,9 +272,21 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
+    <Content Include="Dashboards\Ventas\Ventas.aspx" />
+    <Content Include="Dashboards\Ventas\images\minus.png" />
+    <Content Include="Dashboards\Ventas\images\plus.png" />
+    <Content Include="Dashboards\Cobros\Cobros.aspx" />
+    <Content Include="Dashboards\Cobros\images\minus.png" />
+    <Content Include="Dashboards\Cobros\images\plus.png" />
+    <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="Shared\Map\MapClustered.aspx" />
+    <Content Include="Shared\Map\Map - Copy.aspx" />
+    <Content Include="Shared\Map\Map.aspx" />
+    <Content Include="Shared\Map\Map.master" />
     <Content Include="DetalleMovimientoClientes.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="EventoSala.aspx" />
+    <Content Include="Helpers\js\fileUploadValidation.js" />
     <Content Include="imagenes\atras1.png" />
     <Content Include="imagenes\Cancelar.png" />
     <Content Include="imagenes\Descargar.png" />
@@ -312,6 +346,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>EntregasPrg.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rpt\Estadistica Visitas Cobrador.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estadistica Visitas Cobrador.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rpt\FirmaClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>FirmaClientes.vb</LastGenOutput>
@@ -346,6 +384,8 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Handlers\DownloadHandler.ashx" />
+    <Content Include="Handlers\NewWindow.ashx" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2224,11 +2264,152 @@
       <DependentUpon>ClientesM1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Clientes\Informacion.aspx.designer.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\Informacion.aspx.vb">
+      <DependentUpon>Informacion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Contratos.aspx.designer.vb">
       <DependentUpon>Contratos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contratos.aspx.vb">
       <DependentUpon>Contratos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Empleado\FileManager.ascx.designer.vb">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Empleado\FileManager.ascx.vb">
+      <DependentUpon>FileManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Empleado\ProfilePicture.ascx.designer.vb">
+      <DependentUpon>ProfilePicture.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Empleado\ProfilePicture.ascx.vb">
+      <DependentUpon>ProfilePicture.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\InformacionDeCliente\ClientsTable.ascx.designer.vb">
+      <DependentUpon>ClientsTable.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InformacionDeCliente\ClientsTable.ascx.vb">
+      <DependentUpon>ClientsTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MonitorDeVentas\CorrectDataClient.ascx.designer.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonitorDeVentas\CorrectDataClient.ascx.vb">
+      <DependentUpon>CorrectDataClient.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Shared\Footer.ascx.designer.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Shared\Footer.ascx.vb">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Shared\NavBar.ascx.designer.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Shared\NavBar.ascx.vb">
+      <DependentUpon>NavBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Shared\Sidebar.ascx.vb">
+      <DependentUpon>Sidebar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Shared\Sidebar.designer.vb" />
+    <Compile Include="Dashboards\Cobros\CobrosService.vb" />
+    <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Ventas.aspx.designer.vb">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Ventas.aspx.vb">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\VentasDto.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Ventas\Receipts.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\Cobros.aspx.designer.vb">
+      <DependentUpon>Cobros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\Cobros.aspx.vb">
+      <DependentUpon>Cobros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\CobrosDto.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\Portfolio.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\Receipts.aspx.partial.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Dashboard.master.designer.vb">
+      <DependentUpon>Dashboard.master</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Dashboard.master.vb">
+      <DependentUpon>Dashboard.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Helpers\AuthHelper.vb" />
+    <Compile Include="Helpers\CachingHelper.vb" />
+    <Compile Include="Helpers\DebugHelper.vb" />
+    <Compile Include="Helpers\LinkHelper.vb" />
+    <Compile Include="Helpers\MapHelper.vb" />
+    <Compile Include="Helpers\PaginationHelper.vb" />
+    <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="rpt\Estadistica Visitas Cobrador.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estadistica Visitas Cobrador.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shared\Map\MapClustered.aspx.designer.vb">
+      <DependentUpon>MapClustered.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\MapClustered.aspx.vb">
+      <DependentUpon>MapClustered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Map\Map - Copy.aspx.designer.vb">
+      <DependentUpon>Map - Copy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\Map - Copy.aspx.vb">
+      <DependentUpon>Map - Copy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\MapIFrame.master.designer.vb">
+      <DependentUpon>MapIFrame.master</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\MapIFrame.master.vb">
+      <DependentUpon>MapIFrame.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Map\Map.aspx.designer.vb">
+      <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\Map.aspx.vb">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Map\Map.master.designer.vb">
+      <DependentUpon>Map.master</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Map\Map.master.vb">
+      <DependentUpon>Map.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DetalleMovimientoClientes.aspx.designer.vb">
@@ -2252,6 +2433,11 @@
       <DependentUpon>EventoSala.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Helpers\AlertHelper.vb" />
+    <Compile Include="Helpers\FileHelper.vb" />
+    <Compile Include="Helpers\FormattingHelper.vb" />
+    <Compile Include="Helpers\NumberHelper.vb" />
+    <Compile Include="Helpers\TextInputHelper.vb" />
     <Compile Include="Inhumados.aspx.designer.vb">
       <DependentUpon>Inhumados.aspx</DependentUpon>
     </Compile>
@@ -2273,6 +2459,25 @@
       <DependentUpon>mapa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Models\aaeVentas\AeVentasDbContext.vb" />
+    <Compile Include="Models\aaeVentas\AeventasModels.vb" />
+    <Compile Include="Models\aaeVentas\Extensions\AeventasExtension.vb" />
+    <Compile Include="Models\aecobros\AeCobrosContext.vb" />
+    <Compile Include="Models\aecobros\LogsModels.vb" />
+    <Compile Include="Models\aecobros\MVSAGENModel.vb" />
+    <Compile Include="Models\aecobros\NOCOBROSModel.vb" />
+    <Compile Include="Models\aecobros\ReciboModel.vb" />
+    <Compile Include="Models\aecobros\SupervisionModels.vb" />
+    <Compile Include="Models\Dto\CobrosMapDto.vb" />
+    <Compile Include="Models\Dto\MarkerForMap.vb" />
+    <Compile Include="Models\funamor\ClienteModel.vb" />
+    <Compile Include="Models\funamor\CobradorModel.vb" />
+    <Compile Include="Models\funamor\ContratoModeld.vb" />
+    <Compile Include="Models\funamor\EmpladoModels.vb" />
+    <Compile Include="Models\funamor\FunamorContext.vb" />
+    <Compile Include="Models\funamor\Results.vb" />
+    <Compile Include="Models\funamor\VendedorModel.vb" />
+    <Compile Include="Models\funamor\ZonaModels.vb" />
     <Compile Include="MonitorGestion.aspx.designer.vb">
       <DependentUpon>MonitorGestion.aspx</DependentUpon>
     </Compile>
@@ -2431,6 +2636,13 @@
     <Compile Include="SalasHome.aspx.vb">
       <DependentUpon>SalasHome.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Shared\AE.Master.designer.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\AE.Master.vb">
+      <DependentUpon>AE.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UbicacionLotes.aspx.designer.vb">
       <DependentUpon>UbicacionLotes.aspx</DependentUpon>
@@ -2750,6 +2962,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Shared\AE.Master" />
+    <Content Include="Shared\Map\MapIFrame.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2808,7 +3022,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
