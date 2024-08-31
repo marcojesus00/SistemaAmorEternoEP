@@ -80,11 +80,12 @@ Public Class monitorclientes
 
 
     Sub LLENARDATOS()
-        Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-        Dim Sql As String = ""
-        ' LlenarSalas()
-        LlenarSucursal()
-        Sql = "SELECT top 1 [idline]
+        Try
+            Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+            Dim Sql As String = ""
+            ' LlenarSalas()
+            LlenarSucursal()
+            Sql = "SELECT top 1 [idline]
               ,[num_Doc]
               ,[Codigo_clie]
               ,[nombre_clie]
@@ -110,50 +111,56 @@ Public Class monitorclientes
               ,[Sucursal]
           FROM [Evento] where codigo_clie = '" + Session("CodigoCliente") + "' order by fechasys desc, horasys desc "
 
-        Datos = Conf.EjecutaSql(Sql)
+            Datos = Conf.EjecutaSql(Sql)
 
-        If Datos.Tables(0).Rows.Count > 0 Then
+            If Datos.Tables(0).Rows.Count > 0 Then
 
-            If dlsalas.SelectedValue = 19 Then
+                If dlsalas.SelectedValue = 19 Then
 
-                txtSalaDetalle.Visible = True
-                txtSalaDetalle.Text = Datos.Tables(0).Rows(0).Item("Sala")
-            Else
-                dlsalas.SelectedValue = Datos.Tables(0).Rows(0).Item("idSala")
+                    txtSalaDetalle.Visible = True
+                    txtSalaDetalle.Text = Datos.Tables(0).Rows(0).Item("Sala")
+                Else
+                    dlsalas.SelectedValue = Datos.Tables(0).Rows(0).Item("idSala")
+                End If
+
+
+                txtdifunto.Value = Datos.Tables(0).Rows(0).Item("NombreDifunto").ToString
+                txtDirecVel.Text = Datos.Tables(0).Rows(0).Item("DireccionVel").ToString
+                txtfechaVelacion.Text = Date.Parse(Datos.Tables(0).Rows(0).Item("FechaVel").ToString).ToString("yyyy-MM-dd")
+                txtHoraVela.Value = Datos.Tables(0).Rows(0).Item("HoraVel").ToString
+                dlsalas.SelectedValue = Datos.Tables(0).Rows(0).Item("idSala").ToString
+                'dlsalas.SelectedItem.Value = Datos.Tables(0).Rows(0).Item("Sala").ToString
+                txtdireccSep.Text = Datos.Tables(0).Rows(0).Item("DireccionSep").ToString
+                txtfechaSep.Text = Date.Parse(Datos.Tables(0).Rows(0).Item("FechaSepelio").ToString).ToString("yyyy-MM-dd")
+                txthorasep.Value = Datos.Tables(0).Rows(0).Item("HoraSepelio").ToString
+                txtcontacto.Value = Datos.Tables(0).Rows(0).Item("Telefono").ToString
+                dlsucursal.SelectedItem.Text = Datos.Tables(0).Rows(0).Item("Sucursal").ToString
+
+                Session.Add("NumeroDocumento", Datos.Tables(0).Rows(0).Item("Num_Doc").ToString)
+                btnReimprimir.Visible = True
+
+                Session.Add("DATOSCR", Datos)
+                Session.Add("ReporteCR", "RptNotaDuelo")
+
+                ' BtnAgregarND.Text = "Actualizar"
+                ' BtnAgregarND.Attributes.CssStyle.Value = "btn fa fa-plus text-success"
+
             End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
+        End Try
 
-            txtdifunto.Value = Datos.Tables(0).Rows(0).Item("NombreDifunto").ToString
-            txtDirecVel.Text = Datos.Tables(0).Rows(0).Item("DireccionVel").ToString
-            txtfechaVelacion.Text = Date.Parse(Datos.Tables(0).Rows(0).Item("FechaVel").ToString).ToString("yyyy-MM-dd")
-            txtHoraVela.Value = Datos.Tables(0).Rows(0).Item("HoraVel").ToString
-            dlsalas.SelectedValue = Datos.Tables(0).Rows(0).Item("idSala").ToString
-            'dlsalas.SelectedItem.Value = Datos.Tables(0).Rows(0).Item("Sala").ToString
-            txtdireccSep.Text = Datos.Tables(0).Rows(0).Item("DireccionSep").ToString
-            txtfechaSep.Text = Date.Parse(Datos.Tables(0).Rows(0).Item("FechaSepelio").ToString).ToString("yyyy-MM-dd")
-            txthorasep.Value = Datos.Tables(0).Rows(0).Item("HoraSepelio").ToString
-            txtcontacto.Value = Datos.Tables(0).Rows(0).Item("Telefono").ToString
-            dlsucursal.SelectedItem.Text = Datos.Tables(0).Rows(0).Item("Sucursal").ToString
-
-            Session.Add("NumeroDocumento", Datos.Tables(0).Rows(0).Item("Num_Doc").ToString)
-            btnReimprimir.Visible = True
-
-            Session.Add("DATOSCR", Datos)
-            Session.Add("ReporteCR", "RptNotaDuelo")
-
-            ' BtnAgregarND.Text = "Actualizar"
-            ' BtnAgregarND.Attributes.CssStyle.Value = "btn fa fa-plus text-success"
-
-        End If
 
 
     End Sub
 
     Protected Sub BtnReimprimir_click(sender As Object, e As EventArgs) Handles btnReimprimir.Click
-        Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-        Dim Sql As String = ""
+        Try
+            Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+            Dim Sql As String = ""
 
-        Sql = "SELECT top 1 [idline]
+            Sql = "SELECT top 1 [idline]
               ,[num_Doc]
               ,[Codigo_clie]
               ,[nombre_clie]
@@ -179,12 +186,17 @@ Public Class monitorclientes
               ,[Sucursal]
           FROM [Evento] where codigo_clie = '" + Session("CodigoCliente") + "' order by fechasys desc, horasys desc "
 
-        Datos = Conf.EjecutaSql(Sql)
-        Session.Add("DATOSCR", Datos)
-        Session.Add("ReporteCR", "RptNotaDuelo")
+            Datos = Conf.EjecutaSql(Sql)
+            Session.Add("DATOSCR", Datos)
+            Session.Add("ReporteCR", "RptNotaDuelo")
 
-        Dim javaScript As String = "window.open('ReportesCR.aspx','_blank','scrollbars=yes,resizable=yes,top=5,left=5,width=700,height=700');"
-        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "script", javaScript, True)
+            Dim javaScript As String = "window.open('ReportesCR.aspx','_blank','scrollbars=yes,resizable=yes,top=5,left=5,width=700,height=700');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "script", javaScript, True)
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+        End Try
+
 
     End Sub
 
@@ -199,10 +211,11 @@ Public Class monitorclientes
     'End Sub
 
     Sub LlenarSalas()
-        Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-        Dim Sql As String = ""
+        Try
+            Dim Conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+            Dim Sql As String = ""
 
-        Sql = "
+            Sql = "
 				Select convert(int,Codigo_sucu) Codigo,'SALA DE VELACION'+' '+ Nombre_sucu Descripcion from SUCURSAL
 				where Codigo_sucu not in (07,08,09,99,11,12,13,' ')
 				union all
@@ -210,14 +223,19 @@ Public Class monitorclientes
                 union all
                 Select '19','Otro'
                 "
-        Datos = Conf.EjecutaSql(Sql)
+            Datos = Conf.EjecutaSql(Sql)
 
-        dlsalas.DataSource = Datos.Tables(0)
-        dlsalas.DataTextField = "Descripcion"
-        dlsalas.DataValueField = "Codigo"
-        dlsalas.DataBind()
+            dlsalas.DataSource = Datos.Tables(0)
+            dlsalas.DataTextField = "Descripcion"
+            dlsalas.DataValueField = "Codigo"
+            dlsalas.DataBind()
 
-        'dlsalas.SelectedItem.Selected = 1
+            'dlsalas.SelectedItem.Selected = 1
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+        End Try
+
 
     End Sub
     Protected Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
@@ -226,27 +244,38 @@ Public Class monitorclientes
 
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-        Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-        Dim Sql As String
-        LlenarSalas()
+        Try
+            Dim conf As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+            Dim Sql As String
+            LlenarSalas()
 
-        Sql = "SELECT top 1000 A.Codigo_clie Codigo, A.Nombre_clie Nombre, ISNULL(A.Saldo_actua,0) Saldo,  a.Identidad,A.Dir_cliente Direccion "
-        Sql += " From CLIENTES A "
-        Sql += " Where CODIGO_CLIE like '%" + txtcodigo.Text + "%' "
-        Sql += " and isnull(identidad,'0') like '%" + txtidentidad.Text + "%' "
-        Sql += " and A.NOMBRE_CLIE Like '%" + TxtCliente1.Text + "%' "
-        Sql += " and A.NOMBRE_CLIE Like '%" + TxtCliente2.Text + "%' "
-        Sql += " and (RTRIM(LTRIM(ISNULL(A.cl_conyunom,''))) Like '%" + txtBenef1.Text + "%' "
-        Sql += " and RTRIM(LTRIM(ISNULL(A.cl_conyunom,''))) Like '%" + txtbenef2.Text + "%' "
-        Sql += " or RTRIM(LTRIM(ISNULL(a.CL_2conynom,''))) Like '%" + txtBenef1.Text + "%' "
-        Sql += " and RTRIM(LTRIM(ISNULL(a.CL_2conynom,''))) Like '%" + txtbenef2.Text + "%' "
-        Sql += " ) ORDER BY A.Codigo_clie , a.cl_fecha desc"
-        Datos = conf.EjecutaSql(Sql)
+            Sql = "SELECT top 1000 A.Codigo_clie Codigo, A.Nombre_clie Nombre, ISNULL(A.Saldo_actua,0) Saldo,  a.Identidad,A.Dir_cliente Direccion, "
+            Sql += "   CASE 
+        WHEN NULLIF(A.Telef_clien, '') IS NOT NULL THEN A.Telef_clien 
+        ELSE A.CL_CELULAR
+    END AS Telefono"
+            Sql += " From CLIENTES A "
+            Sql += " Where CODIGO_CLIE like '%" + txtcodigo.Text + "%' "
+            Sql += " and isnull(identidad,'0') like '%" + txtidentidad.Text + "%' "
+            Sql += " and A.NOMBRE_CLIE Like '%" + TxtCliente1.Text + "%' "
+            Sql += " and A.NOMBRE_CLIE Like '%" + TxtCliente2.Text + "%' "
+            Sql += " and (RTRIM(LTRIM(ISNULL(A.cl_conyunom,''))) Like '%" + txtBenef1.Text + "%' "
+            Sql += " and RTRIM(LTRIM(ISNULL(A.cl_conyunom,''))) Like '%" + txtbenef2.Text + "%' "
+            Sql += " or RTRIM(LTRIM(ISNULL(a.CL_2conynom,''))) Like '%" + txtBenef1.Text + "%' "
+            Sql += " and RTRIM(LTRIM(ISNULL(a.CL_2conynom,''))) Like '%" + txtbenef2.Text + "%' )"
+            Sql += " AND A.cl_cobrador LIKE '%" + TxtCobrador.Text + "%'"
+            Sql += " ORDER BY A.Codigo_clie , a.cl_fecha desc"
+            Datos = conf.EjecutaSql(Sql)
 
-        ''If Datos.Tables(0).Rows.Count > 0 Then
-        gvClientes.DataSource = Datos.Tables(0)
-        gvClientes.DataBind()
-        ''End If
+            ''If Datos.Tables(0).Rows.Count > 0 Then
+            gvClientes.DataSource = Datos.Tables(0)
+            gvClientes.DataBind()
+            ''End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+        End Try
+
 
     End Sub
 
@@ -282,39 +311,47 @@ Public Class monitorclientes
     End Sub
 
     Private Sub gvClientes_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvClientes.RowCommand
-
-        Dim Conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
-        Dim Sql1 As String = ""
-
-
-        If e.CommandName = "Detalle" Then
+        Try
+            Dim Conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
+            Dim Sql1 As String = ""
 
 
-
-
-            lblWhatsAppValidation.Text = ""
-
-            'Movimiento_Clientes(gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
-            Session.Add("CodigoCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
-            Session.Add("NombreCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd)
-            LLENARDATOS()
-            LblClienteModal.InnerText = "Cliente: " + " " + gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd + " - " + gvClientes.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd
+            If e.CommandName = "Detalle" Then
 
 
 
-            Sql1 = "Select max(FechaSys)Fecha, max(HoraSys)Hora, codigo_clie from FUNAMOR..Evento where Activo = 1 and codigo_clie = '" + Session("CodigoCliente") + "'
+
+                lblWhatsAppValidation.Text = ""
+
+                'Movimiento_Clientes(gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
+                Session.Add("CodigoCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd)
+                Session.Add("NombreCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd)
+                TxtTelefonoWhats.Text = gvClientes.Rows(e.CommandArgument.ToString).Cells(6).Text.ToString.TrimEnd.Replace("-", "")
+                'Session.Add("TelefonoCliente", gvClientes.Rows(e.CommandArgument.ToString).Cells(6).Text.ToString.TrimEnd.Replace("-", ""))
+
+                LLENARDATOS()
+                LblClienteModal.InnerText = "Cliente: " + " " + gvClientes.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd + " - " + gvClientes.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd
+
+
+
+                Sql1 = "Select max(FechaSys)Fecha, max(HoraSys)Hora, codigo_clie from FUNAMOR..Evento where Activo = 1 and codigo_clie = '" + Session("CodigoCliente") + "'
                     Group by codigo_clie  "
-            DatosCli = Conf1.EjecutaSql(Sql1)
-            If DatosCli.Tables(0).Rows.Count > 0 Then
-                btnFinalizarEvento.Enabled = True
+                DatosCli = Conf1.EjecutaSql(Sql1)
+                If DatosCli.Tables(0).Rows.Count > 0 Then
+                    btnFinalizarEvento.Enabled = True
+                End If
+
+
+
+                PanelClienteMovimiento.Visible = True
+
+
             End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
+        End Try
 
-
-            PanelClienteMovimiento.Visible = True
-
-
-        End If
 
     End Sub
 
@@ -359,6 +396,8 @@ Public Class monitorclientes
         Catch ex As Exception
             ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
             Dim errorMessage As String = ex.Message
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
             ' Puedes mostrar o registrar el mensaje de error aquí
         Finally
             ' Cerrar y liberar recursos
@@ -418,6 +457,8 @@ Public Class monitorclientes
             ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
             Dim errorMessage As String = ex.Message
             ' Puedes mostrar o registrar el mensaje de error aquí
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         End Try
 
         ' PanelEnviarWhatsapp.Visible = False
@@ -516,7 +557,7 @@ Public Class monitorclientes
                 Try
 
 
-                    Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor eterno adjunta su estado de cuenta."
+                    Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor Eterno envía su estado de cuenta."
 
                     'Dim url As String = "http://localhost:8002/v1/messages/docs/"
                     'url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
@@ -548,7 +589,6 @@ Public Class monitorclientes
 
 
                 Catch ex As Exception
-                    ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
                     Dim errorMessage As String = ex.Message
                     DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 

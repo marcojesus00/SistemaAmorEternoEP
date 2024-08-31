@@ -59,6 +59,24 @@ Partial Public Class monitorclientes
     Protected WithEvents TxtCliente2 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''TxtCobrador control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtCobrador As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtBenef1 control.
     '''</summary>
     '''<remarks>
