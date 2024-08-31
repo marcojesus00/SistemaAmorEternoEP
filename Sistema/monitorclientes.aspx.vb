@@ -469,6 +469,8 @@ Public Class monitorclientes
                         msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
                     End If
                     lblAlert.Text = $"Error, intente de nuevo: {msg}"
+                    Throw New Exception(msg)
+
                     Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
 
                 End If
@@ -476,6 +478,8 @@ Public Class monitorclientes
             Catch ex As Exception
                 lblAlert.CssClass = "alert-danger align-content-center"
                 lblAlert.Text = "Error, intente de nuevo"
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
                 Return $"Exception: {ex.Message}"
             End Try
         End Using
@@ -494,10 +498,7 @@ Public Class monitorclientes
         Informe.SetDatabaseLogon(Usuario, Clave)
         Informe.SetParameterValue("Cliente", Session("CodigoCliente").TrimEnd)
 
-        ' Ruta donde se guardará el archivo PDF
-        Dim rutaPDF As String = "\\192.168.20.226\inetpub\wwwroot\Musica\Temp\Estados"
         Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
-        Dim rutaCompletaArchivo As String = Path.Combine(rutaPDF, nombreArchivo)
 
         Try
             ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
@@ -512,15 +513,14 @@ Public Class monitorclientes
                 ' Convert the byte array to a base64 string
                 Dim base64String As String = Convert.ToBase64String(reportBytes)
 
-                ' Now you have the base64String variable containing the PDF as a base64 string
-                ' You can use this string as needed
                 Try
 
 
                     Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor eterno adjunta su estado de cuenta."
 
-                    Dim url As String = "http://localhost:8002/v1/messages/docs/"
-                    url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
+                    'Dim url As String = "http://localhost:8002/v1/messages/docs/"
+                    'url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
+                    Dim url = "http://192.168.20.75:8000/v1/messages/docs/"
                     Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", ddlCountryCode.SelectedValue.Replace("+", "")},
                     {"local_number", TxtTelefonoWhats.Text}
@@ -550,23 +550,20 @@ Public Class monitorclientes
                 Catch ex As Exception
                     ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
                     Dim errorMessage As String = ex.Message
-                    ' Puedes mostrar o registrar el mensaje de error aquí
+                    DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
                 End Try
             End Using
-            ' Mostrar un mensaje o redireccionar después de la descarga exitosa
-            ' Response.Redirect("TuPaginaDestino.aspx")
         Catch ex As Exception
-            ' Manejar el error, por ejemplo, mostrar un mensaje o registrar el error
             Dim errorMessage As String = ex.Message
-            ' Puedes mostrar o registrar el mensaje de error aquí
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         Finally
-            ' Cerrar y liberar recursos
             Informe.Close()
             Informe.Dispose()
         End Try
 
 
-        ' Dim rutaPDF As String = "C:\inetpub\wwwroot\EstadoDeCuenta\Movimiento_Cliente.pdf"
 
 
 
