@@ -56,6 +56,12 @@ Partial Public Class CobrosDashboard
         Public Property Cuota_mensual As String
 
     End Class
+    Public Class DocsDto
+        Public Property COdigo As String
+        Public Property Nombre As String
+        Public Property Telefono As String
+
+    End Class
     Public Class PortfolioDetailsDto
         Public Property Codigo As String
         Public Property Nombre As String

@@ -112,5 +112,41 @@ Partial Public Class CobrosDashboard
         pnlMap.Visible = True
 
     End Sub
+    Public Function EnviarEstadoDeCuenta(cobrador)
+        Dim dataQuery = ""
+        Dim LeaderPhone = ""
+        dataQuery = "SELECT A.Codigo_clie as Codigo, A.Nombre_clie Nombre, "
+        dataQuery += "   CASE 
+        WHEN NULLIF(A.Telef_clien, '') IS NOT NULL THEN A.Telef_clien 
+        ELSE A.CL_CELULAR
+    END AS Telefono"
+        dataQuery += " From CLIENTES A where A.cl_cobrador = @Cobrador and A.Saldo_actua>0"
+        Using FunamorContext As New FunamorContext()
+            Dim sqlParameters As New List(Of SqlParameter)
+            sqlParameters.Add(New SqlParameter("@Cobrador", $"{cobrador}"))
+
+            Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
+            dataQuery, sqlParameters.ToArray()).ToList()
+            Dim Usuario = Session("Usuario")
+            Dim Clave = Session("Clave")
+            For Each cliente In result
+                Dim Informe As New Movimiento_Clientes
+
+                Informe.SetDatabaseLogon(Usuario, Clave)
+                Informe.SetParameterValue("Cliente", cliente.COdigo)
+
+                Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+
+
+                Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
+                Dim cap = "Estimado(a) " + cliente.Nombre + " Amor Eterno envía su estado de cuenta. Para mayor informacion o si deseas comunicarte con servicio al cliente puedes llamar al numero Pbx:
+                        O escribir al siguiente numero" + LeaderPhone
+                whatsapi.sendWhatsAppDocs(doc:=Informe, name:=cliente.Nombre, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504")
+
+            Next
+
+        End Using
+
+    End Function
 
 End Class
