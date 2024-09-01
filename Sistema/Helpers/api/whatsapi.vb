@@ -25,7 +25,7 @@ Public Class whatsapi
         Public Property Code As String
         Public Property StatusCode As Integer
     End Class
-    Private Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As HttpResponseMessage
+    Private Shared Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As HttpResponseMessage
         Using client As New HttpClient()
             client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
             Dim s
@@ -79,7 +79,7 @@ Public Class whatsapi
             }
 
             ' Send the POST request
-            Dim response1 = PostData(url, data)
+            Dim response1 = whatsapi.PostData(url, data)
             'Response.Write(rapiRsponse)
             Dim contentStr As StreamContent = response1.Content
             Dim contentString As String = contentStr.ReadAsStringAsync().Result

@@ -273,6 +273,7 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
+    <Content Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx" />
     <Content Include="Dashboards\Ventas\Ventas.aspx" />
     <Content Include="Dashboards\Ventas\images\minus.png" />
     <Content Include="Dashboards\Ventas\images\plus.png" />
@@ -2327,6 +2328,13 @@
     </Compile>
     <Compile Include="Controls\Shared\Sidebar.designer.vb" />
     <Compile Include="Dashboards\Cobros\CobrosService.vb" />
+    <Compile Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx.designer.vb">
+      <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx.vb">
+      <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

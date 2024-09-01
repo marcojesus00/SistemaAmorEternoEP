@@ -333,6 +333,10 @@ Public Class CobrosDashboard
 
             If e.CommandName = "ClientsByCollectorMap" Then
                 ClientsByCollectorMap(keyValue)
+            ElseIf e.CommandName = "SenWhatsApp" Then
+                Session("CobradorSeleccionado") = keyValue
+                Response.Redirect("~/Dashboards/Cobros/DetalleCarteraDeCobrador.aspx")
+
             ElseIf e.CommandName = "RouteOfReceiptsMap" Then
                 If textBoxClientCode.Text.Length > 0 Then
                     textBoxClientCode.Text = ""
@@ -341,6 +345,7 @@ Public Class CobrosDashboard
 
                 RouteOfReceiptsMap(keyValue)
             End If
+
 
 
         Catch ex As FormatException
@@ -376,8 +381,10 @@ Public Class CobrosDashboard
                 If DashboardType.SelectedValue = "0" Then
                     btnClientsByCollectorMap.Visible = False
                     btnRouteOfReceiptsMap.Visible = True
+                    btnSendWhatsApp.Visible = False
                 ElseIf DashboardType.SelectedValue = "1" Then
                     btnClientsByCollectorMap.Visible = True
+                    btnSendWhatsApp.Visible = True
                     btnRouteOfReceiptsMap.Visible = False
                 End If
             End If

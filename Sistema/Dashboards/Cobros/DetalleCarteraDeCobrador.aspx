@@ -1,18 +1,19 @@
-﻿<%@ Page Title="Dashboard de cobros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
-
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="DetalleCarteraDeCobrador.aspx.vb" Inherits="Sistema.DetalleCarteraDeCobrador" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
-    <h2 class=" text-center">Dashboard de cobros</h2>
+
+
+
+        <h2 class=" text-center">Detalle de cartera de cobrador</h2>
     <div class="container-fluid container-lg mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-12 pb-2 ">
-<%--                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
 
-                    <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true">
+ <%--                   <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Dashboard de recibos" Value="0">
                         </asp:ListItem>
                         <asp:ListItem Text="Dashboard de cartera" Value="1"></asp:ListItem>
-                    </asp:DropDownList>
+                    </asp:DropDownList>--%>
 
 
                 </div>
@@ -130,6 +131,9 @@
                                           <asp:LinkButton  ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
 <i class="bi bi-stars"></i>
                             </asp:LinkButton>
+                      <asp:LinkButton  ID="WhatsAppToAll"  OnClick="WhatsAppToAll_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
+<i class="bi bi-whatsapp"></i>
+                            </asp:LinkButton>
                 </div>
                                                               <div class="col-lg-1 col-1">
 
@@ -141,8 +145,40 @@
     </div>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server">
-    <div class="container-fluid container-lg">
+<asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server" >
+    <asp:Panel ID="PnlGoodAndBadPhones" runat="server" Visible="false">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Clientes a los que se enviará</div>
+                <div class="table table-responsive">
+                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" >
+
+                                        </asp:GridView>
+                </div>
+            </div>
+           <div class="list-group-item-action">
+                      <asp:LinkButton  ID="btnCorrupPhones"  OnClick="btnCorrupPhones_Click" ToolTip="" CssClass="btn btn-sm btn-outline-danger" runat="server">
+<i class="bi bi-exclamation-circle"></i> Ver clientes con telefono malo
+                            </asp:LinkButton>
+
+                                     <asp:LinkButton  ID="btnSendMassiveWhatsApp"  OnClick="btnCorrupPhones_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-primary" runat="server">
+<i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
+                            </asp:LinkButton>
+           </div>
+        </div>
+
+
+
+
+    </asp:Panel>
+
+
+
+
+
+
+
+        <div class="container-fluid container-lg">
    
 
             <div class="table-responsive">
@@ -172,10 +208,7 @@
 
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnClientsByCollectorMap" ToolTip="Mapa de clientes" CssClass="btn btn-sm btn-outline-info " runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
-<i class="bi bi-geo-alt-fill"></i>                                     </asp:LinkButton>
-
-                                    <asp:LinkButton ID="btnSendWhatsApp" ToolTip="Enviar whatsapps" CssClass="btn btn-sm btn-outline-sucess " runat="server" CommandName="SenWhatsApp" CommandArgument='<%# Container.DataItemIndex %>'>
-<i class="bi bi-whatsapp"></i>
+<i class="bi bi-geo-alt-fill"></i>
 
                                     </asp:LinkButton>
                                     <asp:LinkButton ID="btnRouteOfReceiptsMap" ToolTip="Mapa de ruta de recibos" CssClass="btn btn-sm btn-outline-warning" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>
@@ -223,53 +256,7 @@
     
         </div>
 
-    <asp:Panel ID="pnlMap" runat="server" Visible="false">
- 
-        <div style="width: 100%; height: 100%;">
-            <iframe  id="iMap" runat="server" style="position: fixed; width: 100%; height: 90%; top: 42px; background-color: none"></iframe>
-        </div>
-    </asp:Panel>
-    <div id="alertPlaceholder" runat="server"></div>
 
-    <script type="module">
-
-        // Function to handle click on elements with src containing 'plus'
-        document.addEventListener('click', function (event) {
-            if (event.target.matches('[src*=plus]')) {
-                const closestTr = event.target.closest('tr');
-                const ordersHtml = closestTr.querySelector('[id*=Details]').innerHTML;
-
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `<td></td><td class='details' colspan='999'>${ordersHtml}</td>`;
-
-                closestTr.after(newRow);
-                closestTr.querySelector('[src*=minus]').style.display = 'inline'; // Show minus button
-                event.target.style.display = 'none'; // Hide plus button
-            }
-        });
-
-        // Function to handle click on elements with src containing 'minus'
-        document.addEventListener('click', function (event) {
-            if (event.target.matches('[src*=minus]')) {
-                const closestTr = event.target.closest('tr');
-                closestTr.nextElementSibling.remove(); // Remove the next row
-                closestTr.querySelector('[src*=plus]').style.display = 'inline'; // Show plus button
-                event.target.style.display = 'none'; // Hide minus button
-            }
-        });
-    </script>
-    <script type="text/javascript">
-        function openLinkInNewTab(url) {
-            window.open(url, '_blank');
-        }
-</script>
-        <script>
-            window.addEventListener('message', function (event) {
-                if (event.data === 'closeMap') {
-
-                    document.getElementById('<%= pnlMap.ClientID %>').style.display = 'none';
-            }
-        });
-    </script>
+        <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>
