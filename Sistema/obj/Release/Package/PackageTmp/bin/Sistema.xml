@@ -2368,6 +2368,141 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._WhatsAppToAll">
+<summary>
+WhatsAppToAll control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._PnlGoodAndBadPhones">
+<summary>
+PnlGoodAndBadPhones control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._btnExitWhatsapToAll">
+<summary>
+btnExitWhatsapToAll control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._SendGridview">
+<summary>
+SendGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._btnCorrupPhones">
+<summary>
+btnCorrupPhones control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._btnSendMassiveWhatsApp">
+<summary>
+btnSendMassiveWhatsApp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._PnlNavigation">
+<summary>
+PnlNavigation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._DashboardGridview">
+<summary>
+DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._lblTotalCount">
+<summary>
+lblTotalCount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._PreviousPage">
+<summary>
+PreviousPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._lnkbtnPrevious">
+<summary>
+lnkbtnPrevious control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._rptPager">
+<summary>
+rptPager control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._NextPage">
+<summary>
+NextPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._lnkbtnNext">
+<summary>
+lnkbtnNext control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._alertPlaceholder">
+<summary>
+alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.VentasDashboard._DashboardType">
 <summary>
 DashboardType control.
@@ -6736,6 +6871,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorclientes._TxtCliente2">
 <summary>
 TxtCliente2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorclientes._TxtCobrador">
+<summary>
+TxtCobrador control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorclientes._TextBox2">
+<summary>
+TextBox2 control.
 </summary>
 <remarks>
 Auto-generated field.
