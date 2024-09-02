@@ -7,7 +7,11 @@
     <div class="container-fluid container-lg mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
-
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="card-title"><%= Session("NombreCobradorSeleccionado") %></div>
+                    </div>
+                </div>
 
           
                 <div class="col-lg-2 align-self-center">
@@ -29,10 +33,20 @@
     </div>
 
 </asp:Content>
+
+
+
+
+
+
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="Table" runat="server" >
+                    <div class="container-fluid container-lg">
+
     <asp:Panel ID="PnlGoodAndBadPhones" runat="server" >
         <div class="card">
-            <div class="card-header">
+            <div class="card-header  text-end">
 
                                       <asp:LinkButton  ID="btnExitWhatsapToAll"  OnClick="btnExitWhatsapToAll_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-danger" runat="server">
 <i class="bi bi-x-circle"></i> Cerrar
@@ -67,8 +81,7 @@
 
 
 
-
-        <div class="container-fluid container-lg">
+    <asp:panel runat="server" id="PnlPrimary">
    
 
             <div class="table-responsive">
@@ -112,8 +125,10 @@
                     </nav>
                 </div>
     
-        </div>
 
+    </asp:panel>
+
+        </div>
 
         <div id="alertPlaceholder" runat="server"></div>
 

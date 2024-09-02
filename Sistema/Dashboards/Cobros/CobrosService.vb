@@ -164,20 +164,20 @@ ORDER BY Cobrado desc"
     End Function
 
 
-    Public Function GetClients(filters As CobrosFiltersData, params As List(Of SqlParameter), totalCountparams As List(Of SqlParameter)) As PaginatedResult(Of PortfolioIDto)
+    Public Function GetClientsGroupedByCollectorF(filters As CobrosFiltersData, params As List(Of SqlParameter), totalCountparams As List(Of SqlParameter)) As PaginatedResult(Of PortfolioIDto)
 
         Using funamorContext As New FunamorContext
             'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
 
-            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr as Nombre, count(cl.Codigo_clie) as Clientes,  sum(cn.CONT_VALCUO) as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
+            Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr as Nombre, count(cl.Codigo_clie) as Clientes, sum(cn.CONT_VALCUO) as Cuota,FORMAT(sum(cn.CONT_VALCUO), 'C', 'es-HN')   as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
             Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
                  on cl.cl_cobrador = cr.codigo_cobr
                  left join CONTRATO cn
 				 on cl.Codigo_clie = cn.Codigo_clie"
             Dim whereClauseList As New List(Of String)()
 
-            Dim orderByClause As String = "order by Cuota_mensual  desc"
+            Dim orderByClause As String = "order by Cuota  desc"
             Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
             whereClauseList.Add("cl.Saldo_actua > 0")
             If Not String.IsNullOrEmpty(filters.ClientCode) Then

@@ -13,15 +13,8 @@ Partial Public Class CobrosDashboard
 
     Public Sub BindClientDetails(DetailsControl As GridView, id As String)
         Dim q As List(Of PortfolioDetailsDto) = GetClientsByCollectorIdFromDb(id)
-        Dim d = q.Select(Function(c) New With {
-                                                                                                      c.Codigo,
-                                                                                                      c.Nombre,
-                                                                                                      c.Identidad,
-                                                                                                      c.Telefonos,
-                                                                                                      c.Direccion,
-                                                                                                      c.Empresa,
-                                                                                                      .Saldo = FormattingHelper.ToLempiras(c.Saldo)}).ToList()
-        DetailsControl.DataSource = d
+
+        DetailsControl.DataSource = q
         DetailsControl.DataBind()
         DetailsControl.Visible = True
     End Sub
@@ -53,10 +46,10 @@ Partial Public Class CobrosDashboard
         ELSE ''
     END AS Telefonos, 
      LTRIM(RTRIM(cl.Dir_cliente))  + ' ' +  LTRIM(RTRIM(cl.Dir2_client)) AS Direccion, 
-    cl.Cod_zona AS Empresa,  ISNULL(cl.Saldo_actua, 0) as Saldo,ISNULL(cl.latitud, 0) as latitud, ISNULL(cl.longitud, 0) as longitud, cr.codigo_cobr, cr.cob_lider "
+    cl.Cod_zona AS Empresa, FORMAT( ISNULL(cl.Saldo_actua, 0), 'C', 'es-HN') as Saldo,ISNULL(cl.latitud, 0) as latitud, ISNULL(cl.longitud, 0) as longitud, cr.codigo_cobr, cr.cob_lider "
         Dim fromClause As String = "from COBRADOR cr join CLIENTES cl on cl.cl_cobrador = cr.codigo_cobr"
         Dim whereClauseList As New List(Of String)()
-        Dim orderByClause As String = "order by Saldo desc"
+        Dim orderByClause As String = "order by cl.Saldo_actua desc"
 
         whereClauseList.Add("cl.Saldo_actua > 0")
         If Not String.IsNullOrEmpty(clientCode) Then

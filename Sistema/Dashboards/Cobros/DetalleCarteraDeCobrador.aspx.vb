@@ -12,8 +12,8 @@ Public Class DetalleCarteraDeCobrador
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             'Dim Usuario_Aut = Session("Usuario_Aut")
-            'Session("BackPageUrl") = "~/Dashboards/Cobros/Cobros.aspx"
-            'Dim thisPage = "~/Dashboards/Cobros/DetalleCarteraDeCobrador.aspx"
+            Session("BackPageUrl") = "~/Dashboards/Cobros/Cobros.aspx"
+            Dim thisPage = "~/Dashboards/Cobros/DetalleCarteraDeCobrador.aspx"
             'If Usuario_Aut IsNot Nothing Then
             '    Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
             '    If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
@@ -49,7 +49,7 @@ Public Class DetalleCarteraDeCobrador
     Protected Sub WhatsAppToAll_Click(sender As Object, e As EventArgs)
 
         PnlGoodAndBadPhones.Visible = True
-        DashboardGridview.Visible = False
+        PnlPrimary.Visible = False
         If Session("CobradorSeleccionado") Then
                 Dim clients = clientsValidToSend(Session("CobradorSeleccionado"))
                 SendGridview.DataSource = clients
@@ -220,7 +220,8 @@ Public Class DetalleCarteraDeCobrador
 
     Protected Sub btnExitWhatsapToAll_Click(sender As Object, e As EventArgs)
         PnlGoodAndBadPhones.Visible = False
-        DashboardGridview.Visible = True
+        PnlPrimary.Visible = True
+
     End Sub
 
     Protected Sub btnSendMassiveWhatsApp_Click(sender As Object, e As EventArgs)

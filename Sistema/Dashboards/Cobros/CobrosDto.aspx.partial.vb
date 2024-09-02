@@ -45,7 +45,7 @@ Partial Public Class CobrosDashboard
         Public Property Codigo As String
         Public Property Nombre As String
         Public Property Clientes As Integer
-        Public Property Cuota_mensual As Decimal
+        Public Property Cuota_mensual As String
 
 
     End Class
@@ -76,7 +76,7 @@ Partial Public Class CobrosDashboard
         Public Property Telefonos As String
         Public Property Direccion As String
         Public Property Empresa As String
-        Public Property Saldo As Decimal
+        Public Property Saldo As String
         Public Property Latitud As Decimal
         Public Property Longitud As Decimal
         Public Property codigo_cobr As String
