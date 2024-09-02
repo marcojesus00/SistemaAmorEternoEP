@@ -51,10 +51,28 @@ Public Class DetalleCarteraDeCobrador
         PnlGoodAndBadPhones.Visible = True
         PnlPrimary.Visible = False
         If Session("CobradorSeleccionado") Then
-                Dim clients = clientsValidToSend(Session("CobradorSeleccionado"))
-                SendGridview.DataSource = clients
-                SendGridview.DataBind()
-            End If
+            CardTitleLiteral.Text = "Clientes a los que se enviará"
+
+            Dim clients = clientsValidToSend(Session("CobradorSeleccionado"))
+            SendGridview.DataSource = clients
+            SendGridview.DataBind()
+        End If
+
+
+
+
+    End Sub
+    Protected Sub CorruptsPhones_Click(sender As Object, e As EventArgs)
+
+        PnlGoodAndBadPhones.Visible = True
+        PnlPrimary.Visible = False
+        If Session("CobradorSeleccionado") Then
+            CardTitleLiteral.Text = "Clientes con teléfonos corruptos"
+
+            Dim clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+            SendGridview.DataSource = clients
+            SendGridview.DataBind()
+        End If
 
 
 
@@ -69,13 +87,15 @@ Public Class DetalleCarteraDeCobrador
             Dim selectClause = "Select A.Codigo_clie As Codigo, A.Nombre_clie Nombre,  Case 
         WHEN NULLIF(A.Telef_clien, '') IS NOT NULL THEN A.Telef_clien 
         Else A.CL_CELULAR
-    End As Telefono, FORMAT(A.Saldo_actua, 'C', 'es-HN')  as Saldo"
-            Dim fromClause = " From CLIENTES "
-            Dim whereClause = "A where A.cl_cobrador = @Cobrador And A.Saldo_actua>0"
+    End As Telefono, FORMAT(A.Saldo_actua, 'C', 'es-HN')  as Saldo, ISNULL(CONVERT(VARCHAR, CONVERT(DATE, w.FechaDeEnvio)),'Nunca') AS Ultimo_envio"
+            Dim fromClause = " From CLIENTES a "
+            Dim joinCLause = "			 left join LogDocumentosPorWhatsApp w ON A.Codigo_clie=w.CodigoDeCliente and w.fueExitoso=1
+"
+            Dim whereClause = " where A.cl_cobrador = @Cobrador And A.Saldo_actua>0"
             Dim orderByClause = " Order BY A.Saldo_actua desc"
             Dim paginationClause = "OFFSET @Offset ROWS FETCH Next @PageSize ROWS ONLY"
             Dim dataQuery = $"
-                            {selectClause} {fromClause}  {whereClause} 
+                            {selectClause} {fromClause} {joinCLause} {whereClause} 
                             {orderByClause} 
                             {paginationClause} OPTION(RECOMPILE)
                         "
@@ -128,6 +148,7 @@ Public Class DetalleCarteraDeCobrador
     Protected Sub btnCorrupPhones_Click(sender As Object, e As EventArgs)
 
     End Sub
+
     Private Function clientsValidToSend(cobrador As String)
         Try
             Using FunamorContext As New FunamorContext()
@@ -140,9 +161,26 @@ Public Class DetalleCarteraDeCobrador
             End Using
         Catch ex As Exception
             Dim msg = "No se cargó la tabla."
-        DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
-        AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+        End Try
+    End Function
+    Private Function clientsWithCorrupPhones(cobrador As String)
+        Try
+            Using FunamorContext As New FunamorContext()
+                Dim sqlParameters As New List(Of SqlParameter)
+                sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
+
+                Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
+            "EXEC SP_VS_CarteraDeClienteParaWhatsapp @cobrador", sqlParameters.ToArray()).ToList()
+                Return result
+            End Using
+        Catch ex As Exception
+            Dim msg = "No se cargó la tabla."
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
         End Try
     End Function
     Public Function EnviarEstadoDeCuenta(result As List(Of DocsDto))
@@ -164,7 +202,8 @@ Public Class DetalleCarteraDeCobrador
 
                     Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                     Dim cap = "Estimado(a) " + cliente.Nombre + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero" + leaderPhone
-                    Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504")
+                    Dim user = Session("Usuario_Aut")
+                    Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo)
                     Debug.WriteLine(r4esult.Msg)
                     If r4esult.Success = False Then
                         DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))

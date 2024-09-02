@@ -590,15 +590,6 @@ Partial Public Class monitorclientes
     Protected WithEvents TxtTelefonoWhats As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnEnviarWhatsapp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnEnviarWhatsapp As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''lblWhatsAppValidation control.
     '''</summary>
     '''<remarks>
@@ -606,6 +597,15 @@ Partial Public Class monitorclientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblWhatsAppValidation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnEnviarWhatsapp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnEnviarWhatsapp As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''TxtCorreoCliente control.

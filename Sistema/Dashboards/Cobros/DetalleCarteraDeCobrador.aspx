@@ -53,9 +53,12 @@
                             </asp:LinkButton>
             </div>
             <div class="card-body">
-                <div class="card-title">Clientes a los que se enviará</div>
+                <div class="card-title">
+                        <asp:Literal ID="CardTitleLiteral" runat="server"></asp:Literal>
+
+                </div>
                 <div class="table table-responsive">
-                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" EmptyDataText="No se encontraron resultados" >
+                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true" PageSize="12" EmptyDataText="No se encontraron resultados" >
 
                                         </asp:GridView>
                 </div>

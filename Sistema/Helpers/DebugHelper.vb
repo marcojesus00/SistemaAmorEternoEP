@@ -30,7 +30,7 @@ Public Class DebugHelper
             Dim dayName As String = DateTime.Now.ToString("dddd")
             Dim day As String = DateTime.Now.ToString("dd")
 
-            Dim logFilePath As String = Path.Combine(ServerPath, $"Musica\Logs\{dayName}_{day}_{monthName}_{year}.log")
+            Dim logFilePath As String = Path.Combine(ServerPath, $"Musica\Logs\{Environment.MachineName}_{dayName}_{day}_{monthName}_{year}.log")
 
 
             ' Ensure the directory exists

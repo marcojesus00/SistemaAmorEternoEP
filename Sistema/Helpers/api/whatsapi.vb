@@ -43,7 +43,7 @@ Public Class whatsapi
         End Using
     End Function
 
-    Public Shared Function sendWhatsAppDocs(doc, name, couentryCode, localNumber, caption) As ResultW
+    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, Optional instancia As String = "", Optional docDescription As String = "Estado de cuenta") As ResultW
 
 
         ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
@@ -86,31 +86,61 @@ Public Class whatsapi
             Dim serializer As New Newtonsoft.Json.JsonSerializer
             Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
             Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
-            If response1.IsSuccessStatusCode Then
-                Dim msg = "WhatsApp enviado con éxito"
-                Dim result As New ResultW(True, msg)
-                Return result
-                'Return response1.Content.ReadAsStringAsync().Result
 
+
+            Dim msg = ""
+            Dim isSuccess As Boolean
+            If response1.IsSuccessStatusCode Then
+                msg = "WhatsApp enviado con éxito"
+                isSuccess = True
+
+                'Return response1.Content.ReadAsStringAsync().Result
             Else
-                Dim msg = ""
+                msg = ""
                 If jsonResponse.Errors(0) IsNot Nothing Then
                     msg = jsonResponse.Errors(0).Msg
                 Else
                     msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
                 End If
                 msg = $"Error, intente de nuevo: " + msg
-
+                isSuccess = False
                 'Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
-                Dim result As New ResultW(False, msg)
-                Return result
+
             End If
+            Dim result As New ResultW(isSuccess, msg)
+            logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess)
 
-
+            Return result
         End Using
 
 
 
     End Function
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess)
+        Using context As New FunamorContext()
+            context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
+            Dim sql As String = "
+            INSERT INTO [dbo].[LogDocumentosPorWhatsApp]
+            ([CodigoDeCliente], [Telefono], [Usuario], [NombreDeDocumento], [Instancia], [CodigoDePais], [Mensaje], [DescripcionDeDocumento], [FueExitoso])
+            VALUES
+            (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso);
+        "
+
+            Dim parameters As SqlParameter() = {
+                New SqlParameter("@CodigoDeCliente", clientCode),
+                New SqlParameter("@Telefono", localNumber),
+                New SqlParameter("@Usuario", user),
+                New SqlParameter("@NombreDeDocumento", name),
+                New SqlParameter("@Instancia", instancia),
+                New SqlParameter("@CodigoDePais", couentryCode),
+                New SqlParameter("@Mensaje", caption),
+                New SqlParameter("@DescripcionDeDocumento", docDescription),
+                New SqlParameter("@FueExitoso", isSuccess)
+            }
+
+            context.Database.ExecuteSqlCommand(sql, parameters)
+        End Using
+    End Sub
 
 End Class

@@ -621,17 +621,17 @@
 
                                     <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
 
+                                                                    <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
 
                                 </div>
  
 
                             </div>
                                                            <div class="col-12 pt-2">
-                                <asp:button ID="btnEnviarWhatsapp" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
+                                <asp:button ID="btnEnviarWhatsapp" OnClientClick="w(this);" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
 
 
                                 </div>
-                                <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
                         </div>
                         <div class="row text-right">
 
@@ -695,7 +695,18 @@
             </div>
         </div>
 
+            <script>
+                var isCLicked = false;
+                function w(button) {
+                    button.value = 'Procesando';
+                    if (isCLicked) {
+                        button.disable;
+                        
+                    }
+                    isCLicked=true
+                }
 
+            </script>
         <script src="js/JQuery.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

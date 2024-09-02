@@ -67,6 +67,7 @@ Partial Public Class CobrosDashboard
         Public Property Nombre As String
         Public Property Telefono As String
         Public Property Saldo As String
+        Public Property Ultimo_envio As String
 
     End Class
     Public Class PortfolioDetailsDto

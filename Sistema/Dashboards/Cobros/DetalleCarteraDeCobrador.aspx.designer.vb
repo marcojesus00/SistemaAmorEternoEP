@@ -59,6 +59,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents btnExitWhatsapToAll As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''CardTitleLiteral control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CardTitleLiteral As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
     '''SendGridview control.
     '''</summary>
     '''<remarks>
