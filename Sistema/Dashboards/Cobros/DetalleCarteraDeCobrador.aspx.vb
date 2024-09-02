@@ -62,7 +62,7 @@ Public Class DetalleCarteraDeCobrador
 
 
     End Sub
-    Protected Sub CorruptsPhones_Click(sender As Object, e As EventArgs)
+    Protected Sub btnCorrupPhones_Click(sender As Object, e As EventArgs)
 
         PnlGoodAndBadPhones.Visible = True
         PnlPrimary.Visible = False
@@ -145,9 +145,7 @@ Public Class DetalleCarteraDeCobrador
         End Try
     End Sub
 
-    Protected Sub btnCorrupPhones_Click(sender As Object, e As EventArgs)
 
-    End Sub
 
     Private Function clientsValidToSend(cobrador As String)
         Try

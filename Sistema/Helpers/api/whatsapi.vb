@@ -126,6 +126,12 @@ Public Class whatsapi
             VALUES
             (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso);
         "
+            Dim succ
+            If isSuccess = True Then
+                succ = 1
+            Else
+                succ = 0
+            End If
 
             Dim parameters As SqlParameter() = {
                 New SqlParameter("@CodigoDeCliente", clientCode),
@@ -136,7 +142,7 @@ Public Class whatsapi
                 New SqlParameter("@CodigoDePais", couentryCode),
                 New SqlParameter("@Mensaje", caption),
                 New SqlParameter("@DescripcionDeDocumento", docDescription),
-                New SqlParameter("@FueExitoso", isSuccess)
+                New SqlParameter("@FueExitoso", succ)
             }
 
             context.Database.ExecuteSqlCommand(sql, parameters)

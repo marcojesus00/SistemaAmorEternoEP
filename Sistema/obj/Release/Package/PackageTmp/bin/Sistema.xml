@@ -2368,6 +2368,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._submitButton">
+<summary>
+submitButton control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._LinkButtonClear">
+<summary>
+LinkButtonClear control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._WhatsAppToAll">
 <summary>
 WhatsAppToAll control.
@@ -2389,6 +2407,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.DetalleCarteraDeCobrador._btnExitWhatsapToAll">
 <summary>
 btnExitWhatsapToAll control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._CardTitleLiteral">
+<summary>
+CardTitleLiteral control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2422,9 +2449,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.DetalleCarteraDeCobrador._PnlNavigation">
+<member name="F:Sistema.DetalleCarteraDeCobrador._PnlPrimary">
 <summary>
-PnlNavigation control.
+PnlPrimary control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7408,18 +7435,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.monitorclientes._btnEnviarWhatsapp">
+<member name="F:Sistema.monitorclientes._lblWhatsAppValidation">
 <summary>
-btnEnviarWhatsapp control.
+lblWhatsAppValidation control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.monitorclientes._lblWhatsAppValidation">
+<member name="F:Sistema.monitorclientes._btnEnviarWhatsapp">
 <summary>
-lblWhatsAppValidation control.
+btnEnviarWhatsapp control.
 </summary>
 <remarks>
 Auto-generated field.
