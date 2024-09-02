@@ -59,6 +59,24 @@ Partial Public Class monitorclientes
     Protected WithEvents TxtCliente2 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''TxtCobrador control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtCobrador As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''txtBenef1 control.
     '''</summary>
     '''<remarks>
@@ -554,6 +572,15 @@ Partial Public Class monitorclientes
     Protected WithEvents PanelEnviarWhatsapp As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''ddlCountryCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlCountryCode As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''TxtTelefonoWhats control.
     '''</summary>
     '''<remarks>
@@ -570,6 +597,15 @@ Partial Public Class monitorclientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnEnviarWhatsapp As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblWhatsAppValidation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblWhatsAppValidation As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''TxtCorreoCliente control.
@@ -615,6 +651,15 @@ Partial Public Class monitorclientes
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents PanelConfirmaCorreoEnviado As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lblAlert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAlert As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''btnCerrarConfCorreo control.

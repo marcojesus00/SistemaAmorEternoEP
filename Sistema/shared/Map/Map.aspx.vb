@@ -40,6 +40,8 @@ Public Class MapPage
 
         Catch ex As Exception
             AlertHelper.GenerateAlert("danger", "Algo inesperado sucedió: " & ex.Message, alertPlaceholder)
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         End Try
 
     End Sub

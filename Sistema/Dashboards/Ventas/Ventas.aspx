@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Ventas.aspx.vb" Inherits="Sistema.VentasDashboard" %>
+﻿<%@ Page Title="Dashboard ventas" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Ventas.aspx.vb" Inherits="Sistema.VentasDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
     <h2 class="  text-center">Dashboard de ventas</h2>

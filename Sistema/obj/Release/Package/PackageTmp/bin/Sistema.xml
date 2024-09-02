@@ -7237,6 +7237,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.monitorclientes._ddlCountryCode">
+<summary>
+ddlCountryCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.monitorclientes._TxtTelefonoWhats">
 <summary>
 TxtTelefonoWhats control.
@@ -7249,6 +7258,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorclientes._btnEnviarWhatsapp">
 <summary>
 btnEnviarWhatsapp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorclientes._lblWhatsAppValidation">
+<summary>
+lblWhatsAppValidation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7294,6 +7312,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorclientes._PanelConfirmaCorreoEnviado">
 <summary>
 PanelConfirmaCorreoEnviado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorclientes._lblAlert">
+<summary>
+lblAlert control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -124,9 +124,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+
     <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
+
+    <Reference Include="System.Net.Http" />
+
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -296,6 +300,7 @@
     <Content Include="css\svg-with-js.min.css" />
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
+    <Content Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx" />
     <Content Include="Dashboards\Ventas\Ventas.aspx" />
     <Content Include="Dashboards\Ventas\images\minus.png" />
     <Content Include="Dashboards\Ventas\images\plus.png" />
@@ -2350,6 +2355,14 @@
     </Compile>
     <Compile Include="Controls\Shared\Sidebar.designer.vb" />
     <Compile Include="Dashboards\Cobros\CobrosService.vb" />
+    <Compile Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx.designer.vb">
+      <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx.vb">
+      <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\ResultW.vb" />
     <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -2389,6 +2402,7 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Helpers\api\whatsapi.vb" />
     <Compile Include="Helpers\AuthHelper.vb" />
     <Compile Include="Helpers\CachingHelper.vb" />
     <Compile Include="Helpers\DebugHelper.vb" />
@@ -2402,6 +2416,7 @@
       <DependentUpon>Estadistica Visitas Cobrador.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Shared\CountryPhoneCodes.dict.vb" />
     <Compile Include="Shared\Map\MapClustered.aspx.designer.vb">
       <DependentUpon>MapClustered.aspx</DependentUpon>
     </Compile>
