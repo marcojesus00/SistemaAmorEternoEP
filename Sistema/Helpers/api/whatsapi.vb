@@ -43,7 +43,7 @@ Public Class whatsapi
         End Using
     End Function
 
-    Public Shared Function sendWhatsAppDocs(doc, name, couentryCode, localNumber, caption)
+    Public Shared Function sendWhatsAppDocs(doc, name, couentryCode, localNumber, caption) As ResultW
 
 
         ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
@@ -101,7 +101,7 @@ Public Class whatsapi
                 End If
                 msg = $"Error, intente de nuevo: " + msg
 
-                Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
+                'Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
                 Dim result As New ResultW(False, msg)
                 Return result
             End If
@@ -112,13 +112,5 @@ Public Class whatsapi
 
 
     End Function
-    Private Class ResultW
-        Private Success As Boolean
-        Private Msg As String
-        Public Sub New(success, msg)
-            Me.Success = success
-            Me.Msg = msg
-        End Sub
 
-    End Class
 End Class

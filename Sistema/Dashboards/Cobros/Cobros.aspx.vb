@@ -370,6 +370,8 @@ Public Class CobrosDashboard
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)
             Dim btnRouteOfReceiptsMap As LinkButton = CType(e.Row.FindControl("btnRouteOfReceiptsMap"), LinkButton)
+            Dim btnSendWhatsApp As LinkButton = CType(e.Row.FindControl("btnSendWhatsApp"), LinkButton)
+
             Dim detailsControl As GridView = TryCast(e.Row.FindControl("DetailsControl"), GridView)
 
             Dim rowIndex As Integer = e.Row.RowIndex

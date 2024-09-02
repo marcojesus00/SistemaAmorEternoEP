@@ -2335,6 +2335,7 @@
       <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Dashboards\Cobros\ResultW.vb" />
     <Compile Include="Dashboards\Ventas\SalesByProduct.aspx.partial.vb">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

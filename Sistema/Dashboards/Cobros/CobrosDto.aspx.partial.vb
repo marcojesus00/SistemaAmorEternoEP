@@ -57,9 +57,16 @@ Partial Public Class CobrosDashboard
 
     End Class
     Public Class DocsDto
-        Public Property COdigo As String
+        Public Property Codigo As String
         Public Property Nombre As String
         Public Property Telefono As String
+
+    End Class
+    Public Class DocsDtoCL
+        Public Property Codigo As String
+        Public Property Nombre As String
+        Public Property Telefono As String
+        Public Property Saldo As String
 
     End Class
     Public Class PortfolioDetailsDto
