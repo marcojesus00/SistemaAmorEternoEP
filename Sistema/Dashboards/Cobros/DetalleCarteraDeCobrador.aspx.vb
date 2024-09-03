@@ -190,25 +190,33 @@ Public Class DetalleCarteraDeCobrador
                 Dim Usuario = Session("Usuario")
                 Dim Clave = Session("Clave")
                 For Each cliente In result
-                    Dim Informe As New Movimiento_Clientes
+                    Try
+                        Dim Informe As New Movimiento_Clientes
 
-                    Informe.SetDatabaseLogon(Usuario, Clave)
-                    Informe.SetParameterValue("Cliente", cliente.Codigo)
+                        Informe.SetDatabaseLogon(Usuario, Clave)
+                        Informe.SetParameterValue("Cliente", cliente.Codigo)
 
-                    Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+                        Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
 
 
-                    Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-                    Dim cap = "Estimado(a) " + cliente.Nombre + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero" + leaderPhone
-                    Dim user = Session("Usuario_Aut")
-                    Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo)
-                    Debug.WriteLine(r4esult.Msg)
-                    If r4esult.Success = False Then
-                        DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
-                    Else
-                        AlertHelper.GenerateAlert("success", r4esult.Msg, alertPlaceholder)
+                        Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
+                        Dim cap = "Estimado(a) " + cliente.Nombre + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero" + leaderPhone
+                        Dim user = Session("Usuario_Aut")
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo)
+                        'Debug.WriteLine(r4esult.Msg)
 
-                    End If
+                        If r4esult.Success = False Then
+                            Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
+                            DebugHelper.SendDebugInfo("danger", New Exception(m), Session("Usuario_Aut"))
+                        Else
+                            AlertHelper.GenerateAlert("success", r4esult.Msg, alertPlaceholder)
+
+                        End If
+                    Catch ex As Exception
+                        Dim m = "Codigo de cliente: " + cliente.Codigo
+                        DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
+                        whatsapi.logW(name:=ex.Message, couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False)
+                    End Try
 
                 Next
             End If
