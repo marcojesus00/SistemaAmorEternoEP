@@ -507,17 +507,14 @@ Public Class monitorclientes
             Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"))
 
 
-            Dim mensjae = ""
             If r4esult.Success = True Then
-                DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
                 lblAlert.CssClass = "alert-primary align-content-center"
-                mensjae = "Enviado con exito"
             Else
-                'AlertHelper.GenerateAlert("success", r4esult.Msg, alertPlaceholder)
+                DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
+
                 lblAlert.CssClass = "alert-danger align-content-center"
-                mensjae = "Error, intente de nuevo"
             End If
-            lblAlert.Text = mensjae + r4esult.Msg
+            lblAlert.Text = r4esult.Msg
 
             TxtTelefonoWhats.Text = ""
 

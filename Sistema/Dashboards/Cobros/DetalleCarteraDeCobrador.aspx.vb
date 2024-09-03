@@ -51,11 +51,11 @@ Public Class DetalleCarteraDeCobrador
         PnlGoodAndBadPhones.Visible = True
         PnlPrimary.Visible = False
         If Session("CobradorSeleccionado") Then
+            Session("SelectedDetail") = "Valid"
+
             CardTitleLiteral.Text = "Clientes a los que se enviará"
 
-            Dim clients = clientsValidToSend(Session("CobradorSeleccionado"))
-            SendGridview.DataSource = clients
-            SendGridview.DataBind()
+            rebindDetails()
         End If
 
 
@@ -66,18 +66,27 @@ Public Class DetalleCarteraDeCobrador
 
         PnlGoodAndBadPhones.Visible = True
         PnlPrimary.Visible = False
+        Session("SelectedDetail") = "Corrupt"
         If Session("CobradorSeleccionado") Then
             CardTitleLiteral.Text = "Clientes con teléfonos corruptos"
+            rebindDetails()
 
-            Dim clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
-            SendGridview.DataSource = clients
-            SendGridview.DataBind()
         End If
-
-
-
-
     End Sub
+    Protected Sub rebindDetails()
+        Dim clients As List(Of DocsDto)
+        If Session("SelectedDetail") = "Corrupt" Then
+
+            clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+        ElseIf Session("SelectedDetail") = "Valid" Then
+            clients = clientsValidToSend(Session("CobradorSeleccionado"))
+        Else
+            clients = New List(Of DocsDto)
+        End If
+        SendGridview.DataSource = clients
+        SendGridview.DataBind()
+    End Sub
+
     Protected Sub ReBind(Optional selectedPage As Integer = 1)
         Try
 
@@ -116,7 +125,16 @@ Public Class DetalleCarteraDeCobrador
                 totalCountparams.Add(New SqlParameter("@Cobrador", $"{cobrador}"))
                 totalCountparams.Add(New SqlParameter("@Offset", offset))
                 totalCountparams.Add(New SqlParameter("@PageSize", 10))
-                Dim toltalC = FunamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
+                Dim toltalC As Integer = FunamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
+
+                Dim cobradorQuery = "select C.codigo_cobr Codigo, isnull(D.nombre_cobr,'') Lider, REPLACE(ISNULL(d.cob_telefo, ''), '-', '')  Telefono_lider, isnull(c.cob_zona,'') Zona from COBRADOR c
+join COBRADOR d ON c.cob_lider=d.codigo_cobr
+where c.codigo_cobr like @Cobrador"
+                Dim cobParams As New List(Of SqlParameter)
+                cobParams.Add(New SqlParameter("@Cobrador", $"{cobrador}"))
+                Dim cobradorInfo As CobradorDto = FunamorContext.Database.SqlQuery(Of CobradorDto)(cobradorQuery, cobParams.ToArray()).FirstOrDefault()
+                Session("TelefonoLider") = cobradorInfo.Telefono_lider.Trim
+                Session("cobradorObject") = cobradorInfo
 
                 DashboardGridview.DataSource = result
                 DashboardGridview.DataBind()
@@ -171,7 +189,7 @@ Public Class DetalleCarteraDeCobrador
                 sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
 
                 Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
-            "EXEC SP_VS_CarteraDeClienteParaWhatsapp @cobrador", sqlParameters.ToArray()).ToList()
+            "EXEC SP_VS_CarteraMalaDeClienteParaWhatsapp @cobrador", sqlParameters.ToArray()).ToList()
                 Return result
             End Using
         Catch ex As Exception
@@ -184,9 +202,16 @@ Public Class DetalleCarteraDeCobrador
     Public Function EnviarEstadoDeCuenta(result As List(Of DocsDto))
         Try
             Dim Usuario_Aut = "manager"
+            Dim count = 0
             If Usuario_Aut = Session("Usuario_Aut") Then
-                Dim leaderPhone = ""
-
+                Dim leaderPhone = Session("TelefonoLider")
+                Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
+                Dim Leader = ""
+                Dim numeroPBX = "2647-3390"
+                If cobrador IsNot Nothing Then
+                    leaderPhone = cobrador.Telefono_lider
+                    Leader = cobrador.Lider
+                End If
                 Dim Usuario = Session("Usuario")
                 Dim Clave = Session("Clave")
                 For Each cliente In result
@@ -200,7 +225,7 @@ Public Class DetalleCarteraDeCobrador
 
 
                         Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-                        Dim cap = "Estimado(a) " + cliente.Nombre + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero" + leaderPhone
+                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: {numeroPBX} O escribir al siguiente numero: " + leaderPhone
                         Dim user = Session("Usuario_Aut")
                         Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo)
                         'Debug.WriteLine(r4esult.Msg)
@@ -209,17 +234,19 @@ Public Class DetalleCarteraDeCobrador
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
                             DebugHelper.SendDebugInfo("danger", New Exception(m), Session("Usuario_Aut"))
                         Else
-                            AlertHelper.GenerateAlert("success", r4esult.Msg, alertPlaceholder)
-
+                            count = count + 1
                         End If
                     Catch ex As Exception
                         Dim m = "Codigo de cliente: " + cliente.Codigo
                         DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
-                        whatsapi.logW(name:=ex.Message, couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False)
+                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=ex.Message)
                     End Try
 
                 Next
             End If
+            Dim mensaje = $"Enviados con éxito: {count}. Fallidos: {result.Count - count}"
+            AlertHelper.GenerateAlert("info", mensaje, alertPlaceholder)
+
             Return True
 
         Catch ex As Exception
@@ -275,5 +302,10 @@ Public Class DetalleCarteraDeCobrador
             EnviarEstadoDeCuenta(clients)
 
         End If
+    End Sub
+
+    Protected Sub SendGridview_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+        SendGridview.PageIndex = e.NewPageIndex
+
     End Sub
 End Class

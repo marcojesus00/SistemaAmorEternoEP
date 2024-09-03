@@ -58,7 +58,7 @@
 
                 </div>
                 <div class="table table-responsive">
-                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true" PageSize="12" EmptyDataText="No se encontraron resultados" >
+                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true" OnPageIndexChanging="SendGridview_PageIndexChanging" PageSize="12" EmptyDataText="No se encontraron resultados" >
 
                                         </asp:GridView>
                 </div>
