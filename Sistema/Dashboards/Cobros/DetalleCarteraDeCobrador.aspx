@@ -48,7 +48,7 @@
         <div class="card">
             <div class="card-header  text-end">
 
-                                      <asp:LinkButton  ID="btnExitWhatsapToAll"  OnClick="btnExitWhatsapToAll_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-danger" runat="server">
+                                      <asp:LinkButton  ID="btnExitWhatsapToAll"  OnClick="btnExitWhatsapToAll_Click" ToolTip="Cerrar" CssClass="btn btn-sm btn-outline-danger" runat="server">
 <i class="bi bi-x-circle"></i> Cerrar
                             </asp:LinkButton>
             </div>
@@ -58,7 +58,7 @@
 
                 </div>
                 <div class="table table-responsive">
-                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true" OnPageIndexChanging="SendGridview_PageIndexChanging" PageSize="12" EmptyDataText="No se encontraron resultados" >
+                                        <asp:GridView ID="SendGridview" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true" OnPageIndexChanging="SendGridview_PageIndexChanging" PageSize="8" EmptyDataText="No se encontraron resultados" >
 
                                         </asp:GridView>
                 </div>
@@ -74,12 +74,40 @@
            </div>
         </div>
 
-
-
-
     </asp:Panel>
 
 
+
+
+                            <asp:Panel ID="PnlBasPhones" runat="server" >
+        <div class="card">
+            <div class="card-header  text-end">
+
+                                      <asp:LinkButton  ID="LinkButton1"  OnClick="btnExitWhatsapToAll_Click" ToolTip="Cerrar" CssClass="btn btn-sm btn-outline-danger" runat="server">
+<i class="bi bi-x-circle"></i> Cerrar
+                            </asp:LinkButton>
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                        Teléfonos malos
+
+                </div>
+                <div class="table table-responsive">
+                                        <asp:GridView ID="GridViewBadPhones" runat="server" DataKeyNames="Codigo" CssClass="table  table-sm table-hover" AutoGenerateColumns="True" AllowPaging="true"  OnPageIndexChanging="GridViewBadPhones_PageIndexChanging" PageSize="8" EmptyDataText="No se encontraron resultados" >
+
+                                        </asp:GridView>
+                </div>
+            </div>
+           <div class="list-group-item-action">
+
+
+                                     <asp:LinkButton  ID="LinkButton3"  OnClick="btnSendMassiveWhatsApp_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-primary" runat="server">
+<i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
+                            </asp:LinkButton>
+           </div>
+        </div>
+
+    </asp:Panel>
 
 
 

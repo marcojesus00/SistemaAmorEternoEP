@@ -25,11 +25,11 @@ Public Class DetalleCarteraDeCobrador
                 Dim cobrador = Session("CobradorSeleccionado")
                 If cobrador Then
                     PnlGoodAndBadPhones.Visible = False
+                    PnlBasPhones.Visible = False
                     ReBind(selectedPage:=1)
 
                 End If
             End If
-            PnlGoodAndBadPhones.Visible = False
 
             'Else
             '    Response.Redirect("~/Principal.aspx")
@@ -50,12 +50,12 @@ Public Class DetalleCarteraDeCobrador
 
         PnlGoodAndBadPhones.Visible = True
         PnlPrimary.Visible = False
+        PnlBasPhones.Visible = False
         If Session("CobradorSeleccionado") Then
-            Session("SelectedDetail") = "Valid"
 
             CardTitleLiteral.Text = "Clientes a los que se enviará"
 
-            rebindDetails()
+            rebindGoodPhones()
         End If
 
 
@@ -64,25 +64,39 @@ Public Class DetalleCarteraDeCobrador
     End Sub
     Protected Sub btnCorrupPhones_Click(sender As Object, e As EventArgs)
 
-        PnlGoodAndBadPhones.Visible = True
+        PnlGoodAndBadPhones.Visible = False
         PnlPrimary.Visible = False
-        Session("SelectedDetail") = "Corrupt"
+        PnlBasPhones.Visible = True
         If Session("CobradorSeleccionado") Then
             CardTitleLiteral.Text = "Clientes con teléfonos corruptos"
-            rebindDetails()
+            rebindBadPhones()
 
         End If
     End Sub
-    Protected Sub rebindDetails()
-        Dim clients As List(Of DocsDto)
-        If Session("SelectedDetail") = "Corrupt" Then
+    'Protected Sub rebindDetails()
+    '    Dim clients As List(Of DocsDto)
+    '    If Session("SelectedDetail") = "Corrupt" Then
 
-            clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
-        ElseIf Session("SelectedDetail") = "Valid" Then
-            clients = clientsValidToSend(Session("CobradorSeleccionado"))
-        Else
-            clients = New List(Of DocsDto)
-        End If
+    '        clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+    '    ElseIf Session("SelectedDetail") = "Valid" Then
+    '        clients = clientsValidToSend(Session("CobradorSeleccionado"))
+    '    Else
+    '        clients = New List(Of DocsDto)
+    '    End If
+    '    SendGridview.DataSource = clients
+    '    SendGridview.DataBind()
+    'End Sub
+    Protected Sub rebindBadPhones()
+        Dim clients As List(Of DocsDto)
+
+        clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+        GridViewBadPhones.DataSource = clients
+        GridViewBadPhones.DataBind()
+    End Sub
+    Protected Sub rebindGoodPhones()
+        Dim clients As List(Of DocsDto)
+
+        clients = clientsValidToSend(Session("CobradorSeleccionado"))
         SendGridview.DataSource = clients
         SendGridview.DataBind()
     End Sub
@@ -293,7 +307,7 @@ where c.codigo_cobr like @Cobrador"
     Protected Sub btnExitWhatsapToAll_Click(sender As Object, e As EventArgs)
         PnlGoodAndBadPhones.Visible = False
         PnlPrimary.Visible = True
-
+        PnlBasPhones.Visible = False
     End Sub
 
     Protected Sub btnSendMassiveWhatsApp_Click(sender As Object, e As EventArgs)
@@ -306,6 +320,12 @@ where c.codigo_cobr like @Cobrador"
 
     Protected Sub SendGridview_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
         SendGridview.PageIndex = e.NewPageIndex
+        rebindGoodPhones()
+    End Sub
 
+
+    Protected Sub GridViewBadPhones_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+        GridViewBadPhones.PageIndex = e.NewPageIndex
+        rebindBadPhones()
     End Sub
 End Class

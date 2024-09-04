@@ -116,44 +116,63 @@ ORDER BY Cobrado desc"
 
                 funamorContext.Database.CommandTimeout = 120
                 Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr as Nombre, count(cl.Codigo_clie) as Clientes, sum(cn.CONT_VALCUO) as Cuota,FORMAT(sum(cn.CONT_VALCUO), 'C', 'es-HN')   as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
-                Dim fromClause As String = "from COBRADOR cr join CLIENTES cl 
+            Dim fromClause As String = "from COBRADOR cr left join CLIENTES cl 
                  on cl.cl_cobrador = cr.codigo_cobr
                  left join CONTRATO cn
 				 on cl.Codigo_clie = cn.Codigo_clie"
-                Dim whereClauseList As New List(Of String)()
+            Dim whereClauseList As New List(Of String)()
+            Dim paramsSPList As New List(Of String)()
 
-                Dim orderByClause As String = "order by Cuota  desc"
+            Dim orderByClause As String = "order by Cuota  desc"
                 Dim groupByClause As String = "group by cr.codigo_cobr, nombre_cobr"
-                whereClauseList.Add("cl.Saldo_actua > 0")
-                If Not String.IsNullOrEmpty(filters.ClientCode) Then
-                    whereClauseList.Add("cl.Codigo_clie like @Client")
-                End If
+            whereClauseList.Add("cl.Saldo_actua > 0")
+            whereClauseList.Add("cr.COBR_STATUS='A'")
 
-                If Not String.IsNullOrEmpty(filters.SalesPersonCode) Then
-                    whereClauseList.Add("cr.codigo_cobr like @Collector")
-                End If
+            paramsSPList.Add("@Offset")
+            paramsSPList.Add("PageSize")
+            If Not String.IsNullOrEmpty(filters.ClientCode) Then
+                whereClauseList.Add("cl.Codigo_clie like @Client")
+                paramsSPList.Add("@Client")
+            End If
+
+            If Not String.IsNullOrEmpty(filters.SalesPersonCode) Then
+                whereClauseList.Add("cr.codigo_cobr like @Collector")
+                paramsSPList.Add("@Collector")
+
+            End If
 
                 If Not String.IsNullOrEmpty(filters.LeaderCode) Then
-                    whereClauseList.Add("cr.cob_lider like @Leader")
-                End If
+                whereClauseList.Add("cr.cob_lider like @Leader")
+                paramsSPList.Add("@Leader")
+
+            End If
 
                 If Not String.IsNullOrEmpty(filters.CompanyCode) Then
-                    whereClauseList.Add("cl.Cod_zona like @Company")
-                End If
+                whereClauseList.Add("cl.Cod_zona like @Company")
+                paramsSPList.Add("@Company")
+
+            End If
 
                 If Not String.IsNullOrEmpty(filters.ZoneCode) Then
-                    whereClauseList.Add("cl.VZCODIGO like @City")
-                End If
+                whereClauseList.Add("cl.VZCODIGO like @City")
+                paramsSPList.Add("@City")
 
-                If Not String.IsNullOrEmpty(filters.DocumentNumber) Then
-                    whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
-                End If
+            End If
 
-                Dim whereClause As String = ""
-                If whereClauseList.Count > 0 Then
-                    whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
-                End If
-                Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
+            If Not String.IsNullOrEmpty(filters.DocumentNumber) Then
+                whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
+                paramsSPList.Add("@Document")
+
+            End If
+            Dim paramsSPString = ""
+            If paramsSPList.Count > 0 Then
+                paramsSPString = String.Join(", ", paramsSPList)
+            End If
+            Dim whereClause As String = ""
+            If whereClauseList.Count > 0 Then
+                whereClause = "WHERE " & String.Join(" AND ", whereClauseList)
+            End If
+            Dim query As String = String.Format("{0} {1} {2} {3} {4}", selectClause, fromClause, whereClause, groupByClause, orderByClause)
                 Dim queryCount = $"
                     SELECT COUNT(*) AS TotalCount from
                          ( select cr.codigo_cobr  {fromClause}
@@ -165,9 +184,9 @@ ORDER BY Cobrado desc"
                             {orderByClause} 
                             {paginationClause} OPTION(RECOMPILE)"
 
-                Dim result As List(Of PortfolioIDto) = funamorContext.Database.SqlQuery(Of PortfolioIDto)(
-                dataQuery, params.ToArray()).ToList()
-                Dim toltalC = funamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
+            Dim result As List(Of PortfolioIDto) = funamorContext.Database.SqlQuery(Of PortfolioIDto)(
+                $"EXEC SP_VS_Dash_GetClientsGroupedByCollector {paramsSPString}", params.ToArray()).ToList()
+            Dim toltalC = funamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
 
                 Dim p = New PaginatedResult(Of PortfolioIDto) With {
                                                         .Data = result,
