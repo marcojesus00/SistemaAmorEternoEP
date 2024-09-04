@@ -188,7 +188,7 @@ ORDER BY Cobrado desc"
                 $"EXEC SP_VS_Dash_GetClientsGroupedByCollector {paramsSPString}", params.ToArray()).ToList()
             Dim toltalC = funamorContext.Database.SqlQuery(Of Integer)(queryCount, totalCountparams.ToArray()).FirstOrDefault()
 
-                Dim p = New PaginatedResult(Of PortfolioIDto) With {
+            Dim p = New PaginatedResult(Of PortfolioIDto) With {
                                                         .Data = result,
                                                         .TotalCount = toltalC
                                                     }

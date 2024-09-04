@@ -1,4 +1,5 @@
-﻿Imports System.Drawing
+﻿Imports System.Data.SqlClient
+Imports System.Drawing
 Imports System.IO
 Public Class monitorventas
     Inherits System.Web.UI.Page
@@ -1235,6 +1236,7 @@ Public Class monitorventas
             dlstatusvend.Items.Add("" + gvClientesVE.Rows(Fila).Cells(5).Text + "")
             dlempresaArr.Items.Add("" + gvClientesVE.Rows(Fila).Cells(6).Text + "")
             initialPayment = gvClientesVE.Rows(Fila).Cells(11).Text
+            Session("initialPayment") = initialPayment
             Dim identificationDocument = gvClientesVE.Rows(Fila).Cells(7).Text.TrimEnd
             Dim phoneNumberOne = gvClientesVE.Rows(Fila).Cells(18).Text.TrimEnd
             Dim phoneNumberTwo = gvClientesVE.Rows(Fila).Cells(19).Text.TrimEnd
@@ -1625,6 +1627,7 @@ Public Class monitorventas
             Dim payment = CorrectSalesDataClient1.CuotaContratoAppText
             Dim billNumber = CorrectSalesDataClient1.LetraContratoAppText
             Dim quantity = CorrectSalesDataClient1.CantidadProducto1appText
+            initialPayment = Session("initialPayment")
             Sql = "Exec SP_CONTRATO_LOG '" + txtCodClienteapp.Text.TrimEnd + "'
             ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + amount.TrimEnd.TrimStart + "'
             ,'" + Session("Cred") + "'," + Replace(initialPayment, ",", "") + "
@@ -1634,10 +1637,63 @@ Public Class monitorventas
             ,'" + amount + "','0','0','0','S','F','" + CorrectSalesDataClient1.IdentificationText.TrimStart.TrimEnd + "'
             ,'" + Producto + "','','','','W'
             ,'" + lblNameClientapp.InnerText.TrimEnd.TrimStart + "','202208201200','N',NULL,'" + Usuario_Aut + "'"
+                If Usuario_Aut Is Nothing Then
+                Usuario_Aut = Session("Usuario_Aut")
+            End If
+            'Datos = conf.EjecutaSql(Sql)
+            Using context As New FunamorContext()
+                Dim parameters As SqlParameter() = {
+                New SqlParameter("@CONT_NUMERO", txtCodClienteapp.Text.Trim),
+                New SqlParameter("@Codigo_clie", txtCodClienteapp.Text.Trim),
+                New SqlParameter("@CONT_VALOR", amount),
+                New SqlParameter("@CONT_CREDIT", "S"),
+                New SqlParameter("@CONT_PRIMA", Replace(initialPayment, ",", "")),
+                New SqlParameter("@CONT_NUMCUO", billNumber),
+                New SqlParameter("@CONT_VALCUO", payment),
+                New SqlParameter("@cont_vended", txtCodVendEV.Text.Trim),
+                New SqlParameter("@CONT_SERVI", IdProduct),
+                New SqlParameter("@CONT_CANTI", quantity),
+                New SqlParameter("@CONT_COMPA", ""),
+                New SqlParameter("@CONT_CANT2", 0),
+                New SqlParameter("@CONT_SERV2", 0),
+                New SqlParameter("@CONT_CANT3", 0),
+                New SqlParameter("@CONT_SERV3", 0),
+                New SqlParameter("@CONT_CANT4", 0),
+                New SqlParameter("@CONT_SERV4", 0),
+                New SqlParameter("@CONT_SVAL1", amount),
+                New SqlParameter("@CONT_SVAL2", 0),
+                New SqlParameter("@CONT_SVAL3", 0),
+                New SqlParameter("@CONT_SVAL4", 0),
+                New SqlParameter("@VENTA", "S"),
+                New SqlParameter("@TEMPO", "F"),
+                New SqlParameter("@CEDULA", CorrectSalesDataClient1.IdentificationText.Trim),
+                New SqlParameter("@SERVI1DES", Producto),
+                New SqlParameter("@SERVI2DES", ""),
+                New SqlParameter("@SERVI3DES", ""),
+                New SqlParameter("@SERVI4DES", ""),
+                New SqlParameter("@SERVIEMPRE", "W"),
+                New SqlParameter("@NOMCLIE", lblNameClientapp.InnerText.Trim),
+                New SqlParameter("@CIERRE", 202208201200),
+                New SqlParameter("@LIQUIDA", "N"),
+                New SqlParameter("@FIRMA", "MULL"),
+                New SqlParameter("@Usuario", Usuario_Aut)
+            }
 
-            Datos = conf.EjecutaSql(Sql)
+                context.Database.ExecuteSqlCommand(
+                "EXEC [dbo].[SP_CONTRATO_LOG] " &
+                "@CONT_NUMERO = @CONT_NUMERO, @Codigo_clie = @Codigo_clie, @CONT_VALOR = @CONT_VALOR, @CONT_CREDIT = @CONT_CREDIT, @CONT_PRIMA = @CONT_PRIMA, " &
+                "@CONT_NUMCUO = @CONT_NUMCUO, @CONT_VALCUO = @CONT_VALCUO, @cont_vended = @cont_vended, @CONT_SERVI = @CONT_SERVI, @CONT_CANTI = @CONT_CANTI, " &
+                "@CONT_COMPA = @CONT_COMPA, @CONT_CANT2 = @CONT_CANT2, @CONT_SERV2 = @CONT_SERV2, @CONT_CANT3 = @CONT_CANT3, @CONT_SERV3 = @CONT_SERV3, " &
+                "@CONT_CANT4 = @CONT_CANT4, @CONT_SERV4 = @CONT_SERV4, @CONT_SVAL1 = @CONT_SVAL1, @CONT_SVAL2 = @CONT_SVAL2, @CONT_SVAL3 = @CONT_SVAL3, " &
+                "@CONT_SVAL4 = @CONT_SVAL4, @VENTA = @VENTA, @TEMPO = @TEMPO, @CEDULA = @CEDULA, @SERVI1DES = @SERVI1DES, @SERVI2DES = @SERVI2DES, " &
+                "@SERVI3DES = @SERVI3DES, @SERVI4DES = @SERVI4DES, @SERVIEMPRE = @SERVIEMPRE, @NOMCLIE = @NOMCLIE, @CIERRE = @CIERRE, @LIQUIDA = @LIQUIDA, " &
+                "@FIRMA = @FIRMA, @Usuario = @Usuario", parameters)
 
-            lblMsg.Text = "Datos Guardados Correctamente"
+            End Using
+
+
+
+            lblMsg.Text = "Operación realizada"
             lblMsg.ControlStyle.CssClass = "alert alert-success"
 
             txtCodClienteapp.Text = ""
@@ -1650,6 +1706,7 @@ Public Class monitorventas
             Session("ProductoM") = ""
             Session("IdServicioM") = ""
             Session("IdServicio") = ""
+            Session("initialPayment") = 0
             lblNameClientapp.InnerText = ""
             'txtCobrador.Text = ""
             txtFecha.Text = ""
