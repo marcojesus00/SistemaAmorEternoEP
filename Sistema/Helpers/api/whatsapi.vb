@@ -123,7 +123,7 @@ Public Class whatsapi
                         Throw New Exception("Error con id de la plataforma")
                     End If
                 Else
-                    If jsonResponse.Errors(0) IsNot Nothing Then
+                    If jsonResponse.Errors IsNot Nothing AndAlso jsonResponse.Errors IsNot Nothing Then
                         msg = jsonResponse.Errors(0).Msg
                     Else
                         msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
@@ -148,7 +148,7 @@ Public Class whatsapi
 
 
 
-    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, Optional IdDeLaPlataforma = Nothing)
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, Optional IdDeLaPlataforma = 0)
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 

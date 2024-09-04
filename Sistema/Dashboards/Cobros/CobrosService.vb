@@ -128,40 +128,40 @@ ORDER BY Cobrado desc"
             whereClauseList.Add("cl.Saldo_actua > 0")
             whereClauseList.Add("cr.COBR_STATUS='A'")
 
-            paramsSPList.Add("@Offset")
-            paramsSPList.Add("PageSize")
+            paramsSPList.Add("@Offset=@Offset")
+            paramsSPList.Add("@PageSize=@PageSize")
             If Not String.IsNullOrEmpty(filters.ClientCode) Then
                 whereClauseList.Add("cl.Codigo_clie like @Client")
-                paramsSPList.Add("@Client")
+                paramsSPList.Add("@Client=@Client")
             End If
 
             If Not String.IsNullOrEmpty(filters.SalesPersonCode) Then
                 whereClauseList.Add("cr.codigo_cobr like @Collector")
-                paramsSPList.Add("@Collector")
+                paramsSPList.Add("@Collector=@Collector")
 
             End If
 
                 If Not String.IsNullOrEmpty(filters.LeaderCode) Then
                 whereClauseList.Add("cr.cob_lider like @Leader")
-                paramsSPList.Add("@Leader")
+                paramsSPList.Add("@Leader=@Leader")
 
             End If
 
                 If Not String.IsNullOrEmpty(filters.CompanyCode) Then
                 whereClauseList.Add("cl.Cod_zona like @Company")
-                paramsSPList.Add("@Company")
+                paramsSPList.Add("@Company=@Company")
 
             End If
 
                 If Not String.IsNullOrEmpty(filters.ZoneCode) Then
                 whereClauseList.Add("cl.VZCODIGO like @City")
-                paramsSPList.Add("@City")
+                paramsSPList.Add("@City=@City")
 
             End If
 
             If Not String.IsNullOrEmpty(filters.DocumentNumber) Then
                 whereClauseList.Add("REPLACE(cl.identidad, '-', '') LIKE @Document")
-                paramsSPList.Add("@Document")
+                paramsSPList.Add("@Document=@Document")
 
             End If
             Dim paramsSPString = ""
