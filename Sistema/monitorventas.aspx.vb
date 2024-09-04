@@ -907,7 +907,7 @@ Public Class monitorventas
         r.Num_doc Documento, r.Fecha_recib Fecha, r.Por_lempira Prima,
         isnull(co.CONT_NUMCUO, 0) NumCuotas,isnull(co.CONT_VALOR,0) Valor, 
 		isnull(CONT_CANTI, 0)Cantidad,isnull(co.CONT_SERVI,'0')IdServicio,isnull(SERVI1DES,'')Servicio,
-		isnull(CONT_VALCUO, 0) ValorCuota, ltrim(isnull(c.CL_CELULAR,''))Tel1, ltrim(isnull(c.Telef_clien,''))Tel2		
+		isnull(CONT_VALCUO, 0) ValorCuota, ltrim(isnull(c.CL_CELULAR,''))Tel1, ltrim(isnull(c.Telef_clien,''))Tel2, co.SERVIEMPRE		
 		From RECIBOS R
 		Left Join CLIENTESN C ON C.Codigo_clie = R.Codigo_clie And R.RCODVEND = C.CL_VENDEDOR
         Left Join CONTRATON CO ON CO.Codigo_clie = R.Codigo_clie And CONT_NUMERO = R.Codigo_clie And co.cont_vended = R.RCODVEND
@@ -1246,6 +1246,7 @@ Public Class monitorventas
             Dim payment = gvClientesVE.Rows(Fila).Cells(17).Text
             Dim totalAmount = gvClientesVE.Rows(Fila).Cells(13).Text
             Dim billNumber = gvClientesVE.Rows(Fila).Cells(12).Text
+            Dim serviempre = gvClientesVE.Rows(Fila).Cells(20).Text.TrimEnd
             'txtcuotaApp.Text =
             Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 
@@ -1259,7 +1260,7 @@ Public Class monitorventas
             dlempresaArr.DataValueField = "Empresa"
             dlempresaArr.DataBind()
             RaiseEvent DataSendEvent(Me, New ClientDataReceivedEventArgs(clientId, salesPersonId, identificationDocument, phoneNumberOne, phoneNumberTwo, initialPayment))
-            RaiseEvent DataContractSendEvent(Me, New ContractDataReceivedEventArgs(serviceId, serviceName, quantity, payment, totalAmount, billNumber))
+            RaiseEvent DataContractSendEvent(Me, New ContractDataReceivedEventArgs(serviceId, serviceName, quantity, payment, totalAmount, billNumber, serviempre))
 
             PanelClientesVE.Visible = False
 
@@ -1282,6 +1283,8 @@ Public Class monitorventas
             Dim amount = gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
             Dim payment = gvDetalleProductosContrato.Rows(Fila).Cells(5).Text
             Dim serviceId = gvDetalleProductosContrato.Rows(Fila).Cells(1).Text
+            Dim serviempre = gvDetalleProductosContrato.Rows(Fila).Cells(8).Text
+            Session("serviempre") = serviempre
             Session.Add("Producto", gvDetalleProductosContrato.Rows(Fila).Cells(2).Text)
             Session.Add("IdServicio", gvDetalleProductosContrato.Rows(Fila).Cells(1).Text)
             Session.Add("ValorContratoApp", gvDetalleProductosContrato.Rows(Fila).Cells(3).Text)
@@ -1291,7 +1294,7 @@ Public Class monitorventas
             '  Letras = (gvDetalleProductosContrato.Rows(Fila).Cells(3).Text - Session("Prima")) '/ gvDetalleProductosContrato.Rows(Fila).Cells(4).Text
 
             'txtLetraApp.Text = Letras
-            RaiseEvent ProductSendEvent(Me, New ProductDataReceivedEventArgs(product, serviceId, payment, amount))
+            RaiseEvent ProductSendEvent(Me, New ProductDataReceivedEventArgs(product, serviceId, payment, amount, serviempre))
 
             PanelProductosApp.Visible = False
         Catch ex As Exception
@@ -1319,7 +1322,7 @@ Public Class monitorventas
 		,serv_valoje Cuotas
 		,SERV_PMAX  PrecioMaximo
 		,SERV_PMINI PrecioMinimo
-
+        ,serv_empre 
 		from AEVentas..SERVICIO
 
         WHERE serv_codigo not in ('','08') and serv_precio > 0"
@@ -1601,17 +1604,18 @@ Public Class monitorventas
     Private Sub BtnSiSalvarCamb_Clik(sender As Object, e As EventArgs) Handles BtnSiSalvarCamb.Click
         Try
             Dim conf, conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
-            Dim Sql, Producto, IdProduct As String
+            Dim Sql, Producto, IdProduct, serviempre As String
 
             If Session("IdServicio") = "" Then
                 IdProduct = Session("IdServicioM")
                 Producto = Session("ProductoM")
 
             Else
+
                 IdProduct = Session("IdServicio")
                 Producto = Session("Producto")
             End If
-
+            serviempre = Session("serviempre")
             'If txtcuotaApp.Text = 0 Then
             '    lblMsg.Text = "Error: Cuotas debe ser Cero"
             '    lblMsg.ControlStyle.CssClass = "alert alert-danger"
@@ -1671,7 +1675,7 @@ Public Class monitorventas
                 New SqlParameter("@SERVI2DES", ""),
                 New SqlParameter("@SERVI3DES", ""),
                 New SqlParameter("@SERVI4DES", ""),
-                New SqlParameter("@SERVIEMPRE", "W"),
+                New SqlParameter("@SERVIEMPRE", serviempre),
                 New SqlParameter("@NOMCLIE", lblNameClientapp.InnerText.Trim),
                 New SqlParameter("@CIERRE", 202208201200),
                 New SqlParameter("@LIQUIDA", "N"),
@@ -1707,6 +1711,7 @@ Public Class monitorventas
             Session("IdServicioM") = ""
             Session("IdServicio") = ""
             Session("initialPayment") = 0
+            Session("serviempre") = ""
             lblNameClientapp.InnerText = ""
             'txtCobrador.Text = ""
             txtFecha.Text = ""
