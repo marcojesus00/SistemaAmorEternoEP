@@ -2368,24 +2368,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.DetalleCarteraDeCobrador._submitButton">
-<summary>
-submitButton control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.DetalleCarteraDeCobrador._LinkButtonClear">
-<summary>
-LinkButtonClear control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._WhatsAppToAll">
 <summary>
 WhatsAppToAll control.

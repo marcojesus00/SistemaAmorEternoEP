@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class DetalleCarteraDeCobrador
 
     '''<summary>
-    '''submitButton control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents submitButton As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''LinkButtonClear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LinkButtonClear As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''WhatsAppToAll control.
     '''</summary>
     '''<remarks>
