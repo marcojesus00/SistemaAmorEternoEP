@@ -420,7 +420,7 @@ Public Class DataClient
         Try
             RaiseEvent ProductButtonClick(sender, e)
             ''PanelProductosApp.Visible = True
-            RaiseEvent ProductTextChanged(sender, e)
+            RaiseEvent ProductTextChanged(textBoxProductNombre1, e)
 
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))

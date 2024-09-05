@@ -1314,7 +1314,9 @@ Public Class monitorventas
         Try
             Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
             Dim Sql As String
+            Dim textBox As TextBox = CType(sender, TextBox)
 
+            Dim productNameOrCode As String = textBox.Text.Trim
 
             Sql = "Select serv_codigo Codigo, serv_descri Descripcion
 		,serv_cant Equivale
@@ -1325,7 +1327,7 @@ Public Class monitorventas
         ,serv_empre 
 		from AEVentas..SERVICIO
 
-        WHERE serv_codigo not in ('','08') and serv_precio > 0"
+        WHERE serv_codigo not in ('','08') and serv_precio > 0 and serv_descri like '%" & productNameOrCode & "%'"
             Datos = conf.EjecutaSql(Sql)
 
 
@@ -1679,7 +1681,6 @@ Public Class monitorventas
                 New SqlParameter("@NOMCLIE", lblNameClientapp.InnerText.Trim),
                 New SqlParameter("@CIERRE", 202208201200),
                 New SqlParameter("@LIQUIDA", "N"),
-                New SqlParameter("@FIRMA", "MULL"),
                 New SqlParameter("@Usuario", Usuario_Aut)
             }
 
@@ -1691,7 +1692,7 @@ Public Class monitorventas
                 "@CONT_CANT4 = @CONT_CANT4, @CONT_SERV4 = @CONT_SERV4, @CONT_SVAL1 = @CONT_SVAL1, @CONT_SVAL2 = @CONT_SVAL2, @CONT_SVAL3 = @CONT_SVAL3, " &
                 "@CONT_SVAL4 = @CONT_SVAL4, @VENTA = @VENTA, @TEMPO = @TEMPO, @CEDULA = @CEDULA, @SERVI1DES = @SERVI1DES, @SERVI2DES = @SERVI2DES, " &
                 "@SERVI3DES = @SERVI3DES, @SERVI4DES = @SERVI4DES, @SERVIEMPRE = @SERVIEMPRE, @NOMCLIE = @NOMCLIE, @CIERRE = @CIERRE, @LIQUIDA = @LIQUIDA, " &
-                "@FIRMA = @FIRMA, @Usuario = @Usuario", parameters)
+                "@Usuario = @Usuario", parameters)
 
             End Using
 
@@ -1773,6 +1774,9 @@ Public Class monitorventas
             Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
             Dim Sql As String
 
+            Dim textBox As TextBox = CType(sender, TextBox)
+
+            Dim productNameOrCode As String = textBox.Text.Trim
 
             Sql = "Select serv_codigo Codigo, serv_descri Descripcion
 		,serv_cant Equivale
@@ -1780,10 +1784,21 @@ Public Class monitorventas
 		,serv_valoje Cuotas
 		,SERV_PMAX  PrecioMaximo
 		,SERV_PMINI PrecioMinimo
-
+        ,serv_empre 
 		from AEVentas..SERVICIO
 
-        WHERE serv_codigo not in ('','08') and serv_precio > 0"
+        WHERE serv_codigo not in ('','08') and serv_precio > 0 and serv_descri like '%" & productNameOrCode & "%'"
+            '          Sql = "Select serv_codigo Codigo, serv_descri Descripcion
+            ',serv_cant Equivale
+            ',serv_precio Precio
+            ',serv_valoje Cuotas
+            ',SERV_PMAX  PrecioMaximo
+            ',SERV_PMINI PrecioMinimo
+            '      ,serv_empre 
+
+            'from AEVentas..SERVICIO
+
+            '      WHERE serv_codigo not in ('','08') and serv_precio > 0"
             Datos = conf.EjecutaSql(Sql)
 
 
