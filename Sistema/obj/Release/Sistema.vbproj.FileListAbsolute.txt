@@ -140,8 +140,3 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Relea
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.ResolveComReference.cache
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Sistema.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\GMap.NET.Core.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\GMap.NET.WindowsForms.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\itextsharp.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\log4net.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

@@ -19,7 +19,10 @@ Public Class DetalleCarteraDeCobrador
                 If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
                     Response.Redirect("~/Principal.aspx")
                 End If
-
+                If Not AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
+                    btnSendMassiveWhatsApp.Enabled = False
+                    btnSendMassiveWhatsApp.CssClass = "btn btn-sm btn-secondary"
+                End If
                 If Not IsPostBack Then
                     'FillDll()
                     Dim cobrador = Session("CobradorSeleccionado")
@@ -217,9 +220,9 @@ where c.codigo_cobr like @Cobrador"
         Try
             Dim falla = ""
             Dim fallas As New List(Of String)
-            Dim Usuario_Aut = "manager"
+            Dim Usuario_Aut = Session("Usuario_Aut")
             Dim count = 0
-            If Usuario_Aut = Session("Usuario_Aut") Then
+            If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
                 Dim leaderPhone = Session("TelefonoLider")
                 Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
                 Dim Leader = ""

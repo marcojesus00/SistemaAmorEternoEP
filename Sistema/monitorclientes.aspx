@@ -628,7 +628,12 @@
 
                             </div>
                                                            <div class="col-12 pt-2">
-                                <asp:button ID="btnEnviarWhatsapp" OnClientClick="w(this);" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
+                                <asp:linkbutton ID="btnEnviarWhatsapp" 
+                                    
+                                    OnClientClick="if (this.innerText === 'Procesando...') return false; this.innerText = 'Procesando...'; return true;" 
+                                    runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success" >
+
+                                </asp:linkbutton>
 
 
                                 </div>
@@ -695,18 +700,7 @@
             </div>
         </div>
 
-            <script>
-                var isCLicked = false;
-                function w(button) {
-                    button.value = 'Procesando';
-                    if (isCLicked) {
-                        button.disable;
-                        
-                    }
-                    isCLicked=true
-                }
 
-            </script>
         <script src="js/JQuery.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
