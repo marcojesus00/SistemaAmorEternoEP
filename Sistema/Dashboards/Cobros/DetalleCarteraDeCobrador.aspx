@@ -17,7 +17,7 @@
                 <div class="col-lg-2 align-self-center pt-1">
     
                       <asp:LinkButton  ID="WhatsAppToAll"  OnClick="WhatsAppToAll_Click" ToolTip="Teléfonos de los clienes según su validez" CssClass="btn btn-outline-primary" runat="server">
-<i class="bi bi-whatsapp"></i> Enviar estados
+<i class="bi bi-whatsapp"></i> Envío estados
                             </asp:LinkButton>
                 </div>
                                                               <div class="col-lg-1 col-1">
@@ -64,7 +64,7 @@
 <i class="bi bi-exclamation-circle"></i> Ver clientes con telefono malo
                             </asp:LinkButton>
 
-                                     <asp:LinkButton  ID="btnSendMassiveWhatsApp"  OnClick="btnSendMassiveWhatsApp_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
+                                     <asp:LinkButton  ID="btnSendMassiveWhatsApp"  OnClick="btnSendMassiveWhatsApp_Click" OnClientClick="w(this);" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
 <i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
                             </asp:LinkButton>
            </div>
@@ -161,5 +161,17 @@
         </div>
 
         <div id="alertPlaceholder" runat="server"></div>
+                <script>
+                var isCLicked = false;
+                function w(button) {
+                    button.value = 'Procesando';
+                    if (isCLicked) {
+                        button.disable;
+                        
+                    }
+                    isCLicked=true
+                }
 
+                </script>
 </asp:Content>
+
