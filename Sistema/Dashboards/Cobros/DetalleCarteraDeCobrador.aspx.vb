@@ -11,30 +11,33 @@ Public Class DetalleCarteraDeCobrador
     Public pagination As PaginationHelper = New PaginationHelper
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            'Dim Usuario_Aut = Session("Usuario_Aut")
+            Dim Usuario_Aut = Session("Usuario_Aut")
             Session("BackPageUrl") = "~/Dashboards/Cobros/Cobros.aspx"
             Dim thisPage = "~/Dashboards/Cobros/DetalleCarteraDeCobrador.aspx"
-            'If Usuario_Aut IsNot Nothing Then
-            '    Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
-            '    If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
-            '        Response.Redirect("~/Principal.aspx")
-            '    End If
-
-            If Not IsPostBack Then
-                'FillDll()
-                Dim cobrador = Session("CobradorSeleccionado")
-                If cobrador Then
-                    PnlGoodAndBadPhones.Visible = False
-                    PnlBasPhones.Visible = False
-                    ReBind(selectedPage:=1)
-
+            If Usuario_Aut IsNot Nothing Then
+                Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
+                If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "COBROS_A") Then
+                    Response.Redirect("~/Principal.aspx")
                 End If
+                If Not AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
+                    btnSendMassiveWhatsApp.Enabled = False
+                    btnSendMassiveWhatsApp.CssClass = "btn btn-sm btn-secondary"
+                End If
+                If Not IsPostBack Then
+                    'FillDll()
+                    Dim cobrador = Session("CobradorSeleccionado")
+                    If cobrador Then
+                        PnlGoodAndBadPhones.Visible = False
+                        PnlBasPhones.Visible = False
+                        ReBind(selectedPage:=1)
+
+                    End If
+                End If
+
+            Else
+                Response.Redirect("~/Principal.aspx")
+
             End If
-
-            'Else
-            '    Response.Redirect("~/Principal.aspx")
-
-            'End If
 
         Catch ex As Exception
             Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
@@ -215,9 +218,11 @@ where c.codigo_cobr like @Cobrador"
     End Function
     Public Function EnviarEstadoDeCuenta(result As List(Of DocsDto))
         Try
-            Dim Usuario_Aut = "manager"
+            Dim falla = ""
+            Dim fallas As New List(Of String)
+            Dim Usuario_Aut = Session("Usuario_Aut")
             Dim count = 0
-            If Usuario_Aut = Session("Usuario_Aut") Then
+            If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
                 Dim leaderPhone = Session("TelefonoLider")
                 Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
                 Dim Leader = ""
@@ -241,16 +246,21 @@ where c.codigo_cobr like @Cobrador"
                         Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                         Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: {numeroPBX} O escribir al siguiente numero: " + leaderPhone
                         Dim user = Session("Usuario_Aut")
-                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo)
+
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:="default")
                         'Debug.WriteLine(r4esult.Msg)
 
                         If r4esult.Success = False Then
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
                             DebugHelper.SendDebugInfo("danger", New Exception(m), Session("Usuario_Aut"))
+                            fallas.Add("el servicio de envio")
+
                         Else
                             count = count + 1
                         End If
                     Catch ex As Exception
+                        fallas.Add("la generación del reporte")
+
                         Dim m = "Codigo de cliente: " + cliente.Codigo
                         DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
                         whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=ex.Message)
@@ -258,8 +268,22 @@ where c.codigo_cobr like @Cobrador"
 
                 Next
             End If
-            Dim mensaje = $"Enviados con éxito: {count}. Fallidos: {result.Count - count}"
-            AlertHelper.GenerateAlert("info", mensaje, alertPlaceholder)
+            Dim countErrors = result.Count - count
+            Dim mensaje = $"Enviados con éxito: {count}. Fallidos: {countErrors}"
+
+            If result.Count = 0 Then
+                Dim uniqueSet As New HashSet(Of String)(fallas)
+
+                ' Convert the HashSet back to a List
+                Dim uniqueList As List(Of String) = uniqueSet.ToList()
+                Dim s = String.Join(", ", uniqueList)
+
+                AlertHelper.GenerateAlert("danger", mensaje + $" debido a errores en {uniqueList}", alertPlaceholder)
+
+            Else
+                AlertHelper.GenerateAlert("info", mensaje, alertPlaceholder)
+            End If
+
 
             Return True
 

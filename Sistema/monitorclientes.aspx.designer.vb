@@ -605,7 +605,7 @@ Partial Public Class monitorclientes
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnEnviarWhatsapp As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnEnviarWhatsapp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''TxtCorreoCliente control.

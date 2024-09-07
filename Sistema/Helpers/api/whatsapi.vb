@@ -61,7 +61,7 @@ Public Class whatsapi
             Return $"Error: {ex.Message}"
         End Try
     End Function
-    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, Optional instancia As String = "", Optional docDescription As String = "Estado de cuenta") As ResultW
+    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, Optional docDescription As String = "Estado de cuenta") As ResultW
 
         Dim msg = ""
         Dim isSuccess As Boolean = False
@@ -82,10 +82,10 @@ Public Class whatsapi
 
 
 
-                Dim url As String = "http://localhost:8002/v1/messages"
+                'Dim url As String = "http://localhost:8002/v1/messages"
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
-                'Dim url = "http://192.168.20.75:8000/v1/messages"
+                Dim url = "http://192.168.20.75:8000/v1/messages"
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
@@ -98,7 +98,8 @@ Public Class whatsapi
                     {"file_name", name},
                     {"caption", caption},
                     {"priority", 10},
-                    {"referenceID", ""}
+                    {"referenceID", ""},
+                    {"instance", instancia}
                 }
 
                 ' Send the POST request
@@ -127,8 +128,8 @@ Public Class whatsapi
                         msg = jsonResponse.Errors(0).Msg
                     Else
                         msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
-                        End If
-                        msg = $"Error, intente de nuevo: " + msg
+                    End If
+                    msg = $"Error, intente de nuevo: " + msg
 
                 End If
             Catch ex As Exception

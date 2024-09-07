@@ -14,13 +14,10 @@
                 </div>
 
           
-                <div class="col-lg-2 align-self-center">
-                    <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
-                                          <asp:LinkButton  ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
-<i class="bi bi-stars"></i>
-                            </asp:LinkButton>
-                      <asp:LinkButton  ID="WhatsAppToAll"  OnClick="WhatsAppToAll_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
-<i class="bi bi-whatsapp"></i>
+                <div class="col-lg-2 align-self-center pt-1">
+    
+                      <asp:LinkButton  ID="WhatsAppToAll"  OnClick="WhatsAppToAll_Click" ToolTip="Teléfonos de los clienes según su validez" CssClass="btn btn-outline-primary" runat="server">
+<i class="bi bi-whatsapp"></i> Envío estados
                             </asp:LinkButton>
                 </div>
                                                               <div class="col-lg-1 col-1">
@@ -62,17 +59,20 @@
 
                                         </asp:GridView>
                 </div>
-            </div>
-           <div class="list-group-item-action">
+                           <div class="list-group-item-action">
                       <asp:LinkButton  ID="btnCorrupPhones"  OnClick="btnCorrupPhones_Click" ToolTip="" CssClass="btn btn-sm btn-outline-danger" runat="server">
 <i class="bi bi-exclamation-circle"></i> Ver clientes con telefono malo
                             </asp:LinkButton>
 
-                                     <asp:LinkButton  ID="btnSendMassiveWhatsApp"  OnClick="btnSendMassiveWhatsApp_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-primary" runat="server">
+                                     <asp:LinkButton  ID="btnSendMassiveWhatsApp"  OnClick="btnSendMassiveWhatsApp_Click"     OnClientClick="if (this.innerText === 'Procesando...') return false; this.innerText = 'Procesando...'; return true;" 
+ ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
 <i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
                             </asp:LinkButton>
            </div>
+            </div>
+
         </div>
+
 
     </asp:Panel>
 
@@ -97,14 +97,15 @@
 
                                         </asp:GridView>
                 </div>
-            </div>
-           <div class="list-group-item-action">
+                           <div class="list-group-item-action">
 
 
-                                     <asp:LinkButton  ID="LinkButton3"  OnClick="btnSendMassiveWhatsApp_Click" ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-primary" runat="server">
-<i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
+                                     <asp:LinkButton  ID="LinkButton3"  OnClick="WhatsAppToAll_Click" ToolTip="" CssClass="btn btn-sm btn-outline-primary" runat="server">
+<i class="bi bi-whatsapp"></i> Teléfonos válidos
                             </asp:LinkButton>
            </div>
+            </div>
+
         </div>
 
     </asp:Panel>
@@ -164,3 +165,4 @@
         <div id="alertPlaceholder" runat="server"></div>
 
 </asp:Content>
+
