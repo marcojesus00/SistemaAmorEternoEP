@@ -143,7 +143,7 @@ Public Class monitorventas
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -161,7 +161,7 @@ Public Class monitorventas
             Response.Redirect("principal.aspx")
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -170,7 +170,7 @@ Public Class monitorventas
             PanelEditarVenta.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -204,7 +204,7 @@ Public Class monitorventas
             PanelVendedoresEditar.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -213,7 +213,7 @@ Public Class monitorventas
             PanelVendedoresEditar.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -226,7 +226,7 @@ Public Class monitorventas
             ifRepote.Src = ""
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -261,7 +261,7 @@ Public Class monitorventas
             Panel1.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -278,7 +278,7 @@ Public Class monitorventas
             gvvendEditVent.DataBind()
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -296,7 +296,7 @@ Public Class monitorventas
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -333,7 +333,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -365,7 +365,7 @@ Public Class monitorventas
             Next
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -460,7 +460,7 @@ Public Class monitorventas
                     Sql1 = " DECLARE @FECHA DATE "
                     Sql1 += " SET @FECHA = '" + Session("F1") + "' "
                     Sql1 += " SELECT DISTINCT A.Num_doc [Codigo], CONVERT(VARCHAR(50), CAST(A.Por_lempira AS MONEY ),1) [Cobrado], A.rhora [Hora], A.Codigo_clie [Codigo Cliente], CASE WHEN A.Num_doc = 'PROSPECTO' THEN '' ELSE A.CONCEPTO END CONCEPTO, A.RCODVEND, SUBSTRING(CASE WHEN C.Nombre_clie IS NULL THEN A.CONCEPTO ELSE C.Nombre_clie END ,1,30) Nombre_clie, CONVERT(VARCHAR,A.Fecha) Fecha, A.liquida, A.liquida2, UPPER(SUBSTRING(C.Dir_cliente + ' '+ ISNULL(C.Dir2_client,'') COLLATE Modern_Spanish_CI_AS,1,40)) Dir_cliente, (SELECT TOP 1 'ANULADO POR: ' + Z.USUARIO + '
-                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClienteSistema   "
+                MOTIVO: ' + Z.MOTIVO FROM AEVentas..LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc COLLATE Modern_Spanish_CI_AS ORDER BY LEN(Z.MOTIVO) DESC) Motivo, A.CONT_NUMCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALCUO AS MONEY ),1) CONT_VALCUO, CONVERT(VARCHAR(50), CAST(A.CONT_VALOR AS MONEY ),1) CONT_VALOR, CONVERT(VARCHAR,A.CONT_CANTI) + ' ' + RTRIM(A.SERVI1DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL1 AS MONEY ),1) SERVI1DES, CONVERT(VARCHAR,A.CONT_CANT2) + ' ' + RTRIM(A.SERVI2DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL2 AS MONEY ),1) SERVI2DES, CONVERT(VARCHAR,A.CONT_CANT3) + ' ' + RTRIM(A.SERVI3DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL3 AS MONEY ),1) SERVI3DES, CONVERT(VARCHAR,A.CONT_CANT4) + ' ' + RTRIM(A.SERVI4DES) + ' - ' + CONVERT(VARCHAR(50), CAST(A.CONT_SVAL4 AS MONEY ),1) SERVI4DES, C.identidad, LTRIM(RTRIM(C.CL_CELULAR)) + ISNULL(RTRIM(' ' + C.TELEF_CLIEN),'') Telefono, A.LONGITUD, A.LATITUD,cf.ClientesSistema   "
                     Sql1 += " FROM( "
                     Sql1 += " SELECT A.Num_doc, A.Por_lempira, A.rhora, A.Codigo_clie, A.RCODVEND, CASE WHEN A.MARCA = 'X' THEN 'ANULADO' ELSE '' END CONCEPTO, CONVERT(DATE,A.Fecha_recib) Fecha, A.liquida, A.liquida2, B.CONT_NUMCUO, B.CONT_VALCUO, B.CONT_VALOR, B.SERVI1DES, B.CONT_CANTI, B.CONT_SVAL1, B.SERVI2DES, B.CONT_CANT2, B.CONT_SVAL2, B.SERVI3DES, B.CONT_CANT3, B.CONT_SVAL3, B.SERVI4DES, B.CONT_CANT4, B.CONT_SVAL4, A.LONGITUD, A.LATITUD FROM RECIBOS A LEFT JOIN CONTRATON B ON A.Codigo_clie = B.Codigo_clie AND A.RCODVEND = B.cont_vended WHERE CONVERT(DATE,A.Fecha_recib) = @FECHA "
                     Sql1 += " UNION ALL "
@@ -844,24 +844,44 @@ Public Class monitorventas
                 gvDetalle2.Columns(1).Visible = True
 
             Else
-                Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                Try
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor.DataSource = Session("GV")
-                gvMonitor.DataBind()
-                gvMonitor2.Visible = False
-                gvDetalle2.Visible = False
-                gvMonitor.Visible = True
+                    Datos1 = Conf1.EjecutaSql(Sql1)
+
+                    If Datos1 IsNot Nothing AndAlso Datos1.Tables.Count > 0 Then
+                        Session.Add("GVDetalle", Datos1.Tables(0))
+                    Else
+                        ' Handle the case where no tables are returned
+                        ' Display an error message or perform any other action
+                        Throw New Exception("No se recibieron datos para los detalles")
+                        Return
+                    End If
+                    Datos = conf.EjecutaSql(Sql)
+
+                    If Datos IsNot Nothing AndAlso Datos.Tables.Count > 0 Then
+                        Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                        Session.Add("GV", Datos.Tables(0))
+                        gvMonitor.DataSource = Session("GV")
+                        gvMonitor.DataBind()
+                    Else
+                        Throw New Exception("No se recibieron datos")
+                    End If
+                    gvMonitor2.Visible = False
+                    gvDetalle2.Visible = False
+                    gvMonitor.Visible = True
+
+                Catch ex As Exception
+                    DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), $"sql var: {Sql} {vbCrLf} sql1 var:{Sql1}")
+                    Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+
+                End Try
             End If
 
             lblHora.Text = "Actualizado: " + System.DateTime.Now.ToShortTimeString
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -888,7 +908,7 @@ Public Class monitorventas
         WHERE Liquida2 = 'N' and marca = 'N' AND r.codigo_clie = '" + txtCodClienteapp.Text + "'"
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -921,7 +941,7 @@ Public Class monitorventas
             'txtCodClienteapp_TextChanged()
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -932,7 +952,7 @@ Public Class monitorventas
             PanelClientesVE.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -961,7 +981,7 @@ Public Class monitorventas
             dlempresaArr.DataBind()
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -972,7 +992,7 @@ Public Class monitorventas
             txtBuscarCliente_TextChanged(sender, e)
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -995,7 +1015,7 @@ Public Class monitorventas
             gvMonitor.DataBind()
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1013,9 +1033,24 @@ Public Class monitorventas
             Try
                 If ((e.Row.RowType = DataControlRowType.DataRow) And (e.Row.RowType <> DataControlRowType.EmptyDataRow)) Then
                     Dim Fila As System.Data.DataRowView = e.Row.DataItem
-                    Total += Convert.ToDecimal(Fila.Item(2))
-                    Visitados += Convert.ToDecimal(Fila.Item(6))
-                    Recibos += Convert.ToDecimal(Fila.Item(5))
+                    Try
+                        Total += Convert.ToDecimal(Fila.Item(2))
+                    Catch ex As Exception
+                        Throw New Exception("Error converting 'Fila.Item(2)' to Decimal: " & ex.Message)
+                    End Try
+
+                    Try
+                        Visitados += Convert.ToDecimal(Fila.Item(6))
+                    Catch ex As Exception
+                        Throw New Exception("Error converting 'Fila.Item(6)' to Decimal: " & ex.Message)
+                    End Try
+
+                    Try
+                        Recibos += Convert.ToDecimal(Fila.Item(5))
+                    Catch ex As Exception
+                        Throw New Exception("Error converting 'Fila.Item(5)' to Decimal: " & ex.Message)
+                    End Try
+
                     Cobradores += 1
                     If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
                         Liquida = Fila.Item(9)
@@ -1095,7 +1130,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1141,7 +1176,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1196,7 +1231,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1209,7 +1244,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1247,6 +1282,9 @@ Public Class monitorventas
             Dim totalAmount = gvClientesVE.Rows(Fila).Cells(13).Text
             Dim billNumber = gvClientesVE.Rows(Fila).Cells(12).Text
             Dim serviempre = gvClientesVE.Rows(Fila).Cells(20).Text.TrimEnd
+            Session("serviempre") = serviempre
+            Session("serviceId") = serviceId
+            Session("Product") = serviceName
             'txtcuotaApp.Text =
             Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 
@@ -1266,7 +1304,7 @@ Public Class monitorventas
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1285,6 +1323,8 @@ Public Class monitorventas
             Dim serviceId = gvDetalleProductosContrato.Rows(Fila).Cells(1).Text
             Dim serviempre = gvDetalleProductosContrato.Rows(Fila).Cells(8).Text
             Session("serviempre") = serviempre
+            Session("serviceId") = serviceId
+            Session("Product") = product
             Session.Add("Producto", gvDetalleProductosContrato.Rows(Fila).Cells(2).Text)
             Session.Add("IdServicio", gvDetalleProductosContrato.Rows(Fila).Cells(1).Text)
             Session.Add("ValorContratoApp", gvDetalleProductosContrato.Rows(Fila).Cells(3).Text)
@@ -1299,7 +1339,7 @@ Public Class monitorventas
             PanelProductosApp.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1337,7 +1377,7 @@ Public Class monitorventas
             'btnGuardarCamb.Enabled = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
     'Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
@@ -1507,7 +1547,7 @@ Public Class monitorventas
             PanelConfirmacion2.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1523,7 +1563,7 @@ Public Class monitorventas
             'txtVendEV_TextChanged(sender, e)
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1534,7 +1574,7 @@ Public Class monitorventas
             Panel1.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1571,7 +1611,7 @@ Public Class monitorventas
             End If
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
     Private Sub btnCambStatus_click(Sender As Object, e As EventArgs) Handles btnCambStatus.Click
@@ -1590,7 +1630,7 @@ Public Class monitorventas
             PanelEditarVenta.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
@@ -1600,7 +1640,7 @@ Public Class monitorventas
             PanelEditarVenta.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
     Private Sub BtnSiSalvarCamb_Clik(sender As Object, e As EventArgs) Handles BtnSiSalvarCamb.Click
@@ -1618,6 +1658,9 @@ Public Class monitorventas
                 Producto = Session("Producto")
             End If
             serviempre = Session("serviempre")
+            Dim Product = Session("Product")
+
+            Dim serviceId = Session("serviceId")
             'If txtcuotaApp.Text = 0 Then
             '    lblMsg.Text = "Error: Cuotas debe ser Cero"
             '    lblMsg.ControlStyle.CssClass = "alert alert-danger"
@@ -1634,20 +1677,18 @@ Public Class monitorventas
             Dim billNumber = CorrectSalesDataClient1.LetraContratoAppText
             Dim quantity = CorrectSalesDataClient1.CantidadProducto1appText
             initialPayment = Session("initialPayment")
-            Sql = "Exec SP_CONTRATO_LOG '" + txtCodClienteapp.Text.TrimEnd + "'
-            ,'" + txtCodClienteapp.Text.TrimEnd.TrimStart + "','" + amount.TrimEnd.TrimStart + "'
-            ,'" + Session("Cred") + "'," + Replace(initialPayment, ",", "") + "
-            ,'" + billNumber + "','" + payment + "','" + txtCodVendEV.Text + "'
-            ,'" + IdProduct + "'
-            ,'" + quantity + "','','0','0','0','0','0','0'
-            ,'" + amount + "','0','0','0','S','F','" + CorrectSalesDataClient1.IdentificationText.TrimStart.TrimEnd + "'
-            ,'" + Producto + "','','','','W'
-            ,'" + lblNameClientapp.InnerText.TrimEnd.TrimStart + "','202208201200','N',NULL,'" + Usuario_Aut + "'"
-                If Usuario_Aut Is Nothing Then
+
+            If Usuario_Aut Is Nothing Then
                 Usuario_Aut = Session("Usuario_Aut")
             End If
             'Datos = conf.EjecutaSql(Sql)
-            Using context As New FunamorContext()
+            Dim dateValue As DateTime = DateTime.Now ' Replace with your desired date
+            Dim formattedDate As String = dateValue.ToString("yyyyMMddHHmm")
+            Console.WriteLine(formattedDate)
+
+            Using context As New AeVentasDbContext()
+                context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
                 Dim parameters As SqlParameter() = {
                 New SqlParameter("@CONT_NUMERO", txtCodClienteapp.Text.Trim),
                 New SqlParameter("@Codigo_clie", txtCodClienteapp.Text.Trim),
@@ -1657,7 +1698,7 @@ Public Class monitorventas
                 New SqlParameter("@CONT_NUMCUO", billNumber),
                 New SqlParameter("@CONT_VALCUO", payment),
                 New SqlParameter("@cont_vended", txtCodVendEV.Text.Trim),
-                New SqlParameter("@CONT_SERVI", IdProduct),
+                New SqlParameter("@CONT_SERVI", serviceId),
                 New SqlParameter("@CONT_CANTI", quantity),
                 New SqlParameter("@CONT_COMPA", ""),
                 New SqlParameter("@CONT_CANT2", 0),
@@ -1673,13 +1714,13 @@ Public Class monitorventas
                 New SqlParameter("@VENTA", "S"),
                 New SqlParameter("@TEMPO", "F"),
                 New SqlParameter("@CEDULA", CorrectSalesDataClient1.IdentificationText.Trim),
-                New SqlParameter("@SERVI1DES", Producto),
+                New SqlParameter("@SERVI1DES", Product),
                 New SqlParameter("@SERVI2DES", ""),
                 New SqlParameter("@SERVI3DES", ""),
                 New SqlParameter("@SERVI4DES", ""),
                 New SqlParameter("@SERVIEMPRE", serviempre),
                 New SqlParameter("@NOMCLIE", lblNameClientapp.InnerText.Trim),
-                New SqlParameter("@CIERRE", 202208201200),
+                New SqlParameter("@CIERRE", formattedDate),
                 New SqlParameter("@LIQUIDA", "N"),
                 New SqlParameter("@Usuario", Usuario_Aut)
             }
@@ -1729,7 +1770,7 @@ Public Class monitorventas
 
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
 
@@ -1743,7 +1784,7 @@ Public Class monitorventas
             PanelConfirmacion.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1755,7 +1796,7 @@ Public Class monitorventas
             PanelProductosApp.Visible = False
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
     Protected Sub HandleAlertGenerated(ByVal sender As Object, ByVal e As AlertEventArgs)
@@ -1808,7 +1849,7 @@ Public Class monitorventas
             'btnGuardarCamb.Enabled = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
     End Sub
 
@@ -1817,7 +1858,7 @@ Public Class monitorventas
             PanelProductosApp.Visible = True
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-            Alert(dangerMsg & ex.Message & ex.HResult, "danger")
+            Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
     End Sub
