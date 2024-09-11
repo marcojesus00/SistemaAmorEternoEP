@@ -6,7 +6,7 @@
         <div class="border border-dark-subtle p-2">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-12 pb-2 ">
-<%--                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
+                    <%--                    <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
 
                     <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true">
                         <asp:ListItem Text="Dashboard de recibos" Value="0">
@@ -18,43 +18,43 @@
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
                     <div class="row">
-                                                  <div class="col-3">
-                                                                          <label for="startDate" class="form-control-label">Desde </label>
+                        <div class="col-3">
+                            <label for="startDate" class="form-control-label">Desde </label>
 
-                                                  </div>
-                                                  <div class="col-9">
-                                                                          <asp:TextBox ID="startDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
+                        </div>
+                        <div class="col-9">
+                            <asp:TextBox ID="startDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm"></asp:TextBox>
 
-                                                  </div>
+                        </div>
 
                     </div>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
                     <div class="row">
-                          <div class="col-3">
-<%--                                                <asp:TextBox ID="TextBox1" runat="server" Text="Desde" CssClass="form-control form-control-sm">desde</asp:TextBox>--%>
-                                                  <label for="endDate" class="form-control-label">Hasta </label>
+                        <div class="col-3">
+                            <%--                                                <asp:TextBox ID="TextBox1" runat="server" Text="Desde" CssClass="form-control form-control-sm">desde</asp:TextBox>--%>
+                            <label for="endDate" class="form-control-label">Hasta </label>
 
 
                         </div>
                         <div class="col-9">
-                                                <asp:TextBox ID="endDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm">desde</asp:TextBox>
+                            <asp:TextBox ID="endDate" runat="server" TextMode="Date" CssClass="form-control form-control-sm">desde</asp:TextBox>
 
                         </div>
-                                 
+
                     </div>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--                    <label for="ddlCity" class="form-control-label">Zona</label>--%>
+                    <%--                    <label for="ddlCity" class="form-control-label">Zona</label>--%>
                     <asp:DropDownList ID="ddlCity" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
 
                 </div>
 
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--                    <label for="ddlCompany" class="form-control-label">Empresa</label>--%>
+                    <%--                    <label for="ddlCompany" class="form-control-label">Empresa</label>--%>
 
                     <asp:DropDownList ID="ddlCompany" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-lg-3  col-md-6 col-12 pb-2">
                     <div class="row">
-<%--                        <label for="ddlLeader" class="form-control-label">Lider</label>--%>
+                        <%--                        <label for="ddlLeader" class="form-control-label">Lider</label>--%>
 
                         <div class="col-lg-10 col-10">
 
@@ -83,7 +83,7 @@
                         <div class="col-lg-2 col-2">
 
                             <asp:LinkButton ID="BtnRouteOfReceiptsMapByLeader" ToolTip="Mapa de recibos por lider" CssClass="btn btn-sm btn-outline-danger" runat="server">
-<i class="bi bi-geo-alt-fill"></i>
+                                <i class="bi bi-geo-alt-fill"></i>
 
                             </asp:LinkButton>
                         </div>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>--%>
+                    <%--                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>--%>
 
                     <asp:DropDownList ID="ddlValidReceipts" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
@@ -105,36 +105,34 @@
                     </div>
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>--%>
+                    <%--<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>--%>
 
                     <asp:TextBox ID="textBoxNumDoc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--                    <label for="code" class="form-control-label">Código de cobrador</label>--%>
+                    <%--                    <label for="code" class="form-control-label">Código de cobrador</label>--%>
 
                     <asp:TextBox ID="textBoxCode" Placeholder="Código de cobrador" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
                 <div class="col-lg-2  col-md-6 col-12 pb-2 ">
-<%--                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>--%>
+                    <%--                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>--%>
 
                     <asp:TextBox ID="textBoxClientCode" runat="server" Placeholder="Código de cliente" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
 
 
-          
+
                 <div class="col-lg-2 align-self-center">
                     <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
-                                          <asp:LinkButton  ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
-<i class="bi bi-stars"></i>
-                            </asp:LinkButton>
+                    <asp:LinkButton ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
+                        <i class="bi bi-stars"></i>
+                    </asp:LinkButton>
                 </div>
-                                                              <div class="col-lg-1 col-1">
-
-      
-                        </div>
+                <div class="col-lg-1 col-1">
+                </div>
 
             </div>
         </div>

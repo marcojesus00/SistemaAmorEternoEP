@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
+﻿<%@ Page Title="Dashboard de cobros" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Cobros.aspx.vb" Inherits="Sistema.CobrosDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
     <h2 class=" text-center">Dashboard de cobros</h2>
@@ -172,7 +172,10 @@
 
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnClientsByCollectorMap" ToolTip="Mapa de clientes" CssClass="btn btn-sm btn-outline-info " runat="server" CommandName="ClientsByCollectorMap" CommandArgument='<%# Container.DataItemIndex %>'>
-<i class="bi bi-geo-alt-fill"></i>
+<i class="bi bi-geo-alt-fill"></i>                                     </asp:LinkButton>
+
+                                    <asp:LinkButton ID="btnSendWhatsApp" ToolTip="Enviar whatsapps" CssClass="btn btn-sm btn-outline-sucess " runat="server" CommandName="SenWhatsApp" CommandArgument='<%# Container.DataItemIndex %>'>
+<i class="bi bi-whatsapp"></i>
 
                                     </asp:LinkButton>
                                     <asp:LinkButton ID="btnRouteOfReceiptsMap" ToolTip="Mapa de ruta de recibos" CssClass="btn btn-sm btn-outline-warning" runat="server" CommandName="RouteOfReceiptsMap" CommandArgument='<%# Container.DataItemIndex %>'>

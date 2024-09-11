@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="monitorclientes.aspx.vb" Inherits="Sistema.monitorclientes" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,55 +9,84 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/imagenes/logo.ico" />
     <link href="css/BootStrap.min.css" rel="stylesheet" type="text/css"/> 
     <link href="css/DataGrid.css" rel="stylesheet" type="text/css"/>   
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
            <style>
+               .Principal {
+                   background-color: rgba(0,0,0,0.6);
+                   position: absolute;
+                   left: 0;
+                   top: 0;
+                   bottom: 0
+               }
 
-               .Principal{
-            background-color:rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0
-        }
-        .Principal-2{
-            padding-left: 35%; padding-right: 35%; padding-top: 55px;
-        }
-        .Principal-3{
-            background-color: white; padding-top: 15px;
-        }
-        .Principal-4{
-            background-color: white; padding-top: 15px; padding-left: 20%;
-        }
-        .Principal-BotonCerrar{
-            position: absolute; right: 33%; top: 35px; font-size: x-large;
-        }
+               .Principal-2 {
+                   padding-left: 35%;
+                   padding-right: 35%;
+                   padding-top: 55px;
+               }
 
-        @media (max-width: 768px){
-            .Principal{
-            background-color:rgba(0,0,0,0.6); position:absolute; left: 0; top: 0; bottom: 0
-        }
-        .Principal-2{
-            padding-left: 5%; padding-right: 5%; padding-top: 25px;
-        }
-        .Principal-3{
-            background-color: white; padding-top: 15px;
-        }
-        .Principal-4{
-            background-color: white; padding-top: 15px; padding-left: 20%;
-        }
-        .Principal-BotonCerrar{
-            position: absolute; right: 1%; top: 2px; font-size: x-large;
-        }
-        }
-h4:hover {
-    background-color: aliceblue;
-    color: blue;
- 
-}
+               .Principal-3 {
+                   background-color: white;
+                   padding-top: 15px;
+               }
 
-.Boton{
-    width:80%;
+               .Principal-4 {
+                   background-color: white;
+                   padding-top: 15px;
+                   padding-left: 20%;
+               }
 
+               .Principal-BotonCerrar {
+                   position: absolute;
+                   right: 33%;
+                   top: 35px;
+                   font-size: x-large;
+               }
 
-}
+               @media (max-width: 768px) {
+                   .Principal {
+                       background-color: rgba(0,0,0,0.6);
+                       position: absolute;
+                       left: 0;
+                       top: 0;
+                       bottom: 0
+                   }
 
-/*  .boton{
+                   .Principal-2 {
+                       padding-left: 5%;
+                       padding-right: 5%;
+                       padding-top: 25px;
+                   }
+
+                   .Principal-3 {
+                       background-color: white;
+                       padding-top: 15px;
+                   }
+
+                   .Principal-4 {
+                       background-color: white;
+                       padding-top: 15px;
+                       padding-left: 20%;
+                   }
+
+                   .Principal-BotonCerrar {
+                       position: absolute;
+                       right: 1%;
+                       top: 2px;
+                       font-size: x-large;
+                   }
+               }
+
+               h4:hover {
+                   background-color: aliceblue;
+                   color: blue;
+               }
+
+               .Boton {
+                   width: 80%;
+               }
+
+               /*  .boton{
         font-size:10px;
         font-family:Verdana,Helvetica;
         font-weight:bold;
@@ -70,9 +98,7 @@ h4:hover {
         cursor:pointer;
        }
 */
-
-
-</style>
+           </style>
 </head>
 
 <body>
@@ -106,16 +132,35 @@ h4:hover {
                                    <label for="dvale" class="input-group-text" style="width: 110px">Nombre</label>
                                   <%-- <asp:DropDownList ID="dlNumeracion" runat="server" CssClass="input-group-text" ToolTip="Serie de Empresa..." OnSelectedIndexChanged="dlNumeracion_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
                                </div>
-                               <asp:TextBox CssClass="form-control form-control-sm" ID="TxtCliente1" runat="server" Enabled="true" placeholder="Buscar por Nombre   ..."  />
+                               <asp:TextBox CssClass="form-control form-control-sm" ID="TxtCliente1" runat="server" Enabled="true" placeholder="Buscar por nombre   ..."  />
                            </div>
                        </div>
                          <div class="col-sm-12 col-lg-3 col-md-6">
                            <div class="input-group input-group-sm">
                            
-                               <asp:TextBox CssClass="form-control form-control-sm" ID="TxtCliente2" runat="server" Enabled="true" placeholder=" Buscar Por Nombre   ..." />
+                               <asp:TextBox CssClass="form-control form-control-sm" ID="TxtCliente2" runat="server" Enabled="true" placeholder=" Buscar po apellido   ..." />
                            </div>
                        </div>
                      </div><br/>
+
+                                 <div class="row">
+                        <div class="col-sm-12 col-lg-3 col-md-6">
+                           <div class="input-group input-group-sm">
+                               <div class="input-group-prepend">
+                                   <label for="TxtCobrador" class="input-group-text" style="width: 110px">Codigo cobrador</label>                            
+                               </div>
+                               <asp:TextBox CssClass="form-control form-control-sm" ID="TxtCobrador" runat="server" placeholder="Codigo cobrador" Enabled="true"/>
+                           </div>
+                       </div> 
+                       <div class="col-sm-12 col-lg-3 col-md-6">
+                           <div class="input-group input-group-sm">
+                               <div class="input-group-prepend">
+                                   <label  runat="server" class="input-group-text" style="width: 110px" >Identidad</label>
+                               </div>
+                               <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Buscar Por Identidad" ID="TextBox2" runat="server" Enabled="true" />
+                           </div>
+                       </div>
+                      </div>
              <div class="row align-content-center">
                    <div class="col col-8 align-content-center">
                        <div  class="input-group input-group-lg alert-primary">
@@ -130,19 +175,19 @@ h4:hover {
                                <label for="dvale" class="input-group-text" style="width: 110px">Beneficiario</label>
                               <%-- <asp:DropDownList ID="dlNumeracion" runat="server" CssClass="input-group-text" ToolTip="Serie de Empresa..." OnSelectedIndexChanged="dlNumeracion_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
                            </div>
-                           <asp:TextBox CssClass="form-control form-control-sm" ID="txtBenef1" runat="server" Enabled="true" placeholder="Nombre Beneficiario   ..."  />
+                           <asp:TextBox CssClass="form-control form-control-sm" ID="txtBenef1" runat="server" Enabled="true" placeholder="Nombre beneficiario   ..."  />
                        </div>
                    </div>
                      <div class="col-sm-12 col-lg-3 col-md-6">
                        <div class="input-group input-group-sm">
                            
-                           <asp:TextBox CssClass="form-control form-control-sm" ID="txtbenef2" runat="server" Enabled="true" placeholder=" Apellido Beneficiario   ..." />
+                           <asp:TextBox CssClass="form-control form-control-sm" ID="txtbenef2" runat="server" Enabled="true" placeholder=" Apellido beneficiario   ..." />
                        </div>
                    </div>
                  </div>
          
             <br/>
-               <div class="row">
+               <div class="row pb-1">
                    <div class="col-3 col-sm-12 col-lg-3">
                    <div class="input-group input-group-sm">
                        <asp:TableCell runat="server" ColumnSpan="2"><asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-dark btn-sm"/></asp:TableCell>                   
@@ -172,18 +217,29 @@ h4:hover {
             </asp:Table>--%>
             <asp:GridView ID="gvClientes" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                 <Columns>
-                    
-                    <asp:ButtonField Text="Detalle" CommandName="Detalle" />
-                </Columns><FooterStyle BackColor="#CCCCCC" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#003399" />
-                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" /><SortedAscendingCellStyle BackColor="#F1F1F1" /><SortedAscendingHeaderStyle BackColor="#808080" /><SortedDescendingCellStyle BackColor="#CAC9C9" /><SortedDescendingHeaderStyle BackColor="#383838" /></asp:GridView>
-            <br /><br /><asp:ImageButton ID="btnSalir" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" style="position:fixed; right:10px; top:10px;"/>
-        <asp:Label ID="lblMsg" runat="server"></asp:Label></div><div style="width:100%; height:30px;  position:fixed; bottom:0px; background-color:#202020; left: 0px; color: #fff">
-            <asp:Label ID="lblTotal" runat="server" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblClientes" runat="server" Text="" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblConVisitas" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblSinVisitas" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblRendimientoVisitas" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="LblConCobro" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblSinCobro" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblRendimientoCobro" runat="server" Text="" ForeColor="White"/>&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblHora" runat="server" Text="" ForeColor="White"/>
-    </div>
 
-                <%-- Panel de Confirmacion --%>
+                    <asp:ButtonField Text="Detalle" CommandName="Detalle" />
+                </Columns>
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                <RowStyle BackColor="White" ForeColor="#003399" />
+                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
+            </asp:GridView>
+            <br />
+            <br />
+            <asp:ImageButton ID="btnSalir" runat="server" Height="30px" ImageUrl="~/imagenes/atras.png" Width="30px" Style="position: fixed; right: 10px; top: 10px;" />
+            <asp:Label ID="lblMsg" runat="server"></asp:Label>
+        </div>
+        <div style="width: 100%; height: 30px; position: fixed; bottom: 0px; background-color: #202020; left: 0px; color: #fff">
+            <asp:Label ID="lblTotal" runat="server" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblClientes" runat="server" Text="" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblConVisitas" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblSinVisitas" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblRendimientoVisitas" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="LblConCobro" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblSinCobro" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblRendimientoCobro" runat="server" Text="" ForeColor="White" />&nbsp&nbsp&nbsp&nbsp<asp:Label ID="lblHora" runat="server" Text="" ForeColor="White" />
+        </div>
+
+        <%-- Panel de Confirmacion --%>
          <div class="container-fluid Principal" id="PanelClienteMovimiento" runat="server" visible="false">
                <div class="Principal-2">
                    <div class="row Principal-3">
@@ -530,61 +586,89 @@ h4:hover {
                 <%-- Panel Envio de Estado de Cuenta Por whatsapp --%>
         <div class="container-fluid Principal" id="PanelEnviarWhatsapp" runat="server" visible="false">
             <div class="Principal-2">
-                <div class="row Principal-3">
+                <div class="card text-center " style="min-width:25rem">
 
-                        
-                       <div class="col">
-                           <div class="input-group input-group-sm">
-                               <div class="input-group-prepend">
-                                   <label for="txttelefono" class="input-group-text" style="width: 135px">Telefono Whatsapp</label> <i class="fas fa-solid fa-whatsapp" style="color: #49e44c;"></i>
-                               </div>
-                               <%--<input type="text" class="form-control form-control-sm" id="TxtTelefonoWhatsapp" runat="server" />&nbsp--%>
-                               <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" Enabled="false" runat="server"></asp:TextBox>
 
-                         
-                           <asp:Button ID="btnEnviarWhatsapp" runat="server" Text="   Enviar Por whatsapp  " Enabled="false" CssClass="btn btn-sm btn-success" />
-                       </div>
-                     </div>
-                     
-                </div>
-                 <div class="row Principal-3">                      
-                       <div class="col">
-                           <div class="input-group input-group-sm">
-                               <div class="input-group-prepend">
-                                   <label for="txttelefono" class="input-group-text" style="width: 135px">Correo / Email</label> <i class="fas fa-solid fa-whatsapp" style="color: #49e44c;"></i>
-                               </div>
-                               <%--<input type="text" class="form-control form-control-sm" id="txtCorreoCliente" runat="server" />--%>
-                               <asp:TextBox class="form-control form-control-sm" TextMode="Email" ID="TxtCorreoCliente" runat="server"></asp:TextBox>
 
-                           </div>
-                       </div>
-                     
-                </div>
-          
+
+
+
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Enviar estado de cuenta</h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="row Principal-3 text-right">
+
+                            <div class="col-12">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label for="txttelefono" class="input-group-text">Teléfono</label>
+                                    </div>
+                                    <%--<input type="text" class="form-control form-control-sm" id="TxtTelefonoWhatsapp" runat="server" />&nbsp--%>
+                                    <asp:DropDownList ID="ddlCountryCode" runat="server"></asp:DropDownList>
+
+                                    <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
+
+
+                                </div>
  
-                  <div class="row Principal-3">
+
+                            </div>
+                                                           <div class="col-12 pt-2">
+                                <asp:button ID="btnEnviarWhatsapp" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
+
+
+                                </div>
+                                <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
+                        </div>
+                        <div class="row text-right">
+
+                        </div>
+                        <div class="row Principal-3 text-right">
+                            <div class="col-12">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <label for="TxtCorreoCliente" class="input-group-text">Correo</label>
+                                    </div>
+                                    <%--<input type="text" class="form-control form-control-sm" id="txtCorreoCliente" runat="server" />--%>
+                                    <asp:TextBox class="form-control form-control-sm" TextMode="Email" ID="TxtCorreoCliente" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-12 pt-2" >
+                                                                    <asp:Button ID="btnEnviarPorCorreo" runat="server" Text="Enviar correo" CssClass="btn btn-sm btn-success" />
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="card-footer text-muted">
                  
-                </div>
-
-                  <div class="row Principal-3">
-                      <div class="col">
-
-                      </div>
-                        <div class="col">
-                           <div class="input-group input-group-sm">                             
-                                <asp:Button ID="btnEnviarPorCorreo" runat="server" Text="  Enviar Por Correo  " CssClass="btn btn-sm btn-success" />
-                           </div>
-                       </div>
-                </div>
-
-                <div class="row Principal-3">
-                <div class="col-8">
-                           <div class="col" style="text-align: right"><i class="fa-brands fa-whatsapp" style="color: #49e44c;"></i>
-                               <asp:Button ID="btnImprimirPdf" runat="server" Text="   Descargar PDF  "  CssClass="btn btn-sm btn-success" />&nbsp&nbsp
+                            <asp:Button ID="btnImprimirPdf" runat="server" Text="   Descargar PDF  " CssClass="btn btn-sm btn-success" />&nbsp&nbsp
                                <asp:Button ID="btnCerrarDivWhatsapp" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-secondary" />
-                           </div>
-                       </div> 
+                        </div>
                 </div>
+
             </div>
         </div>
 
@@ -596,7 +680,7 @@ h4:hover {
                     <div class="col-8">
                            <div class="input-group-prepend align-content-center" style="text-align: left"">
                                
-                           <label class="alert-primary align-content-center">Correo Enviado Correctamente</label>
+                           <asp:Label runat="server" Id="lblAlert" >Correo Enviado Correctamente</asp:Label>
                             </div>
                        </div>
                 </div>
