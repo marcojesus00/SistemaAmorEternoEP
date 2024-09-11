@@ -621,17 +621,22 @@
 
                                     <asp:TextBox class="form-control form-control-sm" TextMode="Number" ID="TxtTelefonoWhats" runat="server"></asp:TextBox>
 
+                                                                    <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
 
                                 </div>
  
 
                             </div>
                                                            <div class="col-12 pt-2">
-                                <asp:button ID="btnEnviarWhatsapp" runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success"/>
+                                <asp:linkbutton ID="btnEnviarWhatsapp" 
+                                    
+                                    OnClientClick="if (this.innerText === 'Procesando...') return false; this.innerText = 'Procesando...'; return true;" 
+                                    runat="server" Text="Enviar WhatsApp" CssClass="btn btn-sm btn-success" >
+
+                                </asp:linkbutton>
 
 
                                 </div>
-                                <asp:Label runat="server" ID="lblWhatsAppValidation"></asp:Label>
                         </div>
                         <div class="row text-right">
 

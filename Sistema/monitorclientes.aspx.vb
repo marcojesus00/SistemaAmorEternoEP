@@ -480,51 +480,6 @@ Public Class monitorclientes
         Public Property Code As String
         Public Property StatusCode As Integer
     End Class
-    Private Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As String
-        Using client As New HttpClient()
-            client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-
-            ' Convert the dictionary to JSON
-            Dim json As String = JsonConvert.SerializeObject(data)
-            Dim content As New StringContent(json, Encoding.UTF8, "application/json")
-
-            Try
-                Dim response1 As HttpResponseMessage = client.PostAsync(url, content).Result
-                Dim contentStr As StreamContent = response1.Content
-                Dim contentString As String = contentStr.ReadAsStringAsync().Result
-                Dim serializer As New Newtonsoft.Json.JsonSerializer
-                Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
-                Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
-
-
-                If response1.IsSuccessStatusCode Then
-                    lblAlert.CssClass = "alert-primary align-content-center"
-                    lblAlert.Text = "WhatsApp enviado con éxito"
-                    Return response1.Content.ReadAsStringAsync().Result
-                Else
-                    lblAlert.CssClass = "alert-danger align-content-center"
-                    Dim msg = ""
-                    If jsonResponse.Errors(0) IsNot Nothing Then
-                        msg = jsonResponse.Errors(0).Msg
-                    Else
-                        msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
-                    End If
-                    lblAlert.Text = $"Error, intente de nuevo: {msg}"
-                    Throw New Exception(msg)
-
-                    Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
-
-                End If
-
-            Catch ex As Exception
-                lblAlert.CssClass = "alert-danger align-content-center"
-                lblAlert.Text = "Error, intente de nuevo"
-                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-
-                Return $"Exception: {ex.Message}"
-            End Try
-        End Using
-    End Function
 
     Private Sub btnEnviarWhatsapp_click(sender As Object, e As EventArgs) Handles btnEnviarWhatsapp.Click
         If TxtTelefonoWhats.Text.Trim.Length < 7 Then
@@ -534,74 +489,65 @@ Public Class monitorclientes
             Exit Sub
         End If
         lblWhatsAppValidation.Text = ""
-        Dim Informe As New Movimiento_Clientes
-
-        Informe.SetDatabaseLogon(Usuario, Clave)
-        Informe.SetParameterValue("Cliente", Session("CodigoCliente").TrimEnd)
-
-        Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
-
         Try
-            ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
-            'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
-            Using memoryStream As New System.IO.MemoryStream()
-                ' Export the report to the memory stream as a PDF
-                Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat).CopyTo(memoryStream)
+            Dim Informe As New Movimiento_Clientes
 
-                ' Convert the memory stream to a byte array
-                Dim reportBytes As Byte() = memoryStream.ToArray()
+            Informe.SetDatabaseLogon(Usuario, Clave)
+            Informe.SetParameterValue("Cliente", Session("CodigoCliente").TrimEnd)
 
-                ' Convert the byte array to a base64 string
-                Dim base64String As String = Convert.ToBase64String(reportBytes)
+            Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+            Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
 
-                Try
+            Try
+                Dim nombre As String = Session("NombreCliente")
 
-
-                    Dim caption = "Estimado(a) " + Session("NombreCliente") + " Amor Eterno envía su estado de cuenta."
-
-                    'Dim url As String = "http://localhost:8002/v1/messages/docs/"
-                    'url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
-                    Dim url = "http://192.168.20.75:8000/v1/messages/docs/"
-                    Dim phoneNumber As New Dictionary(Of String, String) From {
-                    {"country_code", ddlCountryCode.SelectedValue.Replace("+", "")},
-                    {"local_number", TxtTelefonoWhats.Text}
-                }
-
-                    Dim data As New Dictionary(Of String, Object) From {
-                    {"phone_number", phoneNumber},
-                    {"url", base64String},
-                    {"file_name", nombreArchivo},
-                    {"caption", caption},
-                    {"priority", 10},
-                    {"referenceID", ""}
-                }
-
-                    ' Send the POST request
-                    Dim rapiRsponse = PostData(url, data)
-                    Response.Write(rapiRsponse)
+                Dim countryCode = ddlCountryCode.SelectedValue.Replace("+", "")
+                Dim phone = TxtTelefonoWhats.Text
+                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero"
+                Dim user = Session("Usuario_Aut")
+                Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:="default")
 
 
-                    PanelEnviarWhatsapp.Visible = False
-                    TxtTelefonoWhats.Text = ""
+                If r4esult.Success = True Then
+                    lblAlert.CssClass = "alert-primary align-content-center"
+                Else
+                    DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
+
+                    lblAlert.CssClass = "alert-danger align-content-center"
+                End If
+                lblAlert.Text = r4esult.Msg
+
+                TxtTelefonoWhats.Text = ""
 
 
-                    PanelConfirmaCorreoEnviado.Visible = True
+
+                PanelEnviarWhatsapp.Visible = False
 
 
-                Catch ex As Exception
-                    Dim errorMessage As String = ex.Message
-                    DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+                PanelConfirmaCorreoEnviado.Visible = True
 
-                End Try
-            End Using
+            Catch ex As Exception
+                Dim errorMessage As String = ex.Message
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            Finally
+                Informe.Close()
+                Informe.Dispose()
+            End Try
+
         Catch ex As Exception
-            Dim errorMessage As String = ex.Message
+            lblAlert.CssClass = "alert-danger align-content-center"
+            lblAlert.Text = ex.Message
+
+            PanelEnviarWhatsapp.Visible = False
+
+
+            PanelConfirmaCorreoEnviado.Visible = True
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
-        Finally
-            Informe.Close()
-            Informe.Dispose()
         End Try
+
+
 
 
 

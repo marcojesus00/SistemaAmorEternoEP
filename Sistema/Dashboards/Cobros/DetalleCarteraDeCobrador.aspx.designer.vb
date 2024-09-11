@@ -41,6 +41,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents btnExitWhatsapToAll As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''CardTitleLiteral control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CardTitleLiteral As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
     '''SendGridview control.
     '''</summary>
     '''<remarks>
@@ -68,13 +77,49 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents btnSendMassiveWhatsApp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''PnlNavigation control.
+    '''PnlBasPhones control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents PnlNavigation As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents PnlBasPhones As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''LinkButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''GridViewBadPhones control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewBadPhones As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''LinkButton3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButton3 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''PnlPrimary control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PnlPrimary As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''DashboardGridview control.

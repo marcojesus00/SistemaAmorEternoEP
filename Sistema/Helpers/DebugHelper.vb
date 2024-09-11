@@ -4,7 +4,7 @@ Imports System.Threading
 
 Public Class DebugHelper
 
-    Public Shared Function SendDebugInfo(alertType As String, exception As Exception, user As String) As String
+    Public Shared Function SendDebugInfo(alertType As String, exception As Exception, user As String, Optional detail As String = "") As String
         If TypeOf exception IsNot ThreadAbortException Then
             Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
             Dim app As String = "" ' Replace with actual application version if needed
@@ -13,13 +13,14 @@ Public Class DebugHelper
             Dim userInfo As String = "User: " & HttpContext.Current.User.Identity.Name ' Example for web applications
             Dim authUser As String = user
             Dim environmentInfo As String = $"Server: {Environment.MachineName}, Application Version: {app}"
-            Dim debugInfo As String = vbCrLf & $"Timestamp: {timestamp}" & vbCrLf &
-                                              $"HResult error code: {exception.HResult}" & vbCrLf &
-                                              $"Exception type name: {exception.GetType().Name}" &
+            Dim debugInfo As String = vbCrLf & $"Alert Type: {alertType}" & vbCrLf &
+                                                  $"Alert Message: {exception.Message}" & vbCrLf &
+                                                  $"Detail: {detail}" & vbCrLf &
+                                                 $"Timestamp: {timestamp}" & vbCrLf &
+                                              $"HResult error code: {exception.HResult}" & vbCrLf & vbCrLf &
+                                              $"Exception type name: {exception.GetType().Name}" & vbCrLf &
                                   $"TargetSite: {exception.TargetSite}" & vbCrLf &
                                   $"Inner exception: {exception.InnerException}" & vbCrLf &
-                                  $"Alert Type: {alertType}" & vbCrLf &
-                                  $"Alert Message: {exception.Message}" & vbCrLf &
                                   $"User: {authUser}" & vbCrLf &
                                   $"Server: {Environment.MachineName}" & vbCrLf & vbCrLf &
                                   $"Stack Trace:" & vbCrLf & exception.StackTrace
@@ -30,7 +31,7 @@ Public Class DebugHelper
             Dim dayName As String = DateTime.Now.ToString("dddd")
             Dim day As String = DateTime.Now.ToString("dd")
 
-            Dim logFilePath As String = Path.Combine(ServerPath, $"Musica\Logs\{dayName}_{day}_{monthName}_{year}.log")
+            Dim logFilePath As String = Path.Combine(ServerPath, $"Musica\Logs\{Environment.MachineName}_{dayName}_{day}_{monthName}_{year}.log")
 
 
             ' Ensure the directory exists

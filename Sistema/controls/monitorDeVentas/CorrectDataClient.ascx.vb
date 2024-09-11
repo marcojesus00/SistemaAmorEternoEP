@@ -420,7 +420,7 @@ Public Class DataClient
         Try
             RaiseEvent ProductButtonClick(sender, e)
             ''PanelProductosApp.Visible = True
-            RaiseEvent ProductTextChanged(sender, e)
+            RaiseEvent ProductTextChanged(textBoxProductNombre1, e)
 
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
@@ -593,14 +593,16 @@ Public Class ContractDataReceivedEventArgs
     Public Property Payment As String
     Public Property TotalAmount As String
     Public Property BillNumber As String
+    Public Property serviempre As String
 
-    Public Sub New(serviceId As String, serviceName As String, quantity As String, payment As String, totalAmount As String, billNumber As String)
+    Public Sub New(serviceId As String, serviceName As String, quantity As String, payment As String, totalAmount As String, billNumber As String, serviempre As String)
         Me.ServiceId = serviceId
         Me.ServiceName = serviceName
         Me.Quantity = quantity
         Me.Payment = payment
         Me.TotalAmount = totalAmount
         Me.BillNumber = billNumber
+        Me.serviempre = serviempre
     End Sub
 
 End Class
@@ -611,12 +613,13 @@ Public Class ProductDataReceivedEventArgs
     Public Property ServiceName As String
     Public Property Payment As String
     Public Property TotalAmount As String
-
-    Public Sub New(serviceName, serviceId, payment, amount)
+    Public Property Serviempre As String
+    Public Sub New(serviceName, serviceId, payment, amount, serviempre)
         Me.ServiceId = serviceId
         Me.ServiceName = serviceName
         Me.Payment = payment
         Me.TotalAmount = amount
+        Me.Serviempre = serviempre
     End Sub
 
 End Class

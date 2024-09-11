@@ -28,7 +28,6 @@ Public Class whatsapi
     Private Shared Function PostData(ByVal url As String, ByVal data As Dictionary(Of String, Object)) As HttpResponseMessage
         Using client As New HttpClient()
             client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"))
-            Dim s
             ' Convert the dictionary to JSON
             Dim json As String = JsonConvert.SerializeObject(data)
             Dim content As New StringContent(json, Encoding.UTF8, "application/json")
@@ -42,75 +41,147 @@ Public Class whatsapi
 
         End Using
     End Function
+    Shared Function GetHttpResponse(url As String) As String
+        Try
+            ' Create a new instance of HttpWebRequest
+            Dim request As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
 
-    Public Shared Function sendWhatsAppDocs(doc, name, couentryCode, localNumber, caption) As ResultW
+            ' Set the method to GET
+            request.Method = "GET"
 
+            ' Get the response from the server
+            Using response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)
+                ' Read the response content
+                Using reader As New StreamReader(response.GetResponseStream())
+                    Return reader.ReadToEnd()
+                End Using
+            End Using
+        Catch ex As Exception
+            ' Handle any errors that occurred during the request
+            Return $"Error: {ex.Message}"
+        End Try
+    End Function
+    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, Optional docDescription As String = "Estado de cuenta") As ResultW
 
+        Dim msg = ""
+        Dim isSuccess As Boolean = False
+        Dim IdDeLaPlataforma As Integer = 0
         ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
         'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
         Using memoryStream As New System.IO.MemoryStream()
             ' Export the report to the memory stream as a PDF
-            doc.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat).CopyTo(memoryStream)
+            Try
+                doc.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat).CopyTo(memoryStream)
 
-            ' Convert the memory stream to a byte array
-            Dim reportBytes As Byte() = memoryStream.ToArray()
+                ' Convert the memory stream to a byte array
+                Dim reportBytes As Byte() = memoryStream.ToArray()
 
-            ' Convert the byte array to a base64 string
-            Dim base64String As String = Convert.ToBase64String(reportBytes)
-
-
+                ' Convert the byte array to a base64 string
+                Dim base64String As String = Convert.ToBase64String(reportBytes)
 
 
-            'Dim url As String = "http://localhost:8002/v1/messages/docs/"
-            'url = "https://whatsapi-vlvp.onrender.com/v1/messages/docs/"
-            Dim url = "http://192.168.20.75:8000/v1/messages/docs/"
-            Dim phoneNumber As New Dictionary(Of String, String) From {
-                {"country_code", couentryCode},
-                {"local_number", localNumber}
-            }
 
-            Dim data As New Dictionary(Of String, Object) From {
-                {"phone_number", phoneNumber},
-                {"url", base64String},
-                {"file_name", name},
-                {"caption", caption},
-                {"priority", 10},
-                {"referenceID", ""}
-            }
 
-            ' Send the POST request
-            Dim response1 = whatsapi.PostData(url, data)
-            'Response.Write(rapiRsponse)
-            Dim contentStr As StreamContent = response1.Content
-            Dim contentString As String = contentStr.ReadAsStringAsync().Result
-            Dim serializer As New Newtonsoft.Json.JsonSerializer
-            Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
-            Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
-            If response1.IsSuccessStatusCode Then
-                Dim msg = "WhatsApp enviado con éxito"
-                Dim result As New ResultW(True, msg)
-                Return result
-                'Return response1.Content.ReadAsStringAsync().Result
+                'Dim url As String = "http://localhost:8002/v1/messages"
+                'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
-            Else
-                Dim msg = ""
-                If jsonResponse.Errors(0) IsNot Nothing Then
-                    msg = jsonResponse.Errors(0).Msg
+                Dim url = "http://192.168.20.75:8000/v1/messages"
+                Dim docsUrl = url + "/docs/"
+                Dim phoneNumber As New Dictionary(Of String, String) From {
+                    {"country_code", couentryCode},
+                    {"local_number", localNumber}
+                }
+
+                Dim data As New Dictionary(Of String, Object) From {
+                    {"phone_number", phoneNumber},
+                    {"url", base64String},
+                    {"file_name", name},
+                    {"caption", caption},
+                    {"priority", 10},
+                    {"referenceID", ""},
+                    {"instance", instancia}
+                }
+
+                ' Send the POST request
+                Dim response1 = whatsapi.PostData(docsUrl, data)
+                'Response.Write(rapiRsponse)
+                Dim contentStr As StreamContent = response1.Content
+                Dim contentString As String = contentStr.ReadAsStringAsync().Result
+
+                Dim serializer As New Newtonsoft.Json.JsonSerializer
+                Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
+                Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
+
+
+
+                If response1.IsSuccessStatusCode Then
+
+
+                    If Integer.TryParse(jsonResponse.Data, IdDeLaPlataforma) Then
+                        msg = "WhatsApp enviado con éxito"
+                        isSuccess = True
+                    Else
+                        Throw New Exception("Error con id de la plataforma")
+                    End If
                 Else
-                    msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
+                    If jsonResponse.Errors IsNot Nothing AndAlso jsonResponse.Errors IsNot Nothing Then
+                        msg = jsonResponse.Errors(0).Msg
+                    Else
+                        msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
+                    End If
+                    msg = $"Error, intente de nuevo: " + msg
+
                 End If
-                msg = $"Error, intente de nuevo: " + msg
+            Catch ex As Exception
+                Dim errorMessage As String = ex.Message
+                DebugHelper.SendDebugInfo("danger", ex, user)
+                msg = "Error del sistema: " + ex.GetType().Name
+            End Try
+            Dim result As New ResultW(isSuccess, msg)
+            logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, IdDeLaPlataforma)
 
-                'Return $"Error: {response1.StatusCode} - {response1.ReasonPhrase}"
-                Dim result As New ResultW(False, msg)
-                Return result
-            End If
-
-
+            Return result
         End Using
 
 
 
     End Function
+
+
+
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, Optional IdDeLaPlataforma = 0)
+        Using context As New FunamorContext()
+            context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
+            Dim sql As String = "
+            INSERT INTO [dbo].[LogDocumentosPorWhatsApp]
+            ([CodigoDeCliente], [Telefono], [Usuario], [NombreDeDocumento], [Instancia], [CodigoDePais], [Mensaje], [DescripcionDeDocumento], [FueExitoso], [MensajeDelResultado], [IdDeLaPlataforma])
+            VALUES
+            (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso, @MensajeDelResultado, @IdDeLaPlataforma);
+        "
+            Dim succ
+            If isSuccess = True Then
+                succ = 1
+            Else
+                succ = 0
+            End If
+
+            Dim parameters As SqlParameter() = {
+                New SqlParameter("@CodigoDeCliente", clientCode),
+                New SqlParameter("@Telefono", localNumber),
+                New SqlParameter("@Usuario", user),
+                New SqlParameter("@NombreDeDocumento", name),
+                New SqlParameter("@Instancia", instancia),
+                New SqlParameter("@CodigoDePais", couentryCode),
+                New SqlParameter("@Mensaje", caption),
+                New SqlParameter("@DescripcionDeDocumento", docDescription),
+                New SqlParameter("@FueExitoso", succ),
+                New SqlParameter("@MensajeDelResultado", msg),
+                New SqlParameter("IdDeLaPlataforma", IdDeLaPlataforma)
+            }
+
+            context.Database.ExecuteSqlCommand(sql, parameters)
+        End Using
+    End Sub
 
 End Class

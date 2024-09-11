@@ -215,9 +215,9 @@ Public Class CobrosDashboard
                 'Else
 
                 'End If
-                Dim result = cobrosService.GetClients(filters, params.sqlParams, totalCountparams)
+                Dim result = cobrosService.GetClientsGroupedByCollectorF(filters, params.sqlParams, totalCountparams)
                 Dim portfolioList As List(Of PortfolioIDto) = result.Data
-                Dim finalList As List(Of PortfolioFinalDto) = portfolioList.Select(Function(c) New PortfolioFinalDto With {.Codigo = c.Codigo, .Nombre = c.Nombre, .Clientes = c.Clientes, .Cuota_mensual = FormattingHelper.ToLempiras(CType(c.Cuota_mensual, Decimal?))}).ToList()
+                Dim finalList As List(Of PortfolioIDto) = portfolioList
 
 
                 BindPrincipalGridView(finalList, result.TotalCount, selectedPage)
@@ -329,12 +329,25 @@ Public Class CobrosDashboard
 
             Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
             Dim digitalRoot = GetDigitalRoot(rowIndex)
+            Dim row As GridViewRow = DashboardGridview.Rows(rowIndex)
+
             Dim keyValue As String = DashboardGridview.DataKeys(digitalRoot).Value.ToString()
 
             If e.CommandName = "ClientsByCollectorMap" Then
                 ClientsByCollectorMap(keyValue)
             ElseIf e.CommandName = "SenWhatsApp" Then
+
+
                 Session("CobradorSeleccionado") = keyValue
+                Dim name As String = row.Cells(3).Text ' Adjust index as needed
+                Dim monthly As String = row.Cells(5).Text
+                Session("NombreCobradorSeleccionado") = name.Trim()
+
+                'Dim cobradorDIct As New Dictionary(Of String, String)
+                'cobradorDIct.Add("Codigo", keyValue)
+                'cobradorDIct.Add("Nombre", name)
+                'cobradorDIct.Add("Cuota", monthly)
+                'Session("CobradorSeleccionadoDict") = cobradorDIct
                 Response.Redirect("~/Dashboards/Cobros/DetalleCarteraDeCobrador.aspx")
 
             ElseIf e.CommandName = "RouteOfReceiptsMap" Then
