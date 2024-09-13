@@ -476,7 +476,7 @@ Public Class DataClient
             End If
 
             If textBoxCuotaContratoApp.Text.TrimEnd > 0 And Prima = textBoxValorContratoApp.Text Then
-                msg = "Error: Cuotas no debe ser Cero"
+                msg = "Error: Está pagando de más"
                 isValid = False
             End If
 

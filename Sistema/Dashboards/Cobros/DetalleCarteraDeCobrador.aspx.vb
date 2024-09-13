@@ -242,9 +242,12 @@ where c.codigo_cobr like @Cobrador"
 
                         Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
 
-
+                        Dim leaderString = $" o escribir al siguiente numero: {leaderPhone}"
+                        If leaderPhone Is Nothing OrElse leaderPhone.ToString().Length < 1 Then
+                            leaderString = ""
+                        End If
                         Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: {numeroPBX} O escribir al siguiente numero: " + leaderPhone
+                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar a: Pbx: 2647-3390 / 4529/ 4986 Tel: 3290-7278" + leaderString + "."
                         Dim user = Session("Usuario_Aut")
 
                         Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:="default")

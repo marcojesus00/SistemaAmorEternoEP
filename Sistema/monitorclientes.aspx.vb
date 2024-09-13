@@ -503,7 +503,7 @@ Public Class monitorclientes
 
                 Dim countryCode = ddlCountryCode.SelectedValue.Replace("+", "")
                 Dim phone = TxtTelefonoWhats.Text
-                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero"
+                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx: 2647-3390 / 4529/ 4986 Tel: 3290-7278"
                 Dim user = Session("Usuario_Aut")
                 Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:="default")
 
