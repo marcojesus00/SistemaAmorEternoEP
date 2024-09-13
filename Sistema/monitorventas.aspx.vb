@@ -1285,6 +1285,7 @@ Public Class monitorventas
             Session("serviempre") = serviempre
             Session("serviceId") = serviceId
             Session("Product") = serviceName
+            Session("totalAmount") = totalAmount
             'txtcuotaApp.Text =
             Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 

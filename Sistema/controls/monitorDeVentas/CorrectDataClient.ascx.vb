@@ -465,6 +465,10 @@ Public Class DataClient
             End If
 
 
+            Prima = Session("initialPayment")
+            ValorCont = Session("totalAmount")
+
+
             If textBoxProductNombre1.Text.Trim.Length = 0 Then
                 msg = "Error: Debe agregar un producto"
                 isValid = False

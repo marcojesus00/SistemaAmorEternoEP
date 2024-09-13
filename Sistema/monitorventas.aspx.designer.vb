@@ -551,7 +551,7 @@ Partial Public Class monitorventas
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnSiSalvarCamb As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents BtnSiSalvarCamb As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''BtnNoSalvar control.
