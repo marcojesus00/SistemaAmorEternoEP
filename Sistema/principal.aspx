@@ -371,6 +371,11 @@
                                                 <asp:LinkButton ID="Empleado" runat="server" Enabled="false">&nbsp <i class="fas fa-arrow-right"></i>&nbsp Empleado</asp:LinkButton>                                                
                                            </div>
                                        </div>
+                                          <div class="row table">
+                                    <div class="col">   
+                                                <asp:LinkButton ID="LinkButtonInventory" runat="server" Enabled="false">&nbsp <i class="fas fa-arrow-right"></i>&nbsp Inventario de equipo</asp:LinkButton>                                                
+                                           </div>
+                                       </div>
                                 </div>
                             </div>
                    </div>

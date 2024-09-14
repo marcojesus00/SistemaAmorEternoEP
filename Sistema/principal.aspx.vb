@@ -329,6 +329,13 @@ Public Class principal
             Empleado.ToolTip = "No Tiene Acceso"
             Empleado.Style.Value = "color:darkgrey;"
         End If
+        Tabla.DefaultView.RowFilter = "SEG_ARCHIVO = 'MAN_4'"
+        If Tabla.DefaultView.Count > 0 Then
+            LinkButtonInventory.Enabled = True
+        Else
+            LinkButtonInventory.ToolTip = "No Tiene Acceso"
+            LinkButtonInventory.Style.Value = "color:darkgrey;"
+        End If
 
         Tabla.DefaultView.RowFilter = "SEG_ARCHIVO = 'Rep_Dias'"
         If Tabla.DefaultView.Count > 0 Then
@@ -612,6 +619,22 @@ Public Class principal
         Session.Add("Reporte", "Contrato")
         Response.Redirect("Contratos.aspx")
     End Sub
+    Private Sub LinkButtonInventory_Click(sender As Object, e As EventArgs) Handles LinkButtonInventory.Click
+        Dim conf As New Configuracion(Usuario, clave, Bd, Servidor)
+        Dim SQL As String
+        SQL = " Insert into FUNAMOR..LogAccesoApp 
+                (Usuario, Fecha,Hora,NombreReporte) 
+                 values
+                ('" + Session("Usuario_Aut") + "',
+                '" + Format(Date.Now, "yyyy/MM/dd").ToString + "',
+                '" + Format(DateTime.Now, "HH:mm:ss") + "',
+                '" + "Inventario de equipo" + "')"
+        Datos = conf.EjecutaSql(SQL)
+
+        Session.Add("Reporte", "Inventario de equipo")
+        Response.Redirect("/Mantenimiento/InventarioDeEquipo.aspx")
+    End Sub
+
 
     Private Sub Monitor_Cobros_Click(sender As Object, e As EventArgs) Handles Monitor_Cobros.Click
         Dim conf As New Configuracion(Usuario, clave, Bd, Servidor)

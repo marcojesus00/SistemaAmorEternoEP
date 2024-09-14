@@ -357,6 +357,7 @@
     <Content Include="Dashboards\Cobros\images\minus.png" />
     <Content Include="Dashboards\Cobros\images\plus.png" />
     <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="Mantenimiento\InventarioDeEquipo.aspx" />
     <Content Include="Shared\Map\MapClustered.aspx" />
     <Content Include="Shared\Map\Map - Copy.aspx" />
     <Content Include="Shared\Map\Map.aspx" />
@@ -2458,7 +2459,15 @@
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Helpers\PaginationHelper.vb" />
+    <Compile Include="Mantenimiento\InventarioDeEquipo.aspx.designer.vb">
+      <DependentUpon>InventarioDeEquipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimiento\InventarioDeEquipo.aspx.vb">
+      <DependentUpon>InventarioDeEquipo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="Models\Memorial\MemorialContext.vb" />
     <Compile Include="rpt\Estadistica Visitas Cobrador.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
