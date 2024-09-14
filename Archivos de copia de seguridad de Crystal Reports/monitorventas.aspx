@@ -320,7 +320,7 @@
                         <asp:LinkButton ID="LinkButton1" runat="server" Style="position: absolute; right: 8%; font-size: x-large">  Pausar </asp:LinkButton>--%>
                     </div>
                 </div>
-                                <div class="row" style="background-color: white">                <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
+                                <div class="row" style="background-color: white">                <uc:correctsalesdataclient id="CorrectSalesDataClient1" runat="server" />
 </div>
 
                 <%-- Identidad --%>
