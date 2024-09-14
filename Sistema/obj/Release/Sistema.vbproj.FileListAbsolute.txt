@@ -139,3 +139,4 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Relea
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.AssemblyReference.cache
