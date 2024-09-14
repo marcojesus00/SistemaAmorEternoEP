@@ -247,7 +247,7 @@ where c.codigo_cobr like @Cobrador"
                             leaderString = ""
                         End If
                         Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar a: Pbx: 2647-3390 / 4529/ 4986 Tel: 3290-7278" + leaderString + "."
+                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278" + leaderString + "."
                         Dim user = Session("Usuario_Aut")
 
                         Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:="default")
