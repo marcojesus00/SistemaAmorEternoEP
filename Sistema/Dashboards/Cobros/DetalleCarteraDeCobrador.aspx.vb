@@ -52,6 +52,13 @@ Public Class DetalleCarteraDeCobrador
     Protected Sub WhatsAppToAll_Click(sender As Object, e As EventArgs)
 
         PnlGoodAndBadPhones.Visible = True
+        Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
+        If cobrador IsNot Nothing Then
+            If cobrador.Lider.ToLower.Contains("nora") Then
+                DdlIntance.SelectedValue = 1
+            End If
+
+        End If
         PnlPrimary.Visible = False
         PnlBasPhones.Visible = False
         If Session("CobradorSeleccionado") Then
@@ -239,7 +246,13 @@ where c.codigo_cobr like @Cobrador"
 
                         Informe.SetDatabaseLogon(Usuario, Clave)
                         Informe.SetParameterValue("Cliente", cliente.Codigo)
+                        Dim ins = ""
 
+                        If DdlIntance.SelectedValue = 0 Then
+                            ins = "other"
+                        Else
+                            ins = "default"
+                        End If
                         Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
 
                         Dim leaderString = $" o escribir al siguiente numero: {leaderPhone}"
@@ -250,7 +263,7 @@ where c.codigo_cobr like @Cobrador"
                         Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278" + leaderString + "."
                         Dim user = Session("Usuario_Aut")
 
-                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:="default")
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo)
                         'Debug.WriteLine(r4esult.Msg)
 
                         If r4esult.Success = False Then
@@ -266,7 +279,7 @@ where c.codigo_cobr like @Cobrador"
 
                         Dim m = "Codigo de cliente: " + cliente.Codigo
                         DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
-                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=ex.Message)
+                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:=ex.GetType().Name, clientCode:=cliente.Codigo, user:=Session("Usuario_Aut"), instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=ex.Message, CodigoDeCobrador:=cobrador.Codigo)
                     End Try
 
                 Next

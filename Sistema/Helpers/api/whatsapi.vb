@@ -61,7 +61,7 @@ Public Class whatsapi
             Return $"Error: {ex.Message}"
         End Try
     End Function
-    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, Optional docDescription As String = "Estado de cuenta") As ResultW
+    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, CodigoDeCobrador As String, Optional docDescription As String = "Estado de cuenta") As ResultW
 
         Dim msg = ""
         Dim isSuccess As Boolean = False
@@ -78,7 +78,6 @@ Public Class whatsapi
 
                 ' Convert the byte array to a base64 string
                 Dim base64String As String = Convert.ToBase64String(reportBytes)
-
 
 
 
@@ -138,7 +137,7 @@ Public Class whatsapi
                 msg = "Error del sistema: " + ex.GetType().Name
             End Try
             Dim result As New ResultW(isSuccess, msg)
-            logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, IdDeLaPlataforma)
+            logW(name:=name, couentryCode:=couentryCode, localNumber:=localNumber, caption:=caption, clientCode:=clientCode, user:=user, instancia:=instancia, docDescription:=docDescription, isSuccess:=isSuccess, msg:=msg, CodigoDeCobrador:=CodigoDeCobrador, IdDeLaPlataforma:=IdDeLaPlataforma)
 
             Return result
         End Using
@@ -149,7 +148,7 @@ Public Class whatsapi
 
 
 
-    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, Optional IdDeLaPlataforma = 0)
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Optional IdDeLaPlataforma = 0)
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
@@ -177,7 +176,8 @@ Public Class whatsapi
                 New SqlParameter("@DescripcionDeDocumento", docDescription),
                 New SqlParameter("@FueExitoso", succ),
                 New SqlParameter("@MensajeDelResultado", msg),
-                New SqlParameter("IdDeLaPlataforma", IdDeLaPlataforma)
+                New SqlParameter("IdDeLaPlataforma", IdDeLaPlataforma),
+                New SqlParameter("CodigoDeCobrador", CodigoDeCobrador)
             }
 
             context.Database.ExecuteSqlCommand(sql, parameters)

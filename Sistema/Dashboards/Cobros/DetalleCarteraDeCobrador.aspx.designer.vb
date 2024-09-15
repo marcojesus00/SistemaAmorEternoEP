@@ -77,6 +77,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents btnSendMassiveWhatsApp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''DdlIntance control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlIntance As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''PnlBasPhones control.
     '''</summary>
     '''<remarks>

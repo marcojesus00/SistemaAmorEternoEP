@@ -59,6 +59,7 @@
 
                                         </asp:GridView>
                 </div>
+
                            <div class="list-group-item-action">
                       <asp:LinkButton  ID="btnCorrupPhones"  OnClick="btnCorrupPhones_Click" ToolTip="" CssClass="btn btn-sm btn-outline-danger" runat="server">
 <i class="bi bi-exclamation-circle"></i> Ver clientes con telefono malo
@@ -68,6 +69,12 @@
  ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
 <i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
                             </asp:LinkButton>
+                       
+                               <asp:DropDownList CssClass="" ID="DdlIntance" runat="server">
+                                      <asp:ListItem Text="´Teléfono de Josué" Value="0"></asp:ListItem>
+                                      <asp:ListItem Text="´Teléfono de Nora" Value="1"></asp:ListItem>
+
+                               </asp:DropDownList>
            </div>
             </div>
 
