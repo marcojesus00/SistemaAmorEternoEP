@@ -382,37 +382,71 @@ where c.codigo_cobr like @Cobrador"
         GridViewBadPhones.PageIndex = e.NewPageIndex
         rebindBadPhones()
     End Sub
-    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), title As String)
+    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), title As String)
         ' Create a new ExcelPackage
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
         Using package As New ExcelPackage()
             ' Add a worksheet to the workbook
-            Dim worksheet = package.Workbook.Worksheets.Add("Telefonos malos")
+            If docs.Count > 0 Then
+                Dim tit = "Telefonos mal escritos"
+                Dim worksheet = package.Workbook.Worksheets.Add(tit)
 
-            ' Add the title to the first row, merging cells A1 to C1
-            worksheet.Cells("A1:C1").Merge = True
-            worksheet.Cells("A1").Value = title
-            worksheet.Cells("A1").Style.Font.Size = 14
-            worksheet.Cells("A1").Style.Font.Bold = True
-            worksheet.Cells("A1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Center
+                ' Add the title to the first row, merging cells A1 to C1
+                worksheet.Cells("A1:C1").Merge = True
+                worksheet.Cells("A1").Value = tit
+                worksheet.Cells("A1").Style.Font.Size = 14
+                worksheet.Cells("A1").Style.Font.Bold = True
+                worksheet.Cells("A1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Center
 
-            ' Add headers to the second row
-            worksheet.Cells(2, 1).Value = "Codigo"
-            worksheet.Cells(2, 2).Value = "Nombre"
-            worksheet.Cells(2, 3).Value = "Telefono"
+                ' Add headers to the second row
+                worksheet.Cells(2, 1).Value = "Codigo"
+                worksheet.Cells(2, 2).Value = "Nombre"
+                worksheet.Cells(2, 3).Value = "Telefono"
 
-            ' Populate the worksheet with data starting from row 3
-            Dim row As Integer = 3
-            For Each doc As DocsDto In docs
-                worksheet.Cells(row, 1).Value = doc.Codigo
-                worksheet.Cells(row, 2).Value = doc.Nombre
-                worksheet.Cells(row, 3).Value = doc.Telefono
-                row += 1
-            Next
+                ' Populate the worksheet with data starting from row 3
+                Dim row As Integer = 3
+                For Each doc As DocsDto In docs
+                    worksheet.Cells(row, 1).Value = doc.Codigo
+                    worksheet.Cells(row, 2).Value = doc.Nombre
+                    worksheet.Cells(row, 3).Value = doc.Telefono
+                    row += 1
+                Next
+
+                ' Auto-fit columns for better readability
+                worksheet.Cells.AutoFitColumns()
+            End If
+            If invalidPhones.Count > 0 Then
+                Dim tit = "Telefonos invalidos en whatsapp"
+                Dim worksheet2 = package.Workbook.Worksheets.Add(tit)
+
+                ' Add the title to the first row, merging cells A1 to C1
+                worksheet2.Cells("A1:C1").Merge = True
+                worksheet2.Cells("A1").Value = tit
+                worksheet2.Cells("A1").Style.Font.Size = 14
+                worksheet2.Cells("A1").Style.Font.Bold = True
+                worksheet2.Cells("A1").Style.HorizontalAlignment = ExcelHorizontalAlignment.Center
+
+                ' Add headers to the second row
+                worksheet2.Cells(2, 1).Value = "Codigo"
+                worksheet2.Cells(2, 2).Value = "Nombre"
+                worksheet2.Cells(2, 3).Value = "Telefono"
+
+                ' Populate the worksheet with data starting from row 3
+                Dim row2 As Integer = 3
+                For Each doc As DocsDto In invalidPhones
+                    worksheet2.Cells(row2, 1).Value = doc.Codigo
+                    worksheet2.Cells(row2, 2).Value = doc.Nombre
+                    worksheet2.Cells(row2, 3).Value = doc.Telefono
+                    row2 += 1
+                    worksheet2.Cells.AutoFitColumns()
+
+                Next
+
+            End If
+
 
             ' Auto-fit columns for better readability
-            worksheet.Cells.AutoFitColumns()
             HttpContext.Current.Response.Clear()
             HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             HttpContext.Current.Response.AddHeader("content-disposition", $"attachment; filename={title.Replace(" ", "_")}.xlsx")
@@ -438,8 +472,17 @@ where c.codigo_cobr like @Cobrador"
             Dim clients As List(Of DocsDto)
 
             clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+            Dim q = "EXEC SP_VS_CarteraInvalidaDeClienteParaWhatsapp @cobrador"
             ' Call the method to generate and download the Excel file
-            DownloadExcelFromList(clients, docTitle)
+            Using FunamorContext As New FunamorContext()
+                Dim sqlParameters As New List(Of SqlParameter)
+                sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
+
+                Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
+            q, sqlParameters.ToArray()).ToList()
+                DownloadExcelFromList(clients, result, docTitle)
+
+            End Using
         End If
 
 
