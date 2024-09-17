@@ -122,6 +122,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents LinkButton3 As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''LinkButtonDownloadExcel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonDownloadExcel As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''PnlPrimary control.
     '''</summary>
     '''<remarks>

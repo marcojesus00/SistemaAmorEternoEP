@@ -132,7 +132,7 @@ Public Class DataClient
             Using dbcontext As New AeVentasDbContext
 
 
-                DataOfClient = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                DataOfClient = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).OrderByDescending(Function(c) c.cl_fecha).FirstOrDefault()
                 Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
                                       .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(DataOfClient.Municipio)).FirstOrDefault()
                 Dim department = dbcontext.MunicipiosZonasDepartamentos _
@@ -288,6 +288,19 @@ Public Class DataClient
             newDataClient.Dir3_client = TextBoxAddress3.Text.Trim
 
             Using Context As New AeVentasDbContext()
+                Context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
+                Dim parameters As Object() = {
+    New SqlParameter("@Identidad", SqlDbType.NVarChar) With {.Value = newDataClient.Identidad},
+    New SqlParameter("@Vendedor", SqlDbType.NVarChar) With {.Value = newDataClient.CodigoVendedor},
+    New SqlParameter("@Cliente", SqlDbType.NVarChar) With {.Value = newDataClient.Codigo}
+}
+
+                If newDataClient.Identidad <> DataOfClient.Identidad.Replace("-", String.Empty).Trim Then
+                    Context.Database.ExecuteSqlCommand("update CLIENTESN set identidad=@Identidad
+  where CL_VENDEDOR=@Vendedor and Codigo_clie=@Cliente
+  and convert(date,cl_fecha)=convert(date,getdate()) ", parameters)
+                End If
                 Context.ExecuteVIENECLIENTESN_A3(
         Codigo_clie:=newDataClient.Codigo,
         Nombre_clie:=newDataClient.Nombre,

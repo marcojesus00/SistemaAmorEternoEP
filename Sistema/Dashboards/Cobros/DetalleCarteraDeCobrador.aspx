@@ -110,6 +110,12 @@
                                      <asp:LinkButton  ID="LinkButton3"  OnClick="WhatsAppToAll_Click" ToolTip="" CssClass="btn btn-sm btn-outline-primary" runat="server">
 <i class="bi bi-whatsapp"></i> Teléfonos válidos
                             </asp:LinkButton>
+                               
+
+                                     <asp:LinkButton  ID="LinkButtonDownloadExcel"  OnClick="btnDownloadExcel_Click" ToolTip="" CssClass="btn btn-sm btn-outline-success" runat="server">
+<i class="bi bi-file-excel"></i> Descargar excel
+                            </asp:LinkButton>
+
            </div>
             </div>
 
