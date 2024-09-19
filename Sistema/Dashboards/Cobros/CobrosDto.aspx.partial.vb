@@ -49,6 +49,21 @@ Partial Public Class CobrosDashboard
 
 
     End Class
+    Public Class WhatsAppMonitorDto
+        Public Property Usuario As String
+        Public Property Cobrador As String
+        Public Property Cliente As String
+        Public Property Nombre As String
+        Public Property Telefono As String
+        Public Property Hora As String
+        Public Property Fecha As String
+        Public Property Estado As String
+
+
+
+
+
+    End Class
     Public Class PortfolioFinalDto
         Public Property Codigo As String
         Public Property Nombre As String

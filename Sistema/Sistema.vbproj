@@ -363,6 +363,7 @@
     <Content Include="css\v4-shims.css" />
     <Content Include="css\v4-shims.min.css" />
     <Content Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx" />
+    <Content Include="Dashboards\Cobros\MonitorEstadosDeCuentaEnviados.aspx" />
     <Content Include="Dashboards\Ventas\Ventas.aspx" />
     <Content Include="Dashboards\Ventas\images\minus.png" />
     <Content Include="Dashboards\Ventas\images\plus.png" />
@@ -2422,6 +2423,13 @@
     </Compile>
     <Compile Include="Dashboards\Cobros\DetalleCarteraDeCobrador.aspx.vb">
       <DependentUpon>DetalleCarteraDeCobrador.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\MonitorEstadosDeCuentaEnviados.aspx.designer.vb">
+      <DependentUpon>MonitorEstadosDeCuentaEnviados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Cobros\MonitorEstadosDeCuentaEnviados.aspx.vb">
+      <DependentUpon>MonitorEstadosDeCuentaEnviados.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Dashboards\Cobros\ResultW.vb" />

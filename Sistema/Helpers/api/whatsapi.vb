@@ -157,7 +157,7 @@ Public Class whatsapi
 
 
 
-    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A", Optional ReferenceId = "")
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, ReferenceId, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A")
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 

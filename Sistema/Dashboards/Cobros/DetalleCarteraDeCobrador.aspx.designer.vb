@@ -23,6 +23,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents WhatsAppToAll As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''BtnMonitor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnMonitor As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''PnlGoodAndBadPhones control.
     '''</summary>
     '''<remarks>

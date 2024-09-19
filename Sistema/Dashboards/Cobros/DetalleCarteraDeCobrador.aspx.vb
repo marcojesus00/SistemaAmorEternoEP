@@ -291,7 +291,7 @@ where c.codigo_cobr like @Cobrador"
                         Dim m = "Codigo de cliente: " + cliente.Codigo
                         DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
 
-                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=User, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId)
+                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=User, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId, ReferenceId:=Guid.NewGuid())
 
                     End Try
 
@@ -539,5 +539,8 @@ where c.codigo_cobr like @Cobrador"
 
         Return html.ToString()
     End Function
+    Public Sub Monitor_click()
+        Response.Redirect("~/Dashboards/Cobros/MonitorEstadosDeCuentaEnviados.aspx")
 
+    End Sub
 End Class
