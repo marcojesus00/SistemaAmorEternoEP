@@ -399,7 +399,8 @@ Public Class DataClient
 
     End Sub
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
-        Dim Letra, Cuota As Integer
+        Dim Letra As Integer
+        Dim Cuota As Decimal
         Try
             If textBoxCuotaContratoApp.Text.Length > 0 And textBoxValorContratoApp.Text.Length > 0 And textBoxLetraContratoApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
 
@@ -409,6 +410,7 @@ Public Class DataClient
                 Else
                     If textBoxValorContratoApp.Text > 0 And TxtPrimaApp.Text > 0 And textBoxCuotaContratoApp.Text > 0 Then
                         Letra = (textBoxValorContratoApp.Text - TxtPrimaApp.Text) / textBoxCuotaContratoApp.Text
+
                         Cuota = textBoxCuotaContratoApp.Text
                     End If
 
@@ -532,7 +534,7 @@ Public Class DataClient
 
 
 
-            If textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
+            If ((textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text) - textBoxCuotaContratoApp.Text) > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
                 msg = "Error: Verifique el N.Cuotas y Letras"
                 isValid = False
             End If
