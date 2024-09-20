@@ -23,6 +23,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents WhatsAppToAll As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''BtnMonitor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnMonitor As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''PnlGoodAndBadPhones control.
     '''</summary>
     '''<remarks>
@@ -77,6 +86,15 @@ Partial Public Class DetalleCarteraDeCobrador
     Protected WithEvents btnSendMassiveWhatsApp As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''DdlIntance control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlIntance As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''PnlBasPhones control.
     '''</summary>
     '''<remarks>
@@ -111,6 +129,15 @@ Partial Public Class DetalleCarteraDeCobrador
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LinkButton3 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''LinkButtonDownloadExcel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonDownloadExcel As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''PnlPrimary control.

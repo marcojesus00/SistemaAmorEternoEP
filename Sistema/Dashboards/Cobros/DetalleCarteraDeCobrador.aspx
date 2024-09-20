@@ -14,13 +14,21 @@
                 </div>
 
           
-                <div class="col-lg-2 align-self-center pt-1">
+                <div class="col-lg-3  pt-1">
     
                       <asp:LinkButton  ID="WhatsAppToAll"  OnClick="WhatsAppToAll_Click" ToolTip="Teléfonos de los clienes según su validez" CssClass="btn btn-outline-primary" runat="server">
 <i class="bi bi-whatsapp"></i> Envío estados
                             </asp:LinkButton>
+                  
                 </div>
-                                                              <div class="col-lg-1 col-1">
+                                               <div class="col-lg-3  pt-1">
+    
+               
+                                    <asp:LinkButton  ID="BtnMonitor"  OnClick="Monitor_click" ToolTip="Monitoree los estados enviados" CssClass="btn btn-primary" runat="server">
+<i class="bi bi-eye-fill"></i> Monitor de mensajes
+                            </asp:LinkButton>
+                </div>
+                                                       <div class="col-lg-1 col-1">
 
       
                         </div>
@@ -59,6 +67,7 @@
 
                                         </asp:GridView>
                 </div>
+
                            <div class="list-group-item-action">
                       <asp:LinkButton  ID="btnCorrupPhones"  OnClick="btnCorrupPhones_Click" ToolTip="" CssClass="btn btn-sm btn-outline-danger" runat="server">
 <i class="bi bi-exclamation-circle"></i> Ver clientes con telefono malo
@@ -68,6 +77,12 @@
  ToolTip="Enviar WhatsApp a todos" CssClass="btn btn-sm btn-outline-success" runat="server">
 <i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
                             </asp:LinkButton>
+                       
+                               <asp:DropDownList CssClass="" ID="DdlIntance" runat="server">
+                                      <asp:ListItem Text="´Teléfono de Josué" Value="0"></asp:ListItem>
+                                      <asp:ListItem Text="´Teléfono de Nora" Value="1"></asp:ListItem>
+
+                               </asp:DropDownList>
            </div>
             </div>
 
@@ -103,6 +118,12 @@
                                      <asp:LinkButton  ID="LinkButton3"  OnClick="WhatsAppToAll_Click" ToolTip="" CssClass="btn btn-sm btn-outline-primary" runat="server">
 <i class="bi bi-whatsapp"></i> Teléfonos válidos
                             </asp:LinkButton>
+                               
+
+                                     <asp:LinkButton  ID="LinkButtonDownloadExcel"  OnClick="btnDownloadExcel_Click" ToolTip="" CssClass="btn btn-sm btn-outline-success" runat="server">
+<i class="bi bi-file-excel"></i> Descargar excel
+                            </asp:LinkButton>
+
            </div>
             </div>
 

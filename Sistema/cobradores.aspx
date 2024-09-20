@@ -26,7 +26,7 @@
                    <div class="col-sm-12 col-md-4 col-lg-4">
                        <div class="input-group input-group-sm">
                            <div class="input-group-prepend">
-                               <asp:label ID="lbl" runat="server" CssClass="input-group-text" ToolTip="" Text="Vendedor"></asp:label>
+                               <asp:label ID="lbl" runat="server" CssClass="input-group-text" ToolTip="" Text="Cobrador"></asp:label>
                            </div>
                            <asp:TextBox  CssClass="form-control form-control-sm" ID="txtCobradorN1" runat="server" ToolTip="Codigo o Nombre" />
                            <asp:TextBox  CssClass="form-control form-control-sm" ID="txtCobradorN2" runat="server" ToolTip="Codigo o Nombre" />
