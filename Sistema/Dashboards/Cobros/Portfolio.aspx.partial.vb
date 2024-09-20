@@ -47,7 +47,7 @@ Partial Public Class CobrosDashboard
     END AS Telefonos, 
      LTRIM(RTRIM(cl.Dir_cliente))  + ' ' +  LTRIM(RTRIM(cl.Dir2_client)) AS Direccion, 
     cl.Cod_zona AS Empresa, FORMAT( ISNULL(cl.Saldo_actua, 0), 'C', 'es-HN') as Saldo,ISNULL(cl.latitud, 0) as latitud, ISNULL(cl.longitud, 0) as longitud, cr.codigo_cobr, cr.cob_lider "
-        Dim fromClause As String = "from COBRADOR cr join CLIENTES cl on cl.cl_cobrador = cr.codigo_cobr"
+        Dim fromClause As String = "from COBRADOR cr WITH (NOLOCK) join CLIENTES cl WITH (NOLOCK) on cl.cl_cobrador = cr.codigo_cobr"
         Dim whereClauseList As New List(Of String)()
         Dim orderByClause As String = "order by cl.Saldo_actua desc"
 

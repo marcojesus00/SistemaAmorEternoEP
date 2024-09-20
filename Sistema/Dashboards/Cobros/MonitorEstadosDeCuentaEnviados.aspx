@@ -4,18 +4,18 @@
     <div class="container-fluid container-lg mt-1 mb-1">
         <div class="border border-dark-subtle p-2">
             <div class="row">
-<%--                <div class="col-lg-3 col-md-12 col-12 pb-2 ">
-                                <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
+                <div class="col-lg-3 col-md-12 col-12 pb-2 ">
+<%--                                <label for="DashboardType" class="form-control-label">Tipo de dashboard</label>--%>
 
-<%--                    <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true">
-                        <asp:ListItem Text="Dashboard de recibos" Value="0">
+                  <asp:DropDownList ID="DashboardType" CssClass="form-control form-control-sm border-info-subtle border-2" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DashboardType_SelectedIndexChanged">
+                        <asp:ListItem Text="Agrupado" Value="0">
                         </asp:ListItem>
-                        <asp:ListItem Text="Dashboard de cartera" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Detalles" Value="1"></asp:ListItem>
                     </asp:DropDownList>
 
 
-                </div>--%>
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                </div>
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <div class="row">
                         <div class="col-3">
                             <label for="textBoxInitialDate" class="form-control-label">Desde </label>
@@ -29,7 +29,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <div class="row">
                         <div class="col-3">
                             <%--                                                <asp:TextBox ID="TextBox1" runat="server" Text="Desde" CssClass="form-control form-control-sm">desde</asp:TextBox>--%>
@@ -63,37 +63,37 @@
 
                     </div>
                 </div>
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <%--                    <label for="ddlValidReceipts" class="form-control-label">Estado de los recibos</label>--%>
 
-                    <asp:DropDownList ID="ddlStatus" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlStatus" CssClass="form-control form-control-sm" runat="server" ></asp:DropDownList>
 
 
                 </div>
          
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <%--<asp:Label ID="lblNumDoc" runat="server" CssClass="form-control-label" AssociatedControlID="textBoxNumDoc"></asp:Label>--%>
 
-                    <asp:TextBox ID="textBoxPhone" runat="server" Placeholder="Teléfono" CssClass="form-control form-control-sm"></asp:TextBox>
+                    <asp:TextBox ID="textBoxPhone"  TextMode="Phone" runat="server" Placeholder="Teléfono del cliente" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <%--                    <label for="code" class="form-control-label">Código de cobrador</label>--%>
 
-                    <asp:TextBox ID="textBoxCode" Placeholder="Código de cobrador" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                    <asp:TextBox ID="textBoxCode" Placeholder="Código o nombre de cobrador" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
-                <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                <div class="col-lg-3  col-md-6 col-12 pb-2 ">
                     <%--                    <label for="textBoxClientCode" class="form-control-label">Código de cliente</label>--%>
 
-                    <asp:TextBox ID="textBoxClientCode" runat="server" Placeholder="Código de cliente" CssClass="form-control form-control-sm"></asp:TextBox>
+                    <asp:TextBox ID="textBoxClientCode" runat="server" Placeholder="Código o nombre de cliente" CssClass="form-control form-control-sm"></asp:TextBox>
 
                 </div>
 
 
 
                 <div class="col-lg-2 align-self-center">
-                    <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" />
+                    <asp:Button ID="submitButton" runat="server" Text="Aplicar Filtros" CssClass="btn btn-sm btn-outline-primary" OnClick="submitButton_Click" />
    <%--                 <asp:LinkButton ID="LinkButtonClear" ToolTip="Limpiar filtros" CssClass="btn btn-sm btn-outline-dark" runat="server">
                         <i class="bi bi-stars"></i>
                     </asp:LinkButton>--%>

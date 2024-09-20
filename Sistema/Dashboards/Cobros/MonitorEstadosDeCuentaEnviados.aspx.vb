@@ -45,9 +45,9 @@ Public Class MonitorEstadosDeCuentaEnviados
             ddlLeader.DataBind()
             ddlLeader.Items.Insert(0, New ListItem("Todos los líderes", ""))
         End Using
-        ddlStatus.Items.Add(New ListItem("Todos", 0))
-        ddlStatus.Items.Add(New ListItem("Enviados", 1))
-        ddlStatus.Items.Add(New ListItem("No Enviados", 2))
+        ddlStatus.Items.Add(New ListItem("Todos los mensajes", 0))
+        ddlStatus.Items.Add(New ListItem("Mensajes enviados", 1))
+        ddlStatus.Items.Add(New ListItem("Mensajes no Enviados", 2))
 
 
 
@@ -143,7 +143,7 @@ Public Class MonitorEstadosDeCuentaEnviados
                 paramsStringSPList.Add("@Phone=@Phone")
 
                 sqlParameters.Add(New SqlParameter("@Phone", "%" & phone & "%"))
-                sqlCountParameters.Add(New SqlParameter("@Leader", "%" & LeaderCode & "%"))
+                sqlCountParameters.Add(New SqlParameter("@Phone", "%" & phone & "%"))
 
             End If
             Dim paramsSPString = ""
@@ -153,9 +153,19 @@ Public Class MonitorEstadosDeCuentaEnviados
             End If
 
 
+            Dim procedure = ""
+            If DashboardType.SelectedValue = 0 Then
+                procedure = "SP_VS_DASH_GET_SENT_ACOUNT_STATEMENTS_GROUPED"
+            Else
+                procedure = "SP_VS_DASH_GET_SENT_ACOUNT_STATEMENTS"
+            End If
+
+
+            Dim result As IEnumerable(Of Object)
 
             Using context As New FunamorContext()
-                Dim toltalC = context.Database.SqlQuery(Of Integer)($"EXEC SP_VS_DASH_GET_SENT_ACOUNT_STATEMENTS {paramsCountSPString}", sqlCountParameters.ToArray()).FirstOrDefault()
+
+                Dim totalC As Integer = context.Database.SqlQuery(Of Integer)($"EXEC {procedure} {paramsCountSPString}", sqlCountParameters.ToArray()).FirstOrDefault()
 
                 sqlParameters.Add(New SqlParameter("@Offset", offset))
 
@@ -163,9 +173,15 @@ Public Class MonitorEstadosDeCuentaEnviados
                 If paramsStringSPList.Count > 0 Then
                     paramsSPString = String.Join(", ", paramsStringSPList)
                 End If
+                If DashboardType.SelectedValue = 0 Then
+                    result = context.Database.SqlQuery(Of WhatsAppMonitorGroupedDto)(
+                    $"EXEC {procedure} {paramsSPString}", sqlParameters.ToArray()).ToList()
+                Else
+                    result = context.Database.SqlQuery(Of WhatsAppMonitorDto)(
+           $"EXEC {procedure} {paramsSPString}", sqlParameters.ToArray()).ToList()
+                End If
 
-                Dim result As List(Of WhatsAppMonitorDto) = context.Database.SqlQuery(Of WhatsAppMonitorDto)(
-                    $"EXEC SP_VS_DASH_GET_SENT_ACOUNT_STATEMENTS {paramsSPString}", sqlParameters.ToArray()).ToList()
+
 
 
 
@@ -174,9 +190,9 @@ Public Class MonitorEstadosDeCuentaEnviados
                 DashboardGridview.DataSource = result
                 DashboardGridview.DataBind()
 
-                TotalItems = toltalC
+                TotalItems = totalC
                 PageNumber = selectedPage
-                TotalPages = Math.Ceiling(toltalC / PageSize)
+                TotalPages = Math.Ceiling(totalC / pagesize)
 
                 ' Update the Previous and Next buttons' enabled state
                 Dim pages As New List(Of Integer)()
@@ -184,7 +200,7 @@ Public Class MonitorEstadosDeCuentaEnviados
                     pages.Add(i)
                 Next
 
-                rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
+                rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, pagesize, PageNumber, 3)
                 rptPager.DataBind()
                 lnkbtnPrevious.Enabled = PageNumber > 1
                 lnkbtnNext.Enabled = PageNumber < TotalPages
@@ -236,16 +252,37 @@ Public Class MonitorEstadosDeCuentaEnviados
 
     Protected Sub DashboardGridview_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
-            ' Get the value of the "sent" column (assuming the column index is 1)
-            Dim sentValue As String = e.Row.Cells(7).Text.Trim().ToLower()
+            ' Get the value of the "sent" column (assuming the column index is 1
+            If DashboardType.SelectedValue = 0 Then
+                e.Row.Cells(4).BackColor = System.Drawing.Color.GreenYellow
+                e.Row.Cells(5).BackColor = System.Drawing.Color.AntiqueWhite
+                e.Row.Cells(6).BackColor = System.Drawing.Color.Aquamarine
+                e.Row.Cells(7).BackColor = System.Drawing.Color.OrangeRed
 
-            ' If the value is not "yes", change the background color
-            If sentValue <> "enviado" Then
-                e.Row.BackColor = System.Drawing.Color.Red
-                e.Row.ForeColor = System.Drawing.Color.Red
-                e.Row.CssClass = "table-danger"
-                e.Row.Font.Strikeout = True
+
+
+
+            Else
+                Dim sentValue As String = e.Row.Cells(7).Text.Trim().ToLower()
+
+                ' If the value is not "yes", change the background color
+                If sentValue <> "enviado" Then
+                    e.Row.BackColor = System.Drawing.Color.Red
+                    e.Row.ForeColor = System.Drawing.Color.Red
+                    e.Row.CssClass = "table-danger"
+                    e.Row.Font.Strikeout = True
+                End If
             End If
+
         End If
+    End Sub
+
+    Protected Sub submitButton_Click(sender As Object, e As EventArgs)
+        ReBind()
+
+    End Sub
+
+    Protected Sub DashboardType_SelectedIndexChanged(sender As Object, e As EventArgs)
+        ReBind()
     End Sub
 End Class

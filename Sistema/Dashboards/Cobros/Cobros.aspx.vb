@@ -243,6 +243,9 @@ Public Class CobrosDashboard
         endDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         startDate.Text = DateTime.Now.ToString("yyyy-MM-dd")
         Using context As New FunamorContext, ventasContext As New AeVentasDbContext
+            Console.WriteLine("FILLDLL")
+
+            context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
             Dim companies = context.Empresas.AsNoTracking().Where(Function(e) e.Codigo IsNot Nothing AndAlso e.Codigo.Trim().Length > 0).Select(Function(c) New With {c.Codigo, c.Nombre}).ToList()
             ddlCompany.DataSource = companies
             ddlCompany.DataTextField = "Nombre"
