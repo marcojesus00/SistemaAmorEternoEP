@@ -3205,6 +3205,114 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.InventarioDeEquipo._PnlAssign">
+<summary>
+PnlAssign control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DDLmployee">
+<summary>
+DDLmployee control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._TextBoxItemId">
+<summary>
+TextBoxItemId control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DdlBoss">
+<summary>
+DdlBoss control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DdlCity">
+<summary>
+DdlCity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DdlBusinessDepartments">
+<summary>
+DdlBusinessDepartments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DdlDepartments">
+<summary>
+DdlDepartments control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._TextBoxDescription">
+<summary>
+TextBoxDescription control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._lnkButtonAssingn">
+<summary>
+lnkButtonAssingn control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._PnlPrimary">
+<summary>
+PnlPrimary control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._DashboardGridview">
+<summary>
+DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.InventarioDeEquipo._alertPlaceholder">
+<summary>
+alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.MapClusteredPage._MapTitleHolder">
 <summary>
 MapTitleHolder control.
@@ -9175,6 +9283,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.principal._Empleado">
 <summary>
 Empleado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButtonInventory">
+<summary>
+LinkButtonInventory control.
 </summary>
 <remarks>
 Auto-generated field.

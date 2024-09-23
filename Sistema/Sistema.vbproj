@@ -2473,6 +2473,7 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Helpers\api\Documents.vb" />
     <Compile Include="Helpers\api\whatsapi.vb" />
     <Compile Include="Helpers\AuthHelper.vb" />
     <Compile Include="Helpers\CachingHelper.vb" />

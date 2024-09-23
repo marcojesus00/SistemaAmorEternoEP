@@ -233,7 +233,7 @@ where c.codigo_cobr like @Cobrador"
             Dim falla = ""
             Dim queue1 As Integer = 0
             Dim fallas As New List(Of String)
-            Dim Usuario_Aut = Session("Usuario_Aut")
+            Dim Usuario_Aut = "yo" 'Session("Usuario_Aut")
             Dim successCount = 0
             If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
                 Dim leaderPhone = Session("TelefonoLider")
@@ -446,12 +446,11 @@ where c.codigo_cobr like @Cobrador"
             End If
 
 
-            ' Auto-fit columns for better readability
             HttpContext.Current.Response.Clear()
             HttpContext.Current.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             HttpContext.Current.Response.AddHeader("content-disposition", $"attachment; filename={title.Replace(" ", "_")}.xlsx")
 
-            ' Stream the Excel package to the client
+            ' Stream  to the client
             Using memoryStream As New MemoryStream()
                 package.SaveAs(memoryStream)
                 memoryStream.WriteTo(HttpContext.Current.Response.OutputStream)

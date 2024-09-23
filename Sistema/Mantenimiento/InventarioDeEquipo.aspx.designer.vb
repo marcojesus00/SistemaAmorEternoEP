@@ -14,49 +14,76 @@ Option Explicit On
 Partial Public Class InventarioDeEquipo
 
     '''<summary>
-    '''DDLCategory control.
+    '''PnlAssign control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DDLCategory As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents PnlAssign As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''DdlModel control.
+    '''DDLmployee control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DdlModel As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents DDLmployee As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DdlBrand control.
+    '''TextBoxItemId control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DdlBrand As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents TextBoxItemId As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TxtboxSerialNumber control.
+    '''DdlBoss control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TxtboxSerialNumber As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents DdlBoss As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''TxtboxEmployeeName control.
+    '''DdlCity control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TxtboxEmployeeName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents DdlCity As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DdlBusinessDepartments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlBusinessDepartments As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DdlDepartments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlDepartments As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TextBoxDescription control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextBoxDescription As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lnkButtonAssingn control.
@@ -66,4 +93,31 @@ Partial Public Class InventarioDeEquipo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkButtonAssingn As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''PnlPrimary control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PnlPrimary As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''DashboardGridview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''alertPlaceholder control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class
