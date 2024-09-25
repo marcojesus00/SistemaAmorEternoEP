@@ -382,14 +382,14 @@ where c.codigo_cobr like @Cobrador"
         GridViewBadPhones.PageIndex = e.NewPageIndex
         rebindBadPhones()
     End Sub
-    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), title As String)
+    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), title As String, collectorName As String)
         ' Create a new ExcelPackage
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
         Using package As New ExcelPackage()
             ' Add a worksheet to the workbook
             If docs.Count > 0 Then
-                Dim tit = "Telefonos mal escritos"
+                Dim tit = $"Telefonos mal escritos del cobrador {collectorName}"
                 Dim worksheet = package.Workbook.Worksheets.Add(tit)
 
                 ' Add the title to the first row, merging cells A1 to C1
@@ -417,7 +417,7 @@ where c.codigo_cobr like @Cobrador"
                 worksheet.Cells.AutoFitColumns()
             End If
             If invalidPhones.Count > 0 Then
-                Dim tit = "Telefonos invalidos en whatsapp"
+                Dim tit = $"Telefonos invalidos en whatsapp del cobrador {collectorName}"
                 Dim worksheet2 = package.Workbook.Worksheets.Add(tit)
 
                 ' Add the title to the first row, merging cells A1 to C1
@@ -468,19 +468,21 @@ where c.codigo_cobr like @Cobrador"
         If cobrador Then
 
 
-            Dim docTitle As String = $"Telefonos malos del cobrador {cobrador}"
             Dim clients As List(Of DocsDto)
 
             clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
             Dim q = "EXEC SP_VS_CarteraInvalidaDeClienteParaWhatsapp @cobrador"
             ' Call the method to generate and download the Excel file
             Using FunamorContext As New FunamorContext()
+                Dim collectorName As String = FunamorContext.Database.SqlQuery(Of String)("SELECT NOMBR_COBR FROM COBRADOR WHERE CDOGIGO_COBR LIKE @COBRADOR", New SqlParameter("@COBRADOR", cobrador)).FirstOrDefault()
                 Dim sqlParameters As New List(Of SqlParameter)
                 sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
 
                 Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
             q, sqlParameters.ToArray()).ToList()
-                DownloadExcelFromList(clients, result, docTitle)
+                Dim docTitle As String = $"Telefonos malos del cobrador {cobrador} {collectorName}"
+
+                DownloadExcelFromList(clients, result, docTitle, collectorName)
 
             End Using
         End If
