@@ -512,7 +512,6 @@ where c.codigo_cobr like @Cobrador"
         htmlReport.Append($"<h1>TELÉFONOS DE CLIENTES A REVISAR DEL COBRADOR {collectorName}</h1>")
 
         htmlReport.Append($"<a>{DateTime.Now.ToString("dd/MM/yyyy")}</a>")
-
         ' Check if the 'docs' list has data
         If docs.Count > 0 Then
             Dim title As String = $"Teléfonos mal escritos:"
@@ -523,8 +522,8 @@ where c.codigo_cobr like @Cobrador"
             For Each doc As DocsDto In docs
                 htmlReport.Append("<tr>")
                 htmlReport.Append($"<td>{doc.Codigo}</td>")
-                htmlReport.Append($"<td>{doc.Nombre}</td>")
-                htmlReport.Append($"<td>{doc.Telefono}</td>")
+                htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
+                htmlReport.Append($"<td style=""min-width: 120px;"">{doc.Telefono}</td>")
                 htmlReport.Append("</tr>")
             Next
             htmlReport.Append("</table>")
@@ -540,7 +539,7 @@ where c.codigo_cobr like @Cobrador"
             For Each doc As DocsDto In invalidPhones
                 htmlReport.Append("<tr>")
                 htmlReport.Append($"<td>{doc.Codigo}</td>")
-                htmlReport.Append($"<td>{doc.Nombre}</td>")
+                htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
                 htmlReport.Append($"<td>{doc.Telefono}</td>")
                 htmlReport.Append("</tr>")
             Next
