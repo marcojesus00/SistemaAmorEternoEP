@@ -1036,19 +1036,28 @@ Public Class monitorventas
                     Try
                         Total += Convert.ToDecimal(Fila.Item(2))
                     Catch ex As Exception
-                        Throw New Exception("Error converting 'Fila.Item(2)' to Decimal: " & ex.Message)
+                        Dim itemValue As Object = Fila.Item(2)
+                        Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
+
+                        Throw New Exception($"Error converting 'Fila.Item(2)' *{itemDescription}* to Decimal: " & ex.Message)
                     End Try
 
                     Try
                         Visitados += Convert.ToDecimal(Fila.Item(6))
                     Catch ex As Exception
-                        Throw New Exception("Error converting 'Fila.Item(6)' to Decimal: " & ex.Message)
+                        Dim itemValue As Object = Fila.Item(6)
+                        Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
+
+                        Throw New Exception($"Error converting 'Fila.Item(6)' *{itemDescription}* to Decimal: " & ex.Message)
                     End Try
 
                     Try
                         Recibos += Convert.ToDecimal(Fila.Item(5))
                     Catch ex As Exception
-                        Throw New Exception("Error converting 'Fila.Item(5)' to Decimal: " & ex.Message)
+                        Dim itemValue As Object = Fila.Item(5)
+                        Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
+
+                        Throw New Exception($"Error converting 'Fila.Item(5)' *{itemDescription}* to Decimal: " & ex.Message)
                     End Try
 
                     Cobradores += 1
@@ -1058,13 +1067,29 @@ Public Class monitorventas
                     End If
 
                     If dlMostrar.SelectedIndex = 0 Then
-                        Verdes += Convert.ToDecimal(Fila.Item(8))
-                        lblVerdes.Text = "Verdes: " + Format(Verdes, "#,##0")
+
+                        Try
+                            Verdes += Convert.ToDecimal(Fila.Item(8))
+                            lblVerdes.Text = "Verdes: " + Format(Verdes, "#,##0")
+                        Catch ex As Exception
+                            Dim itemValue As Object = Fila.Item(8)
+                            Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
+
+                            Throw New Exception($"Error converting 'Fila.Item(8)': **{itemDescription}**  to Decimal: " & ex.Message)
+                        End Try
                     End If
 
                     If dlMostrar.SelectedIndex = 0 Or dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 2 Then
-                        Ventas += Convert.ToDecimal(Fila.Item(7))
-                        lblVentas.Text = "Ventas: " + Format(Ventas, "#,##0")
+                        Try
+                            Ventas += Convert.ToDecimal(Fila.Item(7))
+                            lblVentas.Text = "Ventas: " + Format(Ventas, "#,##0")
+                        Catch ex As Exception
+                            Dim itemValue As Object = Fila.Item(7)
+                            Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
+
+                            Throw New Exception($"Error converting 'Fila.Item(7)': **{itemDescription}**  to Decimal: " & ex.Message)
+                        End Try
+
                     End If
 
                     If dlMostrar.SelectedIndex = 3 Then
@@ -1285,6 +1310,7 @@ Public Class monitorventas
             Session("serviempre") = serviempre
             Session("serviceId") = serviceId
             Session("Product") = serviceName
+            Session("totalAmount") = totalAmount
             'txtcuotaApp.Text =
             Session.Add("EmpresaV", gvClientesVE.Rows(Fila).Cells(6).Text)
 

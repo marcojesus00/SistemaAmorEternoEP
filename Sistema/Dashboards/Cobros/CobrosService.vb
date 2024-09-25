@@ -22,14 +22,14 @@ Public Class CobrosService
         End If
         Dim leftj = ""
         If filters IsNot Nothing AndAlso filters.LeaderCode.Length > 0 Then
-            leftj = "LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr"
+            leftj = "LEFT JOIN cobrador cb WITH (NOLOCK) ON r.codigo_cobr = cb.codigo_cobr"
         End If
         Using funamorContext As New FunamorContext()
 
             Dim Query = $"
             SELECT {top} r.Num_doc as Codigo,  c.Codigo_clie as Codigo_cliente, LTRIM(RTRIM(c.Nombre_clie)) as Cliente, FORMAT(r.Por_lempira, 'C', 'es-HN')  as Cobrado, FORMAT(c.Saldo_actua , 'C', 'es-HN') as Saldo_actual, FORMAT(r.SALDOANT , 'C', 'es-HN') as Saldo_anterior, r.MARCA, r.rhora as Hora, FORMAT(r.RFECHA, 'dd-MM-yyyy') as Fecha, c.Cod_zona as Empresa, c.VZCODIGO as Zona,r.liquida, r.liquida2, r.LATITUD, r.LONGITUD
-            FROM aecobros.dbo.recibos r
-            LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
+            FROM aecobros.dbo.recibos r WITH (NOLOCK)
+            LEFT JOIN clientes c WITH (NOLOCK) ON r.Codigo_clie = c.Codigo_clie
             {leftj}
         "
             '"            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader and r.Num_doc like @Document"
@@ -39,7 +39,7 @@ Public Class CobrosService
 ORDER BY r.RFECHA DESC, Hora desc
 "
             Query += orderByClause
-            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
             Dim result As List(Of ReciboDTO) = funamorContext.Database.SqlQuery(Of ReciboDTO)(
                     Query, params.ToArray()).ToList()
@@ -61,9 +61,9 @@ ORDER BY r.RFECHA DESC, Hora desc
             SELECT r.codigo_cobr as Codigo, LTRIM(RTRIM(cb.nombre_cobr)) as Nombre, COUNT(r.Num_doc) as Recibos, SUM(r.Por_lempira) as Cobrado, cb.cob_lider as Lider
         "
             '"            WHERE r.RFECHA >= @start AND r.RFECHA <= @end and r.Codigo_clie like @client and r.MARCA LIKE @Mark AND r.codigo_cobr like @Collector AND c.Cod_zona like @Company AND c.VZCODIGO like @City and cb.cob_lider like @leader and r.Num_doc like @Document"
-            Dim fromClause = "            FROM aecobros.dbo.recibos r
-            LEFT JOIN clientes c ON r.Codigo_clie = c.Codigo_clie
-            LEFT JOIN cobrador cb ON r.codigo_cobr = cb.codigo_cobr
+            Dim fromClause = "            FROM aecobros.dbo.recibos r WITH (NOLOCK)
+            LEFT JOIN clientes c WITH (NOLOCK) ON r.Codigo_clie = c.Codigo_clie
+            LEFT JOIN cobrador cb  WITH (NOLOCK) ON r.codigo_cobr = cb.codigo_cobr
 "
             Dim groupByClause = "
 GROUP BY r.codigo_cobr, cb.nombre_cobr, cb.cob_lider
@@ -88,7 +88,7 @@ ORDER BY Cobrado desc"
                             {orderByClause} 
                             {paginationClause} OPTION(RECOMPILE)
                         "
-            'funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
             Dim result As List(Of groupedreceiptDto) = funamorContext.Database.SqlQuery(Of groupedreceiptDto)(
                     dataQuery, params.ToArray()).ToList()
@@ -116,9 +116,9 @@ ORDER BY Cobrado desc"
 
                 funamorContext.Database.CommandTimeout = 120
                 Dim selectClause As String = "select cr.codigo_cobr AS Codigo, cr.nombre_cobr as Nombre, count(cl.Codigo_clie) as Clientes, sum(cn.CONT_VALCUO) as Cuota,FORMAT(sum(cn.CONT_VALCUO), 'C', 'es-HN')   as Cuota_mensual " ' "select cr.codigo_cobr AS Codigo, cr.nombre_cobr, count(cl.Codigo_clie) as Clientes, sum(cl.Saldo_actua) as Cartera "
-            Dim fromClause As String = "from COBRADOR cr left join CLIENTES cl 
+            Dim fromClause As String = "from COBRADOR cr  WITH (NOLOCK) left join CLIENTES cl WITH (NOLOCK)
                  on cl.cl_cobrador = cr.codigo_cobr
-                 left join CONTRATO cn
+                 left join CONTRATO cn WITH (NOLOCK)
 				 on cl.Codigo_clie = cn.Codigo_clie"
             Dim whereClauseList As New List(Of String)()
             Dim paramsSPList As New List(Of String)()

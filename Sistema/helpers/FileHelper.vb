@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Reflection
 
 Public Class FileHelper
 
@@ -95,4 +96,119 @@ Public Class FileHelper
 
         End If
     End Function
+
+    Public Sub ExportDataTableToHtml(dataTable As DataTable, filePath As String)
+        Using writer As New StreamWriter(filePath)
+            ' Write the HTML header
+            writer.WriteLine("<html>")
+            writer.WriteLine("<head><title>DataTable Export</title></head>")
+            writer.WriteLine("<body>")
+            writer.WriteLine("<table border='1'>")
+
+            ' Write the table header
+            writer.WriteLine("<tr>")
+            For Each column As DataColumn In dataTable.Columns
+                writer.WriteLine($"<th>{column.ColumnName}</th>")
+            Next
+            writer.WriteLine("</tr>")
+
+            ' Write the table rows
+            For Each row As DataRow In dataTable.Rows
+                writer.WriteLine("<tr>")
+                For Each cell As Object In row.ItemArray
+                    writer.WriteLine($"<td>{cell.ToString()}</td>")
+                Next
+                writer.WriteLine("</tr>")
+            Next
+
+            ' Close the table and HTML tags
+            writer.WriteLine("</table>")
+            writer.WriteLine("</body>")
+            writer.WriteLine("</html>")
+        End Using
+    End Sub
+
+    Public Function ExportListToHtml(Of T)(list As List(Of T)) As String
+        If list Is Nothing OrElse list.Count = 0 Then
+            Return String.Empty
+        End If
+
+        Dim type As Type = GetType(T)
+        Dim properties As PropertyInfo() = type.GetProperties()
+
+        Dim htmlBuilder As New StringBuilder()
+
+        ' Write the HTML header
+        htmlBuilder.AppendLine("<html>")
+        htmlBuilder.AppendLine("<head><title>List Export</title></head>")
+        htmlBuilder.AppendLine("<body>")
+        htmlBuilder.AppendLine("<table border='1'>")
+
+        ' Write the table header
+        htmlBuilder.AppendLine("<tr>")
+        For Each prop As PropertyInfo In properties
+            htmlBuilder.AppendLine($"<th>{prop.Name}</th>")
+        Next
+        htmlBuilder.AppendLine("</tr>")
+
+        ' Write the table rows
+        For Each item As T In list
+            htmlBuilder.AppendLine("<tr>")
+            For Each prop As PropertyInfo In properties
+                Dim value As Object = prop.GetValue(item, Nothing)
+                htmlBuilder.AppendLine($"<td>{value}</td>")
+            Next
+            htmlBuilder.AppendLine("</tr>")
+        Next
+
+        ' Close the table and HTML tags
+        htmlBuilder.AppendLine("</table>")
+        htmlBuilder.AppendLine("</body>")
+        htmlBuilder.AppendLine("</html>")
+
+        Return htmlBuilder.ToString()
+    End Function
+
+    'Public Function ExportListToHtml(Of T)(list As List(Of T), filePath As String) As Boolean
+    '    If list Is Nothing OrElse list.Count = 0 Then
+    '        Return False
+    '    End If
+
+    '    Dim type As Type = GetType(T)
+    '    Dim properties As Reflection.PropertyInfo() = type.GetProperties()
+
+    '    Using writer As New StreamWriter(filePath)
+    '        ' Write the HTML header
+    '        writer.WriteLine("<html>")
+    '        writer.WriteLine("<head><title>List Export</title></head>")
+    '        writer.WriteLine("<body>")
+    '        writer.WriteLine("<table border='1'>")
+
+    '        ' Write the table header
+    '        writer.WriteLine("<tr>")
+    '        For Each prop As Reflection.PropertyInfo In properties
+    '            writer.WriteLine($"<th>{prop.Name}</th>")
+    '        Next
+    '        writer.WriteLine("</tr>")
+
+    '        ' Write the table rows
+    '        For Each item As T In list
+    '            writer.WriteLine("<tr>")
+    '            For Each prop As Reflection.PropertyInfo In properties
+    '                Dim value As Object = prop.GetValue(item, Nothing)
+    '                writer.WriteLine($"<td>{value}</td>")
+    '            Next
+    '            writer.WriteLine("</tr>")
+    '        Next
+
+    '        ' Close the table and HTML tags
+    '        writer.WriteLine("</table>")
+    '        writer.WriteLine("</body>")
+    '        writer.WriteLine("</html>")
+    '    End Using
+
+    '    Return True
+    'End Function
+
+
 End Class

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false"  EnableEventValidation="false" CodeBehind="monitorventas.aspx.vb" Inherits="Sistema.monitorventas" %>
 
-<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <%@ Register TagPrefix="uc" TagName="CorrectSalesDataClient" Src="~/controls/monitorDeVentas/CorrectDataClient.ascx" %>
 
 <!DOCTYPE html>
@@ -403,10 +403,10 @@
                        <div class="col-8">
                            <div class="input-group-prepend align-content-center" style="text-align: left"">
                                
-                           <label class="alert-primary align-content-center">Está seguro qué desea grabar este documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
+                           <label class="alert-primary align-content-center">¿Está seguro qué desea grabar este documento?</label> </div></div></div><div class="row" style="background-color: white; padding-top: 15px;">
                        <div class="col-8">
                            <div class="col" style="text-align: right">
-                               <asp:Button ID="BtnSiSalvarCamb" runat="server" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp<asp:Button ID="BtnNoSalvar" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-secondary" />
+                               <asp:LinkButton ID="BtnSiSalvarCamb" OnClientClick="if (this.innerText === 'Procesando...') return false; this.innerText = 'Procesando...'; return true;"  runat="server" Text="   Salvar   " CssClass="btn btn-sm btn-success" />&nbsp&nbsp<asp:Button ID="BtnNoSalvar" runat="server" Text="Cancelar" CssClass="btn btn-sm btn-danger" />
                            </div>
                        </div>
                      

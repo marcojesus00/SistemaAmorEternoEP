@@ -494,18 +494,25 @@ Public Class monitorclientes
 
             Informe.SetDatabaseLogon(Usuario, Clave)
             Informe.SetParameterValue("Cliente", Session("CodigoCliente").TrimEnd)
-
+            Dim codigoCob = ""
             Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
-            Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-
+            Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
+            Using fun As New FunamorContext
+                Dim codigoCliente As String = Session("CodigoCliente").ToString()
+                Dim cliente = fun.Clientes.FirstOrDefault(Function(c) c.Codigo = codigoCliente)
+                If cliente IsNot Nothing Then
+                    codigoCob = cliente.CodigoCobrador
+                End If
+            End Using
+            Dim co = ""
             Try
                 Dim nombre As String = Session("NombreCliente")
 
                 Dim countryCode = ddlCountryCode.SelectedValue.Replace("+", "")
                 Dim phone = TxtTelefonoWhats.Text
-                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al numero Pbx: O escribir al siguiente numero"
+                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
                 Dim user = Session("Usuario_Aut")
-                Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=Informe, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:="default")
+                Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:="default", CodigoDeCobrador:=codigoCob, BatchId:="N/A")
 
 
                 If r4esult.Success = True Then

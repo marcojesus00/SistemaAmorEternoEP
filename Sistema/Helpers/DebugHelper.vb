@@ -6,53 +6,51 @@ Public Class DebugHelper
 
     Public Shared Function SendDebugInfo(alertType As String, exception As Exception, user As String, Optional detail As String = "") As String
         If TypeOf exception IsNot ThreadAbortException Then
-            Dim ServerPath As String = ConfigurationManager.AppSettings("ServerPath")
-            Dim app As String = "" ' Replace with actual application version if needed
-            Dim timestamp As String = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")
-            Dim stackTrace As String = Environment.StackTrace
-            Dim userInfo As String = "User: " & HttpContext.Current.User.Identity.Name ' Example for web applications
-            Dim authUser As String = user
-            Dim environmentInfo As String = $"Server: {Environment.MachineName}, Application Version: {app}"
-            Dim debugInfo As String = vbCrLf & $"Alert Type: {alertType}" & vbCrLf &
-                                                  $"Alert Message: {exception.Message}" & vbCrLf &
-                                                  $"Detail: {detail}" & vbCrLf &
-                                                 $"Timestamp: {timestamp}" & vbCrLf &
-                                              $"HResult error code: {exception.HResult}" & vbCrLf & vbCrLf &
-                                              $"Exception type name: {exception.GetType().Name}" & vbCrLf &
-                                  $"TargetSite: {exception.TargetSite}" & vbCrLf &
-                                  $"Inner exception: {exception.InnerException}" & vbCrLf &
-                                  $"User: {authUser}" & vbCrLf &
-                                  $"Server: {Environment.MachineName}" & vbCrLf & vbCrLf &
-                                  $"Stack Trace:" & vbCrLf & exception.StackTrace
-
-            ' Path to the log file
-            Dim monthName As String = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)
-            Dim year As String = DateTime.Now.ToString("yyyy")
-            Dim dayName As String = DateTime.Now.ToString("dddd")
-            Dim day As String = DateTime.Now.ToString("dd")
-
-            Dim logFilePath As String = Path.Combine(ServerPath, $"Musica\Logs\{Environment.MachineName}_{dayName}_{day}_{monthName}_{year}.log")
-
-
-            ' Ensure the directory exists
-            Dim logDir As String = Path.GetDirectoryName(logFilePath)
-            If Not Directory.Exists(logDir) Then
-                Directory.CreateDirectory(logDir)
-            End If
-
-            ' Write the debug information to the log file
             Try
-                Using writer As StreamWriter = New StreamWriter(logFilePath, True)
-                    writer.WriteLine(debugInfo)
-                    writer.WriteLine(New String("-"c, 80)) ' Separator line
-                End Using
-            Catch ex As Exception
-                ' Handle any errors that might occur while writing to the log file
-                ' For example, you might log this error to a different logging mechanism
-            End Try
+                ' Basic information
+                Dim timestamp As String = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")
+                Dim serverName As String = Environment.MachineName
+                Dim appVersion As String = "" ' Add actual app version if needed
+                Dim userInfo As String = $"User: {HttpContext.Current.User.Identity.Name}"
+                Dim environmentInfo As String = $"Server: {serverName}, Application Version: {appVersion}"
+                Dim innerExceptionMsg As String = If(exception.InnerException IsNot Nothing, exception.InnerException.Message, "None")
 
-            Return debugInfo
+                ' Build the debug message
+                Dim logBuilder As New StringBuilder()
+                logBuilder.AppendLine($"[ERROR] {timestamp} HResult: {exception.HResult}")
+                logBuilder.AppendLine()
+                logBuilder.AppendLine($"User: {user}")
+                logBuilder.AppendLine($"Environment: {environmentInfo}")
+                logBuilder.AppendLine($"Alert Type: {alertType}")
+                logBuilder.AppendLine($"exception Type: {exception.GetType().Name}")
+                logBuilder.AppendLine()
+                logBuilder.AppendLine($"Message: {exception.Message}")
+                logBuilder.AppendLine($"Detail: {detail}")
+                logBuilder.AppendLine($"Target Site: {exception.TargetSite}")
+                logBuilder.AppendLine($"Inner Exception: {innerExceptionMsg}")
+                logBuilder.AppendLine("Stack Trace:")
+                logBuilder.AppendLine(exception.StackTrace)
+                logBuilder.AppendLine()
+                logBuilder.AppendLine(New String("-"c, 80)) ' Separator
+                logBuilder.AppendLine()
+                logBuilder.AppendLine()
+
+                Dim serverPath As String = ConfigurationManager.AppSettings("ServerPath")
+                Dim logFilePath As String = Path.Combine(serverPath, "Musica\Logs", $"{serverName}_{DateTime.Now:dddd_dd_MMMM_yyyy}.log")
+
+                Dim logDir As String = Path.GetDirectoryName(logFilePath)
+                If Not Directory.Exists(logDir) Then Directory.CreateDirectory(logDir)
+
+                Using writer As New StreamWriter(logFilePath, True)
+                    writer.WriteLine(logBuilder.ToString())
+                End Using
+
+                Return logBuilder.ToString()
+            Catch logEx As Exception
+                Return $"Failed to write log. Error: {logEx.Message}"
+            End Try
         End If
+
         Return False
     End Function
 

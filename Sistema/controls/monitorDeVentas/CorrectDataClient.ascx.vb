@@ -132,7 +132,7 @@ Public Class DataClient
             Using dbcontext As New AeVentasDbContext
 
 
-                DataOfClient = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).FirstOrDefault()
+                DataOfClient = dbcontext.DatosDeClientes.Where(Function(c) c.CodigoVendedor.Contains(e.SalesPersonId) And c.Identidad.Contains(e.IdentificationDocument)).OrderByDescending(Function(c) c.cl_fecha).FirstOrDefault()
                 Dim deptoCiudadQuery = dbcontext.MunicipiosZonasDepartamentos _
                                       .Select(Function(d) New With {d.MunicipioId, d.NombreMunicipio}).Where(Function(c) c.NombreMunicipio.Contains(DataOfClient.Municipio)).FirstOrDefault()
                 Dim department = dbcontext.MunicipiosZonasDepartamentos _
@@ -288,6 +288,19 @@ Public Class DataClient
             newDataClient.Dir3_client = TextBoxAddress3.Text.Trim
 
             Using Context As New AeVentasDbContext()
+                Context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+
+                Dim parameters As Object() = {
+    New SqlParameter("@Identidad", SqlDbType.NVarChar) With {.Value = newDataClient.Identidad},
+    New SqlParameter("@Vendedor", SqlDbType.NVarChar) With {.Value = newDataClient.CodigoVendedor},
+    New SqlParameter("@Cliente", SqlDbType.NVarChar) With {.Value = newDataClient.Codigo}
+}
+
+                If newDataClient.Identidad <> DataOfClient.Identidad.Replace("-", String.Empty).Trim Then
+                    Context.Database.ExecuteSqlCommand("update CLIENTESN set identidad=@Identidad
+  where CL_VENDEDOR=@Vendedor and Codigo_clie=@Cliente
+  and convert(date,cl_fecha)=convert(date,getdate()) ", parameters)
+                End If
                 Context.ExecuteVIENECLIENTESN_A3(
         Codigo_clie:=newDataClient.Codigo,
         Nombre_clie:=newDataClient.Nombre,
@@ -386,7 +399,8 @@ Public Class DataClient
 
     End Sub
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
-        Dim Letra, Cuota As Integer
+        Dim Letra As Integer
+        Dim Cuota As Decimal
         Try
             If textBoxCuotaContratoApp.Text.Length > 0 And textBoxValorContratoApp.Text.Length > 0 And textBoxLetraContratoApp.Text.Length > 0 And TxtPrimaApp.Text.Length > 0 Then
 
@@ -396,6 +410,7 @@ Public Class DataClient
                 Else
                     If textBoxValorContratoApp.Text > 0 And TxtPrimaApp.Text > 0 And textBoxCuotaContratoApp.Text > 0 Then
                         Letra = (textBoxValorContratoApp.Text - TxtPrimaApp.Text) / textBoxCuotaContratoApp.Text
+
                         Cuota = textBoxCuotaContratoApp.Text
                     End If
 
@@ -465,6 +480,10 @@ Public Class DataClient
             End If
 
 
+            Prima = Session("initialPayment")
+            ValorCont = Session("totalAmount")
+
+
             If textBoxProductNombre1.Text.Trim.Length = 0 Then
                 msg = "Error: Debe agregar un producto"
                 isValid = False
@@ -476,7 +495,7 @@ Public Class DataClient
             End If
 
             If textBoxCuotaContratoApp.Text.TrimEnd > 0 And Prima = textBoxValorContratoApp.Text Then
-                msg = "Error: Cuotas no debe ser Cero"
+                msg = "Error: Está pagando de más"
                 isValid = False
             End If
 
@@ -515,7 +534,7 @@ Public Class DataClient
 
 
 
-            If textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
+            If ((textBoxCuotaContratoApp.Text * textBoxLetraContratoApp.Text) - textBoxCuotaContratoApp.Text) > ((textBoxValorContratoApp.Text * textBoxCantidadProducto1app.Text) - Prima) Then
                 msg = "Error: Verifique el N.Cuotas y Letras"
                 isValid = False
             End If

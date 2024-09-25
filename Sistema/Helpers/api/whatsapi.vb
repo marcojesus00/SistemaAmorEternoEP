@@ -61,24 +61,26 @@ Public Class whatsapi
             Return $"Error: {ex.Message}"
         End Try
     End Function
-    Public Shared Function sendWhatsAppDocs(doc As Object, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, Optional docDescription As String = "Estado de cuenta") As ResultW
+    Public Shared Function sendWhatsAppDocs(doc As System.IO.Stream, name As String, couentryCode As String, localNumber As String, caption As String, clientCode As String, user As String, instancia As String, CodigoDeCobrador As String, BatchId As String, Optional docDescription As String = "Estado de cuenta") As ResultW
+        Dim estado As String = "no definido"
 
         Dim msg = ""
         Dim isSuccess As Boolean = False
         Dim IdDeLaPlataforma As Integer = 0
+        Dim referenceID As Guid = Guid.NewGuid()
+
         ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
         'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
         Using memoryStream As New System.IO.MemoryStream()
             ' Export the report to the memory stream as a PDF
             Try
-                doc.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat).CopyTo(memoryStream)
+                doc.CopyTo(memoryStream)
 
                 ' Convert the memory stream to a byte array
                 Dim reportBytes As Byte() = memoryStream.ToArray()
 
                 ' Convert the byte array to a base64 string
                 Dim base64String As String = Convert.ToBase64String(reportBytes)
-
 
 
 
@@ -98,7 +100,7 @@ Public Class whatsapi
                     {"file_name", name},
                     {"caption", caption},
                     {"priority", 10},
-                    {"referenceID", ""},
+                    {"referenceID", referenceID.ToString()},
                     {"instance", instancia}
                 }
 
@@ -120,16 +122,17 @@ Public Class whatsapi
                     If Integer.TryParse(jsonResponse.Data, IdDeLaPlataforma) Then
                         msg = "WhatsApp enviado con éxito"
                         isSuccess = True
+                        estado = "enviado"
                     Else
                         Throw New Exception("Error con id de la plataforma")
                     End If
                 Else
                     If jsonResponse.Errors IsNot Nothing AndAlso jsonResponse.Errors IsNot Nothing Then
-                        msg = jsonResponse.Errors(0).Msg
+                        msg = $"{response1.StatusCode}" + jsonResponse.Errors(0).Msg
                     Else
                         msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
                     End If
-                    msg = $"Error, intente de nuevo: " + msg
+                    msg = $"Error " + msg
 
                 End If
             Catch ex As Exception
@@ -137,8 +140,13 @@ Public Class whatsapi
                 DebugHelper.SendDebugInfo("danger", ex, user)
                 msg = "Error del sistema: " + ex.GetType().Name
             End Try
+            If msg.ToLower.Contains("invalid") Then
+                estado = "invalido"
+            ElseIf msg.ToLower.Contains("queue") Then
+                estado = "cola"
+            End If
             Dim result As New ResultW(isSuccess, msg)
-            logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, IdDeLaPlataforma)
+            logW(name:=name, couentryCode:=couentryCode, localNumber:=localNumber, caption:=caption, clientCode:=clientCode, user:=user, instancia:=instancia, docDescription:=docDescription, isSuccess:=isSuccess, msg:=msg, CodigoDeCobrador:=CodigoDeCobrador, Estado:=estado, IdDeLaPlataforma:=IdDeLaPlataforma, BatchId:=BatchId, ReferenceId:=referenceID)
 
             Return result
         End Using
@@ -149,15 +157,15 @@ Public Class whatsapi
 
 
 
-    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, Optional IdDeLaPlataforma = 0)
+    Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, ReferenceId, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A")
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
             Dim sql As String = "
             INSERT INTO [dbo].[LogDocumentosPorWhatsApp]
-            ([CodigoDeCliente], [Telefono], [Usuario], [NombreDeDocumento], [Instancia], [CodigoDePais], [Mensaje], [DescripcionDeDocumento], [FueExitoso], [MensajeDelResultado], [IdDeLaPlataforma])
+            ([CodigoDeCliente], [Telefono], [Usuario], [NombreDeDocumento], [Instancia], [CodigoDePais], [Mensaje], [DescripcionDeDocumento], [FueExitoso], [MensajeDelResultado], [IdDeLaPlataforma], [CodigoDeCobrador], [Estado], [BatchId], [ReferenceId])
             VALUES
-            (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso, @MensajeDelResultado, @IdDeLaPlataforma);
+            (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso, @MensajeDelResultado, @IdDeLaPlataforma, @CodigoDeCobrador, @Estado, @BatchId, @ReferenceId);
         "
             Dim succ
             If isSuccess = True Then
@@ -177,7 +185,11 @@ Public Class whatsapi
                 New SqlParameter("@DescripcionDeDocumento", docDescription),
                 New SqlParameter("@FueExitoso", succ),
                 New SqlParameter("@MensajeDelResultado", msg),
-                New SqlParameter("IdDeLaPlataforma", IdDeLaPlataforma)
+                New SqlParameter("@IdDeLaPlataforma", IdDeLaPlataforma),
+                New SqlParameter("@CodigoDeCobrador", CodigoDeCobrador),
+                                New SqlParameter("@Estado", Estado),
+New SqlParameter("@BatchId", BatchId),
+New SqlParameter("@ReferenceId", ReferenceId)
             }
 
             context.Database.ExecuteSqlCommand(sql, parameters)
