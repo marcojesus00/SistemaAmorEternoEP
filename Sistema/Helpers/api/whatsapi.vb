@@ -157,6 +157,44 @@ Public Class whatsapi
 
 
 
+
+    Public Shared Function PostHtmlAndReceivePdf(htmlContent As String, title As String, download As Boolean, Optional filepath As String = "")
+        Dim url = "http://192.168.20.75:8000/v1/helpers/html-to-pdf/"
+
+        ' Create an instance of HttpClient
+        Using client As New HttpClient()
+            ' Define the JSON payload
+            Dim requestBody As String = $"{{ ""html_content"": ""{htmlContent.Replace("""", "\""")}"" }}"
+
+            ' Prepare the content with the correct content type (application/json)
+            Dim content As New StringContent(requestBody, Encoding.UTF8, "application/json")
+
+            ' Send the POST request to the API endpoint
+            Dim response As HttpResponseMessage = client.PostAsync(url, content).Result
+
+            ' Ensure the response is successful (status code 200 OK)
+
+            If response.IsSuccessStatusCode Then
+                Dim pdfBytes As Byte() = response.Content.ReadAsByteArrayAsync().Result
+                If download Then
+                    HttpContext.Current.Response.Clear()
+                    HttpContext.Current.Response.ContentType = "application/pdf"
+                    HttpContext.Current.Response.AddHeader("Content-Disposition", $"attachment; filename={title}.pdf")
+                    HttpContext.Current.Response.BinaryWrite(pdfBytes)
+                    HttpContext.Current.Response.End()
+                Else
+
+                End If
+
+                ' Clear the response
+
+            Else
+                ' Handle errors if needed
+                Throw New HttpException("ERROR code:" & response.StatusCode.ToString() & " reason:" & response.ReasonPhrase & " content:" & response.Content.ToString())
+            End If
+        End Using
+    End Function
+
     Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, ReferenceId, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A")
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)

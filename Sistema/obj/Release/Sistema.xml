@@ -2494,6 +2494,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._LinkButtonDownloadPDF">
+<summary>
+LinkButtonDownloadPDF control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._PnlPrimary">
 <summary>
 PnlPrimary control.
@@ -2567,168 +2576,6 @@ To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._alertPlaceholder">
-<summary>
-alertPlaceholder control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._DashboardType">
-<summary>
-DashboardType control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._textBoxInitialDate">
-<summary>
-textBoxInitialDate control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._TextBoxFinalDate">
-<summary>
-TextBoxFinalDate control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._ddlLeader">
-<summary>
-ddlLeader control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._ddlStatus">
-<summary>
-ddlStatus control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._textBoxPhone">
-<summary>
-textBoxPhone control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._textBoxCode">
-<summary>
-textBoxCode control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._textBoxClientCode">
-<summary>
-textBoxClientCode control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._submitButton">
-<summary>
-submitButton control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._PnlPrimary">
-<summary>
-PnlPrimary control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._DashboardGridview">
-<summary>
-DashboardGridview control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._lblTotalCount">
-<summary>
-lblTotalCount control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._PreviousPage">
-<summary>
-PreviousPage control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._lnkbtnPrevious">
-<summary>
-lnkbtnPrevious control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._rptPager">
-<summary>
-rptPager control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._NextPage">
-<summary>
-NextPage control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._lnkbtnNext">
-<summary>
-lnkbtnNext control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.MonitorEstadosDeCuentaEnviados._alertPlaceholder">
 <summary>
 alertPlaceholder control.
 </summary>
