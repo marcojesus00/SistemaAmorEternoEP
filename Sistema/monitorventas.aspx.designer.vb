@@ -329,6 +329,33 @@ Partial Public Class monitorventas
     Protected WithEvents ifRepote As Global.System.Web.UI.HtmlControls.HtmlIframe
 
     '''<summary>
+    '''PnlFixCorrelative control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PnlFixCorrelative As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''LinkButtonFixCorrelative control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonFixCorrelative As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''LinkButtonCancelFixCorrelative control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonCancelFixCorrelative As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''PanelEditarVenta control.
     '''</summary>
     '''<remarks>

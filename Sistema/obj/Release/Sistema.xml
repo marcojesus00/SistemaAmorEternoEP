@@ -4708,6 +4708,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.monitorventas._PnlFixCorrelative">
+<summary>
+PnlFixCorrelative control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas._LinkButtonFixCorrelative">
+<summary>
+LinkButtonFixCorrelative control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas._LinkButtonCancelFixCorrelative">
+<summary>
+LinkButtonCancelFixCorrelative control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.monitorventas._PanelEditarVenta">
 <summary>
 PanelEditarVenta control.

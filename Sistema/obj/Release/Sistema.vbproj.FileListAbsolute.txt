@@ -129,6 +129,7 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Newto
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Data.SqlClient.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Data.SQLite.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Security.Principal.Windows.xml
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.AssemblyReference.cache
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Interop.CrystalAnalysisCommLayerLib.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Interop.CrystalReportsCommonObjectModelLib.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.ResolveComReference.cache
@@ -139,7 +140,3 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Relea
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.AssemblyReference.cache
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.Interfaces.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.System.Drawing.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.xml
