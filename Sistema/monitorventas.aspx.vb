@@ -295,6 +295,20 @@ Public Class monitorventas
         End Try
 
     End Sub
+    Protected Sub LinkButtonFixCorrelative_Click(sender As Object, e As EventArgs)
+        Dim documentNumberToFIx = Session("DocumentNumberToFIx")
+        Alert(FixHelper.FixDbCorrelative(documentNumberToFIx), "info")
+        PnlFixCorrelative.Visible = False
+
+        'btnBuscar_Click(sender, e)
+        'PanelImpresion.Visible = False
+        'Panel1.Visible = True
+
+    End Sub
+
+    Protected Sub LinkButtonCancelFixCorrelative_Click(sender As Object, e As EventArgs)
+        PnlFixCorrelative.Visible = False
+    End Sub
 
     Protected Sub txtBuscarVendedorV_TextChanged(sender As Object, e As EventArgs)
         Try
@@ -1691,14 +1705,7 @@ Public Class monitorventas
 
     End Sub
 
-    Protected Sub LinkButtonFixCorrelative_Click(sender As Object, e As EventArgs)
-        Dim documentNumberToFIx = Session("DocumentNumberToFIx")
-        Alert(FixHelper.FixDbCorrelative(documentNumberToFIx), "INFO")
-    End Sub
 
-    Protected Sub LinkButtonCancelFixCorrelative_Click(sender As Object, e As EventArgs)
-        PnlFixCorrelative.Visible = False
-    End Sub
 
     Private Sub BtnCerrarStatus_click(Sender As Object, e As EventArgs) Handles BtnCerrarStatus.Click
         Try

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="MonitorEstadosDeCuentaEnviados.aspx.vb" Inherits="Sistema.MonitorEstadosDeCuentaEnviados" %>
+﻿<%@ Page Title="Monitor de estados enviados" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="MonitorEstadosDeCuentaEnviados.aspx.vb" Inherits="Sistema.MonitorEstadosDeCuentaEnviados" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
         <h2 class=" text-center">Envíos de WhatsApp</h2>
     <div class="container-fluid container-lg mt-1 mb-1">
