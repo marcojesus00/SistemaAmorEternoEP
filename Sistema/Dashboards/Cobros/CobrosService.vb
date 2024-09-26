@@ -107,11 +107,8 @@ ORDER BY Cobrado desc"
 
 
     Public Function GetClientsGroupedByCollectorF(filters As CobrosFiltersData, params As List(Of SqlParameter), totalCountparams As List(Of SqlParameter)) As PaginatedResult(Of PortfolioIDto)
-        'Dim executionStrategy As DbExecutionStrategy()
-        'sqlserver
-        'executionStrategy.Execute(
-        'Sub()
-            Using funamorContext As New FunamorContext
+
+        Using funamorContext As New FunamorContext
                 funamorContext.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
                 funamorContext.Database.CommandTimeout = 120

@@ -251,6 +251,23 @@
             </div>
             
         </asp:Panel>
+        <asp:Panel ID="PnlFixCorrelative" Visible="false" runat="server">
+            <div class="card">
+                <div class="card-title">Error de correlativo</div>
+                <div class="card-body">
+                    <a>¿Desea corregirlo?</a>
+                     <asp:linkbutton CssClass="btn btn-sm btn-outline-primary" ID="LinkButtonFixCorrelative" runat="server" OnClick="LinkButtonFixCorrelative_Click">
+                                                 <i class="bi bi-stars"></i>Si
+
+                     </asp:linkbutton>
+                    <asp:LinkButton CssClass="btn btn-sm btn-outline-danger" OnClick="LinkButtonCancelFixCorrelative_Click" runat="server" ID="LinkButtonCancelFixCorrelative">
+                                                                         <i class="bi bi-stars"></i>No
+
+                    </asp:LinkButton>
+                </div>
+
+            </div>
+        </asp:Panel>
         <%-- Panel Para Editar Venta --%>
         <div class="container-fluid" style="background-color: rgba(0,0,0,0.6); position: absolute; left: 0; top: 0; bottom: 0" id="PanelEditarVenta" runat="server" visible="false">
             <div  style="padding-left: 15%; padding-right: 15%; padding-top: 40px;">

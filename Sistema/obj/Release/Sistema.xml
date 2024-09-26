@@ -2494,6 +2494,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._LinkButtonDownloadPDF">
+<summary>
+LinkButtonDownloadPDF control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._PnlPrimary">
 <summary>
 PnlPrimary control.
@@ -4963,6 +4972,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.monitorventas._ifRepote">
 <summary>
 ifRepote control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas._PnlFixCorrelative">
+<summary>
+PnlFixCorrelative control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas._LinkButtonFixCorrelative">
+<summary>
+LinkButtonFixCorrelative control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.monitorventas._LinkButtonCancelFixCorrelative">
+<summary>
+LinkButtonCancelFixCorrelative control.
 </summary>
 <remarks>
 Auto-generated field.

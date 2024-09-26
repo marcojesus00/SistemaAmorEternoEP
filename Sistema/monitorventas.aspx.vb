@@ -99,7 +99,11 @@ Public Class monitorventas
 
                 dlzona.Items.Add("")
                 For I As Integer = 0 To Datos.Tables(0).Rows.Count - 1
-                    dlzona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
+                    'dlzona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
+                    Dim vzonNombre As Object = Datos.Tables(0).Rows(I)("vzon_nombre")
+                    If Not IsDBNull(vzonNombre) Then
+                        dlzona.Items.Add(vzonNombre.ToString())
+                    End If
                 Next
 
                 Dim conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -250,20 +254,60 @@ Public Class monitorventas
 
             'Sql = "EXEC ExportImag '" + Session("Cobrador").ToString.TrimEnd + "' "
             'conf.EjecutaSql(Sql)
-
+            Dim user, collector As String
+            user = Usuario_Aut
+            collector = Session("Cobrador").ToString.TrimEnd
+            Dim parameters() = {
+                New SqlParameter("@RCODVEND", collector),
+                New SqlParameter("@Usuario", user)}
             GuardarImagen()
+            Using context As New AeVentasDbContext()
+                Sql = "EXEC ENVIARECIBOS2 @RCODVEND=@RCODVEND, @Usuario=@Usuario"
+                Dim result As String = context.Database.SqlQuery(Of String)(Sql, parameters).FirstOrDefault()
+                If result.ToLower().Contains("primary key") Then
+                    Alert(result, "info")
+                    Dim pattern As String = "\(([^,]+),"
 
-            Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador").ToString.TrimEnd + "','" + Usuario_Aut + "'"
-            conf.EjecutaSql(Sql)
+                    ' Use Regex to extract the key value
+                    Dim match As Match = Regex.Match(result, pattern)
 
-            btnBuscar_Click(sender, e)
-            PanelImpresion.Visible = False
-            Panel1.Visible = True
+                    If match.Success Then
+                        ' Extract the first capturing group, which contains the key value
+                        Dim keyValue As String = match.Groups(1).Value
+                        Session("DocumentNumberToFIx") = keyValue
+                        PnlFixCorrelative.Visible = True
+                    Else
+                        Alert("No match found.", "danger")
+                    End If
+
+                Else
+
+                    btnBuscar_Click(sender, e)
+                    PanelImpresion.Visible = False
+                    Panel1.Visible = True
+                End If
+
+            End Using
+
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
+    End Sub
+    Protected Sub LinkButtonFixCorrelative_Click(sender As Object, e As EventArgs)
+        Dim documentNumberToFIx = Session("DocumentNumberToFIx")
+        Alert(FixHelper.FixDbCorrelative(documentNumberToFIx), "info")
+        PnlFixCorrelative.Visible = False
+
+        'btnBuscar_Click(sender, e)
+        'PanelImpresion.Visible = False
+        'Panel1.Visible = True
+
+    End Sub
+
+    Protected Sub LinkButtonCancelFixCorrelative_Click(sender As Object, e As EventArgs)
+        PnlFixCorrelative.Visible = False
     End Sub
 
     Protected Sub txtBuscarVendedorV_TextChanged(sender As Object, e As EventArgs)
@@ -1660,6 +1704,9 @@ Public Class monitorventas
         End Try
 
     End Sub
+
+
+
     Private Sub BtnCerrarStatus_click(Sender As Object, e As EventArgs) Handles BtnCerrarStatus.Click
         Try
             PanelConfirmacion2.Visible = False
