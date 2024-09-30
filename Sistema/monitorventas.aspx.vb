@@ -264,8 +264,8 @@ Public Class monitorventas
             Using context As New AeVentasDbContext()
                 Sql = "EXEC ENVIARECIBOS2 @RCODVEND=@RCODVEND, @Usuario=@Usuario"
                 Dim result As String = context.Database.SqlQuery(Of String)(Sql, parameters).FirstOrDefault()
+                Alert(result, "info")
                 If result.ToLower().Contains("primary key") Then
-                    Alert(result, "info")
                     Dim pattern As String = "\(([^,]+),"
 
                     ' Use Regex to extract the key value
@@ -825,70 +825,76 @@ Public Class monitorventas
 
             If Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "YASMIN" Or Usuario_Aut = "CBONILLA" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIO" And (Datos.Tables(0).Rows.Count = 1 And dlMostrar.SelectedIndex = 1) Then
                 Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                If Datos1 IsNot Nothing AndAlso Datos1.Tables.Count > 0 Then
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
+
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                Else
+                    Throw New Exception("No se encontraron datos para la tabla")
+
+                End If
 
             ElseIf dlMostrar.SelectedIndex = 2 And Datos.Tables(0).Rows.Count = 1 Then
-                Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                    Datos1 = Conf1.EjecutaSql(Sql1)
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
-                gvDetalle2.Columns(2).Visible = True
-                gvDetalle2.Columns(1).Visible = False
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                    gvDetalle2.Columns(2).Visible = True
+                    gvDetalle2.Columns(1).Visible = False
 
-            ElseIf dlMostrar.SelectedIndex = 0 And Datos.Tables(0).Rows.Count = 1 Then
-                Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                ElseIf dlMostrar.SelectedIndex = 0 And Datos.Tables(0).Rows.Count = 1 Then
+                    Datos1 = Conf1.EjecutaSql(Sql1)
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
-                gvDetalle2.Columns(0).Visible = False
-                gvDetalle2.Columns(1).Visible = True
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                    gvDetalle2.Columns(0).Visible = False
+                    gvDetalle2.Columns(1).Visible = True
 
-            Else
-                Try
+                Else
+                    Try
 
                     Datos1 = Conf1.EjecutaSql(Sql1)
 

@@ -272,7 +272,6 @@ where c.codigo_cobr like @Cobrador"
 
                         If r4esult.Success = False Then
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
-                            DebugHelper.SendDebugInfo("danger", New Exception(m), Session("Usuario_Aut"))
                             If r4esult.Msg.ToLower.Contains("queue") Then
                                 queue1 += 1
                             Else
