@@ -265,27 +265,27 @@ Public Class monitorventas
                 Sql = "EXEC ENVIARECIBOS2 @RCODVEND=@RCODVEND, @Usuario=@Usuario"
                 Dim result As String = context.Database.SqlQuery(Of String)(Sql, parameters).FirstOrDefault()
                 Alert(result, "info")
-                If result.ToLower().Contains("primary key") Then
-                    Dim pattern As String = "\(([^,]+),"
+                'If result.ToLower().Contains("primary key") Then
+                '    Dim pattern As String = "\(([^,]+),"
 
-                    ' Use Regex to extract the key value
-                    Dim match As Match = Regex.Match(result, pattern)
+                '    ' Use Regex to extract the key value
+                '    Dim match As Match = Regex.Match(result, pattern)
 
-                    If match.Success Then
-                        ' Extract the first capturing group, which contains the key value
-                        Dim keyValue As String = match.Groups(1).Value
-                        Session("DocumentNumberToFIx") = keyValue
-                        PnlFixCorrelative.Visible = True
-                    Else
-                        Alert("No match found.", "danger")
-                    End If
+                '    If match.Success Then
+                '        ' Extract the first capturing group, which contains the key value
+                '        Dim keyValue As String = match.Groups(1).Value
+                '        Session("DocumentNumberToFIx") = keyValue
+                '        PnlFixCorrelative.Visible = True
+                '    Else
+                '        Alert("No match found.", "danger")
+                '    End If
 
-                Else
+                'Else
 
-                    btnBuscar_Click(sender, e)
-                    PanelImpresion.Visible = False
-                    Panel1.Visible = True
-                End If
+                '    btnBuscar_Click(sender, e)
+                '    PanelImpresion.Visible = False
+                '    Panel1.Visible = True
+                'End If
 
             End Using
 
