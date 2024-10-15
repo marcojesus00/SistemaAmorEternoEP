@@ -263,3 +263,5 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Syste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.ValueTuple.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sentry.Attributes.vb
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.xml
