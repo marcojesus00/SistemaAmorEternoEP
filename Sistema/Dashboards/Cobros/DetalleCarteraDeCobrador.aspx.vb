@@ -515,14 +515,16 @@ where c.codigo_cobr like @Cobrador"
         If docs.Count > 0 Then
             Dim title As String = $"Teléfonos mal escritos:"
             htmlReport.Append($"<h2>{title}</h2>")
-            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th></tr>")
+            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th><th>Telefono nuevo</th></tr>")
 
             ' Populate the table with data from 'docs'
             For Each doc As DocsDto In docs
                 htmlReport.Append("<tr>")
                 htmlReport.Append($"<td>{doc.Codigo}</td>")
                 htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
-                htmlReport.Append($"<td style=""min-width: 120px;"">{doc.Telefono}</td>")
+                htmlReport.Append($"<td style=""min-width: 80px;"">{doc.Telefono}</td>")
+                htmlReport.Append($"<td style=""min-width: 100px;""></td>")
+
                 htmlReport.Append("</tr>")
             Next
             htmlReport.Append("</table>")
@@ -532,7 +534,7 @@ where c.codigo_cobr like @Cobrador"
         If invalidPhones.Count > 0 Then
             Dim titleInvalid As String = $"Teléfonos inválidos en WhatsApp:"
             htmlReport.Append($"<h2>{titleInvalid}</h2>")
-            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th></tr>")
+            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th><th>Telefono nuevo</th></tr>")
 
             ' Populate the table with data from 'invalidPhones'
             For Each doc As DocsDto In invalidPhones
@@ -540,6 +542,7 @@ where c.codigo_cobr like @Cobrador"
                 htmlReport.Append($"<td>{doc.Codigo}</td>")
                 htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
                 htmlReport.Append($"<td>{doc.Telefono}</td>")
+                htmlReport.Append($"<td></td>")
                 htmlReport.Append("</tr>")
             Next
             htmlReport.Append("</table>")

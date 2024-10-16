@@ -36,5 +36,5 @@
                          
                      <asp:TableCell runat="server">
                          
-                         <asp:Button CssClass="btn btn-danger"  ID="Button" runat="server" Text="Perro" />
+                         <asp:Button CssClass="btn btn-success"  ID="Button" runat="server" Text="Iniciar" />
                      </asp:TableCell></asp:TableRow></asp:Table></div></asp:Panel><script src="js/JQuery.js"></script><script src="js/popper.min.js"></script><script src="js/bootstrap.min.js"></script></form></body></html>
