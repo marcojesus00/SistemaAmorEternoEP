@@ -1136,8 +1136,8 @@ Public Class monitorventas
                         Catch ex As Exception
                             Dim itemValue As Object = Fila.Item(7)
                             Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
-
-                            Throw New Exception($"Error converting 'Fila.Item(7)': **{itemDescription}**  to Decimal: " & ex.Message)
+                            Dim details As String = $"Fecha: {txtFecha.Text}, Mostrar: {dlMostrar.SelectedValue}, Lider: {dllider.SelectedValue}, Zona: {dlzona.SelectedValue}, Run: {dlRun.SelectedValue}"
+                            Throw New Exception($"Error converting 'Fila.Item(7)': **{itemDescription}**  to Decimal: {details}. " & ex.Message)
                         End Try
 
                     End If
