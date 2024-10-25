@@ -23,6 +23,10 @@
           <StartPageUrl>Mantenimiento/InventarioDeEquipo.aspx</StartPageUrl>
 =======
           <StartPageUrl>inicio.aspx</StartPageUrl>
+<<<<<<< HEAD
+>>>>>>> wilbert-develop-fixed
+=======
+
 >>>>>>> wilbert-develop-fixed
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>

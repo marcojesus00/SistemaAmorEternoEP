@@ -87,7 +87,7 @@ Public Class whatsapi
                 'Dim url As String = "http://localhost:8002/v1/messages"
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
-                Dim url = "http://192.168.20.75:8000/v1/messages"
+                Dim url = "http://192.168.20.111:8000/v1/messages"
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
@@ -159,7 +159,7 @@ Public Class whatsapi
 
 
     Public Shared Function PostHtmlAndReceivePdf(htmlContent As String, title As String, download As Boolean, Optional filepath As String = "")
-        Dim url = "http://192.168.20.75:8000/v1/helpers/html-to-pdf/"
+        Dim url = "http://192.168.20.111:8000/v1/helpers/html-to-pdf/"
 
         ' Create an instance of HttpClient
         Using client As New HttpClient()
