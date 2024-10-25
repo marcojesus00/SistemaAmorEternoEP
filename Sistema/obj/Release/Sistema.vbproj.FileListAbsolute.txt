@@ -64,11 +64,7 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\rosly
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Cryptography.Primitives.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\VBCSCompiler.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csc.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csc.exe.config
@@ -82,25 +78,7 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\rosly
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
-<<<<<<< HEAD
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.AppContext.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Console.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Diagnostics.Process.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.IO.Compression.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.IO.Pipes.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.AccessControl.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Claims.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-=======
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.AccessControl.dll
->>>>>>> wilbert-develop-fixed
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.ValueTuple.dll
@@ -115,7 +93,6 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Siste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\AjaxMin.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.SqlServer.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.Interfaces.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.System.Drawing.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Gmap.net.dll
@@ -145,12 +122,6 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Relea
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
-<<<<<<< HEAD
-<<<<<<< HEAD
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.AssemblyReference.cache
-=======
->>>>>>> wilbert-develop-fixed
-=======
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Microsoft.Win32.Primitives.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\netstandard.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.AppContext.dll
@@ -297,4 +268,3 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Syste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sentry.Attributes.vb
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.xml
->>>>>>> wilbert-develop-fixed
