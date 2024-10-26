@@ -264,6 +264,19 @@ LEFT JOIN BusinessPhoneLines B ON E.P_num_emple=B.EmployeeId
         Public Property Id As Integer
         Public Property Name As String
     End Class
+    Public Class TableLinesDto
+
+        ' Getter and Setter for the property
+        Public Property Codigo As Integer
+        Public Property Numero As String
+        Public Property Asignado As String
+        Public Property Operativo As String
+        Public Property Nombre As String
+        Public Property Gestor As String
+
+
+
+    End Class
     Public Class DDL2
 
         ' Getter and Setter for the property

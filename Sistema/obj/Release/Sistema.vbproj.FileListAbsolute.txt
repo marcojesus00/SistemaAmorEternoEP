@@ -93,8 +93,6 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Siste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\AjaxMin.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.SqlServer.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.Interfaces.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.System.Drawing.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Gmap.net.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Google.Maps.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Newtonsoft.Json.dll
@@ -105,7 +103,6 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Syste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Security.Principal.Windows.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EntityFramework.SqlServer.xml
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\EPPlus.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Gmap.net.pdb
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Newtonsoft.Json.xml
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Data.SqlClient.xml

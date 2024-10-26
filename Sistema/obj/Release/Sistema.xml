@@ -3322,6 +3322,114 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.Lineas._txtSearchPhone">
+<summary>
+txtSearchPhone control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._DdlAsignado">
+<summary>
+DdlAsignado control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._PnlOperation">
+<summary>
+PnlOperation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._DdlAvailableLines">
+<summary>
+DdlAvailableLines control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._DdlAgents">
+<summary>
+DdlAgents control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._DdlEmployees">
+<summary>
+DdlEmployees control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._BtnAssign">
+<summary>
+BtnAssign control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._BtnUnassing">
+<summary>
+BtnUnassing control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._BtnOutOfService">
+<summary>
+BtnOutOfService control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._DashboardGridview">
+<summary>
+DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._alertPlaceholder">
+<summary>
+alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.MapClusteredPage._MapTitleHolder">
 <summary>
 MapTitleHolder control.
