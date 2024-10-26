@@ -93,8 +93,11 @@ SELECT BL.Id Codigo,BL.LocalNumber Numero, CASE
     END AS Asignado , CASE 
         WHEN BL.IsOperative = 1 THEN 'Si'
         ELSE 'No'
-    END  Operativo ,ISNULL(E.P_nomb_empl,'') Nombre,
-ISNULL(SL.Codigo+' '+SL.Nombre,'') Gestor FROM Memorial..BusinessPhoneLines BL
+    END  Operativo ,RTRIM(ISNULL(E.P_nomb_empl,'')) Nombre,
+RTRIM(ISNULL(SL.Codigo+' '+SL.Nombre,'')) Gestor,
+IsNull(FORMAT(BLA.CreationDate , 'dd MMM yyyy', 'es-ES'),'Nunca') Modificacion,
+RTRIM(ISNULL(BLA.AssignedBy,'')) Modificado_por
+FROM Memorial..BusinessPhoneLines BL
 LEFT JOIN (
 SELECT 
  BLA.*,

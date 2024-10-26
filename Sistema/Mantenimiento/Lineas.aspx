@@ -1,23 +1,36 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Lineas.aspx.vb" Inherits="Sistema.Lineas" %>
+﻿<%@ Page Title="Líneas" Language="vb" AutoEventWireup="false" MasterPageFile="~/Dashboards/Dashboard.master" CodeBehind="Lineas.aspx.vb" Inherits="Sistema.Lineas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
+        <h2 class=" text-center">Mantenimiento de líneas celulares</h2>
 
         <div class="container-fluid container-lg">
-                <div class="col-12 col-md-6 col-lg-6 mb-4">
+                <div class="col-12  mb-4">
                       <div class="card">
                           <div class=" card-header">
 
-                                      <div class="card-title">Asignar linea telefónica</div>
+                                      <div class="card-title">Filtros</div>
 
 
                           </div>
         <div class="card-body">
-    <asp:TextBox runat="server" Id="txtSearchPhone" Placeholder="Número de teléfono"  CssClass="form-control form-control-sm"></asp:TextBox>
+                            <div class="row">
+
+                            <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                                    <asp:TextBox runat="server" Id="txtSearchPhone" Placeholder="Número de teléfono"  CssClass="form-control form-control-sm"></asp:TextBox>
+
+
+                            </div>
+              <div class="col-lg-2  col-md-6 col-12 pb-2 ">
                     <asp:DropDownList runat="server" Id="DdlAsignado" CssClass="form-control form-control-sm"></asp:DropDownList>
+
+
+                            </div>                            </div>
+
+
 
                     <div class="row">
             <div class="col-md-6 offset-6">
-      <asp:LinkButton ID="btnSearch" class="btn btn-sm btn-outline-info" OnClick="btnSearch_Click" runat="server">
-            <i class="bi bi-caret-down"></i>
+      <asp:LinkButton ID="btnSearch" class="btn btn-sm btn-outline-dark" OnClick="btnSearch_Click" runat="server">
+            <i class="bi bi-search"></i>
             Buscar
         </asp:LinkButton>
             </div>
@@ -35,10 +48,24 @@
 
         <div class="card-title">Asignar linea telefónica</div></div>
         <div class="card-body">
-                <asp:DropDownList runat="server" Id="DdlAvailableLines" CssClass="form-control form-control-sm"></asp:DropDownList>
-        <asp:DropDownList runat="server" Id="DdlAgents" CssClass="form-control form-control-sm"></asp:DropDownList>
+                                        <div class="col-lg-2  col-md-6 col-12 pb-2 ">
 
+                                                            <asp:DropDownList runat="server" Id="DdlAvailableLines" CssClass="form-control form-control-sm"></asp:DropDownList>
+
+                                        </div>
+               <div class="col-lg-2  col-md-6 col-12 pb-2 ">
+                           <asp:DropDownList runat="server" Id="DdlAgents" CssClass="form-control form-control-sm"></asp:DropDownList>
+
+
+                                        </div>
+               <div class="col-lg-2  col-md-6 col-12 pb-2 ">
         <asp:DropDownList runat="server" Id="DdlEmployees" CssClass="form-control form-control-sm"></asp:DropDownList>
+
+
+                                        </div>
+
+
+
 
 
 
@@ -82,7 +109,7 @@
                             <asp:TemplateField HeaderText="">
 
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnOperation" ToolTip="Mapa de clientes" CssClass="btn btn-sm btn-outline-info " runat="server" CommandName="Operation" CommandArgument='<%# Container.DataItemIndex %>'>
+                                    <asp:LinkButton ID="btnOperation" ToolTip="Modificar" CssClass="btn btn-sm btn-outline-info " runat="server" CommandName="Operation" CommandArgument='<%# Container.DataItemIndex %>'>
 <i class="bi bi-geo-alt-fill"></i>                                     </asp:LinkButton>
 
 
