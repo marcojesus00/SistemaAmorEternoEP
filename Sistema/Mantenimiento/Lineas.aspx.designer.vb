@@ -23,6 +23,15 @@ Partial Public Class Lineas
     Protected WithEvents txtSearchPhone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txtSearchAgent control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearchAgent As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''DdlAsignado control.
     '''</summary>
     '''<remarks>
@@ -68,15 +77,6 @@ Partial Public Class Lineas
     Protected WithEvents DdlAgents As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DdlEmployees control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DdlEmployees As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''BtnAssign control.
     '''</summary>
     '''<remarks>
@@ -111,6 +111,60 @@ Partial Public Class Lineas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DashboardGridview As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblTotalCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''PreviousPage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PreviousPage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lnkbtnPrevious control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkbtnPrevious As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''rptPager control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptPager As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''NextPage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NextPage As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lnkbtnNext control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkbtnNext As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''alertPlaceholder control.

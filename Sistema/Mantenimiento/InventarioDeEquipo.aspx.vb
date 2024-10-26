@@ -271,7 +271,7 @@ LEFT JOIN BusinessPhoneLines B ON E.P_num_emple=B.EmployeeId
         Public Property Numero As String
         Public Property Asignado As String
         Public Property Operativo As String
-        Public Property Nombre As String
+        'Public Property Nombre As String
         Public Property Gestor As String
         Public Property Modificacion As String
         Public Property Modificado_por As String

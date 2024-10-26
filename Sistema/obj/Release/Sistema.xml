@@ -3331,6 +3331,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.Lineas._txtSearchAgent">
+<summary>
+txtSearchAgent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.Lineas._DdlAsignado">
 <summary>
 DdlAsignado control.
@@ -3376,15 +3385,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.Lineas._DdlEmployees">
-<summary>
-DdlEmployees control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.Lineas._BtnAssign">
 <summary>
 BtnAssign control.
@@ -3415,6 +3415,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.Lineas._DashboardGridview">
 <summary>
 DashboardGridview control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._lblTotalCount">
+<summary>
+lblTotalCount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._PreviousPage">
+<summary>
+PreviousPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._lnkbtnPrevious">
+<summary>
+lnkbtnPrevious control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._rptPager">
+<summary>
+rptPager control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._NextPage">
+<summary>
+NextPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.Lineas._lnkbtnNext">
+<summary>
+lnkbtnNext control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9436,6 +9490,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.principal._LinkButtonInventory">
 <summary>
 LinkButtonInventory control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.principal._LinkButtonLines">
+<summary>
+LinkButtonLines control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -3,13 +3,48 @@ Imports Sistema.InventarioDeEquipo
 
 Public Class Lineas
     Inherits System.Web.UI.Page
-
+    Public PageNumber As Integer = 1
+    Public PageSize As Integer = 10
+    Public TotalPages As Integer '
+    Public TotalItems As Integer = 0
+    Public itemText As String
+    Public pagination As PaginationHelper = New PaginationHelper
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            PnlOperation.Visible = False
-            fillDdl()
-            BindPrincipalGridView()
-        End If
+
+        Try
+            Dim Usuario_Aut = Session("Usuario_Aut")
+            Session("BackPageUrl") = "~/principal.aspx"
+            Dim thisPage = "~/Mantenimiento/Lineas.aspx"
+            If Usuario_Aut IsNot Nothing Then
+                'If True Then
+
+                Usuario_Aut = Usuario_Aut.ToString().Trim().ToUpper()
+                    If Session("Usuario") = "" OrElse Not AuthHelper.isAuthorized(Usuario_Aut, "LINEAS.R") Then
+                        Response.Redirect("~/Principal.aspx")
+                    End If
+
+                    If Not IsPostBack Then
+                        'Session("SelectedPageLineas") = 1
+                        PnlOperation.Visible = False
+                        fillDdl()
+                        BindPrincipalGridView()
+                    End If
+                    'pnlMap.Visible = False
+
+                    'AddHandler DashboardGridview.PageIndexChanging, AddressOf DashboardGridview_PageIndexChanging
+                Else
+                    Response.Redirect("~/Principal.aspx")
+
+            End If
+
+        Catch ex As Exception
+            Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+        End Try
 
     End Sub
     Protected Sub fillDdl()
@@ -30,8 +65,8 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
 
             Dim resultLines As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
                      queryLines).ToList()
-            Dim resultEmployees As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
-                     queryEmployee).ToList()
+            'Dim resultEmployees As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
+            '         queryEmployee).ToList()
             Dim resultAgents As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
                      queryAgent).ToList()
             DdlAvailableLines.DataSource = resultLines
@@ -45,11 +80,11 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
                 'Dim q sele
             End If
 
-            DdlEmployees.DataSource = resultEmployees
-            DdlEmployees.DataTextField = "Name"
-            DdlEmployees.DataValueField = "Id"
-            DdlEmployees.DataBind()
-            DdlEmployees.Items.Insert(0, New ListItem("Empleado", ""))
+            'DdlEmployees.DataSource = resultEmployees
+            'DdlEmployees.DataTextField = "Name"
+            'DdlEmployees.DataValueField = "Id"
+            'DdlEmployees.DataBind()
+            'DdlEmployees.Items.Insert(0, New ListItem("Empleado", ""))
 
 
             DdlAgents.DataSource = resultAgents
@@ -66,12 +101,16 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
 
     End Sub
 
-    Private Sub BindPrincipalGridView()
+    Private Sub BindPrincipalGridView(Optional selectedPage As Integer = 1)
 
 
         Try
             Dim LocalNumber = txtSearchPhone.Text
+            Dim agent = txtSearchAgent.Text
             Dim areAssigned As Boolean = True
+            Dim pageSize As Integer = 10
+            Dim offset = (selectedPage - 1) * pageSize
+            Dim msg = ""
 
             If DdlAsignado.SelectedValue = "0" Then
 
@@ -80,20 +119,31 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
 
             Dim parameters As SqlParameter() = {
                     New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
-                                        New SqlParameter("@areAssigned", areAssigned)
+                                                            New SqlParameter("@Agent", "%" + agent + "%"),
+                                        New SqlParameter("@areAssigned", areAssigned),
+                                        New SqlParameter("@Offset", offset),
+                                        New SqlParameter("@PageSize", pageSize)
                 }
+            Dim parametersCount As SqlParameter() = {
+                    New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
+                                                                                New SqlParameter("@Agent", "%" + agent + "%"),
+                                        New SqlParameter("@areAssigned", areAssigned),
+                                        New SqlParameter("@Offset", offset),
+                                        New SqlParameter("@PageSize", pageSize)
+                }
+
 
 
 
             Using context As New MemorialContext()
                 Dim queryTableLines = "
-SELECT BL.Id Codigo,BL.LocalNumber Numero, CASE 
+SELECT * FROM (SELECT BL.Id Codigo,BL.LocalNumber Numero, CASE 
         WHEN BL.IsAssigned = 1 THEN 'Si'
         ELSE 'No'
     END AS Asignado , CASE 
         WHEN BL.IsOperative = 1 THEN 'Si'
         ELSE 'No'
-    END  Operativo ,RTRIM(ISNULL(E.P_nomb_empl,'')) Nombre,
+    END  Operativo ,
 RTRIM(ISNULL(SL.Codigo+' '+SL.Nombre,'')) Gestor,
 IsNull(FORMAT(BLA.CreationDate , 'dd MMM yyyy', 'es-ES'),'Nunca') Modificacion,
 RTRIM(ISNULL(BLA.AssignedBy,'')) Modificado_por
@@ -106,42 +156,66 @@ SELECT
 FROM Memorial..BusinessPhoneLinesAssignments
 BLA ) BLA ON
 BL.Id= BLA.LineId AND BLA.RowNum = 1
-LEFT JOIN Memorial..Employees E ON BLA.EmployeeId=E.P_num_emple
 LEFT JOIN Memorial..vw_SellerCollector SL 
 ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
 WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
+) S WHERE Gestor LIKE @Agent
+ORDER BY 
+    Codigo
+OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY
+"
+                Dim countQuery = "
+
+SELECT COUNT(Codigo) FROM (SELECT BL.Id Codigo,
+RTRIM(ISNULL(SL.Codigo+' '+SL.Nombre,'')) Gestor
+
+FROM Memorial..BusinessPhoneLines BL
+LEFT JOIN (
+SELECT 
+ BLA.*,
+ ROW_NUMBER() OVER (PARTITION BY LineId ORDER BY CreationDate DESC)
+ AS RowNum
+FROM Memorial..BusinessPhoneLinesAssignments
+BLA ) BLA ON
+BL.Id= BLA.LineId AND BLA.RowNum = 1
+LEFT JOIN Memorial..vw_SellerCollector SL 
+ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
+WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
+) S WHERE Gestor LIKE @Agent
 "
                 Dim resultAgents As List(Of TableLinesDto) = context.Database.SqlQuery(Of TableLinesDto)(
                      queryTableLines, parameters).ToList()
+                Dim resultCount As Integer = context.Database.SqlQuery(Of Integer)(
+                     countQuery, parametersCount).FirstOrDefault()
 
-                Dim msg = ""
                 DashboardGridview.DataSource = Nothing
 
                 DashboardGridview.DataSource = resultAgents
                 DashboardGridview.DataBind()
+
+
+                TotalItems = resultCount
+                PageNumber = selectedPage
+                TotalPages = Math.Ceiling(resultCount / pageSize)
+
+                ' Update the Previous and Next buttons' enabled state
+                Dim pages As New List(Of Integer)()
+                For i As Integer = 1 To TotalPages
+                    pages.Add(i)
+                Next
+
+                rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
+                rptPager.DataBind()
+                lnkbtnPrevious.Enabled = PageNumber > 1
+                lnkbtnNext.Enabled = PageNumber < TotalPages
+                lblTotalCount.DataBind()
+                If DashboardGridview.Rows.Count = 0 Then
+                    msg = "No se encontraron resultados"
+                Else
+                    msg = "Mostrando primeros " & $"{resultAgents.Count} resultados."
+
+                End If
             End Using
-
-            'TotalItems = itemCount
-            'PageNumber = selectedpage
-            'TotalPages = Math.Ceiling(itemCount / PageSize)
-
-            '' Update the Previous and Next buttons' enabled state
-            'Dim pages As New List(Of Integer)()
-            'For i As Integer = 1 To TotalPages
-            '    pages.Add(i)
-            'Next
-
-            'rptPager.DataSource = pagination.GetLimitedPageNumbers(TotalItems, PageSize, PageNumber, 3)
-            'rptPager.DataBind()
-            'lnkbtnPrevious.Enabled = PageNumber > 1
-            'lnkbtnNext.Enabled = PageNumber < TotalPages
-            'lblTotalCount.DataBind()
-            If DashboardGridview.Rows.Count = 0 Then
-                'msg = "No se encontraron resultados"
-            Else
-                'msg = "Mostrando primeros " & $"{resultAgents.Count} resultados."
-
-            End If
         Catch ex As SqlException
             Dim msg = "Problema con la base de datos, por favor vuelva a intentarlo : " & ex.Message
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
@@ -172,13 +246,19 @@ WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
             Dim keyValue As String = DashboardGridview.DataKeys(digitalRoot).Value.ToString()
 
             If e.CommandName = "Operation" Then
-                PnlOperation.Visible = True
-                If DdlAvailableLines.Items.FindByValue(keyValue) IsNot Nothing Then
-                    DdlAvailableLines.SelectedValue = keyValue
+                If Session("Usuario_Aut") Is Nothing OrElse Session("Usuario_Aut") = "" OrElse Not AuthHelper.isAuthorized(Session("Usuario_Aut"), "LINEAS.W") Then
+                    AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
                 Else
-                    AlertHelper.GenerateAlert("danger", keyValue, alertPlaceholder)
+                    PnlOperation.Visible = True
+                    If DdlAvailableLines.Items.FindByValue(keyValue) IsNot Nothing Then
+                        DdlAvailableLines.SelectedValue = keyValue
+                    Else
+                        AlertHelper.GenerateAlert("danger", keyValue, alertPlaceholder)
+
+                    End If
 
                 End If
+
             End If
         Catch ex As Exception
 
@@ -199,17 +279,17 @@ WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
 
 
 
-    Protected Sub UpdateLines(AssignedBy, EmployeeId, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
+    Protected Sub UpdateLines(AssignedBy, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
         If AssignedBy Is Nothing Then
             AssignedBy = "PRUEBA"
         End If
         Dim result As Integer
 
-        If Integer.TryParse(EmployeeId, result) Then
-        Else
-            EmployeeId = ""
-        End If
-        If Integer.TryParse(EmployeeId, result) Then
+        'If Integer.TryParse(EmployeeId, result) Then
+        'Else
+        '    EmployeeId = ""
+        'End If
+        If Integer.TryParse(AgentCode, result) Then
         Else
             AgentCode = ""
         End If
@@ -219,7 +299,6 @@ WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
                                             New SqlParameter("@IsOperative", IsOperative),
             New SqlParameter("@IsAssigned", IsAssigned),
             New SqlParameter("@LineId", LineId),
-            New SqlParameter("@EmployeeId", EmployeeId),
             New SqlParameter("@AgentCode", AgentCode),
             New SqlParameter("@AssignedBy", AssignedBy)}
         Try
@@ -233,12 +312,10 @@ WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
 
                 Dim queryAssign = "INSERT INTO [dbo].[BusinessPhoneLinesAssignments]
            ([LineId]
-           ,[EmployeeId]
            ,[AgentCode]
            ,[AssignedBy])
      VALUES
            (@LineId
-           ,@EmployeeId
            ,@AgentCode
            ,@AssignedBy)
 "
@@ -288,10 +365,10 @@ END CATCH
         Dim IsOperative = True
         Dim IsAssigned = True
         Dim LineId = DdlAvailableLines.SelectedValue
-        Dim EmployeeId = DdlEmployees.SelectedValue
+        'Dim EmployeeId = DdlEmployees.SelectedValue
         Dim AgentCode = DdlAgents.SelectedValue
         Dim AssignedBy = Session("Usuario_Aut")
-        UpdateLines(AssignedBy, EmployeeId, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
+        UpdateLines(AssignedBy, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
     End Sub
 
 
@@ -300,10 +377,9 @@ END CATCH
         Dim IsOperative = False
         Dim IsAssigned = False
         Dim LineId = DdlAvailableLines.SelectedValue
-        Dim EmployeeId = ""
         Dim AgentCode = ""
         Dim AssignedBy = Session("Usuario_Aut")
-        UpdateLines(AssignedBy, EmployeeId, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
+        UpdateLines(AssignedBy, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
 
     End Sub
 
@@ -312,10 +388,40 @@ END CATCH
         Dim IsOperative = True
         Dim IsAssigned = False
         Dim LineId = DdlAvailableLines.SelectedValue
-        Dim EmployeeId = ""
         Dim AgentCode = ""
         Dim AssignedBy = Session("Usuario_Aut")
-        UpdateLines(AssignedBy, EmployeeId, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
+        UpdateLines(AssignedBy, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
+
+    End Sub
+
+
+    Protected Sub lnkbtnPage_Click(sender As Object, e As EventArgs)
+        Dim lnkButton As LinkButton = CType(sender, LinkButton)
+        Dim resultInteger As Integer
+        If Integer.TryParse(lnkButton.Text, resultInteger) Then
+            Dim SelectedPageLineas As Integer = Integer.Parse(lnkButton.Text)
+            Session("SelectedPageLineas") = SelectedPageLineas
+            BindPrincipalGridView(SelectedPageLineas)
+        End If
+
+    End Sub
+
+    Protected Sub lnkbtnPrevious_Click(sender As Object, e As EventArgs)
+
+        If Session("SelectedPageLineas") IsNot Nothing AndAlso Session("SelectedPageLineas") > 1 Then
+            Session("SelectedPageLineas") = Session("SelectedPageLineas") - 1
+
+            BindPrincipalGridView(Session("SelectedPageLineas"))
+
+        End If
+
+    End Sub
+
+    Protected Sub lnkbtnNext_Click(sender As Object, e As EventArgs)
+        If Session("SelectedPageLineas") IsNot Nothing Then
+            Session("SelectedPageLineas") = Session("SelectedPageLineas") + 1
+            BindPrincipalGridView(Session("SelectedPageLineas"))
+        End If
 
     End Sub
 End Class
