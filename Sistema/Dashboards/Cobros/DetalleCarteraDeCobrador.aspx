@@ -123,6 +123,10 @@
                                      <asp:LinkButton  ID="LinkButtonDownloadExcel"  OnClick="btnDownloadExcel_Click" ToolTip="" CssClass="btn btn-sm btn-outline-success" runat="server">
 <i class="bi bi-file-excel"></i> Descargar excel
                             </asp:LinkButton>
+                               
+                                     <asp:LinkButton  ID="LinkButtonDownloadPDF"  OnClick="btnDownloadPDF_Click" ToolTip="" CssClass="btn btn-sm btn-outline-danger" runat="server">
+<i class="bi bi-file-pdf"></i> Descargar PDF
+                            </asp:LinkButton>
 
            </div>
             </div>

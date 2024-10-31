@@ -272,7 +272,6 @@ where c.codigo_cobr like @Cobrador"
 
                         If r4esult.Success = False Then
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
-                            DebugHelper.SendDebugInfo("danger", New Exception(m), Session("Usuario_Aut"))
                             If r4esult.Msg.ToLower.Contains("queue") Then
                                 queue1 += 1
                             Else
@@ -382,14 +381,14 @@ where c.codigo_cobr like @Cobrador"
         GridViewBadPhones.PageIndex = e.NewPageIndex
         rebindBadPhones()
     End Sub
-    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), title As String)
+    Public Sub DownloadExcelFromList(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), title As String, collectorName As String)
         ' Create a new ExcelPackage
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
         Using package As New ExcelPackage()
             ' Add a worksheet to the workbook
             If docs.Count > 0 Then
-                Dim tit = "Telefonos mal escritos"
+                Dim tit = $"Telefonos mal escritos del cobrador {collectorName}"
                 Dim worksheet = package.Workbook.Worksheets.Add(tit)
 
                 ' Add the title to the first row, merging cells A1 to C1
@@ -417,7 +416,7 @@ where c.codigo_cobr like @Cobrador"
                 worksheet.Cells.AutoFitColumns()
             End If
             If invalidPhones.Count > 0 Then
-                Dim tit = "Telefonos invalidos en whatsapp"
+                Dim tit = $"Telefonos invalidos en whatsapp del cobrador {collectorName}"
                 Dim worksheet2 = package.Workbook.Worksheets.Add(tit)
 
                 ' Add the title to the first row, merging cells A1 to C1
@@ -463,28 +462,128 @@ where c.codigo_cobr like @Cobrador"
         End Using
 
     End Sub
+
     Protected Sub btnDownloadExcel_Click(sender As Object, e As EventArgs)
-        Dim cobrador = Session("CobradorSeleccionado")
-        If cobrador Then
+        Try
 
 
-            Dim docTitle As String = $"Telefonos malos del cobrador {cobrador}"
-            Dim clients As List(Of DocsDto)
+            Dim cobrador = Session("CobradorSeleccionado")
+            If cobrador Then
 
-            clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
-            Dim q = "EXEC SP_VS_CarteraInvalidaDeClienteParaWhatsapp @cobrador"
-            ' Call the method to generate and download the Excel file
-            Using FunamorContext As New FunamorContext()
-                Dim sqlParameters As New List(Of SqlParameter)
-                sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
 
-                Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
-            q, sqlParameters.ToArray()).ToList()
-                DownloadExcelFromList(clients, result, docTitle)
+                Dim clients As List(Of DocsDto)
 
-            End Using
+                clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+                Dim q = "EXEC SP_VS_CarteraInvalidaDeClienteParaWhatsapp @cobrador"
+                ' Call the method to generate and download the Excel file
+                Using FunamorContext As New FunamorContext()
+                    Dim collectorName As String = FunamorContext.Database.SqlQuery(Of String)("SELECT nombre_cobr FROM COBRADOR WHERE CODIGO_COBR LIKE
+@COBRADOR", New SqlParameter("@COBRADOR", cobrador)).FirstOrDefault()
+                    Dim sqlParameters As New List(Of SqlParameter)
+                    sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
+
+                    Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
+                q, sqlParameters.ToArray()).ToList()
+                    Dim docTitle As String = $"Telefonos malos del cobrador {cobrador} {collectorName}"
+
+                    DownloadExcelFromList(clients, result, docTitle, collectorName)
+
+                End Using
+            End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", ex.Message, alertPlaceholder)
+        End Try
+    End Sub
+
+    Public Function GenerateHtmlReport(docs As List(Of DocsDto), invalidPhones As List(Of DocsDto), collectorName As String) As String
+        ' Create HTML structure
+        Dim htmlReport As New StringBuilder()
+
+        htmlReport.Append("<html><head><title>Teléfonos malos</title>")
+        htmlReport.Append("<style>")
+        htmlReport.Append("table {width: 100%; border-collapse: collapse;}")
+        htmlReport.Append("th, td {border: 2px solid black; padding: 10px; text-align: left;}")
+        htmlReport.Append("th {background-color: #f2f2f2;}")
+        htmlReport.Append("divider {border-top: 1px dashed black;margin: 10px 0;}")
+        htmlReport.Append("</style></head><body>")
+        htmlReport.Append($"<h1>TELÉFONOS DE CLIENTES A REVISAR DEL COBRADOR {collectorName}</h1>")
+
+        htmlReport.Append($"<a>{DateTime.Now.ToString("dd/MM/yyyy")}</a>")
+        ' Check if the 'docs' list has data
+        If docs.Count > 0 Then
+            Dim title As String = $"Teléfonos mal escritos:"
+            htmlReport.Append($"<h2>{title}</h2>")
+            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th><th>Telefono nuevo</th></tr>")
+
+            ' Populate the table with data from 'docs'
+            For Each doc As DocsDto In docs
+                htmlReport.Append("<tr>")
+                htmlReport.Append($"<td>{doc.Codigo}</td>")
+                htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
+                htmlReport.Append($"<td style=""min-width: 80px;"">{doc.Telefono}</td>")
+                htmlReport.Append($"<td style=""min-width: 100px;""></td>")
+
+                htmlReport.Append("</tr>")
+            Next
+            htmlReport.Append("</table>")
+        End If
+        htmlReport.Append("<div class=""divider""></div>")
+        ' Check if the 'invalidPhones' list has data
+        If invalidPhones.Count > 0 Then
+            Dim titleInvalid As String = $"Teléfonos inválidos en WhatsApp:"
+            htmlReport.Append($"<h2>{titleInvalid}</h2>")
+            htmlReport.Append("<table><tr><th>Codigo</th><th>Nombre</th><th>Telefono</th><th>Telefono nuevo</th></tr>")
+
+            ' Populate the table with data from 'invalidPhones'
+            For Each doc As DocsDto In invalidPhones
+                htmlReport.Append("<tr>")
+                htmlReport.Append($"<td>{doc.Codigo}</td>")
+                htmlReport.Append($"<td>{doc.Nombre.Trim()}</td>")
+                htmlReport.Append($"<td>{doc.Telefono}</td>")
+                htmlReport.Append($"<td></td>")
+                htmlReport.Append("</tr>")
+            Next
+            htmlReport.Append("</table>")
         End If
 
+        ' Close the HTML tags
+        htmlReport.Append("</body></html>")
+
+        ' Return the HTML as a string
+        Return htmlReport.ToString()
+    End Function
+    Protected Sub btnDownloadPDF_Click(sender As Object, e As EventArgs)
+        Try
+            Dim cobrador = Session("CobradorSeleccionado")
+            If cobrador Then
+
+
+                Dim clients As List(Of DocsDto)
+
+                clients = clientsWithCorrupPhones(Session("CobradorSeleccionado"))
+                Dim q = "EXEC SP_VS_CarteraInvalidaDeClienteParaWhatsapp @cobrador"
+                ' Call the method to generate and download the Excel file
+                Using FunamorContext As New FunamorContext()
+                    Dim collectorName As String = FunamorContext.Database.SqlQuery(Of String)("SELECT nombre_cobr FROM COBRADOR WHERE CODIGO_COBR LIKE @COBRADOR", New SqlParameter("@COBRADOR", cobrador)).FirstOrDefault()
+                    Dim sqlParameters As New List(Of SqlParameter)
+                    sqlParameters.Add(New SqlParameter("@cobrador", cobrador.Trim()))
+
+                    Dim result As List(Of DocsDto) = FunamorContext.Database.SqlQuery(Of DocsDto)(
+                q, sqlParameters.ToArray()).ToList()
+                    Dim docTitle As String = $"Telefonos malos {cobrador} {collectorName}"
+                    collectorName = $"{cobrador} {collectorName}"
+                    Dim r As String = GenerateHtmlReport(clients, result, collectorName)
+                    whatsapi.PostHtmlAndReceivePdf(htmlContent:=r, title:=docTitle, download:=True)
+                End Using
+            End If
+
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", ex.Message, alertPlaceholder)
+        End Try
 
     End Sub
     Public Function SendJsonToFastApi(data As List(Of DocsDto), title As String, url As String)

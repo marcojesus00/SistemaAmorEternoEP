@@ -99,7 +99,11 @@ Public Class monitorventas
 
                 dlzona.Items.Add("")
                 For I As Integer = 0 To Datos.Tables(0).Rows.Count - 1
-                    dlzona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
+                    'dlzona.Items.Add(Datos.Tables(0).Rows(I).Item("vzon_nombre"))
+                    Dim vzonNombre As Object = Datos.Tables(0).Rows(I)("vzon_nombre")
+                    If Not IsDBNull(vzonNombre) Then
+                        dlzona.Items.Add(vzonNombre.ToString())
+                    End If
                 Next
 
                 Dim conf2 As New Configuracion(Usuario, Clave, Bd, Servidor)
@@ -250,20 +254,60 @@ Public Class monitorventas
 
             'Sql = "EXEC ExportImag '" + Session("Cobrador").ToString.TrimEnd + "' "
             'conf.EjecutaSql(Sql)
-
+            Dim user, collector As String
+            user = Usuario_Aut
+            collector = Session("Cobrador").ToString.TrimEnd
+            Dim parameters() = {
+                New SqlParameter("@RCODVEND", collector),
+                New SqlParameter("@Usuario", user)}
             GuardarImagen()
+            Using context As New AeVentasDbContext()
+                Sql = "EXEC ENVIARECIBOS2 @RCODVEND=@RCODVEND, @Usuario=@Usuario"
+                Dim result As String = context.Database.SqlQuery(Of String)(Sql, parameters).FirstOrDefault()
+                Alert(result, "info")
+                'If result.ToLower().Contains("primary key") Then
+                '    Dim pattern As String = "\(([^,]+),"
 
-            Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador").ToString.TrimEnd + "','" + Usuario_Aut + "'"
-            conf.EjecutaSql(Sql)
+                '    ' Use Regex to extract the key value
+                '    Dim match As Match = Regex.Match(result, pattern)
 
-            btnBuscar_Click(sender, e)
-            PanelImpresion.Visible = False
-            Panel1.Visible = True
+                '    If match.Success Then
+                '        ' Extract the first capturing group, which contains the key value
+                '        Dim keyValue As String = match.Groups(1).Value
+                '        Session("DocumentNumberToFIx") = keyValue
+                '        PnlFixCorrelative.Visible = True
+                '    Else
+                '        Alert("No match found.", "danger")
+                '    End If
+
+                'Else
+
+                '    btnBuscar_Click(sender, e)
+                '    PanelImpresion.Visible = False
+                '    Panel1.Visible = True
+                'End If
+
+            End Using
+
         Catch ex As Exception
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
             Alert(dangerMsg & ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
         End Try
 
+    End Sub
+    Protected Sub LinkButtonFixCorrelative_Click(sender As Object, e As EventArgs)
+        Dim documentNumberToFIx = Session("DocumentNumberToFIx")
+        Alert(FixHelper.FixDbCorrelative(documentNumberToFIx), "info")
+        PnlFixCorrelative.Visible = False
+
+        'btnBuscar_Click(sender, e)
+        'PanelImpresion.Visible = False
+        'Panel1.Visible = True
+
+    End Sub
+
+    Protected Sub LinkButtonCancelFixCorrelative_Click(sender As Object, e As EventArgs)
+        PnlFixCorrelative.Visible = False
     End Sub
 
     Protected Sub txtBuscarVendedorV_TextChanged(sender As Object, e As EventArgs)
@@ -781,70 +825,76 @@ Public Class monitorventas
 
             If Usuario_Aut = "JULIOCAJA" Or Usuario_Aut = "MANAGER" Or Usuario_Aut = "MDERAS" Or Usuario_Aut = "YASMIN" Or Usuario_Aut = "CBONILLA" Or Usuario_Aut = "ABLANDON" Or Usuario_Aut = "IBLANDON" Or Usuario_Aut = "JULIO" And (Datos.Tables(0).Rows.Count = 1 And dlMostrar.SelectedIndex = 1) Then
                 Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                If Datos1 IsNot Nothing AndAlso Datos1.Tables.Count > 0 Then
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
+
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                Else
+                    Throw New Exception("No se encontraron datos para la tabla")
+
+                End If
 
             ElseIf dlMostrar.SelectedIndex = 2 And Datos.Tables(0).Rows.Count = 1 Then
-                Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                    Datos1 = Conf1.EjecutaSql(Sql1)
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
-                gvDetalle2.Columns(2).Visible = True
-                gvDetalle2.Columns(1).Visible = False
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                    gvDetalle2.Columns(2).Visible = True
+                    gvDetalle2.Columns(1).Visible = False
 
-            ElseIf dlMostrar.SelectedIndex = 0 And Datos.Tables(0).Rows.Count = 1 Then
-                Datos1 = Conf1.EjecutaSql(Sql1)
-                Session.Add("GVDetalle", Datos1.Tables(0))
+                ElseIf dlMostrar.SelectedIndex = 0 And Datos.Tables(0).Rows.Count = 1 Then
+                    Datos1 = Conf1.EjecutaSql(Sql1)
+                    Session.Add("GVDetalle", Datos1.Tables(0))
 
-                Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
-                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+                    Session("GVDetalle").DefaultView.RowFilter = "RCODVEND ='" + txtCobrador.Value + "'"
+                    Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
 
-                gvDetalle2.DataSource = Session("GVDetalle")
-                gvDetalle2.DataBind()
+                    gvDetalle2.DataSource = Session("GVDetalle")
+                    gvDetalle2.DataBind()
 
-                Datos = conf.EjecutaSql(Sql)
-                Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
-                Session.Add("GV", Datos.Tables(0))
-                gvMonitor2.DataSource = Session("GV")
-                gvMonitor2.DataBind()
+                    Datos = conf.EjecutaSql(Sql)
+                    Datos.Tables(0).DefaultView.Sort = "Cobrado Desc"
+                    Session.Add("GV", Datos.Tables(0))
+                    gvMonitor2.DataSource = Session("GV")
+                    gvMonitor2.DataBind()
 
-                gvMonitor2.Visible = True
-                gvDetalle2.Visible = True
-                gvMonitor.Visible = False
-                gvDetalle2.Columns(0).Visible = False
-                gvDetalle2.Columns(1).Visible = True
+                    gvMonitor2.Visible = True
+                    gvDetalle2.Visible = True
+                    gvMonitor.Visible = False
+                    gvDetalle2.Columns(0).Visible = False
+                    gvDetalle2.Columns(1).Visible = True
 
-            Else
-                Try
+                Else
+                    Try
 
                     Datos1 = Conf1.EjecutaSql(Sql1)
 
@@ -1086,8 +1136,8 @@ Public Class monitorventas
                         Catch ex As Exception
                             Dim itemValue As Object = Fila.Item(7)
                             Dim itemDescription As String = If(IsDBNull(itemValue), "DBNull", If(itemValue Is Nothing, "Nothing", itemValue.ToString()))
-
-                            Throw New Exception($"Error converting 'Fila.Item(7)': **{itemDescription}**  to Decimal: " & ex.Message)
+                            Dim details As String = $"Fecha: {txtFecha.Text}, Mostrar: {dlMostrar.SelectedValue}, Lider: {dllider.SelectedValue}, Zona: {dlzona.SelectedValue}, Run: {dlRun.SelectedValue}"
+                            Throw New Exception($"Error converting 'Fila.Item(7)': **{itemDescription}**  to Decimal: {details}. " & ex.Message)
                         End Try
 
                     End If
@@ -1660,6 +1710,9 @@ Public Class monitorventas
         End Try
 
     End Sub
+
+
+
     Private Sub BtnCerrarStatus_click(Sender As Object, e As EventArgs) Handles BtnCerrarStatus.Click
         Try
             PanelConfirmacion2.Visible = False
