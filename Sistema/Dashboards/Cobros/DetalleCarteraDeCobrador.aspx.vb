@@ -233,7 +233,7 @@ where c.codigo_cobr like @Cobrador"
             Dim falla = ""
             Dim queue1 As Integer = 0
             Dim fallas As New List(Of String)
-            Dim Usuario_Aut = "yo" 'Session("Usuario_Aut")
+            Dim Usuario_Aut = Session("Usuario_Aut")
             Dim successCount = 0
             If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
                 Dim leaderPhone = Session("TelefonoLider")
