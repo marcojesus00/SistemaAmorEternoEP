@@ -639,7 +639,7 @@ Public Class principal
         Datos = conf.EjecutaSql(SQL)
 
         Session.Add("Reporte", "Inventario de equipo")
-        Response.Redirect("/Mantenimiento/InventarioDeEquipo.aspx")
+        Response.Redirect("~/Mantenimiento/InventarioDeEquipo.aspx")
     End Sub
     Private Sub LinkButtonLines_Click(sender As Object, e As EventArgs) Handles LinkButtonLines.Click
         Dim conf As New Configuracion(Usuario, clave, Bd, Servidor)
@@ -654,7 +654,7 @@ Public Class principal
         Datos = conf.EjecutaSql(SQL)
 
         Session.Add("Reporte", "Lineas celulares")
-        Response.Redirect("/Mantenimiento/Lineas.aspx")
+        Response.Redirect("~/Mantenimiento/Lineas.aspx")
     End Sub
 
     Private Sub Monitor_Cobros_Click(sender As Object, e As EventArgs) Handles Monitor_Cobros.Click
