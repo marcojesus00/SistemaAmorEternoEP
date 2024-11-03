@@ -108,16 +108,27 @@
     '    Sql = "EXEC CorrigeUbicacionCero "
     '    conf.EjecutaSql(Sql)
     'End Sub
+    Protected Sub Alert(message, alertType)
+        AlertHelper.GenerateAlert(alertType, message, alertPlaceholder)
+    End Sub
 
     Private Sub btnProcesar_Click(sender As Object, e As EventArgs) Handles btnProcesar.Click
-        Dim conf As New Configuracion(Usuario, Clave, "AECOBROS", Servidor)
-        Dim Sql As String
-        Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador") + "','" + Usuario_Aut + "'"
-        conf.EjecutaSql(Sql)
+        Try
+            Dim conf As New Configuracion(Usuario, Clave, "AECOBROS", Servidor)
+            Dim Sql As String
+            Sql = "EXEC ENVIARECIBOS '" + Session("Cobrador") + "','" + Usuario_Aut + "'"
+            Dim collectorId = Session("Cobrador")
+            conf.EjecutaSql(Sql)
+            RabbitMQHelper.PublishToRabbitMQ(messageType:="02", collectorId:=collectorId, userId:=Usuario_Aut, queueName:="start_sending_payment_receipts")
+            btnBuscar_Click(sender, e)
+            PanelImpresion.Visible = False
+            Panel1.Visible = True
+            Alert("El envios de recibos de este cobrador vía whatsapp ha sido programado.", "warning")
 
-        btnBuscar_Click(sender, e)
-        PanelImpresion.Visible = False
-        Panel1.Visible = True
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
 
     End Sub
 

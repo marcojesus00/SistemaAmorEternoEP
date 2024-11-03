@@ -284,6 +284,7 @@
 
         <!-- Webcam video snapshot -->
         <canvas id="canvas" width="640" height="480"></canvas>--%>
+                       <div id="alertPlaceholder" runat="server"></div>
 
         <script src="js/JQuery.js"></script>
         <script src="js/popper.min.js"></script>
