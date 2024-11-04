@@ -264,6 +264,8 @@ Public Class monitorventas
             Using context As New AeVentasDbContext()
                 Sql = "EXEC ENVIARECIBOS2 @RCODVEND=@RCODVEND, @Usuario=@Usuario"
                 Dim result As String = context.Database.SqlQuery(Of String)(Sql, parameters).FirstOrDefault()
+                RabbitMQHelper.PublishToRabbitMQ(messageType:="01", collectorId:=collector, userId:=Usuario_Aut, queueName:="start_sending_payment_receipts")
+
                 Alert(result, "info")
                 'If result.ToLower().Contains("primary key") Then
                 '    Dim pattern As String = "\(([^,]+),"
