@@ -20,7 +20,25 @@
                             <asp:TextBox runat="server" ID="txtSearchAgent" Placeholder="Codigo de gestor" CssClass="form-control form-control-sm"></asp:TextBox>
                         </div>
                         <div class="col-md-6 col-12 pb-2">
-                            <asp:DropDownList runat="server" ID="DdlAsignado" CssClass="form-control form-control-sm"></asp:DropDownList>
+                            <asp:DropDownList runat="server" ID="DdlAsignado" CssClass="form-control form-control-sm">
+
+                            </asp:DropDownList>
+                        </div>
+                                 <div class="col-md-6 col-12 pb-2">
+                            <asp:DropDownList runat="server" ID="DdlDepartment" CssClass="form-control form-control-sm">
+
+                            </asp:DropDownList>
+                        </div>
+                                     <div class="col-md-6 col-12 pb-2">
+                            <asp:DropDownList runat="server" ID="DdlZone" CssClass="form-control form-control-sm">
+
+                            </asp:DropDownList>
+
+                        </div>
+                                     <div class="col-md-6 col-12 pb-2">
+                            <asp:DropDownList runat="server" ID="DdlLeader" CssClass="form-control form-control-sm">
+
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="row">

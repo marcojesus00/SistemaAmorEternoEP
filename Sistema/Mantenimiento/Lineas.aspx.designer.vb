@@ -41,6 +41,33 @@ Partial Public Class Lineas
     Protected WithEvents DdlAsignado As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''DdlDepartment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlDepartment As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DdlZone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlZone As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DdlLeader control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlLeader As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''btnSearch control.
     '''</summary>
     '''<remarks>

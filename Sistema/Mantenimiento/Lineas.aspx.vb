@@ -57,7 +57,9 @@ Public Class Lineas
         Dim queryEmployee = "Select P_num_emple Id , P_nomb_empl Name from FUNAMOR..PLAEMP
 Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
 
-
+        Dim queryDepartments = "SELECT 
+Id, Name
+  FROM [Memorial].[dbo].[CompanyDepartments]"
 
 
 
@@ -65,10 +67,12 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
 
             Dim resultLines As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
                      queryLines).ToList()
-            'Dim resultEmployees As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
-            '         queryEmployee).ToList()
+
             Dim resultAgents As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
                      queryAgent).ToList()
+
+            Dim resultDepartments As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
+                     queryDepartments).ToList()
             DdlAvailableLines.DataSource = resultLines
             DdlAvailableLines.DataTextField = "Name"
             DdlAvailableLines.DataValueField = "Id"
@@ -80,11 +84,6 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
                 'Dim q sele
             End If
 
-            'DdlEmployees.DataSource = resultEmployees
-            'DdlEmployees.DataTextField = "Name"
-            'DdlEmployees.DataValueField = "Id"
-            'DdlEmployees.DataBind()
-            'DdlEmployees.Items.Insert(0, New ListItem("Empleado", ""))
 
 
             DdlAgents.DataSource = resultAgents
@@ -97,6 +96,14 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
             DdlAsignado.Items.Insert(0, New ListItem("Asignados", "1"))
 
 
+            DdlDepartment.DataSource = resultDepartments
+            DdlDepartment.DataTextField = "Name"
+            DdlDepartment.DataValueField = "Id"
+            DdlDepartment.DataBind()
+            'DdlDepartment.Items.Insert(0, New ListItem("Gestor", ""))
+
+            'DdlDepartment.Items.Insert(0, New ListItem("Disponibles", "0"))
+            'DdlDepartment.Items.Insert(0, New ListItem("Asignados", "1"))
         End Using
 
     End Sub
@@ -144,7 +151,14 @@ SELECT * FROM (SELECT BL.Id Codigo,BL.LocalNumber Numero, CASE
         WHEN BL.IsOperative = 1 THEN 'Si'
         ELSE 'No'
     END  Operativo ,
+	CASE 
+        WHEN BL.MissedCall = 1 THEN 'Si'
+        ELSE 'No'
+    END  Llamada_perdida ,
 RTRIM(ISNULL(SL.Codigo+' '+SL.Nombre,'')) Gestor,
+Dep.Name Departamento,
+SL.Lider ,
+SL.Zona,
 IsNull(FORMAT(BLA.CreationDate , 'dd MMM yyyy', 'es-ES'),'Nunca') Modificacion,
 RTRIM(ISNULL(BLA.AssignedBy,'')) Modificado_por
 FROM Memorial..BusinessPhoneLines BL
@@ -156,8 +170,13 @@ SELECT
 FROM Memorial..BusinessPhoneLinesAssignments
 BLA ) BLA ON
 BL.Id= BLA.LineId AND BLA.RowNum = 1
-LEFT JOIN Memorial..vw_SellerCollector SL 
+
+LEFT JOIN Memorial..vw_ActiveSellersUnionAllCollectors SL 
 ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
+
+LEFT JOIN Memorial..CompanyDepartments Dep ON
+bla.DepartmentId=dep.Id
+
 WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
 ) S WHERE Gestor LIKE @Agent
 ORDER BY 
@@ -178,8 +197,12 @@ SELECT
 FROM Memorial..BusinessPhoneLinesAssignments
 BLA ) BLA ON
 BL.Id= BLA.LineId AND BLA.RowNum = 1
-LEFT JOIN Memorial..vw_SellerCollector SL 
+LEFT JOIN Memorial..vw_ActiveSellersUnionAllCollectors SL 
 ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
+
+LEFT JOIN Memorial..CompanyDepartments Dep ON
+bla.DepartmentId=dep.Id
+
 WHERE BL.LocalNumber LIKE @LocalNumber AND BL.IsAssigned =@areAssigned
 ) S WHERE Gestor LIKE @Agent
 "
