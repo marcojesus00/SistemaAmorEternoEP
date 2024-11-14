@@ -60,8 +60,15 @@ Where P_status='A' AND LEN(P_nomb_empl)>3   ORDER BY Name"
         Dim queryDepartments = "SELECT 
 Id, Name
   FROM [Memorial].[dbo].[CompanyDepartments]"
+        Dim queryZone = "select [vzon_codigo] as Id
+      ,[vzon_nombre] as Nombre
+  FROM [FUNAMOR].[dbo].[VZONA]"
 
+        Dim queryLeader = "SELECT TOP (1000) [Codigo] as Id
+      ,[Nombre] as Name
 
+  FROM [Memorial].[dbo].[vw_ActiveSellersUnionAllCollectors]
+  where codigo=lider"
 
         Using context As New MemorialContext()
 
@@ -73,18 +80,17 @@ Id, Name
 
             Dim resultDepartments As List(Of DDL) = context.Database.SqlQuery(Of DDL)(
                      queryDepartments).ToList()
+
+            Dim resultZOnes As List(Of DDL2) = context.Database.SqlQuery(Of DDL2)(
+                     queryZone).ToList()
+            Dim resultLeaders As List(Of DDL2) = context.Database.SqlQuery(Of DDL2)(
+                     queryLeader).ToList()
+
             DdlAvailableLines.DataSource = resultLines
             DdlAvailableLines.DataTextField = "Name"
             DdlAvailableLines.DataValueField = "Id"
             DdlAvailableLines.DataBind()
             DdlAvailableLines.Items.Insert(0, New ListItem("Linea", ""))
-
-
-            If DdlAvailableLines.SelectedValue.Length > 1 Then
-                'Dim q sele
-            End If
-
-
 
             DdlAgents.DataSource = resultAgents
             DdlAgents.DataTextField = "Name"
@@ -97,6 +103,16 @@ Id, Name
 
 
             DdlDepartment.DataSource = resultDepartments
+            DdlDepartment.DataTextField = "Name"
+            DdlDepartment.DataValueField = "Id"
+            DdlDepartment.DataBind()
+
+            DdlDepartment.DataSource = resultLeaders
+            DdlDepartment.DataTextField = "Name"
+            DdlDepartment.DataValueField = "Id"
+            DdlDepartment.DataBind()
+
+            DdlDepartment.DataSource = resultZOnes
             DdlDepartment.DataTextField = "Name"
             DdlDepartment.DataValueField = "Id"
             DdlDepartment.DataBind()
