@@ -6,36 +6,36 @@
 <div class="container-fluid container-lg">
     <div class="row">
         <!-- First Card -->
-        <div class="col-12 col-md-6 col-lg-5 mb-4">
+        <div class="col-12 col-md-6 col-lg-6 mb-4">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Filtros</div>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 col-12 pb-2">
+                        <div class="col-md-6 col-12 pb-2 col-lg-4 ">
                             <asp:TextBox runat="server" ID="txtSearchPhone" Placeholder="Número de teléfono" CssClass="form-control form-control-sm"></asp:TextBox>
                         </div>
-                           <div class="col-md-6 col-12 pb-2">
+                           <div class="col-md-6 col-12 pb-2 col-lg-4 ">
                             <asp:TextBox runat="server" ID="txtSearchAgent" Placeholder="Codigo de gestor" CssClass="form-control form-control-sm"></asp:TextBox>
                         </div>
-                        <div class="col-md-6 col-12 pb-2">
+                        <div class="col-md-6 col-12 pb-2 col-lg-4 ">
                             <asp:DropDownList runat="server" ID="DdlAsignado" CssClass="form-control form-control-sm">
 
                             </asp:DropDownList>
                         </div>
-                                 <div class="col-md-6 col-12 pb-2">
+                                 <div class="col-md-6 col-12 pb-2 col-lg-4 ">
                             <asp:DropDownList runat="server" ID="DdlDepartment" CssClass="form-control form-control-sm">
 
                             </asp:DropDownList>
                         </div>
-                                     <div class="col-md-6 col-12 pb-2">
+                                     <div class="col-md-6 col-12  col-lg-4 pb-2">
                             <asp:DropDownList runat="server" ID="DdlZone" CssClass="form-control form-control-sm">
 
                             </asp:DropDownList>
 
                         </div>
-                                     <div class="col-md-6 col-12 pb-2">
+                                     <div class="col-md-6 col-12 col-lg-4 pb-2">
                             <asp:DropDownList runat="server" ID="DdlLeader" CssClass="form-control form-control-sm">
 
                             </asp:DropDownList>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Second Card -->
-        <div class="col-12 col-md-6 col-lg-5 mb-4">
+        <div class="col-12 col-md-6 col-lg-6 mb-4">
             <asp:Panel ID="PnlOperation" runat="server">
                 <div class="card">
                     <div class="card-header">
