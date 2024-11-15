@@ -511,7 +511,7 @@ UPDATE [dbo].[BusinessPhoneLines]
    SET 
       [ModificationDate] = @ModificationDate
       ,[IsOperative] = @IsOperative
-      ,[IsAssigned] = @IsAssigned
+  
         ,[MissedCall]=@MissedCall
  WHERE Id=@LineId
 
