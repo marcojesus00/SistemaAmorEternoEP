@@ -145,14 +145,14 @@ Id, Name
             Dim zone = DdlZone.SelectedValue
             Dim department = DdlDepartment.SelectedValue
 
-            Dim areAssigned As Boolean = True
+            Dim isAssigned As Boolean = True
             Dim pageSize As Integer = 10
             Dim offset = (selectedPage - 1) * pageSize
             Dim msg = ""
 
             If DdlAsignado.SelectedValue = "0" Then
 
-                areAssigned = False
+                isAssigned = False
             End If
 
             If leader.Trim.Length < 1 Then
@@ -167,7 +167,7 @@ Id, Name
             Dim parameters As SqlParameter() = {
                                         New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
                                         New SqlParameter("@Agent", "%" + agent + "%"),
-                                        New SqlParameter("@areAssigned", areAssigned),
+                                        New SqlParameter("@isAssigned", isAssigned),
                                         New SqlParameter("@Leader", If(leader Is Nothing, DBNull.Value, leader)),
                                         New SqlParameter("@Zone", If(zone Is Nothing, DBNull.Value, zone)),
                                         New SqlParameter("@Department", If(department Is Nothing, DBNull.Value, department)),
@@ -177,7 +177,7 @@ Id, Name
             Dim parametersCount As SqlParameter() = {
                                         New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
                                         New SqlParameter("@Agent", "%" + agent + "%"),
-                                        New SqlParameter("@areAssigned", areAssigned),
+                                        New SqlParameter("@isAssigned", isAssigned),
                                         New SqlParameter("@Leader", If(leader Is Nothing, DBNull.Value, leader)),
                                         New SqlParameter("@Zone", If(zone Is Nothing, DBNull.Value, zone)),
                                         New SqlParameter("@Department", If(department Is Nothing, DBNull.Value, department)),
@@ -212,6 +212,8 @@ LEFT JOIN (
         BLA.CreationDate,
         BLA.AssignedBy,
         BLA.DepartmentId,
+		bla.AgentCode,
+
         ROW_NUMBER() OVER (PARTITION BY BLA.LineId ORDER BY BLA.CreationDate DESC) AS RowNum
     FROM 
         Memorial..BusinessPhoneLinesAssignments AS BLA
@@ -219,33 +221,26 @@ LEFT JOIN (
 LEFT JOIN 
     Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
     ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
-    AND SL.Lider = ISNULL(@Leader, SL.Lider) 
-    AND SL.Zona = ISNULL(@Zone, SL.Zona)
+    AND (SL.Lider = @Leader OR @Leader IS NULL OR SL.Lider IS NULL)
+    AND (SL.Zona = @Zone OR @Zone IS NULL OR SL.Zona IS NULL)
 LEFT JOIN 
     Memorial..CompanyDepartments AS Dep 
     ON BLA.DepartmentId = Dep.Id
-    AND BLA.DepartmentId = ISNULL(@Department, BLA.DepartmentId)
+    AND (BLA.DepartmentId = @Department OR @Department IS NULL OR BLA.DepartmentId IS NULL)
 WHERE 
     BL.LocalNumber LIKE @LocalNumber
     AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
+AND BL.IsAssigned=@IsAssigned
 ORDER BY 
     Codigo
 OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
 
 "
                 Dim countQuery = "
+select count(*) as n from(
 SELECT 
-    BL.Id AS Codigo,
-    BL.LocalNumber AS Numero,
-    CASE WHEN BL.IsAssigned = 1 THEN 'Si' ELSE 'No' END AS Asignado,
-    CASE WHEN BL.IsOperative = 1 THEN 'Si' ELSE 'No' END AS Operativo,
-    CASE WHEN BL.MissedCall = 1 THEN 'Si' ELSE 'No' END AS Llamada_perdida,
-    RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) AS Gestor,
-    Dep.Name AS Departamento,
-    SL.Lider,
-    SL.Zona,
-    ISNULL(FORMAT(BLA.CreationDate, 'dd MMM yyyy', 'es-ES'), 'Nunca') AS Modificacion,
-    RTRIM(ISNULL(BLA.AssignedBy, '')) AS Modificado_por
+   distinct BL.Id
+AS Codigo
 FROM 
     Memorial..BusinessPhoneLines AS BL
 LEFT JOIN (
@@ -254,25 +249,27 @@ LEFT JOIN (
         BLA.CreationDate,
         BLA.AssignedBy,
         BLA.DepartmentId,
+		bla.AgentCode,
+
         ROW_NUMBER() OVER (PARTITION BY BLA.LineId ORDER BY BLA.CreationDate DESC) AS RowNum
     FROM 
         Memorial..BusinessPhoneLinesAssignments AS BLA
 ) AS BLA ON BL.Id = BLA.LineId AND BLA.RowNum = 1
 LEFT JOIN 
     Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
-    ON SL.Lider = ISNULL(@Leader, SL.Lider) 
-    AND SL.Zona = ISNULL(@Zone, SL.Zona)
+    ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
+    AND (SL.Lider = @Leader OR @Leader IS NULL OR SL.Lider IS NULL)
+    AND (SL.Zona = @Zone OR @Zone IS NULL OR SL.Zona IS NULL)
 LEFT JOIN 
     Memorial..CompanyDepartments AS Dep 
     ON BLA.DepartmentId = Dep.Id
-    AND BLA.DepartmentId = ISNULL(@Department, BLA.DepartmentId)
+    AND (BLA.DepartmentId = @Department OR @Department IS NULL OR BLA.DepartmentId IS NULL)
 WHERE 
     BL.LocalNumber LIKE @LocalNumber
     AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
-ORDER BY 
-    Codigo
-OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+AND BL.IsAssigned=@IsAssigned
 
+) as s
 
 "
                 Dim resultAgents As List(Of TableLinesDto) = context.Database.SqlQuery(Of TableLinesDto)(
