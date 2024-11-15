@@ -63,12 +63,12 @@ Id, Name
 
 
         Dim queryLeader = "SELECT [Codigo] as Id
-      ,[Nombre] as Name
+      , Codigo + ' ' + Nombre  as Name
 
   FROM [Memorial].[dbo].[vw_ActiveSellersUnionAllCollectors]
   where codigo=lider"
         Dim queryZone = "select [vzon_codigo] as Id
-      ,[vzon_nombre] as Name
+      ,vzon_codigo + ' ' +[vzon_nombre] as Name
   FROM [FUNAMOR].[dbo].[VZONA]
   where len(vzon_nombre)>3"
         Using context As New MemorialContext()
@@ -193,15 +193,15 @@ Id, Name
 
                 Dim queryTableLines = "
 SELECT 
-    BL.Id AS Codigo,
+   distinct BL.Id AS Codigo,
     BL.LocalNumber AS Numero,
     CASE WHEN BL.IsAssigned = 1 THEN 'Si' ELSE 'No' END AS Asignado,
     CASE WHEN BL.IsOperative = 1 THEN 'Si' ELSE 'No' END AS Operativo,
     CASE WHEN BL.MissedCall = 1 THEN 'Si' ELSE 'No' END AS Llamada_perdida,
     RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) AS Gestor,
-    Dep.Name AS Departamento,
-    SL.Lider,
-    SL.Zona,
+    isnull(Dep.Name,'') AS Departamento,
+    isnull(SL.Lider, '') as Lider,
+    isnull(SL.Zona,'') as Zona,
     ISNULL(FORMAT(BLA.CreationDate, 'dd MMM yyyy', 'es-ES'), 'Nunca') AS Modificacion,
     RTRIM(ISNULL(BLA.AssignedBy, '')) AS Modificado_por
 FROM 
@@ -221,61 +221,78 @@ LEFT JOIN (
 LEFT JOIN 
     Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
     ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
-    AND (SL.Lider = @Leader OR @Leader IS NULL OR SL.Lider IS NULL)
-    AND (SL.Zona = @Zone OR @Zone IS NULL OR SL.Zona IS NULL)
+ 
 LEFT JOIN 
     Memorial..CompanyDepartments AS Dep 
     ON BLA.DepartmentId = Dep.Id
-    AND (BLA.DepartmentId = @Department OR @Department IS NULL OR BLA.DepartmentId IS NULL)
 WHERE 
     BL.LocalNumber LIKE @LocalNumber
     AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
 AND BL.IsAssigned=@IsAssigned
 ORDER BY 
     Codigo
-OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
+
 
 "
-                Dim countQuery = "
-select count(*) as n from(
-SELECT 
-   distinct BL.Id
-AS Codigo
-FROM 
-    Memorial..BusinessPhoneLines AS BL
-LEFT JOIN (
-    SELECT 
-        BLA.LineId,
-        BLA.CreationDate,
-        BLA.AssignedBy,
-        BLA.DepartmentId,
-		bla.AgentCode,
+                '                Dim countQuery = "
+                '                Select  count(*) As n from(Select 
+                '    BL.Id AS Codigo,
+                '    BL.LocalNumber AS Numero,
+                '    CASE WHEN BL.IsAssigned = 1 THEN 'Si' ELSE 'No' END AS Asignado,
+                '    CASE WHEN BL.IsOperative = 1 THEN 'Si' ELSE 'No' END AS Operativo,
+                '    CASE WHEN BL.MissedCall = 1 THEN 'Si' ELSE 'No' END AS Llamada_perdida,
+                '    RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) AS Gestor,
+                '    isnull(Dep.Name,'') AS Departamento,
+                '    isnull(SL.Lider, '') as Lider,
+                '    isnull(SL.Zona,'') as Zona,
+                '    ISNULL(FORMAT(BLA.CreationDate, 'dd MMM yyyy', 'es-ES'), 'Nunca') AS Modificacion,
+                '    RTRIM(ISNULL(BLA.AssignedBy, '')) AS Modificado_por
+                'FROM 
+                '    Memorial..BusinessPhoneLines AS BL
+                'LEFT JOIN (
+                '    SELECT 
+                '        BLA.LineId,
+                '        BLA.CreationDate,
+                '        BLA.AssignedBy,
+                '        BLA.DepartmentId,
+                '		bla.AgentCode,
 
-        ROW_NUMBER() OVER (PARTITION BY BLA.LineId ORDER BY BLA.CreationDate DESC) AS RowNum
-    FROM 
-        Memorial..BusinessPhoneLinesAssignments AS BLA
-) AS BLA ON BL.Id = BLA.LineId AND BLA.RowNum = 1
-LEFT JOIN 
-    Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
-    ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
-    AND (SL.Lider = @Leader OR @Leader IS NULL OR SL.Lider IS NULL)
-    AND (SL.Zona = @Zone OR @Zone IS NULL OR SL.Zona IS NULL)
-LEFT JOIN 
-    Memorial..CompanyDepartments AS Dep 
-    ON BLA.DepartmentId = Dep.Id
-    AND (BLA.DepartmentId = @Department OR @Department IS NULL OR BLA.DepartmentId IS NULL)
-WHERE 
-    BL.LocalNumber LIKE @LocalNumber
-    AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
-AND BL.IsAssigned=@IsAssigned
+                '        ROW_NUMBER() OVER (PARTITION BY BLA.LineId ORDER BY BLA.CreationDate DESC) AS RowNum
+                '    FROM 
+                '        Memorial..BusinessPhoneLinesAssignments AS BLA
+                ') AS BLA ON BL.Id = BLA.LineId AND BLA.RowNum = 1
+                'LEFT JOIN 
+                '    Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
+                '    ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
 
-) as s
+                'LEFT JOIN 
+                '    Memorial..CompanyDepartments AS Dep 
+                '    ON BLA.DepartmentId = Dep.Id
+                'WHERE 
+                '    BL.LocalNumber LIKE @LocalNumber
+                '    AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
+                'AND BL.IsAssigned=@IsAssigned
+                ') as s
 
-"
+                '                "
                 Dim resultAgents As List(Of TableLinesDto) = context.Database.SqlQuery(Of TableLinesDto)(
                      queryTableLines, parameters).ToList()
-                Dim resultCount As Integer = context.Database.SqlQuery(Of Integer)(
-                     countQuery, parametersCount).FirstOrDefault()
+                'resultAgents.Where(Function(c) c.Lider.Contains)
+                If leader IsNot Nothing AndAlso leader.Trim.Length > 1 Then
+                    resultAgents = resultAgents.Where(Function(r) r.Lider.Contains(leader)).ToList()
+                End If
+                If zone IsNot Nothing AndAlso zone.Trim.Length > 1 Then
+                    resultAgents = resultAgents.Where(Function(r) r.Zona.Contains(zone)).ToList()
+                End If
+                If department IsNot Nothing AndAlso department.Trim.Length > 1 Then
+                    resultAgents = resultAgents.Where(Function(r) r.Departamento.Contains(department.Substring(0, 4))).ToList()
+                End If
+                Dim resultCount As Integer = resultAgents.Count()
+                resultAgents = resultAgents.Skip(offset).Take(pageSize).ToList()
+                'resultAgents.Count()
+                '
+                'context.Database.SqlQuery(Of Integer)(
+                '     countQuery, parametersCount).FirstOrDefault()
 
                 DashboardGridview.DataSource = Nothing
 

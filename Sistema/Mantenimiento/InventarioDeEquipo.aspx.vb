@@ -273,6 +273,11 @@ LEFT JOIN BusinessPhoneLines B ON E.P_num_emple=B.EmployeeId
         Public Property Operativo As String
         Public Property Llamada_perdida As String
         Public Property Gestor As String
+        Public Property Lider As String
+        Public Property Zona As String
+
+        Public Property Departamento As String
+
         Public Property Modificacion As String
         Public Property Modificado_por As String
 
