@@ -41,15 +41,6 @@ Partial Public Class Lineas
     Protected WithEvents DdlAsignado As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DdlDepartment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DdlDepartment As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''DdlZone control.
     '''</summary>
     '''<remarks>
@@ -129,6 +120,15 @@ Partial Public Class Lineas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BtnOutOfService As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''BtnNotAnswer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnNotAnswer As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''DashboardGridview control.

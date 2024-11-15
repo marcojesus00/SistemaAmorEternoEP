@@ -105,11 +105,11 @@ Id, Name
             DdlAsignado.Items.Insert(0, New ListItem("Asignados", "1"))
 
 
-            DdlDepartment.DataSource = resultDepartments
-            DdlDepartment.DataTextField = "Name"
-            DdlDepartment.DataValueField = "Id"
-            DdlDepartment.DataBind()
-            DdlDepartment.Items.Insert(0, New ListItem("Área", ""))
+            'DdlDepartment.DataSource = resultDepartments
+            'DdlDepartment.DataTextField = "Name"
+            'DdlDepartment.DataValueField = "Id"
+            'DdlDepartment.DataBind()
+            'DdlDepartment.Items.Insert(0, New ListItem("Área", ""))
 
 
             DdlLeader.DataSource = resultLeaders
@@ -143,7 +143,8 @@ Id, Name
             Dim agent = txtSearchAgent.Text
             Dim leader = DdlLeader.SelectedValue
             Dim zone = DdlZone.SelectedValue
-            Dim department = DdlDepartment.SelectedValue
+            'Dim department = DdlDepartment.SelectedValue
+            'Dim departmentName = DdlDepartment.SelectedItem.Text.Substring(0, 3)
 
             Dim isAssigned As Boolean = True
             Dim pageSize As Integer = 10
@@ -161,29 +162,36 @@ Id, Name
             If zone.Trim.Length < 1 Then
                 zone = Nothing
             End If
-            If department.Trim.Length < 1 Then
-                department = Nothing
-            End If
+            'If department.Trim.Length < 1 Then
+            '    department = Nothing
+            'End If
+
+            'If departmentName.Contains("COB") Then
+            'ElseIf departmentName.Contains("VEN") Then
+
+            'Else
+            '    departmentName = Nothing
+
+            'End If
             Dim parameters As SqlParameter() = {
                                         New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
                                         New SqlParameter("@Agent", "%" + agent + "%"),
                                         New SqlParameter("@isAssigned", isAssigned),
                                         New SqlParameter("@Leader", If(leader Is Nothing, DBNull.Value, leader)),
                                         New SqlParameter("@Zone", If(zone Is Nothing, DBNull.Value, zone)),
-                                        New SqlParameter("@Department", If(department Is Nothing, DBNull.Value, department)),
                                         New SqlParameter("@Offset", offset),
                                         New SqlParameter("@PageSize", pageSize)
                 }
-            Dim parametersCount As SqlParameter() = {
-                                        New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
-                                        New SqlParameter("@Agent", "%" + agent + "%"),
-                                        New SqlParameter("@isAssigned", isAssigned),
-                                        New SqlParameter("@Leader", If(leader Is Nothing, DBNull.Value, leader)),
-                                        New SqlParameter("@Zone", If(zone Is Nothing, DBNull.Value, zone)),
-                                        New SqlParameter("@Department", If(department Is Nothing, DBNull.Value, department)),
-                                        New SqlParameter("@Offset", offset),
-                                        New SqlParameter("@PageSize", pageSize)
-                }
+            'Dim parametersCount As SqlParameter() = {
+            '                            New SqlParameter("@LocalNumber", "%" + LocalNumber + "%"),
+            '                            New SqlParameter("@Agent", "%" + agent + "%"),
+            '                            New SqlParameter("@isAssigned", isAssigned),
+            '                            New SqlParameter("@Leader", If(leader Is Nothing, DBNull.Value, leader)),
+            '                            New SqlParameter("@Zone", If(zone Is Nothing, DBNull.Value, zone)),
+            '                            New SqlParameter("@Department", If(department Is Nothing, DBNull.Value, department)),
+            '                            New SqlParameter("@Offset", offset),
+            '                            New SqlParameter("@PageSize", pageSize)
+            '    }
 
 
 
@@ -200,8 +208,10 @@ SELECT
     CASE WHEN BL.MissedCall = 1 THEN 'Si' ELSE 'No' END AS Llamada_perdida,
     RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) AS Gestor,
     isnull(Dep.Name,'') AS Departamento,
-    isnull(SL.Lider, '') as Lider,
-    isnull(SL.Zona,'') as Zona,
+    isnull(SL.[Lider_venta], '') as Lider_venta,
+    isnull(SL.[Zona_venta],'') as Zona_venta,
+  isnull(SL.[Lider_cobro], '') as Lider_cobro,
+    isnull(SL.[Zona_cobro],'') as Zona_cobro,
     ISNULL(FORMAT(BLA.CreationDate, 'dd MMM yyyy', 'es-ES'), 'Nunca') AS Modificacion,
     RTRIM(ISNULL(BLA.AssignedBy, '')) AS Modificado_por
 FROM 
@@ -219,9 +229,9 @@ LEFT JOIN (
         Memorial..BusinessPhoneLinesAssignments AS BLA
 ) AS BLA ON BL.Id = BLA.LineId AND BLA.RowNum = 1
 LEFT JOIN 
-    Memorial..vw_ActiveSellersUnionAllCollectors AS SL 
-    ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
- 
+
+    Memorial..vw_ActiveSellersUnionAllCollectors2 AS SL
+ON SL.Codigo COLLATE SQL_Latin1_General_CP1_CI_AS = BLA.AgentCode
 LEFT JOIN 
     Memorial..CompanyDepartments AS Dep 
     ON BLA.DepartmentId = Dep.Id
@@ -229,6 +239,7 @@ WHERE
     BL.LocalNumber LIKE @LocalNumber
     AND RTRIM(ISNULL(SL.Codigo + ' ' + SL.Nombre, '')) LIKE @Agent
 AND BL.IsAssigned=@IsAssigned
+
 ORDER BY 
     Codigo
 
@@ -279,15 +290,16 @@ ORDER BY
                      queryTableLines, parameters).ToList()
                 'resultAgents.Where(Function(c) c.Lider.Contains)
                 If leader IsNot Nothing AndAlso leader.Trim.Length > 1 Then
-                    resultAgents = resultAgents.Where(Function(r) r.Lider.Contains(leader)).ToList()
+                    resultAgents = resultAgents.Where(Function(r) r.Lider_cobro.Contains(leader) OrElse r.Lider_venta.Contains(leader)).ToList()
                 End If
                 If zone IsNot Nothing AndAlso zone.Trim.Length > 1 Then
-                    resultAgents = resultAgents.Where(Function(r) r.Zona.Contains(zone)).ToList()
+                    resultAgents = resultAgents.Where(Function(r) r.Zona_cobro.Contains(zone) OrElse r.Zona_venta.Contains(zone)).ToList()
                 End If
-                If department IsNot Nothing AndAlso department.Trim.Length > 1 Then
-                    resultAgents = resultAgents.Where(Function(r) r.Departamento.Contains(department.Substring(0, 4))).ToList()
-                End If
+                'If department IsNot Nothing AndAlso department.Trim.Length > 1 Then
+                '    resultAgents = resultAgents.Where(Function(r) r.Departamento.Contains(department.Substring(0, 4))).ToList()
+                'End If
                 Dim resultCount As Integer = resultAgents.Count()
+
                 resultAgents = resultAgents.Skip(offset).Take(pageSize).ToList()
                 'resultAgents.Count()
                 '
@@ -352,18 +364,27 @@ ORDER BY
             Dim row As GridViewRow = DashboardGridview.Rows(rowIndex)
 
             Dim keyValue As String = DashboardGridview.DataKeys(digitalRoot).Value.ToString()
-
+            Dim cellIndex As Integer = 1 ' Replace with the desired column index
+            Dim agentCodeValue As String = DashboardGridview.Rows(rowIndex).Cells(cellIndex).ToString().Substring(0, 4)
             If e.CommandName = "Operation" Then
                 If Session("Usuario_Aut") Is Nothing OrElse Session("Usuario_Aut") = "" OrElse Not AuthHelper.isAuthorized(Session("Usuario_Aut"), "LINEAS.W") Then
                     AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
                 Else
                     PnlOperation.Visible = True
                     If DdlAvailableLines.Items.FindByValue(keyValue) IsNot Nothing Then
+
                         DdlAvailableLines.SelectedValue = keyValue
                     Else
                         AlertHelper.GenerateAlert("danger", keyValue, alertPlaceholder)
 
                     End If
+                    If DdlAgents.Items.FindByValue(agentCodeValue) IsNot Nothing Then
+                        DdlAgents.SelectedValue = agentCodeValue
+                    Else
+                        DdlAgents.SelectedValue = ""
+                    End If
+
+
 
                 End If
 
@@ -467,7 +488,49 @@ END CATCH
 
         End Try
     End Sub
+    Public Sub updatePhoneLInes(LineId, AgentCode, Optional IsOperative = True, Optional IsAssigned = True, Optional MissedCall = False)
 
+        Dim ModificationDate = DateTime.Now
+
+        Dim parameters As SqlParameter() = {
+                        New SqlParameter("@ModificationDate", ModificationDate),
+                                            New SqlParameter("@IsOperative", IsOperative),
+            New SqlParameter("@IsAssigned", IsAssigned),
+            New SqlParameter("@LineId", LineId),
+            New SqlParameter("@AgentCode", AgentCode),
+            New SqlParameter("@MissedCall", MissedCall)}
+
+        Using context As New MemorialContext()
+            Dim queryUpdatePhoneLine = "
+
+BEGIN TRY
+BEGIN TRANSACTION
+
+
+UPDATE [dbo].[BusinessPhoneLines]
+   SET 
+      [ModificationDate] = @ModificationDate
+      ,[IsOperative] = @IsOperative
+      ,[IsAssigned] = @IsAssigned
+        ,[MissedCall]=@MissedCall
+ WHERE Id=@LineId
+
+
+COMMIT
+SELECT 'EXITO'
+END TRY
+
+
+BEGIN CATCH
+ROLLBACK
+SELECT ERROR_MESSAGE()
+END CATCH
+"
+
+            Dim resultAgents As String = context.Database.SqlQuery(Of String)(
+     queryUpdatePhoneLine, parameters).FirstOrDefault()
+        End Using
+    End Sub
     Protected Sub BtnAssign_Click(sender As Object, e As EventArgs)
         Dim ModificationDate = DateTime.Now()
         Dim IsOperative = True
@@ -501,7 +564,15 @@ END CATCH
         UpdateLines(AssignedBy, AgentCode, ModificationDate, IsOperative, IsAssigned, LineId)
 
     End Sub
+    Protected Sub BtnNotAnswer_Click(sender As Object, e As EventArgs)
+        Dim IsOperative = True
+        Dim IsAssigned = True
+        Dim LineId = DdlAvailableLines.SelectedValue
+        'Dim EmployeeId = DdlEmployees.SelectedValue
+        Dim AgentCode = DdlAgents.SelectedValue
+        updatePhoneLInes(LineId:=LineId, AgentCode:=AgentCode, MissedCall:=True)
 
+    End Sub
 
     Protected Sub lnkbtnPage_Click(sender As Object, e As EventArgs)
         Dim lnkButton As LinkButton = CType(sender, LinkButton)
@@ -532,4 +603,6 @@ END CATCH
         End If
 
     End Sub
+
+
 End Class

@@ -3,105 +3,126 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Filters" runat="server">
     <h2 class=" text-center">Mantenimiento de líneas celulares</h2>
 
-<div class="container-fluid container-lg">
-    <div class="row">
-        <!-- First Card -->
-        <div class="col-12 col-md-6 col-lg-6 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Filtros</div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 col-12 pb-2 col-lg-4 ">
-                            <asp:TextBox runat="server" ID="txtSearchPhone" Placeholder="Número de teléfono" CssClass="form-control form-control-sm"></asp:TextBox>
-                        </div>
-                           <div class="col-md-6 col-12 pb-2 col-lg-4 ">
-                            <asp:TextBox runat="server" ID="txtSearchAgent" Placeholder="Codigo de gestor" CssClass="form-control form-control-sm"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6 col-12 pb-2 col-lg-4 ">
-                            <asp:DropDownList runat="server" ID="DdlAsignado" CssClass="form-control form-control-sm">
-
-                            </asp:DropDownList>
-                        </div>
-                                 <div class="col-md-6 col-12 pb-2 col-lg-4 ">
-                            <asp:DropDownList runat="server" ID="DdlDepartment" CssClass="form-control form-control-sm">
-
-                            </asp:DropDownList>
-                        </div>
-                                     <div class="col-md-6 col-12  col-lg-4 pb-2">
-                            <asp:DropDownList runat="server" ID="DdlZone" CssClass="form-control form-control-sm">
-
-                            </asp:DropDownList>
-
-                        </div>
-                                     <div class="col-md-6 col-12 col-lg-4 pb-2">
-                            <asp:DropDownList runat="server" ID="DdlLeader" CssClass="form-control form-control-sm">
-
-                            </asp:DropDownList>
-                        </div>
+    <div class="container-fluid container-lg">
+        <div class="row">
+            <!-- First Card -->
+            <div class="col-12 col-md-6 col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Filtros</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 offset-md-6">
-                            <asp:LinkButton ID="btnSearch" class="btn btn-sm btn-outline-dark" OnClick="btnSearch_Click" runat="server">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-12 pb-2 col-lg-4 ">
+                                <asp:TextBox runat="server" ID="txtSearchPhone" Placeholder="Número de teléfono" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6 col-12 pb-2 col-lg-4 ">
+                                <asp:TextBox runat="server" ID="txtSearchAgent" Placeholder="Codigo de gestor" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6 col-12 pb-2 col-lg-4 ">
+                                <asp:DropDownList runat="server" ID="DdlAsignado" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+                            </div>
+                        <%--    <div class="col-md-6 col-12 pb-2 col-lg-4 ">
+                                <asp:DropDownList runat="server" ID="DdlDepartment" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+                            </div>--%>
+                            <div class="col-md-6 col-12  col-lg-4 pb-2">
+                                <asp:DropDownList runat="server" ID="DdlZone" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+
+                            </div>
+                            <div class="col-md-6 col-12 col-lg-4 pb-2">
+                                <asp:DropDownList runat="server" ID="DdlLeader" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 offset-md-6">
+                                <asp:LinkButton ID="btnSearch" class="btn btn-sm btn-outline-dark" OnClick="btnSearch_Click" runat="server">
                                 <i class="bi bi-search"></i>
                                 Buscar
-                            </asp:LinkButton>
+                                </asp:LinkButton>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Second Card -->
-        <div class="col-12 col-md-6 col-lg-6 mb-4">
-            <asp:Panel ID="PnlOperation" runat="server">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Asignar linea telefónica</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-12 pb-2">
-                                <asp:DropDownList runat="server" ID="DdlAvailableLines" CssClass="form-control form-control-sm"></asp:DropDownList>
-                            </div>
-                            <div class="col-md-6 col-12 pb-2">
-                                <asp:DropDownList runat="server" ID="DdlAgents" CssClass="form-control form-control-sm"></asp:DropDownList>
-                            </div>
-                           <%-- <div class="col-md-6 col-12 pb-2">
+            <!-- Second Card -->
+            <div class="col-12 col-md-6 col-lg-6 mb-4">
+                <asp:Panel ID="PnlOperation" runat="server">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Asignar linea telefónica</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-12 pb-2">
+                                    <asp:DropDownList runat="server" ID="DdlAvailableLines" CssClass="form-control form-control-sm"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-6 col-12 pb-2">
+                                    <asp:DropDownList runat="server" ID="DdlAgents" CssClass="form-control form-control-sm"></asp:DropDownList>
+                                </div>
+                                <%-- <div class="col-md-6 col-12 pb-2">
                                 <asp:DropDownList runat="server" ID="DdlEmployees" CssClass="form-control form-control-sm"></asp:DropDownList>
                             </div>--%>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <asp:LinkButton ID="BtnAssign" class="btn btn-sm btn-outline-success" OnClick="BtnAssign_Click" runat="server">
-                                    <i class="bi bi-caret-down"></i>
-                                    Asignar
-                                </asp:LinkButton>
-                                                                                                </div>
-
-                                                            <div class="col-md-4">
-
-                                <asp:LinkButton ID="BtnUnassing" class="btn btn-sm btn-outline-warning" OnClick="BtnUnassing_Click" runat="server">
-                                    <i class="bi bi-caret-down"></i>
-                                    Desasignar
-                                </asp:LinkButton>
-                                                                </div>
-                                <div class="col-md-4">
-
-                                <asp:LinkButton ID="BtnOutOfService" class="btn btn-sm btn-outline-danger" OnClick="BtnOutOfService_Click" runat="server">
-                                    <i class="bi bi-caret-down"></i>
-                                    Fuera de servicio
-                                </asp:LinkButton>
                             </div>
+<div class="row pb-1">
+  <div class="col-md-4 col-lg-6 d-flex">
+    <asp:LinkButton 
+      ID="BtnAssign" 
+      class="btn btn-sm btn-outline-success w-100" 
+      OnClick="BtnAssign_Click" 
+      runat="server">
+      <i class="bi bi-caret-down"></i>
+      Asignar
+    </asp:LinkButton>
+  </div>
+
+  <div class="col-md-4 col-lg-6 d-flex">
+    <asp:LinkButton 
+      ID="BtnUnassing" 
+      class="btn btn-sm btn-outline-warning w-100" 
+      OnClick="BtnUnassing_Click" 
+      runat="server">
+      <i class="bi bi-caret-down"></i>
+      Desasignar
+    </asp:LinkButton>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-lg-6">
+    <div class="d-flex">
+      <asp:LinkButton 
+        ID="BtnOutOfService" 
+        class="btn btn-sm btn-outline-danger w-100" 
+        OnClick="BtnOutOfService_Click" 
+        runat="server">
+        <i class="bi bi-caret-down"></i>
+        Fuera de servicio
+      </asp:LinkButton>
+    </div>
+  </div>
+  <div class="col-md-4 col-lg-6">
+    <div class="d-flex">
+      <asp:LinkButton 
+        ID="BtnNotAnswer" 
+        class="btn btn-sm btn-outline-secondary w-100" 
+        OnClick="BtnNotAnswer_Click" 
+        runat="server">
+        <i class="bi bi-caret-down"></i>
+        No contesta
+      </asp:LinkButton>
+    </div>
+  </div>
+</div>
                         </div>
                     </div>
-                </div>
-            </asp:Panel>
+                </asp:Panel>
+            </div>
         </div>
     </div>
-</div>
 
 
 
