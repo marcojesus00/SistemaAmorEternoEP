@@ -248,6 +248,7 @@ where c.codigo_cobr like @Cobrador"
                 End If
                 Dim Usuario = Session("Usuario")
                 Dim Clave = Session("Clave")
+                Dim user_auth = Session("Usuario_Aut")
 
                 For Each cliente In result
                     Try
@@ -265,9 +266,8 @@ where c.codigo_cobr like @Cobrador"
 
                         Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                         Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
-                        Dim user = Session("Usuario_Aut")
 
-                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
                         'Debug.WriteLine(r4esult.Msg)
 
                         If r4esult.Success = False Then
@@ -290,7 +290,7 @@ where c.codigo_cobr like @Cobrador"
                         Dim m = "Codigo de cliente: " + cliente.Codigo
                         DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
 
-                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=User, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId, ReferenceId:=Guid.NewGuid())
+                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=user_auth, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId, ReferenceId:=Guid.NewGuid())
 
                     End Try
 
