@@ -141,7 +141,7 @@ Id, Name
         Try
             Dim LocalNumber = txtSearchPhone.Text
             Dim agent = txtSearchAgent.Text
-            Dim leader = DdlLeader.SelectedValue
+            Dim leader = DdlLeader.SelectedValue.Trim()
             Dim zone = DdlZone.SelectedValue
             'Dim department = DdlDepartment.SelectedValue
             'Dim departmentName = DdlDepartment.SelectedItem.Text.Substring(0, 3)
