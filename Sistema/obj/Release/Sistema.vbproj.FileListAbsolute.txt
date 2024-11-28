@@ -59,6 +59,13 @@ C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Release\Sistema.dll
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Release\Sistema.xml
 C:\Users\Administrator\Documents\Visual Studio 2017\Projects\Sistema\Sistema\obj\Release\Sistema.pdb
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\VBCSCompiler.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csc.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csc.exe.config
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csc.rsp
@@ -66,17 +73,11 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\rosly
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csi.exe.config
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\csi.rsp
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Security.Principal.Windows.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\System.Text.Encoding.CodePages.dll
@@ -84,7 +85,6 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\rosly
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\vbc.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\vbc.exe.config
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\vbc.rsp
-C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\VBCSCompiler.exe
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Sistema.dll.config
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Sistema.dll
@@ -265,3 +265,7 @@ C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Syste
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\obj\Release\Sentry.Attributes.vb
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.dll
 C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\Dapper.xml
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\RabbitMQ.Client.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Threading.Channels.dll
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\RabbitMQ.Client.xml
+C:\Users\wilbert.castillo\Documents\GitHub\SistemaAmorEternoEP\Sistema\bin\System.Threading.Channels.xml

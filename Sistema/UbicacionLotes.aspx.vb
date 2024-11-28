@@ -5,7 +5,9 @@
     Private Liquida, Liquida2 As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("Usuario") = "" Then
+        Try
+
+            If Session("Usuario") = "" Then
             Response.Redirect("inicio.aspx")
         End If
 
@@ -17,7 +19,15 @@
         Clave_Aut = Session("Clave_Aut")
 
         lblMsjError.Text = ""
-        lblMsjError.ControlStyle.CssClass = ""
+            lblMsjError.ControlStyle.CssClass = ""
+        Catch ex As Exception
+            Dim msg = "Problema al la cargar página, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+        End Try
     End Sub
 
     Protected Sub btnSalir_Click(sender As Object, e As ImageClickEventArgs) Handles btnSalir.Click
@@ -102,139 +112,112 @@
     End Sub
 
     Protected Sub btnsalvarUb_Click(sender As Object, e As EventArgs) Handles btnsalvarUb.Click
-        Dim Conf, Conf2, Conf3, confi, confClie, ConfU1, ConfU2 As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
-        Dim SqlInsert, cliente, SqlJardin, SqlCliente, valor, SqlExiste, Jardin, codigojardin, Letra, Nombre, SqlNombre, SqlUbicacion, ClienteOcupado1, ClienteOcupado2 As String
-
-        If txtNccodigo.Text.Length > 6 Then
-            cliente = txtNccodigo.Text.Trim
-        ElseIf txtNccodigo.Text.Length < 7 Then
-            cliente = "P01" + "-" + RTrim(LTrim(txtNccodigo.Text.Trim))
-        End If
+        Try
 
 
-        SqlCliente = " IF EXISTS  (Select codigo_clie from FUNAMOR..clientes where Codigo_clie = '" + cliente.ToString + "') Select 'Si' Cliente else SElect 'No' Cliente "
-        Datos = Conf.EjecutaSql(SqlCliente)
 
-        valor = Datos.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd
+            Dim Conf, Conf2, Conf3, confi, confClie, ConfU1, ConfU2 As New Configuracion(Usuario, Clave, "FUNAMOR", Servidor)
+            Dim SqlInsert, cliente, SqlJardin, SqlCliente, valor, SqlExiste, Jardin, codigojardin, Letra, Nombre, SqlNombre, SqlUbicacion, ClienteOcupado1, ClienteOcupado2 As String
 
-        If valor = "No" Then
-            '  Response.Write("<script language=javascript>alert('Cliente No Existe - INTENTELO NUEVAMENTE');</script>")
-            lblMsjError.Text = "Error: Cliente No existe - Colocar el Correcto "
-            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-            Exit Sub
-        Else
+            If txtNccodigo.Text.Length > 6 Then
+                cliente = txtNccodigo.Text.Trim
+            ElseIf txtNccodigo.Text.Length < 7 Then
+                cliente = "P01" + "-" + RTrim(LTrim(txtNccodigo.Text.Trim))
+            End If
 
-            ''Busca el Jardin del Cliente.
-            If DropJardin.SelectedValue.TrimEnd.Length = 0 Then
 
-                lblMsjError.Text = "Error: Debe Seleccionar el Jardin- Intentelo Nuevamente "
+            SqlCliente = " IF EXISTS  (Select codigo_clie from FUNAMOR..clientes where Codigo_clie = '" + cliente.ToString + "') Select 'Si' Cliente else SElect 'No' Cliente "
+            Datos = Conf.EjecutaSql(SqlCliente)
+
+            valor = Datos.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd
+
+            If valor = "No" Then
+                '  Response.Write("<script language=javascript>alert('Cliente No Existe - INTENTELO NUEVAMENTE');</script>")
+                lblMsjError.Text = "Error: Cliente No existe - Colocar el Correcto "
                 lblMsjError.ControlStyle.CssClass = "alert alert-danger"
                 Exit Sub
-                '    SqlJardin = "Select CONT_CJARD Jardin,jard_codigo Codigo,cl.codigo_clie +'-'+ rtrim(ltrim(cl.nombre_clie)) Nombre from FUNAMOR..CONTRATO c inner join FUNAMOR..JARDINES J ON LTRIM(RTRIM(J.JARD_NOMBRE)) = LTRIM(RTRIM(CONT_CJARD)) inner join FUNAMOR..CLIENTES cl on cl.codigo_clie = c.codigo_clie WHERE CL.Codigo_clie = '" + cliente.TrimEnd + "'"
-                '    Datos1 = Conf.EjecutaSql(SqlJardin)
-                '    Jardin = Datos1.Tables(0).Rows(0).Item("Jardin").ToString.TrimEnd()
-                '    codigojardin = Datos1.Tables(0).Rows(0).Item("Codigo").ToString.TrimEnd()
-                '    Nombre = Datos1.Tables(0).Rows(0).Item("Nombre").ToString.TrimEnd()
+            Else
 
-                '    SqlExiste = " Select Case when (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + codigojardin.TrimEnd + "' and ubij_numero = '" + txtubicacion.Value + " ') is null then 'No' else "
-                '    SqlExiste += " (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + codigojardin.TrimEnd + "' and ubij_numero = '" + txtubicacion.Value + " ') end Existe"
-                '    Datos2 = Conf3.EjecutaSql(SqlExiste)
+                ''Busca el Jardin del Cliente.
+                If DropJardin.SelectedValue.TrimEnd.Length = 0 Then
 
-                '    SqlUbicacion = "Select ubij_numero Numero, rtrim(ltrim(Ubij_client)) Cliente, ubij_letra Letra,c.codigo_clie +'-'+ rtrim(ltrim(c.nombre_clie))Nombre,ubij_jardin Jardin from ubijard j inner join clientes c on c.codigo_clie = j.ubij_client where ubij_jardin = '" + codigojardin.TrimEnd + "' and ubij_numero = '" + txtubicacion.Value + " '"
-                '    DatosU1 = ConfU1.EjecutaSql(SqlUbicacion)
+                    lblMsjError.Text = "Error: Debe Seleccionar el Jardin- Intentelo Nuevamente "
+                    lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+                    Exit Sub
 
-                '    ClienteOcupado1 = DatosU1.Tables(0).Rows(0).Item("Nombre").ToString()
+                ElseIf DropJardin.SelectedValue.TrimEnd.Length > 0 Then
+                    SqlNombre = "Select ltrim(rtrim(codigo_clie))+'-'+rtrim(ltrim(nombre_clie))Nombre from FUNAMOR..CLIENTES WHERE CODIGO_CLIE = '" + cliente.TrimEnd + "'"
+                    DatosCliente = confClie.EjecutaSql(SqlNombre)
+                    Nombre = DatosCliente.Tables(0).Rows(0).Item("Nombre").ToString.TrimEnd()
 
-                '    If Datos2.Tables(0).Rows(0).Item("Existe").ToString = "No" Or txtubicacion.Value.Length = 0 Then
-                '        Response.Write("<script language=javascript>alert('Ubicacion No existe- Intentelo Nuevamente');</script>")
-                '    ElseIf DatosU1.Tables(0).Rows(0).Item("Numero").ToString.TrimEnd() = txtubicacion.Value And DatosU1.Tables(0).Rows(0).Item("Jardin").ToString.TrimEnd() = codigojardin And DatosU1.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd.Length > 1 Then
-
-
-                '        Response.Write("<script language=javascript>alert('La Ubicacion Que ingresó Pertenece a: " + ClienteOcupado1.TrimEnd + "');</script>")
-                '    Else
+                    SqlExiste = " Select Case when (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + DropJardin.SelectedValue.TrimEnd + "' and ubij_numero = '" + txtubicacion.Text + " ') is null then 'No' else "
+                    SqlExiste += " (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + DropJardin.SelectedValue.TrimEnd + "' and ubij_numero = '" + txtubicacion.Text + " ') end Existe"
+                    Datos3 = Conf3.EjecutaSql(SqlExiste)
+                    Letra = Datos3.Tables(0).Rows(0).Item("Existe").ToString
 
 
-                '        Letra = Datos2.Tables(0).Rows(0).Item("Existe").ToString
-                '        SqlInsert = "Exec FUNAMOR..SP_VS_CambiaUBicacion ' " + cliente.TrimEnd + "',               
-                '        '" + codigojardin.TrimEnd + "',                 
-                '        '" + txtubicacion.Value.TrimEnd + "',                
-                '        '" + Datos2.Tables(0).Rows(0).Item("Existe").ToString + "',                 
-                '        '" + Session("Usuario_Aut") + "'"
-
-                '        confi.EjecutaSql(SqlInsert)
-
-                '        Response.Write("<script language=javascript>alert('Ubicacion Guardada En el Cliente: " + Nombre.TrimEnd + "');</script>")
-                '        'Response.Write("<script language=javascript>alert('Excelente');</script>")
-                '        txtNccodigo.Value = ""
-                '        txtubicacion.Value = ""
-                '        DropJardin.SelectedIndex = 0
-
-                '    End If
-
-            ElseIf DropJardin.SelectedValue.TrimEnd.Length > 0 Then
-                SqlNombre = "Select ltrim(rtrim(codigo_clie))+'-'+rtrim(ltrim(nombre_clie))Nombre from FUNAMOR..CLIENTES WHERE CODIGO_CLIE = '" + cliente.TrimEnd + "'"
-                DatosCliente = confClie.EjecutaSql(SqlNombre)
-                Nombre = DatosCliente.Tables(0).Rows(0).Item("Nombre").ToString.TrimEnd()
-
-                SqlExiste = " Select Case when (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + DropJardin.SelectedValue.TrimEnd + "' and ubij_numero = '" + txtubicacion.Text + " ') is null then 'No' else "
-                SqlExiste += " (Select UBIJ_LETRA from FUNAMOR..UBIJARD where UBIJ_JARDIN = '" + DropJardin.SelectedValue.TrimEnd + "' and ubij_numero = '" + txtubicacion.Text + " ') end Existe"
-                Datos3 = Conf3.EjecutaSql(SqlExiste)
-                Letra = Datos3.Tables(0).Rows(0).Item("Existe").ToString
-
-
-                SqlUbicacion = " Select ubij_numero Numero, rtrim(ltrim(Ubij_client)) Cliente, ubij_letra,c.codigo_clie +'-'+ rtrim(ltrim(c.nombre_clie))Nombre, 
+                    SqlUbicacion = " Select ubij_numero Numero, rtrim(ltrim(Ubij_client)) Cliente, ubij_letra,c.codigo_clie +'-'+ rtrim(ltrim(c.nombre_clie))Nombre, 
                                 ubij_jardin Jardin from ubijard j 
                                 inner join clientes c on c.codigo_clie = j.ubij_client 
                                 where ubij_jardin = '" + DropJardin.SelectedValue.TrimEnd + "' and ubij_numero = '" + txtubicacion.Text + " '"
-                DatosU2 = ConfU2.EjecutaSql(SqlUbicacion)
+                    DatosU2 = ConfU2.EjecutaSql(SqlUbicacion)
 
-                ''Verifica si la ubicacion ingresada pertenece a un cliente
-                If DatosU2.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd.Length > 0 Then
-                    ClienteOcupado2 = DatosU2.Tables(0).Rows(0).Item("Nombre").ToString()
+                    ''Verifica si la ubicacion ingresada pertenece a un cliente
+                    If DatosU2.Tables(0).Rows.Count > 0 Then
+                        ClienteOcupado2 = DatosU2.Tables(0).Rows(0).Item("Nombre").ToString()
 
 
-                    If DatosU2.Tables(0).Rows(0).Item("Numero").ToString.TrimEnd() = txtubicacion.Text And DatosU2.Tables(0).Rows(0).Item("Jardin").ToString.TrimEnd() = DropJardin.SelectedValue.TrimEnd And DatosU2.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd.Length > 1 Then
-                        lblMsjError.Text = "Error: La ubicacion Pertenece a : '" + ClienteOcupado2.TrimEnd + "'"
-                        lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                        Exit Sub
-                        'Response.Write("<script language=javascript>alert('La ubicacion que Ingresó Pertenece a: " + ClienteOcupado2.TrimEnd + "');</script>")
-                    End If
-
-                Else
-                    ''Si la ubicacion existe y está libre que guarde.
-                    If Datos3.Tables(0).Rows(0).Item("Existe").ToString = "No" Or txtubicacion.Text.Length = 0 Then
-
-                        lblMsjError.Text = "Error: Ubicacion No existe- Intentelo Nuevamente "
-                        lblMsjError.ControlStyle.CssClass = "alert alert-danger"
-                        Exit Sub
-                        ''Response.Write("<script language=javascript>alert('Ubicacion No existe- Intentelo Nuevamente');</script>")
+                        If DatosU2.Tables(0).Rows(0).Item("Numero").ToString.TrimEnd() = txtubicacion.Text And DatosU2.Tables(0).Rows(0).Item("Jardin").ToString.TrimEnd() = DropJardin.SelectedValue.TrimEnd And DatosU2.Tables(0).Rows(0).Item("Cliente").ToString.TrimEnd.Length > 1 Then
+                            lblMsjError.Text = "Error: La ubicacion Pertenece a : '" + ClienteOcupado2.TrimEnd + "'"
+                            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+                            Exit Sub
+                            'Response.Write("<script language=javascript>alert('La ubicacion que Ingresó Pertenece a: " + ClienteOcupado2.TrimEnd + "');</script>")
+                        End If
 
                     Else
+                        ''Si la ubicacion existe y está libre que guarde.
+                        If Datos3.Tables(0).Rows(0).Item("Existe").ToString = "No" Or txtubicacion.Text.Length = 0 Then
 
-                        SqlInsert = "Exec FUNAMOR..SP_VS_CambiaUBicacion ' " + cliente + "',               
+                            lblMsjError.Text = "Error: Ubicacion No existe- Intentelo Nuevamente "
+                            lblMsjError.ControlStyle.CssClass = "alert alert-danger"
+                            Exit Sub
+                            ''Response.Write("<script language=javascript>alert('Ubicacion No existe- Intentelo Nuevamente');</script>")
+
+                        Else
+
+                            SqlInsert = "Exec FUNAMOR..SP_VS_CambiaUBicacion ' " + cliente + "',               
                     '" + DropJardin.SelectedValue.TrimEnd + "',                 
                     '" + txtubicacion.Text.TrimEnd + "',                
                     '" + Datos3.Tables(0).Rows(0).Item("Existe").ToString + "',                 
                     '" + Session("Usuario_Aut") + "'"
 
-                        confi.EjecutaSql(SqlInsert)
+                            confi.EjecutaSql(SqlInsert)
 
 
-                        'Response.Write("<script language=javascript>alert('Ubicacion Guardada en Cliente: " + Nombre.TrimEnd + "');</script>")
-                        lblMsjError.Text = "Ubicacion Guardada Exitosamente "
-                        lblMsjError.ControlStyle.CssClass = "alert alert-success"
+                            'Response.Write("<script language=javascript>alert('Ubicacion Guardada en Cliente: " + Nombre.TrimEnd + "');</script>")
+                            lblMsjError.Text = "Ubicacion Guardada Exitosamente "
+                            lblMsjError.ControlStyle.CssClass = "alert alert-success"
 
 
 
-                        txtNccodigo.Text = ""
-                        txtubicacion.Text = ""
-                        DropJardin.SelectedIndex = 0
-                        PanelUbicacion.Visible = False
+                            txtNccodigo.Text = ""
+                            txtubicacion.Text = ""
+                            DropJardin.SelectedIndex = 0
+                            PanelUbicacion.Visible = False
+                        End If
                     End If
                 End If
             End If
-        End If
+            AlertHelper.GenerateAlert("success", "Guardado", alertPlaceholder)
 
+        Catch ex As Exception
+            Dim msg = "Problema al la los datos, por favor vuelva a intentarlo : " & ex.Message
+            'RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+            AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
+
+        End Try
     End Sub
 
 

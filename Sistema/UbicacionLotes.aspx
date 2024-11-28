@@ -194,6 +194,8 @@
                     </div>
                 </div>
                </div>   
+                  <div id="alertPlaceholder" runat="server"></div>
+
            </div>
 
 

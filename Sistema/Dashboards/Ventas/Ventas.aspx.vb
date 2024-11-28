@@ -316,6 +316,10 @@ Public Class VentasDashboard
                 End If
 
                 RouteOfReceiptsMap(keyValue)
+            ElseIf e.CommandName = "ToSettle" Then
+                Dim msg = ToSettle(keyValue)
+                AlertHelper.GenerateAlert("info", msg, alertPlaceholder)
+
             End If
 
 
@@ -337,6 +341,16 @@ Public Class VentasDashboard
 
         End Try
     End Sub
+    Public Function ToSettle(agentCode)
+        Using context As New AeVentasDbContext()
+            Dim result As String = context.Database.SqlQuery(Of String)(
+            "EXEC [dbo].[SP_VS_LIQUIDAR_VENDEDOR] @CodigoVendedor",
+            New SqlParameter("@CodigoVendedor", agentCode)
+        ).FirstOrDefault()
+            Return result
+
+        End Using
+    End Function
     Protected Sub DashboardGridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)

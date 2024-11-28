@@ -437,6 +437,24 @@ Partial Public Class principal
     Protected WithEvents Empleado As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''LinkButtonInventory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonInventory As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''LinkButtonLines control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkButtonLines As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''btnGestionCobro control.
     '''</summary>
     '''<remarks>

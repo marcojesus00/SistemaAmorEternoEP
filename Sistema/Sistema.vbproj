@@ -188,6 +188,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.6.8.1\lib\netstandard2.0\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Sentry, Version=4.11.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
       <HintPath>..\packages\Sentry.4.11.0\lib\netstandard2.0\Sentry.dll</HintPath>
     </Reference>
@@ -217,8 +220,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -239,6 +242,9 @@
     </Reference>
     <Reference Include="System.Text.Json, Version=6.0.0.8, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Json.6.0.8\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.7.0.0\lib\netstandard2.0\System.Threading.Channels.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -419,6 +425,8 @@
     <Content Include="Dashboards\Cobros\images\minus.png" />
     <Content Include="Dashboards\Cobros\images\plus.png" />
     <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="Mantenimiento\InventarioDeEquipo.aspx" />
+    <Content Include="Mantenimiento\Lineas.aspx" />
     <Content Include="Shared\Map\MapClustered.aspx" />
     <Content Include="Shared\Map\Map - Copy.aspx" />
     <Content Include="Shared\Map\Map.aspx" />
@@ -2520,6 +2528,7 @@
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Helpers\api\Documents.vb" />
     <Compile Include="Helpers\api\whatsapi.vb" />
     <Compile Include="Helpers\AuthHelper.vb" />
     <Compile Include="Helpers\CachingHelper.vb" />
@@ -2528,7 +2537,23 @@
     <Compile Include="Helpers\LinkHelper.vb" />
     <Compile Include="Helpers\MapHelper.vb" />
     <Compile Include="Helpers\PaginationHelper.vb" />
+    <Compile Include="Helpers\RabbitMQ.Helper.vb" />
+    <Compile Include="Mantenimiento\InventarioDeEquipo.aspx.designer.vb">
+      <DependentUpon>InventarioDeEquipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimiento\InventarioDeEquipo.aspx.vb">
+      <DependentUpon>InventarioDeEquipo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mantenimiento\Lineas.aspx.designer.vb">
+      <DependentUpon>Lineas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimiento\Lineas.aspx.vb">
+      <DependentUpon>Lineas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Models\funamor\UsuariosModels.vb" />
+    <Compile Include="Models\Memorial\MemorialContext.vb" />
     <Compile Include="rpt\Estadistica Visitas Cobrador.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
