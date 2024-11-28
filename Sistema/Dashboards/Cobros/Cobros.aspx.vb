@@ -359,6 +359,11 @@ Public Class CobrosDashboard
                 End If
 
                 RouteOfReceiptsMap(keyValue)
+            ElseIf e.CommandName = "ToSettle" Then
+                Dim msg = ToSettle(keyValue)
+                AlertHelper.GenerateAlert("info", msg, alertPlaceholder)
+
+
             End If
 
 
@@ -381,6 +386,17 @@ Public Class CobrosDashboard
 
         End Try
     End Sub
+
+    Public Function ToSettle(agentCode)
+        Using context As New AeCobrosContext()
+            Dim result As String = context.Database.SqlQuery(Of String)(
+            "EXEC [dbo].[SP_VS_LIQUIDAR_COBRADOR2] @CodigoCobrador",
+            New SqlParameter("@CodigoCobrador", agentCode)
+        ).FirstOrDefault()
+            Return result
+
+        End Using
+    End Function
     Protected Sub DashboardGridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim btnClientsByCollectorMap As LinkButton = CType(e.Row.FindControl("btnClientsByCollectorMap"), LinkButton)

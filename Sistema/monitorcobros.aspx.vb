@@ -132,8 +132,10 @@
 
     End Sub
 
+
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-        Dim conf, Conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
+        Try
+            Dim conf, Conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
         Dim Sql, Sql1 As String
 
         'ActualizaUbicacion()
@@ -407,23 +409,36 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
             gvMonitor.Visible = True
         End If
 
-        lblHora.Text = "Actualizado: " + System.DateTime.Now.ToShortTimeString
+            lblHora.Text = "Actualizado: " + System.DateTime.Now.ToShortTimeString
+
+
+        Catch ex As Exception
+                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+                Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+            End Try
+
     End Sub
 
     Private Sub gvMonitor_Sorting(sender As Object, e As GridViewSortEventArgs) Handles gvMonitor.Sorting
-        Dim Orden As String
+        Try
+            Dim Orden As String
 
-        If Session("Orden") = "0" Then
-            Orden = "Asc"
-            Session.Add("Orden", "1")
-        Else
-            Orden = "Desc"
-            Session.Add("Orden", "0")
-        End If
+            If Session("Orden") = "0" Then
+                Orden = "Asc"
+                Session.Add("Orden", "1")
+            Else
+                Orden = "Desc"
+                Session.Add("Orden", "0")
+            End If
 
-        Session("GV").DefaultView.Sort = e.SortExpression.ToString + " " + Orden
-        gvMonitor.DataSource = Session("GV")
-        gvMonitor.DataBind()
+            Session("GV").DefaultView.Sort = e.SortExpression.ToString + " " + Orden
+            gvMonitor.DataSource = Session("GV")
+            gvMonitor.DataBind()
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
+
     End Sub
 
     Sub Msg(Mensaje As String)
@@ -436,145 +451,141 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
 
     Private Sub gvMonitor_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles gvMonitor.RowDataBound
         Try
-            If ((e.Row.RowType = DataControlRowType.DataRow) And (e.Row.RowType <> DataControlRowType.EmptyDataRow)) Then
-                Dim Fila As System.Data.DataRowView = e.Row.DataItem
-                Total += Convert.ToDecimal(Fila.Item("Cobrado"))
-                Visitados += Convert.ToDecimal(Fila.Item("Visitados"))
-                Recibos += Convert.ToDecimal(Fila.Item("Recibos"))
-                Cobradores += 1
-                If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
-                    Liquida = Fila.Item("Liquida")
-                    Liquida2 = Fila.Item("Procesado")
-                End If
-
-                lblTotal.Text = "Cobrado: " + Format(Total, "#,##0.00")
-                lblRecibos.Text = "Recibos: " + Format(Recibos, "#,##0")
-                lblVisitados.Text = "Visitados: " + Format(Visitados, "#,##0")
-                lblCobradores.Text = "Cobradores: " + Cobradores.ToString
-                e.Row.Cells(6).Text = Format(Fila.Item("Cobrado"), "#,##0.00")
-            End If
-        Catch ex As Exception
-            Msg(ex.Message.ToString() + " - " + ex.Source.ToString())
-        End Try
-
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim Codigo As String = gvMonitor.DataKeys(e.Row.RowIndex).Value.ToString()
-            Dim gvDetalle As GridView = TryCast(e.Row.FindControl("gvDetalle"), GridView)
-
-            If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
-                Session("GVDetalle").DefaultView.RowFilter = "Liquida='" + Liquida.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND Liquida2='" + Liquida2.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND codigo_cobr='" + Codigo + "'"
-            Else
-                Session("GVDetalle").DefaultView.RowFilter = "codigo_cobr='" + Codigo + "'"
-            End If
-            Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
-
-            gvDetalle.DataSource = Session("GVDetalle")
-            gvDetalle.DataBind()
-
-            For i = 0 To gvDetalle.Rows.Count - 1
-                Select Case gvDetalle.Rows(i).Cells(0).Text
-                    Case "NO COBRO"
-                        gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Red
-                    Case "SUPERVISION"
-                        gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Green
-                    Case "NO SUPERVISION"
-                        gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Blue
-                End Select
-                If gvDetalle.Rows(i).Cells(6).Text.TrimEnd = "ANULADO" Then
-
-                    Session("GVDetalle").DefaultView.RowFilter = "Codigo='" + gvDetalle.Rows(i).Cells(0).Text.TrimEnd + "'"
-                    If Session("GVDetalle").DefaultView.Count > 0 Then
-                        gvDetalle.Rows(i).Cells(6).ToolTip = Session("GVDetalle").DefaultView.Item(0).Item("Motivo").ToString
+            Try
+                If ((e.Row.RowType = DataControlRowType.DataRow) And (e.Row.RowType <> DataControlRowType.EmptyDataRow)) Then
+                    Dim Fila As System.Data.DataRowView = e.Row.DataItem
+                    Total += Convert.ToDecimal(Fila.Item("Cobrado"))
+                    Visitados += Convert.ToDecimal(Fila.Item("Visitados"))
+                    Recibos += Convert.ToDecimal(Fila.Item("Recibos"))
+                    Cobradores += 1
+                    If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
+                        Liquida = Fila.Item("Liquida")
+                        Liquida2 = Fila.Item("Procesado")
                     End If
 
+                    lblTotal.Text = "Cobrado: " + Format(Total, "#,##0.00")
+                    lblRecibos.Text = "Recibos: " + Format(Recibos, "#,##0")
+                    lblVisitados.Text = "Visitados: " + Format(Visitados, "#,##0")
+                    lblCobradores.Text = "Cobradores: " + Cobradores.ToString
+                    e.Row.Cells(6).Text = Format(Fila.Item("Cobrado"), "#,##0.00")
                 End If
-            Next
-        End If
+            Catch ex As Exception
+                Msg(ex.Message.ToString() + " - " + ex.Source.ToString())
+            End Try
+
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim Codigo As String = gvMonitor.DataKeys(e.Row.RowIndex).Value.ToString()
+                Dim gvDetalle As GridView = TryCast(e.Row.FindControl("gvDetalle"), GridView)
+
+                If dlMostrar.SelectedIndex = 1 Or dlMostrar.SelectedIndex = 5 Then
+                    Session("GVDetalle").DefaultView.RowFilter = "Liquida='" + Liquida.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND Liquida2='" + Liquida2.Replace("/", "").Replace(" ", "").Replace(":", "") + "' AND codigo_cobr='" + Codigo + "'"
+                Else
+                    Session("GVDetalle").DefaultView.RowFilter = "codigo_cobr='" + Codigo + "'"
+                End If
+                Session("GVDetalle").DefaultView.Sort = "Fecha Asc, Hora Asc"
+
+                gvDetalle.DataSource = Session("GVDetalle")
+                gvDetalle.DataBind()
+
+                For i = 0 To gvDetalle.Rows.Count - 1
+                    Select Case gvDetalle.Rows(i).Cells(0).Text
+                        Case "NO COBRO"
+                            gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Red
+                        Case "SUPERVISION"
+                            gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Green
+                        Case "NO SUPERVISION"
+                            gvDetalle.Rows(i).ControlStyle.ForeColor = System.Drawing.Color.Blue
+                    End Select
+                    If gvDetalle.Rows(i).Cells(6).Text.TrimEnd = "ANULADO" Then
+
+                        Session("GVDetalle").DefaultView.RowFilter = "Codigo='" + gvDetalle.Rows(i).Cells(0).Text.TrimEnd + "'"
+                        If Session("GVDetalle").DefaultView.Count > 0 Then
+                            gvDetalle.Rows(i).Cells(6).ToolTip = Session("GVDetalle").DefaultView.Item(0).Item("Motivo").ToString
+                        End If
+
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
 
     End Sub
 
     Private Sub gvDetalle2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvDetalle2.RowCommand
+        Try
+            If e.CommandName = "Anular" Then
+                lblMensaje.Text = gvDetalle2.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd
+                Session.Add("Codigo_Clie", gvDetalle2.Rows(e.CommandArgument.ToString).Cells(5).Text.ToString.TrimEnd)
+                lblMensaje1.Text = Session("Codigo_Clie") + " - " + gvDetalle2.Rows(e.CommandArgument.ToString).Cells(6).Text.ToString.TrimEnd
+                lblMensaje2.Text = gvDetalle2.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd
+                Panel1.Visible = False
+                Panel2.Visible = True
+            End If
 
-        If e.CommandName = "Anular" Then
-            lblMensaje.Text = gvDetalle2.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd
-            Session.Add("Codigo_Clie", gvDetalle2.Rows(e.CommandArgument.ToString).Cells(5).Text.ToString.TrimEnd)
-            lblMensaje1.Text = Session("Codigo_Clie") + " - " + gvDetalle2.Rows(e.CommandArgument.ToString).Cells(6).Text.ToString.TrimEnd
-            lblMensaje2.Text = gvDetalle2.Rows(e.CommandArgument.ToString).Cells(2).Text.ToString.TrimEnd
-            Panel1.Visible = False
-            Panel2.Visible = True
-        End If
-
-        'If e.CommandName = "Anular" And dlMostrar.SelectedIndex = 1 And Usuario_Aut = "MANAGER" Then
-        '    Dim conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
-        '    Dim Sql1 As String
-
-        '    Sql1 = "EXEC ANULAR_RECIBOS_LIQUIDADOS '" + gvDetalle2.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd + "', '" + Usuario_Aut.TrimEnd + "'"
-        '    conf1.EjecutaSql(Sql1)
-        '    btnBuscar_Click(sender, e)
-        '    Exit Sub
-        'End If
-
-        'If e.CommandName = "Anular" Then
-        '    Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
-        '    Dim Sql As String
-
-        '    Sql = "EXEC ANULAR_RECIBOS '" + gvDetalle2.Rows(e.CommandArgument.ToString).Cells(1).Text.ToString.TrimEnd + "', '" + Usuario_Aut + "'"
-        '    conf.EjecutaSql(Sql)
-
-        '    btnBuscar_Click(sender, e)
-        'End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
 
     End Sub
 
     Private Sub gvMonitor_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvMonitor.RowCommand
-        If e.CommandName = "Mapa" Then
-            Session.Add("Reporte", "Mapa")
-            Session.Add("Codigo", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
-            'Response.Redirect("mapa.aspx")
+        Try
+            If e.CommandName = "Mapa" Then
+                Session.Add("Reporte", "Mapa")
+                Session.Add("Codigo", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
+                'Response.Redirect("mapa.aspx")
 
-            ifRepote.Dispose()
-            ifRepote.Src = "mapa.aspx"
-            btnProcesar.Visible = False
-            Panel1.Visible = False
-            PanelImpresion.Visible = True
-            Exit Sub
-        End If
+                ifRepote.Dispose()
+                ifRepote.Src = "mapa.aspx"
+                btnProcesar.Visible = False
+                Panel1.Visible = False
+                PanelImpresion.Visible = True
+                Exit Sub
+            End If
 
-        If e.CommandName = "Imprimir" And dlMostrar.SelectedIndex = 5 Then
-            Dim Liquida2 As String = gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(0, 4) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(5, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(8, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(11, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(14, 2)
-            Session.Add("Cobrador", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
-            Session.Add("Liquida2", Liquida2)
-            Session.Add("Reporte", "Liquida2")
-            ifRepote.Dispose()
-            ifRepote.Src = "liquidacion.aspx"
-            btnProcesar.Visible = False
-            Panel1.Visible = False
-            PanelImpresion.Visible = True
-            Exit Sub
-        End If
+            If e.CommandName = "Imprimir" And dlMostrar.SelectedIndex = 5 Then
+                Dim Liquida2 As String = gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(0, 4) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(5, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(8, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(11, 2) + gvMonitor.Rows(e.CommandArgument.ToString).Cells(13).Text.ToString.Substring(14, 2)
+                Session.Add("Cobrador", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
+                Session.Add("Liquida2", Liquida2)
+                Session.Add("Reporte", "Liquida2")
+                ifRepote.Dispose()
+                ifRepote.Src = "liquidacion.aspx"
+                btnProcesar.Visible = False
+                Panel1.Visible = False
+                PanelImpresion.Visible = True
+                Exit Sub
+            End If
 
 
-        If e.CommandName = "Liquidar" And dlMostrar.SelectedIndex = 4 Then
-            Session.Add("Reporte", "Liquida")
-            Session.Add("Cobrador", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
-            Session.Add("Liquida2", Liquida2)
-            ifRepote.Dispose()
-            ifRepote.Src = "liquidacion.aspx"
-            btnProcesar.Visible = True
-            Panel1.Visible = False
-            PanelImpresion.Visible = True
-            Exit Sub
-        End If
+            If e.CommandName = "Liquidar" And dlMostrar.SelectedIndex = 4 Then
+                Session.Add("Reporte", "Liquida")
+                Session.Add("Cobrador", gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd)
+                Session.Add("Liquida2", Liquida2)
+                ifRepote.Dispose()
+                ifRepote.Src = "liquidacion.aspx"
+                btnProcesar.Visible = True
+                Panel1.Visible = False
+                PanelImpresion.Visible = True
+                Exit Sub
+            End If
 
-        If e.CommandName = "Liquidar" And dlMostrar.SelectedIndex <> 4 Then
-            Dim conf As New Configuracion(Usuario, Clave, "AECOBROS", Servidor)
-            Dim Sql As String
+            If e.CommandName = "Liquidar" And dlMostrar.SelectedIndex <> 4 Then
+                Dim conf As New Configuracion(Usuario, Clave, "AECOBROS", Servidor)
+                Dim Sql As String
 
-            Sql = "EXEC LIQUIDA_RECIBOS '" + gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd + "', '" + Session("F1") + "'"
-            conf.EjecutaSql(Sql)
+                Sql = "EXEC LIQUIDA_RECIBOS '" + gvMonitor.Rows(e.CommandArgument.ToString).Cells(4).Text.ToString.TrimEnd + "', '" + Session("F1") + "'"
+                conf.EjecutaSql(Sql)
 
-            btnBuscar_Click(sender, e)
-        End If
+                btnBuscar_Click(sender, e)
+            End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
+
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
@@ -583,35 +594,40 @@ MOTIVO: ' + Z.MOTIVO FROM LOG_NULOS Z WHERE Z.NUM_DOC = A.Num_doc ORDER BY LEN(Z
     End Sub
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-        If txtClave.Text.ToUpper <> Clave_Aut.ToUpper Then
-            Msg("Clave Incorrecta")
-            Exit Sub
-        End If
+        Try
+            If txtClave.Text.ToUpper <> Clave_Aut.ToUpper Then
+                Msg("Clave Incorrecta")
+                Exit Sub
+            End If
 
-        If dlMostrar.SelectedIndex = 1 And Usuario_Aut.ToUpper = "MANAGER" Then
-            Dim conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
-            Dim Sql1 As String
+            If dlMostrar.SelectedIndex = 1 And Usuario_Aut.ToUpper = "MANAGER" Then
+                Dim conf1 As New Configuracion(Usuario, Clave, Bd, Servidor)
+                Dim Sql1 As String
 
-            Sql1 = "EXEC ANULAR_RECIBOS_LIQUIDADOS '" + lblMensaje.Text.TrimEnd + "', '" + Session("Codigo_Clie") + "', '" + Usuario_Aut.TrimEnd + "', '" + txtComentario.Text + "'"
-            conf1.EjecutaSql(Sql1)
+                Sql1 = "EXEC ANULAR_RECIBOS_LIQUIDADOS '" + lblMensaje.Text.TrimEnd + "', '" + Session("Codigo_Clie") + "', '" + Usuario_Aut.TrimEnd + "', '" + txtComentario.Text + "'"
+                conf1.EjecutaSql(Sql1)
 
-            Panel2.Visible = False
-            Panel1.Visible = True
-            btnBuscar_Click(sender, e)
-            Exit Sub
-        End If
+                Panel2.Visible = False
+                Panel1.Visible = True
+                btnBuscar_Click(sender, e)
+                Exit Sub
+            End If
 
-        If dlMostrar.SelectedIndex = 2 Then
-            Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
-            Dim Sql As String
+            If dlMostrar.SelectedIndex = 2 Then
+                Dim conf As New Configuracion(Usuario, Clave, Bd, Servidor)
+                Dim Sql As String
 
-            Sql = "EXEC ANULAR_RECIBOS '" + lblMensaje.Text.TrimEnd + "', '" + Session("Codigo_Clie") + "', '" + Usuario_Aut + "', '" + txtComentario.Text + "'"
-            conf.EjecutaSql(Sql)
+                Sql = "EXEC ANULAR_RECIBOS '" + lblMensaje.Text.TrimEnd + "', '" + Session("Codigo_Clie") + "', '" + Usuario_Aut + "', '" + txtComentario.Text + "'"
+                conf.EjecutaSql(Sql)
 
-            Panel2.Visible = False
-            Panel1.Visible = True
-            btnBuscar_Click(sender, e)
-        End If
+                Panel2.Visible = False
+                Panel1.Visible = True
+                btnBuscar_Click(sender, e)
+            End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            Alert(ex.Message & vbCrLf & "Código de error:" & ex.HResult, "danger")
+        End Try
 
     End Sub
     Public Sub RedirectToCobrosAdvanced(sender As Object, e As EventArgs) Handles btnCobrosAdvanced.Click

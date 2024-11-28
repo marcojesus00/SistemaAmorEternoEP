@@ -182,6 +182,10 @@
 <i class="bi bi-geo-alt-fill"></i>
 
                                     </asp:LinkButton>
+                                                             <asp:LinkButton ID="LinkButtonSettleRecepits" ToolTip="Liquidar en dispositivo" CssClass="btn btn-sm btn-outline-primary" runat="server" CommandName="ToSettle" CommandArgument='<%# Container.DataItemIndex %>'>
+<i class="bi bi-cpu-fill"></i>
+
+                                    </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
