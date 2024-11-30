@@ -2,6 +2,7 @@ Imports System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Web.UI.WebControls
+Imports Sistema.InventarioDeEquipo
 
 Public Class ClientsTable
     Inherits System.Web.UI.UserControl
@@ -22,8 +23,15 @@ Public Class ClientsTable
         If Not IsPostBack Then
             Try
 
+                If Session("Usuario_Aut") Is Nothing OrElse Session("Usuario_Aut") = "" OrElse Not AuthHelper.isAuthorized(Session("Usuario_Aut"), "TOCASH") Then
+                    Session("isautorized") = False
+                Else
+                    Session("isautorized") = True
+                    PnlToCash.Visible = False
 
+                End If
                 BindGridView()
+                FIllDll()
 
             Catch ex As Exception
                 Dim msg = "Error al leer de la base de datos, por favor recargue la página : " & ex.Message
@@ -32,18 +40,22 @@ Public Class ClientsTable
         End If
 
     End Sub
+    Protected Sub LinkbuttonClose_Click(sender As Object, e As EventArgs)
+        PnlToCash.Visible = False
+
+    End Sub
 
     Protected Sub MyGridView_RowCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
         Session("tabSelected") = "DocsTab"
 
+        Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
+        Dim dataKey As String = MyGridView.DataKeys(rowIndex).Value.ToString()
+        Dim ctrolDocuments As GridView = GridViewDocs
         If e.CommandName = "ShowDocs" Then
 
             Try
 
 
-                Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
-                Dim dataKey As String = MyGridView.DataKeys(rowIndex).Value.ToString()
-                Dim ctrolDocuments As GridView = GridViewDocs
 
 
 
@@ -62,8 +74,69 @@ Public Class ClientsTable
                 Dim msg = "Error : " & ex.Message
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
             End Try
+        ElseIf e.CommandName = "FromCreditToCash" Then
+            If Session("isautorized") Is Nothing Or Session("isautorized") = False Then
+                AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
+                RaiseEvent AlertGenerated(Me, New AlertEventArgs("No tiene permiso", "danger"))
 
+            Else
+                Session("ClientCodeToConvertToCash") = dataKey
+                PnlToCash.Visible = True
+                CardTitleLabel.Text = "Pasando a contado: " + dataKey
+
+                'Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModal", "var myModal = new bootstrap.Modal(document.getElementById('myModal')); myModal.show();", True)
+            End If
         End If
+
+    End Sub
+    Private Sub FIllDll()
+        '      Dim queryZone = "select [vzon_codigo] as Id
+        '    ,vzon_codigo + ' ' +[vzon_nombre] as Name
+        'FROM [FUNAMOR].[dbo].[VZONA]
+        'where len(vzon_nombre)>3"
+        '      Using context As New FunamorContext()
+
+        '          Dim resultZOnes As List(Of DDL2) = context.Database.SqlQuery(Of DDL2)(
+        '                   queryZone).ToList()
+        '          DdlRtipoDebi.DataSource = resultZOnes
+        '          DdlRtipoDebi.DataTextField = "Name"
+        '          DdlRtipoDebi.DataValueField = "Id"
+        '          DdlRtipoDebi.DataBind()
+        DdlRtipoDebi.Items.Insert(0, New ListItem("Ataudes C", "03"))
+        DdlRtipoDebi.Items.Insert(0, New ListItem("Sala Velacion       ", "04"))
+
+        DdlRtipoDebi.Items.Insert(0, New ListItem("Lote de contado     ", "12"))
+
+
+
+    End Sub
+
+
+    Protected Sub SaveToCash_Click(sender As Object, e As EventArgs)
+        Try
+            If Session("isautorized") Is Nothing Or Session("isautorized") = False Then
+                AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
+            Else
+                Dim clientCode = Session("ClientCodeToConvertToCash")
+                Dim rtipodebi = DdlRtipoDebi.SelectedValue
+                Dim parameters As SqlParameter() = {
+                    New SqlParameter("@RTIPODEBI", rtipodebi),
+                    New SqlParameter("@CodigoDeCliente", clientCode)}
+                Using context As New FunamorContext()
+                    Dim sql = "EXEC SP_VS_SWITCH_FROM_CREDIT_TO_CASH @RTIPODEBI=@RTIPODEBI, @CodigoDeCliente=@CodigoDeCliente"
+                    Dim result As String = context.Database.SqlQuery(Of String)(sql, parameters).FirstOrDefault()
+                    AlertHelper.GenerateAlert("info", result, alertPlaceholder)
+                    RaiseEvent AlertGenerated(Me, New AlertEventArgs(result, "info"))
+                    PnlToCash.Visible = False
+
+                End Using
+            End If
+        Catch ex As Exception
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+            AlertHelper.GenerateAlert("danger", ex.Message, alertPlaceholder)
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(ex.Message, "danger"))
+
+        End Try
 
     End Sub
     Private Function GetDocsByClientId(Id As String)
@@ -101,6 +174,8 @@ Public Class ClientsTable
         Catch ex As Exception
             Dim msg = "Error, por favor vuelva a intentarlo : " & ex.Message
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
         End Try
 
 
@@ -119,7 +194,7 @@ Public Class ClientsTable
 
     Protected Function GetClientsAndContracts(Optional id As String = "") As List(Of ClientContractQueryResult)
         Using dbContext As New FunamorContext()
-            Dim data = dbContext.Contratos.
+            Dim data = dbContext.Contratos.AsNoTracking.
                     Where(Function(c) (c.CodigoCliente.Contains(id) Or c.Cliente.Nombre.Contains(id) Or c.Cliente.Identidad.Contains(id)) And c.Cliente.Nombre.Trim.Length > 0 And Not c.Cliente.Nombre.Contains("*")).
                     Select(Function(c) New ClientContractQueryResult With {
                         .NombreCliente = c.Cliente.Nombre.Trim,
@@ -134,6 +209,24 @@ Public Class ClientsTable
             Return data
         End Using
     End Function
+
+    Protected Sub MyGridView_RowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim linkButton As LinkButton = CType(e.Row.FindControl("LinkButtonFromCreditToCash"), LinkButton)
+            'Dim rowData As Sistema.ClientContractQueryResult = CType(e.Row.DataItem, Sistema.ClientContractQueryResult)
+
+
+            'Dim rowData As DataRowView = CType(e.Row.DataItem, DataRowView)
+            If Session("isautorized") Is Nothing Or Session("isautorized") = False Then
+                linkButton.Visible = False
+            Else
+
+                linkButton.Visible = True
+            End If
+        End If
+    End Sub
+
+
     Protected Function GetClientsAndContractsCount() As Integer
         Using dbContext As New FunamorContext()
             Dim data = dbContext.Contratos.Select(Function(c) c.CodigoCliente.Count).FirstOrDefault()
