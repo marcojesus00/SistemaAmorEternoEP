@@ -28,9 +28,11 @@ Public Class ClientsTable
                 Else
                     Session("isautorized") = True
                     PnlToCash.Visible = False
+                    SaveToCash.Enabled = False
+                    SaveToCash.CssClass = "btn btn-secondary"
 
                 End If
-                BindGridView()
+                'BindGridView()
                 FIllDll()
 
             Catch ex As Exception
@@ -51,9 +53,10 @@ Public Class ClientsTable
         Dim rowIndex As Integer = Convert.ToInt32(e.CommandArgument)
         Dim dataKey As String = MyGridView.DataKeys(rowIndex).Value.ToString()
         Dim ctrolDocuments As GridView = GridViewDocs
-        If e.CommandName = "ShowDocs" Then
+        Try
 
-            Try
+            If e.CommandName = "ShowDocs" Then
+
 
 
 
@@ -67,14 +70,7 @@ Public Class ClientsTable
                 End If
 
 
-            Catch ex As IOException
-                Dim msg = "Error : " & ex.Message
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-            Catch ex As Exception
-                Dim msg = "Error : " & ex.Message
-                RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
-            End Try
-        ElseIf e.CommandName = "FromCreditToCash" Then
+            ElseIf e.CommandName = "FromCreditToCash" Then
             If Session("isautorized") Is Nothing Or Session("isautorized") = False Then
                 AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs("No tiene permiso", "danger"))
@@ -83,12 +79,46 @@ Public Class ClientsTable
                 Session("ClientCodeToConvertToCash") = dataKey
                 PnlToCash.Visible = True
                 CardTitleLabel.Text = "Pasando a contado: " + dataKey
+                If Session("isautorized") Is Nothing Or Session("isautorized") = False Then
+                    AlertHelper.GenerateAlert("warning", "No tiene permiso", alertPlaceholder)
+                Else
+                    Dim clientCode = dataKey
+                    'Dim rtipodebi = DdlRtipoDebi.SelectedValue
+                    Dim parameters As SqlParameter() = {
+                        New SqlParameter("@CodigoDeCliente", clientCode)}
+                    Using context As New FunamorContext()
+                            Dim sql = "EXEC SP_VS_SHOW_RECEIPTS_TO_SWITCH_FROM_CREDIT_TO_CASH @CodigoDeCliente"
+                            Dim result As List(Of ReceiptToCash) = context.Database.SqlQuery(Of ReceiptToCash)(sql, parameters).ToList()
+                            Repeater1.DataSource = result
+                        Repeater1.DataBind()
+
+                    End Using
+                End If
 
                 'Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModal", "var myModal = new bootstrap.Modal(document.getElementById('myModal')); myModal.show();", True)
             End If
         End If
 
+        Catch ex As IOException
+            Dim msg = "Error : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+        Catch ex As Exception
+            Dim msg = "Error : " & ex.Message
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+        End Try
     End Sub
+    Public Class ReceiptToCash
+        Public Property Numero As String
+        Public Property Concepto As String
+        Public Property Monto As Decimal
+        Public Property Fecha As DateTime
+
+
+    End Class
     Private Sub FIllDll()
         '      Dim queryZone = "select [vzon_codigo] as Id
         '    ,vzon_codigo + ' ' +[vzon_nombre] as Name
@@ -102,10 +132,12 @@ Public Class ClientsTable
         '          DdlRtipoDebi.DataTextField = "Name"
         '          DdlRtipoDebi.DataValueField = "Id"
         '          DdlRtipoDebi.DataBind()
-        DdlRtipoDebi.Items.Insert(0, New ListItem("Ataudes C", "03"))
-        DdlRtipoDebi.Items.Insert(0, New ListItem("Sala Velacion       ", "04"))
+        DdlRtipoDebi.Items.Insert(0, New ListItem("Escoja tipo de servicio", ""))
 
-        DdlRtipoDebi.Items.Insert(0, New ListItem("Lote de contado     ", "12"))
+        DdlRtipoDebi.Items.Insert(1, New ListItem("Ataudes", "03"))
+        DdlRtipoDebi.Items.Insert(2, New ListItem("Sala Velacion       ", "04"))
+
+        DdlRtipoDebi.Items.Insert(3, New ListItem("Lote de contado     ", "12"))
 
 
 
@@ -226,6 +258,17 @@ Public Class ClientsTable
         End If
     End Sub
 
+    Protected Sub DdlRtipoDebi_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If DdlRtipoDebi.SelectedIndex = 0 Then
+            SaveToCash.CssClass = "btn btn-secondary"
+            SaveToCash.Enabled = False
+
+        Else
+            SaveToCash.CssClass = "btn btn-primary"
+            SaveToCash.Enabled = True
+
+        End If
+    End Sub
 
     Protected Function GetClientsAndContractsCount() As Integer
         Using dbContext As New FunamorContext()

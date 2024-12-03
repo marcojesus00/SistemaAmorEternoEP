@@ -1,29 +1,6 @@
 ﻿<%@ Control Language="vb" EnableViewState="true" AutoEventWireup="false" CodeBehind="ClientsTable.ascx.vb" Inherits="Sistema.ClientsTable" %>
 
 
-<asp:Panel ID="PnlToCash" runat="server">
-<%--    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" ">--%>
-    <div class="row">
-    <div class="col-8">
-    <div class="card">
-<%--        <div class="modal-content">--%>
-            <div class="">
-<%--                <div class="card-title" id="exampleModalLabel">Pasar a contado</div>--%>
-                <asp:Label ID="CardTitleLabel" runat="server" CssClass="card-title" Text="Default Title"></asp:Label>
-
-            </div>
-            <div class="card-body">
-               <asp:DropDownList Id="DdlRtipoDebi" runat="server"
-                   ></asp:DropDownList>
-            </div>
-            <div class="card-footer">
-                <asp:Linkbutton Id="LinkbuttonClose" runat="server" class="btn btn-danger" OnClick="LinkbuttonClose_Click">Cancelar</asp:Linkbutton>
-                <asp:Linkbutton Id="SaveToCash" runat="server" class="btn btn-primary" OnClick="SaveToCash_Click">Guardar</asp:Linkbutton>
-            </div>
-        </div>
-</div>
-</div>
-</asp:Panel>
 
 <div class="row">
     <div class="col-8">
@@ -99,3 +76,43 @@
 
 </div>
 
+<asp:Panel ID="PnlToCash" runat="server">
+<%--    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" ">--%>
+    <div class="row">
+    <div class="col-8">
+    <div class="card">
+<%--        <div class="modal-content">--%>
+            <div class="">
+<%--                <div class="card-title" id="exampleModalLabel">Pasar a contado</div>--%>
+                <asp:Label ID="CardTitleLabel" runat="server" CssClass="card-title" Text="Default Title"></asp:Label>
+
+            </div>
+            <div class="card-body">
+               <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="DdlRtipoDebi_SelectedIndexChanged" Id="DdlRtipoDebi" runat="server"
+                   ></asp:DropDownList>
+            </div>
+
+
+
+
+        <asp:Repeater ID="Repeater1" runat="server">
+    <ItemTemplate>
+        <!-- Define how each row will look -->
+        <!-- Define how each row will look -->
+        <div style="padding: 10px; border-bottom: 1px solid #ccc;">
+            <span><strong>Numero:</strong> <%# Eval("Numero") %></span> |
+            <span><strong>Concepto:</strong> <%# Eval("Concepto") %></span> |
+                        <span><strong>Monto:</strong> <%# Eval("Monto") %></span> |
+            <span><strong>Fecha:</strong> <%# Eval("Fecha") %></span> |
+
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
+            <div class="card-footer">
+                <asp:Linkbutton Id="LinkbuttonClose" runat="server" class="btn btn-danger" OnClick="LinkbuttonClose_Click">Cancelar</asp:Linkbutton>
+                <asp:Linkbutton  Id="SaveToCash" runat="server" OnClick="SaveToCash_Click">Guardar</asp:Linkbutton>
+            </div>
+        </div>
+</div>
+</div>
+</asp:Panel>

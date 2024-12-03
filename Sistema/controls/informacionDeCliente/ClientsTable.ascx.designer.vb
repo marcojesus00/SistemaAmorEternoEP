@@ -14,51 +14,6 @@ Option Explicit On
 Partial Public Class ClientsTable
 
     '''<summary>
-    '''PnlToCash control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents PnlToCash As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''CardTitleLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CardTitleLabel As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''DdlRtipoDebi control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents DdlRtipoDebi As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''LinkbuttonClose control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LinkbuttonClose As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''SaveToCash control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SaveToCash As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''MyGridView control.
     '''</summary>
     '''<remarks>
@@ -93,4 +48,58 @@ Partial Public Class ClientsTable
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents alertPlaceholder As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''PnlToCash control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents PnlToCash As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''CardTitleLabel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CardTitleLabel As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''DdlRtipoDebi control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlRtipoDebi As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Repeater1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Repeater1 As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''LinkbuttonClose control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents LinkbuttonClose As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''SaveToCash control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SaveToCash As Global.System.Web.UI.WebControls.LinkButton
 End Class
