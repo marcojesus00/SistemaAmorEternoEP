@@ -240,69 +240,69 @@ where c.codigo_cobr like @Cobrador"
             Dim fallas As New List(Of String)
             Dim Usuario_Aut = Session("Usuario_Aut")
             Dim successCount = 0
-            'If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
-            '    Dim leaderPhone = Session("TelefonoLider")
-            '    Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
-            '    Dim batchId = cobrador.Codigo + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + result.Count.ToString()
+            If AuthHelper.isAuthorized(Usuario_Aut, "MASSW") Then
+                Dim leaderPhone = Session("TelefonoLider")
+                Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
+                Dim batchId = cobrador.Codigo + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + result.Count.ToString()
 
-            '    Dim Leader = ""
-            '    Dim numeroPBX = "2647-3390"
-            '    If cobrador IsNot Nothing Then
-            '        leaderPhone = cobrador.Telefono_lider
-            '        Leader = cobrador.Lider
-            '    End If
-            '    Dim Usuario = Session("Usuario")
-            '    Dim Clave = Session("Clave")
-            '    Dim user_auth = Session("Usuario_Aut")
-            '    'RabbitMQHelper.PublishToRabbitMQ2(messageType:="UpdateMessageStatusInQueue", AgentId:=cobrador.Codigo, userId:=Usuario_Aut, queueName:="account_statements")
+                Dim Leader = ""
+                Dim numeroPBX = "2647-3390"
+                If cobrador IsNot Nothing Then
+                    leaderPhone = cobrador.Telefono_lider
+                    Leader = cobrador.Lider
+                End If
+                Dim Usuario = Session("Usuario")
+                Dim Clave = Session("Clave")
+                Dim user_auth = Session("Usuario_Aut")
+                'RabbitMQHelper.PublishToRabbitMQ2(messageType:="UpdateMessageStatusInQueue", AgentId:=cobrador.Codigo, userId:=Usuario_Aut, queueName:="account_statements")
 
-            '    For Each cliente In result
-            '        Try
-            '            Dim Informe As New Movimiento_Clientes
-            '            Informe.SetDatabaseLogon(Usuario, Clave)
-            '            Informe.SetParameterValue("Cliente", cliente.Codigo)
-            '            Dim ins = ""
+                For Each cliente In result
+                    Try
+                        Dim Informe As New Movimiento_Clientes
+                        Informe.SetDatabaseLogon(Usuario, Clave)
+                        Informe.SetParameterValue("Cliente", cliente.Codigo)
+                        Dim ins = ""
 
-            '            If DdlIntance.SelectedValue = 0 Then
-            '                ins = "other"
-            '            Else
-            '                ins = "default"
-            '            End If
-            '            Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+                        If DdlIntance.SelectedValue = 0 Then
+                            ins = "other"
+                        Else
+                            ins = "default"
+                        End If
+                        Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
 
-            '            Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
-            '            Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
+                        Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
+                        Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
 
-            '            Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
-            '            'Debug.WriteLine(r4esult.Msg)
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
+                        'Debug.WriteLine(r4esult.Msg)
 
-            '            If r4esult.Success = False Then
-            '                Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
-            '                If r4esult.Msg.ToLower.Contains("queue") Then
-            '                    queue1 += 1
-            '                Else
+                        If r4esult.Success = False Then
+                            Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
+                            If r4esult.Msg.ToLower.Contains("queue") Then
+                                queue1 += 1
+                            Else
 
-            '                End If
-            '                fallas.Add("el servicio de envio")
+                            End If
+                            fallas.Add("el servicio de envio")
 
-            '            Else
-            '                successCount = successCount + 1
-            '            End If
-            '            Informe.Close()
-            '            Informe.Dispose()
-            '        Catch ex As Exception
-            '            fallas.Add("la generación del reporte")
+                        Else
+                            successCount = successCount + 1
+                        End If
+                        Informe.Close()
+                        Informe.Dispose()
+                    Catch ex As Exception
+                        fallas.Add("la generación del reporte")
 
-            '            Dim m = "Codigo de cliente: " + cliente.Codigo
-            '            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
+                        Dim m = "Codigo de cliente: " + cliente.Codigo
+                        DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"), m)
 
-            '            whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=user_auth, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId, ReferenceId:=Guid.NewGuid())
+                        whatsapi.logW(name:="", couentryCode:="504", localNumber:=cliente.Telefono, caption:="", clientCode:=cliente.Codigo, user:=user_auth, instancia:="", docDescription:="Estado de cuenta", isSuccess:=False, msg:=m + ex.Message, CodigoDeCobrador:=cobrador.Codigo, Estado:="Error servidor", IdDeLaPlataforma:=0, BatchId:=batchId, ReferenceId:=Guid.NewGuid())
 
-            '        End Try
+                    End Try
 
 
-            '    Next
-            'End If
+                Next
+            End If
             Dim countErrors = result.Count - successCount - queue1
             Dim mensaje = $"Enviados con éxito: {successCount}. Fallidos: {countErrors}. En Cola: {queue1}"
             RabbitMQHelper.PublishToRabbitMQ2("account_statements", messageFields)
