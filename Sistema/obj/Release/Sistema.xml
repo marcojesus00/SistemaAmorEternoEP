@@ -1234,51 +1234,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Sistema.ClientsTable._PnlToCash">
-<summary>
-PnlToCash control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.ClientsTable._CardTitleLabel">
-<summary>
-CardTitleLabel control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.ClientsTable._DdlRtipoDebi">
-<summary>
-DdlRtipoDebi control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.ClientsTable._LinkbuttonClose">
-<summary>
-LinkbuttonClose control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.ClientsTable._SaveToCash">
-<summary>
-SaveToCash control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Sistema.ClientsTable._MyGridView">
 <summary>
 MyGridView control.
@@ -1309,6 +1264,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.ClientsTable._alertPlaceholder">
 <summary>
 alertPlaceholder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._PnlToCash">
+<summary>
+PnlToCash control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._CardTitleLabel">
+<summary>
+CardTitleLabel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._DdlRtipoDebi">
+<summary>
+DdlRtipoDebi control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._Repeater1">
+<summary>
+Repeater1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._LinkbuttonClose">
+<summary>
+LinkbuttonClose control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.ClientsTable._SaveToCash">
+<summary>
+SaveToCash control.
 </summary>
 <remarks>
 Auto-generated field.
