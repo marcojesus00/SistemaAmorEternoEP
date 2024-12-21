@@ -229,6 +229,11 @@ where c.codigo_cobr like @Cobrador"
         End Try
     End Function
     Public Function EnviarEstadoDeCuenta(result As List(Of DocsDto))
+        Dim messageFields As New Dictionary(Of String, String) From {
+    {"Type", "UpdateMessageStatusInQueue"},
+    {"AgentId", ""},
+    {"UserId", Session("Usuario_Aut")},
+                        {"Timestamp", DateTime.Now().ToString("o")}}
         Try
             Dim falla = ""
             Dim queue1 As Integer = 0
@@ -249,6 +254,7 @@ where c.codigo_cobr like @Cobrador"
                 Dim Usuario = Session("Usuario")
                 Dim Clave = Session("Clave")
                 Dim user_auth = Session("Usuario_Aut")
+                'RabbitMQHelper.PublishToRabbitMQ2(messageType:="UpdateMessageStatusInQueue", AgentId:=cobrador.Codigo, userId:=Usuario_Aut, queueName:="account_statements")
 
                 For Each cliente In result
                     Try
@@ -299,6 +305,7 @@ where c.codigo_cobr like @Cobrador"
             End If
             Dim countErrors = result.Count - successCount - queue1
             Dim mensaje = $"Enviados con éxito: {successCount}. Fallidos: {countErrors}. En Cola: {queue1}"
+            RabbitMQHelper.PublishToRabbitMQ2("account_statements", messageFields)
 
             If result.Count = 0 Then
                 Dim uniqueSet As New HashSet(Of String)(fallas)
@@ -318,6 +325,8 @@ where c.codigo_cobr like @Cobrador"
 
         Catch ex As Exception
             Dim msg = "Al mandar mensajes"
+            RabbitMQHelper.PublishToRabbitMQ2("account_statements", messageFields)
+
             DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
             AlertHelper.GenerateAlert("danger", msg, alertPlaceholder)
