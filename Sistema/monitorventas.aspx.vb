@@ -1772,7 +1772,8 @@ Public Class monitorventas
             Dim dateValue As DateTime = DateTime.Now ' Replace with your desired date
             Dim formattedDate As String = dateValue.ToString("yyyyMMddHHmm")
             Console.WriteLine(formattedDate)
-
+            CorrectSalesDataClient1.SaveChanges()
+            Dim oldId = Session("OldId")
             Using context As New AeVentasDbContext()
                 context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
 
@@ -1801,6 +1802,7 @@ Public Class monitorventas
                 New SqlParameter("@VENTA", "S"),
                 New SqlParameter("@TEMPO", "F"),
                 New SqlParameter("@CEDULA", CorrectSalesDataClient1.IdentificationText.Trim),
+                New SqlParameter("@CEDULAVIEJA", oldId),
                 New SqlParameter("@SERVI1DES", Product),
                 New SqlParameter("@SERVI2DES", ""),
                 New SqlParameter("@SERVI3DES", ""),
@@ -1818,14 +1820,14 @@ Public Class monitorventas
                 "@CONT_NUMCUO = @CONT_NUMCUO, @CONT_VALCUO = @CONT_VALCUO, @cont_vended = @cont_vended, @CONT_SERVI = @CONT_SERVI, @CONT_CANTI = @CONT_CANTI, " &
                 "@CONT_COMPA = @CONT_COMPA, @CONT_CANT2 = @CONT_CANT2, @CONT_SERV2 = @CONT_SERV2, @CONT_CANT3 = @CONT_CANT3, @CONT_SERV3 = @CONT_SERV3, " &
                 "@CONT_CANT4 = @CONT_CANT4, @CONT_SERV4 = @CONT_SERV4, @CONT_SVAL1 = @CONT_SVAL1, @CONT_SVAL2 = @CONT_SVAL2, @CONT_SVAL3 = @CONT_SVAL3, " &
-                "@CONT_SVAL4 = @CONT_SVAL4, @VENTA = @VENTA, @TEMPO = @TEMPO, @CEDULA = @CEDULA, @SERVI1DES = @SERVI1DES, @SERVI2DES = @SERVI2DES, " &
+                "@CONT_SVAL4 = @CONT_SVAL4, @VENTA = @VENTA, @TEMPO = @TEMPO, @CEDULA = @CEDULA,@CEDULAVIEJA=@CEDULAVIEJA, @SERVI1DES = @SERVI1DES, @SERVI2DES = @SERVI2DES, " &
                 "@SERVI3DES = @SERVI3DES, @SERVI4DES = @SERVI4DES, @SERVIEMPRE = @SERVIEMPRE, @NOMCLIE = @NOMCLIE, @CIERRE = @CIERRE, @LIQUIDA = @LIQUIDA, " &
                 "@Usuario = @Usuario", parameters)
 
             End Using
 
 
-
+            Session("OldId") = ""
             lblMsg.Text = "Operación realizada"
             lblMsg.ControlStyle.CssClass = "alert alert-success"
 
@@ -1848,7 +1850,6 @@ Public Class monitorventas
             'btnGuardarCamb.Enabled = False
             Producto = ""
             IdProduct = ""
-            CorrectSalesDataClient1.SaveChanges()
             PanelEditarVenta.Visible = False
             PanelConfirmacion.Visible = False
             'txtCobrador.Text = txtCodVendEV.Text

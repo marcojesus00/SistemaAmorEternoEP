@@ -295,7 +295,7 @@ Public Class DataClient
     New SqlParameter("@Vendedor", SqlDbType.NVarChar) With {.Value = newDataClient.CodigoVendedor},
     New SqlParameter("@Cliente", SqlDbType.NVarChar) With {.Value = newDataClient.Codigo}
 }
-
+                Session("OldId") = DataOfClient.Identidad.Replace("-", String.Empty).Trim
                 If newDataClient.Identidad <> DataOfClient.Identidad.Replace("-", String.Empty).Trim Then
                     Context.Database.ExecuteSqlCommand("update CLIENTESN set identidad=@Identidad
   where CL_VENDEDOR=@Vendedor and Codigo_clie=@Cliente
