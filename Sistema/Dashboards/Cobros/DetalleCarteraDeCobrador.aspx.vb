@@ -255,7 +255,7 @@ where c.codigo_cobr like @Cobrador"
                 Dim Clave = Session("Clave")
                 Dim user_auth = Session("Usuario_Aut")
                 'RabbitMQHelper.PublishToRabbitMQ2(messageType:="UpdateMessageStatusInQueue", AgentId:=cobrador.Codigo, userId:=Usuario_Aut, queueName:="account_statements")
-
+                Dim phoneToSend
                 For Each cliente In result
                     Try
                         Dim Informe As New Movimiento_Clientes
@@ -269,11 +269,14 @@ where c.codigo_cobr like @Cobrador"
                             ins = "default"
                         End If
                         Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
-
+                        phoneToSend = cliente.Telefono
+#If DEBUG Then
+                        phoneToSend = "95268888"
+#End If
                         Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                         Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
 
-                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=phoneToSend, caption:=cap, couentryCode:=cliente.CodigoDePais, user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
                         'Debug.WriteLine(r4esult.Msg)
 
                         If r4esult.Success = False Then

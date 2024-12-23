@@ -82,6 +82,7 @@ Partial Public Class CobrosDashboard
     Public Class DocsDto
         Public Property Codigo As String
         Public Property Nombre As String
+        Public Property CodigoDePais As Int16
         Public Property Telefono As String
 
     End Class
