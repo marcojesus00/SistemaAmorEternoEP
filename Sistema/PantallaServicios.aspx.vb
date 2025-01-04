@@ -7,8 +7,8 @@
 
             Session.Add("Servidor", "192.168.20.225")
             Session.Add("BD", "FUNAMOR")
-            Session.Add("Usuario", "mmejia")
-            Session.Add("Clave", "Mm%%4567")
+            Session.Add("Usuario", "sistema.web")
+            Session.Add("Clave", "$$Eterno4321.")
 
             'Dim Datos As New Data.DataSet
             'Dim Sql As String
