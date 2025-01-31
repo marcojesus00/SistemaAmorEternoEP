@@ -198,6 +198,49 @@ Public Class whatsapi
     Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, ReferenceId, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A")
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            If name.Length > 50 Then
+                name = name.Substring(0, 50) ' Truncate to 50 characters
+            End If
+
+            If couentryCode.Length > 8 Then
+                couentryCode = couentryCode.Substring(0, 8) ' Truncate to 8 characters
+            End If
+
+            If localNumber.Length > 15 Then
+                localNumber = localNumber.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If user.Length > 15 Then
+                user = user.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If instancia.Length > 10 Then
+                instancia = instancia.Substring(0, 10) ' Truncate to 10 characters
+            End If
+
+            If caption.Length > 255 Then
+                caption = caption.Substring(0, 255) ' Truncate to 255 characters
+            End If
+
+            If docDescription.Length > 25 Then
+                docDescription = docDescription.Substring(0, 25) ' Truncate to 25 characters
+            End If
+
+            If Estado.Length > 15 Then
+                Estado = Estado.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If BatchId.Length > 100 Then
+                BatchId = BatchId.Substring(0, 100) ' Truncate to 100 characters
+            End If
+
+            If CodigoDeCobrador.Length > 10 Then
+                CodigoDeCobrador = CodigoDeCobrador.Substring(0, 10) ' Truncate to 10 characters
+            End If
+
+            ' Convert boolean isSuccess to 1 or 0
+            Dim succ As Integer = If(isSuccess, 1, 0)
+
 
             Dim sql As String = "
             INSERT INTO [dbo].[LogDocumentosPorWhatsApp]
@@ -205,12 +248,7 @@ Public Class whatsapi
             VALUES
             (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso, @MensajeDelResultado, @IdDeLaPlataforma, @CodigoDeCobrador, @Estado, @BatchId, @ReferenceId);
         "
-            Dim succ
-            If isSuccess = True Then
-                succ = 1
-            Else
-                succ = 0
-            End If
+
 
             Dim parameters As SqlParameter() = {
                 New SqlParameter("@CodigoDeCliente", clientCode),

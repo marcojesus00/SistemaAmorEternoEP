@@ -283,7 +283,7 @@
                             <asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodVendEV" runat="server" OnTextChanged="txtVendEV_TextChanged" AutoPostBack="true" />
                             <div class="input-group-append">
                                 <span class="input-group-text input-group-">
-                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
+                                    <asp:LinkButton ID="btnBusVendEdt" runat="server" CssClass="bi bi-search"></asp:LinkButton></span>
                             </div>
                         </div>
                     </div>
@@ -314,7 +314,7 @@
                             <%-- OnTextChanged="txtCodClienteapp_TextChanged" AutoPostBack="true" --%><asp:TextBox TextMode="SingleLine" CssClass="form-control form-control-sm" placeholder="Código" ID="txtCodClienteapp" runat="server" />
                             <div class="input-group-append">
                                 <span class="input-group-text input-group-" >
-                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
+                                    <asp:LinkButton ID="btnBuscClienVE" runat="server" CssClass="bi bi-search"></asp:LinkButton></span>
                             </div>
                         </div>
                     </div>
@@ -367,7 +367,7 @@
                     <div class="col">
                         <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron vendedores">
                             <Columns>
-                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="bi bi-arrow-bar-right" SelectText="" ShowSelectButton="True"></asp:CommandField>
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -387,7 +387,7 @@
                     <div class="col">
                         <asp:GridView ID="gvClientesVE" HtmlEnCode="false" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
                             <Columns>
-                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="bi bi-arrow-bar-right" SelectText="" ShowSelectButton="True"></asp:CommandField>
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -407,7 +407,7 @@
                     <div class="col">
                         <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron productos">
                             <Columns>
-                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="fas fa-arrow-right text-primary" SelectText="" ShowSelectButton="True"></asp:CommandField>
+                                <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="bi bi-arrow-bar-right" SelectText="" ShowSelectButton="True"></asp:CommandField>
                             </Columns>
                         </asp:GridView>
                     </div>

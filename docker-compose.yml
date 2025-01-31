@@ -1,0 +1,9 @@
+services:
+  webforms-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Sistema:/inetpub/wwwroot
