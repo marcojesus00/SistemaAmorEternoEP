@@ -78,11 +78,13 @@
 <i class="bi bi-whatsapp"></i> Enviar WhatsApp a todos
                             </asp:LinkButton>
                        
-                               <asp:DropDownList CssClass="" ID="DdlIntance" runat="server">
-                                      <asp:ListItem Text="´Teléfono de Josué" Value="0"></asp:ListItem>
-                                      <asp:ListItem Text="´Teléfono de Nora" Value="1"></asp:ListItem>
+                     <%--          <asp:DropDownList CssClass="" ID="DdlIntance" runat="server">
+                                    <asp:ListItem Text="Automático" Value="0"></asp:ListItem>
+                                      <asp:ListItem Text="´Teléfono de Saul" Value="1"></asp:ListItem>
+                                      <asp:ListItem Text="´Teléfono de Nora" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="´Teléfono de Abdul" Value="3"></asp:ListItem>
 
-                               </asp:DropDownList>
+                               </asp:DropDownList>--%>
            </div>
             </div>
 

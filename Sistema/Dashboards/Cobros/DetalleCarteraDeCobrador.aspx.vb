@@ -58,12 +58,12 @@ Public Class DetalleCarteraDeCobrador
 
         PnlGoodAndBadPhones.Visible = True
         Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
-        If cobrador IsNot Nothing Then
-            If cobrador.Lider.ToLower.Contains("nora") Then
-                DdlIntance.SelectedValue = 1
-            End If
+        'If cobrador IsNot Nothing Then
+        '    If cobrador.Lider.ToLower.Contains("nora") Then
+        '        DdlIntance.SelectedValue = 1
+        '    End If
 
-        End If
+        'End If
         PnlPrimary.Visible = False
         PnlBasPhones.Visible = False
         If Session("CobradorSeleccionado") Then
@@ -263,12 +263,26 @@ where c.codigo_cobr like @Cobrador"
                         Informe.SetParameterValue("Cliente", cliente.Codigo)
                         Dim ins = ""
 
-                        If DdlIntance.SelectedValue = 0 Then
-                            ins = "other"
-                        Else
-                            ins = "default"
-                        End If
-                        Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+                        'If DdlIntance.SelectedValue = 0 Then
+                        If cobrador.Lider.ToLower().Contains("nora") Then
+                                ins = "default"
+                            ElseIf cobrador.Lider.ToLower().Contains("abdul") Then
+                                ins = "collections1"
+                            Else
+                                ins = "collections2"
+
+                            End If
+                            'ElseIf DdlIntance.SelectedValue = 1 Then
+                            '    ins = "collections2"
+                            'ElseIf DdlIntance.SelectedValue = 2 Then
+                            '    ins = "default"
+
+                            'ElseIf DdlIntance.SelectedValue = 3 Then
+                            '    ins = "collections1"
+
+                            'End If
+
+                            Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
                         phoneToSend = cliente.Telefono
 #If DEBUG Then
                         phoneToSend = "95268888"

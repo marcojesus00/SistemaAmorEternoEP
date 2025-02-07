@@ -87,7 +87,7 @@ Public Class whatsapi
                 'Dim url As String = "http://localhost:8002/v1/messages"
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
-                Dim url = "http://192.168.20.111:8000/v1/messages"
+                Dim url = "http://192.168.20.111:9000/v1/messages"
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
