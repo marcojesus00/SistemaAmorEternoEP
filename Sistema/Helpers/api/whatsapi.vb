@@ -88,6 +88,9 @@ Public Class whatsapi
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
                 Dim url = "http://192.168.20.111:9000/v1/messages"
+#If DEBUG Then
+                url = "http://127.0.0.1:8002/v1/messages"
+#End If
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
@@ -140,9 +143,9 @@ Public Class whatsapi
                 DebugHelper.SendDebugInfo("danger", ex, user)
                 msg = "Error del sistema: " + ex.GetType().Name
             End Try
-            If msg.ToLower.Contains("invalid") Then
+            If msg.ToLower().Contains("invalid") Then
                 estado = "invalido"
-            ElseIf msg.ToLower.Contains("queue") Then
+            ElseIf msg.ToLower().Contains("queue") Then
                 estado = "cola"
             End If
             Dim result As New ResultW(isSuccess, msg)
