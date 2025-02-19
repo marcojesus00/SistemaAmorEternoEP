@@ -217,8 +217,8 @@ Public Class whatsapi
                 user = user.Substring(0, 15) ' Truncate to 15 characters
             End If
 
-            If instancia.Length > 10 Then
-                instancia = instancia.Substring(0, 10) ' Truncate to 10 characters
+            If instancia.Length > 15 Then
+                instancia = instancia.Substring(0, 15) ' Truncate to 10 characters
             End If
 
             If caption.Length > 255 Then

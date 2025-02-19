@@ -295,7 +295,7 @@ where c.codigo_cobr like @Cobrador"
 
                         If r4esult.Success = False Then
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
-                            If r4esult.Msg.ToLower.Contains("queue") Then
+                            If r4esult.Msg.ToLower().Contains("queue") Then
                                 queue1 += 1
                             Else
 
@@ -321,7 +321,7 @@ where c.codigo_cobr like @Cobrador"
                 Next
             End If
             Dim countErrors = result.Count - successCount - queue1
-            Dim mensaje = $"Enviados con éxito: {successCount}. Fallidos: {countErrors}. En Cola: {queue1}"
+            Dim mensaje = $"Enviados con éxito: {successCount}. Demás mensajes en cola, el monitor de mensajes será actualizado en unos minutos"
             RabbitMQHelper.PublishToRabbitMQ2("account_statements", messageFields)
 
             If result.Count = 0 Then
