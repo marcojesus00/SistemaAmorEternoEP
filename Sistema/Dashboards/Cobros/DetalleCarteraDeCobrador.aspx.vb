@@ -265,25 +265,27 @@ where c.codigo_cobr like @Cobrador"
 
                         'If DdlIntance.SelectedValue = 0 Then
                         If cobrador.Lider.ToLower().Contains("nora") Then
-                                ins = "default"
-                            ElseIf cobrador.Lider.ToLower().Contains("abdul") Then
-                                ins = "collections1"
-                            Else
-                                ins = "collections2"
+                            ins = "default"
+                        ElseIf cobrador.Lider.ToLower().Contains("abdul") Then
+                            ins = "collections1"
+                        Else
+                            ins = "collections2"
 
-                            End If
-                            'ElseIf DdlIntance.SelectedValue = 1 Then
-                            '    ins = "collections2"
-                            'ElseIf DdlIntance.SelectedValue = 2 Then
-                            '    ins = "default"
+                        End If
+                        If DdlIntance.SelectedValue = 0 Then
 
-                            'ElseIf DdlIntance.SelectedValue = 3 Then
-                            '    ins = "collections1"
+                        ElseIf DdlIntance.SelectedValue = 1 Then
+                            ins = "collections2"
+                        ElseIf DdlIntance.SelectedValue = 2 Then
+                            ins = "default"
 
-                            'End If
+                        ElseIf DdlIntance.SelectedValue = 3 Then
+                            ins = "collections1"
 
-                            Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
-                        phoneToSend = cliente.Telefono
+                        End If
+
+                        Dim nombreArchivo As String = Cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+            phoneToSend = cliente.Telefono
 #If DEBUG Then
                         phoneToSend = "95268888"
 #End If

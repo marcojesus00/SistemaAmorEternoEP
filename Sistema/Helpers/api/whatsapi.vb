@@ -88,9 +88,9 @@ Public Class whatsapi
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
                 Dim url = "http://192.168.20.111:9000/v1/messages"
-#If DEBUG Then
-                url = "http://127.0.0.1:8002/v1/messages"
-#End If
+                '#If DEBUG Then
+                '                url = "http://127.0.0.1:8002/v1/messages"
+                '#End If
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
@@ -158,6 +158,102 @@ Public Class whatsapi
 
     End Function
 
+
+    Public Shared Function sendWhatsAppDocs2(doc As System.IO.Stream, name As String, countryCode As String, localNumber As String, caption As String, user As String, instancia As String) As ResultW
+        Dim estado As String = "no definido"
+
+        Dim msg = ""
+        Dim isSuccess As Boolean = False
+        Dim IdDeLaPlataforma As Integer = 0
+        Dim referenceID As Guid = Guid.NewGuid()
+
+        ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
+        'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
+        Using memoryStream As New System.IO.MemoryStream()
+            ' Export the report to the memory stream as a PDF
+            Try
+                doc.CopyTo(memoryStream)
+
+                ' Convert the memory stream to a byte array
+                Dim reportBytes As Byte() = memoryStream.ToArray()
+
+                ' Convert the byte array to a base64 string
+                Dim base64String As String = Convert.ToBase64String(reportBytes)
+
+
+
+                'Dim url As String = "http://localhost:8002/v1/messages"
+                'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
+
+                Dim url = "http://192.168.20.111:9000/v2/messages/docs/fast/"
+                '#If DEBUG Then
+                '                url = "http://127.0.0.1:8002/v1/messages"
+                '#End If
+                'Dim docsUrl = url + "/docs/"
+                Dim phoneNumber As New Dictionary(Of String, String) From {
+                    {"country_code", countryCode},
+                    {"local_number", localNumber}
+                }
+
+                Dim data As New Dictionary(Of String, Object) From {
+                    {"phone_number", phoneNumber},
+                    {"url", base64String},
+                    {"file_name", name},
+                    {"caption", caption},
+                    {"priority", 10},
+                    {"referenceID", referenceID.ToString()},
+                    {"instance", instancia}
+                }
+
+                ' Send the POST request
+                Dim response1 = whatsapi.PostData(url, data)
+                'Response.Write(rapiRsponse)
+                Dim contentStr As StreamContent = response1.Content
+                Dim contentString As String = contentStr.ReadAsStringAsync().Result
+
+                Dim serializer As New Newtonsoft.Json.JsonSerializer
+                Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
+                Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
+
+
+
+                'If response1.IsSuccessStatusCode Then
+
+
+                '    If Integer.TryParse(jsonResponse.Data, IdDeLaPlataforma) Then
+                '        msg = "WhatsApp enviado con éxito"
+                '        isSuccess = True
+                '        estado = "enviado"
+                '    Else
+                '        Throw New Exception("Error con id de la plataforma")
+                '    End If
+                'Else
+                '    If jsonResponse.Errors IsNot Nothing AndAlso jsonResponse.Errors IsNot Nothing Then
+                '        msg = $"{response1.StatusCode}" + jsonResponse.Errors(0).Msg
+                '    Else
+                '        msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
+                '    End If
+                '    msg = $"Error " + msg
+
+                'End If
+            Catch ex As Exception
+                Dim errorMessage As String = ex.Message
+                DebugHelper.SendDebugInfo("danger", ex, user)
+                msg = "Error del sistema: " + ex.GetType().Name
+            End Try
+            If msg.ToLower().Contains("invalid") Then
+                estado = "invalido"
+            ElseIf msg.ToLower().Contains("queue") Then
+                estado = "cola"
+            End If
+            Dim result As New ResultW(isSuccess, msg)
+
+            Return result
+        End Using
+
+
+
+    End Function
 
 
 

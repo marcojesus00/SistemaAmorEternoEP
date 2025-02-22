@@ -63,7 +63,7 @@ Public Class Reportes
         If Reporte = "Estadistica de Visitas" Then
             If dlAgrupa.SelectedIndex = 0 Then
                 pnlDialog.Visible = False
-
+                'Estadistica_Visitas_WhatsApp()
                 Estadistica_Visitas()
             End If
 
@@ -160,6 +160,8 @@ Public Class Reportes
         Informe.Close()
         Informe.Dispose()
     End Sub
+
+
     Sub Estadistica_Visitas_Cobrador()
         pnlDialog.Visible = True
 

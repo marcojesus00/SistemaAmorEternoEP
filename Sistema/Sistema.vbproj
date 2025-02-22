@@ -444,6 +444,7 @@
     <Content Include="Dashboards\Cobros\images\minus.png" />
     <Content Include="Dashboards\Cobros\images\plus.png" />
     <Content Include="Dashboards\Dashboard.master" />
+    <Content Include="endpoints\Reports.aspx" />
     <Content Include="Mantenimiento\InventarioDeEquipo.aspx" />
     <Content Include="Mantenimiento\Lineas.aspx" />
     <Content Include="Shared\Map\MapClustered.aspx" />
@@ -553,6 +554,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Handlers\DownloadHandler.ashx" />
     <Content Include="Handlers\NewWindow.ashx" />
+    <Content Include="endpoints\reports.ashx" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -2546,6 +2548,13 @@
     <Compile Include="Dashboards\Dashboard.master.vb">
       <DependentUpon>Dashboard.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="endpoints\Reports.aspx.designer.vb">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="endpoints\Reports.aspx.vb">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Helpers\api\Documents.vb" />
     <Compile Include="Helpers\api\whatsapi.vb" />

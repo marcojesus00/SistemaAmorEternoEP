@@ -2519,6 +2519,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.DetalleCarteraDeCobrador._DdlIntance">
+<summary>
+DdlIntance control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.DetalleCarteraDeCobrador._PnlBasPhones">
 <summary>
 PnlBasPhones control.
