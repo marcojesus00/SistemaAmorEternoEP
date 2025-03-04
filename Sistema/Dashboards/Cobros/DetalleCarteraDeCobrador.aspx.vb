@@ -58,12 +58,12 @@ Public Class DetalleCarteraDeCobrador
 
         PnlGoodAndBadPhones.Visible = True
         Dim cobrador As CobradorDto = CType(Session("cobradorObject"), CobradorDto)
-        If cobrador IsNot Nothing Then
-            If cobrador.Lider.ToLower.Contains("nora") Then
-                DdlIntance.SelectedValue = 1
-            End If
+        'If cobrador IsNot Nothing Then
+        '    If cobrador.Lider.ToLower.Contains("nora") Then
+        '        DdlIntance.SelectedValue = 1
+        '    End If
 
-        End If
+        'End If
         PnlPrimary.Visible = False
         PnlBasPhones.Visible = False
         If Session("CobradorSeleccionado") Then
@@ -255,7 +255,7 @@ where c.codigo_cobr like @Cobrador"
                 Dim Clave = Session("Clave")
                 Dim user_auth = Session("Usuario_Aut")
                 'RabbitMQHelper.PublishToRabbitMQ2(messageType:="UpdateMessageStatusInQueue", AgentId:=cobrador.Codigo, userId:=Usuario_Aut, queueName:="account_statements")
-
+                Dim phoneToSend
                 For Each cliente In result
                     Try
                         Dim Informe As New Movimiento_Clientes
@@ -263,22 +263,41 @@ where c.codigo_cobr like @Cobrador"
                         Informe.SetParameterValue("Cliente", cliente.Codigo)
                         Dim ins = ""
 
-                        If DdlIntance.SelectedValue = 0 Then
-                            ins = "other"
-                        Else
+                        'If DdlIntance.SelectedValue = 0 Then
+                        If cobrador.Lider.ToLower().Contains("nora") Then
                             ins = "default"
-                        End If
-                        Dim nombreArchivo As String = cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+                        ElseIf cobrador.Lider.ToLower().Contains("abdul") Then
+                            ins = "collections1"
+                        Else
+                            ins = "collections2"
 
+                        End If
+                        If DdlIntance.SelectedValue = 0 Then
+
+                        ElseIf DdlIntance.SelectedValue = 1 Then
+                            ins = "collections2"
+                        ElseIf DdlIntance.SelectedValue = 2 Then
+                            ins = "default"
+
+                        ElseIf DdlIntance.SelectedValue = 3 Then
+                            ins = "collections1"
+
+                        End If
+
+                        Dim nombreArchivo As String = Cliente.Codigo + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
+            phoneToSend = cliente.Telefono
+#If DEBUG Then
+                        phoneToSend = "95268888"
+#End If
                         Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                         Dim cap = "Estimado(a) " + cliente.Nombre + $", Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
 
-                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=cliente.Telefono, caption:=cap, couentryCode:="504", user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
+                        Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=phoneToSend, caption:=cap, couentryCode:=cliente.CodigoDePais, user:=user_auth, clientCode:=cliente.Codigo, instancia:=ins, CodigoDeCobrador:=cobrador.Codigo, BatchId:=batchId)
                         'Debug.WriteLine(r4esult.Msg)
 
                         If r4esult.Success = False Then
                             Dim m = "Codigo de cliente: " + cliente.Codigo + r4esult.Msg
-                            If r4esult.Msg.ToLower.Contains("queue") Then
+                            If r4esult.Msg.ToLower().Contains("queue") Then
                                 queue1 += 1
                             Else
 
@@ -304,7 +323,7 @@ where c.codigo_cobr like @Cobrador"
                 Next
             End If
             Dim countErrors = result.Count - successCount - queue1
-            Dim mensaje = $"Enviados con éxito: {successCount}. Fallidos: {countErrors}. En Cola: {queue1}"
+            Dim mensaje = $"Enviados con éxito: {successCount}. Demás mensajes en cola, el monitor de mensajes será actualizado en unos minutos"
             RabbitMQHelper.PublishToRabbitMQ2("account_statements", messageFields)
 
             If result.Count = 0 Then

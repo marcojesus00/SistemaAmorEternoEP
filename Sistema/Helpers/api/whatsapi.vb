@@ -87,7 +87,10 @@ Public Class whatsapi
                 'Dim url As String = "http://localhost:8002/v1/messages"
                 'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
 
-                Dim url = "http://192.168.20.111:8000/v1/messages"
+                Dim url = "http://192.168.20.111:9000/v1/messages"
+                '#If DEBUG Then
+                '                url = "http://127.0.0.1:8002/v1/messages"
+                '#End If
                 Dim docsUrl = url + "/docs/"
                 Dim phoneNumber As New Dictionary(Of String, String) From {
                     {"country_code", couentryCode},
@@ -140,9 +143,9 @@ Public Class whatsapi
                 DebugHelper.SendDebugInfo("danger", ex, user)
                 msg = "Error del sistema: " + ex.GetType().Name
             End Try
-            If msg.ToLower.Contains("invalid") Then
+            If msg.ToLower().Contains("invalid") Then
                 estado = "invalido"
-            ElseIf msg.ToLower.Contains("queue") Then
+            ElseIf msg.ToLower().Contains("queue") Then
                 estado = "cola"
             End If
             Dim result As New ResultW(isSuccess, msg)
@@ -155,6 +158,102 @@ Public Class whatsapi
 
     End Function
 
+
+    Public Shared Function sendWhatsAppDocs2(doc As System.IO.Stream, name As String, countryCode As String, localNumber As String, caption As String, user As String, instancia As String) As ResultW
+        Dim estado As String = "no definido"
+
+        Dim msg = ""
+        Dim isSuccess As Boolean = False
+        Dim IdDeLaPlataforma As Integer = 0
+        Dim referenceID As Guid = Guid.NewGuid()
+
+        ' Exportar el informe a PDF y guardar en la ruta especificada con el nombre del archivo
+        'Informe.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, rutaCompletaArchivo)
+        Using memoryStream As New System.IO.MemoryStream()
+            ' Export the report to the memory stream as a PDF
+            Try
+                doc.CopyTo(memoryStream)
+
+                ' Convert the memory stream to a byte array
+                Dim reportBytes As Byte() = memoryStream.ToArray()
+
+                ' Convert the byte array to a base64 string
+                Dim base64String As String = Convert.ToBase64String(reportBytes)
+
+
+
+                'Dim url As String = "http://localhost:8002/v1/messages"
+                'url = "https://whatsapi-vlvp.onrender.com/v1/messages"
+
+                Dim url = "http://192.168.20.111:9000/v2/messages/docs/fast/"
+                '#If DEBUG Then
+                '                url = "http://127.0.0.1:8002/v1/messages"
+                '#End If
+                'Dim docsUrl = url + "/docs/"
+                Dim phoneNumber As New Dictionary(Of String, String) From {
+                    {"country_code", countryCode},
+                    {"local_number", localNumber}
+                }
+
+                Dim data As New Dictionary(Of String, Object) From {
+                    {"phone_number", phoneNumber},
+                    {"url", base64String},
+                    {"file_name", name},
+                    {"caption", caption},
+                    {"priority", 10},
+                    {"referenceID", referenceID.ToString()},
+                    {"instance", instancia}
+                }
+
+                ' Send the POST request
+                Dim response1 = whatsapi.PostData(url, data)
+                'Response.Write(rapiRsponse)
+                Dim contentStr As StreamContent = response1.Content
+                Dim contentString As String = contentStr.ReadAsStringAsync().Result
+
+                Dim serializer As New Newtonsoft.Json.JsonSerializer
+                Dim jsonReader As New Newtonsoft.Json.JsonTextReader(New StringReader(contentString))
+                Dim jsonResponse As ResponseObject = serializer.Deserialize(Of ResponseObject)(jsonReader)
+
+
+
+                'If response1.IsSuccessStatusCode Then
+
+
+                '    If Integer.TryParse(jsonResponse.Data, IdDeLaPlataforma) Then
+                '        msg = "WhatsApp enviado con éxito"
+                '        isSuccess = True
+                '        estado = "enviado"
+                '    Else
+                '        Throw New Exception("Error con id de la plataforma")
+                '    End If
+                'Else
+                '    If jsonResponse.Errors IsNot Nothing AndAlso jsonResponse.Errors IsNot Nothing Then
+                '        msg = $"{response1.StatusCode}" + jsonResponse.Errors(0).Msg
+                '    Else
+                '        msg = $"{response1.StatusCode} {response1.ReasonPhrase}"
+                '    End If
+                '    msg = $"Error " + msg
+
+                'End If
+            Catch ex As Exception
+                Dim errorMessage As String = ex.Message
+                DebugHelper.SendDebugInfo("danger", ex, user)
+                msg = "Error del sistema: " + ex.GetType().Name
+            End Try
+            If msg.ToLower().Contains("invalid") Then
+                estado = "invalido"
+            ElseIf msg.ToLower().Contains("queue") Then
+                estado = "cola"
+            End If
+            Dim result As New ResultW(isSuccess, msg)
+
+            Return result
+        End Using
+
+
+
+    End Function
 
 
 
@@ -198,6 +297,49 @@ Public Class whatsapi
     Public Shared Sub logW(name, couentryCode, localNumber, caption, clientCode, user, instancia, docDescription, isSuccess, msg, CodigoDeCobrador, Estado, ReferenceId, Optional IdDeLaPlataforma = 0, Optional BatchId = "N/A")
         Using context As New FunamorContext()
             context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            If name.Length > 50 Then
+                name = name.Substring(0, 50) ' Truncate to 50 characters
+            End If
+
+            If couentryCode.Length > 8 Then
+                couentryCode = couentryCode.Substring(0, 8) ' Truncate to 8 characters
+            End If
+
+            If localNumber.Length > 15 Then
+                localNumber = localNumber.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If user.Length > 15 Then
+                user = user.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If instancia.Length > 15 Then
+                instancia = instancia.Substring(0, 15) ' Truncate to 10 characters
+            End If
+
+            If caption.Length > 255 Then
+                caption = caption.Substring(0, 255) ' Truncate to 255 characters
+            End If
+
+            If docDescription.Length > 25 Then
+                docDescription = docDescription.Substring(0, 25) ' Truncate to 25 characters
+            End If
+
+            If Estado.Length > 15 Then
+                Estado = Estado.Substring(0, 15) ' Truncate to 15 characters
+            End If
+
+            If BatchId.Length > 100 Then
+                BatchId = BatchId.Substring(0, 100) ' Truncate to 100 characters
+            End If
+
+            If CodigoDeCobrador.Length > 10 Then
+                CodigoDeCobrador = CodigoDeCobrador.Substring(0, 10) ' Truncate to 10 characters
+            End If
+
+            ' Convert boolean isSuccess to 1 or 0
+            Dim succ As Integer = If(isSuccess, 1, 0)
+
 
             Dim sql As String = "
             INSERT INTO [dbo].[LogDocumentosPorWhatsApp]
@@ -205,12 +347,7 @@ Public Class whatsapi
             VALUES
             (@CodigoDeCliente, @Telefono, @Usuario, @NombreDeDocumento, @Instancia, @CodigoDePais, @Mensaje, @DescripcionDeDocumento, @FueExitoso, @MensajeDelResultado, @IdDeLaPlataforma, @CodigoDeCobrador, @Estado, @BatchId, @ReferenceId);
         "
-            Dim succ
-            If isSuccess = True Then
-                succ = 1
-            Else
-                succ = 0
-            End If
+
 
             Dim parameters As SqlParameter() = {
                 New SqlParameter("@CodigoDeCliente", clientCode),

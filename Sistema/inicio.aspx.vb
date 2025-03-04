@@ -58,24 +58,46 @@ Public Class inicio
         End If
 
         Dim conf As New Configuracion(Usuario, clave, bd, Servidor)
-        sql = "SELECT A.CODIGO_SUCU FROM FUNAMOR..CABSEG A WHERE A.SEG_USUARIO = '" & txtUsuario.Text & "' AND A.SEG_PASSWD = '" + txtPassword.Text + "'"
-        Datos = conf.EjecutaSql(sql)
+        'sql = "SELECT A.CODIGO_SUCU FROM FUNAMOR..CABSEG A WHERE A.SEG_USUARIO = '" & txtUsuario.Text & "' AND A.SEG_PASSWD = '" + txtPassword.Text + "'"
+        'Datos = conf.EjecutaSql(sql)
 
-        If Datos.Tables(0).Rows.Count.ToString = "0" Then
-            Msg("Usuario o Clave incorrecto " + dlCompania.SelectedValue)
-            Exit Sub
-        End If
+        'If Datos.Tables(0).Rows.Count.ToString = "0" Then
+        '    Msg("Usuario o Clave incorrecto " + dlCompania.SelectedValue)
+        '    Exit Sub
+        'End If
+        Dim password = txtPassword.Text?.Trim()
+        Dim user = txtUsuario.Text?.Trim()
+        Using dbCOntext As New FunamorContext()
+            Dim sql As String = "
+            SELECT CODIGO_SUCU FROM [dbo].[CABSEG]
+            WHERE SEG_USUARIO= @User and  SEG_PASSWD=@Password;
+        "
 
-        Session.Timeout = 90
-        Session.Add("Usuario_Aut", txtUsuario.Text)
-        Session.Add("Clave_Aut", txtPassword.Text)
-        Session.Add("Usuario", Usuario)
-        Session.Add("Clave", clave)
-        Session.Add("Bd", bd)
-        Session.Add("Servidor", Servidor)
-        Session.Add("Sucursal", Datos.Tables(0).Rows(0).Item("CODIGO_SUCU"))
 
-        Response.Redirect("principal.aspx")
+            Dim parameters As SqlParameter() = {
+                New SqlParameter("@Password", password),
+                New SqlParameter("@User", user)
+            }
+
+            Dim sucursal = dbCOntext.Database.SqlQuery(Of String)(sql, parameters).FirstOrDefault()
+            If sucursal IsNot Nothing AndAlso sucursal.Length Then
+                Session.Timeout = 90
+                Session.Add("Usuario_Aut", txtUsuario.Text)
+                Session.Add("Clave_Aut", txtPassword.Text)
+                Session.Add("Usuario", Usuario)
+                Session.Add("Clave", clave)
+                Session.Add("Bd", bd)
+                Session.Add("Servidor", Servidor)
+                Session.Add("Sucursal", sucursal)
+
+                Response.Redirect("principal.aspx")
+            Else
+                Msg("Usuario o Clave incorrecto " + dlCompania.SelectedValue)
+
+            End If
+
+        End Using
+
     End Sub
 
     Sub limpiar_campos()

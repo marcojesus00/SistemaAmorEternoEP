@@ -41,8 +41,8 @@ Public Class monitorventas1
 
         'Tabla = Datos.Tables(0)
 
-        Usuario = "Mmejia" ''Session("Usuario")
-        Clave = "Mm%%4567" 'Session("Clave")
+        Usuario = "sistema.web" ''Session("Usuario")
+        Clave = "$$Eterno4321." 'Session("Clave")
         Servidor = "192.168.20.225" 'Session("Servidor")
         Bd = "Funamor" ''Session("DB")
         Usuario_Aut = Session("Usuario_Aut")

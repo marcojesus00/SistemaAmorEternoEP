@@ -498,49 +498,62 @@ Public Class monitorclientes
             Dim nombreArchivo As String = Session("CodigoCliente").TrimEnd + "-" + DateTime.Now.ToString("yyyy-MM-dd") + "" + ".pdf" ' Cambia el nombre del archivo si lo deseas
             Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
             Using fun As New FunamorContext
+
+                Dim instance = "other"
+
                 Dim codigoCliente As String = Session("CodigoCliente").ToString()
                 Dim cliente = fun.Clientes.FirstOrDefault(Function(c) c.Codigo = codigoCliente)
                 If cliente IsNot Nothing Then
                     codigoCob = cliente.CodigoCobrador
+                    Dim query = "select cob_lider from COBRADOR where codigo_cobr =@Agent"
+                    Dim param As New SqlParameter("@Agent", codigoCob)
+
+                    Dim leader = fun.Database.SqlQuery(Of String)(query, param).FirstOrDefault()
+                    If leader IsNot Nothing AndAlso leader.Trim() = "3072" Then
+                        instance = "default"
+                    End If
                 End If
+
+                Dim co = ""
+
+                Try
+
+                    Dim nombre As String = Session("NombreCliente")
+
+                    Dim countryCode = ddlCountryCode.SelectedValue.Replace("+", "")
+                    Dim phone = TxtTelefonoWhats.Text
+                    Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
+                    Dim user = Session("Usuario_Aut")
+                    Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:=instance, CodigoDeCobrador:=codigoCob, BatchId:="N/A")
+
+
+                    If r4esult.Success = True Then
+                        lblAlert.CssClass = "alert-primary align-content-center"
+                    Else
+                        DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
+
+                        lblAlert.CssClass = "alert-danger align-content-center"
+                    End If
+                    lblAlert.Text = r4esult.Msg
+
+                    TxtTelefonoWhats.Text = ""
+
+
+
+                    PanelEnviarWhatsapp.Visible = False
+
+
+                    PanelConfirmaCorreoEnviado.Visible = True
+
+                Catch ex As Exception
+                    Dim errorMessage As String = ex.Message
+                    DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+                Finally
+                    Informe.Close()
+                    Informe.Dispose()
+                End Try
             End Using
-            Dim co = ""
-            Try
-                Dim nombre As String = Session("NombreCliente")
-
-                Dim countryCode = ddlCountryCode.SelectedValue.Replace("+", "")
-                Dim phone = TxtTelefonoWhats.Text
-                Dim cap = "Estimado(a) " + nombre.Trim() + " Amor Eterno manda su estado de cuenta. Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(+504) 2647-3390 / (+504) 2647-4529 /(+504) 2647-4986 Tel: (+504) 3290-7278"
-                Dim user = Session("Usuario_Aut")
-                Dim r4esult As ResultW = whatsapi.sendWhatsAppDocs(doc:=pdf, name:=nombreArchivo, localNumber:=phone, caption:=cap, couentryCode:=countryCode, user:=user, clientCode:=Session("CodigoCliente"), instancia:="default", CodigoDeCobrador:=codigoCob, BatchId:="N/A")
-
-
-                If r4esult.Success = True Then
-                    lblAlert.CssClass = "alert-primary align-content-center"
-                Else
-                    DebugHelper.SendDebugInfo("danger", New Exception(r4esult.Msg), Session("Usuario_Aut"))
-
-                    lblAlert.CssClass = "alert-danger align-content-center"
-                End If
-                lblAlert.Text = r4esult.Msg
-
-                TxtTelefonoWhats.Text = ""
-
-
-
-                PanelEnviarWhatsapp.Visible = False
-
-
-                PanelConfirmaCorreoEnviado.Visible = True
-
-            Catch ex As Exception
-                Dim errorMessage As String = ex.Message
-                DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
-
-            Finally
-                Informe.Close()
-                Informe.Dispose()
-            End Try
 
         Catch ex As Exception
             lblAlert.CssClass = "alert-danger align-content-center"
