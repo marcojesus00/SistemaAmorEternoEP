@@ -3590,6 +3590,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Sistema.mapa._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.mapa._GMap1">
+<summary>
+GMap1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Sistema.mapa._Vista">
+<summary>
+Vista control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Sistema.MapClusteredPage._MapTitleHolder">
 <summary>
 MapTitleHolder control.
@@ -4376,33 +4403,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Sistema.inicioOld1._Button">
 <summary>
 Button control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.mapa._form1">
-<summary>
-form1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.mapa._GMap1">
-<summary>
-GMap1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Sistema.mapa._Vista">
-<summary>
-Vista control.
 </summary>
 <remarks>
 Auto-generated field.

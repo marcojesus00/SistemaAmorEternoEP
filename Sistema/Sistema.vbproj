@@ -39,6 +39,8 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Sistema.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +51,8 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>Sistema.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxMin, Version=5.14.5506.26196, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
@@ -157,6 +161,10 @@
     </Reference>
     <Reference Include="GMap.NET.WindowsForms, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.WinForms.2.1.7\lib\net461\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="GMaps, Version=4.1.0.5, Culture=neutral, PublicKeyToken=564d55b144e7aa5a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\GMaps.dll</HintPath>
     </Reference>
     <!--<Reference Include="GMaps">
       <HintPath>..\..\..\..\..\Downloads\gmaps_v4_1_0_5\GMaps.dll</HintPath>
@@ -498,6 +506,7 @@
     <Content Include="endpoints\Reports.aspx" />
     <Content Include="Mantenimiento\InventarioDeEquipo.aspx" />
     <Content Include="Mantenimiento\Lineas.aspx" />
+    <Content Include="mapa.aspx" />
     <Content Include="Shared\Map\MapClustered.aspx" />
     <Content Include="Shared\Map\Map - Copy.aspx" />
     <Content Include="Shared\Map\Map.aspx" />
@@ -2629,6 +2638,13 @@
     <Compile Include="Mantenimiento\Lineas.aspx.vb">
       <DependentUpon>Lineas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="mapa.aspx.designer.vb">
+      <DependentUpon>mapa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mapa.aspx.vb">
+      <DependentUpon>mapa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Models\funamor\UsuariosModels.vb" />
     <Compile Include="Models\Memorial\MemorialContext.vb" />
