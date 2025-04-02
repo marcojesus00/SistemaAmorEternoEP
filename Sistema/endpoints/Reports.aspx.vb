@@ -13,8 +13,15 @@
     Public Sub Estadistica_Visitas_WhatsApp()
         Dim today = DateTime.Now.ToString("yyyy-MM-dd")
         Dim todayFormatted = DateTime.Now.ToString("dd-MM-yyyy")
-
-        Dim OneMonthAgo = DateTime.Now.AddMonths(-1).AddDays(1).ToString("yyyy-MM-dd")
+        Dim priorMonth = 0
+        If DateTime.Now.Day >= 21 Then
+            priorMonth = DateTime.Now.Month
+        Else
+            priorMonth = DateTime.Now.AddMonths(-1).Month
+        End If
+        Dim priorDay = 21
+        Dim priorYear = DateTime.Now.Year
+        Dim OneMonthAgo = New DateTime(priorYear, priorMonth, priorDay).ToString("yyyy-MM-dd")
         Dim Informe = New Estadistica_Visitas
 
         Informe.SetDatabaseLogon("sistema.web", "$$Eterno4321.")
