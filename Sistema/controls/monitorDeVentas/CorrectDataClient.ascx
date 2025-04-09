@@ -116,7 +116,7 @@
                                     <asp:TextBox ID="textBoxProductNombre1" runat="server" CssClass="form-control form-control-sm" placeholder="Producto..." TextMode="SingleLine" OnTextChanged="txtprod1_TextChanged" AutoPostBack="true" />
                                     <div class="input-group-append">
                                         <span class="input-group-text input-group-">
-                                            <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="fas fa-search text-secondary"></asp:LinkButton></span>
+                                            <asp:LinkButton ID="btnBuscarProducto" runat="server" CssClass="bi bi-search"></asp:LinkButton></span>
                                     </div>
                                 </div>
                             </div>

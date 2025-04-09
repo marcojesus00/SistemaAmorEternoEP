@@ -111,6 +111,9 @@ Partial Public Class CobrosDashboard
 
     Public Class CobradorDto
         Public Property Codigo As String
+        Public Property Nombre As String
+        Public Property Telefono As String
+
         Public Property Lider As String
         Public Property Telefono_lider As String
         Public Property Zona As String
