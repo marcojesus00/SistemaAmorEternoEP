@@ -337,7 +337,7 @@
                         <asp:LinkButton ID="LinkButton1" runat="server" Style="position: absolute; right: 8%; font-size: x-large">  Pausar </asp:LinkButton>--%>
                     </div>
                 </div>
-                                <div class="row" style="background-color: white">                <uc:CorrectSalesDataClient ID="CorrectSalesDataClient1" runat="server" />
+                                <div class="row" style="background-color: white">                <uc:correctsalesdataclient id="CorrectSalesDataClient1" runat="server" />
 </div>
 
                 <%-- Identidad --%>
@@ -360,12 +360,12 @@
                 <div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
 
-                        <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o nombre del vendedor..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true" />
+                        <asp:TextBox ID="txtBuscarVended" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarVendedorV_TextChanged" AutoPostBack="true" />
                     </div>
                 </div>
                 <div class="row" style="background-color: white">
                     <div class="col">
-                        <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron vendedores">
+                        <asp:GridView ID="gvvendEditVent" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
                             <Columns>
                                 <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="bi bi-arrow-bar-right" SelectText="" ShowSelectButton="True"></asp:CommandField>
                             </Columns>
@@ -380,7 +380,7 @@
             <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
                 <div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
-                        <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true" />
+                        <asp:TextBox ID="txtBuscarCliente" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" OnTextChanged="txtBuscarCliente_TextChanged" AutoPostBack="true" />
                     </div>
                 </div>
                 <div class="row" style="background-color: white">
@@ -400,12 +400,12 @@
             <div style="padding-left: 5%; padding-right: 5%; padding-top: 40px;">
                 <div class="row" style="background-color: white; padding-top: 15px;">
                     <div class="col">
-                        <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Nombre de producto..." Width="50%" TextMode="SingleLine" />
+                        <asp:TextBox ID="txtBuscarProductoApp" runat="server" class="form-control form-control-sm" placeholder="Codigo o Nombre de cliente..." Width="50%" TextMode="SingleLine" />
                     </div>
                 </div>
                 <div class="row" style="background-color: white">
                     <div class="col">
-                        <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron productos">
+                        <asp:GridView ID="gvDetalleProductosContrato" runat="server" CssClass="table table-sm table-bordered table-hover" EmptyDataText="No se econtraron clientes">
                             <Columns>
                                 <asp:CommandField ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="bi bi-arrow-bar-right" SelectText="" ShowSelectButton="True"></asp:CommandField>
                             </Columns>
