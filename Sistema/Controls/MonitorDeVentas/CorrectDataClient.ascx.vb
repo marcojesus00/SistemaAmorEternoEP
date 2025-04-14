@@ -398,6 +398,29 @@ Public Class DataClient
         End Try
 
     End Sub
+
+    Protected Sub ButtonManySalesSameClient_Click(sender As Object, e As EventArgs)
+        Try
+
+            Dim result As String
+        Dim helper As New FixSalesHelper()
+        Dim clientCode As String = Session("CodigoClienteAPP")
+        Dim salesPersonCode As String = Session("CodigoVendedorApp")
+        If clientCode IsNot Nothing AndAlso salesPersonCode IsNot Nothing Then
+            result = helper.CorrectTheSameCLientManyTimes(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim())
+        Else
+            result = "Seleccione una venta primero"
+        End If
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(result, "warning"))
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
+
+
+        End Try
+
+    End Sub
+
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
         Dim Letra As Integer
         Dim Cuota As Decimal

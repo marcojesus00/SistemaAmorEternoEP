@@ -174,6 +174,7 @@
                 </div>
             </div>
             <hr class="p-2" />
+                                <asp:Button ID="ButtonManySalesSameClient" OnClick="ButtonManySalesSameClient_Click" runat="server" Text="Corregir muchas ventas mismo cliente" CssClass="btn btn-sm btn-danger" />
 
             <div class="row justify-content-end pt-md-5 pr-1">
                 <div class="col-auto">
