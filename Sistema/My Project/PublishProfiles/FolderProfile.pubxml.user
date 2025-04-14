@@ -320,19 +320,19 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/19/2024 18:16:14</publishTime>
     </File>
     <File Include="bin/Sistema.dll">
-      <publishTime>04/14/2025 12:04:40</publishTime>
+      <publishTime>04/14/2025 15:17:00</publishTime>
     </File>
     <File Include="bin/Sistema.dll.CodeAnalysisLog.xml">
-      <publishTime>04/14/2025 12:04:47</publishTime>
+      <publishTime>04/14/2025 15:17:08</publishTime>
     </File>
     <File Include="bin/Sistema.dll.config">
       <publishTime>03/28/2025 10:02:44</publishTime>
     </File>
     <File Include="bin/Sistema.pdb">
-      <publishTime>04/14/2025 12:04:40</publishTime>
+      <publishTime>04/14/2025 15:17:00</publishTime>
     </File>
     <File Include="bin/Sistema.xml">
-      <publishTime>04/14/2025 12:04:40</publishTime>
+      <publishTime>04/14/2025 15:16:59</publishTime>
     </File>
     <File Include="bin/stdole.dll">
       <publishTime>03/19/2025 16:53:51</publishTime>
@@ -437,7 +437,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/28/2025 09:29:08</publishTime>
     </File>
     <File Include="Controls/MonitorDeVentas/CorrectDataClient.ascx">
-      <publishTime>04/14/2025 11:25:47</publishTime>
+      <publishTime>04/14/2025 14:15:37</publishTime>
     </File>
     <File Include="Controls/Shared/Footer.ascx">
       <publishTime>03/28/2025 09:29:08</publishTime>

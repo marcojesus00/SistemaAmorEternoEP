@@ -116,7 +116,7 @@ Public Class DataClient
         If Not IsPostBack Then
             Try
                 PopulateDdlDeptoCliente()
-
+                FillDll()
 
             Catch ex As Exception
                 RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
@@ -125,6 +125,19 @@ Public Class DataClient
         End If
 
 
+    End Sub
+    Public Sub FillDll()
+        Using context As New FunamorContext, ventasContext As New AeVentasDbContext
+            'Console.WriteLine("FILLDLL")
+
+            'context.Database.Log = Sub(s) System.Diagnostics.Debug.WriteLine(s)
+            Dim companies = context.Vendedores.AsNoTracking().Where(Function(e) e.Codigo IsNot Nothing AndAlso e.Codigo.Trim().Length > 0).Select(Function(c) New With {c.Codigo, .Nombre = c.Codigo + " " + c.Nombre}).OrderBy(Function(v) v.Codigo).ToList()
+            ddlSales.DataSource = companies
+            ddlSales.DataTextField = "Nombre"
+            ddlSales.DataValueField = "Codigo"
+            ddlSales.DataBind()
+            ddlSales.Items.Insert(0, New ListItem("Nuevo vendedor", ""))
+        End Using
     End Sub
     Public Sub OnDataReceived(ByVal sender As Object, ByVal e As ClientDataReceivedEventArgs)
         Try
@@ -407,8 +420,12 @@ Public Class DataClient
         Dim clientCode As String = Session("CodigoClienteAPP")
         Dim salesPersonCode As String = Session("CodigoVendedorApp")
         If clientCode IsNot Nothing AndAlso salesPersonCode IsNot Nothing Then
-            result = helper.CorrectTheSameCLientManyTimes(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim())
-        Else
+                result = helper.CorrectTheSameCLientManyTimes(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim())
+                Dim parentPage As monitorventas = CType(Me.Page, monitorventas)
+                Dim lastWord As String = result.Trim().Split(" "c).Last()
+
+                parentPage.SetClientCOde(lastWord)
+            Else
             result = "Seleccione una venta primero"
         End If
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(result, "warning"))
@@ -420,6 +437,33 @@ Public Class DataClient
 
         End Try
 
+    End Sub
+
+    Protected Sub ButtonChangeSalesPerson_Click(sender As Object, e As EventArgs)
+        Try
+
+            Dim result As String
+            Dim helper As New FixSalesHelper()
+            Dim clientCode As String = Session("CodigoClienteAPP")
+            Dim salesPersonCode As String = Session("CodigoVendedorApp")
+            Dim newSalesPersonCode As String = ddlSales.SelectedValue
+
+            If clientCode IsNot Nothing AndAlso salesPersonCode IsNot Nothing AndAlso newSalesPersonCode IsNot Nothing Then
+                result = helper.ChangeSalesPerson(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim(), newSalesPerson:=newSalesPersonCode)
+                Dim parentPage As monitorventas = CType(Me.Page, monitorventas)
+                parentPage.SetCodVendEV(newSalesPersonCode)
+                parentPage.SetSalesPersonNameField("")
+            Else
+                result = "Seleccione una venta y un nuevo vendedor primero"
+            End If
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(result, "warning"))
+
+        Catch ex As Exception
+            RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
+
+
+        End Try
     End Sub
 
     Protected Sub txtvalorcontApp_TextChanged(sender As Object, e As EventArgs)
