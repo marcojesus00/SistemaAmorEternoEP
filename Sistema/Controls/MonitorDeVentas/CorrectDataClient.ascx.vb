@@ -415,6 +415,7 @@ Public Class DataClient
 
         Catch ex As Exception
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(msg & ex.Message, "danger"))
+            DebugHelper.SendDebugInfo("danger", ex, Session("Usuario_Aut"))
 
 
         End Try
