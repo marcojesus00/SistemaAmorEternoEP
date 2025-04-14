@@ -420,8 +420,12 @@ Public Class DataClient
         Dim clientCode As String = Session("CodigoClienteAPP")
         Dim salesPersonCode As String = Session("CodigoVendedorApp")
         If clientCode IsNot Nothing AndAlso salesPersonCode IsNot Nothing Then
-            result = helper.CorrectTheSameCLientManyTimes(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim())
-        Else
+                result = helper.CorrectTheSameCLientManyTimes(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim())
+                Dim parentPage As monitorventas = CType(Me.Page, monitorventas)
+                Dim lastWord As String = result.Trim().Split(" "c).Last()
+
+                parentPage.SetClientCOde(lastWord)
+            Else
             result = "Seleccione una venta primero"
         End If
             RaiseEvent AlertGenerated(Me, New AlertEventArgs(result, "warning"))
@@ -446,6 +450,9 @@ Public Class DataClient
 
             If clientCode IsNot Nothing AndAlso salesPersonCode IsNot Nothing AndAlso newSalesPersonCode IsNot Nothing Then
                 result = helper.ChangeSalesPerson(clientCode:=clientCode.Trim(), salesPerson:=salesPersonCode.Trim(), newSalesPerson:=newSalesPersonCode)
+                Dim parentPage As monitorventas = CType(Me.Page, monitorventas)
+                parentPage.SetCodVendEV(newSalesPersonCode)
+                parentPage.SetSalesPersonNameField("")
             Else
                 result = "Seleccione una venta y un nuevo vendedor primero"
             End If

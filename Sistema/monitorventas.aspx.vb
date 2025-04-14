@@ -1831,10 +1831,10 @@ Public Class monitorventas
             lblMsg.Text = "Operación realizada"
             lblMsg.ControlStyle.CssClass = "alert alert-success"
 
-            txtCodClienteapp.Text = ""
-            txtCodVendEV.Text = ""
-            txtnombreVendArr.InnerText = ""
 
+            SetClientCOde("")
+            SetCodVendEV("")
+            SetSalesPersonNameField("")
             Session("ValorContrato") = 0
             Session("PrimaM") = 0
             Session("Prima") = 0
@@ -1863,10 +1863,23 @@ Public Class monitorventas
 
 
     End Sub
+    Public Sub empty()
+        txtCodVendEV.Text = ""
+
+    End Sub
 
 
-
-
+    Public Sub SetCodVendEV(value As String)
+        txtCodVendEV.Text = value
+        Session("CodigoVendedorApp") = value
+    End Sub
+    Public Sub SetSalesPersonNameField(value As String)
+        txtnombreVendArr.InnerText = value
+    End Sub
+    Public Sub SetClientCOde(value As String)
+        txtCodClienteapp.Text = value
+        Session("CodigoClienteAPP") = value
+    End Sub
     Private Sub BtnNoSalvar_Clik(sender As Object, e As EventArgs) Handles BtnNoSalvar.Click
         Try
             PanelConfirmacion.Visible = False
