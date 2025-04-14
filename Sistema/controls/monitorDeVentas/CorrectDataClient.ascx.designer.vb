@@ -149,6 +149,15 @@ Partial Public Class DataClient
     Protected WithEvents textBoxCantidadProducto1app As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''ButtonManySalesSameClient control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ButtonManySalesSameClient As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnGuardarCamb control.
     '''</summary>
     '''<remarks>
