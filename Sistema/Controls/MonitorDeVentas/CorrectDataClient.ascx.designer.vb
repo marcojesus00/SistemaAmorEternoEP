@@ -158,6 +158,24 @@ Partial Public Class DataClient
     Protected WithEvents ButtonManySalesSameClient As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''ddlSales control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSales As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ButtonChangeSalesPerson control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ButtonChangeSalesPerson As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnGuardarCamb control.
     '''</summary>
     '''<remarks>

@@ -173,9 +173,20 @@
 
                 </div>
             </div>
-            <hr class="p-2" />
-                                <asp:Button ID="ButtonManySalesSameClient" OnClick="ButtonManySalesSameClient_Click" runat="server" Text="Corregir muchas ventas mismo cliente" CssClass="btn btn-sm btn-danger" />
+            <hr class="p-1" />
+                    <div class="col-lg-6">
 
+
+                                                  <asp:Button ID="ButtonManySalesSameClient" OnClick="ButtonManySalesSameClient_Click" runat="server" Text="Corregir muchas ventas mismo cliente" CssClass="btn btn-sm btn-danger" />
+                        <hr class="p-1" />
+                                            <asp:DropDownList ID="ddlSales" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
+
+                                            <asp:Button ID="ButtonChangeSalesPerson" OnClick="ButtonChangeSalesPerson_Click" runat="server" Text="Cambiar vendedor" CssClass="btn btn-sm btn-warning" />
+
+
+
+                    </div>
+      
             <div class="row justify-content-end pt-md-5 pr-1">
                 <div class="col-auto">
                     <asp:Button ID="btnGuardarCamb" runat="server" Enabled="true" Text="   Salvar   " CssClass="btn btn-sm btn-success" />
