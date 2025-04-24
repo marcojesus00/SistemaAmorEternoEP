@@ -291,7 +291,7 @@ where c.codigo_cobr like @Cobrador"
 #End If
                         Dim pdf As System.IO.Stream = Informe.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat)
                         Dim cap = "Estimado(a) " + cliente.Nombre.Trim() + $", Amor Eterno manda su estado de cuenta.
-Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(504) 2647-3390 / (504) 2647-4529 /(504) 2647-4986 Tel: (504) 3290-7278/ (504) 9367-7018
+Para mayor informacion o si desea comunicarse con servicio al cliente puede llamar al Pbx:(504) 2647-3390 / (504) 2647-4529 /(504) 2647-4986 Tel: (504) 3290-9278/ (504) 9367-7018/(504) 9369-1818
 
 Cobrador: " + cobrador.Codigo + cobrador.Nombre + "
 Cel: " + cobrador.Telefono
