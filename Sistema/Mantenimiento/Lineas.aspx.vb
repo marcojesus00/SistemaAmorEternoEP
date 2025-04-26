@@ -432,14 +432,31 @@ ORDER BY
             New SqlParameter("@AssignedBy", AssignedBy)}
         Try
             Using context As New MemorialContext()
-                Dim queryUpdatePhoneLine = "UPDATE [dbo].[BusinessPhoneLines]
+                Dim queryUpdatePhoneLine = "
+UPDATE [dbo].[BusinessPhoneLines]
    SET 
       [ModificationDate] = @ModificationDate
       ,[IsOperative] = @IsOperative
       ,[IsAssigned] = @IsAssigned
- WHERE Id=@LineId"
+      ,[AgentCode] = @AgentCode
 
-                Dim queryAssign = "INSERT INTO [dbo].[BusinessPhoneLinesAssignments]
+ WHERE Id=@LineId"
+                Dim queryUpdateCollectorPhone = "UPDATE FUNAMOR..COBRADOR
+   SET 
+      [cob_telefo] = (select top 1 LocalNumber from Memorial..BusinessPhoneLines  WHERE Id=@LineId )
+
+ WHERE codigo_cobr=@AgentCode
+"
+                Dim queryUpdateSalesPersonPhone = "
+UPDATE FUNAMOR..VENDEDOR
+   SET 
+      Tel_vendedo = (select top 1 LocalNumber from Memorial..BusinessPhoneLines  WHERE Id=@LineId )
+
+ WHERE Cod_vendedo=@AgentCode
+"
+
+                Dim queryAssign = "
+INSERT INTO [dbo].[BusinessPhoneLinesAssignments]
            ([LineId]
            ,[AgentCode]
            ,[AssignedBy])
@@ -451,6 +468,8 @@ ORDER BY
                 Dim queryAssignComplete = $" BEGIN TRY
 BEGIN TRANSACTION
 {queryUpdatePhoneLine}
+{queryUpdateCollectorPhone}
+{queryUpdateSalesPersonPhone}
 {queryAssign}
 COMMIT
 SELECT 'EXITO'

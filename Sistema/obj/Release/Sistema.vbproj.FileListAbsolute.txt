@@ -337,7 +337,9 @@ C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.Resources.
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.GenerateResource.cache
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sentry.Attributes.vb
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CoreCompileInputs.cache
-C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CopyComplete
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.dll
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
+C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\bin\stdole.dll
+C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CopyComplete
