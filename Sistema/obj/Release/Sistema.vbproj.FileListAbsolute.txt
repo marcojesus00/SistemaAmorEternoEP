@@ -342,4 +342,4 @@ C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.xml
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.pdb
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\bin\stdole.dll
-C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.Up2Date
+C:\Users\it\Documents\SistemaAmorEternoEP\Sistema\obj\Release\Sistema.vbproj.CopyComplete

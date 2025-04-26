@@ -14,13 +14,18 @@
         Dim today = DateTime.Now.ToString("yyyy-MM-dd")
         Dim todayFormatted = DateTime.Now.ToString("dd-MM-yyyy")
         Dim priorMonth = 0
+        Dim priorDay = 21
+        Dim priorYear = DateTime.Now.Year
         If DateTime.Now.Day >= 21 Then
             priorMonth = DateTime.Now.Month
         Else
             priorMonth = DateTime.Now.AddMonths(-1).Month
         End If
-        Dim priorDay = 21
-        Dim priorYear = DateTime.Now.Year
+
+
+        If DateTime.Now < New DateTime(2025, 5, 22) Then
+            priorDay = 22
+        End If
         Dim OneMonthAgo = New DateTime(priorYear, priorMonth, priorDay).ToString("yyyy-MM-dd")
         Dim Informe = New Estadistica_Visitas
 
